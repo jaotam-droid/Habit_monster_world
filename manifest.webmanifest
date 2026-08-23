@@ -1,0 +1,9 @@
+{
+  "name": "Habit Monster World V26 Model Edition",
+  "short_name": "HabitMonster3D",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#edf8ff",
+  "theme_color": "#76b9ef"
+}

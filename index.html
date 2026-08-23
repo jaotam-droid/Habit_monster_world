@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="th">
+<head><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#76b9ef">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#76b9ef">
+<title>Habit Monster World V26 MODEL EDITION Clean</title>
+<style>
+:root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
+.wrap{max-width:1250px;margin:auto;padding:14px 12px 100px}.header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.header h1{margin:0;font-size:clamp(27px,5vw,42px)}.sub,.note{color:var(--muted)}
+.status{display:flex;gap:7px;flex-wrap:wrap}.pill{background:#fff;padding:7px 10px;border-radius:999px;box-shadow:var(--shadow);font-weight:850}
+.card{background:#fff;border:2px solid #fff;border-radius:22px;padding:15px;margin-top:11px;box-shadow:var(--shadow)}h2,h3,h4{margin:0 0 9px}
+.nav{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.nav button{border:0;border-radius:13px;padding:10px 5px;background:#edf4f8;font-weight:900}.nav button.active{background:#dceeff;color:#285e9b}
+.screen{display:none}.screen.active{display:block}
+.world{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.zone{border:2px solid var(--line);border-radius:18px;padding:11px;text-align:center;background:#fff;cursor:pointer;transition:.15s;min-height:150px}.zone:active{transform:scale(.97)}.zone.active{border-color:#6b9ee5;background:#eef6ff}.zoneArt{width:104px;height:110px;margin:auto}.zoneArt svg{width:100%;height:100%}
+.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#dcf3ff 0 58%,#e9f7df 58%);min-height:460px}.battle{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:8px}.avatarArt{width:190px;height:215px;margin:auto}.bossArt{width:min(300px,70vw);height:min(315px,72vw);margin:auto}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
+.vs{font-size:30px;font-weight:1000;color:#789}.label{font-weight:950}.story{background:#f7fbff;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}.row{display:flex;justify-content:space-between;gap:8px;font-weight:900}
+.bar{height:16px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dae5ec;margin:5px 0 9px}.hp{height:100%;background:linear-gradient(90deg,#a49fe9,#786fd1)}.xp{height:100%;background:linear-gradient(90deg,#65cbff,#6278ff)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.stat{background:#f7fbfd;border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center}.stat b{display:block;font-size:20px}
+.quest{margin-top:11px;background:#fff;border:1px solid var(--line);border-radius:17px;padding:12px}.questTitle{font-weight:950;font-size:18px;margin-bottom:8px}
+.inputRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inputRow input,.inputRow select,.setting input,.setting select,.wideInput{width:100%;padding:10px;border:1px solid #d9e3eb;border-radius:11px;background:#fff}
+.bigBtn{width:100%;border:0;border-radius:13px;padding:11px;margin-top:8px;font-weight:950}.smallBtn{border:0;border-radius:10px;padding:8px 11px;font-weight:900;background:#e8f2fb}.green{background:var(--green);color:#fff}.blue{background:var(--blue);color:#fff}.yellow{background:var(--yellow);color:#5b4800}.purple{background:var(--purple);color:#fff}.pink{background:var(--pink);color:#fff}.orange{background:var(--orange);color:#fff}
+.checkList{display:grid;gap:8px;margin-top:8px}.checkRow{display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:#fbfdff}.checkRow input[type=checkbox]{width:21px;height:21px;flex:none}.inlineAdd{display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:9px}.deleteBtn{border:0;border-radius:9px;padding:6px 9px;background:#ffe8eb;color:#a63a47;font-weight:900}
+.triple{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini{border:1px solid var(--line);border-radius:13px;padding:10px;background:#fbfdff}.mini input{width:100%;padding:9px;border:1px solid #d9e3eb;border-radius:10px;margin-top:5px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.box{border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff;text-align:center}.box.done{background:#eef9f1;border-color:#86cf9f}.ico{font-size:34px}
+.avatarStudio{display:grid;grid-template-columns:230px 1fr;gap:15px;align-items:center}.avatarStage{width:220px;height:240px;margin:auto;border-radius:26px;background:linear-gradient(#eaf7ff,#fff7df);display:grid;place-items:center;box-shadow:var(--shadow)}.avatarStage svg{width:96%;height:96%}
+.avatarChoices{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.avatarChoice{border:2px solid var(--line);border-radius:12px;padding:6px;background:#fff;font-weight:850}.avatarChoice.on{border-color:#ffd15b;background:#fff8d6}.avatarChoice svg{width:58px;height:64px}
+.gearRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.gearChip{border:2px solid var(--line);border-radius:999px;padding:7px 10px;background:#eef7ff;font-weight:900}.gearChip.on{border-color:#ffd15b;background:#fff3bd}.gearChip.locked{opacity:.45}
+.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summaryBox{border:1px solid var(--line);border-radius:13px;padding:10px;background:#fbfdff}.summaryBox b{display:block;font-size:19px}
+.petStudio{display:grid;grid-template-columns:230px 1fr;gap:15px}.petStage{width:210px;height:210px;margin:auto;border-radius:26px;background:linear-gradient(#eef8ff,#fff7dc);display:grid;place-items:center}.petStage svg{width:92%;height:92%}.petChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.petChoice{border:2px solid var(--line);border-radius:14px;padding:7px;background:#fff;font-weight:900}.petChoice.on{border-color:#ffd45c;background:#fff9d9}.petChoice.locked{opacity:.45}.petChoice svg{width:80px;height:80px}
+.friendBar{height:15px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dbe4eb}.friendFill{height:100%;background:linear-gradient(90deg,#ffb4d2,#ff7eae)}
+.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.journeyNode{border:2px solid var(--line);border-radius:16px;padding:11px;text-align:center}.journeyNode.open{background:#f0fbf3;border-color:#8acb9e}.journeyNode .big{font-size:38px}
+.closetGrid,.trophyGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.closetItem,.trophy{border:2px solid var(--line);border-radius:13px;padding:9px;text-align:center;background:#fff}.closetItem.locked{opacity:.45}.closetItem.on,.trophy.done{border-color:#e4c757;background:#fff9dc}
+.pinGate{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.pinGate input{max-width:170px;padding:9px;border:1px solid var(--line);border-radius:10px}
+.historyRow{padding:8px 10px;border-bottom:1px dashed #dfe7ed}.petFollower{width:95px;height:95px;margin:auto}.petFollower svg{width:100%;height:100%}.speech{text-align:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:7px;font-weight:900;margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);background:#25364b;color:white;padding:9px 15px;border-radius:999px;opacity:0;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translateX(-50%)}
+.modal{position:fixed;inset:0;background:rgba(20,30,40,.35);display:none;place-items:center;padding:20px;z-index:90}.modal.show{display:grid}.modalCard{background:#fff;max-width:420px;width:100%;border-radius:22px;padding:20px;text-align:center}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
+@media(max-width:900px){.nav{grid-template-columns:repeat(4,1fr)}.world{grid-template-columns:repeat(2,1fr)}.main{grid-template-columns:1fr}.avatarStudio,.petStudio{grid-template-columns:1fr}.avatarChoices{grid-template-columns:repeat(3,1fr)}.grid4,.closetGrid,.trophyGrid{grid-template-columns:repeat(2,1fr)}.journey{grid-template-columns:repeat(2,1fr)}.triple{grid-template-columns:1fr}.summaryGrid{grid-template-columns:repeat(2,1fr)}}
+
+.three-slot{width:100%;height:100%;min-height:64px;position:relative;overflow:hidden;border-radius:20px;background:radial-gradient(circle at 50% 28%,#ffffff 0,#eef8ff 48%,#e8f3df 100%)}
+.three-slot canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
+.zoneArt .three-slot{min-height:105px}
+.avatarChoice .three-slot{height:64px}
+.three-slot.three-avatar{background:radial-gradient(circle at 50% 25%,#fff 0,#edf8ff 52%,#fff4d8 100%)}
+.three-slot.three-pet{background:radial-gradient(circle at 50% 25%,#fff 0,#f4fbff 55%,#fff5df 100%)}
+.webglNotice{font-size:12px;color:#6e7d8b;text-align:center;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+<div><h1>🌍 Habit Monster World V26 MODEL EDITION</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+</div>
+<section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
+<section class="card"><div class="nav">
+<button data-screen="world" class="active">🗺️ โลก</button><button data-screen="daily">📅 Daily</button><button data-screen="journey">🏰 Journey</button><button data-screen="pets">🐾 Pets</button><button data-screen="rewards">🎁 Rewards</button><button data-screen="trophies">🏅 Trophy</button><button data-screen="closet">👕 Closet</button><button data-screen="dashboard">📊 Dashboard</button><button data-screen="endday">🌙 End Day</button><button data-screen="parent">👨‍👩‍👧 Parent</button><button data-screen="backup">💾 Backup</button>
+</div></section>
+
+<div id="world" class="screen active">
+<section class="card">
+<h2>🧭 Avatar Studio</h2>
+<div class="avatarStudio">
+<div id="avatarStage" class="avatarStage"></div>
+<div>
+<div class="setting"><b>ชื่อนักผจญภัย</b><input id="avatarName" placeholder="ใส่ชื่อ"></div>
+<h4>ตัวละครพื้นฐาน</h4><div id="avatarChoices" class="avatarChoices"></div>
+<div class="grid3" style="margin-top:9px">
+<div class="setting"><b>สีผิว</b><select id="skinSel"><option value="light">Light</option><option value="warm">Warm</option><option value="tan">Tan</option><option value="deep">Deep</option></select></div>
+<div class="setting"><b>ทรงผม</b><select id="hairSel"><option value="short">ผมสั้น</option><option value="curly">หยักศก</option><option value="spiky">สปอร์ต</option><option value="long">ผมยาว</option><option value="ponytail">หางม้า</option><option value="bob">ผมบ๊อบ</option></select></div>
+<div class="setting"><b>สีผม</b><select id="hairColorSel"><option value="brown">น้ำตาล</option><option value="black">ดำ</option><option value="chestnut">น้ำตาลแดง</option><option value="gold">ทอง</option></select></div>
+</div>
+<div id="gearRow" class="gearRow"></div>
+<button id="saveAvatarBtn" class="bigBtn green">บันทึก Avatar</button>
+</div>
+</div>
+</section>
+
+<section class="card"><h2>🎮 V26 Real 3D Model Edition</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<div class="main">
+<main>
+<section class="card arena">
+<div id="petSpeech" class="speech">ไปกันเลย! 🐾</div><div id="petFollower" class="petFollower"></div>
+<div class="battle">
+<div><div id="heroArt" class="avatarArt"></div><div id="heroName" class="label"></div></div>
+<div class="vs">✨</div>
+<div><div id="bossArt" class="bossArt"></div><div id="bossName" class="label"></div></div>
+</div>
+<div class="story" id="monsterTalk"></div>
+<div class="row"><span id="monsterTitle"></span><span id="monsterLevel"></span></div>
+<div class="row"><span>🌫️ พลังนิสัยเดิม</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
+<div id="nextLevelHint" class="note" style="text-align:center;font-weight:850"></div>
+<div class="stats"><div class="stat"><b id="progressText">0</b><span id="progressUnit"></span></div><div class="stat"><b id="monsterWins">0</b>ผ่าน Level</div><div class="stat"><b id="pendingCount">0</b>รออนุมัติ</div><div class="stat"><b id="petMiniText">0</b>Pet XP</div></div>
+<div id="questBox" class="quest"></div>
+</section>
+</main>
+<aside>
+<section class="card"><h3>📅 Daily Summary</h3><div id="dailySummary"></div></section>
+<section class="card"><h3>🏆 Weekly Summary</h3><div id="weeklySummary"></div></section>
+</aside>
+</div>
+</div>
+
+<div id="daily" class="screen"><section class="card"><h2>📅 Daily Quest</h2><div class="story">ทำ 3 ภารกิจหลักให้ครบเพื่อเปิด Treasure Chest</div><div id="dailyQuestGrid" class="grid3"></div><div class="ico" style="text-align:center;font-size:58px" id="dailyChestIcon">🎁</div><button id="dailyChestBtn" class="bigBtn yellow">เปิด Daily Treasure Chest</button><div id="perfectDay" class="story"></div></section></div>
+<div id="journey" class="screen"><section class="card"><h2>🏰 World Journey</h2><div id="journeyGrid" class="journey"></div></section></div>
+
+<div id="pets" class="screen"><section class="card"><h2>🐾 Pet Companions</h2><div class="story">Pet ได้ XP/Friendship จากการทำภารกิจ แต่จะไม่ป่วยหรือเสีย Friendship เมื่อไม่ได้เล่น</div><div class="petStudio"><div><div id="petStage" class="petStage"></div><h3 id="petName" style="text-align:center"></h3><div class="row"><span>❤️ Friendship</span><span id="friendText"></span></div><div class="friendBar"><div id="friendFill" class="friendFill"></div></div><div class="row"><span>⭐ Pet XP</span><span id="petXpText"></span></div><div class="bar"><div id="petXpBar" class="xp"></div></div><div id="petAbility" class="story"></div></div><div><h3>เลือกคู่หู</h3><div id="petChoices" class="petChoices"></div><h3 style="margin-top:12px">🏠 Pet Home</h3><div id="petHome" class="grid4"></div></div></div></section><section class="card"><h3>📸 Adventure Album</h3><div id="petAlbum" class="grid3"></div></section></div>
+
+<div id="rewards" class="screen"><section class="card"><h2>🎁 Rewards</h2><div id="rewardGrid" class="grid3"></div></section></div>
+<div id="trophies" class="screen"><section class="card"><h2>🏅 Trophy Room</h2><div id="trophyGrid" class="trophyGrid"></div></section></div>
+<div id="closet" class="screen"><section class="card"><h2>👕 Closet & Collection</h2><div id="closetGrid" class="closetGrid"></div></section></div>
+<div id="dashboard" class="screen"><section class="card"><h2>📊 Parent Dashboard</h2><div id="dashboardGrid" class="summaryGrid"></div><div id="weekCompare" class="story"></div></section></div>
+<div id="endday" class="screen"><section class="card"><div style="font-size:50px;text-align:center">🌙✨</div><h2 style="text-align:center">สรุปวันนี้</h2><div id="endDaySummary"></div><button id="closeDayBtn" class="bigBtn purple">ปิดวันวันนี้</button></section></div>
+
+<div id="parent" class="screen">
+<section class="card"><h2>🔒 Parent Mode</h2><div class="pinGate"><input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="PIN 4–6 หลัก"><button id="unlockPinBtn" class="smallBtn">ปลดล็อก</button><button id="setPinBtn" class="smallBtn">ตั้ง/เปลี่ยน PIN</button><button id="undoBtn" class="smallBtn">↩️ Undo ล่าสุด</button></div><div id="pinStatus" class="note"></div></section>
+<section class="card"><h3>⚙️ ตั้งค่า</h3><div class="grid3">
+<div class="setting"><b>Parent Approval</b><select id="approvalSel"><option value="trust">Trust Mode</option><option value="parent">Parent Check</option></select></div>
+<div class="setting"><b>Screen Budget (ชม.)</b><input id="screenBudgetSet" type="number" min="0" step=".25"></div>
+<div class="setting"><b>พร้อมตอนเช้าก่อน</b><input id="morningSet" type="time"></div>
+<div class="setting"><b>ห้องน้ำเกินกี่นาทีถือว่านาน</b><input id="toiletSet" type="number" min="1"></div>
+<div class="setting"><b>อาบน้ำเช้าไม่เกิน (นาที)</b><input id="bathMorningSet" type="number" min="1"></div>
+<div class="setting"><b>อาบน้ำเย็นไม่เกิน (นาที)</b><input id="bathEveningSet" type="number" min="1"></div>
+<div class="setting"><b>Cooldown ต่อด่าน (นาที)</b><input id="cooldownSet" type="number" min="0"></div>
+<div class="setting"><b>ดาวสูงสุดต่อด่าน/วัน</b><input id="dailyCapSet" type="number" min="1"></div>
+</div><button id="saveSettingsBtn" class="bigBtn green">บันทึก Settings</button></section>
+<section class="card"><h3>✓ รายการรออนุมัติ</h3><div id="pendingList"></div></section>
+<section class="card"><h3>🎁 กำหนด Reward เอง</h3><div class="grid4"><div class="setting"><b>ชื่อ</b><input id="rewardName"></div><div class="setting"><b>ดาว</b><input id="rewardCost" type="number" min="1" value="50"></div><div class="setting"><b>ประเภท</b><select id="rewardType"><option value="activity">กิจกรรม</option><option value="treat">ของกิน</option><option value="privilege">สิทธิพิเศษ</option><option value="item">ของรางวัล</option></select></div><div class="setting"><b>จำกัดครั้ง (0=ไม่จำกัด)</b><input id="rewardLimit" type="number" min="0" value="0"></div></div><button id="addRewardBtn" class="bigBtn green">+ เพิ่ม Reward</button><div id="rewardEditor"></div></section>
+<section class="card"><h3>🍃 ประวัติใบพัก</h3><div id="restHistory"></div></section>
+<section class="card"><h3>🎁 ประวัติแลกรางวัล</h3><div id="rewardHistory"></div></section>
+</div>
+
+<div id="backup" class="screen"><section class="card"><h2>💾 Backup / Restore</h2><div class="story">⚠️ ข้อมูลเก็บใน browser ของเครื่องนี้ ควร Export Backup เป็นระยะ โดยเฉพาะก่อนเปลี่ยนเวอร์ชัน</div><button id="exportBtn" class="bigBtn blue">Export Save</button><input id="importFile" type="file" accept=".json,application/json" style="margin-top:9px"><button id="importBtn" class="bigBtn orange">Import Save</button><button id="restoreAutoBtn" class="bigBtn yellow">กู้ Auto Backup</button><div id="backupInfo" class="story"></div></section></div>
+</div>
+
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal"><div class="modalCard"><div id="modalIcon" style="font-size:64px"></div><h2 id="modalTitle"></h2><div id="modalText"></div><button id="modalClose" class="bigBtn green">ตกลง</button></div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26;
+const defs={
+ diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
+ reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
+ homework:{title:"เคลียร์การบ้าน",name:"สไลม์การบ้าน",unit:"งาน",goal:20,hp:120,color:["#bcecff","#4299d7"],talk:["งานเยอะจัง","หายไปทีละงานแล้ว","ใกล้โล่งแล้ว","ทำก่อนแล้วสบายใจ","👑 HERO FORM!"]},
+ messy:{title:"มอนสเตอร์จอมรก",name:"เจ้าจอมรก",unit:"งาน",goal:20,hp:115,color:["#c7ef9d","#58aa50"],talk:["วางไว้ก่อนก็ได้มั้ง","หาอะไรง่ายขึ้นแล้ว","ห้องดูโล่งขึ้น","เก็บแล้วสบายตา","👑 HERO FORM!"]},
+ morning:{title:"เตรียมพร้อมตอนเช้า",name:"เจ้าตะวัน",unit:"วัน",goal:14,hp:100,color:["#fff1a7","#f5b24f"],talk:["ขอช้าอีกนิด","วันนี้พร้อมเร็วขึ้น","มีเวลาเหลือแล้ว","เช้าไม่วุ่นวายเลย","👑 HERO FORM!"]},
+ noDawdle:{title:"ด่านไม่ลีลา",name:"กระต่ายจับเวลา",unit:"หัวข้อ",goal:20,hp:110,color:["#ffd5e5","#dd82ad"],talk:["ขออีกแป๊บ","เริ่มจับเวลาได้แล้ว","เร็วพอดีขึ้น","เหลือเวลาไปทำอย่างอื่น","👑 HERO FORM!"]},
+ screen:{title:"ด่านไม่ติดจอ",name:"เจ้าจอม่วง",unit:"หัวข้อ",goal:20,hp:110,color:["#beb1ff","#5849a8"],talk:["อีก 5 นาทีได้ไหม","วางจอเร็วขึ้นนะ","มีกิจกรรมอื่นสนุกด้วย","จัดเวลาได้ดีขึ้น","👑 HERO FORM!"]}
+};
+const order=["diligent","reading","homework","messy","morning","noDawdle","screen"];
+const fresh=()=>({level:1,hp:100,progress:0,wins:0,lastSubmit:0,dailyStars:{},history:[]});
+const defaults={
+ version:VERSION,stars:0,streak:0,shields:1,maxShields:3,lastActiveDay:null,activeDays:[],lastShieldAward:0,restHistory:[],
+ profile:{name:"นักผจญภัย",preset:"boyA",skin:"light",hair:"short",hairColor:"brown",gear:{hat:true,cape:false,bag:false,star:false}},
+ settings:{approval:"parent",screenBudget:1.5,morning:"06:45",toilet:10,bathMorning:15,bathEvening:15,cooldown:0,dailyCap:40},
+ monsters:{},active:"diligent",messyTasks:["จัดโต๊ะแล้วโต๊ะไม่รก","เก็บรองเท้าเข้าที่","เก็บของเล่น/ของใช้เข้าที่"],
+ totals:{diligent:0,reading:0,homework:0,messy:0,morning:0,noDawdle:0,screen:0},
+ logs:[],pending:[],undo:[],rewards:[
+  {name:"เลือกของหวาน",cost:100,type:"treat",limit:0,redeemed:0},
+  {name:"เลือกหนังดูด้วยกัน",cost:200,type:"activity",limit:0,redeemed:0},
+  {name:"เลือกกิจกรรมวันหยุด",cost:300,type:"activity",limit:0,redeemed:0}
+ ],rewardHistory:[],parentPin:"",parentUnlocked:false,
+ daily:{date:"",done:{},chest:false},closedDays:[],
+ pet:{selected:"puppy",xp:0,friendship:0,owned:["puppy"],bonusDays:[],decor:{bed:true,ball:false,bowl:false,plant:false}},
+ chestHistory:[]
+};
+order.forEach(k=>defaults.monsters[k]=fresh());
+
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function migrate(raw){
+ const d=raw&&raw.data?raw.data:raw;if(!d)return clone(defaults);
+ const s=Object.assign(clone(defaults),d);
+ s.profile=Object.assign(clone(defaults.profile),d.profile||{});
+ s.profile.gear=Object.assign(clone(defaults.profile.gear),(d.profile&&d.profile.gear)||{});
+ s.settings=Object.assign(clone(defaults.settings),d.settings||{});
+ s.monsters=Object.assign({},clone(defaults.monsters),d.monsters||{});
+ order.forEach(k=>s.monsters[k]=Object.assign(fresh(),s.monsters[k]||{}));
+ s.totals=Object.assign(clone(defaults.totals),d.totals||{});
+ s.rewards=Array.isArray(d.rewards)?d.rewards:(Array.isArray(d.coupons)?d.coupons:clone(defaults.rewards));
+ s.messyTasks=Array.isArray(d.messyTasks)&&d.messyTasks.length?d.messyTasks:clone(defaults.messyTasks);
+ s.logs=Array.isArray(d.logs)?d.logs:[];s.pending=Array.isArray(d.pending)?d.pending:[];s.undo=Array.isArray(d.undo)?d.undo:[];
+ s.restHistory=Array.isArray(d.restHistory)?d.restHistory:[];s.rewardHistory=Array.isArray(d.rewardHistory)?d.rewardHistory:[];
+ s.pet=Object.assign(clone(defaults.pet),d.pet||{});s.pet.decor=Object.assign(clone(defaults.pet.decor),(d.pet&&d.pet.decor)||{});
+ s.parentUnlocked=false;s.version=VERSION;return s
+}
+let S;try{S=migrate(JSON.parse(localStorage.getItem(KEY)||"null"))}catch(e){S=clone(defaults)}
+function envelope(){return {version:VERSION,savedAt:new Date().toISOString(),data:S}}
+function save(){localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(BACKUP,JSON.stringify(envelope()))}
+function toast(x){$("toast").textContent=x;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1500)}
+function modal(i,t,x){$("modalIcon").textContent=i;$("modalTitle").textContent=t;$("modalText").innerHTML=x;$("modal").classList.add("show")}
+$("modalClose").onclick=()=>$("modal").classList.remove("show");
+function celebrate(msg){const d=document.createElement("div");d.style.cssText="position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden";for(let i=0;i<22;i++){let s=document.createElement("span");s.textContent=["⭐","✨","🎉"][i%3];s.style.cssText=`position:absolute;left:${Math.random()*100}%;top:-30px;font-size:${18+Math.random()*15}px;animation:fall ${1.2+Math.random()}s linear forwards`;d.appendChild(s)}document.body.appendChild(d);toast(msg);setTimeout(()=>d.remove(),2300)}
+function dayKey(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function diffDays(a,b){return Math.round((new Date(b+"T12:00:00")-new Date(a+"T12:00:00"))/86400000)}
+function ensureDaily(){let d=dayKey();if(S.daily.date!==d)S.daily={date:d,done:{},chest:false}}
+function registerDay(){
+ let d=dayKey();if(S.activeDays.includes(d))return;
+ let prev=S.lastActiveDay;if(!prev)S.streak=1;else{let gap=diffDays(prev,d);if(gap===1)S.streak++;else if(gap===2&&S.shields>0){S.shields--;let x=new Date(prev+"T12:00:00");x.setDate(x.getDate()+1);S.restHistory.unshift({date:dayKey(x),usedOn:d});S.streak++;toast("🍃 ใช้ใบพักแล้ว Streak ยังต่อเนื่อง")}else if(gap>1)S.streak=1}
+ S.activeDays.push(d);S.lastActiveDay=d;let milestone=Math.floor(S.streak/7)*7;if(milestone>=7&&milestone>S.lastShieldAward){S.lastShieldAward=milestone;if(S.shields<S.maxShields){S.shields++;toast("🍃 Streak ครบ 7 วัน ได้ใบพัก +1")}}
+}
+function maxGoal(k){return Math.round(defs[k].goal*(1+(Math.min(5,S.monsters[k].level)-1)*.2))}
+function maxHp(k){return Math.round(defs[k].hp*(1+(Math.min(5,S.monsters[k].level)-1)*.15))}
+function stage(k){return Math.min(4,S.monsters[k].level-1)}
+
+function monsterSVG(k,st=stage(k)){
+ const level=Math.min(5,Math.max(1,st+1));
+ return `<div class="three-slot three-monster" data-kind="${k}" data-level="${level}" aria-label="${defs[k].name}"></div>`;
+}
+const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
+
+function avatarSVG(p=S.profile){
+ const pr=presets[p.preset]||presets.boyA;
+ const gender=pr[0], hair=p.hair||pr[1];
+ const gear=p.gear||{};
+ return `<div class="three-slot three-avatar"
+   data-gender="${gender}" data-skin="${p.skin}" data-hair="${hair}" data-haircolor="${p.hairColor}"
+   data-hat="${gear.hat?1:0}" data-cape="${gear.cape?1:0}" data-bag="${gear.bag?1:0}" data-star="${gear.star?1:0}">
+ </div>`;
+}
+const pets={
+ puppy:{name:"ปุยปุย",color:["#f1b56c","#c97c43"],ability:"ทำครบ 3 ภารกิจในวันเดียว ช่วยหา ⭐ +3",unlock:()=>true},
+ kitty:{name:"มะลิ",color:["#c9a7e8","#8b68c1"],ability:"คู่หู Perfect Day",unlock:()=>S.logs.length>=10},
+ bunny:{name:"โมจิ",color:["#f4abc9","#cf78a4"],ability:"คู่หูตอนเช้า",unlock:()=>S.totals.morning>=5},
+ fox:{name:"ฟ็อกซี่",color:["#f2a058","#d16d39"],ability:"คู่หู Streak",unlock:()=>S.streak>=7},
+ owl:{name:"ฮูกฮูก",color:["#a78bd9","#6c54aa"],ability:"คู่หูนักอ่าน",unlock:()=>S.totals.reading>=300},
+ dragon:{name:"ดราโก้",color:["#78d19b","#399f6b"],ability:"คู่หูนักคิด",unlock:()=>S.totals.diligent>=500}
+};
+
+function petStage(){return S.pet.xp>=240?3:S.pet.xp>=120?2:S.pet.xp>=50?1:0}
+function petSVG(k,st=petStage()){
+ return `<div class="three-slot three-pet" data-kind="${k}" data-level="${st+1}" aria-label="${pets[k].name}"></div>`;
+}
+function snapshot(label){S.undo.push({label,state:clone(S)});if(S.undo.length>12)S.undo.shift()}
+function antiSpam(k,stars){let m=S.monsters[k],now=Date.now(),cool=S.settings.cooldown*60000;if(cool&&now-m.lastSubmit<cool)return `กรุณารอ ${Math.ceil((cool-(now-m.lastSubmit))/60000)} นาที`;let used=m.dailyStars[dayKey()]||0;if(used+stars>S.settings.dailyCap)return "ด่านนี้ถึงเพดานดาววันนี้แล้ว";return ""}
+function queue(k,p){let err=antiSpam(k,p.stars);if(err)return toast(err);if(S.settings.approval==="parent"){S.pending.push({id:Date.now(),k,p});save();render();return toast("ส่งให้ผู้ปกครองอนุมัติแล้ว")}apply(k,p)}
+function apply(k,p){snapshot(p.label);registerDay();ensureDaily();let m=S.monsters[k],d=dayKey();m.lastSubmit=Date.now();m.dailyStars[d]=(m.dailyStars[d]||0)+p.stars;m.progress+=p.amount;m.hp=Math.max(0,m.hp-p.power);m.history.unshift(p.label);S.stars+=p.stars;S.totals[k]+=p.amount;S.logs.push({date:d,k,label:p.label,amount:p.amount,stars:p.stars});S.pet.xp+=5;S.pet.friendship=Math.min(100,S.pet.friendship+1);if(["diligent","reading","homework"].includes(k))S.daily.done[k]=true;if(m.progress>=maxGoal(k)||m.hp<=0){m.wins++;m.level++;m.progress=0;m.hp=maxHp(k);S.stars+=25;celebrate(m.level<=5?`🌈 ${defs[k].name} ไป Lv.${m.level}`:"👑 HERO Mastery +1")}checkPetBonus();save();render()}
+function checkPetBonus(){let d=dayKey();if(S.pet.bonusDays.includes(d))return;let n=S.logs.filter(x=>x.date===d).length;if(n>=3){S.pet.bonusDays.push(d);S.stars+=3;toast("🐾 Pet หา ⭐ +3 ให้วันนี้")}}
+function questHTML(k){
+ if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" onclick="submitDiligent()">บันทึก</button>`;
+ if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="20"><button class="bigBtn yellow" onclick="submitReading()">บันทึก</button>`;
+ if(k==="homework")return `<div class="questTitle">📚 เคลียร์การบ้านกี่งาน?</div><select id="qHomework" class="wideInput">${Array.from({length:10},(_,i)=>`<option>${i+1}</option>`).join("")}</select><button class="bigBtn blue" onclick="submitHomework()">บันทึก</button>`;
+ if(k==="messy")return `<div class="questTitle">🧹 วันนี้จัดอะไรเรียบร้อยแล้วบ้าง?</div><div class="checkList">${S.messyTasks.map((x,i)=>`<div class="checkRow"><input type="checkbox" data-messy="${i}"><span style="flex:1">${x}</span>${i>=3?`<button class="deleteBtn" onclick="deleteMessy(${i})">🗑️ ลบ</button>`:""}</div>`).join("")}</div><div class="inlineAdd"><input id="newMessy" class="wideInput" placeholder="เพิ่มงานเอง"><button class="smallBtn" onclick="addMessy()">+ เพิ่ม</button></div><button class="bigBtn purple" onclick="submitMessy()">บันทึก</button>`;
+ if(k==="morning")return `<div class="questTitle">🌅 พร้อมตอนเช้า</div><div class="inputRow"><label>เป้า<input value="${S.settings.morning}" disabled></label><label>พร้อมจริง<input id="qMorning" type="time"></label></div><button class="bigBtn orange" onclick="submitMorning()">เช็ก</button>`;
+ if(k==="noDawdle")return `<div class="questTitle">⏱️ ด่านไม่ลีลา</div><div class="triple"><div class="mini"><b>🚻 ห้องน้ำ</b><div class="note">เกิน ${S.settings.toilet} นาที กี่ครั้ง?</div><input id="qToilet" type="number" min="0" value="0"></div><div class="mini"><b>🚿 อาบน้ำเช้า</b><div class="note">เป้า ≤ ${S.settings.bathMorning} นาที</div><input id="qBathM" type="number" min="0"></div><div class="mini"><b>🌙 อาบน้ำเย็น</b><div class="note">เป้า ≤ ${S.settings.bathEvening} นาที</div><input id="qBathE" type="number" min="0"></div></div><button class="bigBtn pink" onclick="submitDawdle()">บันทึก</button>`;
+ return `<div class="questTitle">📵 ด่านไม่ติดจอ</div><label>วันนี้ใช้จอ (ชม.)<input id="qScreen" class="wideInput" type="number" min="0" step=".25"></label><div class="checkList"><label class="checkRow"><input id="qLunch" type="checkbox">🍚 กลางวันไม่ดูจอ</label><label class="checkRow"><input id="qDinner" type="checkbox">🍽️ เย็นไม่ดูจอ</label></div><button class="bigBtn blue" onclick="submitScreen()">บันทึก</button>`
+}
+function submitDiligent(){let n=+$("qCount").value;if(n<1)return toast("ใส่จำนวนข้อ");queue("diligent",{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`})}
+function submitReading(){let n=+$("qMinutes").value;if(n<1)return toast("ใส่นาที");queue("reading",{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`})}
+function submitHomework(){let n=+$("qHomework").value;queue("homework",{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`})}
+function addMessy(){let v=$("newMessy").value.trim();if(!v)return toast("พิมพ์ชื่องาน");if(S.messyTasks.includes(v))return toast("มีงานนี้แล้ว");S.messyTasks.push(v);save();render()}
+function deleteMessy(i){if(i<3)return;S.messyTasks.splice(i,1);save();render()}
+function submitMessy(){let cs=[...document.querySelectorAll("[data-messy]:checked")],names=cs.map(x=>S.messyTasks[+x.dataset.messy]);if(!names.length)return toast("ติ๊กอย่างน้อย 1 งาน");let n=names.length;queue("messy",{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(" • ")}`})}
+function submitMorning(){let a=$("qMorning").value;if(!a)return toast("ใส่เวลา");if(a>S.settings.morning)return toast("วันนี้ยังไม่ทันเป้า");queue("morning",{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`})}
+function submitDawdle(){let over=Math.max(0,+$("qToilet").value||0),bm=+$("qBathM").value||0,be=+$("qBathE").value||0,pass=0,notes=[];if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}if(!pass)return toast("ยังไม่มีหัวข้อที่ผ่านเป้า");queue("noDawdle",{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(" • ")}`})}
+function submitScreen(){let n=+$("qScreen").value;if(!Number.isFinite(n)||n<0)return toast("ใส่เวลาจอ");let lunch=$("qLunch").checked,dinner=$("qDinner").checked,pass=0,notes=[];if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);if(lunch){pass++;notes.push("กลางวันไม่ดูจอ ✓")}if(dinner){pass++;notes.push("เย็นไม่ดูจอ ✓")}if(!pass)return toast("วันนี้ยังไม่ผ่านเป้า");queue("screen",{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(" • ")}`})}
+function summaryRange(days,offset=0){let end=new Date();end.setHours(23,59,59,999);end.setDate(end.getDate()-offset);let start=new Date(end);start.setDate(start.getDate()-days+1);start.setHours(0,0,0,0);let logs=S.logs.filter(x=>{let d=new Date(x.date+"T12:00:00");return d>=start&&d<=end}),sum=k=>logs.filter(x=>x.k===k).reduce((a,x)=>a+x.amount,0);return {diligent:sum("diligent"),reading:sum("reading"),homework:sum("homework"),messy:sum("messy"),morning:sum("morning"),screen:sum("screen"),days:new Set(logs.map(x=>x.date)).size,count:logs.length}}
+function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$("avatarName").value=p.name;$("skinSel").value=p.skin;$("hairSel").value=p.hair;$("hairColorSel").value=p.hairColor;$("avatarChoices").innerHTML=Object.keys(presets).map(id=>{let temp=clone(p);temp.preset=id;temp.hair=presets[id][1];temp.gear={hat:false,cape:false,bag:false,star:false};return `<button class="avatarChoice ${p.preset===id?"on":""}" onclick="pickAvatar('${id}')">${avatarSVG(temp)}<small>${id.toUpperCase()}</small></button>`}).join("");let unlock={hat:true,cape:S.streak>=7,bag:Math.max(...order.map(k=>S.monsters[k].level))>=3,star:order.some(k=>S.monsters[k].level>=5)};$("gearRow").innerHTML=[["hat","🧢 หมวก","เริ่มต้น"],["cape","🦸 เสื้อคลุม","Streak 7 วัน"],["bag","🎒 กระเป๋า","Monster Lv.3"],["star","⭐ Habit Star","HERO FORM"]].map(([k,n,h])=>`<button class="gearChip ${p.gear[k]?"on":""} ${unlock[k]?"":"locked"}" onclick="toggleGear('${k}',${unlock[k]})">${unlock[k]?n:"🔒 "+n}<small style="display:block">${h}</small></button>`).join("")}
+function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();render()}
+function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();render()}
+function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();render();toast("บันทึก Avatar แล้ว")}
+function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").innerHTML=order.map(x=>`<div class="zone ${x===k?"active":""}" onclick="S.active='${x}';save();render()"><div class="zoneArt">${monsterSVG(x)}</div><b>${defs[x].title}</b><br><small>Lv.${S.monsters[x].level}${S.monsters[x].level>=5?" • HERO":""}</small></div>`).join("");$("heroArt").innerHTML=avatarSVG();$("heroName").textContent=S.profile.name;$("bossArt").innerHTML=monsterSVG(k,st);$("bossName").textContent=defs[k].name;$("monsterTitle").textContent=defs[k].title;$("monsterLevel").textContent=`Lv.${m.level}${m.level>=5?" • HERO FORM":""}`;$("monsterTalk").textContent=defs[k].talk[st];$("hpText").textContent=`${m.hp}/${maxHp(k)}`;$("hpBar").style.width=Math.max(0,m.hp/maxHp(k)*100)+"%";$("progressText").textContent=m.progress;$("progressUnit").textContent=defs[k].unit+"สะสม";$("monsterWins").textContent=m.wins;$("pendingCount").textContent=S.pending.filter(x=>x.k===k).length;$("petMiniText").textContent=S.pet.xp;$("nextLevelHint").textContent=m.level>=5?"👑 HERO FORM — สะสม Mastery ต่อได้":`เหลือ ${Math.max(0,maxGoal(k)-m.progress)} ${defs[k].unit} ถึง Lv.${m.level+1}`;$("questBox").innerHTML=questHTML(k);renderPetFollower()}
+function renderSummaries(){let d=summaryRange(1),w=summaryRange(7);$("dailySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">✅<b>${d.count} รายการ</b></div></div>`;$("weeklySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${w.reading} นาที</b></div><div class="summaryBox">📚<b>${w.homework} งาน</b></div><div class="summaryBox">🔥<b>${w.days} active days</b></div></div>`}
+function renderDaily(){ensureDaily();let q=[["diligent","✏️","แบบฝึกหัด"],["reading","📖","อ่าน"],["homework","📚","การบ้าน"]];$("dailyQuestGrid").innerHTML=q.map(([k,i,n])=>`<div class="box ${S.daily.done[k]?"done":""}"><div class="ico">${i}</div><b>${n}</b><br>${S.daily.done[k]?"✅ สำเร็จ":"ยังไม่สำเร็จ"}</div>`).join("");let all=q.every(([k])=>S.daily.done[k]);$("dailyChestBtn").disabled=!all||S.daily.chest;$("dailyChestIcon").textContent=S.daily.chest?"✅":"🎁";$("perfectDay").innerHTML=all?"🌈 PERFECT DAY!":"ทำครบ 3 อย่างเพื่อเปิดกล่อง"}
+function claimChest(){ensureDaily();if(S.daily.chest)return;let all=["diligent","reading","homework"].every(k=>S.daily.done[k]);if(!all)return toast("ทำ Daily Quest ให้ครบ");S.daily.chest=true;let rewards=[["stars","⭐ +10 ดาว"],["pet","🐾 Pet Toy Token"],["collection","🎀 Collection Token"],["badge","🏅 Mystery Badge"]],idx=[...dayKey()].reduce((a,c)=>a+c.charCodeAt(0),0)%rewards.length,r=rewards[idx];if(r[0]==="stars")S.stars+=10;S.chestHistory.unshift({date:dayKey(),reward:r[1]});save();celebrate(`🎁 ${r[1]}`);render()}
+function renderJourney(){let pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5,nodes=[["🏡","Sunny Village",0],["🌲","Reading Forest",100],["🧹","Tidy Town",220],["⛰️","Homework Mountain",400],["🏰","Star Castle",650]];$("journeyGrid").innerHTML=nodes.map(([i,n,v])=>`<div class="journeyNode ${pts>=v?"open":""}"><div class="big">${pts>=v?i:"🔒"}</div><b>${n}</b><br><small>${pts>=v?"เปิดแล้ว":`ต้องการ ${v} pts`}</small></div>`).join("")}
+function updatePetUnlocks(){Object.keys(pets).forEach(k=>{if(pets[k].unlock()&&!S.pet.owned.includes(k))S.pet.owned.push(k)});if(S.pet.friendship>=25)S.pet.decor.ball=true;if(S.pet.friendship>=50)S.pet.decor.bowl=true;if(S.pet.friendship>=80)S.pet.decor.plant=true}
+function renderPets(){updatePetUnlocks();let id=S.pet.selected,p=pets[id],st=petStage();$("petStage").innerHTML=petSVG(id,st);$("petName").textContent=`${p.name} • ${["Baby","Junior","Buddy","Super Buddy"][st]}`;$("friendText").textContent=`${S.pet.friendship}/100`;$("friendFill").style.width=S.pet.friendship+"%";$("petXpText").textContent=`${S.pet.xp}/${st===0?50:st===1?120:240}`;$("petXpBar").style.width=st===3?"100%":Math.min(100,S.pet.xp/(st===0?50:st===1?120:240)*100)+"%";$("petAbility").innerHTML=`<b>✨ Ability</b><br>${p.ability}`;$("petChoices").innerHTML=Object.keys(pets).map(k=>{let own=S.pet.owned.includes(k);return `<button class="petChoice ${k===id?"on":""} ${own?"":"locked"}" onclick="selectPet('${k}')">${petSVG(k,own?Math.min(st,1):0)}<div>${own?pets[k].name:"🔒 "+pets[k].name}</div><small>${own?pets[k].ability:"ยังไม่ปลดล็อก"}</small></button>`}).join("");$("petHome").innerHTML=[["bed","🛏️ เบาะ"],["ball","🎾 ของเล่น"],["bowl","🥣 ชาม"],["plant","🪴 ต้นไม้"]].map(([k,n])=>`<div class="box ${S.pet.decor[k]?"done":""}">${S.pet.decor[k]?n:"🔒 "+n}</div>`).join("");$("petAlbum").innerHTML=[["📖","อ่าน 300 นาที",S.totals.reading>=300],["✏️","โจทย์ 500 ข้อ",S.totals.diligent>=500],["🔥","Streak 7 วัน",S.streak>=7],["❤️","Friendship 50",S.pet.friendship>=50],["🌟","Super Buddy",st>=3],["🐾","Pet 3 ตัว",S.pet.owned.length>=3]].map(([i,n,o])=>`<div class="box ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
+function selectPet(k){if(!S.pet.owned.includes(k))return toast("ยังไม่ปลดล็อก");S.pet.selected=k;save();render()}
+function renderPetFollower(){let k=S.pet.selected;$("petFollower").innerHTML=petSVG(k);$("petSpeech").textContent=`${pets[k].name} เชียร์อยู่นะ! ✨`}
+function renderRewards(){let icon={activity:"🎡",treat:"🍦",privilege:"🎮",item:"🎁"};$("rewardGrid").innerHTML=S.rewards.map((r,i)=>{let sold=r.limit>0&&r.redeemed>=r.limit;return `<div class="box"><div class="ico">${icon[r.type]||"🎁"}</div><b>${r.name}</b><br>⭐ ${r.cost}<br><small>${r.limit?`${r.redeemed}/${r.limit} ครั้ง`:"ไม่จำกัด"}</small><button class="bigBtn green" ${sold?"disabled":""} onclick="redeem(${i})">แลก</button></div>`}).join("")}
+function redeem(i){let r=S.rewards[i];if(r.limit&&r.redeemed>=r.limit)return;if(S.stars<r.cost)return toast("ดาวไม่พอ");if(!confirm(`แลก ${r.name} ใช้ ${r.cost} ดาว?`))return;S.stars-=r.cost;r.redeemed++;S.rewardHistory.unshift({date:dayKey(),name:r.name,cost:r.cost});save();celebrate(`🎁 แลก ${r.name} สำเร็จ`);render()}
+function trophies(){return [["✏️","100 ข้อ",S.totals.diligent>=100],["🧠","500 ข้อ",S.totals.diligent>=500],["📖","อ่าน 100 นาที",S.totals.reading>=100],["🦉","อ่าน 500 นาที",S.totals.reading>=500],["🔥","Streak 7 วัน",S.streak>=7],["🌟","Streak 30 วัน",S.streak>=30],["📚","การบ้าน 50 งาน",S.totals.homework>=50],["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]]}
+function renderTrophies(){$("trophyGrid").innerHTML=trophies().map(([i,n,o])=>`<div class="trophy ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
+function renderCloset(){let maxLv=Math.max(...order.map(k=>S.monsters[k].level)),hero=order.some(k=>S.monsters[k].level>=5),items=[["hat","🧢","หมวกดาว",true,"เริ่มต้น"],["cape","🦸","เสื้อคลุม",S.streak>=7,"Streak 7 วัน"],["bag","🎒","กระเป๋า",maxLv>=3,"Monster Lv.3"],["star","⭐","Habit Star",hero,"HERO FORM"],["reader","🎓","หมวกนักอ่าน",S.totals.reading>=300,"อ่าน 300 นาที"],["pet","🐾","Pet Charm",S.pet.friendship>=50,"Friendship 50"]];$("closetGrid").innerHTML=items.map(([k,i,n,o,h])=>`<button class="closetItem ${o?"":"locked"} ${S.profile.gear[k]?"on":""}" onclick="${["hat","cape","bag","star"].includes(k)?`toggleGear('${k}',${o})`:""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b><br><small>${o?"ปลดล็อกแล้ว":h}</small></button>`).join("")}
+function renderDashboard(){let w=summaryRange(7),prev=summaryRange(7,7),delta=(a,b)=>a-b>0?`▲ ${a-b}`:a-b<0?`▼ ${Math.abs(a-b)}`:"—";$("dashboardGrid").innerHTML=`<div class="summaryBox">✏️ 7 วัน<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖 7 วัน<b>${w.reading} นาที</b></div><div class="summaryBox">📚 7 วัน<b>${w.homework} งาน</b></div><div class="summaryBox">📵 สำเร็จ<b>${w.screen} หัวข้อ</b></div><div class="summaryBox">🧹 จัดของ<b>${w.messy} งาน</b></div><div class="summaryBox">🌅 เช้าทัน<b>${w.morning} วัน</b></div>`;$("weekCompare").innerHTML=`<b>เทียบสัปดาห์ก่อน</b><br>✏️ ${delta(w.diligent,prev.diligent)} • 📖 ${delta(w.reading,prev.reading)} • 📚 ${delta(w.homework,prev.homework)}`}
+function renderEndDay(){let d=summaryRange(1);$("endDaySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✅ รายการ<b>${d.count}</b></div><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">🔥<b>${S.streak} วัน</b></div><div class="summaryBox">❤️ Pet<b>${S.pet.friendship}</b></div></div>`}
+function closeDay(){let d=dayKey();if(S.closedDays.includes(d))return toast("วันนี้ปิดวันแล้ว");S.closedDays.push(d);save();celebrate("🌙 ปิดวันเรียบร้อย");render()}
+function parentGuard(){if(!S.parentUnlocked){toast("🔒 ปลดล็อก Parent Mode ก่อน");return false}return true}
+function renderParent(){$("approvalSel").value=S.settings.approval;$("screenBudgetSet").value=S.settings.screenBudget;$("morningSet").value=S.settings.morning;$("toiletSet").value=S.settings.toilet;$("bathMorningSet").value=S.settings.bathMorning;$("bathEveningSet").value=S.settings.bathEvening;$("cooldownSet").value=S.settings.cooldown;$("dailyCapSet").value=S.settings.dailyCap;$("pinStatus").textContent=S.parentUnlocked?"🔓 ปลดล็อกแล้ว":"🔒 ล็อกอยู่";$("pendingList").innerHTML=S.pending.length?S.pending.map(x=>`<div class="checkRow"><span style="flex:1"><b>${defs[x.k].title}</b><br>${x.p.label}</span><button class="smallBtn" onclick="approve(${x.id})">✓</button><button class="deleteBtn" onclick="reject(${x.id})">✕</button></div>`).join(""):"ไม่มีรายการรออนุมัติ";$("rewardEditor").innerHTML=S.rewards.map((r,i)=>`<div class="checkRow"><span style="flex:1"><b>${r.name}</b> • ⭐${r.cost}</span><button class="smallBtn" onclick="editReward(${i})">แก้</button><button class="deleteBtn" onclick="deleteReward(${i})">ลบ</button></div>`).join("");$("restHistory").innerHTML=S.restHistory.map(x=>`<div class="historyRow">🍃 ใช้แทนวันที่ ${x.date}</div>`).join("")||"ยังไม่มี";$("rewardHistory").innerHTML=S.rewardHistory.map(x=>`<div class="historyRow">🎁 ${x.name} • ⭐${x.cost} • ${x.date}</div>`).join("")||"ยังไม่มี"}
+function unlockPin(){let v=$("pinInput").value;if(!S.parentPin){S.parentUnlocked=true;render();return toast("ยังไม่ได้ตั้ง PIN — ปลดล็อกชั่วคราว")}if(v===S.parentPin){S.parentUnlocked=true;render();toast("ปลดล็อกแล้ว")}else toast("PIN ไม่ถูกต้อง")}
+function setPin(){let v=$("pinInput").value.trim();if(!/^\d{4,6}$/.test(v))return toast("PIN 4–6 หลัก");if(S.parentPin&&!S.parentUnlocked)return toast("ปลดล็อกก่อนเปลี่ยน PIN");S.parentPin=v;S.parentUnlocked=true;save();render();toast("บันทึก PIN แล้ว")}
+function saveSettings(){if(!parentGuard())return;S.settings={approval:$("approvalSel").value,screenBudget:+$("screenBudgetSet").value,morning:$("morningSet").value,toilet:+$("toiletSet").value,bathMorning:+$("bathMorningSet").value,bathEvening:+$("bathEveningSet").value,cooldown:+$("cooldownSet").value,dailyCap:+$("dailyCapSet").value};save();render();toast("บันทึก Settings แล้ว")}
+function approve(id){if(!parentGuard())return;let i=S.pending.findIndex(x=>x.id===id);if(i<0)return;let x=S.pending.splice(i,1)[0];apply(x.k,x.p)}
+function reject(id){if(!parentGuard())return;S.pending=S.pending.filter(x=>x.id!==id);save();render()}
+function addReward(){if(!parentGuard())return;let name=$("rewardName").value.trim(),cost=+$("rewardCost").value;if(!name||cost<1)return toast("กรอกชื่อและดาว");S.rewards.push({name,cost,type:$("rewardType").value,limit:+$("rewardLimit").value||0,redeemed:0});$("rewardName").value="";save();render()}
+function editReward(i){if(!parentGuard())return;let r=S.rewards[i],n=prompt("ชื่อ Reward",r.name);if(n===null)return;let c=prompt("จำนวนดาว",r.cost);if(c===null)return;r.name=n.trim()||r.name;r.cost=Math.max(1,+c||r.cost);save();render()}
+function deleteReward(i){if(!parentGuard())return;if(confirm(`ลบ ${S.rewards[i].name}?`)){S.rewards.splice(i,1);save();render()}}
+function undoLatest(){if(!parentGuard())return;let x=S.undo.pop();if(!x)return toast("ไม่มีรายการให้ Undo");let pin=S.parentPin,unlocked=S.parentUnlocked;S=migrate(x.state);S.parentPin=pin;S.parentUnlocked=unlocked;save();render();toast(`↩️ ยกเลิก ${x.label}`)}
+function renderBackup(){$("backupInfo").innerHTML=`Save Version ${VERSION}<br>Auto Backup: ${localStorage.getItem(BACKUP)?"มี":"ยังไม่มี"}`}
+function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();renderWorld();renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
+document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
+$("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();render()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();render()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();render()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
+$("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
+$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v26-save.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>{let f=$("importFile").files[0];if(!f)return toast("เลือกไฟล์ก่อน");let r=new FileReader();r.onload=()=>{try{S=migrate(JSON.parse(r.result));save();render();toast("Import สำเร็จ")}catch(e){toast("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)};
+$("restoreAutoBtn").onclick=()=>{try{let x=JSON.parse(localStorage.getItem(BACKUP)||"null");if(!x)return toast("ยังไม่มี Auto Backup");S=migrate(x);save();render();toast("กู้คืนแล้ว")}catch(e){toast("กู้ไม่ได้")}};
+setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);render();
+</script>
+
+<script type="module">
+import * as THREE from "https://unpkg.com/three@0.185.0/build/three.module.js";
+
+const running=new WeakMap(), cache=new Map();
+const fallbackMonster={
+ diligent:{color:"#f39a57",accent:"#db5d39",feature:"weights"},
+ reading:{color:"#9b83de",accent:"#684fad",feature:"book"},
+ homework:{color:"#62c4ec",accent:"#3588c4",feature:"paper"},
+ messy:{color:"#8bd36d",accent:"#4f9f49",feature:"broom"},
+ morning:{color:"#ffd86a",accent:"#eda748",feature:"clock"},
+ noDawdle:{color:"#f2a3c4",accent:"#ce75a0",feature:"timer"},
+ screen:{color:"#7866d1",accent:"#493c98",feature:"headset"}
+};
+const petColors={puppy:"#d99554",kitty:"#9b78c8",bunny:"#f0a6c4",fox:"#eb8d45",owl:"#836bc0",dragon:"#57bd7d"};
+const skinColors={light:0xffd7bd,warm:0xefbd91,tan:0xcb946b,deep:0x9c6249};
+const hairColors={brown:0x654439,black:0x30313a,chestnut:0x754538,gold:0xad7a3e};
+
+async function loadJSON(url,fallback){if(cache.has(url))return cache.get(url);try{let r=await fetch(url);if(!r.ok)throw Error(r.status);let j=await r.json();cache.set(url,j);return j}catch(e){return fallback}}
+function hex(x){return typeof x==="string"?parseInt(x.replace("#",""),16):x}
+function mat(c,rough=.34,metal=.02){return new THREE.MeshPhysicalMaterial({color:hex(c),roughness:rough,metalness:metal,clearcoat:.32,clearcoatRoughness:.18})}
+function sphere(r,c,scale=[1,1,1]){let m=new THREE.Mesh(new THREE.SphereGeometry(r,40,28),mat(c));m.scale.set(...scale);m.castShadow=true;return m}
+function box(x,y,z,c){let m=new THREE.Mesh(new THREE.BoxGeometry(x,y,z,2,2,2),mat(c,.3));m.castShadow=true;return m}
+function cyl(r,h,c){let m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,32),mat(c,.3));m.castShadow=true;return m}
+function cone(r,h,c){let m=new THREE.Mesh(new THREE.ConeGeometry(r,h,32),mat(c,.3));m.castShadow=true;return m}
+function eye(x,y,z=.95,s=.2){let g=new THREE.Group(),w=sphere(s,0xf7fbff,[1,.98,.48]);w.position.set(x,y,z);let p=sphere(s*.52,0x25364a,[1,1,.38]);p.position.set(x,y-.01,z+.09);let hi=sphere(s*.14,0xffffff,[1,1,.3]);hi.position.set(x-s*.18,y+s*.22,z+.15);g.add(w,p,hi);return g}
+function star(){let sh=new THREE.Shape();for(let i=0;i<10;i++){let a=-Math.PI/2+i*Math.PI/5,r=i%2?.11:.24,x=Math.cos(a)*r,y=Math.sin(a)*r;i?sh.lineTo(x,y):sh.moveTo(x,y)}sh.closePath();return new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:.08,bevelEnabled:true,bevelSize:.025,bevelThickness:.02}),mat(0xffd654,.22,.08))}
+function crown(){let g=new THREE.Group(),b=cyl(.44,.14,0xffd654);b.rotation.x=Math.PI/2;b.scale.z=.45;g.add(b);for(let i=-2;i<=2;i++){let c=cone(.12,.38,0xffd654);c.position.set(i*.17,.25,0);g.add(c)}return g}
+function feature(g,kind,accent,level){
+ if(kind==="weights"){for(const x of[-.78,.78]){let q=box(.30,.50,.28,0x59616e);q.position.set(x,-.12,.60);g.add(q)}}
+ if(kind==="book"){let q=box(1.1,.60,.12,0xfff1c4);q.position.set(0,-.68,.80);q.rotation.x=-.12;g.add(q)}
+ if(kind==="paper"){let q=box(1.0,.52,.10,0xffffff);q.position.set(0,-.70,.82);g.add(q)}
+ if(kind==="broom"){let q=cyl(.045,1.2,0x9f6a3a);q.position.set(.72,-.32,.45);q.rotation.z=-.35;g.add(q)}
+ if(kind==="clock"||kind==="timer"){let q=cyl(.29,.10,0xffffff);q.rotation.x=Math.PI/2;q.position.set(.76,-.36,.55);g.add(q)}
+ if(kind==="headset"){let q=new THREE.Mesh(new THREE.TorusGeometry(.78,.07,16,50,Math.PI),mat(0x4ed1e7,.25));q.rotation.z=Math.PI;q.position.y=.50;g.add(q)}
+ if(level>=3){let s=star();s.scale.set(.55,.55,.55);s.position.set(.72,.55,.55);g.add(s)}
+}
+function monsterFrom(d){
+ let g=new THREE.Group(),lv=d.level||1,c=d.body?.color||fallbackMonster[d.kind]?.color||"#f39a57",accent=d.accent||"#555";
+ let body=sphere(1.02,c,d.body?.scale||[1,1,.92]);body.position.y=.06;g.add(body);
+ g.add(eye(-.34,.26,.92,d.eyes?.size||.20),eye(.34,.26,.92,d.eyes?.size||.20));
+ let mouth=sphere(.12,0x8b494c,[1.6,.55,.28]);mouth.position.set(0,-.16,1.00);g.add(mouth);
+ for(const x of[-.52,.52]){let ch=sphere(.095,0xf49da6,[1.5,.5,.3]);ch.position.set(x,-.05,.94);g.add(ch)}
+ feature(g,d.feature,accent,lv);
+ if(d.badge){let s=star();s.scale.set(.55,.55,.55);s.position.set(0,-.55,.95);g.add(s)}
+ if(d.aura){let r=new THREE.Mesh(new THREE.TorusGeometry(1.28,.03,12,64),new THREE.MeshStandardMaterial({color:0xffed8e,emissive:0xffcf4b,emissiveIntensity:1.0}));r.rotation.x=Math.PI/2;r.position.y=.05;g.add(r)}
+ if(d.crown){let c=crown();c.position.set(0,1.20,0);c.scale.set(.85,.85,.85);g.add(c)}
+ g.userData.anim=lv>=5?"hero":"idle";return g
+}
+function avatarFrom(el){
+ let g=new THREE.Group(),skin=skinColors[el.dataset.skin]||skinColors.light,hair=hairColors[el.dataset.haircolor]||hairColors.brown,girl=el.dataset.gender==="girl";
+ let head=sphere(.76,skin,[1,.98,.92]);head.position.y=.66;g.add(head);
+ let torso=box(.92,1.00,.54,girl?0xef91bd:0x62afe9);torso.position.y=-.48;g.add(torso);
+ for(const x of[-.28,.28]){let l=cyl(.15,.70,girl?0x7b67c6:0x455d89);l.position.set(x,-1.22,0);g.add(l)}
+ g.add(eye(-.25,.70,.70,.18),eye(.25,.70,.70,.18));
+ let cap=sphere(.79,hair,[1,.58,.95]);cap.position.set(0,1.12,-.05);g.add(cap);
+ let hs=el.dataset.hair;if(["long","ponytail","bob"].includes(hs)){for(const x of[-.57,.57]){let q=sphere(.27,hair,[.75,1.5,.72]);q.position.set(x,.62,-.14);g.add(q)}}if(hs==="curly"){for(let i=0;i<8;i++){let a=i*Math.PI/7,q=sphere(.19,hair);q.position.set(Math.cos(a)*.67,1.04+Math.sin(a)*.27,0);g.add(q)}}if(hs==="spiky"){for(let i=-2;i<=2;i++){let q=cone(.19,.52,hair);q.position.set(i*.21,1.60,0);q.rotation.z=-i*.12;g.add(q)}}
+ if(el.dataset.hat==="1"){let q=cyl(.60,.17,girl?0xdd77aa:0x456cb4);q.position.set(0,1.47,0);g.add(q)}
+ if(el.dataset.cape==="1"){let q=box(1.12,1.20,.08,girl?0xcf6aa1:0x4c71c4);q.position.set(0,-.44,-.36);g.add(q)}
+ if(el.dataset.bag==="1"){let q=box(.46,.66,.28,0xb77743);q.position.set(.56,-.48,-.25);g.add(q)}
+ if(el.dataset.star==="1"){let q=star();q.position.set(.86,-.08,.34);q.scale.set(.8,.8,.8);g.add(q)}
+ return g
+}
+function petFrom(kind,level,color){let g=new THREE.Group(),body=sphere(.88,color,[1,.92,.88]);body.position.y=.02;g.add(body);for(const x of[-.54,.54]){let e=kind==="bunny"?sphere(.22,color,[.7,2.1,.62]):cone(.29,.58,color);e.position.set(x,.91,0);e.rotation.z=kind==="bunny"?0:(x<0?.35:-.35);g.add(e)}g.add(eye(-.30,.18,.78,.17),eye(.30,.18,.78,.17));if(level>=2){let s=star();s.scale.set(.45,.45,.45);s.position.set(0,-.48,.84);g.add(s)}if(level>=3){let r=new THREE.Mesh(new THREE.TorusGeometry(1.0,.025,10,48),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.8}));r.rotation.x=Math.PI/2;g.add(r)}if(level>=4){let c=crown();c.scale.set(.65,.65,.65);c.position.set(0,1.10,0);g.add(c)}return g}
+function setup(el){let scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(27,1,.1,50);camera.position.set(0,1.0,5.8);camera.lookAt(0,.45,0);let renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;el.innerHTML="";el.appendChild(renderer.domElement);scene.add(new THREE.HemisphereLight(0xffffff,0x91a579,2.2));let key=new THREE.DirectionalLight(0xffffff,3.2);key.position.set(-3,5,5);key.castShadow=true;scene.add(key);let rim=new THREE.DirectionalLight(0x9ed9ff,1.8);rim.position.set(4,2,-3);scene.add(rim);let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,48),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=true;scene.add(fl);let st={scene,camera,renderer,model:null,raf:0};running.set(el,st);return st}
+async function renderOne(el){let st=running.get(el)||setup(el);if(st.model)st.scene.remove(st.model);let model;if(el.classList.contains("three-monster")){let kind=el.dataset.kind,lv=+el.dataset.level||1,f=fallbackMonster[kind],d=await loadJSON(`models/monsters/${kind}_lv${lv}.json`,{kind,level:lv,body:{color:f.color},accent:f.accent,feature:f.feature,badge:lv>=2,special:lv>=3,aura:lv>=4,crown:lv>=5});model=monsterFrom(d)}else if(el.classList.contains("three-pet")){let kind=el.dataset.kind,lv=+el.dataset.level||1,d=await loadJSON(`models/pets/${kind}.json`,{color:petColors[kind]});model=petFrom(kind,lv,d.color||petColors[kind])}else model=avatarFrom(el);st.model=model;st.scene.add(model);let resize=()=>{let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};resize();new ResizeObserver(resize).observe(el);cancelAnimationFrame(st.raf);let loop=()=>{if(!el.isConnected)return;let tt=performance.now()*.001;model.position.y=Math.sin(tt*2)*.055;model.rotation.y=Math.sin(tt*.75)*.10;st.renderer.render(st.scene,st.camera);st.raf=requestAnimationFrame(loop)};loop()}
+function renderAll(){document.querySelectorAll(".three-slot").forEach(renderOne)}
+window.addEventListener("hmw3d-render",renderAll);window.addEventListener("load",()=>setTimeout(renderAll,100));
+</script>
+
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.error))}</script></body>
+</html>
