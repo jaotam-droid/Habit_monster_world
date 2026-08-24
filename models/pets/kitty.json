@@ -1,0 +1,10 @@
+{
+  "type": "pet",
+  "kind": "kitty",
+  "color": "#9b78c8",
+  "stages": 4,
+  "eyes": "glossy",
+  "badgeFrom": 2,
+  "auraFrom": 3,
+  "crownFrom": 4
+}

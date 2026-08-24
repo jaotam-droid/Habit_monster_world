@@ -1,0 +1,10 @@
+{
+  "type": "pet",
+  "kind": "dragon",
+  "color": "#57bd7d",
+  "stages": 4,
+  "eyes": "glossy",
+  "badgeFrom": 2,
+  "auraFrom": 3,
+  "crownFrom": 4
+}

@@ -1,0 +1,10 @@
+{
+  "type": "pet",
+  "kind": "owl",
+  "color": "#836bc0",
+  "stages": 4,
+  "eyes": "glossy",
+  "badgeFrom": 2,
+  "auraFrom": 3,
+  "crownFrom": 4
+}
