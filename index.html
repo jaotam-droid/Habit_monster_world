@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V26 MODEL EDITION Clean</title>
+<title>Habit Monster World V26.1 REAL 3D FIX</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -51,8 +51,8 @@
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V26 MODEL EDITION</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div><h1>🌍 Habit Monster World V26.1 REAL 3D FIX</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -140,7 +140,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26.1;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -301,7 +301,29 @@ setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);rende
 </script>
 
 <script type="module">
-import * as THREE from "https://unpkg.com/three@0.185.0/build/three.module.js";
+const THREE_SOURCES=[
+ "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+ "https://unpkg.com/three@0.180.0/build/three.module.js",
+ "https://esm.sh/three@0.180.0"
+];
+async function loadThree(){
+ for(const url of THREE_SOURCES){
+  try{const m=await import(url);if(m&&m.WebGLRenderer)return m}catch(e){console.warn("Three.js source failed",url,e)}
+ }
+ return null;
+}
+function show3DError(message){
+ document.querySelectorAll(".three-slot").forEach(el=>{
+  el.innerHTML=`<div style="height:100%;min-height:64px;display:grid;place-items:center;padding:10px;text-align:center;color:#687789;font-weight:800;background:linear-gradient(#eef8ff,#fff7df);border-radius:18px">🧩 ${message}</div>`;
+ });
+}
+const THREE=await loadThree();
+const threeStatus=document.getElementById("threeStatus");
+if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม่สำเร็จ";
+ console.error("Habit Monster: unable to load Three.js");
+ show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
+}else{
+if(threeStatus)threeStatus.textContent="✅ 3D พร้อม";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -366,8 +388,12 @@ function petFrom(kind,level,color){let g=new THREE.Group(),body=sphere(.88,color
 function setup(el){let scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(27,1,.1,50);camera.position.set(0,1.0,5.8);camera.lookAt(0,.45,0);let renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;el.innerHTML="";el.appendChild(renderer.domElement);scene.add(new THREE.HemisphereLight(0xffffff,0x91a579,2.2));let key=new THREE.DirectionalLight(0xffffff,3.2);key.position.set(-3,5,5);key.castShadow=true;scene.add(key);let rim=new THREE.DirectionalLight(0x9ed9ff,1.8);rim.position.set(4,2,-3);scene.add(rim);let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,48),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=true;scene.add(fl);let st={scene,camera,renderer,model:null,raf:0};running.set(el,st);return st}
 async function renderOne(el){let st=running.get(el)||setup(el);if(st.model)st.scene.remove(st.model);let model;if(el.classList.contains("three-monster")){let kind=el.dataset.kind,lv=+el.dataset.level||1,f=fallbackMonster[kind],d=await loadJSON(`models/monsters/${kind}_lv${lv}.json`,{kind,level:lv,body:{color:f.color},accent:f.accent,feature:f.feature,badge:lv>=2,special:lv>=3,aura:lv>=4,crown:lv>=5});model=monsterFrom(d)}else if(el.classList.contains("three-pet")){let kind=el.dataset.kind,lv=+el.dataset.level||1,d=await loadJSON(`models/pets/${kind}.json`,{color:petColors[kind]});model=petFrom(kind,lv,d.color||petColors[kind])}else model=avatarFrom(el);st.model=model;st.scene.add(model);let resize=()=>{let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};resize();new ResizeObserver(resize).observe(el);cancelAnimationFrame(st.raf);let loop=()=>{if(!el.isConnected)return;let tt=performance.now()*.001;model.position.y=Math.sin(tt*2)*.055;model.rotation.y=Math.sin(tt*.75)*.10;st.renderer.render(st.scene,st.camera);st.raf=requestAnimationFrame(loop)};loop()}
 function renderAll(){document.querySelectorAll(".three-slot").forEach(renderOne)}
-window.addEventListener("hmw3d-render",renderAll);window.addEventListener("load",()=>setTimeout(renderAll,100));
+window.addEventListener("hmw3d-render",renderAll);
+// render immediately because the normal game script may have already rendered before this module finishes loading
+setTimeout(renderAll,50);
+window.addEventListener("load",()=>setTimeout(renderAll,100));
+}
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=261").then(r=>r.update()).catch(console.error))}</script></body>
 </html>

@@ -1,4 +1,13 @@
-const C='hmw26-model-v1',A=["./", "./index.html", "./manifest.webmanifest", "./models/monsters/diligent_lv1.json", "./models/monsters/diligent_lv2.json", "./models/monsters/diligent_lv3.json", "./models/monsters/diligent_lv4.json", "./models/monsters/diligent_lv5.json", "./models/monsters/reading_lv1.json", "./models/monsters/reading_lv2.json", "./models/monsters/reading_lv3.json", "./models/monsters/reading_lv4.json", "./models/monsters/reading_lv5.json", "./models/monsters/homework_lv1.json", "./models/monsters/homework_lv2.json", "./models/monsters/homework_lv3.json", "./models/monsters/homework_lv4.json", "./models/monsters/homework_lv5.json", "./models/monsters/messy_lv1.json", "./models/monsters/messy_lv2.json", "./models/monsters/messy_lv3.json", "./models/monsters/messy_lv4.json", "./models/monsters/messy_lv5.json", "./models/monsters/morning_lv1.json", "./models/monsters/morning_lv2.json", "./models/monsters/morning_lv3.json", "./models/monsters/morning_lv4.json", "./models/monsters/morning_lv5.json", "./models/monsters/noDawdle_lv1.json", "./models/monsters/noDawdle_lv2.json", "./models/monsters/noDawdle_lv3.json", "./models/monsters/noDawdle_lv4.json", "./models/monsters/noDawdle_lv5.json", "./models/monsters/screen_lv1.json", "./models/monsters/screen_lv2.json", "./models/monsters/screen_lv3.json", "./models/monsters/screen_lv4.json", "./models/monsters/screen_lv5.json", "./models/pets/puppy.json", "./models/pets/kitty.json", "./models/pets/bunny.json", "./models/pets/fox.json", "./models/pets/owl.json", "./models/pets/dragon.json", "./models/avatar/avatar.json"];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(A)));self.skipWaiting()});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))));self.clients.claim()});
-self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
+const CACHE="hmw-v26-1-real3d-fix";
+const CORE=["./","./index.html","./manifest.webmanifest"];
+self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting();});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
+self.addEventListener("fetch",e=>{
+ if(e.request.method!=="GET") return;
+ const u=new URL(e.request.url);
+ if(u.origin===location.origin && (u.pathname.endsWith("/")||u.pathname.endsWith("/index.html"))){
+  e.respondWith(fetch(e.request).then(r=>{const x=r.clone();caches.open(CACHE).then(c=>c.put(e.request,x));return r;}).catch(()=>caches.match(e.request)));
+  return;
+ }
+ e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).then(r=>{if(u.origin===location.origin){const x=r.clone();caches.open(CACHE).then(c=>c.put(e.request,x));}return r;})));
+});
