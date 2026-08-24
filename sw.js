@@ -1,4 +1,4 @@
-const CACHE="hmw-v26-2-mobile3d-fix";
+const CACHE="hmw-v26-3-character-redesign";
 const CORE=["./","./index.html","./manifest.webmanifest"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting();});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
