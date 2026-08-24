@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V26.5 CINEMATIC CHARACTER & SCENE EDITION</title>
+<title>Habit Monster World V26.6 CHARACTER QUALITY UPGRADE</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -76,12 +76,34 @@
   .zoneArt{border-radius:22px}
 }
 
+
+/* V26.6 Character Quality Upgrade */
+.avatarStage,.petStage,.zoneArt .three-slot{
+  background:
+    radial-gradient(circle at 50% 20%,rgba(255,255,255,.98) 0 15%,rgba(237,248,255,.94) 48%,rgba(255,246,218,.9) 100%);
+}
+.avatarStage{box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 12px 28px rgba(43,73,105,.12)}
+.avatarChoice{overflow:hidden;min-height:100px}
+.avatarChoice small{display:block;margin-top:2px;font-weight:950;color:#1682e6}
+.zone{overflow:hidden}
+.zone b{display:inline-block;line-height:1.15;margin-top:3px}
+.three-slot canvas{filter:saturate(1.03) contrast(1.01)}
+.characterQualityNote{font-size:13px;color:#66788c;background:#f7fbff;border:1px solid var(--line);padding:9px 11px;border-radius:13px;margin-top:8px}
+@media(max-width:600px){
+ .avatarChoice{min-height:106px}
+ .avatarChoice .three-slot{height:70px}
+ .avatarStage{width:min(250px,76vw);height:280px}
+ .battle{align-items:end}
+ .avatarArt{width:148px;height:180px}
+ .bossArt{width:155px;height:180px}
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V26.5 CINEMATIC CHARACTER & SCENE EDITION</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V26.6 CHARACTER QUALITY UPGRADE</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -108,7 +130,7 @@
 </div>
 </section>
 
-<section class="card"><h2>🎮 V26 Real 3D Model Edition</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V26.6 Character Quality Upgrade</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V26.6 ปรับสัดส่วนใบหน้า ผม เสื้อผ้า แขนขา และ silhouette ของ Monster พร้อมทำ Avatar 6 แบบให้ต่างกันจริงในโมเดล 3D</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -170,7 +192,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26.1;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26.6;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -246,7 +268,7 @@ function avatarSVG(p=S.profile){
  const gender=pr[0], hair=p.hair||pr[1];
  const gear=p.gear||{};
  return `<div class="three-slot three-avatar"
-   data-gender="${gender}" data-skin="${p.skin}" data-hair="${hair}" data-haircolor="${p.hairColor}"
+   data-base="${p.preset||"boyA"}" data-gender="${gender}" data-skin="${p.skin}" data-hair="${hair}" data-haircolor="${p.hairColor}"
    data-hat="${gear.hat?1:0}" data-cape="${gear.cape?1:0}" data-bag="${gear.bag?1:0}" data-star="${gear.star?1:0}">
  </div>`;
 }
@@ -353,7 +375,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ 3D พร้อม • Cinematic Character & Scene";
+if(threeStatus)threeStatus.textContent="✅ 3D พร้อม • Character Quality Upgrade";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -371,7 +393,7 @@ const hairColors={brown:0x654439,black:0x30313a,chestnut:0x754538,gold:0xad7a3e}
 
 async function loadJSON(url,fallback){if(cache.has(url))return cache.get(url);try{let r=await fetch(url);if(!r.ok)throw Error(r.status);let j=await r.json();cache.set(url,j);return j}catch(e){return fallback}}
 function hex(x){return typeof x==="string"?parseInt(x.replace("#",""),16):x}
-function mat(c,rough=.34,metal=.02){return new THREE.MeshPhysicalMaterial({color:hex(c),roughness:rough,metalness:metal,clearcoat:.32,clearcoatRoughness:.18})}
+function mat(c,rough=.38,metal=.01){return new THREE.MeshPhysicalMaterial({color:hex(c),roughness:rough,metalness:metal,clearcoat:.24,clearcoatRoughness:.22,sheen:.16,sheenRoughness:.6})}
 function sphere(r,c,scale=[1,1,1]){let m=new THREE.Mesh(new THREE.SphereGeometry(r,40,28),mat(c));m.scale.set(...scale);m.castShadow=true;return m}
 function box(x,y,z,c){let m=new THREE.Mesh(new THREE.BoxGeometry(x,y,z,2,2,2),mat(c,.3));m.castShadow=true;return m}
 function cyl(r,h,c){let m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,32),mat(c,.3));m.castShadow=true;return m}
@@ -408,6 +430,45 @@ function hoodieBody(color){
  return g
 }
 
+
+function capsulePart(r,h,c){
+ let g=new THREE.Group(),m=cyl(r,h,c),a=sphere(r,c),b=sphere(r,c);
+ a.position.y=h/2;b.position.y=-h/2;g.add(m,a,b);return g
+}
+function flattenedSphere(r,c,sx=1,sy=1,sz=1){
+ return sphere(r,c,[sx,sy,sz])
+}
+function irisEye(x,y,z=.95,s=.18,lookX=0){
+ let g=new THREE.Group();
+ let white=sphere(s,0xfdfdfd,[1,.98,.46]);white.position.set(x,y,z);
+ let iris=sphere(s*.56,0x486d8d,[1,1,.30]);iris.position.set(x+lookX,y-.005,z+.105);
+ let pupil=sphere(s*.31,0x172d45,[1,1,.22]);pupil.position.set(x+lookX,y-.01,z+.14);
+ let hi1=sphere(s*.12,0xffffff,[1,1,.18]);hi1.position.set(x-s*.16+lookX,y+s*.18,z+.17);
+ let hi2=sphere(s*.055,0xffffff,[1,1,.15]);hi2.position.set(x+s*.12+lookX,y-.06,z+.17);
+ g.add(white,iris,pupil,hi1,hi2);return g
+}
+function lash(x,y,z,flip=1){
+ let g=new THREE.Group();
+ for(let i=0;i<2;i++){let l=box(.10,.025,.025,0x4a342f);l.position.set(x+flip*(.07+i*.055),y+i*.02,z);l.rotation.z=flip*(.35+i*.18);g.add(l)}
+ return g
+}
+function cheek(x,y,z,c=0xf2a3ad){
+ let q=sphere(.07,c,[1.75,.48,.22]);q.position.set(x,y,z);return q
+}
+function hairBlob(x,y,z,scale,c){
+ let q=sphere(.18,c,scale);q.position.set(x,y,z);return q
+}
+function roundedBody(color,secondary){
+ let g=new THREE.Group();
+ let torso=sphere(.47,color,[.84,1.12,.63]);torso.position.y=-.42;g.add(torso);
+ let collar=new THREE.Mesh(new THREE.TorusGeometry(.31,.045,12,36,Math.PI),mat(secondary||0xffffff,.5));
+ collar.rotation.z=Math.PI;collar.position.set(0,-.05,.37);g.add(collar);
+ return g
+}
+function tinyStarPin(color=0xffd654){
+ let s=star();s.scale.set(.25,.25,.25);s.material=mat(color,.28);return s
+}
+
 function feature(g,kind,accent,level){
  if(kind==="weights"){for(const x of[-.78,.78]){let q=box(.30,.50,.28,0x59616e);q.position.set(x,-.12,.60);g.add(q)}}
  if(kind==="book"){let q=box(1.1,.60,.12,0xfff1c4);q.position.set(0,-.68,.80);q.rotation.x=-.12;g.add(q)}
@@ -419,166 +480,241 @@ function feature(g,kind,accent,level){
 }
 
 
+
 function monsterFrom(d){
  let g=new THREE.Group(),lv=d.level||1,kind=d.kind,
      c=d.body?.color||fallbackMonster[kind]?.color||"#f39a57",
      accent=d.accent||fallbackMonster[kind]?.accent||"#555";
 
- function face(z=.82,eyeY=.20){
-  g.add(eye(-.27,eyeY,z,.16),eye(.27,eyeY,z,.16));
-  let m=smile(-.14,z+.04);m.scale.set(.80,.80,.80);g.add(m);
-  for(const x of[-.43,.43]){let ch=sphere(.07,0xf3a0a8,[1.5,.48,.25]);ch.position.set(x,-.03,z-.02);g.add(ch)}
- }
- if(kind==="diligent"){
-   let b=sphere(.73,c,[1.08,.98,.90]);b.position.y=.02;g.add(b);face(.76,.18);
-   // chunky arms + dumbbells + shoes
-   for(const x of[-.68,.68]){
-     let arm=roundedLimb(.09,.42,c);arm.position.set(x,-.10,.02);g.add(arm);
-     let bar=cyl(.045,.34,0x555b66);bar.rotation.z=Math.PI/2;bar.position.set(x,-.10,.66);g.add(bar);
-     for(const yy of[-.14,.14]){let plate=cyl(.11,.08,0x3f4652);plate.rotation.z=Math.PI/2;plate.position.set(x+yy,-.10,.66);g.add(plate)}
+ function face(z=.76,eyeY=.22,expression="happy"){
+   g.add(irisEye(-.235,eyeY,z,.145,-.004),irisEye(.235,eyeY,z,.145,.004));
+   if(expression==="sleepy"){
+     g.add(brow(-.235,eyeY+.22,z+.035,-.16),brow(.235,eyeY+.22,z+.035,.16));
+   }else{
+     g.add(brow(-.235,eyeY+.22,z+.035,.04),brow(.235,eyeY+.22,z+.035,-.04));
    }
-   for(const x of[-.30,.30]){let f=shoe(0xe87b45);f.position.set(x,-.74,.08);g.add(f)}
+   let m=smile(eyeY-.27,z+.035);m.scale.set(.76,.76,.76);g.add(m);
+   g.add(cheek(-.39,eyeY-.13,z-.02),cheek(.39,eyeY-.13,z-.02));
+ }
+
+ function feet(col=accent,y=-.68){
+   for(const x of[-.25,.25]){let f=shoe(col);f.scale.set(.66,.60,.74);f.position.set(x,y,.05);g.add(f)}
+ }
+ function arms(col=c,y=-.10){
+   for(const x of[-.57,.57]){let a=capsulePart(.075,.30,col);a.position.set(x,y,.02);a.rotation.z=x<0?.18:-.18;g.add(a)}
+ }
+
+ if(kind==="diligent"){
+   let body=sphere(.68,c,[1.08,.98,.88]);body.position.y=.02;g.add(body);
+   face(.72,.18);arms(c,-.08);feet(0xe07143,-.64);
+   for(const x of[-.68,.68]){
+     let bar=cyl(.035,.38,0x4d5661);bar.rotation.z=Math.PI/2;bar.position.set(x,-.08,.61);g.add(bar);
+     for(const dx of[-.14,.14]){let p=cyl(.10,.075,0x343b45);p.rotation.z=Math.PI/2;p.position.set(x+dx,-.08,.61);g.add(p)}
+   }
+   let band=box(.50,.10,.035,0xf8e6bc);band.position.set(0,-.32,.70);g.add(band);
  }else if(kind==="reading"){
-   let b=sphere(.76,c,[1.02,1.00,.92]);b.position.y=.00;g.add(b);
-   // expressive sleepy brows + ears/horns + open book
-   for(const x of[-.50,.50]){let e=cone(.20,.46,accent);e.position.set(x,.80,.00);e.rotation.z=x<0?.18:-.18;g.add(e)}
-   face(.79,.16);g.add(brow(-.27,.40,.83,-.18),brow(.27,.40,.83,.18));
-   let left=box(.52,.42,.07,0xfff0c8);left.position.set(-.27,-.58,.72);left.rotation.z=.12;g.add(left);
-   let right=box(.52,.42,.07,0xfff0c8);right.position.set(.27,-.58,.72);right.rotation.z=-.12;g.add(right)
+   let body=sphere(.70,c,[1.02,1.02,.90]);body.position.y=.02;g.add(body);
+   for(const x of[-.45,.45]){let e=cone(.17,.39,accent);e.position.set(x,.76,-.01);e.rotation.z=x<0?.16:-.16;g.add(e)}
+   face(.75,.17,"sleepy");feet(accent,-.66);
+   let l=box(.46,.38,.055,0xfff0c8);l.position.set(-.23,-.52,.69);l.rotation.z=.12;g.add(l);
+   let r=box(.46,.38,.055,0xfff0c8);r.position.set(.23,-.52,.69);r.rotation.z=-.12;g.add(r);
+   let spine=box(.035,.36,.075,0xd2b677);spine.position.set(0,-.52,.73);g.add(spine);
  }else if(kind==="homework"){
-   let b=sphere(.72,c,[.98,1.08,.90]);b.position.y=-.01;g.add(b);face(.76,.18);
-   // paper hood + pencil
-   let hood=cone(.82,.58,0xd9effa);hood.position.set(0,.86,-.05);hood.rotation.z=Math.PI;g.add(hood);
-   let p=roundedLimb(.045,.92,0xf4be4c);p.position.set(.61,-.10,.38);p.rotation.z=-.40;g.add(p)
+   let body=sphere(.66,c,[.96,1.08,.88]);body.position.y=-.02;g.add(body);
+   face(.72,.17);feet(0x3588c4,-.66);
+   let paper=box(.74,.46,.05,0xffffff);paper.position.set(-.08,-.42,.68);paper.rotation.z=.03;g.add(paper);
+   let pencil=capsulePart(.035,.78,0xf2b84b);pencil.position.set(.54,-.12,.42);pencil.rotation.z=-.42;g.add(pencil);
+   let eraser=box(.09,.11,.09,0xef8ea7);eraser.position.set(.69,.18,.46);eraser.rotation.z=-.42;g.add(eraser);
+   let cap=cone(.70,.42,0xd6eff8);cap.position.set(0,.81,-.03);cap.rotation.z=Math.PI;g.add(cap);
  }else if(kind==="messy"){
-   let b=sphere(.75,c,[1.02,1.02,.90]);b.position.y=.00;g.add(b);face(.78,.18);
-   // leafy tufts and clutter patches
-   for(const x of[-.38,0,.38]){let leaf=cone(.15,.38,accent);leaf.position.set(x,.86,0);leaf.rotation.z=(x)*.8;g.add(leaf)}
-   let broom=cyl(.04,.92,0x9c6b3a);broom.position.set(.60,-.10,.36);broom.rotation.z=-.35;g.add(broom);
-   for(const x of[-.35,.10]){let patch=box(.20,.16,.04,0x6fa55c);patch.position.set(x,-.45,.74);g.add(patch)}
+   let body=sphere(.69,c,[1.03,1.02,.90]);body.position.y=.00;g.add(body);
+   face(.74,.18);feet(accent,-.67);arms(c,-.08);
+   for(const x of[-.32,0,.32]){let tuft=cone(.12,.30,accent);tuft.position.set(x,.78,-.01);tuft.rotation.z=x*.7;g.add(tuft)}
+   let broom=capsulePart(.035,.86,0x9c6b3a);broom.position.set(.58,-.12,.38);broom.rotation.z=-.35;g.add(broom);
+   let bristle=box(.27,.18,.08,0xc89a58);bristle.position.set(.74,-.48,.43);bristle.rotation.z=-.35;g.add(bristle);
+   for(const p of[[-.27,-.32],[.15,-.40]]){let patch=box(.18,.13,.025,0x6fa55c);patch.position.set(p[0],p[1],.68);patch.rotation.z=p[0];g.add(patch)}
  }else if(kind==="morning"){
-   let b=sphere(.70,c,[1,1,.90]);b.position.y=.00;g.add(b);face(.75,.16);
-   for(let i=0;i<10;i++){let ray=roundedLimb(.035,.34,accent),a=i*Math.PI*2/10;ray.position.set(Math.cos(a)*.90,Math.sin(a)*.90,.00);ray.rotation.z=a-Math.PI/2;g.add(ray)}
-   for(const x of[-.28,.28]){let f=shoe(0xf0b94d);f.position.set(x,-.70,.06);g.add(f)}
+   let body=sphere(.65,c,[1.0,1.0,.89]);body.position.y=.02;g.add(body);
+   face(.70,.17);feet(0xf0b94d,-.62);
+   for(let i=0;i<10;i++){let ray=capsulePart(.026,.30,accent),a=i*Math.PI*2/10;ray.position.set(Math.cos(a)*.80,Math.sin(a)*.80+.02,-.03);ray.rotation.z=a-Math.PI/2;g.add(ray)}
+   let mug=sphere(.17,0xffffff,[1,.8,.7]);mug.position.set(.48,-.28,.55);g.add(mug);
  }else if(kind==="noDawdle"){
-   let b=sphere(.70,c,[.98,1.04,.90]);b.position.y=-.02;g.add(b);face(.75,.16);
-   for(const x of[-.35,.35]){let ear=sphere(.16,c,[.62,2.25,.62]);ear.position.set(x,.88,0);g.add(ear)}
-   let clock=cyl(.23,.075,0xffffff);clock.rotation.x=Math.PI/2;clock.position.set(.56,-.24,.62);g.add(clock);
-   let hand=box(.025,.15,.03,0x5d6a75);hand.position.set(.56,-.20,.68);hand.rotation.z=-.45;g.add(hand)
+   let body=sphere(.66,c,[.98,1.04,.89]);body.position.y=-.01;g.add(body);
+   face(.72,.17);feet(0xce75a0,-.64);
+   for(const x of[-.31,.31]){let e=sphere(.13,c,[.62,2.15,.60]);e.position.set(x,.80,-.02);g.add(e)}
+   let clock=cyl(.20,.065,0xffffff);clock.rotation.x=Math.PI/2;clock.position.set(.50,-.20,.58);g.add(clock);
+   let h1=box(.018,.12,.018,0x596775);h1.position.set(.50,-.17,.65);h1.rotation.z=-.55;g.add(h1);
+   let strap=box(.09,.30,.04,accent);strap.position.set(.50,-.42,.48);g.add(strap);
  }else{
-   let b=sphere(.73,c,[1.00,1.00,.90]);b.position.y=.00;g.add(b);face(.76,.16);
-   let band=new THREE.Mesh(new THREE.TorusGeometry(.62,.055,16,44,Math.PI),mat(0x65d9eb,.22));
-   band.rotation.z=Math.PI;band.position.y=.52;g.add(band);
-   for(const x of[-.59,.59]){let pad=box(.14,.36,.20,0x4fc9dc);pad.position.set(x,.10,.58);g.add(pad)}
+   let body=sphere(.67,c,[1.0,1.0,.89]);body.position.y=.00;g.add(body);
+   face(.72,.17);feet(accent,-.65);
+   let band=new THREE.Mesh(new THREE.TorusGeometry(.57,.045,14,42,Math.PI),mat(0x65d9eb,.30));
+   band.rotation.z=Math.PI;band.position.y=.46;g.add(band);
+   for(const x of[-.54,.54]){let pad=box(.12,.30,.16,0x4fc9dc);pad.position.set(x,.08,.54);g.add(pad)}
+   let controller=box(.34,.19,.08,0x53657a);controller.position.set(0,-.38,.68);g.add(controller);
  }
 
- // tiny feet for every monster
- if(!["diligent","morning"].includes(kind)){
-   for(const x of[-.26,.26]){let f=shoe(accent);f.scale.set(.72,.72,.72);f.position.set(x,-.72,.03);g.add(f)}
- }
+ // Level evolution without making silhouette messy
+ if(lv>=2){let pin=tinyStarPin();pin.position.set(-.47,.45,.57);g.add(pin)}
+ if(lv>=3){let scarf=new THREE.Mesh(new THREE.TorusGeometry(.49,.045,12,34,Math.PI),mat(0xffd979,.45));scarf.rotation.z=Math.PI;scarf.position.set(0,-.08,.15);g.add(scarf)}
+ if(lv>=4){let aura=new THREE.Mesh(new THREE.TorusGeometry(.84,.018,12,48),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.85}));aura.rotation.x=Math.PI/2;aura.position.y=-.02;g.add(aura)}
+ if(lv>=5){let cwn=crown();cwn.position.set(0,.90,0);cwn.scale.set(.48,.48,.48);g.add(cwn)}
 
- // level evolution
- if(lv>=2){let s=star();s.scale.set(.34,.34,.34);s.position.set(0,-.42,.74);g.add(s)}
- if(lv>=3){let s=star();s.scale.set(.28,.28,.28);s.position.set(.62,.46,.42);g.add(s)}
- if(lv>=4){let r=new THREE.Mesh(new THREE.TorusGeometry(.95,.022,12,50),new THREE.MeshStandardMaterial({color:0xffed8e,emissive:0xffcf4b,emissiveIntensity:.85}));r.rotation.x=Math.PI/2;g.add(r)}
- if(lv>=5){let cwn=crown();cwn.position.set(0,.98,0);cwn.scale.set(.56,.56,.56);g.add(cwn)}
-
- g.scale.set(.94,.94,.94);
+ g.userData.characterType="monster";
+ g.userData.kind=kind;
  g.userData.anim=lv>=5?"hero":"idle";
+ g.scale.set(.94,.94,.94);
  return g
 }
+
 
 
 
 function avatarFrom(el){
- let g=new THREE.Group(),skin=skinColors[el.dataset.skin]||skinColors.light,
+ let g=new THREE.Group(),
+     skin=skinColors[el.dataset.skin]||skinColors.light,
      hair=hairColors[el.dataset.haircolor]||hairColors.brown,
-     girl=el.dataset.gender==="girl",hs=el.dataset.hair||"short",
-     variant=(el.dataset.base||"").toLowerCase(),
-     shirt=girl?0xf29abd:0x6bb9ef,shorts=girl?0x8d6fc9:0x3b78a8;
+     variant=(el.dataset.base||"boyA").toLowerCase(),
+     girl=variant.startsWith("girl")||el.dataset.gender==="girl",
+     hs=el.dataset.hair||(girl?"long":"short");
 
- if(variant.includes("boyb")){shirt=0x75c7a7;shorts=0x4c7e67}
- if(variant.includes("boyc")){shirt=0xf2a55f;shorts=0x8b6549}
- if(variant.includes("girlb")){shirt=0xb9a0f2;shorts=0x6f5db8}
- if(variant.includes("girlc")){shirt=0xf08c8c;shorts=0x9b5d68}
+ const palette={
+  boya:[0x5db5e8,0x327bab,0xf3f7fb],
+  boyb:[0x64c2a0,0x3d806c,0xf4fbf8],
+  boyc:[0xf2a25c,0xa96b43,0xfff5e8],
+  girla:[0xee8eb8,0xb96b91,0xfff2f7],
+  girlb:[0xab96e9,0x705bb4,0xf7f2ff],
+  girlc:[0xef8589,0xa95668,0xfff0ef]
+ };
+ const pc=palette[variant]||palette.boya,shirt=pc[0],bottom=pc[1],trim=pc[2];
 
- let body=hoodieBody(shirt);body.position.y=-.28;g.add(body);
- let head=sphere(.73,skin,[1,.98,.96]);head.position.y=.62;g.add(head);
- g.add(ear(-.69,.63,.02,skin),ear(.69,.63,.02,skin));
- let neck=cyl(.16,.18,skin);neck.position.y=-.03;g.add(neck);
+ // body: compact, rounded and layered
+ let torso=roundedBody(shirt,trim);torso.position.y=-.18;g.add(torso);
+ let waist=sphere(.36,bottom,[1.0,.50,.72]);waist.position.set(0,-.80,.02);g.add(waist);
 
- for(const x of[-.58,.58]){
-   let arm=roundedLimb(.105,.58,shirt);arm.position.set(x,-.38,.02);arm.rotation.z=x<0?.14:-.14;g.add(arm);
-   let hand=sphere(.14,skin);hand.position.set(x*1.04,-.70,.05);g.add(hand)
- }
- let lower=box(.58,.26,.38,shorts);lower.position.set(0,-.92,0);g.add(lower);
- for(const x of[-.20,.20]){
-   let leg=roundedLimb(.10,.42,skin);leg.position.set(x,-1.18,0);g.add(leg);
-   let sk=shoe(girl?0xf1a8bd:0x4b8dc2);sk.position.set(x,-1.43,.10);g.add(sk)
- }
+ // neck and head
+ let neck=cyl(.14,.16,skin);neck.position.y=.02;g.add(neck);
+ let head=sphere(.70,skin,[1.00,.96,.93]);head.position.y=.70;g.add(head);
+ g.add(ear(-.67,.70,.00,skin),ear(.67,.70,.00,skin));
 
- g.add(eye(-.24,.69,.67,.17),eye(.24,.69,.67,.17));
- g.add(brow(-.24,.93,.67,.05),brow(.24,.93,.67,-.05));
- g.add(nose(0,.54,.72,skin));g.add(smile(.38,.72));
- for(const x of[-.42,.42]){let ch=sphere(.075,0xf3a2a8,[1.6,.48,.25]);ch.position.set(x,.47,.66);g.add(ch)}
+ // ears inner
+ for(const x of[-.67,.67]){let ei=sphere(.07,0xefb9a0,[.62,.85,.25]);ei.position.set(x,.70,.075);g.add(ei)}
 
- let hairCap=sphere(.75,hair,[1,.52,.97]);hairCap.position.set(0,1.05,-.04);g.add(hairCap);
- [-.42,-.22,0,.22,.42].forEach((x,i)=>{
-   let q=sphere(.16,hair,[.72,1.15,.70]);q.position.set(x,1.00-(i%2)*.06,.55);q.rotation.z=(i-2)*.08;g.add(q)
- });
- if(hs==="curly"||variant.includes("boyb")||variant.includes("girlb")){
-   for(let i=0;i<10;i++){let a=i*Math.PI/9,q=sphere(.14,hair);q.position.set(Math.cos(a)*.62,.96+Math.sin(a)*.24,.04);g.add(q)}
- }
- if(hs==="spiky"||variant.includes("boyc")){
-   for(let i=-2;i<=2;i++){let q=cone(.14,.40,hair);q.position.set(i*.19,1.43,.00);q.rotation.z=-i*.12;g.add(q)}
- }
- if(hs==="long"||hs==="bob"||hs==="ponytail"||girl){
-   for(const x of[-.54,.54]){let q=sphere(.20,hair,[.72,1.55,.68]);q.position.set(x,.64,-.14);g.add(q)}
- }
- if(hs==="ponytail"||variant.includes("girlc")){
-   let q=sphere(.24,hair,[.75,1.55,.75]);q.position.set(.72,.74,-.18);q.rotation.z=-.30;g.add(q)
+ // face
+ g.add(irisEye(-.235,.76,.645,.165,-.008),irisEye(.235,.76,.645,.165,.008));
+ g.add(brow(-.235,.98,.66,.04),brow(.235,.98,.66,-.04));
+ if(girl){g.add(lash(-.235,.87,.73,-1),lash(.235,.87,.73,1))}
+ let n=nose(0,.59,.705,skin);n.scale.set(.9,.8,.7);g.add(n);
+ let m=smile(.405,.705);m.scale.set(.92,.92,.92);g.add(m);
+ g.add(cheek(-.42,.52,.64),cheek(.42,.52,.64));
+
+ // arms with shirt sleeves and hands
+ for(const x of[-.56,.56]){
+   let sleeve=capsulePart(.105,.34,shirt);sleeve.position.set(x,-.27,.00);sleeve.rotation.z=x<0?.12:-.12;g.add(sleeve);
+   let fore=capsulePart(.085,.28,skin);fore.position.set(x*1.04,-.56,.025);fore.rotation.z=x<0?.08:-.08;g.add(fore);
+   let hand=sphere(.115,skin,[1,.92,.90]);hand.position.set(x*1.06,-.75,.06);g.add(hand)
  }
 
+ // legs + socks + shoes
+ for(const x of[-.18,.18]){
+   let leg=capsulePart(.085,.34,skin);leg.position.set(x,-1.06,0);g.add(leg);
+   let sock=capsulePart(.09,.12,trim);sock.position.set(x,-1.22,.02);g.add(sock);
+   let sk=shoe(girl?0xe88eb2:0x4386b9);sk.scale.set(.88,.80,.92);sk.position.set(x,-1.36,.11);g.add(sk)
+ }
+
+ // Hair base with cleaner silhouette
+ let backHair=sphere(.72,hair,[1.01,.60,.92]);backHair.position.set(0,1.08,-.06);g.add(backHair);
+
+ // Different actual silhouettes per preset
+ if(variant==="boya"){
+   [-.46,-.28,-.10,.10,.28,.46].forEach((x,i)=>g.add(hairBlob(x,1.05-(i%2)*.045,.54,[.74,1.10,.72],hair)));
+ }else if(variant==="boyb"){
+   for(let i=0;i<11;i++){let a=Math.PI*(i/10),x=Math.cos(a)*.55,y=.98+Math.sin(a)*.29;g.add(hairBlob(x,y,.35,[.82,.82,.75],hair))}
+   for(const x of[-.36,-.12,.12,.36])g.add(hairBlob(x,1.03,.56,[.78,.92,.70],hair));
+ }else if(variant==="boyc"){
+   for(let i=-3;i<=3;i++){let spike=cone(.12,.36,hair);spike.position.set(i*.15,1.38-Math.abs(i)*.025,.02);spike.rotation.z=-i*.13;g.add(spike)}
+   [-.38,-.18,.02,.22,.42].forEach((x,i)=>g.add(hairBlob(x,1.02-(i%2)*.05,.54,[.72,1.0,.70],hair)));
+ }else if(variant==="girla"){
+   for(const x of[-.54,.54]){let side=sphere(.21,hair,[.78,1.68,.70]);side.position.set(x,.65,-.08);g.add(side)}
+   [-.40,-.20,0,.20,.40].forEach((x,i)=>g.add(hairBlob(x,1.03-(i%2)*.04,.55,[.75,1.05,.70],hair)));
+ }else if(variant==="girlb"){
+   for(let i=0;i<9;i++){let a=Math.PI*(i/8),x=Math.cos(a)*.52,y=1.0+Math.sin(a)*.27;g.add(hairBlob(x,y,.28,[.82,.82,.75],hair))}
+   let pony=sphere(.23,hair,[.82,1.45,.75]);pony.position.set(.69,.78,-.18);pony.rotation.z=-.35;g.add(pony);
+   [-.32,-.10,.12,.34].forEach(x=>g.add(hairBlob(x,1.03,.55,[.75,1.0,.68],hair)));
+ }else{
+   for(const x of[-.54,.54]){let side=sphere(.20,hair,[.76,1.35,.68]);side.position.set(x,.72,-.07);g.add(side)}
+   let bobBack=sphere(.66,hair,[1.03,.82,.80]);bobBack.position.set(0,.78,-.22);g.add(bobBack);
+   [-.38,-.18,.02,.22,.42].forEach((x,i)=>g.add(hairBlob(x,1.02-(i%2)*.04,.55,[.76,1.0,.70],hair)));
+ }
+
+ // selected hair setting can further tweak
+ if(hs==="ponytail" && !variant.includes("girlb")){
+   let pony=sphere(.22,hair,[.80,1.48,.74]);pony.position.set(.70,.76,-.18);pony.rotation.z=-.32;g.add(pony)
+ }
+ if(hs==="spiky" && !variant.includes("boyc")){
+   for(let i=-2;i<=2;i++){let sp=cone(.11,.30,hair);sp.position.set(i*.16,1.38,.00);sp.rotation.z=-i*.12;g.add(sp)}
+ }
+
+ // accessories
  if(el.dataset.hat==="1"){
-   let cap=cyl(.46,.24,0x3d8fe6);cap.position.set(0,1.47,.00);g.add(cap);
-   let brim=box(.50,.08,.24,0x2c74bf);brim.position.set(.18,1.35,.48);g.add(brim)
+   let capTop=cyl(.43,.18,0x3d8fe6);capTop.position.set(0,1.48,.00);g.add(capTop);
+   let capDome=sphere(.44,0x3d8fe6,[1,.42,.92]);capDome.position.set(0,1.43,.01);g.add(capDome);
+   let brim=box(.46,.055,.22,0x2c74bf);brim.position.set(.15,1.36,.43);g.add(brim)
  }
- if(el.dataset.bag==="1"){let bag=box(.44,.58,.24,0x6e9d71);bag.position.set(.42,-.42,-.38);g.add(bag)}
- if(el.dataset.cape==="1"){let cape=box(.82,.92,.055,girl?0xc96f9b:0x416ab0);cape.position.set(0,-.42,-.52);cape.rotation.x=.12;g.add(cape)}
- if(el.dataset.star==="1"){let q=star();q.position.set(.55,-.08,.43);q.scale.set(.52,.52,.52);g.add(q)}
+ if(el.dataset.bag==="1"){
+   let bag=sphere(.34,0x6e9d71,[.75,1.0,.42]);bag.position.set(.36,-.45,-.47);g.add(bag);
+   let strap=new THREE.Mesh(new THREE.TorusGeometry(.38,.025,10,28,Math.PI),mat(0x537958,.55));strap.rotation.z=.25;strap.position.set(.14,-.26,-.18);g.add(strap)
+ }
+ if(el.dataset.cape==="1"){
+   let cape=box(.72,.86,.035,girl?0xc96f9b:0x416ab0);cape.position.set(0,-.40,-.52);cape.rotation.x=.10;g.add(cape)
+ }
+ if(el.dataset.star==="1"){
+   let pin=tinyStarPin();pin.position.set(.32,-.35,.48);g.add(pin)
+ }
 
- g.scale.set(.83,.83,.83);
+ // personality pose by preset
+ if(variant==="boyb")g.rotation.y=-.055;
+ if(variant==="boyc")g.rotation.y=.07;
+ if(variant==="girlb")g.rotation.y=-.06;
+ if(variant==="girlc")g.rotation.y=.055;
+
+ g.userData.characterType="avatar";
+ g.userData.variant=variant;
+ g.scale.set(.82,.82,.82);
  return g
 }
 
 
+
 function petFrom(kind,level,color){
- let g=new THREE.Group(),body=sphere(.62,color,[1,.98,.90]);body.position.y=.02;g.add(body);
- let muzzle=sphere(.16,0xffd8c1,[1.18,.62,.42]);muzzle.position.set(0,-.12,.61);g.add(muzzle);
- g.add(eye(-.20,.18,.61,.125),eye(.20,.18,.61,.125));
+ let g=new THREE.Group(),body=sphere(.56,color,[1.02,.98,.91]);body.position.y=.02;g.add(body);
+ let muzzle=sphere(.145,0xffd8c1,[1.18,.62,.42]);muzzle.position.set(0,-.12,.55);g.add(muzzle);
+ g.add(irisEye(-.185,.18,.57,.115,-.004),irisEye(.185,.18,.57,.115,.004));
+ let m=smile(-.11,.60);m.scale.set(.62,.62,.62);g.add(m);
 
  if(kind==="bunny"){
-   for(const x of[-.28,.28]){let e=sphere(.13,color,[.62,2.35,.62]);e.position.set(x,.73,0);g.add(e)}
+   for(const x of[-.25,.25]){let e=sphere(.115,color,[.60,2.35,.60]);e.position.set(x,.68,-.01);g.add(e)}
  }else if(kind==="kitty"){
-   for(const x of[-.36,.36]){let e=cone(.18,.34,color);e.position.set(x,.64,0);e.rotation.z=x<0?.15:-.15;g.add(e)}
+   for(const x of[-.32,.32]){let e=cone(.16,.31,color);e.position.set(x,.59,-.01);e.rotation.z=x<0?.16:-.16;g.add(e)}
  }else if(kind==="fox"){
-   for(const x of[-.38,.38]){let e=cone(.20,.38,color);e.position.set(x,.66,0);e.rotation.z=x<0?.20:-.20;g.add(e)}
-   let tail=sphere(.22,color,[.70,1.55,.70]);tail.position.set(.62,-.20,-.12);tail.rotation.z=-.45;g.add(tail)
+   for(const x of[-.33,.33]){let e=cone(.17,.34,color);e.position.set(x,.61,-.01);e.rotation.z=x<0?.20:-.20;g.add(e)}
+   let tail=sphere(.20,color,[.70,1.50,.68]);tail.position.set(.54,-.18,-.13);tail.rotation.z=-.48;g.add(tail)
  }else if(kind==="owl"){
-   for(const x of[-.35,.35]){let e=cone(.16,.30,color);e.position.set(x,.62,0);g.add(e)}
-   for(const x of[-.40,.40]){let wing=sphere(.17,color,[.65,1.40,.55]);wing.position.set(x,-.08,-.02);g.add(wing)}
+   for(const x of[-.32,.32]){let e=cone(.14,.26,color);e.position.set(x,.57,-.01);g.add(e)}
+   for(const x of[-.37,.37]){let wing=sphere(.15,color,[.62,1.35,.55]);wing.position.set(x,-.08,-.02);g.add(wing)}
  }else if(kind==="dragon"){
-   for(const x of[-.34,.34]){let h=cone(.14,.28,0xffe08a);h.position.set(x,.66,-.02);g.add(h)}
-   for(const x of[-.43,.43]){let wing=cone(.17,.38,0x83d4a3);wing.position.set(x,-.08,-.18);wing.rotation.z=x<0?-.65:.65;g.add(wing)}
+   for(const x of[-.30,.30]){let h=cone(.12,.24,0xffe08a);h.position.set(x,.60,-.02);g.add(h)}
+   for(const x of[-.39,.39]){let wing=cone(.15,.34,0x83d4a3);wing.position.set(x,-.08,-.18);wing.rotation.z=x<0?-.65:.65;g.add(wing)}
  }else{
-   for(const x of[-.34,.34]){let e=sphere(.15,color,[.82,1.28,.66]);e.position.set(x,.58,0);g.add(e)}
+   for(const x of[-.30,.30]){let e=sphere(.13,color,[.82,1.25,.66]);e.position.set(x,.54,0);g.add(e)}
  }
 
- for(const x of[-.22,.22]){let f=shoe(0xd7a064);f.scale.set(.62,.62,.62);f.position.set(x,-.55,.04);g.add(f)}
- if(level>=2){let s=star();s.scale.set(.28,.28,.28);s.position.set(0,-.28,.62);g.add(s)}
- if(level>=3){let r=new THREE.Mesh(new THREE.TorusGeometry(.72,.018,10,40),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.7}));r.rotation.x=Math.PI/2;g.add(r)}
- if(level>=4){let c=crown();c.scale.set(.42,.42,.42);c.position.set(0,.78,0);g.add(c)}
- g.scale.set(.90,.90,.90);
+ for(const x of[-.20,.20]){let f=shoe(0xd7a064);f.scale.set(.55,.52,.62);f.position.set(x,-.50,.04);g.add(f)}
+ if(level>=2){let pin=tinyStarPin();pin.position.set(0,-.24,.57);g.add(pin)}
+ if(level>=3){let r=new THREE.Mesh(new THREE.TorusGeometry(.65,.015,10,38),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.7}));r.rotation.x=Math.PI/2;g.add(r)}
+ if(level>=4){let c=crown();c.scale.set(.36,.36,.36);c.position.set(0,.70,0);g.add(c)}
+ g.userData.characterType="pet";
+ g.scale.set(.92,.92,.92);
  return g
 }
 
@@ -635,8 +771,8 @@ function setup(el){
  scene.add(new THREE.HemisphereLight(0xffffff,0x91a579,2.35));
  if(isBattle)addBattleEnvironment(scene,el.dataset.kind||el.closest(".arena")?.dataset?.kind||"reading");
  else if(isStage)addStageEnvironment(scene);
- let key=new THREE.DirectionalLight(0xffffff,mini?2.2:3.2);key.position.set(-3,5,5);key.castShadow=!mini;scene.add(key);
- let rim=new THREE.DirectionalLight(0x9ed9ff,1.5);rim.position.set(4,2,-3);scene.add(rim);
+ let key=new THREE.DirectionalLight(0xfff7ec,mini?2.4:3.4);key.position.set(-3.2,5.2,5.2);key.castShadow=!mini;scene.add(key);
+ let rim=new THREE.DirectionalLight(0x9ed9ff,1.25);rim.position.set(4,2.5,-3);scene.add(rim);let fill=new THREE.DirectionalLight(0xffd8e8,.65);fill.position.set(-4,1,-2);scene.add(fill);
  let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,32),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));
  fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=!mini;scene.add(fl);
  let st={scene,camera,renderer,model:null,raf:0,ro:null,lost:false};
@@ -683,7 +819,16 @@ async function renderOne(el){
  const resize=()=>{if(!el.isConnected||!st.renderer)return;let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};
  resize();st.ro=new ResizeObserver(resize);st.ro.observe(el);
  cancelAnimationFrame(st.raf);let last=0;
- const loop=ts=>{if(!el.isConnected||st.lost)return;if(ts-last>32){last=ts;let tt=ts*.001;model.position.y=Math.sin(tt*2)*.055;model.rotation.y=Math.sin(tt*.75)*.10;st.renderer.render(st.scene,st.camera)}st.raf=requestAnimationFrame(loop)};
+ const loop=ts=>{if(!el.isConnected||st.lost)return;if(ts-last>32){
+  last=ts;let tt=ts*.001,typ=model.userData.characterType||"";
+  model.position.y=Math.sin(tt*(typ==="pet"?2.6:1.8))*(typ==="avatar"?.035:.045);
+  model.rotation.y=Math.sin(tt*.62)*(typ==="avatar"?.055:.075);
+  let breathe=1+Math.sin(tt*2.0)*.008;
+  model.scale.y*=1;
+  if(typ==="monster"&&model.userData.kind==="morning")model.rotation.z=Math.sin(tt*1.3)*.018;
+  if(typ==="pet")model.rotation.z=Math.sin(tt*1.7)*.015;
+  st.renderer.render(st.scene,st.camera)
+ }st.raf=requestAnimationFrame(loop)};
  st.raf=requestAnimationFrame(loop)
 }
 function isNearViewport(el){const r=el.getBoundingClientRect();return r.bottom>-180&&r.top<innerHeight+180}
@@ -704,5 +849,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=265").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=266").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
