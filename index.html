@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V26.1 REAL 3D FIX</title>
+<title>Habit Monster World V26.2 MOBILE 3D FIX</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -51,7 +51,7 @@
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V26.1 REAL 3D FIX</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V26.2 MOBILE 3D FIX</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -323,7 +323,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ 3D พร้อม";
+if(threeStatus)threeStatus.textContent="✅ 3D พร้อม • Mobile optimized";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -385,15 +385,88 @@ function avatarFrom(el){
  return g
 }
 function petFrom(kind,level,color){let g=new THREE.Group(),body=sphere(.88,color,[1,.92,.88]);body.position.y=.02;g.add(body);for(const x of[-.54,.54]){let e=kind==="bunny"?sphere(.22,color,[.7,2.1,.62]):cone(.29,.58,color);e.position.set(x,.91,0);e.rotation.z=kind==="bunny"?0:(x<0?.35:-.35);g.add(e)}g.add(eye(-.30,.18,.78,.17),eye(.30,.18,.78,.17));if(level>=2){let s=star();s.scale.set(.45,.45,.45);s.position.set(0,-.48,.84);g.add(s)}if(level>=3){let r=new THREE.Mesh(new THREE.TorusGeometry(1.0,.025,10,48),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.8}));r.rotation.x=Math.PI/2;g.add(r)}if(level>=4){let c=crown();c.scale.set(.65,.65,.65);c.position.set(0,1.10,0);g.add(c)}return g}
-function setup(el){let scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(27,1,.1,50);camera.position.set(0,1.0,5.8);camera.lookAt(0,.45,0);let renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;el.innerHTML="";el.appendChild(renderer.domElement);scene.add(new THREE.HemisphereLight(0xffffff,0x91a579,2.2));let key=new THREE.DirectionalLight(0xffffff,3.2);key.position.set(-3,5,5);key.castShadow=true;scene.add(key);let rim=new THREE.DirectionalLight(0x9ed9ff,1.8);rim.position.set(4,2,-3);scene.add(rim);let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,48),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=true;scene.add(fl);let st={scene,camera,renderer,model:null,raf:0};running.set(el,st);return st}
-async function renderOne(el){let st=running.get(el)||setup(el);if(st.model)st.scene.remove(st.model);let model;if(el.classList.contains("three-monster")){let kind=el.dataset.kind,lv=+el.dataset.level||1,f=fallbackMonster[kind],d=await loadJSON(`models/monsters/${kind}_lv${lv}.json`,{kind,level:lv,body:{color:f.color},accent:f.accent,feature:f.feature,badge:lv>=2,special:lv>=3,aura:lv>=4,crown:lv>=5});model=monsterFrom(d)}else if(el.classList.contains("three-pet")){let kind=el.dataset.kind,lv=+el.dataset.level||1,d=await loadJSON(`models/pets/${kind}.json`,{color:petColors[kind]});model=petFrom(kind,lv,d.color||petColors[kind])}else model=avatarFrom(el);st.model=model;st.scene.add(model);let resize=()=>{let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};resize();new ResizeObserver(resize).observe(el);cancelAnimationFrame(st.raf);let loop=()=>{if(!el.isConnected)return;let tt=performance.now()*.001;model.position.y=Math.sin(tt*2)*.055;model.rotation.y=Math.sin(tt*.75)*.10;st.renderer.render(st.scene,st.camera);st.raf=requestAnimationFrame(loop)};loop()}
-function renderAll(){document.querySelectorAll(".three-slot").forEach(renderOne)}
-window.addEventListener("hmw3d-render",renderAll);
-// render immediately because the normal game script may have already rendered before this module finishes loading
-setTimeout(renderAll,50);
-window.addEventListener("load",()=>setTimeout(renderAll,100));
+
+function setup(el){
+ let scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(27,1,.1,50);
+ camera.position.set(0,1.0,5.8);camera.lookAt(0,.45,0);
+ let renderer;
+ try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:"default"});}
+ catch(err){console.error("WebGL renderer create failed",err);el.innerHTML='<div class="webglNotice">⚠️ เปิด 3D ไม่สำเร็จ ลอง Refresh</div>';return null}
+ const mini=el.parentElement?.classList.contains("avatarChoice")||el.parentElement?.classList.contains("zoneArt");
+ renderer.setPixelRatio(Math.min(devicePixelRatio,mini?1.0:1.5));
+ renderer.shadowMap.enabled=!mini;
+ renderer.outputColorSpace=THREE.SRGBColorSpace;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;
+ el.innerHTML="";el.appendChild(renderer.domElement);
+ scene.add(new THREE.HemisphereLight(0xffffff,0x91a579,2.2));
+ let key=new THREE.DirectionalLight(0xffffff,mini?2.2:3.2);key.position.set(-3,5,5);key.castShadow=!mini;scene.add(key);
+ let rim=new THREE.DirectionalLight(0x9ed9ff,1.5);rim.position.set(4,2,-3);scene.add(rim);
+ let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,32),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));
+ fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=!mini;scene.add(fl);
+ let st={scene,camera,renderer,model:null,raf:0,ro:null,lost:false};
+ renderer.domElement.addEventListener("webglcontextlost",ev=>{
+  ev.preventDefault();st.lost=true;cancelAnimationFrame(st.raf);
+  setTimeout(()=>{disposeSlot(el);if(el.isConnected)observeSlot(el)},300);
+ },false);
+ running.set(el,st);return st
+}
+function disposeObject(obj){
+ if(!obj)return;
+ obj.traverse?.(o=>{
+  o.geometry?.dispose?.();
+  if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m?.dispose?.());else o.material?.dispose?.()}
+ })
+}
+function disposeSlot(el){
+ const st=running.get(el);if(!st)return;
+ cancelAnimationFrame(st.raf);st.ro?.disconnect?.();
+ if(st.model){disposeObject(st.model);st.scene.remove(st.model)}
+ try{st.renderer.dispose();st.renderer.forceContextLoss?.()}catch(e){}
+ running.delete(el);if(el.isConnected)el.innerHTML=""
+}
+async function renderOne(el){
+ if(!el.isConnected)return;
+ let st=running.get(el)||setup(el);if(!st)return;
+ if(st.model){disposeObject(st.model);st.scene.remove(st.model)}
+ let model;
+ try{
+  if(el.classList.contains("three-monster")){
+   let kind=el.dataset.kind,lv=+el.dataset.level||1,f=fallbackMonster[kind],
+       d=await loadJSON(`models/monsters/${kind}_lv${lv}.json`,
+       {kind,level:lv,body:{color:f.color},accent:f.accent,feature:f.feature,badge:lv>=2,special:lv>=3,aura:lv>=4,crown:lv>=5});
+   model=monsterFrom(d)
+  }else if(el.classList.contains("three-pet")){
+   let kind=el.dataset.kind,lv=+el.dataset.level||1,d=await loadJSON(`models/pets/${kind}.json`,{color:petColors[kind]});
+   model=petFrom(kind,lv,d.color||petColors[kind])
+  }else model=avatarFrom(el)
+ }catch(err){
+  console.error("3D model build failed",err,el.dataset.kind||"avatar");
+  el.innerHTML='<div class="webglNotice">⚠️ 3D ตัวนี้โหลดไม่สำเร็จ</div>';return
+ }
+ st.model=model;st.scene.add(model);
+ const resize=()=>{if(!el.isConnected||!st.renderer)return;let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};
+ resize();st.ro=new ResizeObserver(resize);st.ro.observe(el);
+ cancelAnimationFrame(st.raf);let last=0;
+ const loop=ts=>{if(!el.isConnected||st.lost)return;if(ts-last>32){last=ts;let tt=ts*.001;model.position.y=Math.sin(tt*2)*.055;model.rotation.y=Math.sin(tt*.75)*.10;st.renderer.render(st.scene,st.camera)}st.raf=requestAnimationFrame(loop)};
+ st.raf=requestAnimationFrame(loop)
+}
+function isNearViewport(el){const r=el.getBoundingClientRect();return r.bottom>-180&&r.top<innerHeight+180}
+const slotObserver=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  const el=entry.target;
+  if(entry.isIntersecting)renderOne(el);
+  else setTimeout(()=>{if(el.isConnected&&!isNearViewport(el))disposeSlot(el)},180)
+ })
+},{root:null,rootMargin:"160px 0px 160px 0px",threshold:.01});
+function observeSlot(el){try{slotObserver.unobserve(el)}catch(e){}slotObserver.observe(el)}
+function renderAll(){document.querySelectorAll(".three-slot").forEach(observeSlot)}
+window.addEventListener("hmw3d-render",()=>setTimeout(renderAll,25));
+setTimeout(renderAll,80);
+window.addEventListener("load",()=>setTimeout(renderAll,150));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout(renderAll,150)});
+
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=261").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=262").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
