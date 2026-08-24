@@ -1,8 +1,9 @@
 {
-  "name":"Habit Monster World",
-  "short_name":"Habit Monster",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#eaf6ff",
-  "theme_color":"#eaf6ff"
+  "name": "Habit Monster World V27.5.1",
+  "short_name": "Habit Monster",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef8ff",
+  "theme_color": "#76b9ef"
 }
