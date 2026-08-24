@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V27.1 CLEAN CINEMATIC ART</title>
+<title>Habit Monster World V27.2 CLEAN ASSET PASS</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -198,12 +198,60 @@
   background:linear-gradient(180deg,#f7fcff,#fffaf1);
 }
 
+
+/* V27.2 CLEAN ASSET PASS */
+.cinematic-slot{
+  background:linear-gradient(180deg,#f9fcff 0%,#f2f9ff 62%,#fff8e8 100%)!important;
+  overflow:hidden;
+}
+.cinematic-slot img{
+  width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:center center!important;
+  filter:saturate(1.06) contrast(1.02) drop-shadow(0 7px 11px rgba(45,70,95,.10))!important;
+}
+.zoneArt .cinematic-slot{min-height:108px;border-radius:18px}
+.zoneArt .art-badge{display:none!important}
+.battle{gap:12px!important;align-items:end!important}
+.battle .cinematic-slot{
+  min-height:180px;border-radius:22px;
+  box-shadow:0 10px 24px rgba(46,75,104,.10);
+}
+.arena{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(180deg,#c9edff 0 48%,#ccecb8 48% 65%,#f5e8c9 65% 100%)!important;
+}
+.arena:before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:33%;
+  background:
+    radial-gradient(ellipse at 22% 78%,rgba(255,255,255,.82),transparent 40%),
+    radial-gradient(ellipse at 78% 78%,rgba(255,255,255,.82),transparent 40%);
+  pointer-events:none;
+}
+.avatarStage{background:linear-gradient(180deg,#f6fbff,#fff9eb)!important}
+.avatarChoice .three-slot{background:linear-gradient(180deg,#f8fcff,#fff9ec)!important}
+
+/* Zoom source artwork so the visible card is character-first rather than thumbnail-first */
+.cinematic-slot[data-kind="diligent"] img{object-position:center 42%!important;transform:scale(1.55)!important}
+.cinematic-slot[data-kind="reading"] img{object-position:center 43%!important;transform:scale(1.55)!important}
+.cinematic-slot[data-kind="homework"] img{object-position:center 45%!important;transform:scale(1.58)!important}
+.cinematic-slot[data-kind="messy"] img{object-position:center 45%!important;transform:scale(1.55)!important}
+.cinematic-slot[data-kind="morning"] img{object-position:center 44%!important;transform:scale(1.58)!important}
+.cinematic-slot[data-kind="noDawdle"] img{object-position:center 43%!important;transform:scale(1.55)!important}
+.cinematic-slot[data-kind="screen"] img{object-position:center 43%!important;transform:scale(1.58)!important}
+
+@media(max-width:600px){
+  .zoneArt{height:112px!important}
+  .battle .cinematic-slot{min-height:164px}
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V27.1 CLEAN CINEMATIC ART</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V27.2 CLEAN ASSET PASS</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -292,7 +340,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.1;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.2;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -493,7 +541,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Clean Cinematic Art • Game Logic Preserved";
+if(threeStatus)threeStatus.textContent="✅ Clean Assets • Unified Character Art";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -758,8 +806,8 @@ function avatarFrom(el){
 
  // head slightly pear-shaped instead of perfect ball
  let neck=cyl(.105,.10,skin);neck.position.y=-.01;g.add(neck);
- let head=sphere(.67,skin,[1.00,.96,.92]);head.position.set(0,.70,0);g.add(head);
- let cheekBase=sphere(.55,skin,[1.07,.82,.89]);cheekBase.position.set(0,.52,.02);g.add(cheekBase);
+ let head=sphere(.62,skin,[1.00,.97,.93]);head.position.set(0,.70,0);g.add(head);
+ let cheekBase=sphere(.50,skin,[1.06,.84,.90]);cheekBase.position.set(0,.52,.02);g.add(cheekBase);
 
  // ears
  for(const x of[-.63,.63]){
@@ -769,13 +817,13 @@ function avatarFrom(el){
 
  // eyes: smaller, inset, expressive
  const ey=.76, ez=.625;
- g.add(irisEye(-.215,ey,ez,.145,-.004), irisEye(.215,ey,ez,.145,.004));
+ g.add(irisEye(-.205,ey,ez,.128,-.004), irisEye(.205,ey,ez,.128,.004));
  // V27.1: eyelids removed to keep the avatar eyes open and clean on mobile
 
 
  // eyebrows with personality differences
  let browTilt = variant==="boyc"?-.09:(variant==="girlb"?.06:.025);
- g.add(brow(-.215,1.005,.68,browTilt*.55),brow(.215,1.005,.68,-browTilt*.55));
+ g.add(brow(-.205,.995,.67,browTilt*.42),brow(.205,.995,.67,-browTilt*.42));
 
  // small nose + softer smile
  let n=nose(0,.585,.69,skin);n.scale.set(.72,.64,.58);g.add(n);
@@ -847,7 +895,7 @@ function avatarFrom(el){
 
  g.userData.characterType="avatar";
  g.userData.variant=variant;
- g.scale.set(.86,.86,.86);
+ g.scale.set(.76,.76,.76);
  return g
 }
 
@@ -1022,5 +1070,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=271").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=272").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
