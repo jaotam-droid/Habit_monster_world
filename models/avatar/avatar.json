@@ -1,0 +1,37 @@
+{
+  "type": "avatar",
+  "presets": [
+    "boyA",
+    "boyB",
+    "boyC",
+    "girlA",
+    "girlB",
+    "girlC"
+  ],
+  "skin": [
+    "light",
+    "warm",
+    "tan",
+    "deep"
+  ],
+  "hair": [
+    "short",
+    "curly",
+    "spiky",
+    "long",
+    "ponytail",
+    "bob"
+  ],
+  "hairColor": [
+    "brown",
+    "black",
+    "chestnut",
+    "gold"
+  ],
+  "gear": [
+    "hat",
+    "cape",
+    "bag",
+    "star"
+  ]
+}
