@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V27.5.1 GITHUB CACHE FIX</title>
+<title>Habit Monster World V27.6 CINEMATIC 3D ART PASS</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -289,11 +289,17 @@ img,canvas{image-rendering:auto;}
 @media(max-width:600px){body{overflow-x:hidden}input,select,button,textarea{font-size:16px}}
 </style>
 
+
+<style id="v276-art-polish">
+.cinematic-slot img{transform:translateZ(0);transition:transform .2s ease,filter .2s ease;filter:saturate(1.08) contrast(1.02) drop-shadow(0 10px 12px rgba(39,65,87,.12))}
+.zone:hover .cinematic-slot img,.avatarChoice:hover .cinematic-slot img{transform:translateY(-2px) scale(1.015)}
+.zone.active{box-shadow:0 0 0 3px rgba(70,139,230,.18),0 12px 24px rgba(55,94,135,.10)}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V27.5.1 GITHUB CACHE FIX</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V27.6 CINEMATIC 3D ART PASS</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -382,7 +388,7 @@ img,canvas{image-rendering:auto;}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.51;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.6;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -462,35 +468,29 @@ function svgData(svg){
 function artFrame(inner,accent="#7fc7ff"){
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
  <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-   <stop stop-color="#f8fcff"/><stop offset=".62" stop-color="#edf7ff"/><stop offset="1" stop-color="#fff6e2"/>
-  </linearGradient>
-  <radialGradient id="glow" cx=".32" cy=".20" r=".78">
-   <stop stop-color="#ffffff" stop-opacity=".98"/>
-   <stop offset=".45" stop-color="#ffffff" stop-opacity=".18"/>
-   <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-  </radialGradient>
-  <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%">
-   <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#33516a" flood-opacity=".22"/>
-  </filter>
-  <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
-   <feGaussianBlur stdDeviation="8"/>
-  </filter>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdff"/><stop offset=".52" stop-color="#eff8ff"/><stop offset="1" stop-color="#fff4d9"/></linearGradient>
+  <radialGradient id="spot" cx=".34" cy=".18" r=".82"><stop stop-color="#fff" stop-opacity="1"/><stop offset=".42" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".46"/><stop offset=".5" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient>
+  <filter id="shadow" x="-45%" y="-45%" width="190%" height="205%"><feDropShadow dx="0" dy="15" stdDeviation="13" flood-color="#27445f" flood-opacity=".24"/></filter>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
  </defs>
- <rect width="420" height="420" rx="46" fill="url(#bg)"/>
- <ellipse cx="210" cy="360" rx="132" ry="28" fill="#8aa9bf" opacity=".16" filter="url(#blur)"/>
- <circle cx="110" cy="78" r="8" fill="${accent}" opacity=".24"/>
- <circle cx="336" cy="84" r="6" fill="${accent}" opacity=".22"/>
- <circle cx="360" cy="104" r="4" fill="${accent}" opacity=".3"/>
- <circle cx="210" cy="150" r="165" fill="url(#glow)" opacity=".85"/>
+ <rect width="420" height="420" rx="48" fill="url(#bg)"/>
+ <ellipse cx="210" cy="356" rx="128" ry="24" fill="#466b82" opacity=".18" filter="url(#soft)"/>
+ <circle cx="92" cy="78" r="7" fill="${accent}" opacity=".25"/><circle cx="335" cy="91" r="5" fill="${accent}" opacity=".22"/>
+ <circle cx="210" cy="160" r="168" fill="url(#spot)"/>
  <g filter="url(#shadow)">${inner}</g>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
- const lid = mood==="sleepy"
-   ? `<path d="M-28 -2 Q0 -18 28 -2" fill="none" stroke="#5e3f4f" stroke-width="7" stroke-linecap="round"/>`
-   : `<ellipse rx="28" ry="33" fill="#fff"/><ellipse cy="4" rx="18" ry="22" fill="#77b7ea"/><ellipse cy="8" rx="10" ry="14" fill="#1f3f5c"/><circle cx="-6" cy="-7" r="5" fill="#fff"/><circle cx="8" cy="1" r="3" fill="#fff" opacity=".85"/>`;
- return `<g transform="translate(${cx} ${cy}) scale(${s})">${lid}</g>`;
+ if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M-29 1 Q0 -17 29 1" fill="none" stroke="#5b3b4b" stroke-width="8" stroke-linecap="round"/><path d="M-22 -2 Q0 -12 22 -2" fill="none" stroke="#8a6680" stroke-width="2" opacity=".6"/></g>`;
+ return `<g transform="translate(${cx} ${cy}) scale(${s})">
+   <ellipse rx="31" ry="35" fill="#fff"/>
+   <ellipse cy="4" rx="21" ry="25" fill="#7bc5ee"/>
+   <ellipse cy="7" rx="13" ry="18" fill="#21465f"/>
+   <ellipse cy="10" rx="7" ry="11" fill="#122b42"/>
+   <circle cx="-8" cy="-9" r="7" fill="#fff"/><circle cx="8" cy="1" r="3.8" fill="#fff" opacity=".9"/>
+   <path d="M-25 -20 Q0 -34 25 -20" fill="none" stroke="#5b3b4b" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+ </g>`;
 }
 function blushPair(y=214,color="#f4a3b6"){
  return `<ellipse cx="154" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/><ellipse cx="266" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/>`;
@@ -508,52 +508,30 @@ function starBurst(level,accent="#ffd86f"){
 }
 function monsterArtURI(kind,level=1){
  const cfg={
-  diligent:{body:"#ff9250",shade:"#df6b37",accent:"#ffcb69"},
-  reading:{body:"#8f71dd",shade:"#6750b8",accent:"#d6c8ff"},
-  homework:{body:"#57c3ec",shade:"#2f93c2",accent:"#b9eeff"},
-  messy:{body:"#85d36e",shade:"#55a846",accent:"#d8f8b9"},
-  morning:{body:"#ffd65f",shade:"#ebac31",accent:"#fff1a1"},
-  noDawdle:{body:"#f6a0c6",shade:"#d26f9d",accent:"#ffd5e7"},
-  screen:{body:"#7966de",shade:"#4f43b5",accent:"#c8c1ff"}
+  diligent:{body:"#ff9250",shade:"#d96732",accent:"#ffd37b"},reading:{body:"#8f71dd",shade:"#654bb4",accent:"#d9ccff"},
+  homework:{body:"#59c6ed",shade:"#318fbd",accent:"#bfefff"},messy:{body:"#87d56f",shade:"#4fa044",accent:"#ddf9c1"},
+  morning:{body:"#ffd760",shade:"#e8aa2e",accent:"#fff3aa"},noDawdle:{body:"#f5a2c7",shade:"#cc709a",accent:"#ffd9e9"},
+  screen:{body:"#7d68df",shade:"#4d3fab",accent:"#cbc5ff"}
  }[kind]||{body:"#7dc8e9",shade:"#4ba0c6",accent:"#c8f4ff"};
- let head = "";
- let extra = "";
- let mood = "happy";
- if(kind==="diligent"){
-   head = `<path d="M143 170 L170 100 L199 125 L225 88 L246 127 L282 103 L276 174 Q209 144 143 170Z" fill="${cfg.shade}"/>`;
-   extra = `<g><rect x="95" y="230" width="54" height="11" rx="6" fill="#46515d"/><circle cx="94" cy="235" r="18" fill="#2f3740"/><circle cx="149" cy="235" r="18" fill="#2f3740"/><rect x="272" y="230" width="54" height="11" rx="6" fill="#46515d"/><circle cx="271" cy="235" r="18" fill="#2f3740"/><circle cx="326" cy="235" r="18" fill="#2f3740"/></g>`;
- }
- if(kind==="reading"){
-   head = `<path d="M146 152 L175 109 L209 131 L245 109 L274 152 Q210 130 146 152Z" fill="${cfg.shade}"/>`;
-   extra = `<g><path d="M136 263 Q173 244 210 266 Q247 244 284 263 V319 Q248 311 210 329 Q172 311 136 319Z" fill="#fff7d6" stroke="#d5bd77" stroke-width="5"/><path d="M210 266V322" stroke="#d5bd77" stroke-width="4"/></g>`;
-   mood = "sleepy";
- }
- if(kind==="homework"){
-   extra = `<g><rect x="144" y="249" width="132" height="88" rx="18" fill="#fff" stroke="#d6e4f0" stroke-width="5"/><path d="M168 274H238M168 294H252M168 314H226" stroke="#7eacc8" stroke-width="6" stroke-linecap="round"/><rect x="278" y="228" width="16" height="108" rx="8" fill="#ffd55d" transform="rotate(14 286 282)"/></g>`;
- }
- if(kind==="messy"){
-   head = `<path d="M149 153 Q165 98 195 131 Q211 82 231 131 Q262 104 275 153" fill="${cfg.shade}"/>`;
-   extra = `<g><rect x="284" y="205" width="14" height="126" rx="7" fill="#9b6a40" transform="rotate(-16 291 268)"/><path d="M271 309 l59 21 -18 33 -58 -21z" fill="#f0bf61"/></g>`;
- }
- if(kind==="morning"){
-   extra = `<g stroke="#efb339" stroke-width="11" stroke-linecap="round">${[0,45,90,135].map(a=>`<line x1="210" y1="84" x2="210" y2="50" transform="rotate(${a} 210 210)"/><line x1="210" y1="336" x2="210" y2="370" transform="rotate(${a} 210 210)"/>`).join("")}</g>`;
- }
- if(kind==="noDawdle"){
-   extra = `<g><ellipse cx="173" cy="118" rx="18" ry="53" fill="#f6b6d2" transform="rotate(-6 173 118)"/><ellipse cx="247" cy="118" rx="18" ry="53" fill="#f6b6d2" transform="rotate(6 247 118)"/><circle cx="295" cy="282" r="35" fill="#fff" stroke="#bac8d4" stroke-width="6"/><path d="M295 282V262M295 282l15 9" stroke="#566473" stroke-width="6" stroke-linecap="round"/></g>`;
- }
- if(kind==="screen"){
-   extra = `<g><path d="M136 154 Q210 93 284 154" fill="none" stroke="#61d8e5" stroke-width="16"/><rect x="114" y="159" width="24" height="70" rx="10" fill="#61d8e5"/><rect x="282" y="159" width="24" height="70" rx="10" fill="#61d8e5"/><rect x="160" y="263" width="100" height="58" rx="14" fill="#2f4258"/><rect x="169" y="271" width="82" height="39" rx="8" fill="#8be9ff" opacity=".82"/></g>`;
- }
- const body = `<g>
-   ${starBurst(level,cfg.accent)}
-   ${extra}
-   <ellipse cx="210" cy="${kind==='morning' ? 214 : 220}" rx="${kind==='morning' ? 84 : 94}" ry="${kind==='morning' ? 82 : 92}" fill="${cfg.body}"/>
-   <ellipse cx="184" cy="171" rx="52" ry="23" fill="#fff" opacity=".18" transform="rotate(-18 184 171)"/>
-   ${head}
-   ${cuteEye(178,192,.72,mood)}${cuteEye(242,192,.72,mood)}
-   ${blushPair(224, kind==="screen" ? "#d3b2ff" : "#f2a4b4")}
-   ${smile(210,236,40,18, kind==="screen" ? "#a768cf" : "#9f5364")}
-   <ellipse cx="170" cy="310" rx="24" ry="16" fill="${cfg.shade}"/><ellipse cx="250" cy="310" rx="24" ry="16" fill="${cfg.shade}"/>
+ let head="",prop="",mood="happy";
+ if(kind==="diligent"){head=`<path d="M147 166l18-58 31 35 24-58 28 57 38-31-7 62q-68-22-132-7z" fill="${cfg.shade}"/><path d="M163 122l12-17 8 25z" fill="#ffbf76" opacity=".75"/>`;prop=`<g><rect x="94" y="238" width="58" height="12" rx="6" fill="#394754"/><circle cx="94" cy="244" r="18" fill="#26313b"/><circle cx="152" cy="244" r="18" fill="#26313b"/><rect x="268" y="238" width="58" height="12" rx="6" fill="#394754"/><circle cx="268" cy="244" r="18" fill="#26313b"/><circle cx="326" cy="244" r="18" fill="#26313b"/></g>`;}
+ if(kind==="reading"){head=`<path d="M148 156l28-46 34 28 37-29 28 47q-63-20-127 0z" fill="${cfg.shade}"/>`;prop=`<g><path d="M133 265q39-25 77 3 38-28 77-3v72q-39-11-77 11-38-22-77-11z" fill="#fff4d6" stroke="#d6bb73" stroke-width="5"/><path d="M210 268v72" stroke="#d6bb73" stroke-width="4"/></g>`;mood="sleepy";}
+ if(kind==="homework")prop=`<g><rect x="144" y="255" width="132" height="84" rx="18" fill="#fff" stroke="#d2e6f2" stroke-width="5"/><path d="M166 279h77M166 298h92M166 318h64" stroke="#70a8c7" stroke-width="6" stroke-linecap="round"/><rect x="280" y="235" width="16" height="106" rx="8" fill="#ffd462" transform="rotate(13 288 288)"/></g>`;
+ if(kind==="messy"){head=`<path d="M150 158q18-60 48-25 14-58 34-2 29-30 43 27" fill="${cfg.shade}"/>`;prop=`<g><rect x="286" y="211" width="14" height="121" rx="7" fill="#8f613c" transform="rotate(-16 293 271)"/><path d="M271 309l61 22-20 35-58-22z" fill="#efba5c"/></g>`;}
+ if(kind==="morning")prop=`<g stroke="#efb33a" stroke-width="10" stroke-linecap="round">${[0,45,90,135].map(a=>`<line x1="210" y1="78" x2="210" y2="45" transform="rotate(${a} 210 210)"/><line x1="210" y1="342" x2="210" y2="375" transform="rotate(${a} 210 210)"/>`).join("")}</g>`;
+ if(kind==="noDawdle")prop=`<g><ellipse cx="171" cy="117" rx="18" ry="55" fill="#f7bad2" transform="rotate(-6 171 117)"/><ellipse cx="249" cy="117" rx="18" ry="55" fill="#f7bad2" transform="rotate(6 249 117)"/><circle cx="301" cy="282" r="36" fill="#fff" stroke="#b9c9d5" stroke-width="6"/><path d="M301 282v-22m0 22 15 9" stroke="#536574" stroke-width="6" stroke-linecap="round"/></g>`;
+ if(kind==="screen")prop=`<g><path d="M137 154q73-64 146 0" fill="none" stroke="#60dbe8" stroke-width="17"/><rect x="113" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="282" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="157" y="267" width="106" height="58" rx="15" fill="#2c3d52"/><rect x="168" y="278" width="84" height="34" rx="8" fill="#78e7fb" opacity=".9"/></g>`;
+ const y=kind==="morning"?214:221;
+ const body=`<g>${starBurst(level,cfg.accent)}${prop}
+   <ellipse cx="210" cy="${y+5}" rx="98" ry="97" fill="${cfg.shade}" opacity=".28"/>
+   <ellipse cx="210" cy="${y}" rx="96" ry="94" fill="${cfg.body}"/>
+   <ellipse cx="184" cy="166" rx="54" ry="25" fill="#fff" opacity=".28" transform="rotate(-18 184 166)"/>
+   <ellipse cx="247" cy="278" rx="52" ry="30" fill="${cfg.shade}" opacity=".18"/>
+   ${head}${cuteEye(178,193,.72,mood)}${cuteEye(242,193,.72,mood)}
+   <ellipse cx="210" cy="220" rx="9" ry="6" fill="${cfg.shade}" opacity=".55"/>
+   ${blushPair(228,kind==="screen"?"#d7b4ff":"#f3a5b7")}${smile(210,240,40,18,kind==="screen"?"#9a6ad0":"#995567")}
+   <ellipse cx="159" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(22 159 246)"/><ellipse cx="261" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(-22 261 246)"/>
+   <ellipse cx="168" cy="313" rx="27" ry="18" fill="${cfg.shade}"/><ellipse cx="252" cy="313" rx="27" ry="18" fill="${cfg.shade}"/>
  </g>`;
  return svgData(artFrame(body,cfg.accent));
 }
@@ -575,59 +553,40 @@ function avatarArtURI(p){
  const pr=presets[p.preset]||presets.boyA, gender=pr[0], style=p.hair||pr[1], id=p.preset||"boyA";
  const skin=AVATAR_SKIN[p.skin]||AVATAR_SKIN.light, hair=AVATAR_HAIR[p.hairColor]||AVATAR_HAIR.brown;
  const pal=AVATAR_PALETTE[id]||AVATAR_PALETTE.boyA, shirt=pal[0], dark=pal[1], gear=p.gear||{};
- const lashes=gender==="girl"
-   ? `<path d="M148 175l-13-12M151 183l-15 2M272 175l13-12M269 183l15 2" stroke="#4f3940" stroke-width="4" stroke-linecap="round"/>`
-   : "";
- const sideExtra = style==="spiky" ? "" : style==="ponytail" ? `<ellipse cx="287" cy="195" rx="18" ry="26" fill="${skin}"/>` : `<ellipse cx="137" cy="195" rx="14" ry="22" fill="${skin}"/><ellipse cx="283" cy="195" rx="14" ry="22" fill="${skin}"/>`;
- const hat = gear.hat ? `<g><ellipse cx="210" cy="92" rx="67" ry="12" fill="#489fe1"/><path d="M166 55h88l12 37H154z" fill="#67bbea"/></g>` : "";
- const bag = gear.bag ? `<g><rect x="271" y="246" width="34" height="59" rx="12" fill="#e39f67" stroke="#b57145" stroke-width="4"/><rect x="278" y="235" width="20" height="14" rx="7" fill="none" stroke="#b57145" stroke-width="4"/></g>` : "";
- const cape = gear.cape ? `<path d="M150 232q-23 50-12 112l42-18 38-77z" fill="#746bd8" opacity=".85"/>` : "";
- const star = gear.star ? `<path d="M286 241l7 14 15 2-11 10 3 15-14-8-13 8 2-15-10-10 15-2z" fill="#ffd960" stroke="#e5ad2b" stroke-width="3"/>` : "";
- const body = `<g>
-   ${hat}${cape}${bag}${star}
-   ${hairSVG(style,hair)}
-   ${sideExtra}
-   <ellipse cx="210" cy="182" rx="84" ry="88" fill="${skin}"/>
-   <ellipse cx="182" cy="146" rx="42" ry="18" fill="#fff" opacity=".18" transform="rotate(-18 182 146)"/>
-   ${cuteEye(178,182,.74,"happy")}${cuteEye(242,182,.74,"happy")}${lashes}
-   <ellipse cx="210" cy="213" rx="9" ry="6" fill="#d7a88e" opacity=".76"/>
-   ${blushPair(219,"#f4a8b9")}
-   ${smile(210,229,42,18,"#a55a69")}
-   <rect x="184" y="252" width="52" height="17" rx="8" fill="${skin}"/>
-   <ellipse cx="210" cy="302" rx="65" ry="67" fill="${shirt}"/>
-   <ellipse cx="184" cy="278" rx="34" ry="16" fill="#fff" opacity=".17" transform="rotate(-16 184 278)"/>
-   <path d="M172 268q38 27 76 0" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" opacity=".88"/>
-   ${gender==="girl" ? `<path d="M158 300q52 20 104 0l-8 32h-88z" fill="${dark}"/>` : `<path d="M160 300h100l-7 37h-32v-27h-22v27h-32z" fill="${dark}"/>`}
-   <rect x="131" y="270" width="28" height="76" rx="14" fill="${skin}"/><ellipse cx="145" cy="271" rx="22" ry="24" fill="${shirt}"/>
-   <rect x="261" y="270" width="28" height="76" rx="14" fill="${skin}"/><ellipse cx="275" cy="271" rx="22" ry="24" fill="${shirt}"/>
-   <rect x="181" y="334" width="18" height="35" rx="9" fill="${skin}"/><rect x="221" y="334" width="18" height="35" rx="9" fill="${skin}"/>
-   <ellipse cx="184" cy="379" rx="27" ry="15" fill="${shirt}"/><ellipse cx="236" cy="379" rx="27" ry="15" fill="${shirt}"/>
+ const lashes=gender==="girl"?`<path d="M151 172l-13-11m14 20-15 2m132-11 13-11m-14 20 15 2" stroke="#523a43" stroke-width="4" stroke-linecap="round"/>`:"";
+ const ears=`<ellipse cx="128" cy="191" rx="17" ry="24" fill="${skin}"/><ellipse cx="292" cy="191" rx="17" ry="24" fill="${skin}"/>`;
+ const hat=gear.hat?`<g><ellipse cx="210" cy="88" rx="68" ry="13" fill="#3f94d4"/><path d="M166 54h88l13 35H153z" fill="#67bce9"/><ellipse cx="194" cy="64" rx="26" ry="7" fill="#fff" opacity=".22"/></g>`:"";
+ const bag=gear.bag?`<g><rect x="274" y="252" width="37" height="61" rx="13" fill="#e7a36b" stroke="#af7148" stroke-width="4"/><path d="M281 250q10-20 22 0" fill="none" stroke="#af7148" stroke-width="4"/></g>`:"";
+ const cape=gear.cape?`<path d="M151 238q-28 59-13 119l48-20 34-79z" fill="#7669dd" opacity=".9"/>`:"";
+ const star=gear.star?`<path d="M289 244l7 15 17 2-12 11 3 16-15-8-15 8 3-16-12-11 17-2z" fill="#ffdc65" stroke="#dfaa2b" stroke-width="3"/>`:"";
+ const hairBack=style==="long"?`<path d="M127 145q20-86 83-86 68 0 84 89v151q-16 40-48 45V187h-72v157q-32-7-49-44z" fill="${hair}"/>`:style==="ponytail"?`<ellipse cx="290" cy="202" rx="39" ry="70" fill="${hair}"/><circle cx="283" cy="146" r="15" fill="#f1a8c5"/>`:style==="bob"?`<path d="M128 151q19-88 82-88 69 0 85 89v95q-18 34-43 39v-104h-88v103q-27-7-39-38z" fill="${hair}"/>`:"";
+ const fringe=style==="curly"?`<g fill="${hair}"><circle cx="146" cy="118" r="25"/><circle cx="178" cy="106" r="29"/><circle cx="210" cy="102" r="31"/><circle cx="244" cy="108" r="29"/><circle cx="275" cy="119" r="24"/><path d="M132 144q77-39 156 1v27H132z"/></g>`:style==="spiky"?`<path d="M135 151l15-59 33 29 25-57 27 55 40-29 10 62q-76-27-150-1z" fill="${hair}"/>`:style==="long"||style==="ponytail"||style==="bob"?`<path d="M134 149q76-34 153 0v24q-76-17-153 0z" fill="${hair}"/>`:`<path d="M132 153q18-85 80-85 66 0 83 87v23q-41-16-82-14-42 0-81 14z" fill="${hair}"/>`;
+ const body=`<g>${cape}${bag}${star}${hairBack}${ears}
+   <ellipse cx="210" cy="186" rx="86" ry="91" fill="${skin}"/>
+   <ellipse cx="180" cy="146" rx="43" ry="20" fill="#fff" opacity=".27" transform="rotate(-18 180 146)"/>
+   ${fringe}${hat}${cuteEye(178,184,.74,"happy")}${cuteEye(242,184,.74,"happy")}${lashes}
+   <ellipse cx="210" cy="214" rx="10" ry="7" fill="#c99277" opacity=".55"/>${blushPair(220,"#f3a4b7")}${smile(210,233,42,18,"#a05465")}
+   <rect x="184" y="254" width="52" height="19" rx="9" fill="${skin}"/>
+   <ellipse cx="210" cy="306" rx="66" ry="69" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
+   <path d="M170 270q40 30 80 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+   ${gender==="girl"?`<path d="M156 306q54 23 108 0l-9 35h-90z" fill="${dark}"/>`:`<path d="M159 306h102l-7 39h-33v-28h-22v28h-33z" fill="${dark}"/>`}
+   <rect x="130" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="144" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="144" cy="348" r="14" fill="${skin}"/>
+   <rect x="261" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="276" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="276" cy="348" r="14" fill="${skin}"/>
+   <rect x="180" y="339" width="19" height="34" rx="9" fill="${skin}"/><rect x="221" y="339" width="19" height="34" rx="9" fill="${skin}"/>
+   <ellipse cx="183" cy="380" rx="29" ry="17" fill="${shirt}"/><ellipse cx="237" cy="380" rx="29" ry="17" fill="${shirt}"/>
  </g>`;
  return svgData(artFrame(body,shirt));
 }
 function petArtURI(kind){
- const cfg={
-  puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],
-  fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]
- }[kind]||["#e7a35a","#b96f3f","dog"];
- const [c,d,type]=cfg;
- let ears="", extra="";
- if(type==="dog"){ ears=`<ellipse cx="163" cy="143" rx="26" ry="44" fill="${d}"/><ellipse cx="257" cy="143" rx="26" ry="44" fill="${d}"/>`; }
- if(type==="cat"){ ears=`<path d="M146 173l18-62 47 48zM274 173l-18-62-47 48z" fill="${d}"/>`; }
- if(type==="bunny"){ ears=`<ellipse cx="171" cy="119" rx="18" ry="56" fill="${c}"/><ellipse cx="249" cy="119" rx="18" ry="56" fill="${c}"/>`; }
- if(type==="fox"){ ears=`<path d="M148 169l19-68 43 53zM272 169l-19-68-43 53z" fill="${d}"/>`; extra=`<path d="M117 287q39 49 92 39" stroke="#fff5d9" stroke-width="12" stroke-linecap="round" opacity=".55"/>`; }
- if(type==="owl"){ ears=`<path d="M151 168l26-50 28 39zM269 168l-26-50-28 39z" fill="${d}"/>`; extra=`<ellipse cx="210" cy="240" rx="58" ry="42" fill="#fff" opacity=".28"/>`; }
- if(type==="dragon"){ ears=`<path d="M150 167l16-50 24 39 20-53 22 53 27-39 14 50z" fill="${d}"/>`; extra=`<path d="M130 257q-52 4-49 57 35-24 70 0M290 257q52 4 49 57-35-24-70 0" fill="#8fe3af"/>`; }
- const body = `<g>
-   ${ears}${extra}
-   <ellipse cx="210" cy="226" rx="92" ry="95" fill="${c}"/>
-   <ellipse cx="183" cy="175" rx="47" ry="21" fill="#fff" opacity=".18" transform="rotate(-18 183 175)"/>
-   ${cuteEye(180,214,.72,"happy")}${cuteEye(240,214,.72,"happy")}
-   <ellipse cx="210" cy="244" rx="11" ry="8" fill="${d}"/>
-   ${blushPair(232,"#f5aac0")}
-   ${smile(210,258,34,15,"#935061")}
-   <ellipse cx="171" cy="309" rx="22" ry="16" fill="${d}"/><ellipse cx="249" cy="309" rx="22" ry="16" fill="${d}"/>
- </g>`;
+ const cfg={puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]}[kind]||["#e7a35a","#b96f3f","dog"];
+ const [c,d,type]=cfg;let ears="",extra="";
+ if(type==="dog")ears=`<ellipse cx="164" cy="144" rx="27" ry="45" fill="${d}"/><ellipse cx="256" cy="144" rx="27" ry="45" fill="${d}"/>`;
+ if(type==="cat")ears=`<path d="M144 174l20-66 48 51zm132 0-20-66-48 51z" fill="${d}"/>`;
+ if(type==="bunny")ears=`<ellipse cx="171" cy="119" rx="19" ry="58" fill="${c}"/><ellipse cx="249" cy="119" rx="19" ry="58" fill="${c}"/><ellipse cx="171" cy="119" rx="8" ry="39" fill="#ffd2df"/><ellipse cx="249" cy="119" rx="8" ry="39" fill="#ffd2df"/>`;
+ if(type==="fox"){ears=`<path d="M146 171l20-70 44 54zm128 0-20-70-44 54z" fill="${d}"/>`;extra=`<path d="M116 287q42 50 96 37" stroke="#fff1d8" stroke-width="13" stroke-linecap="round" opacity=".65"/>`;}
+ if(type==="owl"){ears=`<path d="M149 168l28-52 29 41zm122 0-28-52-29 41z" fill="${d}"/>`;extra=`<ellipse cx="210" cy="250" rx="60" ry="46" fill="#fff" opacity=".25"/>`;}
+ if(type==="dragon"){ears=`<path d="M148 168l18-52 24 39 20-54 23 54 27-39 13 52z" fill="${d}"/>`;extra=`<path d="M132 258q-54 3-50 58 36-25 72-1m134-57q54 3 50 58-36-25-72-1" fill="#91e2af"/>`;}
+ const body=`<g>${ears}${extra}<ellipse cx="210" cy="228" rx="94" ry="97" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(180,215,.7,"happy")}${cuteEye(240,215,.7,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
  return svgData(artFrame(body,c));
 }
 const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
@@ -746,7 +705,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Final Character Polish • Unified Style";
+if(threeStatus)threeStatus.textContent="✅ Cinematic 3D Art • Unified Style";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1275,5 +1234,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=2751").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=276").then(r=>r.update()).catch(console.error))}</script></body>
 </html>

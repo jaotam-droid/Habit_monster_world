@@ -1,4 +1,4 @@
-const CACHE="hmw-v27-5-1-github-cache-fix";
+const CACHE="hmw-v27-6-cinematic-3d-art-pass";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{
