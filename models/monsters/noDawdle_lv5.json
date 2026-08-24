@@ -1,0 +1,32 @@
+{
+  "type": "monster",
+  "kind": "noDawdle",
+  "level": 5,
+  "body": {
+    "shape": "sphere",
+    "scale": [
+      1.125,
+      1.08,
+      0.92
+    ],
+    "color": "#f2a3c4",
+    "roughness": 0.34
+  },
+  "accent": "#ce75a0",
+  "feature": "timer",
+  "eyes": {
+    "size": 0.21200000000000002,
+    "gloss": 0.9
+  },
+  "cheeks": true,
+  "badge": true,
+  "special": true,
+  "aura": true,
+  "crown": true,
+  "animation": {
+    "idle": "float",
+    "success": "jump",
+    "levelUp": "spin-pop",
+    "hero": "float-glow"
+  }
+}

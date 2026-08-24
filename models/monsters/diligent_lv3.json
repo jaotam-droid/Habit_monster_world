@@ -1,0 +1,32 @@
+{
+  "type": "monster",
+  "kind": "diligent",
+  "level": 3,
+  "body": {
+    "shape": "sphere",
+    "scale": [
+      1.075,
+      1.056,
+      0.92
+    ],
+    "color": "#f39a57",
+    "roughness": 0.34
+  },
+  "accent": "#db5d39",
+  "feature": "weights",
+  "eyes": {
+    "size": 0.21200000000000002,
+    "gloss": 0.9
+  },
+  "cheeks": true,
+  "badge": true,
+  "special": true,
+  "aura": false,
+  "crown": false,
+  "animation": {
+    "idle": "float",
+    "success": "jump",
+    "levelUp": "spin-pop",
+    "hero": null
+  }
+}

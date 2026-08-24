@@ -1,0 +1,32 @@
+{
+  "type": "monster",
+  "kind": "homework",
+  "level": 1,
+  "body": {
+    "shape": "sphere",
+    "scale": [
+      1.025,
+      1.032,
+      0.92
+    ],
+    "color": "#62c4ec",
+    "roughness": 0.34
+  },
+  "accent": "#3588c4",
+  "feature": "paper",
+  "eyes": {
+    "size": 0.20400000000000001,
+    "gloss": 0.9
+  },
+  "cheeks": true,
+  "badge": false,
+  "special": false,
+  "aura": false,
+  "crown": false,
+  "animation": {
+    "idle": "float",
+    "success": "jump",
+    "levelUp": "spin-pop",
+    "hero": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "monster",
+  "kind": "morning",
+  "level": 1,
+  "body": {
+    "shape": "sphere",
+    "scale": [
+      1.025,
+      1.032,
+      0.92
+    ],
+    "color": "#ffd86a",
+    "roughness": 0.34
+  },
+  "accent": "#eda748",
+  "feature": "clock",
+  "eyes": {
+    "size": 0.20400000000000001,
+    "gloss": 0.9
+  },
+  "cheeks": true,
+  "badge": false,
+  "special": false,
+  "aura": false,
+  "crown": false,
+  "animation": {
+    "idle": "float",
+    "success": "jump",
+    "levelUp": "spin-pop",
+    "hero": null
+  }
+}
