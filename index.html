@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V26.8 CHARACTER ART OVERHAUL</title>
+<title>Habit Monster World V26.9 CHARACTER REDESIGN</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -77,7 +77,7 @@
 }
 
 
-/* V26.8 Character Art Overhaul */
+/* V26.9 Character Redesign */
 .avatarStage,.petStage,.zoneArt .three-slot{
   background:
     radial-gradient(circle at 50% 20%,rgba(255,255,255,.98) 0 15%,rgba(237,248,255,.94) 48%,rgba(255,246,218,.9) 100%);
@@ -123,12 +123,39 @@
 .avatarChoice.on,.zone.active{box-shadow:0 0 0 3px rgba(79,156,249,.16),0 14px 28px rgba(55,104,150,.13)}
 .three-slot{filter:drop-shadow(0 12px 12px rgba(45,70,95,.14))}
 @media(max-width:600px){.avatarStage{min-height:390px}.avatarStudio{gap:16px}.zoneArt{min-height:150px}.world{gap:12px}}
+
+/* V26.9 CHARACTER REDESIGN */
+.avatarStage{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.99) 0 17%,rgba(232,246,255,.95) 52%,rgba(255,246,219,.88) 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.95),0 18px 36px rgba(54,83,112,.14);
+}
+.avatarChoice,.zone{
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.avatarChoice.selected,.zone.selected{
+  box-shadow:0 8px 20px rgba(60,130,220,.14);
+}
+.avatarChoice .three-slot,.zoneArt .three-slot{
+  filter:drop-shadow(0 8px 12px rgba(49,75,98,.12));
+}
+.arena{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.55),transparent 26%),
+    linear-gradient(180deg,#cceeff 0 48%,#d9f1c8 48% 66%,#f8edce 66% 100%);
+}
+@media(max-width:600px){
+  .avatarStage{height:305px}
+  .avatarChoice .three-slot{height:78px}
+  .zoneArt{width:106px;height:106px}
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V26.8 CHARACTER ART OVERHAUL</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V26.9 CHARACTER REDESIGN</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -155,7 +182,7 @@
 </div>
 </section>
 
-<section class="card"><h2>🎮 V26.8 Character Art Overhaul</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V26.8 ยกระดับ Character Art ทั้งชุด: สัดส่วน chibi นุ่มขึ้น ใบหน้ามีมิติ ตาไม่โปน ผมเป็นทรงต่อเนื่อง เสื้อผ้าและรองเท้าดูเป็นชิ้นงาน 3D มากขึ้น พร้อม silhouette เฉพาะของ Monster / Pet โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V26.9 Character Redesign</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V26.8 ยกระดับ Character Art ทั้งชุด: สัดส่วน chibi นุ่มขึ้น ใบหน้ามีมิติ ตาไม่โปน ผมเป็นทรงต่อเนื่อง เสื้อผ้าและรองเท้าดูเป็นชิ้นงาน 3D มากขึ้น พร้อม silhouette เฉพาะของ Monster / Pet โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -217,7 +244,7 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26.7;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=26.9;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -400,7 +427,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ 3D พร้อม • Character Quality Upgrade";
+if(threeStatus)threeStatus.textContent="✅ 3D พร้อม • Character Redesign";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -435,8 +462,34 @@ function shoe(c=0x3b4653){
  let s=sphere(.18,c,[1.45,.62,1.55]);s.position.z=.06;return s
 }
 function brow(x,y,z,tilt=0){
- let b=box(.22,.045,.055,0x5a3a32);b.position.set(x,y,z);b.rotation.z=tilt;return b
+ let g=new THREE.Group();
+ let b=sphere(.105,0x68443a,[1.05,.22,.20]);
+ b.position.set(x,y,z);b.rotation.z=tilt;g.add(b);
+ return g
 }
+
+function lid(x,y,z,c=0xf7efe7,flip=1){
+ let l=sphere(.18,c,[1.02,.32,.30]);
+ l.position.set(x,y,z);l.rotation.z=.04*flip;return l
+}
+function hairLock(x,y,z,c,sx=.75,sy=1.05,rot=0){
+ let q=sphere(.16,c,[sx,sy,.72]);q.position.set(x,y,z);q.rotation.z=rot;return q
+}
+function softArm(x,y,skin,shirt,flip=1){
+ let g=new THREE.Group();
+ let sleeve=sphere(.14,shirt,[.82,1.18,.78]);sleeve.position.set(x,y,0);g.add(sleeve);
+ let arm=capsulePart(.076,.30,skin);arm.position.set(x+flip*.01,y-.23,.02);arm.rotation.z=-flip*.08;g.add(arm);
+ let hand=sphere(.105,skin,[1,.95,.92]);hand.position.set(x+flip*.02,y-.43,.06);g.add(hand);
+ return g
+}
+function softLeg(x,y,skin,shoeColor,trim){
+ let g=new THREE.Group();
+ let leg=capsulePart(.078,.29,skin);leg.position.set(x,y,0);g.add(leg);
+ let sock=capsulePart(.082,.11,trim);sock.position.set(x,y-.15,.02);g.add(sock);
+ let sk=shoe(shoeColor);sk.scale.set(.80,.72,.88);sk.position.set(x,y-.29,.12);g.add(sk);
+ return g
+}
+
 function nose(x=0,y=0,z=0,c=0xf0b496){
  let n=sphere(.07,c,[.8,.75,.7]);n.position.set(x,y,z);return n
 }
@@ -507,101 +560,105 @@ function feature(g,kind,accent,level){
 
 
 
+
 function monsterFrom(d){
  let g=new THREE.Group(),lv=d.level||1,kind=d.kind,
-     c=d.body?.color||fallbackMonster[kind]?.color||"#f39a57",
-     accent=d.accent||fallbackMonster[kind]?.accent||"#555";
+ c=d.body?.color||fallbackMonster[kind]?.color||"#f39a57",
+ accent=d.accent||fallbackMonster[kind]?.accent||"#555";
 
- function cuteFace(z=.72,y=.18,s=.145,expression="happy"){
-  g.add(irisEye(-.22,y,z,s,-.003),irisEye(.22,y,z,s,.003));
-  if(expression==="sleepy")g.add(brow(-.22,y+.21,z+.03,-.16),brow(.22,y+.21,z+.03,.16));
-  else g.add(brow(-.22,y+.21,z+.03,.03),brow(.22,y+.21,z+.03,-.03));
-  let mm=smile(y-.25,z+.03);mm.scale.set(.72,.72,.72);g.add(mm);
-  g.add(cheek(-.37,y-.12,z-.02),cheek(.37,y-.12,z-.02));
+ function face(z=.66,y=.15,s=.125,expression="happy"){
+   g.add(irisEye(-.19,y,z,s,-.003),irisEye(.19,y,z,s,.003));
+   if(expression==="sleepy"){
+     g.add(lid(-.19,y+.07,z+.04,c,-1),lid(.19,y+.07,z+.04,c,1));
+   }
+   g.add(brow(-.19,y+.20,z+.02,expression==="sleepy"?-.08:.02),
+         brow(.19,y+.20,z+.02,expression==="sleepy"?.08:-.02));
+   let mm=smile(y-.22,z+.03);mm.scale.set(.64,.64,.64);g.add(mm);
+   g.add(cheek(-.31,y-.10,z-.02),cheek(.31,y-.10,z-.02))
  }
- function littleFeet(col,y=-.64){
-  for(const x of[-.23,.23]){let f=shoe(col);f.scale.set(.62,.57,.70);f.position.set(x,y,.04);g.add(f)}
+ function feet(col,y=-.56){
+   for(const x of[-.20,.20]){let f=shoe(col);f.scale.set(.55,.50,.62);f.position.set(x,y,.04);g.add(f)}
  }
 
  if(kind==="diligent"){
-  // flame-shaped energetic creature
-  let body=sphere(.62,c,[1.02,1.10,.88]);body.position.y=-.01;g.add(body);
-  for(const [x,h,r] of [[-.34,.72,-.20],[0,.88,0],[.34,.70,.20]]){
-   let flame=cone(.18,.50,accent);flame.position.set(x,h,-.03);flame.rotation.z=r;g.add(flame)
-  }
-  cuteFace(.67,.14,.14);littleFeet(0xe07143,-.63);
-  for(const x of[-.56,.56]){
-   let arm=capsulePart(.07,.28,c);arm.position.set(x,-.10,.0);g.add(arm);
-   let bar=cyl(.03,.32,0x4d5661);bar.rotation.z=Math.PI/2;bar.position.set(x,-.08,.56);g.add(bar);
-   for(const dx of[-.12,.12]){let p=cyl(.09,.065,0x343b45);p.rotation.z=Math.PI/2;p.position.set(x+dx,-.08,.56);g.add(p)}
-  }
+   // energetic ember character
+   let body=sphere(.52,c,[1.0,1.12,.90]);body.position.y=-.04;g.add(body);
+   for(const [x,h,r] of [[-.30,.61,-.18],[0,.76,0],[.30,.61,.18]]){
+     let flame=cone(.14,.40,accent);flame.position.set(x,h,-.03);flame.rotation.z=r;g.add(flame)
+   }
+   face(.58,.11,.12);feet(0xe97843,-.57);
+   for(const x of[-.49,.49]){
+     let a=capsulePart(.06,.22,c);a.position.set(x,-.08,0);g.add(a);
+     let bar=cyl(.025,.28,0x48515a);bar.rotation.z=Math.PI/2;bar.position.set(x,-.08,.50);g.add(bar);
+     for(const dx of[-.10,.10]){let p=cyl(.075,.055,0x313943);p.rotation.z=Math.PI/2;p.position.set(x+dx,-.08,.50);g.add(p)}
+   }
  }else if(kind==="reading"){
-  // owl / book creature
-  let body=sphere(.64,c,[1.0,1.08,.90]);body.position.y=-.02;g.add(body);
-  for(const x of[-.38,.38]){let e=cone(.18,.38,accent);e.position.set(x,.67,-.02);e.rotation.z=x<0?.22:-.22;g.add(e)}
-  // eye disks
-  for(const x of[-.22,.22]){let disk=sphere(.21,0xf2e6ff,[1,.95,.28]);disk.position.set(x,.18,.58);g.add(disk)}
-  cuteFace(.66,.16,.13,"sleepy");littleFeet(accent,-.65);
-  let left=box(.42,.34,.05,0xfff0c8);left.position.set(-.21,-.50,.63);left.rotation.z=.12;g.add(left);
-  let right=box(.42,.34,.05,0xfff0c8);right.position.set(.21,-.50,.63);right.rotation.z=-.12;g.add(right);
+   // sleepy owl-book
+   let body=sphere(.53,c,[1.0,1.08,.92]);body.position.y=-.02;g.add(body);
+   for(const x of[-.33,.33]){let e=cone(.15,.32,accent);e.position.set(x,.58,-.02);e.rotation.z=x<0?.20:-.20;g.add(e)}
+   face(.58,.12,.115,"sleepy");feet(accent,-.58);
+   let l=box(.35,.28,.04,0xfff2cc);l.position.set(-.17,-.43,.54);l.rotation.z=.11;g.add(l);
+   let r=box(.35,.28,.04,0xfff2cc);r.position.set(.17,-.43,.54);r.rotation.z=-.11;g.add(r);
  }else if(kind==="homework"){
-  // paper/slime creature with folded-paper hat
-  let body=sphere(.58,c,[.95,1.15,.88]);body.position.y=-.06;g.add(body);
-  let top=cone(.58,.34,0xd9f1fa);top.position.set(0,.63,-.04);top.rotation.z=Math.PI;g.add(top);
-  cuteFace(.62,.12,.13);littleFeet(0x3588c4,-.66);
-  let sheet=box(.55,.40,.045,0xffffff);sheet.position.set(-.04,-.38,.61);g.add(sheet);
-  let pencil=capsulePart(.03,.68,0xf2b84b);pencil.position.set(.48,-.08,.38);pencil.rotation.z=-.42;g.add(pencil);
+   // paper sprite
+   let body=sphere(.49,c,[.94,1.16,.91]);body.position.y=-.05;g.add(body);
+   let paperTop=cone(.48,.28,0xdaf2fb);paperTop.position.set(0,.53,-.04);paperTop.rotation.z=Math.PI;g.add(paperTop);
+   face(.54,.09,.115);feet(0x3a8bc3,-.59);
+   let sheet=box(.45,.32,.04,0xffffff);sheet.position.set(-.03,-.34,.54);g.add(sheet);
+   let pencil=capsulePart(.027,.57,0xf0b64b);pencil.position.set(.40,-.05,.33);pencil.rotation.z=-.40;g.add(pencil);
  }else if(kind==="messy"){
-  // moss/leaf creature
-  let body=sphere(.62,c,[1.05,1.05,.90]);body.position.y=-.02;g.add(body);
-  for(const p of[[-.38,.58,-.42],[0,.72,0],[.38,.58,.42]]){
-   let leaf=cone(.14,.30,accent);leaf.position.set(p[0],p[1],-.02);leaf.rotation.z=p[2];g.add(leaf)
-  }
-  cuteFace(.66,.15,.135);littleFeet(accent,-.65);
-  let broom=capsulePart(.03,.72,0x9c6b3a);broom.position.set(.50,-.10,.34);broom.rotation.z=-.35;g.add(broom);
-  let br=box(.23,.16,.06,0xc89a58);br.position.set(.63,-.42,.38);br.rotation.z=-.35;g.add(br);
+   // moss puff
+   let body=sphere(.53,c,[1.05,1.05,.92]);body.position.y=-.03;g.add(body);
+   for(const [x,y,r] of [[-.30,.51,-.45],[0,.63,0],[.30,.51,.45]]){
+     let leaf=cone(.12,.25,accent);leaf.position.set(x,y,-.02);leaf.rotation.z=r;g.add(leaf)
+   }
+   face(.58,.11,.118);feet(accent,-.58);
+   let broom=capsulePart(.025,.60,0x9b6c3d);broom.position.set(.41,-.08,.30);broom.rotation.z=-.34;g.add(broom);
+   let br=box(.18,.13,.055,0xc79958);br.position.set(.52,-.34,.34);br.rotation.z=-.34;g.add(br);
  }else if(kind==="morning"){
-  // actual sun creature
-  let body=sphere(.55,c,[1,1,.90]);body.position.y=.02;g.add(body);
-  for(let i=0;i<12;i++){
-   let a=i*Math.PI*2/12,ray=cone(.09,.30,accent);ray.position.set(Math.cos(a)*.68,Math.sin(a)*.68+.02,-.04);ray.rotation.z=a-Math.PI/2;g.add(ray)
-  }
-  cuteFace(.61,.16,.13);littleFeet(0xf0b94d,-.58);
+   // cheerful sun mascot
+   let body=sphere(.47,c,[1,1,.92]);body.position.y=.00;g.add(body);
+   for(let i=0;i<12;i++){
+     let a=i*Math.PI*2/12,ray=cone(.075,.25,accent);
+     ray.position.set(Math.cos(a)*.58,Math.sin(a)*.58,-.04);
+     ray.rotation.z=a-Math.PI/2;g.add(ray)
+   }
+   face(.54,.11,.112);feet(0xf0b84b,-.50);
  }else if(kind==="noDawdle"){
-  // bunny-clock
-  let body=sphere(.57,c,[.98,1.08,.90]);body.position.y=-.03;g.add(body);
-  for(const x of[-.25,.25]){let e=sphere(.11,c,[.62,2.35,.60]);e.position.set(x,.72,-.02);g.add(e)}
-  cuteFace(.62,.14,.13);littleFeet(0xce75a0,-.64);
-  let clock=cyl(.18,.055,0xffffff);clock.rotation.x=Math.PI/2;clock.position.set(.43,-.16,.54);g.add(clock);
-  let hand=box(.018,.10,.018,0x596775);hand.position.set(.43,-.13,.60);hand.rotation.z=-.55;g.add(hand);
+   // clock bunny
+   let body=sphere(.49,c,[.98,1.08,.92]);body.position.y=-.03;g.add(body);
+   for(const x of[-.21,.21]){let e=sphere(.09,c,[.60,2.25,.58]);e.position.set(x,.59,-.02);g.add(e)}
+   face(.54,.10,.112);feet(0xce76a1,-.56);
+   let clock=cyl(.15,.05,0xffffff);clock.rotation.x=Math.PI/2;clock.position.set(.36,-.13,.49);g.add(clock);
+   let hand=box(.014,.08,.014,0x566573);hand.position.set(.36,-.11,.55);hand.rotation.z=-.50;g.add(hand);
  }else{
-  // screen robot / headset
-  let body=sphere(.58,c,[1.02,1.02,.88]);body.position.y=-.02;g.add(body);
-  let faceplate=box(.52,.34,.06,0x7265c8);faceplate.position.set(0,.12,.56);g.add(faceplate);
-  g.add(irisEye(-.16,.14,.61,.105),irisEye(.16,.14,.61,.105));
-  let band=new THREE.Mesh(new THREE.TorusGeometry(.48,.04,14,38,Math.PI),mat(0x65d9eb,.30));
-  band.rotation.z=Math.PI;band.position.y=.43;g.add(band);
-  for(const x of[-.46,.46]){let pad=box(.10,.26,.14,0x4fc9dc);pad.position.set(x,.05,.48);g.add(pad)}
-  littleFeet(accent,-.62);
-  let controller=box(.30,.16,.06,0x53657a);controller.position.set(0,-.38,.56);g.add(controller);
+   // screen robot
+   let body=sphere(.49,c,[1.02,1.02,.92]);body.position.y=-.03;g.add(body);
+   let plate=box(.42,.27,.05,0x7569ca);plate.position.set(0,.10,.50);g.add(plate);
+   g.add(irisEye(-.13,.11,.55,.09),irisEye(.13,.11,.55,.09));
+   let band=new THREE.Mesh(new THREE.TorusGeometry(.40,.035,12,36,Math.PI),mat(0x63d6e8,.30));
+   band.rotation.z=Math.PI;band.position.y=.36;g.add(band);
+   for(const x of[-.39,.39]){let pad=box(.085,.22,.12,0x4ec7dc);pad.position.set(x,.04,.43);g.add(pad)}
+   feet(accent,-.55);
  }
 
- // evolution layers
- if(lv>=2){let pin=tinyStarPin();pin.position.set(-.40,.39,.52);g.add(pin)}
+ if(lv>=2){let pin=tinyStarPin();pin.position.set(-.34,.32,.47);g.add(pin)}
  if(lv>=3){
-  let scarf=new THREE.Mesh(new THREE.TorusGeometry(.42,.035,12,32,Math.PI),mat(0xffd979,.45));
-  scarf.rotation.z=Math.PI;scarf.position.set(0,-.10,.10);g.add(scarf)
+   let scarf=new THREE.Mesh(new THREE.TorusGeometry(.35,.03,12,30,Math.PI),mat(0xffd978,.45));
+   scarf.rotation.z=Math.PI;scarf.position.set(0,-.11,.09);g.add(scarf)
  }
  if(lv>=4){
-  let aura=new THREE.Mesh(new THREE.TorusGeometry(.76,.016,12,44),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.85}));
-  aura.rotation.x=Math.PI/2;aura.position.y=-.02;g.add(aura)
+   let aura=new THREE.Mesh(new THREE.TorusGeometry(.66,.014,12,42),
+     new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.82}));
+   aura.rotation.x=Math.PI/2;aura.position.y=-.02;g.add(aura)
  }
- if(lv>=5){let cwn=crown();cwn.position.set(0,.82,0);cwn.scale.set(.42,.42,.42);g.add(cwn)}
+ if(lv>=5){let cwn=crown();cwn.position.set(0,.72,0);cwn.scale.set(.36,.36,.36);g.add(cwn)}
 
  g.userData.characterType="monster";g.userData.kind=kind;
- g.scale.set(.98,.98,.98);
+ g.scale.set(1.02,1.02,1.02);
  return g
 }
+
 
 
 
@@ -609,150 +666,163 @@ function monsterFrom(d){
 
 function avatarFrom(el){
  let g=new THREE.Group(),
-     skin=skinColors[el.dataset.skin]||skinColors.light,
-     hair=hairColors[el.dataset.haircolor]||hairColors.brown,
-     variant=(el.dataset.base||"boyA").toLowerCase(),
-     girl=variant.startsWith("girl")||el.dataset.gender==="girl",
-     hs=el.dataset.hair||(girl?"long":"short");
+ skin=skinColors[el.dataset.skin]||skinColors.light,
+ hair=hairColors[el.dataset.haircolor]||hairColors.brown,
+ variant=(el.dataset.base||"boyA").toLowerCase(),
+ girl=variant.startsWith("girl")||el.dataset.gender==="girl",
+ hs=el.dataset.hair||(girl?"long":"short");
 
  const palette={
-  boya:[0x5eb6e8,0x2f76a8,0xf7fbff],
-  boyb:[0x65c5a2,0x3e7f69,0xf7fff9],
-  boyc:[0xf2a15a,0xa96942,0xfff7eb],
-  girla:[0xee91bb,0xb7638b,0xfff4f8],
-  girlb:[0xae98eb,0x6f5ab4,0xf8f4ff],
-  girlc:[0xef858b,0xa65768,0xfff3f2]
+  boya:[0x63b8ea,0x347daf,0xf7fbff],
+  boyb:[0x68c8a3,0x3c8068,0xf6fff9],
+  boyc:[0xf2a35e,0xaa6b43,0xfff8ec],
+  girla:[0xef93bd,0xb6638b,0xfff4f8],
+  girlb:[0xb29bec,0x705bb6,0xf8f4ff],
+  girlc:[0xef898d,0xaa5969,0xfff3f2]
  };
- const pc=palette[variant]||palette.boya, shirt=pc[0], bottom=pc[1], trim=pc[2];
+ const pc=palette[variant]||palette.boya, shirt=pc[0], lower=pc[1], trim=pc[2];
 
- // rounded one-piece torso
- let torso=sphere(.45,shirt,[.88,1.18,.65]);torso.position.set(0,-.35,0);g.add(torso);
- let belly=sphere(.33,shirt,[1.02,.80,.72]);belly.position.set(0,-.60,.10);g.add(belly);
- let collar=new THREE.Mesh(new THREE.TorusGeometry(.26,.038,12,36,Math.PI),mat(trim,.5));
- collar.rotation.z=Math.PI;collar.position.set(0,-.03,.36);g.add(collar);
- let lower=sphere(.32,bottom,[1.05,.55,.72]);lower.position.set(0,-.86,.02);g.add(lower);
+ // cohesive chibi body
+ let chest=sphere(.40,shirt,[.92,1.10,.70]);chest.position.set(0,-.38,0);g.add(chest);
+ let tummy=sphere(.31,shirt,[1.06,.88,.74]);tummy.position.set(0,-.60,.09);g.add(tummy);
+ let waist=sphere(.29,lower,[1.10,.48,.72]);waist.position.set(0,-.84,.02);g.add(waist);
 
- // head: larger, rounder, softer
- let neck=cyl(.115,.12,skin);neck.position.y=.00;g.add(neck);
- let head=sphere(.75,skin,[1.00,.98,.96]);head.position.set(0,.72,0);g.add(head);
- for(const x of[-.67,.67]){
-  let e=sphere(.105,skin,[.76,1,.55]);e.position.set(x,.70,-.01);g.add(e);
-  let ei=sphere(.056,0xefb9a5,[.60,.85,.28]);ei.position.set(x,.70,.075);g.add(ei);
+ let collar=new THREE.Mesh(new THREE.TorusGeometry(.245,.034,12,40,Math.PI),mat(trim,.48));
+ collar.rotation.z=Math.PI;collar.position.set(0,-.08,.35);g.add(collar);
+
+ // head slightly pear-shaped instead of perfect ball
+ let neck=cyl(.105,.10,skin);neck.position.y=-.01;g.add(neck);
+ let head=sphere(.67,skin,[1.00,.96,.92]);head.position.set(0,.70,0);g.add(head);
+ let cheekBase=sphere(.55,skin,[1.07,.82,.89]);cheekBase.position.set(0,.52,.02);g.add(cheekBase);
+
+ // ears
+ for(const x of[-.63,.63]){
+   let e=sphere(.098,skin,[.74,1.0,.53]);e.position.set(x,.68,-.01);g.add(e);
+   let inner=sphere(.05,0xefb8a4,[.60,.82,.25]);inner.position.set(x,.68,.07);g.add(inner);
  }
 
- // expressive face
- g.add(irisEye(-.225,.77,.692,.145,-.004),irisEye(.225,.77,.692,.145,.004));
- g.add(brow(-.225,.965,.695,.030),brow(.225,.965,.695,-.030));
- if(girl){g.add(lash(-.225,.875,.745,-1),lash(.225,.875,.745,1))}
- let nn=nose(0,.595,.748,skin);nn.scale.set(.72,.64,.52);g.add(nn);
- let mouth=smile(.405,.748);mouth.scale.set(.82,.82,.82);g.add(mouth);
- g.add(cheek(-.39,.525,.685),cheek(.39,.525,.685));
+ // eyes: smaller, inset, expressive
+ const ey=.76, ez=.625;
+ g.add(irisEye(-.215,ey,ez,.145,-.004), irisEye(.215,ey,ez,.145,.004));
+ // upper lids partially cover eye spheres
+ g.add(lid(-.215,.875,.672,skin,-1),lid(.215,.875,.672,skin,1));
 
- // arms with connected sleeves
- for(const x of[-.54,.54]){
-  let sleeve=sphere(.16,shirt,[.72,1.15,.72]);sleeve.position.set(x,-.30,.00);g.add(sleeve);
-  let arm=capsulePart(.082,.29,skin);arm.position.set(x*1.04,-.53,.025);arm.rotation.z=x<0?.10:-.10;g.add(arm);
-  let hand=sphere(.11,skin,[1,.95,.92]);hand.position.set(x*1.06,-.72,.06);g.add(hand);
+ // eyebrows with personality differences
+ let browTilt = variant==="boyc"?-.09:(variant==="girlb"?.06:.025);
+ g.add(brow(-.215,.965,.68,browTilt),brow(.215,.965,.68,-browTilt));
+
+ // small nose + softer smile
+ let n=nose(0,.585,.69,skin);n.scale.set(.72,.64,.58);g.add(n);
+ let mouth=smile(.385,.69);mouth.scale.set(.80,.80,.80);g.add(mouth);
+ g.add(cheek(-.36,.50,.62),cheek(.36,.50,.62));
+
+ if(girl){
+   g.add(lash(-.215,.855,.705,-1),lash(.215,.855,.705,1))
  }
 
- // legs and shoes
- for(const x of[-.18,.18]){
-  let leg=capsulePart(.082,.32,skin);leg.position.set(x,-1.05,.00);g.add(leg);
-  let sock=capsulePart(.086,.11,trim);sock.position.set(x,-1.20,.02);g.add(sock);
-  let sk=shoe(girl?0xe98eb3:0x4387bb);sk.scale.set(.84,.76,.92);sk.position.set(x,-1.34,.12);g.add(sk);
- }
+ // limbs
+ g.add(softArm(-.49,-.28,skin,shirt,-1),softArm(.49,-.28,skin,shirt,1));
+ g.add(softLeg(-.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim),
+       softLeg(.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim));
 
- // smooth hair cap
- let back=sphere(.73,hair,[1.01,.60,.95]);back.position.set(0,1.085,-.045);g.add(back);
+ // hair cap integrated with head
+ let cap=sphere(.665,hair,[1.01,.57,.94]);cap.position.set(0,1.075,-.025);g.add(cap);
 
- function fringe(xs,y=1.02,z=.55,sy=1.0){
-  xs.forEach((x,i)=>{
-   let q=sphere(.155,hair,[.78,sy-(i%2)*.06,.72]);
-   q.position.set(x,y-(i%2)*.035,z);q.rotation.z=(i-(xs.length-1)/2)*.07;g.add(q)
-  })
- }
  if(variant==="boya"){
-   fringe([-.42,-.24,-.06,.12,.30,.46],1.035,.55,1.02);
+   [-.38,-.20,-.02,.16,.34].forEach((x,i)=>g.add(hairLock(x,1.00+(i%2)*.015,.54,hair,.82,1.02,(i-2)*.06)));
  }else if(variant==="boyb"){
-   for(let i=0;i<9;i++){let a=Math.PI*i/8,q=sphere(.14,hair,[.9,.9,.78]);q.position.set(Math.cos(a)*.53,.98+Math.sin(a)*.27,.30);g.add(q)}
-   fringe([-.35,-.12,.12,.35],1.04,.55,.96);
+   for(let i=0;i<9;i++){
+     let a=Math.PI*i/8,q=sphere(.13,hair,[.92,.92,.78]);
+     q.position.set(Math.cos(a)*.49,.98+Math.sin(a)*.24,.31);g.add(q)
+   }
+   [-.30,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.95,(i-1.5)*.08)));
  }else if(variant==="boyc"){
-   for(let i=-3;i<=3;i++){let sp=cone(.11,.31,hair);sp.position.set(i*.15,1.38-Math.abs(i)*.018,.0);sp.rotation.z=-i*.12;g.add(sp)}
-   fringe([-.36,-.16,.04,.24,.42],1.03,.54,.96);
+   for(let i=-3;i<=3;i++){
+     let sp=cone(.095,.27,hair);sp.position.set(i*.135,1.34-Math.abs(i)*.018,.00);sp.rotation.z=-i*.14;g.add(sp)
+   }
+   [-.31,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.01,.53,hair,.80,.92,(i-1.5)*.08)));
  }else if(variant==="girla"){
-   for(const x of[-.53,.53]){let side=sphere(.19,hair,[.78,1.72,.70]);side.position.set(x,.66,-.08);g.add(side)}
-   fringe([-.39,-.19,.01,.21,.40],1.03,.55,1.02);
+   for(const x of[-.48,.48]){let side=sphere(.17,hair,[.78,1.55,.72]);side.position.set(x,.69,-.06);g.add(side)}
+   [-.34,-.17,0,.17,.34].forEach((x,i)=>g.add(hairLock(x,1.01,.54,hair,.80,1.0,(i-2)*.05)));
  }else if(variant==="girlb"){
-   for(let i=0;i<8;i++){let a=Math.PI*i/7,q=sphere(.135,hair,[.90,.90,.78]);q.position.set(Math.cos(a)*.51,.99+Math.sin(a)*.26,.28);g.add(q)}
-   let pony=sphere(.22,hair,[.80,1.55,.75]);pony.position.set(.68,.77,-.18);pony.rotation.z=-.32;g.add(pony);
-   fringe([-.34,-.11,.12,.35],1.03,.55,.98);
+   let pony=sphere(.20,hair,[.82,1.52,.74]);pony.position.set(.61,.77,-.16);pony.rotation.z=-.32;g.add(pony);
+   [-.31,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.96,(i-1.5)*.08)));
  }else{
-   let bob=sphere(.62,hair,[1.03,.82,.82]);bob.position.set(0,.79,-.20);g.add(bob);
-   for(const x of[-.50,.50]){let side=sphere(.18,hair,[.75,1.30,.68]);side.position.set(x,.71,-.04);g.add(side)}
-   fringe([-.36,-.16,.04,.24,.42],1.03,.55,.98);
+   let bob=sphere(.57,hair,[1.03,.80,.82]);bob.position.set(0,.80,-.18);g.add(bob);
+   for(const x of[-.45,.45]){let side=sphere(.16,hair,[.75,1.28,.70]);side.position.set(x,.72,-.04);g.add(side)}
+   [-.30,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.96,(i-1.5)*.07)));
  }
 
- // selected hairstyle can subtly override
  if(hs==="ponytail"&&!variant.includes("girlb")){
-  let pony=sphere(.21,hair,[.80,1.48,.72]);pony.position.set(.69,.76,-.18);pony.rotation.z=-.30;g.add(pony)
+  let pony=sphere(.19,hair,[.80,1.45,.72]);pony.position.set(.62,.76,-.17);pony.rotation.z=-.30;g.add(pony)
  }
  if(hs==="spiky"&&!variant.includes("boyc")){
-  for(let i=-2;i<=2;i++){let sp=cone(.10,.27,hair);sp.position.set(i*.16,1.37,.0);sp.rotation.z=-i*.11;g.add(sp)}
+  for(let i=-2;i<=2;i++){let sp=cone(.09,.24,hair);sp.position.set(i*.145,1.33,.0);sp.rotation.z=-i*.12;g.add(sp)}
  }
 
- // gear integrated into body
+ // accessories integrated
  if(el.dataset.hat==="1"){
-  let capDome=sphere(.43,0x3d8fe6,[1,.45,.93]);capDome.position.set(0,1.43,.01);g.add(capDome);
-  let brim=box(.42,.05,.20,0x2d74bd);brim.position.set(.15,1.35,.43);g.add(brim);
+   let dome=sphere(.39,0x4495e3,[1,.42,.93]);dome.position.set(0,1.40,.01);g.add(dome);
+   let brim=box(.35,.045,.18,0x2c73bb);brim.position.set(.13,1.34,.41);g.add(brim)
  }
  if(el.dataset.bag==="1"){
-  let bag=sphere(.31,0x6e9d71,[.76,1.0,.45]);bag.position.set(.34,-.47,-.45);g.add(bag)
+   let bag=sphere(.27,0x6c9a70,[.78,.96,.44]);bag.position.set(.31,-.45,-.42);g.add(bag)
  }
  if(el.dataset.cape==="1"){
-  let cape=box(.68,.82,.03,girl?0xca719d:0x426bb2);cape.position.set(0,-.42,-.50);cape.rotation.x=.09;g.add(cape)
+   let cape=box(.61,.75,.025,girl?0xca719d:0x436bae);cape.position.set(0,-.40,-.47);cape.rotation.x=.08;g.add(cape)
  }
  if(el.dataset.star==="1"){
-  let pin=tinyStarPin();pin.position.set(.30,-.34,.46);g.add(pin)
+   let pin=tinyStarPin();pin.position.set(.27,-.33,.44);g.add(pin)
  }
 
- g.userData.characterType="avatar";g.userData.variant=variant;
- g.scale.set(.80,.80,.80);
+ // subtle pose differences
+ if(["boyb","girlb"].includes(variant))g.rotation.y=-.045;
+ if(["boyc","girlc"].includes(variant))g.rotation.y=.045;
+
+ g.userData.characterType="avatar";
+ g.userData.variant=variant;
+ g.scale.set(.86,.86,.86);
  return g
 }
 
 
 
 
+
 function petFrom(kind,level,color){
  let g=new THREE.Group();
- let body=sphere(.52,color,[1.02,1.0,.92]);body.position.y=.00;g.add(body);
- let muzzle=sphere(.13,0xffd8c1,[1.20,.64,.42]);muzzle.position.set(0,-.11,.52);g.add(muzzle);
- g.add(irisEye(-.17,.16,.54,.11,-.003),irisEye(.17,.16,.54,.11,.003));
- let mm=smile(-.10,.56);mm.scale.set(.58,.58,.58);g.add(mm);
- g.add(cheek(-.29,.01,.51),cheek(.29,.01,.51));
+ let body=sphere(.46,color,[1.03,1.00,.93]);body.position.y=-.01;g.add(body);
+ let muzzle=sphere(.115,0xffd8c1,[1.16,.62,.42]);muzzle.position.set(0,-.10,.47);g.add(muzzle);
+ g.add(irisEye(-.145,.13,.49,.095,-.002),irisEye(.145,.13,.49,.095,.002));
+ let mm=smile(-.095,.51);mm.scale.set(.50,.50,.50);g.add(mm);
+ g.add(cheek(-.25,-.01,.46),cheek(.25,-.01,.46));
 
  if(kind==="bunny"){
-  for(const x of[-.23,.23]){let e=sphere(.10,color,[.58,2.45,.58]);e.position.set(x,.64,-.02);g.add(e)}
+   for(const x of[-.19,.19]){let e=sphere(.082,color,[.58,2.35,.58]);e.position.set(x,.54,-.02);g.add(e)}
  }else if(kind==="kitty"){
-  for(const x of[-.28,.28]){let e=cone(.14,.29,color);e.position.set(x,.56,-.01);e.rotation.z=x<0?.16:-.16;g.add(e)}
+   for(const x of[-.24,.24]){let e=cone(.115,.24,color);e.position.set(x,.48,-.01);e.rotation.z=x<0?.15:-.15;g.add(e)}
  }else if(kind==="fox"){
-  for(const x of[-.29,.29]){let e=cone(.15,.31,color);e.position.set(x,.58,-.01);e.rotation.z=x<0?.20:-.20;g.add(e)}
-  let tail=sphere(.18,color,[.72,1.50,.68]);tail.position.set(.49,-.18,-.12);tail.rotation.z=-.48;g.add(tail)
+   for(const x of[-.25,.25]){let e=cone(.12,.25,color);e.position.set(x,.50,-.01);e.rotation.z=x<0?.19:-.19;g.add(e)}
+   let tail=sphere(.15,color,[.72,1.45,.68]);tail.position.set(.42,-.17,-.11);tail.rotation.z=-.46;g.add(tail)
  }else if(kind==="owl"){
-  for(const x of[-.29,.29]){let e=cone(.12,.23,color);e.position.set(x,.54,-.01);g.add(e)}
-  for(const x of[-.34,.34]){let wing=sphere(.13,color,[.62,1.36,.54]);wing.position.set(x,-.07,-.02);g.add(wing)}
+   for(const x of[-.24,.24]){let e=cone(.10,.20,color);e.position.set(x,.46,-.01);g.add(e)}
+   for(const x of[-.29,.29]){let wing=sphere(.11,color,[.60,1.30,.54]);wing.position.set(x,-.07,-.02);g.add(wing)}
  }else if(kind==="dragon"){
-  for(const x of[-.27,.27]){let h=cone(.10,.21,0xffe08a);h.position.set(x,.56,-.02);g.add(h)}
-  for(const x of[-.35,.35]){let wing=cone(.13,.30,0x83d4a3);wing.position.set(x,-.08,-.16);wing.rotation.z=x<0?-.65:.65;g.add(wing)}
+   for(const x of[-.22,.22]){let h=cone(.085,.18,0xffdf8a);h.position.set(x,.48,-.02);g.add(h)}
+   for(const x of[-.29,.29]){let wing=cone(.11,.25,0x82d2a1);wing.position.set(x,-.08,-.14);wing.rotation.z=x<0?-.62:.62;g.add(wing)}
  }else{
-  for(const x of[-.27,.27]){let e=sphere(.11,color,[.82,1.26,.64]);e.position.set(x,.51,0);g.add(e)}
+   for(const x of[-.22,.22]){let e=sphere(.09,color,[.80,1.20,.64]);e.position.set(x,.44,0);g.add(e)}
  }
 
- for(const x of[-.18,.18]){let f=shoe(0xd7a064);f.scale.set(.50,.48,.58);f.position.set(x,-.46,.04);g.add(f)}
- if(level>=2){let pin=tinyStarPin();pin.position.set(0,-.22,.54);g.add(pin)}
- if(level>=3){let r=new THREE.Mesh(new THREE.TorusGeometry(.60,.014,10,36),new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.7}));r.rotation.x=Math.PI/2;g.add(r)}
- if(level>=4){let c=crown();c.scale.set(.32,.32,.32);c.position.set(0,.64,0);g.add(c)}
- g.userData.characterType="pet";g.scale.set(.95,.95,.95);return g
+ for(const x of[-.15,.15]){let f=shoe(0xd6a063);f.scale.set(.44,.42,.52);f.position.set(x,-.40,.04);g.add(f)}
+ if(level>=2){let pin=tinyStarPin();pin.position.set(0,-.20,.48);g.add(pin)}
+ if(level>=3){
+   let r=new THREE.Mesh(new THREE.TorusGeometry(.53,.012,10,34),
+     new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.68}));
+   r.rotation.x=Math.PI/2;g.add(r)
+ }
+ if(level>=4){let c=crown();c.scale.set(.28,.28,.28);c.position.set(0,.56,0);g.add(c)}
+ g.userData.characterType="pet";g.scale.set(.98,.98,.98);return g
 }
 
 
@@ -803,12 +873,12 @@ function setup(el){
  renderer.setPixelRatio(Math.min(devicePixelRatio,mini?1.0:1.5));
  renderer.shadowMap.enabled=!mini;
  renderer.outputColorSpace=THREE.SRGBColorSpace;
- renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.22;
  el.innerHTML="";el.appendChild(renderer.domElement);
- scene.add(new THREE.HemisphereLight(0xffffff,0x9db58b,2.55));
+ scene.add(new THREE.HemisphereLight(0xffffff,0xa7bd96,2.70));
  if(isBattle)addBattleEnvironment(scene,el.dataset.kind||el.closest(".arena")?.dataset?.kind||"reading");
  else if(isStage)addStageEnvironment(scene);
- let key=new THREE.DirectionalLight(0xfff7ec,mini?2.5:3.6);key.position.set(-3.2,5.2,5.2);key.castShadow=!mini;scene.add(key);
+ let key=new THREE.DirectionalLight(0xfff6eb,mini?2.6:3.8);key.position.set(-3.2,5.2,5.2);key.castShadow=!mini;scene.add(key);
  let rim=new THREE.DirectionalLight(0x9ed9ff,1.25);rim.position.set(4,2.5,-3);scene.add(rim);let fill=new THREE.DirectionalLight(0xffd8e8,.65);fill.position.set(-4,1,-2);scene.add(fill);
  let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,32),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));
  fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=!mini;scene.add(fl);
@@ -886,5 +956,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=267").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=269").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
