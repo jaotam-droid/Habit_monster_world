@@ -1,4 +1,4 @@
-const CACHE="hmw-v26-6-character-quality";
+const CACHE="hmw-v26-7-film-style-character";
 const CORE=["./","./index.html","./manifest.webmanifest"];
 self.addEventListener("install",e=>{
   self.skipWaiting();
