@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V27.6 CINEMATIC 3D ART PASS</title>
+<title>Habit Monster World V27.7 CHARACTER VISUAL UPGRADE</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -274,6 +274,16 @@
 .zoneArt .original-art img{transform:scale(1.04)!important}
 .battle .avatarArt,.battle .bossArt{height:206px!important}
 
+
+/* V27.7 CHARACTER VISUAL UPGRADE */
+.cinematic-slot img{filter:drop-shadow(0 12px 14px rgba(42,68,92,.18));transition:transform .22s ease,filter .22s ease}
+.avatarStage .cinematic-slot img{transform:scale(1.055);filter:drop-shadow(0 18px 20px rgba(42,68,92,.20))}
+.avatarChoice .cinematic-slot img{transform:scale(1.06)}
+.zoneArt .cinematic-slot img{transform:scale(1.04)}
+.petStage .cinematic-slot img{transform:scale(1.05)}
+.battle .avatar-generated img,.battle .cinematic-monster img{transform:scale(1.04)}
+.avatarChoice.on .cinematic-slot img,.zone.active .cinematic-slot img{filter:drop-shadow(0 13px 16px rgba(62,113,168,.25)) saturate(1.05)}
+.characterQualityNote{border-left:5px solid #78b9ef;padding-left:12px}
 </style>
 
 <style id="v275-final-polish">
@@ -299,7 +309,7 @@ img,canvas{image-rendering:auto;}
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V27.6 CINEMATIC 3D ART PASS</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V27.7 CHARACTER VISUAL UPGRADE</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -326,7 +336,7 @@ img,canvas{image-rendering:auto;}
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V26.8 ยกระดับ Character Art ทั้งชุด: สัดส่วน chibi นุ่มขึ้น ใบหน้ามีมิติ ตาไม่โปน ผมเป็นทรงต่อเนื่อง เสื้อผ้าและรองเท้าดูเป็นชิ้นงาน 3D มากขึ้น พร้อม silhouette เฉพาะของ Monster / Pet โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V27.7 Character Visual Upgrade: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -468,13 +478,14 @@ function svgData(svg){
 function artFrame(inner,accent="#7fc7ff"){
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
  <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdff"/><stop offset=".52" stop-color="#eff8ff"/><stop offset="1" stop-color="#fff4d9"/></linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".48" stop-color="#eef8ff"/><stop offset="1" stop-color="#fff2d5"/></linearGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".92"/><stop offset=".48" stop-color="#ffffff" stop-opacity=".08"/><stop offset="1" stop-color="#9fc7e5" stop-opacity=".16"/></linearGradient>
   <radialGradient id="spot" cx=".34" cy=".18" r=".82"><stop stop-color="#fff" stop-opacity="1"/><stop offset=".42" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
   <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".46"/><stop offset=".5" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient>
   <filter id="shadow" x="-45%" y="-45%" width="190%" height="205%"><feDropShadow dx="0" dy="15" stdDeviation="13" flood-color="#27445f" flood-opacity=".24"/></filter>
   <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
  </defs>
- <rect width="420" height="420" rx="48" fill="url(#bg)"/>
+ <rect width="420" height="420" rx="48" fill="url(#bg)"/><rect x="7" y="7" width="406" height="406" rx="43" fill="none" stroke="url(#rim)" stroke-width="5"/>
  <ellipse cx="210" cy="356" rx="128" ry="24" fill="#466b82" opacity=".18" filter="url(#soft)"/>
  <circle cx="92" cy="78" r="7" fill="${accent}" opacity=".25"/><circle cx="335" cy="91" r="5" fill="${accent}" opacity=".22"/>
  <circle cx="210" cy="160" r="168" fill="url(#spot)"/>
@@ -524,7 +535,7 @@ function monsterArtURI(kind,level=1){
  const y=kind==="morning"?214:221;
  const body=`<g>${starBurst(level,cfg.accent)}${prop}
    <ellipse cx="210" cy="${y+5}" rx="98" ry="97" fill="${cfg.shade}" opacity=".28"/>
-   <ellipse cx="210" cy="${y}" rx="96" ry="94" fill="${cfg.body}"/>
+   <ellipse cx="210" cy="${y+5}" rx="98" ry="96" fill="${cfg.shade}" opacity=".22"/><ellipse cx="210" cy="${y}" rx="96" ry="94" fill="${cfg.body}"/><path d="M145 ${y-10} Q158 ${y-76} 214 ${y-82}" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".20"/>
    <ellipse cx="184" cy="166" rx="54" ry="25" fill="#fff" opacity=".28" transform="rotate(-18 184 166)"/>
    <ellipse cx="247" cy="278" rx="52" ry="30" fill="${cfg.shade}" opacity=".18"/>
    ${head}${cuteEye(178,193,.72,mood)}${cuteEye(242,193,.72,mood)}
@@ -562,18 +573,18 @@ function avatarArtURI(p){
  const hairBack=style==="long"?`<path d="M127 145q20-86 83-86 68 0 84 89v151q-16 40-48 45V187h-72v157q-32-7-49-44z" fill="${hair}"/>`:style==="ponytail"?`<ellipse cx="290" cy="202" rx="39" ry="70" fill="${hair}"/><circle cx="283" cy="146" r="15" fill="#f1a8c5"/>`:style==="bob"?`<path d="M128 151q19-88 82-88 69 0 85 89v95q-18 34-43 39v-104h-88v103q-27-7-39-38z" fill="${hair}"/>`:"";
  const fringe=style==="curly"?`<g fill="${hair}"><circle cx="146" cy="118" r="25"/><circle cx="178" cy="106" r="29"/><circle cx="210" cy="102" r="31"/><circle cx="244" cy="108" r="29"/><circle cx="275" cy="119" r="24"/><path d="M132 144q77-39 156 1v27H132z"/></g>`:style==="spiky"?`<path d="M135 151l15-59 33 29 25-57 27 55 40-29 10 62q-76-27-150-1z" fill="${hair}"/>`:style==="long"||style==="ponytail"||style==="bob"?`<path d="M134 149q76-34 153 0v24q-76-17-153 0z" fill="${hair}"/>`:`<path d="M132 153q18-85 80-85 66 0 83 87v23q-41-16-82-14-42 0-81 14z" fill="${hair}"/>`;
  const body=`<g>${cape}${bag}${star}${hairBack}${ears}
-   <ellipse cx="210" cy="186" rx="86" ry="91" fill="${skin}"/>
+   <ellipse cx="210" cy="188" rx="87" ry="92" fill="#b77755" opacity=".16"/><ellipse cx="210" cy="184" rx="86" ry="91" fill="${skin}"/><ellipse cx="174" cy="145" rx="38" ry="19" fill="#fff" opacity=".32" transform="rotate(-18 174 145)"/>
    <ellipse cx="180" cy="146" rx="43" ry="20" fill="#fff" opacity=".27" transform="rotate(-18 180 146)"/>
    ${fringe}${hat}${cuteEye(178,184,.74,"happy")}${cuteEye(242,184,.74,"happy")}${lashes}
    <ellipse cx="210" cy="214" rx="10" ry="7" fill="#c99277" opacity=".55"/>${blushPair(220,"#f3a4b7")}${smile(210,233,42,18,"#a05465")}
    <rect x="184" y="254" width="52" height="19" rx="9" fill="${skin}"/>
-   <ellipse cx="210" cy="306" rx="66" ry="69" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
+   <ellipse cx="210" cy="310" rx="67" ry="70" fill="${dark}" opacity=".22"/><ellipse cx="210" cy="304" rx="66" ry="69" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
    <path d="M170 270q40 30 80 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
    ${gender==="girl"?`<path d="M156 306q54 23 108 0l-9 35h-90z" fill="${dark}"/>`:`<path d="M159 306h102l-7 39h-33v-28h-22v28h-33z" fill="${dark}"/>`}
    <rect x="130" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="144" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="144" cy="348" r="14" fill="${skin}"/>
    <rect x="261" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="276" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="276" cy="348" r="14" fill="${skin}"/>
    <rect x="180" y="339" width="19" height="34" rx="9" fill="${skin}"/><rect x="221" y="339" width="19" height="34" rx="9" fill="${skin}"/>
-   <ellipse cx="183" cy="380" rx="29" ry="17" fill="${shirt}"/><ellipse cx="237" cy="380" rx="29" ry="17" fill="${shirt}"/>
+   <ellipse cx="183" cy="382" rx="30" ry="18" fill="${dark}"/><ellipse cx="237" cy="382" rx="30" ry="18" fill="${dark}"/><ellipse cx="176" cy="376" rx="12" ry="5" fill="#fff" opacity=".28"/><ellipse cx="230" cy="376" rx="12" ry="5" fill="#fff" opacity=".28"/>
  </g>`;
  return svgData(artFrame(body,shirt));
 }
@@ -586,7 +597,7 @@ function petArtURI(kind){
  if(type==="fox"){ears=`<path d="M146 171l20-70 44 54zm128 0-20-70-44 54z" fill="${d}"/>`;extra=`<path d="M116 287q42 50 96 37" stroke="#fff1d8" stroke-width="13" stroke-linecap="round" opacity=".65"/>`;}
  if(type==="owl"){ears=`<path d="M149 168l28-52 29 41zm122 0-28-52-29 41z" fill="${d}"/>`;extra=`<ellipse cx="210" cy="250" rx="60" ry="46" fill="#fff" opacity=".25"/>`;}
  if(type==="dragon"){ears=`<path d="M148 168l18-52 24 39 20-54 23 54 27-39 13 52z" fill="${d}"/>`;extra=`<path d="M132 258q-54 3-50 58 36-25 72-1m134-57q54 3 50 58-36-25-72-1" fill="#91e2af"/>`;}
- const body=`<g>${ears}${extra}<ellipse cx="210" cy="228" rx="94" ry="97" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(180,215,.7,"happy")}${cuteEye(240,215,.7,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
+ const body=`<g>${ears}${extra}<ellipse cx="210" cy="234" rx="96" ry="99" fill="${d}" opacity=".20"/><ellipse cx="210" cy="228" rx="94" ry="97" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(180,215,.7,"happy")}${cuteEye(240,215,.7,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
  return svgData(artFrame(body,c));
 }
 const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
@@ -705,7 +716,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Cinematic 3D Art • Unified Style";
+if(threeStatus)threeStatus.textContent="✅ Character Visual Upgrade • Soft 3D Style";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={

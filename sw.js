@@ -1,4 +1,4 @@
-const CACHE="hmw-v27-6-cinematic-3d-art-pass";
+const CACHE="hmw-v27-7-character-visual-upgrade";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{
