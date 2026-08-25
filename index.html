@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V27.9 CHARACTER ART OVERHAUL</title>
+<title>Habit Monster World V28 CHARACTER REDESIGN</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -14,7 +14,7 @@
 .nav{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.nav button{border:0;border-radius:13px;padding:10px 5px;background:#edf4f8;font-weight:900}.nav button.active{background:#dceeff;color:#285e9b}
 .screen{display:none}.screen.active{display:block}
 .world{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.zone{border:2px solid var(--line);border-radius:18px;padding:11px;text-align:center;background:#fff;cursor:pointer;transition:.15s;min-height:150px}.zone:active{transform:scale(.97)}.zone.active{border-color:#6b9ee5;background:#eef6ff}.zoneArt{width:104px;height:104px;margin:auto}.zoneArt svg{width:100%;height:100%}
-.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#cfeeff 0 52%,#eaf7dc 52%);min-height:470px;overflow:hidden;position:relative}.battle{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:end;text-align:center;gap:4px;overflow:hidden}.avatarArt{width:150px;height:175px;margin:auto;overflow:hidden}.bossArt{width:180px;height:190px;margin:auto;overflow:hidden}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
+.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#cfeeff 0 52%,#eaf7dc 52%);min-height:470px;overflow:hidden;position:relative}.battle{overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:end;text-align:center;gap:4px;overflow:hidden}.avatarArt{width:150px;height:175px;margin:auto;overflow:hidden}.bossArt{width:180px;height:190px;margin:auto;overflow:hidden}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
 .vs{font-size:30px;font-weight:1000;color:#789}.label{font-weight:950}.story{background:#f7fbff;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}.row{display:flex;justify-content:space-between;gap:8px;font-weight:900}
 .bar{height:16px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dae5ec;margin:5px 0 9px}.hp{height:100%;background:linear-gradient(90deg,#a49fe9,#786fd1)}.xp{height:100%;background:linear-gradient(90deg,#65cbff,#6278ff)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.stat{background:#f7fbfd;border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center}.stat b{display:block;font-size:20px}
@@ -341,59 +341,134 @@ body{
 
 
 /* V27.9 CHARACTER ART OVERHAUL */
+:root{--premiumGlow:rgba(116,190,240,.22)}
+.avatarArt,.bossArt,.zoneArt{
+ transform:translateZ(0); image-rendering:auto;
+}
+.zoneArt{
+ background:radial-gradient(circle at 50% 28%,#fff 0 24%,#edf8ff 58%,#fff1d9 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 12px 24px rgba(43,72,99,.10);
+}
+.zone:hover .zoneArt{transform:translateY(-2px)}
+.cinematic-slot{
+ position:relative; overflow:hidden;
+ background:radial-gradient(circle at 50% 30%,#fff 0 22%,#eaf7ff 62%,#fff0d0 100%);
+}
+.cinematic-slot:before{
+ content:"";position:absolute;inset:5% 12% 48%;
+ border-radius:50%;background:rgba(255,255,255,.72);filter:blur(18px);pointer-events:none;
+}
+.cinematic-slot img{position:relative;z-index:1}
+.arena .cinematic-slot{box-shadow:0 14px 28px rgba(41,74,103,.13)}
+.battle .cinematic-slot:first-child{transform:rotate(-.5deg)}
+.battle .cinematic-slot:last-child{transform:rotate(.5deg)}
+@keyframes heroBreath279{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.008)}}
+.avatarArt{animation:heroBreath279 4.2s ease-in-out infinite}
+
+
+/* =========================================================
+   V28 CHARACTER REDESIGN — visual-only layer
+   Keeps V27.9 game logic/save/progression intact.
+   ========================================================= */
 :root{
-  --ink:#263b52;
-  --softBlue:#eaf7ff;
-  --warm:#fff5dd;
+ --v28-ink:#263b53;
+ --v28-sky:#eaf8ff;
+ --v28-cream:#fff5df;
+ --v28-shadow:rgba(37,66,92,.16);
+ --v28-rim:rgba(255,255,255,.86);
 }
 body{
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 3%,rgba(162,220,255,.72),transparent 27%),
-    radial-gradient(circle at 88% 8%,rgba(255,225,166,.60),transparent 24%),
-    linear-gradient(180deg,#edf9ff,#fbfdff 48%,#fff8e8);
+ background:
+  radial-gradient(circle at 18% 5%,rgba(177,231,255,.62),transparent 27rem),
+  linear-gradient(180deg,#eaf8ff 0,#f7fbff 44%,#fffdf5 100%);
 }
 .card{
-  border-radius:30px;
-  box-shadow:0 18px 42px rgba(38,67,94,.12), inset 0 1px 0 rgba(255,255,255,.98);
+ box-shadow:0 14px 34px rgba(45,75,101,.10);
+ border:1px solid rgba(255,255,255,.86);
 }
-.avatarArt,.bossArt,.zoneArt{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,#fafdff,#fff6df);
+.avatarStudio,.arena{
+ box-shadow:0 18px 46px rgba(42,74,101,.12);
 }
-.avatarArt:after,.bossArt:after,.zoneArt:after{
-  content:"";
-  position:absolute;inset:0;
-  pointer-events:none;
-  background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 27%,transparent 72%,rgba(255,224,168,.13));
-  mix-blend-mode:screen;
+.cinematic-slot,.zoneArt{
+ isolation:isolate;
+ overflow:hidden;
+ background:
+  radial-gradient(circle at 47% 30%,#fff 0 21%,#eefaff 47%,#fff4dd 100%);
+ box-shadow:
+  inset 0 0 0 1px rgba(255,255,255,.92),
+  inset 0 -20px 36px rgba(255,219,155,.12),
+  0 15px 28px rgba(38,67,91,.12);
 }
-.avatarArt img,.bossArt img,.zoneArt img{
-  transform:translateZ(0);
-  filter:drop-shadow(0 13px 14px rgba(36,65,88,.18)) saturate(1.08) contrast(1.025);
+.cinematic-slot:after,.zoneArt:after{
+ content:"";position:absolute;z-index:0;left:14%;right:14%;bottom:7%;
+ height:10%;border-radius:50%;
+ background:rgba(45,71,92,.15);filter:blur(9px);
+}
+.cinematic-slot:before,.zoneArt:before{
+ content:"";position:absolute;z-index:0;left:9%;right:9%;top:4%;height:53%;
+ border-radius:50%;
+ background:
+  radial-gradient(circle at 35% 25%,rgba(255,255,255,.94),rgba(255,255,255,.22) 46%,transparent 68%);
+ filter:blur(5px);
+}
+.cinematic-slot>*,.zoneArt>*{position:relative;z-index:1}
+.avatarArt,.bossArt,.zoneArt svg,.zoneArt img{
+ filter:
+  drop-shadow(0 2px 1px rgba(255,255,255,.8))
+  drop-shadow(0 10px 10px rgba(46,72,93,.12));
+}
+.avatarArt{
+ transform-origin:50% 83%;
+ animation:v28HeroIdle 4.6s cubic-bezier(.45,0,.55,1) infinite;
+}
+.zoneArt svg,.zoneArt img{
+ transform-origin:50% 78%;
+ animation:v28MonsterIdle 5.4s ease-in-out infinite;
+}
+.zone:nth-child(2n) .zoneArt svg,.zone:nth-child(2n) .zoneArt img{animation-delay:-1.4s}
+.zone:nth-child(3n) .zoneArt svg,.zone:nth-child(3n) .zoneArt img{animation-delay:-2.6s}
+@keyframes v28HeroIdle{
+ 0%,100%{transform:translateY(0) scale(1)}
+ 48%{transform:translateY(-5px) scale(1.012)}
+ 55%{transform:translateY(-4px) scale(1.012)}
+}
+@keyframes v28MonsterIdle{
+ 0%,100%{transform:translateY(0) rotate(0)}
+ 50%{transform:translateY(-3px) rotate(.35deg)}
+}
+.avatarChoice{
+ transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.avatarChoice:active{transform:scale(.97)}
+.avatarChoice.selected{
+ box-shadow:0 9px 24px rgba(255,190,54,.22),inset 0 0 0 1px rgba(255,255,255,.8);
 }
 .zone{
-  border-radius:28px;
-  transition:transform .18s ease,box-shadow .18s ease;
+ transition:transform .18s ease,box-shadow .18s ease;
 }
 .zone:active{transform:scale(.985)}
-.arena{
-  border-radius:32px;
-  overflow:hidden;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 38px rgba(45,77,104,.11);
+.zone.selected{
+ box-shadow:0 14px 30px rgba(58,128,220,.15);
 }
-.battle{perspective:900px}
-.battle>div:not(.vs){
-  transform-origin:50% 90%;
-  animation:characterIdle279 4s ease-in-out infinite;
+.battle{
+ gap:18px;
+ align-items:end;
 }
-.battle>div:nth-child(3){animation-delay:-1.8s}
-@keyframes characterIdle279{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  45%{transform:translateY(-6px) rotate(-.45deg)}
-  55%{transform:translateY(-6px) rotate(.45deg)}
+.battle .cinematic-slot{
+ min-width:0;
+ border-radius:30px;
 }
+.battle .cinematic-slot:first-child{transform:perspective(800px) rotateY(2deg)}
+.battle .cinematic-slot:last-child{transform:perspective(800px) rotateY(-2deg)}
+@media(max-width:600px){
+ .battle{gap:10px}
+ .battle .cinematic-slot{border-radius:24px}
+ .zoneArt{border-radius:24px}
+}
+
+
+svg .eyeWhite, svg [fill="#fff"]{filter:drop-shadow(0 2px 1px rgba(53,78,96,.10))}
+svg ellipse[fill*="pink"],svg ellipse[fill="#f3a0ad"]{filter:blur(.15px)}
 
 </style>
 
@@ -420,7 +495,7 @@ img,canvas{image-rendering:auto;}
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V27.9 CHARACTER ART OVERHAUL</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V28 CHARACTER REDESIGN</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -447,7 +522,7 @@ img,canvas{image-rendering:auto;}
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V27.9 Character Art Overhaul: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V28 Character Redesign: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -509,7 +584,7 @@ img,canvas{image-rendering:auto;}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.9;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=28.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -620,8 +695,6 @@ function artFrame(inner,accent="#7fc7ff"){
  <circle cx="341" cy="92" r="5" fill="${accent}" opacity=".20"/>
  <circle cx="356" cy="65" r="2.5" fill="#fff"/>
  <g filter="url(#shadow)">${inner}</g>
- <ellipse cx="155" cy="120" rx="88" ry="48" fill="#fff" opacity=".075" transform="rotate(-22 155 120)"/>
- <path d="M65 310 Q210 388 355 310" fill="none" stroke="#fff" stroke-width="3" opacity=".14"/>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
@@ -640,12 +713,12 @@ function cuteEye(cx,cy,s=1,mood="happy"){
    <path d="M-25 -20 Q0 -33 25 -20" fill="none" stroke="#5a3c4b" stroke-width="3.6" stroke-linecap="round" opacity=".50"/>
  </g>`;
 }
-function blushPair(y,color="#ef8fa5"){
- return `<g opacity=".78">
-   <ellipse cx="132" cy="${y}" rx="30" ry="12" fill="${color}" opacity=".52"/>
-   <ellipse cx="288" cy="${y}" rx="30" ry="12" fill="${color}" opacity=".52"/>
-   <ellipse cx="126" cy="${y-4}" rx="12" ry="4" fill="#fff" opacity=".28"/>
-   <ellipse cx="282" cy="${y-4}" rx="12" ry="4" fill="#fff" opacity=".28"/>
+function blushPair(y,color="#f3a0ad"){
+ return `<g opacity=".88">
+  <ellipse cx="137" cy="${y}" rx="30" ry="11" fill="${color}" opacity=".52"/>
+  <ellipse cx="283" cy="${y}" rx="30" ry="11" fill="${color}" opacity=".52"/>
+  <ellipse cx="130" cy="${y-3}" rx="11" ry="3.5" fill="#fff" opacity=".34"/>
+  <ellipse cx="276" cy="${y-3}" rx="11" ry="3.5" fill="#fff" opacity=".34"/>
  </g>`;
 }
 function smile(cx=210,cy=232,w=44,h=22,color="#9f5365"){
@@ -858,7 +931,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Character Art Overhaul • Cinematic 3D Family Animation";
+if(threeStatus)threeStatus.textContent="✅ Character Redesign • Premium Soft 3D World";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1387,5 +1460,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=279").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=280").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
