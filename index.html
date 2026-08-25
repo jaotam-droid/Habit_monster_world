@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V40 Game World Character Redesign";font-weight:800}
+.characterQualityNote:after{content:" • V41 Scene Integration Pass";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V40 Game World Character Redesign";font-weight:900}
+.characterQualityNote:after{content:" • V41 Scene Integration Pass";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -718,12 +718,285 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 @media(max-width:600px){.brandLine{gap:7px}.buildBadge{min-width:48px;height:30px;font-size:14px;padding:0 10px}.world{padding:10px 8px 20px!important}.zone{min-height:216px!important}.zoneArt{height:148px!important}.battle{min-height:280px!important;padding-top:16px!important}.battle .avatarArt,.battle .bossArt{height:222px!important}.worldIntro{padding:13px!important}}
 </style>
 
+
+<style id="v41-scene-integration-pass">
+/* ==========================================================
+   V41 — SCENE INTEGRATION PASS
+   Goal: character proportions + mini-biomes + encounter scene
+   Logic/state/save systems are untouched.
+   ========================================================== */
+
+/* tighter, more game-like header */
+.header{padding-bottom:16px!important}
+.buildBadge{
+  background:linear-gradient(135deg,#6b5de8,#4f83ee)!important;
+  box-shadow:0 7px 16px rgba(74,86,210,.22),inset 0 1px 0 rgba(255,255,255,.42)!important
+}
+
+/* ---- Avatar Studio: reduce oversized character ---- */
+.avatarStage{
+  height:360px!important;
+  min-height:360px!important;
+  border-radius:32px!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 22%,rgba(255,255,255,.98) 0 14%,rgba(255,255,255,.42) 15% 34%,transparent 35%),
+    radial-gradient(ellipse at 50% 91%,#a9dd91 0 17%,#78b968 18% 25%,#c69b5c 26% 29%,transparent 30%),
+    linear-gradient(180deg,#b8e8fb 0 48%,#dff2d3 48% 70%,#f5d99d 70% 100%)!important;
+  box-shadow:inset 0 0 58px rgba(255,255,255,.28),0 16px 32px rgba(41,75,103,.14)!important
+}
+.avatarStage img{
+  width:78%!important;
+  height:86%!important;
+  max-width:320px!important;
+  object-fit:contain!important;
+  object-position:center 78%!important;
+  transform:none!important;
+  filter:drop-shadow(0 14px 11px rgba(37,60,78,.17))!important
+}
+.avatarStage:before{
+  left:22%!important;right:22%!important;bottom:7%!important;height:18px!important;
+  background:radial-gradient(ellipse,rgba(39,62,75,.28),transparent 70%)!important;
+  filter:blur(5px)!important
+}
+
+/* thumbnail characters should feel like selection tokens, not screenshots */
+.avatarChoice{
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#f9fdff,#eef9ff 72%,#fff5d8)!important;
+}
+.avatarChoice .original-art,.avatarChoice .avatar-generated{
+  transform:scale(.92)!important;
+  transform-origin:center bottom!important;
+}
+
+/* ---- World Map: actual mini-biomes for each habit ---- */
+.world{
+  position:relative!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#97d9f5 0 28%,#ccebc1 28% 70%,#f0d28c 70% 100%)!important;
+}
+.zone{
+  isolation:isolate!important;
+  overflow:hidden!important;
+  min-height:222px!important;
+  padding:7px 6px 11px!important;
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+}
+.zone:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-3!important;
+  border-radius:inherit!important;
+  filter:none!important;
+  pointer-events:none!important;
+}
+.zone:nth-child(1):before{
+  background:
+    radial-gradient(circle at 80% 20%,#fff6b9 0 7%,transparent 8%),
+    linear-gradient(180deg,#bdeaff 0 56%,#9fdd83 57% 74%,#e6bd74 75% 100%)!important;
+}
+.zone:nth-child(2):before{
+  background:
+    radial-gradient(circle at 18% 19%,rgba(255,255,255,.9) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9dcff 0 58%,#b8acd9 59% 72%,#d9b57d 73% 100%)!important;
+}
+.zone:nth-child(3):before{
+  background:
+    radial-gradient(circle at 75% 18%,rgba(255,255,255,.85) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9efff 0 58%,#8ed5b0 59% 74%,#d6b276 75% 100%)!important;
+}
+.zone:nth-child(4):before{
+  background:
+    radial-gradient(circle at 22% 17%,#fff8c4 0 7%,transparent 8%),
+    linear-gradient(180deg,#c8eeff 0 54%,#a8d98e 55% 74%,#d6ad69 75% 100%)!important;
+}
+.zone:nth-child(5):before{
+  background:
+    radial-gradient(circle at 74% 18%,#fff7ae 0 8%,transparent 9%),
+    linear-gradient(180deg,#c8eeff 0 54%,#b6dc88 55% 74%,#e4bd77 75% 100%)!important;
+}
+.zone:nth-child(6):before{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.85) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e9ff 0 54%,#b9dc9d 55% 74%,#e1bd7d 75% 100%)!important;
+}
+.zone:nth-child(7):before{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(255,255,255,.9) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e2ff 0 54%,#b8d49d 55% 74%,#d8b87e 75% 100%)!important;
+}
+
+.zoneArt{
+  position:relative!important;
+  width:100%!important;
+  height:152px!important;
+  overflow:visible!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  z-index:2!important;
+}
+.zoneArt:before{
+  content:""!important;
+  position:absolute!important;
+  left:19%!important;right:19%!important;bottom:7px!important;
+  height:22px!important;border-radius:50%!important;
+  background:linear-gradient(180deg,#95d777,#67ad59)!important;
+  box-shadow:0 7px 0 #b98c51,0 12px 14px rgba(53,76,55,.16)!important;
+  opacity:.94!important;
+  z-index:0!important;
+}
+.zoneArt img,.zoneArt svg{
+  position:relative!important;
+  z-index:2!important;
+  width:88%!important;height:92%!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 11px 8px rgba(33,61,81,.16))!important;
+}
+.zone b{
+  margin-top:-2px!important;
+  font-size:17px!important;
+  line-height:1.1!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.75)
+}
+.zone small{font-size:14px!important}
+.zone.active{
+  border-color:#ffd04e!important;
+  box-shadow:0 0 0 4px rgba(255,207,69,.36),0 13px 24px rgba(52,77,98,.14)!important;
+  transform:translateY(-2px)!important
+}
+
+/* ---- Battle/Encounter: remove framed-picture look ---- */
+.arena{
+  position:relative!important;
+  overflow:hidden!important; /* fixes green blobs leaking over HUD */
+  border:0!important;
+  outline:0!important;
+  border-radius:30px!important;
+  padding:0!important;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(255,255,255,.90),transparent 24%),
+    radial-gradient(ellipse at 12% 58%,rgba(71,151,82,.75) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 88% 58%,rgba(79,162,86,.72) 0 10%,transparent 11%),
+    linear-gradient(180deg,#9bdcf7 0 45%,#cae9b7 45% 67%,#e7c27b 67% 100%)!important;
+  box-shadow:0 16px 34px rgba(42,76,103,.13),inset 0 1px 0 rgba(255,255,255,.9)!important
+}
+.arena:before{
+  content:""!important;
+  position:absolute!important;
+  left:-8%!important;right:-8%!important;
+  top:auto!important;bottom:30%!important;
+  height:34%!important;
+  background:
+    radial-gradient(ellipse at 13% 82%,#6ab56b 0 15%,transparent 16%),
+    radial-gradient(ellipse at 88% 82%,#70b972 0 16%,transparent 17%)!important;
+  opacity:.62!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.arena:after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;bottom:0!important;height:35%!important;
+  background:linear-gradient(180deg,rgba(232,197,130,.00),rgba(224,183,112,.45))!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle{
+  position:relative!important;
+  z-index:2!important;
+  min-height:300px!important;
+  padding:28px 14px 8px!important;
+  align-items:end!important;
+  gap:8px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important
+}
+.battle:before{
+  content:""!important;
+  position:absolute!important;
+  left:10%!important;right:10%!important;bottom:14px!important;height:28px!important;
+  background:
+    radial-gradient(ellipse at 22% 50%,rgba(44,65,68,.23),transparent 31%),
+    radial-gradient(ellipse at 78% 50%,rgba(44,65,68,.23),transparent 31%)!important;
+  filter:blur(5px)!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle .avatarArt,.battle .bossArt{
+  width:42%!important;
+  height:228px!important;
+  position:relative!important;
+  z-index:3!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  filter:drop-shadow(0 12px 9px rgba(34,57,75,.17))!important
+}
+.battle .avatarArt img{transform:scale(.88)!important;transform-origin:center bottom!important}
+.battle .bossArt img{transform:scale(.96)!important;transform-origin:center bottom!important}
+.battle .avatarArt:after,.battle .bossArt:after{display:none!important}
+.vs{
+  width:auto!important;
+  min-width:48px!important;
+  position:relative!important;
+  z-index:5!important;
+  align-self:center!important;
+  background:transparent!important
+}
+.vs:before{
+  content:"⚡"!important;
+  width:46px!important;height:46px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.90)!important;
+  box-shadow:0 7px 16px rgba(96,76,15,.14),inset 0 0 0 2px rgba(255,204,63,.38)!important;
+  font-size:24px!important
+}
+
+/* battle labels are part of scene, not picture captions */
+.battleName,.avatarName,.bossName{
+  text-shadow:0 1px 0 rgba(255,255,255,.72)!important
+}
+
+/* make all HUD after the arena clean; no decorative pseudo-layers may overlap it */
+.arena ~ *{position:relative!important;z-index:6!important}
+.stats,.quest,.inputRow,.checklist,.progress,.bar{isolation:isolate}
+
+/* mobile */
+@media(max-width:600px){
+  .avatarStage{height:330px!important;min-height:330px!important}
+  .avatarStage img{width:74%!important;height:82%!important}
+  .world{gap:9px!important;padding:9px 7px 18px!important}
+  .zone{min-height:205px!important;padding:6px 4px 10px!important}
+  .zoneArt{height:137px!important}
+  .zoneArt:before{left:20%!important;right:20%!important;height:20px!important}
+  .zone b{font-size:15px!important}
+  .zone small{font-size:13px!important}
+  .battle{min-height:255px!important;padding:18px 7px 5px!important;gap:2px!important}
+  .battle .avatarArt,.battle .bossArt{height:198px!important;width:43%!important}
+  .battle .avatarArt img{transform:scale(.82)!important}
+  .battle .bossArt img{transform:scale(.91)!important}
+  .vs:before{width:42px!important;height:42px!important;font-size:22px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V40</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">✨ Game World Character Redesign</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V41</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">✨ Character + Scene Integration</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -1290,7 +1563,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Cinematic Character System • Unified World";
+if(threeStatus)threeStatus.textContent="✅ Scene Integration • Character + World";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1819,5 +2092,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=400").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=410").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
