@@ -7,12 +7,16 @@
   "badgeFrom": 2,
   "auraFrom": 3,
   "crownFrom": 4,
-  "visualStyle": "premium_soft_3d",
+  "visualStyle": "cinematic_soft_3d_volume",
   "renderProfile": {
-    "version": 30,
+    "version": 31,
     "form": "rounded_volumetric",
     "material": "soft_matte_toy",
-    "keyLight": "upper_left_softbox",
+    "keyLight": [
+      115,
+      70,
+      180
+    ],
     "fillLight": "cool_front",
     "rimLight": "subtle_warm",
     "ambientOcclusion": 0.22,
@@ -23,6 +27,13 @@
     "cheekSoftness": 1.08,
     "groundShadow": 1.15,
     "furSoftness": 1.12,
-    "silhouetteDepth": 1.18
+    "silhouetteDepth": 1.18,
+    "renderer": "svg_specular_volume",
+    "lightingModel": "point_specular_plus_ambient",
+    "surfaceScale": 4.2,
+    "specularConstant": 0.48,
+    "specularExponent": 18,
+    "groundContactShadow": true,
+    "radialEyeShader": true
   }
 }
