@@ -6,5 +6,23 @@
   "eyes": "glossy",
   "badgeFrom": 2,
   "auraFrom": 3,
-  "crownFrom": 4
+  "crownFrom": 4,
+  "visualStyle": "premium_soft_3d",
+  "renderProfile": {
+    "version": 30,
+    "form": "rounded_volumetric",
+    "material": "soft_matte_toy",
+    "keyLight": "upper_left_softbox",
+    "fillLight": "cool_front",
+    "rimLight": "subtle_warm",
+    "ambientOcclusion": 0.22,
+    "specular": 0.16,
+    "roughness": 0.72,
+    "depth": 1.18,
+    "eyeGloss": 1.16,
+    "cheekSoftness": 1.08,
+    "groundShadow": 1.15,
+    "furSoftness": 1.12,
+    "silhouetteDepth": 1.18
+  }
 }
