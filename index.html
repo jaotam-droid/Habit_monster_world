@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V39 Character System Overhaul • Cinematic 3D World";font-weight:800}
+.characterQualityNote:after{content:" • V40 Game World Character Redesign";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V39 Cinematic Character System";font-weight:900}
+.characterQualityNote:after{content:" • V40 Game World Character Redesign";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -688,12 +688,42 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 }
 </style>
 
+
+<style id="v40-game-world-redesign">
+.brandLine{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brandLine h1{margin:0!important}
+.buildBadge{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:34px;padding:0 13px;border-radius:999px;font-size:16px;font-weight:950;letter-spacing:.4px;color:#fff;background:linear-gradient(135deg,#6f63f1,#4779e8);box-shadow:0 8px 18px rgba(78,91,220,.24),inset 0 1px 0 rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.7)}
+.worldIntro{background:radial-gradient(circle at 85% 20%,rgba(255,221,116,.35),transparent 25%),linear-gradient(135deg,#f6fbff,#edf0ff 55%,#fff7df)!important;border:1px solid rgba(255,255,255,.95)!important}
+.worldIntro h2{font-size:25px!important}
+.characterQualityNote{background:rgba(255,255,255,.70)!important;border:1px solid rgba(147,186,218,.25)!important}
+.avatarStudio{align-items:start!important}
+.avatarStage{border-radius:34px!important;background:radial-gradient(circle at 50% 19%,rgba(255,255,255,.98) 0 16%,rgba(255,255,255,.54) 17% 37%,transparent 38%),radial-gradient(ellipse at 50% 91%,#9fd991 0 18%,#74b964 19% 27%,#c49b5d 28% 31%,transparent 32%),linear-gradient(180deg,#aee6ff 0 50%,#dff3d3 50% 72%,#f7dda5 72% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.30),0 18px 36px rgba(39,75,103,.16)!important}
+.avatarStage:before{content:"";position:absolute;left:15%;right:15%;bottom:6.5%;height:17px;border-radius:50%;background:radial-gradient(ellipse,rgba(37,63,78,.24),transparent 72%);filter:blur(5px);z-index:0}
+.avatarStage img{position:relative;z-index:2}
+.world{padding:18px 14px 24px!important;border-radius:34px!important;background:radial-gradient(circle at 12% 10%,rgba(255,255,255,.74),transparent 17%),radial-gradient(circle at 84% 18%,rgba(255,255,255,.70),transparent 19%),linear-gradient(180deg,#8fd7f6 0 35%,#c9e9be 35% 72%,#f1d58e 72% 100%)!important;box-shadow:inset 0 0 75px rgba(255,255,255,.30),0 18px 36px rgba(48,83,107,.10)!important}
+.zone{overflow:visible!important;background:rgba(255,255,255,.45)!important;backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 12px 22px rgba(45,76,99,.09),inset 0 1px 0 rgba(255,255,255,.92)!important}
+.zoneArt{height:170px!important}
+.zoneArt:before{left:16%!important;right:16%!important;bottom:5px!important;height:27px!important;background:linear-gradient(180deg,#93d879,#67b358)!important;border-radius:50%!important;box-shadow:0 9px 0 #b89155,0 12px 15px rgba(62,77,59,.18)!important}
+.zoneArt img{filter:drop-shadow(0 12px 9px rgba(35,64,83,.14))!important}
+.zone b,.zone small{position:relative;z-index:4}
+.zone.active{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,244,203,.80))!important;border-color:#ffd04d!important;box-shadow:0 0 0 4px rgba(255,205,63,.30),0 15px 28px rgba(46,78,101,.14)!important}
+.arena{border-radius:34px!important;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.88),transparent 22%),linear-gradient(180deg,#91d9f8 0 40%,#c8e8b7 40% 62%,#e5bd79 62% 100%)!important}
+.arena:before{content:"";position:absolute!important;left:0!important;right:0!important;top:34%!important;height:34%!important;background:radial-gradient(ellipse at 12% 66%,#5cab61 0 13%,transparent 14%),radial-gradient(ellipse at 88% 68%,#67b86a 0 14%,transparent 15%),linear-gradient(180deg,transparent 0 64%,rgba(91,143,79,.18) 65% 100%)!important;opacity:.72!important;pointer-events:none}
+.battle{position:relative!important;padding-top:24px!important;min-height:315px!important;align-items:end!important}
+.battle:before{content:"";position:absolute;left:8%;right:8%;bottom:24px;height:42px;border-radius:50%;background:radial-gradient(ellipse,rgba(55,76,73,.20),transparent 68%);filter:blur(7px);pointer-events:none}
+.battle .avatarArt,.battle .bossArt{height:250px!important;position:relative;z-index:2}
+.battle .avatarArt img,.battle .bossArt img{filter:drop-shadow(0 15px 10px rgba(40,64,80,.18))!important}
+.vs{position:relative!important;z-index:3!important;align-self:center!important}
+.vs:before{content:"⚡";display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.88);font-size:25px!important;box-shadow:0 8px 18px rgba(107,82,13,.16),inset 0 0 0 2px rgba(255,205,64,.35)}
+@media(max-width:600px){.brandLine{gap:7px}.buildBadge{min-width:48px;height:30px;font-size:14px;padding:0 10px}.world{padding:10px 8px 20px!important}.zone{min-height:216px!important}.zoneArt{height:148px!important}.battle{min-height:280px!important;padding-top:16px!important}.battle .avatarArt,.battle .bossArt{height:222px!important}.worldIntro{padding:13px!important}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">✨ Cinematic 3D Adventure • Character System V39</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V40</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">✨ Game World Character Redesign</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -719,7 +749,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V26.8 ยกระดับ Character Art ทั้งชุด: สัดส่วน chibi นุ่มขึ้น ใบหน้ามีมิติ ตาไม่โปน ผมเป็นทรงต่อเนื่อง เสื้อผ้าและรองเท้าดูเป็นชิ้นงาน 3D มากขึ้น พร้อม silhouette เฉพาะของ Monster / Pet โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card worldIntro"><h2>✨ Adventure World</h2><div class="story">เลือกนักผจญภัยของคุณ แล้วออกไปฝึกนิสัยกับ Monster แต่ละด่านในโลกเดียวกัน</div><div class="characterQualityNote">ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน ไม่ใช่รูปภาพแยกชิ้น</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -1789,5 +1819,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=390").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=400").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
