@@ -1,14 +1,2 @@
-Habit Monster World V32 — CHARACTER PROPORTION PASS
-
-ฐาน: V31 TRUE VOLUME RENDER
-
-ปรับจากภาพทดสอบ V31:
-• ลดขนาดตาและปรับระยะตาให้เป็นธรรมชาติกว่าเดิม
-• Avatar: ลดความกลมของศีรษะ/ลำตัวและปรับสัดส่วนให้สมดุล
-• Monster / Pet: ลดความเป็น icon/sticker และเพิ่ม volume
-• Renderer เพิ่ม diffuse lighting + specular lighting
-• Battle mobile: ลดขนาดตัวละคร, เพิ่ม safe frame และเว้นชื่อไม่ให้ชนกรอบ
-• models ทุกไฟล์อัปเดต renderProfile V32
-• game logic / save / progression เดิมทั้งหมด
-
-อัป GitHub ทับทั้งหมด รวม models/ ด้วย
+Habit Monster World V33 — PREMIUM CHARACTER REDESIGN
+Upload the entire folder contents and preserve models/. Existing game logic/save data are retained. V33 removes V32 black contour artifacts and uses clean premium character rendering with more distinct monster silhouettes.
