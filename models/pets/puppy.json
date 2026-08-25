@@ -7,9 +7,9 @@
   "badgeFrom": 2,
   "auraFrom": 3,
   "crownFrom": 4,
-  "visualStyle": "cinematic_soft_3d_balanced",
+  "visualStyle": "premium_game_character_soft3d",
   "renderProfile": {
-    "version": 32,
+    "version": 34,
     "form": "rounded_volumetric",
     "material": "soft_matte_toy",
     "keyLight": [
@@ -28,7 +28,7 @@
     "groundShadow": 1.15,
     "furSoftness": 1.12,
     "silhouetteDepth": 1.18,
-    "renderer": "svg_diffuse_specular_volume",
+    "renderer": "clean_gradient_soft3d",
     "lightingModel": "point_specular_plus_ambient",
     "surfaceScale": 4.2,
     "specularConstant": 0.48,
@@ -40,6 +40,10 @@
     "faceScale": 0.94,
     "bodyScale": 0.95,
     "diffuseLighting": true,
-    "mobileBattleSafeFrame": true
+    "mobileBattleSafeFrame": true,
+    "artDirection": "premium_family_animation_game",
+    "noBlackOutline": true,
+    "mobileSafeFrame": true,
+    "finalMajorRedesign": true
   }
 }
