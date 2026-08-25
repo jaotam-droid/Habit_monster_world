@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V38 Game Visual Overhaul • Integrated 3D World";font-weight:800}
+.characterQualityNote:after{content:" • V39 Character System Overhaul • Cinematic 3D World";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -594,12 +594,106 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 @media(max-width:600px){.wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}.header .sub{font-size:16px!important}.status{display:grid!important;grid-template-columns:1fr 1fr!important}.status .pill:first-child{grid-column:1/-1}.nav{grid-template-columns:repeat(4,1fr)!important;gap:7px!important}.nav button{min-height:72px!important;font-size:14px!important;padding:8px 4px!important}.avatarStudio{grid-template-columns:1fr!important}.avatarStage{width:min(360px,90vw)!important;height:390px!important}.world{grid-template-columns:repeat(2,1fr)!important;padding:8px!important;gap:10px!important}.zone{min-height:188px!important;padding:9px 5px!important}.zoneArt{width:132px!important;height:132px!important}.battle{min-height:250px!important;gap:4px!important}.battle .avatarArt,.battle .bossArt{height:210px!important}.card{border-radius:24px!important}}
 </style>
 
+
+<style id="v39-character-system-overhaul">
+/* === V39: character-first game presentation === */
+.header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
+.characterQualityNote:after{content:" • V39 Cinematic Character System";font-weight:900}
+
+.avatarStage{
+  height:430px!important;
+  background:
+    radial-gradient(circle at 50% 27%,rgba(255,255,255,.98) 0 18%,rgba(255,255,255,.44) 19% 39%,transparent 40%),
+    radial-gradient(ellipse at 50% 94%,#bfe9c5 0 20%,#e9f7d9 21% 35%,transparent 36%),
+    linear-gradient(155deg,#d9f4ff 0,#e8e8ff 54%,#fff0cd 100%)!important;
+}
+.avatarStage img{width:92%!important;height:96%!important;object-fit:contain!important;object-position:center bottom!important}
+
+.world{
+  background:
+    radial-gradient(circle at 16% 9%,rgba(255,255,255,.78),transparent 19%),
+    radial-gradient(circle at 82% 13%,rgba(255,255,255,.70),transparent 20%),
+    linear-gradient(180deg,#9eddf9 0 34%,#d8f0d1 34% 72%,#f8df9d 72% 100%)!important;
+  gap:14px!important;
+}
+.zone{
+  min-height:232px!important;
+  border:0!important;
+  background:rgba(255,255,255,.70)!important;
+  backdrop-filter:blur(8px);
+  box-shadow:0 13px 26px rgba(43,76,100,.10),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+.zone:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:58px;height:32px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,91,80,.19),transparent 70%);
+  filter:blur(6px);pointer-events:none;
+}
+.zoneArt{
+  width:100%!important;height:165px!important;
+  background:transparent!important;
+  box-shadow:none!important;border-radius:0!important;
+  overflow:visible!important;
+}
+.zoneArt:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:7px;height:34px;border-radius:50%;
+  background:linear-gradient(180deg,#a8e17a,#73b85d);
+  box-shadow:0 10px 0 #c89c59,0 14px 16px rgba(61,86,71,.18);
+  opacity:.78;
+}
+.zoneArt:after{display:none!important}
+.zoneArt img{position:relative!important;z-index:2!important;width:92%!important;height:94%!important;object-fit:contain!important}
+
+.zone.active{
+  transform:translateY(-3px)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,247,214,.88))!important;
+  box-shadow:0 0 0 4px rgba(255,202,69,.78),0 17px 30px rgba(46,78,104,.15)!important;
+}
+
+.arena{
+  position:relative!important;
+  border:2px solid rgba(255,255,255,.95)!important;
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,255,255,.88),transparent 26%),
+    linear-gradient(180deg,#8ed8f8 0 44%,#c8ebbb 44% 67%,#e9c888 67% 100%)!important;
+  box-shadow:inset 0 0 80px rgba(255,255,255,.28),0 16px 34px rgba(53,87,111,.14)!important;
+}
+.arena:before{
+  content:"";position:absolute;left:0;right:0;top:34%;height:33%;
+  background:
+    radial-gradient(ellipse at 18% 45%,#72be6e 0 12%,transparent 13%),
+    radial-gradient(ellipse at 83% 54%,#79c474 0 13%,transparent 14%);
+  opacity:.55;pointer-events:none;
+}
+.battle{min-height:295px!important}
+.battle .avatarArt,.battle .bossArt{height:240px!important}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important
+}
+.battle .avatarArt:after,.battle .bossArt:after{
+  left:20%!important;right:20%!important;bottom:2px!important;height:20px!important;
+  background:radial-gradient(ellipse,rgba(38,63,79,.23),transparent 70%)!important
+}
+.vs:before{content:"⚡";font-size:26px}.vs{font-size:0!important}
+
+@media(max-width:600px){
+ .avatarStage{height:380px!important}
+ .world{gap:10px!important}
+ .zone{min-height:205px!important;padding:7px 5px!important}
+ .zoneArt{height:142px!important;width:100%!important}
+ .zoneArt:before{left:14%;right:14%;height:28px;bottom:4px}
+ .zone b{font-size:16px!important;line-height:1.1!important}
+ .zone small{font-size:14px!important}
+ .battle{min-height:265px!important}
+ .battle .avatarArt,.battle .bossArt{height:215px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
 <div><h1>🌍 Habit Monster World</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">✨ Adventure Edition • 3D Game World</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="status"><span class="pill" id="threeStatus">✨ Cinematic 3D Adventure • Character System V39</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -932,46 +1026,96 @@ function monsterArtURI(kind,level=1){
    <ellipse cx="166" cy="325" rx="30" ry="22" fill="#5032ae"/><ellipse cx="254" cy="325" rx="30" ry="22" fill="#5032ae"/>${star}`,defs);
 }
 
+
 function avatarArtURI(p){
  const id=(p&&p.preset)||"girlA";
- const cfg={
-  boyA:["#3bb7ee","#1780b9","#7a4c34","short","boy"],
-  boyB:["#56d39f","#27966a","#77452d","curly","boy"],
-  boyC:["#f6a84d","#d87723","#6e402d","spiky","boy"],
-  girlA:["#f695c2","#cf568d","#71432f","bob","girl"],
-  girlB:["#9e8cf2","#6b57cc","#74452e","pony","girl"],
-  girlC:["#f07c88","#c45062","#6e412e","long","girl"]
- }[id]||["#f695c2","#cf568d","#71432f","bob","girl"];
- const [shirt,dark,hair,style,gender]=cfg;
- const skin="#ffd3b7";
- const defs=`<radialGradient id="skin" cx=".35" cy=".18" r=".9"><stop stop-color="#fff0dd"/><stop offset=".38" stop-color="${skin}"/><stop offset="1" stop-color="#e8a986"/></radialGradient>
- <radialGradient id="shirt" cx=".30" cy=".14" r=".9"><stop stop-color="#fff" stop-opacity=".55"/><stop offset=".18" stop-color="${shirt}"/><stop offset="1" stop-color="${dark}"/></radialGradient>
- <radialGradient id="hair" cx=".30" cy=".14" r=".9"><stop stop-color="#b87650"/><stop offset=".5" stop-color="${hair}"/><stop offset="1" stop-color="#47291e"/></radialGradient>`;
- let back="",front="";
- if(style==="long") back=`<path d="M124 173q15-104 86-104 76 0 91 106v164q-20 32-48 39V183h-86v195q-29-8-48-40z" fill="url(#hair)"/>`;
- if(style==="pony") back=`<ellipse cx="295" cy="189" rx="39" ry="68" fill="url(#hair)"/><circle cx="284" cy="138" r="15" fill="#f7a7c5"/>`;
- if(style==="bob") back=`<path d="M126 176q16-101 84-101 74 0 88 105v92q-31 38-62 42v-116h-55v116q-34-5-60-40z" fill="url(#hair)"/>`;
- if(style==="curly") front=`<g fill="url(#hair)"><circle cx="153" cy="118" r="28"/><circle cx="181" cy="101" r="31"/><circle cx="213" cy="96" r="33"/><circle cx="246" cy="103" r="30"/><circle cx="272" cy="122" r="26"/></g>`;
- else if(style==="spiky") front=`<path d="M133 147l24-66 30 29 24-55 31 55 36-32 10 69q-74-26-155 0z" fill="url(#hair)"/>`;
- else front=`<path d="M132 145q20-76 78-76 62 0 79 79v30q-78-28-157 1z" fill="url(#hair)"/>`;
- return v37Svg(`${back}
-   <ellipse cx="210" cy="182" rx="87" ry="92" fill="url(#skin)"/>
-   <ellipse cx="177" cy="123" rx="47" ry="22" fill="#fff" opacity=".26" transform="rotate(-18 177 123)"/>
-   ${front}
-   ${v37Eye(175,184,.78)}${v37Eye(245,184,.78)}
-   ${gender==="girl"?`<path d="M148 164l-13-8m15 17-14 2m136-11 13-8m-15 17 14 2" stroke="#5b4652" stroke-width="4" stroke-linecap="round"/>`:""}
-   ${v37Cheeks(225,"#ff9db2")}<ellipse cx="210" cy="214" rx="9" ry="6" fill="#c8896d" opacity=".55"/>${v37Mouth(210,237,48)}
-   <rect x="190" y="263" width="40" height="17" rx="8" fill="url(#skin)"/>
-   <ellipse cx="210" cy="315" rx="69" ry="62" fill="url(#shirt)"/>
-   <path d="M166 284q44 29 88 0" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" opacity=".92"/>
-   ${gender==="girl"?`<path d="M150 325q60 25 120 0l-9 35h-102z" fill="${dark}"/>`:`<path d="M151 326h118l-8 37h-38v-28h-26v28h-38z" fill="${dark}"/>`}
-   <ellipse cx="143" cy="298" rx="22" ry="25" fill="${shirt}"/><rect x="132" y="299" width="23" height="58" rx="12" fill="url(#skin)"/>
-   <ellipse cx="277" cy="298" rx="22" ry="25" fill="${shirt}"/><rect x="265" y="299" width="23" height="58" rx="12" fill="url(#skin)"/>
-   <rect x="179" y="352" width="20" height="27" rx="10" fill="url(#skin)"/><rect x="221" y="352" width="20" height="27" rx="10" fill="url(#skin)"/>
-   <ellipse cx="177" cy="386" rx="31" ry="18" fill="${dark}"/><ellipse cx="243" cy="386" rx="31" ry="18" fill="${dark}"/>
-   <ellipse cx="168" cy="379" rx="12" ry="5" fill="#fff" opacity=".32"/><ellipse cx="234" cy="379" rx="12" ry="5" fill="#fff" opacity=".32"/>
-   <path d="M159 267q51-28 102 0" stroke="#fff" stroke-width="3" opacity=".3"/>
-   <g><ellipse cx="210" cy="76" rx="61" ry="13" fill="#48aef0"/><path d="M172 43h76l12 34h-100z" fill="#6ec6f1"/><ellipse cx="197" cy="52" rx="23" ry="6" fill="#fff" opacity=".27"/></g>
+ const C={
+  boyA:{shirt:"#39b8ef",dark:"#197db8",hair:"#68402f",style:"swoop",sex:"b",accent:"#7fdcff"},
+  boyB:{shirt:"#52d29d",dark:"#238f66",hair:"#6a402f",style:"curl",sex:"b",accent:"#9cf0c8"},
+  boyC:{shirt:"#f7a446",dark:"#d36c24",hair:"#623c2c",style:"spike",sex:"b",accent:"#ffd089"},
+  girlA:{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"},
+  girlB:{shirt:"#9583ed",dark:"#6251c8",hair:"#6d432f",style:"pony",sex:"g",accent:"#c9c1ff"},
+  girlC:{shirt:"#ed7984",dark:"#bc4654",hair:"#63402f",style:"long",sex:"g",accent:"#ffb8c0"}
+ }[id]||{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"};
+
+ const defs=`
+ <radialGradient id="skin3" cx=".33" cy=".18" r=".88">
+  <stop stop-color="#fff7ed"/><stop offset=".32" stop-color="#ffd8bd"/><stop offset=".72" stop-color="#efb28f"/><stop offset="1" stop-color="#d89272"/>
+ </radialGradient>
+ <radialGradient id="hair3" cx=".28" cy=".10" r=".95">
+  <stop stop-color="#b97b57"/><stop offset=".30" stop-color="${C.hair}"/><stop offset=".82" stop-color="#4b2a20"/><stop offset="1" stop-color="#2c1814"/>
+ </radialGradient>
+ <radialGradient id="cloth3" cx=".30" cy=".10" r=".95">
+  <stop stop-color="#ffffff" stop-opacity=".72"/><stop offset=".18" stop-color="${C.accent}"/><stop offset=".46" stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </radialGradient>
+ <linearGradient id="shoe3" x1="0" y1="0" x2="0" y2="1">
+  <stop stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </linearGradient>
+ <filter id="innerGlow"><feGaussianBlur stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="arithmetic" k2="1" k3="-0.5"/></filter>`;
+
+ let hairBack="", hairFront="";
+ if(C.style==="bob"){
+   hairBack=`<path d="M119 182Q126 76 210 69Q302 76 304 188L292 287Q263 315 238 320V184H179V320Q147 311 122 284Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M131 149Q153 79 210 77Q274 80 291 153Q253 124 212 127Q169 123 131 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="pony"){
+   hairBack=`<ellipse cx="302" cy="195" rx="44" ry="74" fill="url(#hair3)"/><circle cx="288" cy="131" r="14" fill="${C.accent}"/>`;
+   hairFront=`<path d="M132 150Q154 80 211 77Q269 79 287 149Q257 125 217 126Q172 123 132 150Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="long"){
+   hairBack=`<path d="M119 179Q130 73 210 68Q298 74 304 182V337Q280 361 250 369V184H169V369Q140 360 117 337Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M130 149Q154 78 211 76Q271 78 290 151Q253 126 214 126Q169 123 130 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="curl"){
+   hairBack="";
+   hairFront=`<g fill="url(#hair3)">
+    <circle cx="151" cy="116" r="29"/><circle cx="178" cy="98" r="33"/><circle cx="210" cy="94" r="35"/>
+    <circle cx="244" cy="100" r="32"/><circle cx="270" cy="119" r="28"/>
+    <circle cx="144" cy="139" r="24"/><circle cx="278" cy="140" r="24"/>
+   </g>`;
+ } else if(C.style==="spike"){
+   hairFront=`<path d="M128 148L149 84L181 111L210 56L238 111L276 81L294 149Q253 126 211 127Q169 124 128 148Z" fill="url(#hair3)"/>`;
+ } else {
+   hairFront=`<path d="M126 151Q144 84 196 74Q247 64 291 133L267 127Q237 109 210 114Q166 111 126 151Z" fill="url(#hair3)"/>`;
+ }
+
+ return v37Svg(`
+  ${hairBack}
+  <!-- neck / ears -->
+  <ellipse cx="122" cy="190" rx="25" ry="31" fill="url(#skin3)"/><ellipse cx="298" cy="190" rx="25" ry="31" fill="url(#skin3)"/>
+  <rect x="190" y="252" width="40" height="35" rx="16" fill="url(#skin3)"/>
+  <!-- head -->
+  <ellipse cx="210" cy="183" rx="82" ry="91" fill="url(#skin3)"/>
+  <ellipse cx="174" cy="123" rx="43" ry="20" fill="#fff" opacity=".34" transform="rotate(-18 174 123)"/>
+  ${hairFront}
+  <!-- brows -->
+  <path d="M151 160Q173 149 191 159" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <path d="M229 159Q249 149 269 160" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <!-- eyes -->
+  ${v37Eye(174,188,.72)}${v37Eye(246,188,.72)}
+  ${C.sex==="g"?`<path d="M147 178l-12-6m13 14-13 2m139-10 12-6m-13 14 13 2" stroke="#533a45" stroke-width="4" stroke-linecap="round"/>`:""}
+  ${v37Cheeks(229,"#ff95aa")}
+  <ellipse cx="210" cy="216" rx="9" ry="6" fill="#c98568" opacity=".55"/>
+  ${v37Mouth(210,239,47)}
+  <!-- torso -->
+  <ellipse cx="210" cy="310" rx="70" ry="60" fill="url(#cloth3)"/>
+  <ellipse cx="180" cy="276" rx="34" ry="12" fill="#fff" opacity=".24" transform="rotate(-18 180 276)"/>
+  <path d="M164 279Q210 308 256 279" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".92"/>
+  <!-- shoulders / arms -->
+  <ellipse cx="145" cy="295" rx="25" ry="27" fill="url(#cloth3)"/><ellipse cx="275" cy="295" rx="25" ry="27" fill="url(#cloth3)"/>
+  <rect x="132" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/><rect x="263" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/>
+  <ellipse cx="144" cy="350" rx="14" ry="13" fill="url(#skin3)"/><ellipse cx="276" cy="350" rx="14" ry="13" fill="url(#skin3)"/>
+  <!-- lower body -->
+  ${C.sex==="g"
+    ? `<path d="M154 329Q210 348 266 329L257 366H163Z" fill="${C.dark}" opacity=".98"/>`
+    : `<path d="M154 327H266L259 366H225V338H195V366H161Z" fill="${C.dark}" opacity=".98"/>`}
+  <!-- legs -->
+  <rect x="177" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/><rect x="220" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/>
+  <!-- shoes -->
+  <ellipse cx="174" cy="387" rx="31" ry="18" fill="url(#shoe3)"/><ellipse cx="246" cy="387" rx="31" ry="18" fill="url(#shoe3)"/>
+  <ellipse cx="166" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/><ellipse cx="238" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/>
+  <!-- explorer cap -->
+  <ellipse cx="210" cy="89" rx="66" ry="14" fill="#3aa9e5"/>
+  <path d="M169 48H251L264 88H156Z" fill="#66c5ef"/><ellipse cx="198" cy="57" rx="25" ry="7" fill="#fff" opacity=".32"/>
+  <!-- cinematic rim -->
+  <path d="M145 130Q120 190 145 248" fill="none" stroke="#fff" stroke-width="4" opacity=".26"/>
  `,defs);
 }
 
@@ -1116,7 +1260,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Final Character Polish • Unified Style";
+if(threeStatus)threeStatus.textContent="✅ Cinematic Character System • Unified World";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1645,5 +1789,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=380").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=390").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
