@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V37 INTEGRATED 3D CHARACTERS</title>
+<title>Habit Monster World</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V37 Integrated 3D Characters • No Pasted Pictures";font-weight:800}
+.characterQualityNote:after{content:" • V38 Game Visual Overhaul • Integrated 3D World";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -570,12 +570,36 @@ body{
 }
 </style>
 
+
+<style id="v38-overhaul">
+:root{--v38blue:#78c9f4;--v38ink:#243b5a;--v38cream:#fff8df;--v38glass:rgba(255,255,255,.88)}
+body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed!important}
+.wrap{max-width:980px!important}
+.header{position:relative;overflow:hidden;padding:18px 20px!important;border-radius:28px!important;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(236,246,255,.91))!important;box-shadow:0 16px 38px rgba(44,92,130,.15)!important;border:1px solid rgba(255,255,255,.9)!important}
+.header:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;top:-110px;background:radial-gradient(circle,rgba(143,121,255,.22),transparent 68%);pointer-events:none}
+.header h1{font-size:clamp(27px,5.4vw,46px)!important;line-height:1.02!important;letter-spacing:-1.2px!important;margin:0!important;color:var(--v38ink)!important}
+.header .sub{font-size:clamp(15px,3.4vw,21px)!important;color:#6c5be7!important;font-weight:800!important;margin-top:7px}
+.status{gap:8px!important;margin-top:14px!important}.pill{box-shadow:0 7px 18px rgba(50,80,110,.08)!important;border:1px solid rgba(120,180,220,.16)!important}
+.card{border-radius:28px!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:0 14px 34px rgba(49,83,108,.10)!important}
+.nav button{border-radius:20px!important;min-height:82px!important;box-shadow:inset 0 1px 0 #fff,0 7px 16px rgba(49,83,108,.06)!important}.nav button.active{transform:translateY(-2px);box-shadow:0 10px 22px rgba(67,151,224,.18)!important}
+#world h2{font-size:clamp(25px,5vw,38px)!important;color:var(--v38ink)}
+.avatarStage{position:relative!important;overflow:hidden!important;background:radial-gradient(circle at 50% 20%,#fff 0 15%,#eaf8ff 40%,#e7e3ff 72%,#ffecc9 100%)!important;border:2px solid rgba(255,255,255,.95)!important;box-shadow:inset 0 0 50px rgba(255,255,255,.9),0 18px 34px rgba(58,85,119,.16)!important}
+.avatarStage:before{content:"";position:absolute;inset:auto 8% 5% 8%;height:24%;border-radius:50%;background:radial-gradient(ellipse,rgba(101,128,156,.16),transparent 68%);filter:blur(7px);pointer-events:none}
+.avatarChoice{border-radius:22px!important;background:linear-gradient(180deg,#fff,#f4fbff 70%,#fff7df)!important;box-shadow:0 7px 18px rgba(55,84,112,.07)!important}.avatarChoice.on{box-shadow:0 0 0 4px #ffd45c,0 10px 22px rgba(255,190,55,.18)!important}
+.world{position:relative!important;padding:12px!important;border-radius:30px!important;background:linear-gradient(180deg,#cceeff 0 42%,#dff3d1 42% 70%,#fff1c8 70% 100%)!important;overflow:hidden!important}.world:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 16%,rgba(255,255,255,.75),transparent 17%),radial-gradient(circle at 80% 23%,rgba(255,255,255,.65),transparent 19%);pointer-events:none}
+.zone{position:relative!important;z-index:1;border-radius:26px!important;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,250,228,.94))!important;border:2px solid rgba(195,222,239,.88)!important;box-shadow:0 10px 24px rgba(51,84,111,.10)!important}.zone.active{border-color:#ffc84d!important;box-shadow:0 0 0 4px rgba(255,211,84,.28),0 14px 28px rgba(60,91,119,.14)!important;transform:translateY(-2px)}
+.zoneArt{background:radial-gradient(circle at 50% 27%,#fff 0 14%,rgba(234,248,255,.95) 55%,rgba(255,242,202,.86) 100%)!important;border-radius:24px!important;overflow:hidden!important;box-shadow:inset 0 0 24px rgba(255,255,255,.9)!important}
+.arena{border-radius:30px!important;overflow:hidden!important;background:linear-gradient(180deg,#aee3ff 0 42%,#d7f0c6 42% 64%,#f8dba4 64% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.32)!important}.arena:after{content:"";position:absolute;left:5%;right:5%;bottom:29%;height:1px;background:rgba(255,255,255,.7);box-shadow:0 18px 45px 12px rgba(95,137,98,.12);pointer-events:none}.battle{position:relative!important;z-index:2!important;min-height:270px!important;padding:12px 8px 0!important}.battle .avatarArt,.battle .bossArt{filter:drop-shadow(0 14px 12px rgba(37,60,82,.16))!important}.vs{font-size:28px!important;filter:drop-shadow(0 5px 5px rgba(255,174,0,.18))}
+#petFollower{border-radius:22px!important;filter:drop-shadow(0 8px 10px rgba(46,76,101,.12))}
+@media(max-width:600px){.wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}.header .sub{font-size:16px!important}.status{display:grid!important;grid-template-columns:1fr 1fr!important}.status .pill:first-child{grid-column:1/-1}.nav{grid-template-columns:repeat(4,1fr)!important;gap:7px!important}.nav button{min-height:72px!important;font-size:14px!important;padding:8px 4px!important}.avatarStudio{grid-template-columns:1fr!important}.avatarStage{width:min(360px,90vw)!important;height:390px!important}.world{grid-template-columns:repeat(2,1fr)!important;padding:8px!important;gap:10px!important}.zone{min-height:188px!important;padding:9px 5px!important}.zoneArt{width:132px!important;height:132px!important}.battle{min-height:250px!important;gap:4px!important}.battle .avatarArt,.battle .bossArt{height:210px!important}.card{border-radius:24px!important}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V37 INTEGRATED 3D CHARACTERS</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">✅ Integrated 3D Characters • Transparent In-Scene Render</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div><h1>🌍 Habit Monster World</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">✨ Adventure Edition • 3D Game World</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -1348,8 +1372,8 @@ function avatarFrom(el){
  const pc=palette[variant]||palette.boya, shirt=pc[0], lower=pc[1], trim=pc[2];
 
  // cohesive chibi body
- let chest=sphere(.40,shirt,[.92,1.10,.70]);chest.position.set(0,-.38,0);g.add(chest);
- let tummy=sphere(.31,shirt,[1.06,.88,.74]);tummy.position.set(0,-.60,.09);g.add(tummy);
+ let chest=sphere(.43,shirt,[.98,1.18,.76]);chest.position.set(0,-.35,0);g.add(chest);
+ let tummy=sphere(.33,shirt,[1.08,.94,.78]);tummy.position.set(0,-.60,.08);g.add(tummy);
  let waist=sphere(.29,lower,[1.10,.48,.72]);waist.position.set(0,-.84,.02);g.add(waist);
 
  let collar=new THREE.Mesh(new THREE.TorusGeometry(.245,.034,12,40,Math.PI),mat(trim,.48));
@@ -1357,8 +1381,8 @@ function avatarFrom(el){
 
  // head slightly pear-shaped instead of perfect ball
  let neck=cyl(.105,.10,skin);neck.position.y=-.01;g.add(neck);
- let head=sphere(.62,skin,[1.00,.97,.93]);head.position.set(0,.70,0);g.add(head);
- let cheekBase=sphere(.50,skin,[1.06,.84,.90]);cheekBase.position.set(0,.52,.02);g.add(cheekBase);
+ let head=sphere(.56,skin,[1.00,.99,.95]);head.position.set(0,.66,0);g.add(head);
+ let cheekBase=sphere(.46,skin,[1.07,.86,.91]);cheekBase.position.set(0,.50,.02);g.add(cheekBase);
 
  // ears
  for(const x of[-.63,.63]){
@@ -1367,8 +1391,8 @@ function avatarFrom(el){
  }
 
  // eyes: smaller, inset, expressive
- const ey=.76, ez=.625;
- g.add(irisEye(-.205,ey,ez,.128,-.004), irisEye(.205,ey,ez,.128,.004));
+ const ey=.72, ez=.575;
+ g.add(irisEye(-.19,ey,ez,.108,-.004), irisEye(.19,ey,ez,.108,.004));
  // V27.1: eyelids removed to keep the avatar eyes open and clean on mobile
 
 
@@ -1391,7 +1415,7 @@ function avatarFrom(el){
        softLeg(.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim));
 
  // hair cap integrated with head
- let cap=sphere(.665,hair,[1.01,.57,.94]);cap.position.set(0,1.075,-.025);g.add(cap);
+ let cap=sphere(.605,hair,[1.01,.58,.94]);cap.position.set(0,1.015,-.025);g.add(cap);
 
  if(variant==="boya"){
    [-.38,-.20,-.02,.16,.34].forEach((x,i)=>g.add(hairLock(x,1.00+(i%2)*.015,.54,hair,.82,1.02,(i-2)*.06)));
@@ -1446,7 +1470,7 @@ function avatarFrom(el){
 
  g.userData.characterType="avatar";
  g.userData.variant=variant;
- g.scale.set(.76,.76,.76);
+ g.scale.set(.82,.82,.82);
  return g
 }
 
@@ -1621,5 +1645,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=274").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=380").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
