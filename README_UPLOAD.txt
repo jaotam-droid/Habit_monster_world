@@ -1,16 +1,18 @@
-Habit Monster World V27.5.1 — GitHub Cache Fix
+Habit Monster World V27.9 — CHARACTER ART OVERHAUL
 
-UPLOAD / REPLACE THESE AT THE REPOSITORY ROOT:
+รอบนี้เน้น Character Art:
+- เพิ่มมิติแสงและเงาให้ Avatar / Monster / Pet
+- ปรับตา แก้ม และ character framing ให้ดูนุ่มและมีชีวิตขึ้น
+- ปรับการ์ด World Map และ Battle scene
+- เพิ่ม idle animation แบบเบา ๆ
+- คงระบบ save/progression/game logic เดิม
+
+อัป GitHub:
 1. index.html
 2. sw.js
 3. manifest.webmanifest
-4. models/  (keep the complete folder)
 
-After GitHub Pages deploys, open the game once with:
-?v=2751
-at the end of the game URL.
+models เดิมใช้ต่อได้ ถ้าอยู่ครบ
 
-You should see:
-Habit Monster World V27.5.1 GITHUB CACHE FIX
-
-This build keeps the same game save/storage key and game logic.
+หัวเกมหลัง deploy ต้องขึ้น:
+Habit Monster World V27.9 CHARACTER ART OVERHAUL

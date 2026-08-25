@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V27.7 CHARACTER VISUAL UPGRADE</title>
+<title>Habit Monster World V27.9 CHARACTER ART OVERHAUL</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -284,6 +284,117 @@
 .battle .avatar-generated img,.battle .cinematic-monster img{transform:scale(1.04)}
 .avatarChoice.on .cinematic-slot img,.zone.active .cinematic-slot img{filter:drop-shadow(0 13px 16px rgba(62,113,168,.25)) saturate(1.05)}
 .characterQualityNote{border-left:5px solid #78b9ef;padding-left:12px}
+
+/* V27.8 PREMIUM VISUAL POLISH */
+body{
+  background:
+    radial-gradient(circle at 18% 5%,rgba(183,228,255,.65),transparent 28%),
+    radial-gradient(circle at 84% 10%,rgba(255,231,185,.55),transparent 26%),
+    linear-gradient(180deg,#edf8ff 0%,#f9fcff 48%,#fff8e9 100%);
+}
+.card{
+  border:1px solid rgba(255,255,255,.96);
+  box-shadow:0 14px 34px rgba(45,73,104,.12),inset 0 1px 0 rgba(255,255,255,.95);
+}
+.nav button{
+  min-height:64px;
+  background:linear-gradient(180deg,#f7fbff,#e9f2f7);
+  box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(56,87,116,.07);
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.nav button:active{transform:translateY(1px) scale(.98)}
+.zone{
+  background:linear-gradient(180deg,#fff 0%,#fffdf7 100%);
+  box-shadow:0 8px 20px rgba(51,80,108,.07),inset 0 1px 0 #fff;
+  border-color:#dbe8f1;
+}
+.zone.active{
+  background:linear-gradient(180deg,#edf7ff,#f8fbff);
+  box-shadow:0 0 0 3px rgba(107,158,229,.12),0 10px 22px rgba(61,102,151,.12);
+}
+.zoneArt{border-radius:22px;overflow:hidden;filter:saturate(1.06) contrast(1.02)}
+.cinematic-slot img,.zoneArt img{
+  filter:drop-shadow(0 12px 15px rgba(47,74,101,.17)) saturate(1.06) contrast(1.02);
+}
+.avatarArt,.bossArt{border-radius:26px}
+.arena{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.92),transparent 31%),
+    linear-gradient(#caebff 0 50%,#dff3cf 50% 100%);
+  border:1px solid rgba(124,172,205,.22);
+}
+.battle>div:not(.vs){animation:floatV278 3.8s ease-in-out infinite}
+.battle>div:nth-child(3){animation-delay:-1.4s}
+@keyframes floatV278{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.pill{box-shadow:0 7px 18px rgba(49,78,107,.10),inset 0 1px 0 #fff}
+.bigBtn{
+  box-shadow:0 7px 15px rgba(55,84,109,.12),inset 0 1px 0 rgba(255,255,255,.28);
+  transition:transform .12s ease,filter .12s ease;
+}
+.bigBtn:active{transform:scale(.985);filter:brightness(.98)}
+@media(max-width:700px){
+  .zone{min-height:172px;padding:10px 8px}
+  .zoneArt{width:116px;height:116px}
+  .avatarArt{width:168px;height:196px}
+  .bossArt{width:186px;height:198px}
+}
+
+
+/* V27.9 CHARACTER ART OVERHAUL */
+:root{
+  --ink:#263b52;
+  --softBlue:#eaf7ff;
+  --warm:#fff5dd;
+}
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 3%,rgba(162,220,255,.72),transparent 27%),
+    radial-gradient(circle at 88% 8%,rgba(255,225,166,.60),transparent 24%),
+    linear-gradient(180deg,#edf9ff,#fbfdff 48%,#fff8e8);
+}
+.card{
+  border-radius:30px;
+  box-shadow:0 18px 42px rgba(38,67,94,.12), inset 0 1px 0 rgba(255,255,255,.98);
+}
+.avatarArt,.bossArt,.zoneArt{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#fafdff,#fff6df);
+}
+.avatarArt:after,.bossArt:after,.zoneArt:after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 27%,transparent 72%,rgba(255,224,168,.13));
+  mix-blend-mode:screen;
+}
+.avatarArt img,.bossArt img,.zoneArt img{
+  transform:translateZ(0);
+  filter:drop-shadow(0 13px 14px rgba(36,65,88,.18)) saturate(1.08) contrast(1.025);
+}
+.zone{
+  border-radius:28px;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.zone:active{transform:scale(.985)}
+.arena{
+  border-radius:32px;
+  overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 38px rgba(45,77,104,.11);
+}
+.battle{perspective:900px}
+.battle>div:not(.vs){
+  transform-origin:50% 90%;
+  animation:characterIdle279 4s ease-in-out infinite;
+}
+.battle>div:nth-child(3){animation-delay:-1.8s}
+@keyframes characterIdle279{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  45%{transform:translateY(-6px) rotate(-.45deg)}
+  55%{transform:translateY(-6px) rotate(.45deg)}
+}
+
 </style>
 
 <style id="v275-final-polish">
@@ -309,7 +420,7 @@ img,canvas{image-rendering:auto;}
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V27.7 CHARACTER VISUAL UPGRADE</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V27.9 CHARACTER ART OVERHAUL</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -336,7 +447,7 @@ img,canvas{image-rendering:auto;}
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V27.7 Character Visual Upgrade: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V27.9 Character Art Overhaul: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -398,7 +509,7 @@ img,canvas{image-rendering:auto;}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.6;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.9;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -478,33 +589,64 @@ function svgData(svg){
 function artFrame(inner,accent="#7fc7ff"){
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
  <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".48" stop-color="#eef8ff"/><stop offset="1" stop-color="#fff2d5"/></linearGradient>
-  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".92"/><stop offset=".48" stop-color="#ffffff" stop-opacity=".08"/><stop offset="1" stop-color="#9fc7e5" stop-opacity=".16"/></linearGradient>
-  <radialGradient id="spot" cx=".34" cy=".18" r=".82"><stop stop-color="#fff" stop-opacity="1"/><stop offset=".42" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".46"/><stop offset=".5" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient>
-  <filter id="shadow" x="-45%" y="-45%" width="190%" height="205%"><feDropShadow dx="0" dy="15" stdDeviation="13" flood-color="#27445f" flood-opacity=".24"/></filter>
-  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#ffffff"/>
+    <stop offset=".42" stop-color="#eef8ff"/>
+    <stop offset="1" stop-color="#fff1d7"/>
+  </linearGradient>
+  <radialGradient id="halo" cx=".50" cy=".30" r=".62">
+    <stop offset="0" stop-color="#ffffff" stop-opacity=".98"/>
+    <stop offset=".48" stop-color="#ffffff" stop-opacity=".32"/>
+    <stop offset="1" stop-color="${accent}" stop-opacity=".06"/>
+  </radialGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#ffffff" stop-opacity=".98"/>
+    <stop offset=".55" stop-color="#ffffff" stop-opacity=".12"/>
+    <stop offset="1" stop-color="#7aa8c5" stop-opacity=".18"/>
+  </linearGradient>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="220%">
+    <feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#233f59" flood-opacity=".22"/>
+  </filter>
+  <filter id="soft" x="-35%" y="-35%" width="170%" height="170%">
+    <feGaussianBlur stdDeviation="9"/>
+  </filter>
  </defs>
- <rect width="420" height="420" rx="48" fill="url(#bg)"/><rect x="7" y="7" width="406" height="406" rx="43" fill="none" stroke="url(#rim)" stroke-width="5"/>
- <ellipse cx="210" cy="356" rx="128" ry="24" fill="#466b82" opacity=".18" filter="url(#soft)"/>
- <circle cx="92" cy="78" r="7" fill="${accent}" opacity=".25"/><circle cx="335" cy="91" r="5" fill="${accent}" opacity=".22"/>
- <circle cx="210" cy="160" r="168" fill="url(#spot)"/>
+ <rect width="420" height="420" rx="52" fill="url(#bg)"/>
+ <rect x="5" y="5" width="410" height="410" rx="48" fill="none" stroke="url(#rim)" stroke-width="6"/>
+ <circle cx="210" cy="165" r="170" fill="url(#halo)"/>
+ <ellipse cx="210" cy="357" rx="126" ry="24" fill="#284b66" opacity=".16" filter="url(#soft)"/>
+ <ellipse cx="210" cy="351" rx="92" ry="13" fill="${accent}" opacity=".08"/>
+ <circle cx="83" cy="76" r="7" fill="${accent}" opacity=".24"/>
+ <circle cx="341" cy="92" r="5" fill="${accent}" opacity=".20"/>
+ <circle cx="356" cy="65" r="2.5" fill="#fff"/>
  <g filter="url(#shadow)">${inner}</g>
+ <ellipse cx="155" cy="120" rx="88" ry="48" fill="#fff" opacity=".075" transform="rotate(-22 155 120)"/>
+ <path d="M65 310 Q210 388 355 310" fill="none" stroke="#fff" stroke-width="3" opacity=".14"/>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
- if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M-29 1 Q0 -17 29 1" fill="none" stroke="#5b3b4b" stroke-width="8" stroke-linecap="round"/><path d="M-22 -2 Q0 -12 22 -2" fill="none" stroke="#8a6680" stroke-width="2" opacity=".6"/></g>`;
+ if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})">
+   <path d="M-27 2 Q0 -15 27 2" fill="none" stroke="#5a3c4b" stroke-width="7" stroke-linecap="round"/>
+   <path d="M-19 -2 Q0 -10 19 -2" fill="none" stroke="#fff" stroke-width="2" opacity=".42"/>
+ </g>`;
  return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <ellipse rx="31" ry="35" fill="#fff"/>
-   <ellipse cy="4" rx="21" ry="25" fill="#7bc5ee"/>
-   <ellipse cy="7" rx="13" ry="18" fill="#21465f"/>
-   <ellipse cy="10" rx="7" ry="11" fill="#122b42"/>
-   <circle cx="-8" cy="-9" r="7" fill="#fff"/><circle cx="8" cy="1" r="3.8" fill="#fff" opacity=".9"/>
-   <path d="M-25 -20 Q0 -34 25 -20" fill="none" stroke="#5b3b4b" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+   <ellipse cy="2" rx="31" ry="35" fill="#fff"/>
+   <ellipse cy="5" rx="21" ry="25" fill="#8ed3f4"/>
+   <ellipse cy="7" rx="14" ry="19" fill="#23516d"/>
+   <ellipse cy="10" rx="8" ry="12" fill="#102d43"/>
+   <circle cx="-9" cy="-10" r="7.5" fill="#fff"/>
+   <circle cx="7" cy="-1" r="4" fill="#fff" opacity=".95"/>
+   <ellipse cx="-5" cy="19" rx="10" ry="4" fill="#76c7ef" opacity=".22"/>
+   <path d="M-25 -20 Q0 -33 25 -20" fill="none" stroke="#5a3c4b" stroke-width="3.6" stroke-linecap="round" opacity=".50"/>
  </g>`;
 }
-function blushPair(y=214,color="#f4a3b6"){
- return `<ellipse cx="154" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/><ellipse cx="266" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/>`;
+function blushPair(y,color="#ef8fa5"){
+ return `<g opacity=".78">
+   <ellipse cx="132" cy="${y}" rx="30" ry="12" fill="${color}" opacity=".52"/>
+   <ellipse cx="288" cy="${y}" rx="30" ry="12" fill="${color}" opacity=".52"/>
+   <ellipse cx="126" cy="${y-4}" rx="12" ry="4" fill="#fff" opacity=".28"/>
+   <ellipse cx="282" cy="${y-4}" rx="12" ry="4" fill="#fff" opacity=".28"/>
+ </g>`;
 }
 function smile(cx=210,cy=232,w=44,h=22,color="#9f5365"){
  return `<path d="M${cx-w/2} ${cy} Q${cx} ${cy+h} ${cx+w/2} ${cy}" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>`;
@@ -549,8 +691,8 @@ function monsterArtURI(kind,level=1){
 const AVATAR_SKIN={light:"#f7d5bb",warm:"#ebb98f",tan:"#c98c64",deep:"#965d45"};
 const AVATAR_HAIR={brown:"#7c4a37",black:"#2b2c34",chestnut:"#94563f",gold:"#bf8747"};
 const AVATAR_PALETTE={
- boyA:["#59b7ea","#347ea6"],boyB:["#65cda4","#3f9976"],boyC:["#f1aa5d","#c57635"],
- girlA:["#f49fbe","#c66d94"],girlB:["#b1a1ef","#8065cd"],girlC:["#ef949f","#c55f71"]
+ boyA:["#58bdf0","#2f7fa8"],boyB:["#63d3aa","#3d9875"],boyC:["#f4ad5e","#bf7438"],
+ girlA:["#f6a2c3","#c86c96"],girlB:["#b6a5f4","#7e66cd"],girlC:["#f197a3","#c35f72"]
 };
 function hairSVG(style,c){
  if(style==="curly") return `<g fill="${c}"><circle cx="145" cy="119" r="24"/><circle cx="177" cy="108" r="30"/><circle cx="210" cy="103" r="32"/><circle cx="245" cy="109" r="29"/><circle cx="276" cy="120" r="24"/><path d="M129 144q79-44 160 0v27H129z"/></g>`;
@@ -716,7 +858,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Character Visual Upgrade • Soft 3D Style";
+if(threeStatus)threeStatus.textContent="✅ Character Art Overhaul • Cinematic 3D Family Animation";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1245,5 +1387,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=276").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=279").then(r=>r.update()).catch(console.error))}</script></body>
 </html>

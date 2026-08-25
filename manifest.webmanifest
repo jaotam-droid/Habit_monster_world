@@ -1,9 +1,9 @@
 {
-  "name": "Habit Monster World V27.7",
+  "name": "Habit Monster World V27.9",
   "short_name": "Habit Monster",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#eef8ff",
+  "background_color": "#edf8ff",
   "theme_color": "#76b9ef"
 }
