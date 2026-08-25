@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V28 CHARACTER REDESIGN</title>
+<title>Habit Monster World V29 FINAL CINEMATIC ART</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -471,6 +471,182 @@ svg .eyeWhite, svg [fill="#fff"]{filter:drop-shadow(0 2px 1px rgba(53,78,96,.10)
 svg ellipse[fill*="pink"],svg ellipse[fill="#f3a0ad"]{filter:blur(.15px)}
 
 </style>
+<style id="v29-final-cinematic-art">
+/* ==========================================================
+   V29 FINAL CINEMATIC ART
+   Visual / responsive pass only — original game logic intact
+   ========================================================== */
+:root{
+  --v29-ink:#263d57;
+  --v29-line:#d9e8f4;
+  --v29-blue:#68c2ef;
+  --v29-cream:#fff4d8;
+  --v29-shadow:0 16px 38px rgba(40,72,102,.13);
+}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 18% 4%,rgba(134,218,255,.30),transparent 28rem),
+    radial-gradient(circle at 90% 30%,rgba(255,220,143,.18),transparent 25rem),
+    linear-gradient(180deg,#eef9ff 0%,#f7fbff 48%,#fffaf0 100%)!important;
+}
+.card{
+  border:1px solid rgba(255,255,255,.92)!important;
+  box-shadow:var(--v29-shadow)!important;
+}
+
+/* Main avatar: softer "animated-film toy" presentation */
+.avatarStage{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:420px!important;
+  border-radius:34px!important;
+  background:
+    radial-gradient(circle at 50% 20%,#fff 0 15%,#e8f8ff 50%,#fff2cf 100%)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.98),
+    inset 0 -35px 70px rgba(255,213,126,.10),
+    0 20px 44px rgba(42,73,104,.15)!important;
+}
+.avatarStage:before{
+  content:"";position:absolute;z-index:0;left:10%;right:10%;top:7%;height:58%;
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.98),rgba(173,228,255,.18) 48%,transparent 70%);
+  filter:blur(5px);pointer-events:none;
+}
+.avatarStage:after{
+  content:"";position:absolute;z-index:0;left:25%;right:25%;bottom:9%;height:8%;
+  border-radius:50%;background:rgba(39,70,94,.13);filter:blur(12px);pointer-events:none;
+}
+.avatarStage>*{position:relative;z-index:1}
+.avatarArt,.avatarStage img,.avatarStage svg,.avatarStage canvas{
+  filter:saturate(1.08) contrast(1.035) drop-shadow(0 15px 13px rgba(45,67,88,.16))!important;
+  transform-origin:50% 84%;
+}
+@keyframes v29HeroIdle{
+  0%,100%{transform:translateY(0) scale(1)}
+  48%,55%{transform:translateY(-5px) scale(1.012)}
+}
+.avatarArt{animation:v29HeroIdle 4.8s ease-in-out infinite!important}
+
+/* Avatar thumbnails */
+.avatarChoice{
+  overflow:hidden!important;
+  border-color:#d8e8f4!important;
+  background:linear-gradient(180deg,#fff 0%,#f6fbff 68%,#fff5d9 100%)!important;
+  box-shadow:0 8px 20px rgba(42,73,104,.09)!important;
+}
+.avatarChoice.on{
+  background:linear-gradient(180deg,#fffef7,#fff2bd)!important;
+  box-shadow:0 0 0 3px rgba(255,194,57,.65),0 14px 28px rgba(48,86,127,.13)!important;
+}
+.avatarChoice img,.avatarChoice svg{
+  filter:saturate(1.08) contrast(1.03) drop-shadow(0 7px 7px rgba(42,67,88,.13))!important;
+}
+
+/* World cards */
+.world{gap:15px!important;perspective:900px}
+.zone{
+  position:relative!important;
+  overflow:hidden!important;
+  border-color:#d8e8f4!important;
+  background:
+    radial-gradient(circle at 50% 16%,#fff 0 15%,#edfaff 54%,#fff5dc 100%)!important;
+  box-shadow:0 12px 28px rgba(45,78,109,.10),inset 0 0 0 1px rgba(255,255,255,.88)!important;
+}
+.zone:before{
+  content:"";position:absolute;left:17%;right:17%;bottom:23%;height:9%;
+  border-radius:50%;background:rgba(47,75,98,.11);filter:blur(10px);pointer-events:none;
+}
+.zone.active{
+  transform:translateY(-2px);
+  box-shadow:0 0 0 4px rgba(78,149,244,.17),0 17px 32px rgba(47,86,130,.15)!important;
+}
+.zoneArt{
+  position:relative!important;
+  z-index:1;
+  min-height:150px!important;
+  overflow:visible!important;
+}
+.zoneArt img,.zoneArt svg,.zoneArt canvas{
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;
+  filter:saturate(1.10) contrast(1.035) drop-shadow(0 12px 10px rgba(41,65,86,.16))!important;
+  transform-origin:50% 82%;
+}
+@keyframes v29MonsterIdle{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
+.zoneArt img,.zoneArt svg{animation:v29MonsterIdle 5.3s ease-in-out infinite}
+
+/* Battle: keep both characters completely inside frame on iPhone */
+.arena{
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 13%,rgba(255,255,255,.92),transparent 30%),
+    linear-gradient(180deg,#ccefff 0 47%,#dff4cf 47% 67%,#ffedc7 67% 100%)!important;
+}
+.battle{
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important;
+  align-items:end!important;
+  gap:4px!important;
+}
+.battle .avatarArt,.battle .bossArt{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:205px!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:flex-end!important;
+  border-radius:28px!important;
+}
+.battle .avatarArt img,.battle .bossArt img,
+.battle .avatarArt svg,.battle .bossArt svg,
+.battle .avatarArt canvas,.battle .bossArt canvas{
+  width:auto!important;height:auto!important;
+  max-width:88%!important;max-height:91%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  filter:saturate(1.09) contrast(1.04) drop-shadow(0 12px 10px rgba(40,64,86,.17))!important;
+}
+
+/* Pet card consistency */
+.petCard,.pet-card,[class*="pet"]{
+  image-rendering:auto;
+}
+.petCard img,.pet-card img{
+  object-fit:contain!important;
+  filter:saturate(1.08) contrast(1.03) drop-shadow(0 9px 8px rgba(40,64,86,.13))!important;
+}
+
+/* Tap and mobile refinements */
+button,.avatarChoice,.zone{-webkit-tap-highlight-color:transparent}
+button:active,.avatarChoice:active,.zone:active{transform:scale(.985)}
+@media(max-width:600px){
+  .avatarStage{min-height:400px!important}
+  .zoneArt{height:146px!important;min-height:146px!important}
+  .world{gap:11px!important}
+  .battle{grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr)!important;gap:2px!important}
+  .battle .avatarArt,.battle .bossArt{height:172px!important;border-radius:22px!important}
+  .battle .avatarArt img,.battle .bossArt img,
+  .battle .avatarArt svg,.battle .bossArt svg,
+  .battle .avatarArt canvas,.battle .bossArt canvas{
+    max-width:84%!important;max-height:88%!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .avatarArt,.zoneArt img,.zoneArt svg{animation:none!important}
+}
+</style>
 
 <style id="v275-final-polish">
 :root{--v275-soft:0 8px 22px rgba(44,79,118,.10);}
@@ -491,11 +667,21 @@ img,canvas{image-rendering:auto;}
 .zone:hover .cinematic-slot img,.avatarChoice:hover .cinematic-slot img{transform:translateY(-2px) scale(1.015)}
 .zone.active{box-shadow:0 0 0 3px rgba(70,139,230,.18),0 12px 24px rgba(55,94,135,.10)}
 </style>
+
+<script id="v29-build-label">
+document.addEventListener("DOMContentLoaded",function(){
+  const h=document.querySelector("h1");
+  if(h) h.textContent="🌍 Habit Monster World V29 FINAL CINEMATIC ART";
+  const s=document.getElementById("threeStatus");
+  if(s) s.textContent="✅ Final Cinematic Art • Character & Battle Polish";
+});
+</script>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V28 CHARACTER REDESIGN</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V29 FINAL CINEMATIC ART</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -522,7 +708,7 @@ img,canvas{image-rendering:auto;}
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V28 Character Redesign: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V29 Final Cinematic Art: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -584,7 +770,7 @@ img,canvas{image-rendering:auto;}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=28.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=29.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -931,7 +1117,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Character Redesign • Premium Soft 3D World";
+if(threeStatus)threeStatus.textContent="✅ Final Cinematic Art • Character & Battle Polish";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1460,5 +1646,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=280").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=290").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
