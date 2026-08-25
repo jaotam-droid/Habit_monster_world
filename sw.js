@@ -1,4 +1,4 @@
-const CACHE="hmw-v29-final-cinematic-art";
+const CACHE="hmw-v30-model-character-overhaul";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{

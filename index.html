@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V29 FINAL CINEMATIC ART</title>
+<title>Habit Monster World V30 MODEL & CHARACTER OVERHAUL</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -671,17 +671,74 @@ img,canvas{image-rendering:auto;}
 <script id="v29-build-label">
 document.addEventListener("DOMContentLoaded",function(){
   const h=document.querySelector("h1");
-  if(h) h.textContent="🌍 Habit Monster World V29 FINAL CINEMATIC ART";
+  if(h) h.textContent="🌍 Habit Monster World V30 MODEL & CHARACTER OVERHAUL";
   const s=document.getElementById("threeStatus");
-  if(s) s.textContent="✅ Final Cinematic Art • Character & Battle Polish";
+  if(s) s.textContent="✅ Model & Character Overhaul • Volumetric Soft 3D";
 });
 </script>
 
+<style id="v30-model-character-overhaul">
+/* V30 MODEL & CHARACTER OVERHAUL */
+:root{--v30-depth:0 18px 36px rgba(39,67,94,.16)}
+/* stronger volumetric treatment of the actual rendered character layers */
+.avatarArt img,.avatarArt svg,.avatarArt canvas,
+.zoneArt img,.zoneArt svg,.zoneArt canvas,
+.bossArt img,.bossArt svg,.bossArt canvas,
+.petCard img,.pet-card img{
+  filter:
+    saturate(1.11)
+    contrast(1.045)
+    drop-shadow(0 2px 1px rgba(255,255,255,.68))
+    drop-shadow(0 11px 9px rgba(37,60,82,.18))!important;
+}
+/* cinematic key-light sheen, contained inside art frame */
+.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt{
+  isolation:isolate;
+}
+.avatarStage:before,.zoneArt:after,.battle .avatarArt:after,.battle .bossArt:after{
+  content:"";position:absolute;pointer-events:none;z-index:3;
+  inset:5% 8% 38% 8%;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,0) 48%);
+  mix-blend-mode:screen;opacity:.72;
+}
+.zoneArt:after{inset:4% 9% 34% 9%;opacity:.48}
+/* give cards a real toy-display plinth */
+.zoneArt:before,.battle .avatarArt:before,.battle .bossArt:before{
+  content:"";position:absolute;z-index:0;left:20%;right:20%;bottom:7%;height:10%;
+  border-radius:50%;background:rgba(39,63,84,.14);filter:blur(10px);
+}
+.zoneArt>*{position:relative;z-index:1}
+.zone{
+  border-radius:32px!important;
+  background:linear-gradient(180deg,#fff 0%,#f2fbff 58%,#fff1ce 100%)!important;
+}
+.avatarChoice{
+  border-radius:25px!important;
+}
+.avatarChoice img,.avatarChoice svg{
+  transform:scale(1.035);
+}
+/* battle stage: safer proportions and more visual focus */
+.battle{align-items:center!important}
+.battle .avatarArt,.battle .bossArt{
+  position:relative!important;
+  background:radial-gradient(circle at 50% 30%,#fff 0%,#edfaff 58%,#fff1d1 100%)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 13px 26px rgba(40,69,97,.13)!important;
+}
+@media(max-width:600px){
+  .battle .avatarArt,.battle .bossArt{height:184px!important}
+  .battle .avatarArt img,.battle .bossArt img,
+  .battle .avatarArt svg,.battle .bossArt svg,
+  .battle .avatarArt canvas,.battle .bossArt canvas{
+    max-width:80%!important;max-height:86%!important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V29 FINAL CINEMATIC ART</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V30 MODEL & CHARACTER OVERHAUL</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -770,7 +827,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=29.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=30.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -1117,7 +1174,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Final Cinematic Art • Character & Battle Polish";
+if(threeStatus)threeStatus.textContent="✅ Model & Character Overhaul • Volumetric Soft 3D";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1646,5 +1703,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=290").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=300").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
