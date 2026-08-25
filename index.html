@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V31 TRUE VOLUME RENDER</title>
+<title>Habit Monster World V32 CHARACTER PROPORTION PASS</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -671,9 +671,9 @@ img,canvas{image-rendering:auto;}
 <script id="v29-build-label">
 document.addEventListener("DOMContentLoaded",function(){
   const h=document.querySelector("h1");
-  if(h) h.textContent="🌍 Habit Monster World V31 TRUE VOLUME RENDER";
+  if(h) h.textContent="🌍 Habit Monster World V32 CHARACTER PROPORTION PASS";
   const s=document.getElementById("threeStatus");
-  if(s) s.textContent="✅ True Volume Render • Cinematic Character Art";
+  if(s) s.textContent="✅ Character Proportion Pass • Softer 3D Film Look";
 });
 </script>
 
@@ -754,11 +754,65 @@ document.addEventListener("DOMContentLoaded",function(){
  .battle .avatarArt img,.battle .bossArt img{max-width:78%!important;max-height:83%!important}
 }
 </style>
+<style id="v32-character-proportion-pass">
+/* V32 CHARACTER PROPORTION PASS */
+.avatarStage{
+  min-height:375px!important;
+}
+.avatarStage .cinematic-slot{
+  transform:scale(.94);
+  transform-origin:center center;
+}
+.avatarChoice .cinematic-slot{
+  transform:scale(.90);
+  transform-origin:center center;
+}
+.zoneArt .cinematic-slot{
+  transform:scale(.91);
+  transform-origin:center center;
+}
+.battle{
+  grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:5px!important;
+}
+.battle>div{
+  min-width:0!important;
+}
+.battle .avatarArt,.battle .bossArt{
+  width:100%!important;
+  height:158px!important;
+  margin:0!important;
+  border-radius:24px!important;
+}
+.battle .avatarArt .cinematic-slot,.battle .bossArt .cinematic-slot{
+  transform:scale(.82)!important;
+  transform-origin:center center!important;
+}
+.battle .label{
+  display:block!important;
+  margin-top:8px!important;
+  padding:0 3px!important;
+  font-size:16px!important;
+  line-height:1.22!important;
+  min-height:39px!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:center!important;
+}
+@media(max-width:600px){
+  .avatarStage{min-height:360px!important}
+  .battle{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)!important;gap:3px!important}
+  .battle .avatarArt,.battle .bossArt{height:145px!important}
+  .battle .avatarArt .cinematic-slot,.battle .bossArt .cinematic-slot{transform:scale(.77)!important}
+  .battle .label{font-size:15px!important;min-height:38px!important}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V31 TRUE VOLUME RENDER</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V32 CHARACTER PROPORTION PASS</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -847,7 +901,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=31.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=32.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -956,13 +1010,18 @@ function artFrame(inner,accent="#7fc7ff"){
     <feGaussianBlur stdDeviation="11"/>
   </filter>
   <filter id="volume" x="-45%" y="-45%" width="190%" height="210%" color-interpolation-filters="sRGB">
-    <feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="bump"/>
-    <feSpecularLighting in="bump" surfaceScale="4.2" specularConstant=".48" specularExponent="18" lighting-color="#ffffff" result="spec">
-      <fePointLight x="115" y="70" z="180"/>
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bump"/>
+    <feDiffuseLighting in="bump" surfaceScale="4.4" diffuseConstant=".62" lighting-color="#fff7ee" result="diffuse">
+      <feDistantLight azimuth="225" elevation="46"/>
+    </feDiffuseLighting>
+    <feComposite in="diffuse" in2="SourceAlpha" operator="in" result="diffuseClip"/>
+    <feBlend in="SourceGraphic" in2="diffuseClip" mode="soft-light" result="baseLit"/>
+    <feSpecularLighting in="bump" surfaceScale="4.8" specularConstant=".42" specularExponent="22" lighting-color="#ffffff" result="spec">
+      <fePointLight x="112" y="66" z="190"/>
     </feSpecularLighting>
     <feComposite in="spec" in2="SourceAlpha" operator="in" result="specClip"/>
-    <feBlend in="SourceGraphic" in2="specClip" mode="screen" result="lit"/>
-    <feDropShadow in="lit" dx="0" dy="12" stdDeviation="8" flood-color="#263f55" flood-opacity=".24"/>
+    <feBlend in="baseLit" in2="specClip" mode="screen" result="lit"/>
+    <feDropShadow in="lit" dx="0" dy="13" stdDeviation="8.5" flood-color="#263f55" flood-opacity=".23"/>
   </filter>
   <filter id="softEdge" x="-30%" y="-30%" width="160%" height="160%">
     <feGaussianBlur stdDeviation=".34"/>
@@ -981,19 +1040,18 @@ function artFrame(inner,accent="#7fc7ff"){
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
  if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <path d="M-27 2 Q0 -15 27 2" fill="none" stroke="#5a3c4b" stroke-width="7" stroke-linecap="round"/>
-   <path d="M-19 -2 Q0 -10 19 -2" fill="none" stroke="#fff" stroke-width="2" opacity=".48"/>
+   <path d="M-22 1 Q0 -10 22 1" fill="none" stroke="#5a3c4b" stroke-width="5.5" stroke-linecap="round"/>
+   <path d="M-15 -1 Q0 -7 15 -1" fill="none" stroke="#fff" stroke-width="1.8" opacity=".42"/>
  </g>`;
  return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <ellipse cy="3" rx="32" ry="36" fill="#fff"/>
-   <ellipse cy="6" rx="22" ry="26" fill="url(#eyeIris)"/>
-   <ellipse cy="8" rx="13.5" ry="19" fill="url(#eyePupil)"/>
-   <ellipse cx="-7" cy="20" rx="10" ry="4" fill="#8ed9fa" opacity=".24"/>
-   <circle cx="-10" cy="-10" r="8" fill="#fff"/>
-   <circle cx="8" cy="-1" r="4.2" fill="#fff" opacity=".96"/>
-   <circle cx="-2" cy="-3" r="2.4" fill="#fff" opacity=".65"/>
-   <path d="M-26 -20 Q0 -34 26 -20" fill="none" stroke="#513a46" stroke-width="3.8" stroke-linecap="round" opacity=".55"/>
-   <path d="M-23 28 Q0 36 23 28" fill="none" stroke="#8fc3dc" stroke-width="2" opacity=".28"/>
+   <ellipse cy="3" rx="27" ry="31" fill="#fff"/>
+   <ellipse cy="5" rx="18.5" ry="22" fill="url(#eyeIris)"/>
+   <ellipse cy="7" rx="11.5" ry="16" fill="url(#eyePupil)"/>
+   <ellipse cx="-5" cy="17" rx="8" ry="3.2" fill="#8ed9fa" opacity=".20"/>
+   <circle cx="-8" cy="-8" r="6.2" fill="#fff"/>
+   <circle cx="6" cy="-1" r="3.2" fill="#fff" opacity=".94"/>
+   <circle cx="-1" cy="-3" r="1.8" fill="#fff" opacity=".58"/>
+   <path d="M-21 -17 Q0 -27 21 -17" fill="none" stroke="#513a46" stroke-width="3.2" stroke-linecap="round" opacity=".48"/>
  </g>`;
 }
 function blushPair(y,color="#f3a0ad"){
@@ -1032,11 +1090,11 @@ function monsterArtURI(kind,level=1){
  if(kind==="screen")prop=`<g><path d="M137 154q73-64 146 0" fill="none" stroke="#60dbe8" stroke-width="17"/><rect x="113" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="282" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="157" y="267" width="106" height="58" rx="15" fill="#2c3d52"/><rect x="168" y="278" width="84" height="34" rx="8" fill="#78e7fb" opacity=".9"/></g>`;
  const y=kind==="morning"?214:221;
  const body=`<g>${starBurst(level,cfg.accent)}${prop}
-   <ellipse cx="210" cy="${y+5}" rx="98" ry="97" fill="${cfg.shade}" opacity=".28"/>
-   <ellipse cx="210" cy="${y+5}" rx="98" ry="96" fill="${cfg.shade}" opacity=".22"/><ellipse cx="210" cy="${y}" rx="96" ry="94" fill="${cfg.body}"/><path d="M145 ${y-10} Q158 ${y-76} 214 ${y-82}" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".20"/>
+   <ellipse cx="210" cy="${y+5}" rx="94" ry="94" fill="${cfg.shade}" opacity=".30"/>
+   <ellipse cx="210" cy="${y+5}" rx="93" ry="92" fill="${cfg.shade}" opacity=".23"/><ellipse cx="210" cy="${y}" rx="91" ry="91" fill="${cfg.body}"/><path d="M145 ${y-10} Q158 ${y-76} 214 ${y-82}" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".20"/>
    <ellipse cx="184" cy="166" rx="54" ry="25" fill="#fff" opacity=".28" transform="rotate(-18 184 166)"/>
    <ellipse cx="247" cy="278" rx="52" ry="30" fill="${cfg.shade}" opacity=".18"/>
-   ${head}${cuteEye(178,193,.72,mood)}${cuteEye(242,193,.72,mood)}
+   ${head}${cuteEye(180,194,.66,mood)}${cuteEye(240,194,.66,mood)}
    <ellipse cx="210" cy="220" rx="9" ry="6" fill="${cfg.shade}" opacity=".55"/>
    ${blushPair(228,kind==="screen"?"#d7b4ff":"#f3a5b7")}${smile(210,240,40,18,kind==="screen"?"#9a6ad0":"#995567")}
    <ellipse cx="159" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(22 159 246)"/><ellipse cx="261" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(-22 261 246)"/>
@@ -1071,12 +1129,12 @@ function avatarArtURI(p){
  const hairBack=style==="long"?`<path d="M127 145q20-86 83-86 68 0 84 89v151q-16 40-48 45V187h-72v157q-32-7-49-44z" fill="${hair}"/>`:style==="ponytail"?`<ellipse cx="290" cy="202" rx="39" ry="70" fill="${hair}"/><circle cx="283" cy="146" r="15" fill="#f1a8c5"/>`:style==="bob"?`<path d="M128 151q19-88 82-88 69 0 85 89v95q-18 34-43 39v-104h-88v103q-27-7-39-38z" fill="${hair}"/>`:"";
  const fringe=style==="curly"?`<g fill="${hair}"><circle cx="146" cy="118" r="25"/><circle cx="178" cy="106" r="29"/><circle cx="210" cy="102" r="31"/><circle cx="244" cy="108" r="29"/><circle cx="275" cy="119" r="24"/><path d="M132 144q77-39 156 1v27H132z"/></g>`:style==="spiky"?`<path d="M135 151l15-59 33 29 25-57 27 55 40-29 10 62q-76-27-150-1z" fill="${hair}"/>`:style==="long"||style==="ponytail"||style==="bob"?`<path d="M134 149q76-34 153 0v24q-76-17-153 0z" fill="${hair}"/>`:`<path d="M132 153q18-85 80-85 66 0 83 87v23q-41-16-82-14-42 0-81 14z" fill="${hair}"/>`;
  const body=`<g>${cape}${bag}${star}${hairBack}${ears}
-   <ellipse cx="210" cy="188" rx="87" ry="92" fill="#b77755" opacity=".16"/><ellipse cx="210" cy="184" rx="86" ry="91" fill="${skin}"/><ellipse cx="174" cy="145" rx="38" ry="19" fill="#fff" opacity=".32" transform="rotate(-18 174 145)"/>
+   <ellipse cx="210" cy="188" rx="82" ry="86" fill="#b77755" opacity=".16"/><ellipse cx="210" cy="184" rx="81" ry="85" fill="${skin}"/><ellipse cx="174" cy="145" rx="38" ry="19" fill="#fff" opacity=".32" transform="rotate(-18 174 145)"/>
    <ellipse cx="180" cy="146" rx="43" ry="20" fill="#fff" opacity=".27" transform="rotate(-18 180 146)"/>
-   ${fringe}${hat}${cuteEye(178,184,.74,"happy")}${cuteEye(242,184,.74,"happy")}${lashes}
+   ${fringe}${hat}${cuteEye(180,185,.72,"happy")}${cuteEye(240,185,.72,"happy")}${lashes}
    <ellipse cx="210" cy="214" rx="10" ry="7" fill="#c99277" opacity=".55"/>${blushPair(220,"#f3a4b7")}${smile(210,233,42,18,"#a05465")}
    <rect x="184" y="254" width="52" height="19" rx="9" fill="${skin}"/>
-   <ellipse cx="210" cy="310" rx="67" ry="70" fill="${dark}" opacity=".22"/><ellipse cx="210" cy="304" rx="66" ry="69" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
+   <ellipse cx="210" cy="309" rx="63" ry="66" fill="${dark}" opacity=".22"/><ellipse cx="210" cy="303" rx="62" ry="65" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
    <path d="M170 270q40 30 80 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
    ${gender==="girl"?`<path d="M156 306q54 23 108 0l-9 35h-90z" fill="${dark}"/>`:`<path d="M159 306h102l-7 39h-33v-28h-22v28h-33z" fill="${dark}"/>`}
    <rect x="130" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="144" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="144" cy="348" r="14" fill="${skin}"/>
@@ -1095,7 +1153,7 @@ function petArtURI(kind){
  if(type==="fox"){ears=`<path d="M146 171l20-70 44 54zm128 0-20-70-44 54z" fill="${d}"/>`;extra=`<path d="M116 287q42 50 96 37" stroke="#fff1d8" stroke-width="13" stroke-linecap="round" opacity=".65"/>`;}
  if(type==="owl"){ears=`<path d="M149 168l28-52 29 41zm122 0-28-52-29 41z" fill="${d}"/>`;extra=`<ellipse cx="210" cy="250" rx="60" ry="46" fill="#fff" opacity=".25"/>`;}
  if(type==="dragon"){ears=`<path d="M148 168l18-52 24 39 20-54 23 54 27-39 13 52z" fill="${d}"/>`;extra=`<path d="M132 258q-54 3-50 58 36-25 72-1m134-57q54 3 50 58-36-25-72-1" fill="#91e2af"/>`;}
- const body=`<g>${ears}${extra}<ellipse cx="210" cy="234" rx="96" ry="99" fill="${d}" opacity=".20"/><ellipse cx="210" cy="228" rx="94" ry="97" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(180,215,.7,"happy")}${cuteEye(240,215,.7,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
+ const body=`<g>${ears}${extra}<ellipse cx="210" cy="234" rx="91" ry="94" fill="${d}" opacity=".22"/><ellipse cx="210" cy="228" rx="89" ry="92" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(181,216,.64,"happy")}${cuteEye(239,216,.64,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
  return svgData(artFrame(body,c));
 }
 const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
@@ -1214,7 +1272,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ True Volume Render • Cinematic Character Art";
+if(threeStatus)threeStatus.textContent="✅ Character Proportion Pass • Softer 3D Film Look";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1743,5 +1801,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=310").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=320").then(r=>r.update()).catch(console.error))}</script></body>
 </html>

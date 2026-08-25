@@ -1,4 +1,4 @@
-const CACHE="hmw-v31-true-volume-render";
+const CACHE="hmw-v32-character-proportion-pass";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{

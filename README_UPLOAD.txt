@@ -1,14 +1,14 @@
-Habit Monster World V31 — TRUE VOLUME RENDER
+Habit Monster World V32 — CHARACTER PROPORTION PASS
 
-ฐาน: V30 MODEL & CHARACTER OVERHAUL
+ฐาน: V31 TRUE VOLUME RENDER
 
-รอบนี้เปลี่ยน renderer ของ artwork จริง:
-• SVG specular-lighting จาก SourceAlpha เพื่อสร้าง volume บนตัวละครจริง
-• radial eye shader + multi-catchlight
-• ground contact shadow / key light / soft highlight
-• Avatar, Monster, Pet ใช้ renderer เดียวกัน
-• Battle mobile framing แก้ขนาดและข้อความไม่ให้ล้น
-• models ทุกไฟล์ bump renderProfile เป็น V31
-• logic/save/progression เดิม
+ปรับจากภาพทดสอบ V31:
+• ลดขนาดตาและปรับระยะตาให้เป็นธรรมชาติกว่าเดิม
+• Avatar: ลดความกลมของศีรษะ/ลำตัวและปรับสัดส่วนให้สมดุล
+• Monster / Pet: ลดความเป็น icon/sticker และเพิ่ม volume
+• Renderer เพิ่ม diffuse lighting + specular lighting
+• Battle mobile: ลดขนาดตัวละคร, เพิ่ม safe frame และเว้นชื่อไม่ให้ชนกรอบ
+• models ทุกไฟล์อัปเดต renderProfile V32
+• game logic / save / progression เดิมทั้งหมด
 
 อัป GitHub ทับทั้งหมด รวม models/ ด้วย
