@@ -2492,5 +2492,93 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 })();
 </script>
 
+
+<style id="v45-game-feel-evolution">
+/* V45 — GAME FEEL & EVOLUTION: visual-only polish; save/data logic unchanged */
+:root{--v45gold:#ffc94f;--v45blue:#5dbcf4;--v45ink:#203b5b}
+.buildBadge{background:linear-gradient(135deg,#765cf0,#3f83ee)!important}
+.buildBadge:after{content:" • GAME FEEL"!important}
+
+/* World cards read like game levels, while keeping all 7 zones visible */
+.world{align-items:stretch!important}
+.zone{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;isolation:isolate}
+.zone .zoneArt{flex:0 0 auto!important}
+.zone b{min-height:2.2em;display:flex!important;align-items:center;justify-content:center;margin:3px 4px 0!important}
+.zone small{display:block;margin-top:1px}
+.zoneProgress{margin-top:auto!important}
+.zone .evoBadge{z-index:7!important;background:linear-gradient(135deg,#6576ee,#4e7bea)!important;color:#fff!important;box-shadow:0 5px 12px rgba(72,93,201,.18)}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffb43d,#ffd963)!important;color:#624400!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;right:7px;top:8px;z-index:8;padding:4px 7px;border-radius:999px;background:#ffe16c;color:#5b4800;font-size:10px;font-weight:950;box-shadow:0 4px 10px rgba(111,87,18,.13)}
+.miniTrack{overflow:hidden!important;border-radius:999px!important}
+.miniFill{background:linear-gradient(90deg,#8877e9,#66c89a)!important;border-radius:999px!important;transition:width .45s ease!important}
+
+/* Encounter composition: pet above, actors anchored to ground, no giant empty sky */
+.arena{background:linear-gradient(180deg,#9ee0fb 0 45%,#c8eab9 45% 69%,#e8ca8d 69% 100%)!important}
+#petFollower.petFollower{z-index:5!important;filter:drop-shadow(0 7px 8px rgba(41,69,88,.16))}
+.battle{position:relative!important}
+.battle:after{content:"";position:absolute;left:10%;right:10%;bottom:5px;height:22px;background:radial-gradient(ellipse,rgba(45,69,71,.22),transparent 70%);filter:blur(5px);pointer-events:none;z-index:0}
+.battle .avatarArt,.battle .bossArt{position:relative!important;z-index:2!important;overflow:visible!important}
+.battle .avatarArt svg,.battle .bossArt svg{filter:drop-shadow(0 12px 9px rgba(35,60,80,.16))!important}
+.vs:before{animation:v45Pulse 1.8s ease-in-out infinite}
+@keyframes v45Pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Make progress / evolution the focal feedback below the arena */
+.arena .bar{height:17px!important;box-shadow:inset 0 1px 2px rgba(43,66,84,.08)}
+.arena .hp{transition:width .5s ease!important;background:linear-gradient(90deg,#9a88ed,#7566d6)!important}
+#nextLevelHint{font-weight:900!important;color:#6f6ca5!important;text-align:center!important;margin-top:5px!important}
+.stats .stat{transition:transform .16s ease,box-shadow .16s ease}
+.stats .stat:active{transform:scale(.97)}
+
+/* Avatar cards: cleaner selection and slightly larger thumbnails */
+.avatarChoice{position:relative!important}
+.avatarChoice.on:after{content:"✓";position:absolute;right:7px;top:7px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#ffd75e;color:#594300;font-weight:1000;box-shadow:0 4px 10px rgba(93,73,18,.15)}
+
+@media(max-width:600px){
+ .world{gap:10px!important}
+ .zone{min-height:250px!important;padding:7px 5px 10px!important}
+ .zoneArt{height:140px!important}
+ .zone b{font-size:15px!important;min-height:2.25em!important}
+ .zoneProgress{padding:0 7px 2px!important}
+ .arena{padding:8px 6px 12px!important}
+ #petFollower.petFollower{width:58px!important;height:58px!important;margin:0 auto 1px!important}
+ .battle{min-height:194px!important;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:166px!important;max-width:none!important;width:100%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:164px!important}
+ .battle .label{font-size:15px!important;font-weight:950!important}
+ .speech{font-size:15px!important}
+ .arena .stats{grid-template-columns:repeat(2,1fr)!important}
+}
+</style>
+<script id="v45-runtime">
+(()=>{
+ const $=id=>document.getElementById(id);
+ const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+ function markV45(){
+   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V45';
+   const s=$('threeStatus'); if(s)s.textContent='✨ GAME FEEL & EVOLUTION • V45';
+   document.documentElement.dataset.hmwBuild='45';
+ }
+ function polishEvolution(){
+   try{
+    document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+      const k=order[i]; if(!k||!S.monsters[k])return;
+      const m=S.monsters[k],goal=maxGoal(k);
+      const badge=el.querySelector('.evoBadge');
+      if(badge) badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+      const fill=el.querySelector('.miniFill'); if(fill)fill.style.width=pct(m.progress,goal)+'%';
+      el.setAttribute('aria-label',`${defs[k].title} เลเวล ${m.level} ความคืบหน้า ${m.progress} จาก ${goal}`);
+    });
+   }catch(e){console.warn('V45 evolution polish',e)}
+ }
+ function boot(){markV45();try{if(typeof render==='function')render()}catch(e){}setTimeout(polishEvolution,80)}
+ const oldRender=typeof window.render==='function'?window.render:null;
+ if(oldRender)window.render=function(){const r=oldRender.apply(this,arguments);markV45();setTimeout(polishEvolution,0);return r};
+ const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
+ if(oldWorld)window.renderWorld=function(){const r=oldWorld.apply(this,arguments);setTimeout(polishEvolution,0);return r};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ setInterval(markV45,2000);
+})();
+</script>
+
 </body>
 </html>
