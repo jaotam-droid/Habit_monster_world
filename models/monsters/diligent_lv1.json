@@ -29,9 +29,9 @@
     "levelUp": "spin-pop",
     "hero": null
   },
-  "visualStyle": "cinematic_soft_3d_volume",
+  "visualStyle": "cinematic_soft_3d_balanced",
   "renderProfile": {
-    "version": 31,
+    "version": 32,
     "form": "rounded_volumetric",
     "material": "soft_matte_toy",
     "keyLight": [
@@ -51,12 +51,18 @@
     "silhouetteDepth": 1.22,
     "expressionDepth": 1.12,
     "propDepth": 1.18,
-    "renderer": "svg_specular_volume",
+    "renderer": "svg_diffuse_specular_volume",
     "lightingModel": "point_specular_plus_ambient",
     "surfaceScale": 4.2,
     "specularConstant": 0.48,
-    "specularExponent": 18,
+    "specularExponent": 22,
     "groundContactShadow": true,
-    "radialEyeShader": true
+    "radialEyeShader": true,
+    "proportionPass": "balanced_film_character",
+    "eyeScale": 0.9,
+    "faceScale": 0.94,
+    "bodyScale": 0.95,
+    "diffuseLighting": true,
+    "mobileBattleSafeFrame": true
   }
 }
