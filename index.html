@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V43 BIG GAMEPLAY</title>
+<title>Habit Monster World</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V43 Big Gameplay Upgrade";font-weight:800}
+.characterQualityNote:after{content:" • V43.1 Big Gameplay";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V43 Big Gameplay Upgrade";font-weight:900}
+.characterQualityNote:after{content:" • V43.1 Big Gameplay";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -992,13 +992,13 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 </style>
 
 
-<style id="v43-big-gameplay-style">
-/* V43 — BIG GAMEPLAY UPGRADE. Presentation-only; game logic/save state untouched. */
+<style id="v42-game-ui-polish">
+/* V42 — GAME UI POLISH. Presentation-only; game logic/save state untouched. */
 :root{--v42-glass:rgba(255,255,255,.90);--v42-shadow:0 16px 38px rgba(37,73,105,.13);--v42-ring:rgba(255,204,69,.38)}
 body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255,255,.92),transparent 27rem),linear-gradient(180deg,#8fd8f8 0,#dff5ff 31%,#f5fbff 58%,#fff8e9 100%) fixed!important}
 .header{position:relative;isolation:isolate;overflow:hidden!important}
 .header:before{content:"";position:absolute;inset:-35% -10% auto 42%;height:180px;background:radial-gradient(circle,rgba(255,222,113,.32),transparent 66%);z-index:-1;pointer-events:none}
-.buildBadge:after{content:" • BIG GAMEPLAY";font-size:10px;opacity:.88;margin-left:3px}
+.buildBadge:after{content:" • BIG GAMEPLAY";font-size:10px;opacity:.88;margin-left:4px}
 .card{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .nav{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:40;background:rgba(247,252,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:7px;border-radius:22px;box-shadow:0 10px 28px rgba(38,75,108,.11)}
 .nav button{transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
@@ -1029,12 +1029,136 @@ body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+
+<style id="v431-big-gameplay">
+:root{
+ --hmw-gold:#ffd25a;
+ --hmw-sky:#8edaf8;
+ --hmw-grass:#a9df8a;
+ --hmw-earth:#e8c47e;
+}
+.buildBadge{
+  min-width:78px!important;
+  background:linear-gradient(135deg,#7659ef,#427eea)!important;
+  box-shadow:0 9px 22px rgba(78,78,218,.28),inset 0 1px 0 rgba(255,255,255,.48)!important;
+}
+.header{padding-bottom:6px!important}
+.status .pill:first-child{
+  background:linear-gradient(135deg,#fff8d7,#eef7ff)!important;
+  color:#394c69!important;
+}
+/* compact navigation */
+.nav{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}
+.nav button{min-height:52px!important;border-radius:16px!important}
+@media(min-width:760px){.nav{grid-template-columns:repeat(6,1fr)!important}}
+
+/* avatar feels like a game character stage */
+.avatarStage{
+  height:330px!important; min-height:330px!important;
+  background:
+   radial-gradient(circle at 50% 17%,rgba(255,255,255,.98) 0 13%,rgba(255,255,255,.4) 14% 32%,transparent 33%),
+   linear-gradient(180deg,#bfeaff 0 46%,#d9efca 46% 68%,#f0cf8b 68% 100%)!important;
+}
+.avatarStage:after{
+  content:"";position:absolute;left:28%;right:28%;bottom:7%;height:22px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,76,71,.28),transparent 68%);filter:blur(5px)
+}
+
+/* world cards: progression + evolution */
+.world{gap:10px!important;padding:12px!important}
+.zone{
+  min-height:248px!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+  padding:8px 8px 12px!important;border-radius:26px!important;
+}
+.zoneArt{height:150px!important;width:100%!important}
+.zoneProgress{margin-top:auto;padding:0 8px 2px}
+.zoneProgress .miniTrack{
+  height:8px;border-radius:999px;background:rgba(226,234,242,.95);overflow:hidden;margin:7px 0 5px
+}
+.zoneProgress .miniFill{
+  height:100%;border-radius:999px;background:linear-gradient(90deg,#8b7ae8,#6dcb9a)
+}
+.zoneProgress .miniText{font-size:12px;font-weight:900;color:#586c82}
+.evoBadge{
+  position:absolute;left:10px;top:10px;z-index:5;
+  border-radius:999px;padding:4px 8px;font-size:10px;font-weight:950;
+  color:#fff;background:linear-gradient(135deg,#725fe8,#4b87ef);
+  box-shadow:0 6px 12px rgba(65,82,170,.18)
+}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffbe3f,#ff8a44);color:#654000}
+
+/* Encounter: shorter, larger characters, pet alongside hero */
+.arena{
+  border-radius:30px!important;
+  background:
+   radial-gradient(circle at 50% 8%,rgba(255,255,255,.92),transparent 22%),
+   linear-gradient(180deg,#91dcfa 0 45%,#cbeab8 45% 66%,#e6c17b 66% 100%)!important;
+}
+.petFollower{position:absolute!important;left:8%!important;bottom:30%!important;width:78px!important;height:78px!important;z-index:8!important}
+.speech{margin:10px 10px 0!important}
+.battle{
+  min-height:270px!important;padding:18px 6px 5px!important;
+  grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr)!important;
+  align-items:end!important;
+}
+.battle .avatarArt,.battle .bossArt{height:225px!important;width:46%!important;max-width:210px!important}
+.vs{align-self:center!important}
+.vs:before{content:"⚡"!important}
+.battle .label{font-size:18px!important}
+.arena .story{background:rgba(255,255,255,.90)!important}
+.arena .stats{margin-top:10px!important}
+.arena .stat{background:rgba(255,255,255,.90)!important}
+
+/* celebratory states */
+.hmwSpark{
+ position:fixed;z-index:9999;pointer-events:none;font-size:26px;
+ animation:hmwBurst 950ms ease-out forwards
+}
+@keyframes hmwBurst{
+ 0%{transform:translate(-50%,-50%) scale(.4);opacity:0}
+ 20%{opacity:1}
+ 100%{transform:translate(var(--dx),var(--dy)) scale(1.25) rotate(22deg);opacity:0}
+}
+.levelPulse{animation:levelPulse .8s ease}
+@keyframes levelPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045);filter:brightness(1.12)}}
+
+/* make summary/reward panels feel like game cards */
+.journeyNode.open,.trophy.done,.closetItem.on{
+  box-shadow:0 9px 20px rgba(56,91,111,.12)!important;
+}
+.journeyNode .big{filter:drop-shadow(0 6px 8px rgba(50,80,105,.12))}
+.enddayHero{
+  text-align:center;padding:18px;border-radius:22px;
+  background:linear-gradient(180deg,#edf7ff,#fff5cf);
+  margin-bottom:12px
+}
+.enddayHero .big{font-size:52px}
+.enddayHero b{font-size:22px}
+
+/* mobile polish */
+@media(max-width:600px){
+ .nav{grid-template-columns:repeat(3,1fr)!important}
+ .nav button{min-height:48px!important;font-size:14px!important;padding:8px 3px!important}
+ .avatarStage{height:300px!important;min-height:300px!important}
+ .zone{min-height:232px!important}
+ .zoneArt{height:142px!important}
+ .battle{min-height:235px!important;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:188px!important;width:47%!important}
+ .petFollower{width:62px!important;height:62px!important;left:6%!important;bottom:31%!important}
+ .battle .label{font-size:16px!important}
+ .stats{gap:6px!important}
+ .stat{padding:7px 4px!important}
+ .stat b{font-size:18px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V43</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div><div style="margin-top:8px;font-weight:900;color:#6753e8;font-size:14px">🚀 V43 BIG GAMEPLAY • REISSUE 43.01</div></div>
-<div class="status"><span class="pill" id="threeStatus">🚀 V43 Big Gameplay • Character + World</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V43.1</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 BIG GAMEPLAY • V43.1</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -1601,7 +1725,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Scene Integration • Character + World";
+if(threeStatus)threeStatus.textContent="✅ BIG GAMEPLAY • World + Evolution + Celebration";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -2130,13 +2254,148 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4301").then(r=>r.update()).catch(console.error))}</script>
-<script id="v43-runtime-big-gameplay">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4310").then(r=>r.update()).catch(console.error))}</script>
+<script id="v42-runtime-polish">
 (()=>{
- document.documentElement.dataset.hmwBuild='43';
- const mark=()=>{const b=document.querySelector('.buildBadge');if(b)b.textContent='V43';};
+ document.documentElement.dataset.hmwBuild='43.1';
+ const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V43.1';};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 })();
 </script>
+
+<script id="v431-big-gameplay-runtime">
+(()=>{
+  document.documentElement.dataset.hmwBuild="43.1";
+
+  const q=(id)=>document.getElementById(id);
+  const pct=(n,d)=>d?Math.max(0,Math.min(100,n/d*100)):0;
+
+  function forceBuild(){
+    const b=document.querySelector(".buildBadge");
+    if(b)b.textContent="V43.1";
+    const s=q("threeStatus");
+    if(s)s.textContent="🚀 BIG GAMEPLAY • V43.1";
+  }
+
+  // Wrap the existing world renderer, preserving all game state + save logic.
+  if(typeof window.renderWorld==="function"){
+    const originalRenderWorld=window.renderWorld;
+    window.renderWorld=function(){
+      originalRenderWorld();
+      try{
+        document.querySelectorAll("#worldMap .zone").forEach((el,i)=>{
+          const k=order[i], m=S.monsters[k], goal=maxGoal(k);
+          const old=el.querySelector(".zoneProgress"); if(old)old.remove();
+          const badge=document.createElement("div");
+          badge.className="evoBadge";
+          const form=m.level>=5?"HERO":`FORM ${Math.min(5,m.level)}/5`;
+          badge.textContent=form;
+          el.appendChild(badge);
+
+          const p=document.createElement("div");
+          p.className="zoneProgress";
+          p.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pct(m.progress,goal)}%"></div></div>
+            <div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+          el.appendChild(p);
+        });
+
+        const arena=document.querySelector(".arena");
+        if(arena)arena.dataset.kind=S.active;
+      }catch(e){console.warn("V43.1 world polish",e)}
+    };
+  }
+
+  // Expand Journey to 6 worlds while using the same existing totals.
+  if(typeof window.renderJourney==="function"){
+    window.renderJourney=function(){
+      const pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5;
+      const nodes=[
+        ["🏡","Sunny Village",0],
+        ["🌲","Reading Forest",100],
+        ["🧹","Tidy Town",220],
+        ["⛰️","Homework Mountain",400],
+        ["☁️","Sky Garden",520],
+        ["🏰","Star Castle",650]
+      ];
+      q("journeyGrid").innerHTML=nodes.map(([i,n,v],idx)=>`
+        <div class="journeyNode ${pts>=v?"open":""}">
+          <div class="big">${pts>=v?i:"🔒"}</div>
+          <b>${n}</b><br>
+          <small>${pts>=v?(idx===nodes.length-1?"ปลายทางฮีโร่":"เปิดแล้ว"):`ต้องการ ${v} pts`}</small>
+        </div>`).join("");
+    };
+  }
+
+  // Add more meaningful trophies without changing the reward economy.
+  if(typeof window.trophies==="function"){
+    window.trophies=function(){
+      return [
+        ["🌱","เริ่มต้นแล้ว",S.logs.length>=1],
+        ["✏️","100 ข้อ",S.totals.diligent>=100],
+        ["🧠","500 ข้อ",S.totals.diligent>=500],
+        ["📖","อ่าน 100 นาที",S.totals.reading>=100],
+        ["🦉","อ่าน 500 นาที",S.totals.reading>=500],
+        ["📚","การบ้าน 20 งาน",S.totals.homework>=20],
+        ["🔥","Streak 7 วัน",S.streak>=7],
+        ["🌟","Streak 30 วัน",S.streak>=30],
+        ["🐾","Pet Friendship 50",S.pet.friendship>=50],
+        ["🗺️","เปิด 4 โลก", (S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5)>=400],
+        ["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]
+      ];
+    };
+  }
+
+  // Make End Day feel like a conclusion screen, preserving original data.
+  if(typeof window.renderEndDay==="function"){
+    const originalEnd=window.renderEndDay;
+    window.renderEndDay=function(){
+      originalEnd();
+      const host=q("endDaySummary");
+      if(host && !host.querySelector(".enddayHero")){
+        const today=S.logs.filter(x=>x.date===dayKey());
+        const stars=today.reduce((a,x)=>a+(x.stars||0),0);
+        const box=document.createElement("div");
+        box.className="enddayHero";
+        box.innerHTML=`<div class="big">${today.length?"🌟":"🌙"}</div>
+          <b>${today.length?"เก่งมาก วันนี้เดินหน้าแล้ว!":"วันนี้พักได้ พรุ่งนี้ค่อยไปต่อ"}</b>
+          <div>${today.length} กิจกรรม • +${stars} ดาว • Pet XP ${S.pet.xp}</div>`;
+        host.prepend(box);
+      }
+    };
+  }
+
+  // Celebration overlay for stars / level-up. Hooks existing celebrate if present.
+  const oldCelebrate=typeof window.celebrate==="function"?window.celebrate:null;
+  window.celebrate=function(msg){
+    if(oldCelebrate)oldCelebrate(msg);
+    const icons=["✨","⭐","💫","🌟","🎉"];
+    for(let i=0;i<16;i++){
+      const s=document.createElement("span");
+      s.className="hmwSpark";
+      s.textContent=icons[i%icons.length];
+      s.style.left=(45+Math.random()*10)+"vw";
+      s.style.top=(42+Math.random()*12)+"vh";
+      s.style.setProperty("--dx",((Math.random()-.5)*420)+"px");
+      s.style.setProperty("--dy",((-90-Math.random()*260))+"px");
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1100);
+    }
+    document.querySelector(".arena")?.classList.add("levelPulse");
+    setTimeout(()=>document.querySelector(".arena")?.classList.remove("levelPulse"),900);
+  };
+
+  // Re-run render after the overrides are installed.
+  const boot=()=>{
+    forceBuild();
+    try{ if(typeof render==="function") render(); }catch(e){console.warn(e)}
+  };
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});
+  else setTimeout(boot,0);
+
+  // Keep the visible badge correct even if old V42 runtime touches it.
+  setInterval(forceBuild,1500);
+})();
+</script>
+
 </body>
 </html>
