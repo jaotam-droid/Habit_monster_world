@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V43.1 Big Gameplay";font-weight:800}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V43.1 Big Gameplay";font-weight:900}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -998,7 +998,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255,255,.92),transparent 27rem),linear-gradient(180deg,#8fd8f8 0,#dff5ff 31%,#f5fbff 58%,#fff8e9 100%) fixed!important}
 .header{position:relative;isolation:isolate;overflow:hidden!important}
 .header:before{content:"";position:absolute;inset:-35% -10% auto 42%;height:180px;background:radial-gradient(circle,rgba(255,222,113,.32),transparent 66%);z-index:-1;pointer-events:none}
-.buildBadge:after{content:" • BIG GAMEPLAY";font-size:10px;opacity:.88;margin-left:4px}
+.buildBadge:after{content:" • ARENA POLISH";font-size:10px;opacity:.88;margin-left:4px}
 .card{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .nav{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:40;background:rgba(247,252,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:7px;border-radius:22px;box-shadow:0 10px 28px rgba(38,75,108,.11)}
 .nav button{transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
@@ -1153,12 +1153,68 @@ body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255
 }
 </style>
 
+
+<style id="v44-arena-map-polish">
+/* V44 — screenshot-driven polish: compact encounter, bigger actors, clearer world progress */
+.buildBadge{min-width:70px!important;font-size:15px!important;letter-spacing:.4px!important}
+.status .pill:first-child{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+
+/* Make Avatar Studio less vertically dominant on phone */
+@media(max-width:600px){
+  .avatarStage{height:260px!important;min-height:260px!important}
+  .avatarStage svg{max-height:245px!important}
+  .avatarChoices{gap:7px!important}
+  .avatarChoice{min-height:98px!important;padding:5px!important}
+}
+
+/* World Map: give every monster card a visible game-progress footer */
+.zone{overflow:hidden!important;position:relative!important}
+.zone .evoBadge{top:8px!important;left:8px!important;padding:4px 7px!important;font-size:10px!important}
+.zoneProgress{width:100%!important;box-sizing:border-box!important;margin-top:8px!important;padding:0 10px 3px!important}
+.zoneProgress .miniTrack{height:7px!important;background:#e9eef4!important}
+.zoneProgress .miniFill{box-shadow:0 0 8px rgba(108,191,151,.22)!important}
+.zoneProgress .miniText{font-size:11px!important;line-height:1.15!important;text-align:center!important}
+@media(max-width:600px){
+ .zone{min-height:244px!important;padding-bottom:9px!important}
+ .zoneArt{height:137px!important}
+ .zone b{font-size:15px!important;line-height:1.15!important}
+ .zone small{font-size:13px!important}
+}
+
+/* Encounter: remove the giant empty sky seen in V43 screenshots */
+.arena{padding:10px 8px 12px!important;overflow:hidden!important}
+#petFollower.petFollower{position:relative!important;left:auto!important;bottom:auto!important;width:68px!important;height:68px!important;margin:2px auto 2px!important}
+.battle{min-height:210px!important;height:auto!important;padding:3px 4px 2px!important;gap:0!important;align-items:end!important}
+.battle .avatarArt,.battle .bossArt{height:180px!important;width:45%!important;max-width:185px!important;display:flex!important;align-items:flex-end!important;justify-content:center!important}
+.battle .avatarArt svg,.battle .bossArt svg{max-height:176px!important;width:100%!important}
+.vs{align-self:center!important}
+.vs:before{width:44px!important;height:44px!important;font-size:23px!important;box-shadow:0 8px 18px rgba(136,104,24,.15)!important}
+.battle .label{font-size:17px!important;margin-top:0!important;line-height:1.1!important}
+.speech{margin:5px 5px 7px!important;padding:8px!important}
+.arena .story{margin-top:6px!important}
+.arena .stats{margin-top:8px!important}
+@media(max-width:600px){
+ .arena{padding-top:7px!important}
+ #petFollower.petFollower{width:60px!important;height:60px!important}
+ .battle{min-height:188px!important;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:158px!important;width:47%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:155px!important}
+ .vs:before{width:38px!important;height:38px!important;font-size:20px!important}
+ .battle .label{font-size:15px!important}
+}
+
+/* Slightly more lively selected world */
+.zone.active{box-shadow:0 0 0 4px rgba(255,200,62,.2),0 12px 24px rgba(52,95,120,.14)!important}
+.zone.active .zoneArt{animation:v44Float 2.7s ease-in-out infinite}
+@keyframes v44Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V43.1</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">🚀 BIG GAMEPLAY • V43.1</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V44</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -2254,11 +2310,11 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4310").then(r=>r.update()).catch(console.error))}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4400").then(r=>r.update()).catch(console.error))}</script>
 <script id="v42-runtime-polish">
 (()=>{
  document.documentElement.dataset.hmwBuild='43.1';
- const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V43.1';};
+ const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V44';};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 })();
 </script>
@@ -2272,9 +2328,9 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 
   function forceBuild(){
     const b=document.querySelector(".buildBadge");
-    if(b)b.textContent="V43.1";
+    if(b)b.textContent="V44";
     const s=q("threeStatus");
-    if(s)s.textContent="🚀 BIG GAMEPLAY • V43.1";
+    if(s)s.textContent="🚀 ARENA & MAP POLISH • V44";
   }
 
   // Wrap the existing world renderer, preserving all game state + save logic.
@@ -2301,7 +2357,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 
         const arena=document.querySelector(".arena");
         if(arena)arena.dataset.kind=S.active;
-      }catch(e){console.warn("V43.1 world polish",e)}
+      }catch(e){console.warn("V44 world polish",e)}
     };
   }
 
@@ -2394,6 +2450,45 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 
   // Keep the visible badge correct even if old V42 runtime touches it.
   setInterval(forceBuild,1500);
+})();
+</script>
+
+
+<script id="v44-runtime">
+(()=>{
+ const $=(id)=>document.getElementById(id);
+ const pc=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+ function mark(){
+   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V44';
+   const s=$('threeStatus'); if(s)s.textContent='🎮 ARENA & MAP POLISH • V44';
+   document.documentElement.dataset.hmwBuild='44';
+ }
+ function decorateWorld(){
+   try{
+     document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+       const k=order[i]; if(!k)return;
+       const m=S.monsters[k], goal=maxGoal(k);
+       el.querySelectorAll('.zoneProgress,.evoBadge').forEach(x=>x.remove());
+       const badge=document.createElement('div');
+       badge.className='evoBadge'; badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+       el.appendChild(badge);
+       const box=document.createElement('div'); box.className='zoneProgress';
+       box.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pc(m.progress,goal)}%"></div></div><div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+       el.appendChild(box);
+     });
+   }catch(e){console.warn('V44 decorateWorld',e)}
+ }
+ const oldRender=typeof window.render==='function'?window.render:null;
+ if(oldRender){
+   window.render=function(){const r=oldRender.apply(this,arguments); mark(); setTimeout(decorateWorld,0); return r;}
+ }
+ const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
+ if(oldWorld){
+   window.renderWorld=function(){const r=oldWorld.apply(this,arguments); setTimeout(decorateWorld,0); return r;}
+ }
+ const boot=()=>{mark(); try{if(typeof render==='function')render();}catch(e){} setTimeout(decorateWorld,60)};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+ setInterval(mark,2000);
 })();
 </script>
 
