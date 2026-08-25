@@ -34,12 +34,16 @@
     "bag",
     "star"
   ],
-  "visualStyle": "premium_soft_3d",
+  "visualStyle": "cinematic_soft_3d_volume",
   "renderProfile": {
-    "version": 30,
+    "version": 31,
     "form": "rounded_volumetric",
     "material": "soft_matte_toy",
-    "keyLight": "upper_left_softbox",
+    "keyLight": [
+      115,
+      70,
+      180
+    ],
     "fillLight": "cool_front",
     "rimLight": "subtle_warm",
     "ambientOcclusion": 0.22,
@@ -52,6 +56,13 @@
     "faceDepth": 1.18,
     "hairDepth": 1.22,
     "clothDepth": 1.15,
-    "limbRoundness": 1.2
+    "limbRoundness": 1.2,
+    "renderer": "svg_specular_volume",
+    "lightingModel": "point_specular_plus_ambient",
+    "surfaceScale": 4.2,
+    "specularConstant": 0.48,
+    "specularExponent": 18,
+    "groundContactShadow": true,
+    "radialEyeShader": true
   }
 }
