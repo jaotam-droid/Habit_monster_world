@@ -1252,7 +1252,7 @@ body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255
 </div>
 <div class="story" id="monsterTalk"></div>
 <div class="row"><span id="monsterTitle"></span><span id="monsterLevel"></span></div>
-<div class="row"><span>🌫️ พลังนิสัยเดิม</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
+<div class="row"><span>⚡ พลังนิสัย</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
 <div id="nextLevelHint" class="note" style="text-align:center;font-weight:850"></div>
 <div class="stats"><div class="stat"><b id="progressText">0</b><span id="progressUnit"></span></div><div class="stat"><b id="monsterWins">0</b>ผ่าน Level</div><div class="stat"><b id="pendingCount">0</b>รออนุมัติ</div><div class="stat"><b id="petMiniText">0</b>Pet XP</div></div>
 <div id="questBox" class="quest"></div>
@@ -2549,34 +2549,442 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
  .arena .stats{grid-template-columns:repeat(2,1fr)!important}
 }
 </style>
-<script id="v45-runtime">
+
+<style id="v46-mobile-game-experience">
+/* =========================================================
+   V46 — MOBILE GAME EXPERIENCE
+   Visual / UX upgrade only. Existing save logic is preserved.
+   ========================================================= */
+
+:root{
+  --v46-gold:#ffd65c;
+  --v46-blue:#6d8cff;
+  --v46-deep:#24364a;
+  --v46-card-shadow:0 12px 28px rgba(43,73,105,.13);
+}
+
+/* Header + navigation hierarchy */
+.header{position:relative}
+.buildBadge{
+  background:linear-gradient(135deg,#6675f3,#4e7be9)!important;
+  color:#fff!important;
+  box-shadow:0 7px 15px rgba(75,94,201,.22)!important;
+}
+.nav button[data-screen="world"],
+.nav button[data-screen="daily"],
+.nav button[data-screen="journey"]{
+  background:linear-gradient(180deg,#f7fbff,#e8f4ff)!important;
+  box-shadow:0 5px 12px rgba(67,113,150,.08)!important;
+}
+.nav button[data-screen="parent"],
+.nav button[data-screen="backup"],
+.nav button[data-screen="dashboard"]{
+  color:#5f7285!important;
+  background:#f4f7f9!important;
+}
+
+/* Avatar Studio becomes a setup panel, not the main event */
+.avatarStudio{
+  align-items:start!important;
+}
+.avatarStage{
+  box-shadow:inset 0 0 50px rgba(255,255,255,.55),0 10px 24px rgba(43,73,105,.08)!important;
+}
+
+/* World map = compact selectable game stages */
+.world{
+  align-items:stretch!important;
+}
+.zone{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+  box-shadow:0 8px 18px rgba(52,92,120,.08)!important;
+}
+.zone:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:7px;
+  background:linear-gradient(90deg,#8ad4ff,#84df9a,#ffd877);
+  opacity:.8;
+}
+.zone.active{
+  border-color:#ffc94a!important;
+  box-shadow:0 0 0 4px rgba(255,200,62,.19),0 14px 28px rgba(52,95,120,.14)!important;
+  background:linear-gradient(180deg,#fffef5,#fff8d9)!important;
+}
+.zone .zoneArt{
+  flex:0 0 auto!important;
+  margin-top:3px!important;
+}
+.zone b{
+  line-height:1.16!important;
+}
+.zone small{
+  color:#607183!important;
+}
+.zoneProgress{
+  margin-top:auto!important;
+}
+.zone .evoBadge{
+  font-size:10px!important;
+  letter-spacing:.02em!important;
+}
+.zone .v46-next-form{
+  margin:4px 5px 0;
+  min-height:1.25em;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:900;
+  color:#6e6b91;
+}
+.zone.active .v46-next-form{color:#8a6812}
+
+/* Arena = one unified encounter scene */
+.arena{
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,255,255,.78) 0 10%,transparent 28%),
+    linear-gradient(180deg,#9edffa 0 47%,#cceebd 47% 69%,#f5d89e 69% 100%)!important;
+}
+.arena .speech{
+  position:relative!important;
+  z-index:7!important;
+  margin-bottom:2px!important;
+}
+#petFollower.petFollower{
+  position:absolute!important;
+  right:12px!important;
+  left:auto!important;
+  top:54px!important;
+  width:62px!important;
+  height:62px!important;
+  z-index:9!important;
+  margin:0!important;
+}
+#petFollower.petFollower:after{
+  content:"❤";
+  position:absolute;
+  right:-4px;
+  top:-6px;
+  display:grid;
+  place-items:center;
+  width:24px;height:24px;
+  background:#fff;
+  border-radius:50%;
+  font-size:13px;
+  box-shadow:0 5px 10px rgba(54,77,94,.13);
+}
+.battle{
+  min-height:215px!important;
+  padding:9px 5px 2px!important;
+  align-items:end!important;
+}
+.battle .avatarArt,.battle .bossArt{
+  height:178px!important;
+  width:100%!important;
+  max-width:230px!important;
+}
+.battle .avatarArt svg,.battle .bossArt svg{
+  max-height:176px!important;
+}
+.vs:before{
+  width:42px!important;height:42px!important;
+  font-size:22px!important;
+  background:rgba(255,255,255,.92)!important;
+  box-shadow:0 8px 18px rgba(93,103,97,.13)!important;
+}
+#monsterTalk{
+  background:rgba(255,255,255,.9)!important;
+  border:1px solid rgba(210,224,235,.95)!important;
+  border-radius:14px!important;
+  margin-top:4px!important;
+  padding:9px 11px!important;
+  font-weight:850!important;
+}
+#nextLevelHint{
+  background:rgba(255,255,255,.58);
+  border-radius:999px;
+  padding:5px 10px;
+  margin:7px auto 4px!important;
+  width:max-content;
+  max-width:100%;
+}
+.arena .stats .stat{
+  background:rgba(255,255,255,.9)!important;
+  box-shadow:0 6px 14px rgba(44,70,91,.08)!important;
+}
+.arena .bar{
+  height:15px!important;
+}
+.arena .hp{
+  background:linear-gradient(90deg,#8f82ef,#6e73df,#66c99b)!important;
+}
+
+/* Tiny feedback animation without changing game logic */
+@keyframes v46PetBounce{
+  0%,100%{transform:translateY(0) rotate(0)}
+  45%{transform:translateY(-4px) rotate(-2deg)}
+  65%{transform:translateY(-2px) rotate(2deg)}
+}
+@keyframes v46SelectedFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
+#petFollower.petFollower{animation:v46PetBounce 2.4s ease-in-out infinite}
+.zone.active .zoneArt{animation:v46SelectedFloat 2.7s ease-in-out infinite!important}
+
+/* Desktop remains spacious */
+@media(min-width:601px){
+  .world{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .zone{min-height:220px!important}
+}
+
+/* iPhone / mobile layout */
+@media(max-width:600px){
+  .wrap{
+    padding:
+      calc(8px + env(safe-area-inset-top))
+      9px
+      calc(96px + env(safe-area-inset-bottom))!important;
+  }
+  .card{margin-top:9px!important}
+  .header{padding:14px!important}
+  .header h1{font-size:28px!important}
+  .header .sub{font-size:15px!important;margin-top:8px!important}
+  .status{gap:6px!important}
+  .status .pill{padding:7px 9px!important;font-size:14px!important}
+
+  .nav{
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:6px!important;
+  }
+  .nav button{
+    min-height:60px!important;
+    font-size:13px!important;
+    padding:7px 3px!important;
+  }
+
+  /* Avatar setup takes less vertical space */
+  #world > section.card:first-of-type{padding:12px!important}
+  .avatarStage{
+    width:min(330px,88vw)!important;
+    height:320px!important;
+  }
+  .avatarChoices{gap:6px!important}
+  .avatarChoice{min-height:112px!important}
+
+  /* World cards: 2 columns, substantially shorter */
+  .world{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+    padding:7px!important;
+  }
+  .zone{
+    min-height:204px!important;
+    padding:7px 5px 8px!important;
+    border-radius:22px!important;
+  }
+  .zoneArt{
+    width:112px!important;
+    height:112px!important;
+  }
+  .zone b{
+    font-size:14px!important;
+    min-height:2.25em!important;
+  }
+  .zone small{font-size:12px!important}
+  .zoneProgress{padding:0 7px 1px!important}
+  .zone .evoBadge{top:7px!important;left:7px!important}
+  .zone.active:after{
+    right:5px!important;
+    top:7px!important;
+    font-size:9px!important;
+    padding:4px 6px!important;
+  }
+
+  /* Arena is compact: pet + hero + monster belong to the same scene */
+  .arena{padding:8px 6px 10px!important;min-height:0!important}
+  #petFollower.petFollower{
+    width:54px!important;height:54px!important;
+    top:49px!important;right:9px!important;
+  }
+  .battle{
+    min-height:202px!important;
+    grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important;
+    padding:5px 3px 1px!important;
+  }
+  .battle .avatarArt,.battle .bossArt{
+    height:164px!important;
+    max-width:190px!important;
+  }
+  .battle .avatarArt svg,.battle .bossArt svg{max-height:162px!important}
+  .battle .label{font-size:14px!important}
+  #monsterTalk{font-size:14px!important;padding:8px 9px!important}
+  .arena .row{font-size:14px!important}
+  #nextLevelHint{font-size:13px!important}
+  .arena .stats{
+    grid-template-columns:repeat(2,1fr)!important;
+    gap:6px!important;
+  }
+  .arena .stats .stat{min-height:70px!important}
+
+  /* Keep section headings away from mobile browser chrome */
+  #worldMap{scroll-margin-top:12px}
+  #world h2{line-height:1.15!important}
+}
+
+/* Smallest iPhones */
+@media(max-width:390px){
+  .zone{min-height:194px!important}
+  .zoneArt{width:104px!important;height:104px!important}
+  .battle .avatarArt,.battle .bossArt{height:150px!important}
+  .battle{min-height:185px!important}
+}
+</style>
+
+
+<script id="v46-runtime">
 (()=>{
- const $=id=>document.getElementById(id);
- const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
- function markV45(){
-   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V45';
-   const s=$('threeStatus'); if(s)s.textContent='✨ GAME FEEL & EVOLUTION • V45';
-   document.documentElement.dataset.hmwBuild='45';
- }
- function polishEvolution(){
-   try{
-    document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
-      const k=order[i]; if(!k||!S.monsters[k])return;
-      const m=S.monsters[k],goal=maxGoal(k);
-      const badge=el.querySelector('.evoBadge');
-      if(badge) badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
-      const fill=el.querySelector('.miniFill'); if(fill)fill.style.width=pct(m.progress,goal)+'%';
-      el.setAttribute('aria-label',`${defs[k].title} เลเวล ${m.level} ความคืบหน้า ${m.progress} จาก ${goal}`);
-    });
-   }catch(e){console.warn('V45 evolution polish',e)}
- }
- function boot(){markV45();try{if(typeof render==='function')render()}catch(e){}setTimeout(polishEvolution,80)}
- const oldRender=typeof window.render==='function'?window.render:null;
- if(oldRender)window.render=function(){const r=oldRender.apply(this,arguments);markV45();setTimeout(polishEvolution,0);return r};
- const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
- if(oldWorld)window.renderWorld=function(){const r=oldWorld.apply(this,arguments);setTimeout(polishEvolution,0);return r};
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
- setInterval(markV45,2000);
+  const BUILD='V46';
+  const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+
+  const personality={
+    diligent:["ยังไม่รีบก็ได้น้า 😝","โอ๊ะ เริ่มขยันจริงแล้วสิ","ทำต่อแบบนี้ฉันเริ่มหวั่นแล้ว ✨","ใกล้เปลี่ยนร่างแล้วนะ!"],
+    reading:["เปิดแค่หน้าเดียวก่อนก็ได้ 📖","เอ๊ะ อ่านเพลินขึ้นแล้ว","นักอ่านกำลังมาแล้ว!","อีกนิดเดียวจะเปลี่ยนร่าง ✨"],
+    homework:["เดี๋ยวค่อยทำก็ได้มั้ง 😴","งานเริ่มหายไปแล้ว","โต๊ะการบ้านโล่งขึ้นเยอะ","ใกล้แปลงร่างแล้ว!"],
+    messy:["วางตรงนี้ก่อนก็ได้มั้ง 😜","หาอะไรง่ายขึ้นแล้วนะ","พื้นที่สะอาดขึ้นเรื่อย ๆ","ฉันจะเปลี่ยนร่างแล้ว!"],
+    morning:["อีกห้านาทีเอง ☀️","เช้านี้คล่องขึ้นนะ","พร้อมไวขึ้นทุกวัน","เกือบได้ร่างใหม่แล้ว!"],
+    noDawdle:["ขออีกแป๊บนึง ⏰","จับเวลาเก่งขึ้นแล้ว","เร็วแบบไม่รีบเกินไป เยี่ยม!","อีกนิดเดียว!"],
+    screen:["อีก 5 นาทีได้ไหม 👀","วางจอเร็วขึ้นแล้วนะ","มีกิจกรรมอื่นสนุกด้วย","ใกล้ปลดล็อกร่างใหม่!"]
+  };
+
+  function markBuild(){
+    const b=document.querySelector('.buildBadge');
+    if(b)b.textContent=BUILD;
+    const s=document.getElementById('threeStatus');
+    if(s)s.textContent='🎮 MOBILE GAME EXPERIENCE • V46';
+    document.documentElement.dataset.hmwBuild='46';
+    document.title='Habit Monster World V46';
+  }
+
+  function enhanceWorld(){
+    try{
+      document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+        const k=order[i];
+        if(!k || !S.monsters[k])return;
+        const m=S.monsters[k];
+        const goal=maxGoal(k);
+        const remaining=Math.max(0,goal-m.progress);
+        const progress=pct(m.progress,goal);
+
+        const badge=el.querySelector('.evoBadge');
+        if(badge) badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+
+        let teaser=el.querySelector('.v46-next-form');
+        if(!teaser){
+          teaser=document.createElement('div');
+          teaser.className='v46-next-form';
+          const progressBox=el.querySelector('.zoneProgress');
+          (progressBox||el).appendChild(teaser);
+        }
+
+        if(m.level>=5){
+          teaser.textContent='✨ HERO FORM — Mastery';
+        }else if(progress>=80){
+          teaser.textContent=`✨ ใกล้แปลงร่าง! อีก ${remaining} ${defs[k].unit}`;
+        }else{
+          teaser.textContent=`🔒 FORM ${m.level+1} • อีก ${remaining} ${defs[k].unit}`;
+        }
+
+        const fill=el.querySelector('.miniFill');
+        if(fill)fill.style.width=progress+'%';
+      });
+    }catch(e){console.warn('V46 world enhance',e)}
+  }
+
+  function enhanceArena(){
+    try{
+      const k=S.active,m=S.monsters[k],goal=maxGoal(k);
+      const progress=pct(m.progress,goal);
+      const talk=document.getElementById('monsterTalk');
+      if(talk && personality[k]){
+        const idx=m.level>=5 ? 3 : progress>=80 ? 3 : progress>=45 ? 2 : progress>=15 ? 1 : 0;
+        talk.textContent=personality[k][idx];
+      }
+
+      const hint=document.getElementById('nextLevelHint');
+      if(hint){
+        const rem=Math.max(0,goal-m.progress);
+        hint.textContent=m.level>=5
+          ? '👑 HERO FORM • เก็บ Mastery ต่อได้'
+          : progress>=80
+            ? `✨ ใกล้ EVOLUTION! อีก ${rem} ${defs[k].unit}`
+            : `🔒 FORM ${m.level+1} • อีก ${rem} ${defs[k].unit}`;
+      }
+
+      const unit=document.getElementById('progressUnit');
+      if(unit)unit.textContent=defs[k].unit+'สะสม';
+
+      const pet=document.getElementById('petSpeech');
+      if(pet){
+        const petName=(typeof pets!=='undefined' && pets[S.pet.selected]) ? pets[S.pet.selected].name : 'Pet';
+        pet.textContent=progress>=80
+          ? `${petName}: อีกนิดเดียว! ✨`
+          : `${petName} เชียร์อยู่นะ! 🐾`;
+      }
+    }catch(e){console.warn('V46 arena enhance',e)}
+  }
+
+  function enhanceDaily(){
+    try{
+      const btn=document.querySelector('[data-screen="daily"]');
+      if(!btn || !S.daily)return;
+      const done=['diligent','reading','homework'].filter(k=>S.daily.done && S.daily.done[k]).length;
+      btn.setAttribute('aria-label',`Daily Quest ${done}/3`);
+      btn.title=`Daily Quest ${done}/3`;
+    }catch(e){}
+  }
+
+  function polish(){
+    markBuild();
+    enhanceWorld();
+    enhanceArena();
+    enhanceDaily();
+  }
+
+  function boot(){
+    markBuild();
+    setTimeout(polish,100);
+  }
+
+  // Existing code calls render() directly. Wrap it without changing save/progress logic.
+  const originalRender=window.render;
+  if(typeof originalRender==='function'){
+    window.render=function(){
+      const result=originalRender.apply(this,arguments);
+      setTimeout(polish,0);
+      return result;
+    };
+  }
+
+  const originalWorld=window.renderWorld;
+  if(typeof originalWorld==='function'){
+    window.renderWorld=function(){
+      const result=originalWorld.apply(this,arguments);
+      setTimeout(()=>{enhanceWorld();enhanceArena()},0);
+      return result;
+    };
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',boot,{once:true});
+  }else{
+    boot();
+  }
+  setInterval(markBuild,2500);
 })();
 </script>
 
