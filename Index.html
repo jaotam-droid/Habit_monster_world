@@ -1,0 +1,2584 @@
+<!doctype html>
+<html lang="th">
+<head><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#76b9ef">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#76b9ef">
+<title>Habit Monster World</title>
+<style>
+:root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
+.wrap{max-width:1250px;margin:auto;padding:calc(14px + env(safe-area-inset-top)) 12px 100px}.header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.header h1{margin:0;font-size:clamp(25px,5vw,42px);line-height:1.08}.sub,.note{color:var(--muted)}
+.status{display:flex;gap:7px;flex-wrap:wrap}.pill{background:#fff;padding:7px 10px;border-radius:999px;box-shadow:var(--shadow);font-weight:850}
+.card{background:#fff;border:2px solid #fff;border-radius:22px;padding:15px;margin-top:11px;box-shadow:var(--shadow)}h2,h3,h4{margin:0 0 9px}
+.nav{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.nav button{border:0;border-radius:13px;padding:10px 5px;background:#edf4f8;font-weight:900}.nav button.active{background:#dceeff;color:#285e9b}
+.screen{display:none}.screen.active{display:block}
+.world{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.zone{border:2px solid var(--line);border-radius:18px;padding:11px;text-align:center;background:#fff;cursor:pointer;transition:.15s;min-height:150px}.zone:active{transform:scale(.97)}.zone.active{border-color:#6b9ee5;background:#eef6ff}.zoneArt{width:104px;height:104px;margin:auto}.zoneArt svg{width:100%;height:100%}
+.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#cfeeff 0 52%,#eaf7dc 52%);min-height:470px;overflow:hidden;position:relative}.battle{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:end;text-align:center;gap:4px;overflow:hidden}.avatarArt{width:150px;height:175px;margin:auto;overflow:hidden}.bossArt{width:180px;height:190px;margin:auto;overflow:hidden}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
+.vs{font-size:30px;font-weight:1000;color:#789}.label{font-weight:950}.story{background:#f7fbff;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}.row{display:flex;justify-content:space-between;gap:8px;font-weight:900}
+.bar{height:16px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dae5ec;margin:5px 0 9px}.hp{height:100%;background:linear-gradient(90deg,#a49fe9,#786fd1)}.xp{height:100%;background:linear-gradient(90deg,#65cbff,#6278ff)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.stat{background:#f7fbfd;border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center}.stat b{display:block;font-size:20px}
+.quest{margin-top:11px;background:#fff;border:1px solid var(--line);border-radius:17px;padding:12px}.questTitle{font-weight:950;font-size:18px;margin-bottom:8px}
+.inputRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inputRow input,.inputRow select,.setting input,.setting select,.wideInput{width:100%;padding:10px;border:1px solid #d9e3eb;border-radius:11px;background:#fff}
+.bigBtn{width:100%;border:0;border-radius:13px;padding:11px;margin-top:8px;font-weight:950}.smallBtn{border:0;border-radius:10px;padding:8px 11px;font-weight:900;background:#e8f2fb}.green{background:var(--green);color:#fff}.blue{background:var(--blue);color:#fff}.yellow{background:var(--yellow);color:#5b4800}.purple{background:var(--purple);color:#fff}.pink{background:var(--pink);color:#fff}.orange{background:var(--orange);color:#fff}
+.checkList{display:grid;gap:8px;margin-top:8px}.checkRow{display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:#fbfdff}.checkRow input[type=checkbox]{width:21px;height:21px;flex:none}.inlineAdd{display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:9px}.deleteBtn{border:0;border-radius:9px;padding:6px 9px;background:#ffe8eb;color:#a63a47;font-weight:900}
+.triple{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini{border:1px solid var(--line);border-radius:13px;padding:10px;background:#fbfdff}.mini input{width:100%;padding:9px;border:1px solid #d9e3eb;border-radius:10px;margin-top:5px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.box{border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff;text-align:center}.box.done{background:#eef9f1;border-color:#86cf9f}.ico{font-size:34px}
+.avatarStudio{display:grid;grid-template-columns:230px 1fr;gap:15px;align-items:center}.avatarStage{width:220px;height:240px;margin:auto;border-radius:26px;background:linear-gradient(#eaf7ff,#fff7df);display:grid;place-items:center;box-shadow:var(--shadow)}.avatarStage svg{width:96%;height:96%}
+.avatarChoices{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.avatarChoice{border:2px solid var(--line);border-radius:12px;padding:6px;background:#fff;font-weight:850}.avatarChoice.on{border-color:#ffd15b;background:#fff8d6}.avatarChoice svg{width:58px;height:64px}
+.gearRow{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.gearChip{border:2px solid var(--line);border-radius:999px;padding:7px 10px;background:#eef7ff;font-weight:900}.gearChip.on{border-color:#ffd15b;background:#fff3bd}.gearChip.locked{opacity:.45}
+.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.summaryBox{border:1px solid var(--line);border-radius:13px;padding:10px;background:#fbfdff}.summaryBox b{display:block;font-size:19px}
+.petStudio{display:grid;grid-template-columns:230px 1fr;gap:15px}.petStage{width:210px;height:210px;margin:auto;border-radius:26px;background:linear-gradient(#eef8ff,#fff7dc);display:grid;place-items:center}.petStage svg{width:92%;height:92%}.petChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.petChoice{border:2px solid var(--line);border-radius:14px;padding:7px;background:#fff;font-weight:900}.petChoice.on{border-color:#ffd45c;background:#fff9d9}.petChoice.locked{opacity:.45}.petChoice svg{width:80px;height:80px}
+.friendBar{height:15px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dbe4eb}.friendFill{height:100%;background:linear-gradient(90deg,#ffb4d2,#ff7eae)}
+.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.journeyNode{border:2px solid var(--line);border-radius:16px;padding:11px;text-align:center}.journeyNode.open{background:#f0fbf3;border-color:#8acb9e}.journeyNode .big{font-size:38px}
+.closetGrid,.trophyGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.closetItem,.trophy{border:2px solid var(--line);border-radius:13px;padding:9px;text-align:center;background:#fff}.closetItem.locked{opacity:.45}.closetItem.on,.trophy.done{border-color:#e4c757;background:#fff9dc}
+.pinGate{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.pinGate input{max-width:170px;padding:9px;border:1px solid var(--line);border-radius:10px}
+.historyRow{padding:8px 10px;border-bottom:1px dashed #dfe7ed}.petFollower{width:95px;height:95px;margin:auto}.petFollower svg{width:100%;height:100%}.speech{text-align:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:7px;font-weight:900;margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);background:#25364b;color:white;padding:9px 15px;border-radius:999px;opacity:0;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translateX(-50%)}
+.modal{position:fixed;inset:0;background:rgba(20,30,40,.35);display:none;place-items:center;padding:20px;z-index:90}.modal.show{display:grid}.modalCard{background:#fff;max-width:420px;width:100%;border-radius:22px;padding:20px;text-align:center}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
+@media(max-width:900px){.nav{grid-template-columns:repeat(4,1fr)}.world{grid-template-columns:repeat(2,1fr)}.main{grid-template-columns:1fr}.avatarStudio,.petStudio{grid-template-columns:1fr}.avatarChoices{grid-template-columns:repeat(3,1fr)}.grid4,.closetGrid,.trophyGrid{grid-template-columns:repeat(2,1fr)}.journey{grid-template-columns:repeat(2,1fr)}.triple{grid-template-columns:1fr}.summaryGrid{grid-template-columns:repeat(2,1fr)}}
+
+.three-slot{width:100%;height:100%;min-height:64px;position:relative;overflow:hidden;border-radius:20px;background:radial-gradient(circle at 50% 28%,#ffffff 0,#eef8ff 48%,#e8f3df 100%)}
+.three-slot canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
+.zoneArt .three-slot{min-height:105px}
+.avatarChoice .three-slot{height:64px}
+.three-slot.three-avatar{background:radial-gradient(circle at 50% 25%,#fff 0,#edf8ff 52%,#fff4d8 100%)}
+.three-slot.three-pet{background:radial-gradient(circle at 50% 25%,#fff 0,#f4fbff 55%,#fff5df 100%)}
+.webglNotice{font-size:12px;color:#6e7d8b;text-align:center;margin-top:4px}
+
+@media(max-width:600px){
+  .battle{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);gap:2px;align-items:end}
+  .avatarArt{width:132px;height:158px}
+  .bossArt{width:145px;height:160px}
+  .battle .label{font-size:16px;line-height:1.15}
+  .vs{font-size:22px}
+  .arena{padding-left:8px;padding-right:8px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+
+  .wrap{padding-left:10px;padding-right:10px}
+  .card{padding:12px;border-radius:18px}
+  .world{gap:8px}
+  .zone{padding:8px;min-height:142px}
+  .zoneArt{width:96px;height:96px}
+  .avatarStage{width:190px;height:210px}
+  .avatarArt{width:145px;height:170px}
+  .bossArt{width:190px;height:200px}
+  .header{align-items:flex-start}
+}
+
+
+.cinematicTag{font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px;background:#fff4cf;color:#8a6418;display:inline-block}
+.battleSceneTitle{font-weight:900;font-size:18px;margin:4px 0 8px}
+@media(max-width:600px){
+  .battleSceneTitle{font-size:16px}
+  .avatarStage{height:210px}
+  .zoneArt{border-radius:22px}
+}
+
+
+/* V27 Cinematic Art Pipeline */
+.avatarStage,.petStage,.zoneArt .three-slot{
+  background:
+    radial-gradient(circle at 50% 20%,rgba(255,255,255,.98) 0 15%,rgba(237,248,255,.94) 48%,rgba(255,246,218,.9) 100%);
+}
+.avatarStage{box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 12px 28px rgba(43,73,105,.12)}
+.avatarChoice{overflow:hidden;min-height:100px}
+.avatarChoice small{display:block;margin-top:2px;font-weight:950;color:#1682e6}
+.zone{overflow:hidden}
+.zone b{display:inline-block;line-height:1.15;margin-top:3px}
+.three-slot canvas{filter:saturate(1.03) contrast(1.01)}
+.characterQualityNote{font-size:13px;color:#66788c;background:#f7fbff;border:1px solid var(--line);padding:9px 11px;border-radius:13px;margin-top:8px}
+@media(max-width:600px){
+ .avatarChoice{min-height:106px}
+ .avatarChoice .three-slot{height:70px}
+ .avatarStage{width:min(250px,76vw);height:280px}
+ .battle{align-items:end}
+ .avatarArt{width:148px;height:180px}
+ .bossArt{width:155px;height:180px}
+}
+
+
+/* V26.8 premium character-art polish */
+.avatarStage{border:1px solid rgba(255,255,255,.95)}
+.avatarChoice{border-radius:16px}
+.zone{background:linear-gradient(180deg,#fff 0%,#fbfdff 100%)}
+.zoneArt{filter:drop-shadow(0 8px 12px rgba(61,88,117,.12))}
+.arena{background:linear-gradient(180deg,#d9f2ff 0 51%,#eaf7dc 51% 100%)}
+.battle{min-height:220px}
+@media(max-width:600px){
+ .avatarStage{height:300px}
+ .avatarChoice{min-height:112px}
+ .avatarChoice .three-slot{height:76px}
+ .zone{min-height:150px}
+ .zoneArt{height:104px;width:104px}
+ .avatarArt{width:150px;height:184px}
+ .bossArt{width:158px;height:184px}
+}
+
+
+/* V26.8 premium mobile-game presentation */
+.avatarStage{background:radial-gradient(circle at 50% 28%,#ffffff 0%,#edf8ff 52%,#fff6dc 100%);border:1px solid rgba(100,160,210,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 40px rgba(43,79,112,.13)}
+.avatarChoice,.zone{background:linear-gradient(180deg,#fff 0%,#f8fcff 68%,#fffaf0 100%);border-color:#d9e8f3}
+.avatarChoice.on,.zone.active{box-shadow:0 0 0 3px rgba(79,156,249,.16),0 14px 28px rgba(55,104,150,.13)}
+.three-slot{filter:drop-shadow(0 12px 12px rgba(45,70,95,.14))}
+@media(max-width:600px){.avatarStage{min-height:390px}.avatarStudio{gap:16px}.zoneArt{min-height:150px}.world{gap:12px}}
+
+/* V26.9 CHARACTER REDESIGN */
+.avatarStage{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.99) 0 17%,rgba(232,246,255,.95) 52%,rgba(255,246,219,.88) 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.95),0 18px 36px rgba(54,83,112,.14);
+}
+.avatarChoice,.zone{
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.avatarChoice.selected,.zone.selected{
+  box-shadow:0 8px 20px rgba(60,130,220,.14);
+}
+.avatarChoice .three-slot,.zoneArt .three-slot{
+  filter:drop-shadow(0 8px 12px rgba(49,75,98,.12));
+}
+.arena{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.55),transparent 26%),
+    linear-gradient(180deg,#cceeff 0 48%,#d9f1c8 48% 66%,#f8edce 66% 100%);
+}
+@media(max-width:600px){
+  .avatarStage{height:305px}
+  .avatarChoice .three-slot{height:78px}
+  .zoneArt{width:106px;height:106px}
+}
+
+
+/* V27 CINEMATIC ART PIPELINE */
+.cinematic-slot{
+  width:100%;height:100%;min-height:64px;position:relative;overflow:hidden;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 24%,#fff 0 34%,#eef8ff 67%,#fff6db 100%);
+  display:grid;place-items:center;
+}
+.cinematic-slot img{
+  width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;
+  transform:scale(1.02);
+  filter:saturate(1.08) contrast(1.03) drop-shadow(0 8px 10px rgba(45,70,95,.13));
+}
+.zoneArt .cinematic-slot{min-height:105px}
+.battle .cinematic-slot{min-height:180px}
+.cinematic-slot.hero-art img{animation:hmwFloat 3.2s ease-in-out infinite}
+.zoneArt .cinematic-slot img{animation:hmwFloat 4.1s ease-in-out infinite}
+.petStage .cinematic-slot img{animation:hmwFloat 3.4s ease-in-out infinite}
+@keyframes hmwFloat{
+  0%,100%{transform:translateY(0) scale(1.02)}
+  50%{transform:translateY(-4px) scale(1.035)}
+}
+.art-badge{
+  position:absolute;right:7px;top:7px;z-index:2;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(6px);
+  padding:3px 7px;border-radius:999px;font-weight:900;font-size:11px;color:#50627a;
+  box-shadow:0 3px 10px rgba(0,0,0,.08)
+}
+@media(max-width:600px){
+  .battle .cinematic-slot{min-height:170px}
+}
+
+
+/* V27.1 CLEANUP */
+.cinematic-slot img{
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+.zoneArt .art-badge{
+  top:6px;right:6px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 2px 9px rgba(40,70,100,.12);
+}
+.zoneArt .cinematic-slot{
+  background:linear-gradient(180deg,#f7fcff,#fffaf1);
+}
+
+
+/* V27.2 CLEAN ASSET PASS */
+.cinematic-slot{
+  background:linear-gradient(180deg,#f9fcff 0%,#f2f9ff 62%,#fff8e8 100%)!important;
+  overflow:hidden;
+}
+.cinematic-slot img{
+  width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:center center!important;
+  filter:saturate(1.06) contrast(1.02) drop-shadow(0 7px 11px rgba(45,70,95,.10))!important;
+}
+.zoneArt .cinematic-slot{min-height:108px;border-radius:18px}
+.zoneArt .art-badge{display:none!important}
+.battle{gap:12px!important;align-items:end!important}
+.battle .cinematic-slot{
+  min-height:180px;border-radius:22px;
+  box-shadow:0 10px 24px rgba(46,75,104,.10);
+}
+.arena{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(180deg,#c9edff 0 48%,#ccecb8 48% 65%,#f5e8c9 65% 100%)!important;
+}
+.arena:before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:33%;
+  background:
+    radial-gradient(ellipse at 22% 78%,rgba(255,255,255,.82),transparent 40%),
+    radial-gradient(ellipse at 78% 78%,rgba(255,255,255,.82),transparent 40%);
+  pointer-events:none;
+}
+.avatarStage{background:linear-gradient(180deg,#f6fbff,#fff9eb)!important}
+.avatarChoice .three-slot{background:linear-gradient(180deg,#f8fcff,#fff9ec)!important}
+
+
+
+
+/* V27.3 ORIGINAL CHARACTER ART */
+.original-art{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.original-art img{
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;object-position:center!important;
+  transform:none!important;filter:none!important;
+  border-radius:20px!important;
+}
+.zoneArt .original-art{height:100%;min-height:0}
+.zoneArt .original-art img{animation:hmwFloat 4.2s ease-in-out infinite}
+.avatar-generated img{animation:hmwFloat 4.8s ease-in-out infinite}
+.avatarChoice .avatar-generated{height:76px!important;min-height:76px}
+.avatarChoice .avatar-generated img{object-fit:contain!important}
+.avatarStage .avatar-generated{width:100%;height:100%}
+.battle .avatar-generated,.battle .cinematic-monster{height:100%;min-height:0}
+.battle .original-art img{object-fit:contain!important}
+.arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
+.zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
+.zoneArt{filter:none!important}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:800}
+@media(max-width:600px){
+ .zoneArt{height:112px!important;width:112px!important}
+ .avatarStage{height:340px!important}
+ .avatarChoice{min-height:118px!important}
+ .battle .avatarArt,.battle .bossArt{height:185px!important}
+}
+
+
+/* V27.5 cute art polish */
+.original-art img{image-rendering:auto!important}
+.avatarStage{min-height:360px!important}
+.avatarStage .original-art img{transform:scale(1.04)!important}
+.zoneArt{height:126px!important}
+.zoneArt .original-art img{transform:scale(1.04)!important}
+.battle .avatarArt,.battle .bossArt{height:206px!important}
+
+</style>
+
+<style id="v275-final-polish">
+:root{--v275-soft:0 8px 22px rgba(44,79,118,.10);}
+.card,.panel,.section,.world-card,.monster-card,.avatar-card,.pet-card{box-shadow:var(--v275-soft);}
+button,.btn,[role="button"]{-webkit-tap-highlight-color:transparent;}
+button:active,.btn:active,[role="button"]:active{transform:scale(.985);}
+img,canvas{image-rendering:auto;}
+.avatar-card img,.monster-card img,.pet-card img,
+[class*="avatar"] img,[class*="monster"] img,[class*="pet"] img{
+ filter:saturate(1.05) contrast(1.015) drop-shadow(0 7px 8px rgba(48,63,91,.12));
+}
+@media(max-width:600px){body{overflow-x:hidden}input,select,button,textarea{font-size:16px}}
+</style>
+
+
+<style id="v35-premium-character-final">
+:root{
+  --v35-ink:#203a59; --v35-blue:#69b9f5; --v35-gold:#ffd56a;
+  --v35-lav:#9d82ef; --v35-mint:#82d8b2; --v35-pink:#f6a7c8;
+}
+body{
+  background:
+    radial-gradient(circle at 10% 4%,rgba(255,255,255,.95),transparent 22rem),
+    linear-gradient(180deg,#dff4ff 0,#eef8ff 38%,#fffaf0 100%)!important;
+}
+.header h1{
+  letter-spacing:-.035em;
+  text-shadow:0 2px 0 #fff,0 8px 22px rgba(56,91,137,.12);
+}
+.card{
+  border:1px solid rgba(255,255,255,.92)!important;
+  box-shadow:0 12px 34px rgba(47,79,115,.11)!important;
+}
+.avatarStage{
+  background:
+    radial-gradient(circle at 50% 30%,#fff 0 24%,rgba(255,255,255,.42) 25% 47%,transparent 48%),
+    linear-gradient(145deg,#e8f7ff,#f0ecff 52%,#fff1cf)!important;
+  border:2px solid rgba(255,255,255,.96)!important;
+  box-shadow:inset 0 0 0 1px rgba(106,173,225,.18),0 18px 35px rgba(50,83,120,.13)!important;
+}
+.avatarStage .avatar-generated img{
+  transform:scale(1.10)!important;
+  filter:saturate(1.08) contrast(1.025) drop-shadow(0 18px 13px rgba(51,71,94,.20))!important;
+}
+.avatarChoice{
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+.avatarChoice:active{transform:scale(.96)!important}
+.avatarChoice.on{
+  border:3px solid #ffd05b!important;
+  box-shadow:0 0 0 4px rgba(255,214,101,.22),0 12px 24px rgba(75,101,137,.13)!important;
+}
+.avatarChoice .avatar-generated img{transform:scale(1.09)!important}
+.zone{
+  overflow:hidden;
+  background:linear-gradient(180deg,#fff 0 62%,#fff5d7 100%)!important;
+  border:2px solid #d8e9f6!important;
+  box-shadow:0 10px 24px rgba(54,83,112,.09)!important;
+}
+.zone.active{
+  border:3px solid #ffd25e!important;
+  box-shadow:0 0 0 5px rgba(255,211,94,.20),0 13px 28px rgba(62,91,122,.13)!important;
+}
+.zoneArt{
+  background:
+    radial-gradient(circle at 50% 34%,rgba(255,255,255,.96),rgba(239,249,255,.84) 56%,rgba(255,245,216,.8))!important;
+  border-radius:28px!important;
+}
+.zoneArt .original-art img{
+  transform:scale(1.12)!important;
+  filter:saturate(1.10) contrast(1.02) drop-shadow(0 12px 10px rgba(45,66,90,.17))!important;
+}
+.battle{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.86),transparent 31%),
+    linear-gradient(180deg,#d9f4ff 0 46%,#ccefc2 46% 65%,#fff0c8 65% 100%)!important;
+  border:2px solid rgba(255,255,255,.9)!important;
+  box-shadow:inset 0 0 0 1px rgba(77,151,205,.12),0 18px 40px rgba(43,75,109,.12)!important;
+}
+.battle .avatarArt img,.battle .bossArt img{
+  transform:scale(1.08)!important;
+  filter:saturate(1.10) contrast(1.025) drop-shadow(0 16px 12px rgba(43,64,88,.20))!important;
+}
+.cinematic-pet img{
+  filter:saturate(1.12) contrast(1.025) drop-shadow(0 12px 10px rgba(43,64,88,.18))!important;
+}
+@keyframes v35Float{
+  0%,100%{transform:translateY(0) scale(1.08)}
+  50%{transform:translateY(-5px) scale(1.08)}
+}
+.battle .bossArt img{animation:v35Float 3.2s ease-in-out infinite!important}
+@media(max-width:600px){
+  .avatarStage{min-height:370px!important}
+  .zoneArt{height:124px!important;width:124px!important}
+  .battle .avatarArt,.battle .bossArt{height:205px!important}
+}
+</style>
+
+
+<style id="v36-true-3d-character-edition">
+:root{
+ --v36-blue:#4aaaf4;
+ --v36-gold:#ffca4c;
+ --v36-purple:#7850dc;
+ --v36-ink:#173b64;
+}
+body{
+ background:
+ radial-gradient(circle at 50% -10%,rgba(255,255,255,.95),transparent 30rem),
+ linear-gradient(180deg,#8ed5ff 0,#dff4ff 30%,#f3fbff 55%,#fff8e8 100%) fixed!important;
+}
+.header{
+ background:linear-gradient(135deg,#ffffff 0,#eff7ff 60%,#f4eeff 100%)!important;
+ border:2px solid rgba(255,255,255,.95)!important;
+ box-shadow:0 18px 42px rgba(38,83,126,.16)!important;
+}
+.header h1{
+ color:#173b64!important;
+ text-shadow:0 2px 0 #fff,0 10px 25px rgba(31,72,117,.14)!important;
+}
+.sub{color:#704ee3!important;font-weight:900!important}
+.pill{
+ border:1px solid #e5edf5!important;
+ box-shadow:0 8px 20px rgba(41,76,109,.10)!important;
+}
+.card{
+ background:rgba(255,255,255,.96)!important;
+ border:1px solid rgba(255,255,255,.98)!important;
+ box-shadow:0 16px 38px rgba(44,78,110,.12)!important;
+}
+.avatarStage{
+ background:
+ radial-gradient(circle at 50% 23%,rgba(255,255,255,.96),transparent 24%),
+ linear-gradient(145deg,#ffeaf2,#eef2ff 48%,#fff1cc)!important;
+ border-radius:34px!important;
+ overflow:hidden!important;
+}
+.avatarStage img{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+ border-radius:28px!important;
+ filter:saturate(1.08) contrast(1.02) drop-shadow(0 15px 16px rgba(44,67,91,.18))!important;
+ animation:none!important;
+}
+.avatarChoice img{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+ border-radius:18px!important;
+ filter:saturate(1.08) contrast(1.03)!important;
+ animation:none!important;
+}
+.avatarChoice.on{
+ border-color:var(--v36-gold)!important;
+ box-shadow:0 0 0 4px rgba(255,211,95,.28),0 12px 25px rgba(48,76,103,.12)!important;
+}
+.world{
+ background:
+ radial-gradient(circle at 45% 25%,rgba(255,255,255,.45),transparent 15rem),
+ linear-gradient(180deg,#dff6ff 0,#eefbff 46%,#f8f4dc 100%)!important;
+ border-radius:28px!important;
+}
+.zone{
+ background:linear-gradient(180deg,#fff,#f8fcff 63%,#fff4d5)!important;
+ border:2px solid #dcebf6!important;
+ overflow:hidden!important;
+}
+.zone.active{
+ border-color:var(--v36-gold)!important;
+ box-shadow:0 0 0 5px rgba(255,211,95,.24),0 15px 30px rgba(46,78,109,.13)!important;
+}
+.zoneArt{
+ width:100%!important;
+ height:150px!important;
+ border-radius:24px!important;
+ overflow:hidden!important;
+ background:#eef9ff!important;
+}
+.zoneArt img{
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;
+ object-position:center center!important;
+ transform:none!important;
+ filter:saturate(1.10) contrast(1.03) drop-shadow(0 8px 8px rgba(30,54,77,.10))!important;
+ animation:none!important;
+}
+.zone b{font-weight:950!important;color:#183b62!important}
+.arena,.battle{
+ background:
+ radial-gradient(circle at 50% 8%,rgba(255,255,255,.92),transparent 20rem),
+ linear-gradient(180deg,#ccefff 0 42%,#d7f1bf 42% 64%,#ffe9bb 64% 100%)!important;
+}
+.battle .avatarArt,.battle .bossArt{
+ overflow:hidden!important;
+ border-radius:28px!important;
+ background:#fff!important;
+ border:2px solid rgba(255,255,255,.95)!important;
+ box-shadow:0 17px 30px rgba(40,69,99,.15)!important;
+}
+.battle .avatarArt img,.battle .bossArt img{
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;
+ transform:none!important;
+ filter:saturate(1.08) contrast(1.03)!important;
+ animation:none!important;
+}
+.vs{
+ color:#ff9f24!important;
+ font-size:38px!important;
+ text-shadow:0 3px 0 #fff,0 7px 16px rgba(255,147,40,.30)!important;
+}
+.nav button{
+ background:linear-gradient(180deg,#fff,#eef7ff)!important;
+ box-shadow:0 8px 18px rgba(45,82,116,.09)!important;
+}
+.nav button.active{
+ background:linear-gradient(180deg,#e9f7ff,#d6ecff)!important;
+ border-color:#73b8f1!important;
+}
+@media(max-width:720px){
+ .avatarStage{height:420px!important;min-height:420px!important}
+ .zoneArt{height:132px!important}
+ .battle .avatarArt,.battle .bossArt{height:195px!important}
+}
+</style>
+
+
+<style id="v37-integrated-3d">
+/* No pasted-picture look: all character images are transparent SVG renders. */
+.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt{
+  position:relative!important;
+  overflow:visible!important;
+}
+.avatarStage{
+  background:
+   radial-gradient(circle at 50% 33%,rgba(255,255,255,.98) 0 23%,rgba(255,255,255,.45) 24% 42%,transparent 43%),
+   radial-gradient(circle at 50% 105%,#ffeac2 0 28%,transparent 29%),
+   linear-gradient(155deg,#dff5ff,#efeaff 55%,#fff5d8)!important;
+}
+.avatarStage:after{
+ content:"";position:absolute;left:14%;right:14%;bottom:8%;height:12%;
+ background:radial-gradient(ellipse,rgba(52,81,104,.16),transparent 69%);
+ filter:blur(6px);pointer-events:none;
+}
+.avatarStage img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:96%!important;height:96%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.avatarChoice img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.zoneArt{
+ height:160px!important;
+ background:
+  radial-gradient(circle at 50% 28%,#fff 0 18%,rgba(255,255,255,.48) 19% 46%,transparent 47%),
+  linear-gradient(180deg,#e9f8ff 0 68%,#fff0c8 68% 100%)!important;
+ border-radius:26px!important;
+}
+.zoneArt:after{
+ content:"";position:absolute;left:20%;right:20%;bottom:12px;height:16px;
+ background:radial-gradient(ellipse,rgba(42,67,87,.18),transparent 70%);
+ filter:blur(4px);pointer-events:none;
+}
+.zoneArt img{
+ object-fit:contain!important;object-position:center center!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.battle{
+ background:
+  radial-gradient(circle at 18% 24%,rgba(255,255,255,.68),transparent 18rem),
+  radial-gradient(circle at 82% 24%,rgba(255,255,255,.60),transparent 18rem),
+  linear-gradient(180deg,#ccefff 0 45%,#dff3c0 45% 67%,#ffe9b8 67% 100%)!important;
+}
+.battle .avatarArt,.battle .bossArt{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+.battle .avatarArt:after,.battle .bossArt:after{
+ content:"";position:absolute;left:18%;right:18%;bottom:6px;height:18px;
+ background:radial-gradient(ellipse,rgba(39,64,84,.20),transparent 70%);
+ filter:blur(5px);pointer-events:none;
+}
+.battle .avatarArt img,.battle .bossArt img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.vs{z-index:3!important}
+@media(max-width:720px){
+ .avatarStage{height:390px!important;min-height:390px!important}
+ .zoneArt{height:146px!important}
+ .battle .avatarArt,.battle .bossArt{height:205px!important}
+}
+</style>
+
+
+<style id="v38-overhaul">
+:root{--v38blue:#78c9f4;--v38ink:#243b5a;--v38cream:#fff8df;--v38glass:rgba(255,255,255,.88)}
+body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed!important}
+.wrap{max-width:980px!important}
+.header{position:relative;overflow:hidden;padding:18px 20px!important;border-radius:28px!important;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(236,246,255,.91))!important;box-shadow:0 16px 38px rgba(44,92,130,.15)!important;border:1px solid rgba(255,255,255,.9)!important}
+.header:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;top:-110px;background:radial-gradient(circle,rgba(143,121,255,.22),transparent 68%);pointer-events:none}
+.header h1{font-size:clamp(27px,5.4vw,46px)!important;line-height:1.02!important;letter-spacing:-1.2px!important;margin:0!important;color:var(--v38ink)!important}
+.header .sub{font-size:clamp(15px,3.4vw,21px)!important;color:#6c5be7!important;font-weight:800!important;margin-top:7px}
+.status{gap:8px!important;margin-top:14px!important}.pill{box-shadow:0 7px 18px rgba(50,80,110,.08)!important;border:1px solid rgba(120,180,220,.16)!important}
+.card{border-radius:28px!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:0 14px 34px rgba(49,83,108,.10)!important}
+.nav button{border-radius:20px!important;min-height:82px!important;box-shadow:inset 0 1px 0 #fff,0 7px 16px rgba(49,83,108,.06)!important}.nav button.active{transform:translateY(-2px);box-shadow:0 10px 22px rgba(67,151,224,.18)!important}
+#world h2{font-size:clamp(25px,5vw,38px)!important;color:var(--v38ink)}
+.avatarStage{position:relative!important;overflow:hidden!important;background:radial-gradient(circle at 50% 20%,#fff 0 15%,#eaf8ff 40%,#e7e3ff 72%,#ffecc9 100%)!important;border:2px solid rgba(255,255,255,.95)!important;box-shadow:inset 0 0 50px rgba(255,255,255,.9),0 18px 34px rgba(58,85,119,.16)!important}
+.avatarStage:before{content:"";position:absolute;inset:auto 8% 5% 8%;height:24%;border-radius:50%;background:radial-gradient(ellipse,rgba(101,128,156,.16),transparent 68%);filter:blur(7px);pointer-events:none}
+.avatarChoice{border-radius:22px!important;background:linear-gradient(180deg,#fff,#f4fbff 70%,#fff7df)!important;box-shadow:0 7px 18px rgba(55,84,112,.07)!important}.avatarChoice.on{box-shadow:0 0 0 4px #ffd45c,0 10px 22px rgba(255,190,55,.18)!important}
+.world{position:relative!important;padding:12px!important;border-radius:30px!important;background:linear-gradient(180deg,#cceeff 0 42%,#dff3d1 42% 70%,#fff1c8 70% 100%)!important;overflow:hidden!important}.world:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 16%,rgba(255,255,255,.75),transparent 17%),radial-gradient(circle at 80% 23%,rgba(255,255,255,.65),transparent 19%);pointer-events:none}
+.zone{position:relative!important;z-index:1;border-radius:26px!important;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,250,228,.94))!important;border:2px solid rgba(195,222,239,.88)!important;box-shadow:0 10px 24px rgba(51,84,111,.10)!important}.zone.active{border-color:#ffc84d!important;box-shadow:0 0 0 4px rgba(255,211,84,.28),0 14px 28px rgba(60,91,119,.14)!important;transform:translateY(-2px)}
+.zoneArt{background:radial-gradient(circle at 50% 27%,#fff 0 14%,rgba(234,248,255,.95) 55%,rgba(255,242,202,.86) 100%)!important;border-radius:24px!important;overflow:hidden!important;box-shadow:inset 0 0 24px rgba(255,255,255,.9)!important}
+.arena{border-radius:30px!important;overflow:hidden!important;background:linear-gradient(180deg,#aee3ff 0 42%,#d7f0c6 42% 64%,#f8dba4 64% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.32)!important}.arena:after{content:"";position:absolute;left:5%;right:5%;bottom:29%;height:1px;background:rgba(255,255,255,.7);box-shadow:0 18px 45px 12px rgba(95,137,98,.12);pointer-events:none}.battle{position:relative!important;z-index:2!important;min-height:270px!important;padding:12px 8px 0!important}.battle .avatarArt,.battle .bossArt{filter:drop-shadow(0 14px 12px rgba(37,60,82,.16))!important}.vs{font-size:28px!important;filter:drop-shadow(0 5px 5px rgba(255,174,0,.18))}
+#petFollower{border-radius:22px!important;filter:drop-shadow(0 8px 10px rgba(46,76,101,.12))}
+@media(max-width:600px){.wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}.header .sub{font-size:16px!important}.status{display:grid!important;grid-template-columns:1fr 1fr!important}.status .pill:first-child{grid-column:1/-1}.nav{grid-template-columns:repeat(4,1fr)!important;gap:7px!important}.nav button{min-height:72px!important;font-size:14px!important;padding:8px 4px!important}.avatarStudio{grid-template-columns:1fr!important}.avatarStage{width:min(360px,90vw)!important;height:390px!important}.world{grid-template-columns:repeat(2,1fr)!important;padding:8px!important;gap:10px!important}.zone{min-height:188px!important;padding:9px 5px!important}.zoneArt{width:132px!important;height:132px!important}.battle{min-height:250px!important;gap:4px!important}.battle .avatarArt,.battle .bossArt{height:210px!important}.card{border-radius:24px!important}}
+</style>
+
+
+<style id="v39-character-system-overhaul">
+/* === V39: character-first game presentation === */
+.header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:900}
+
+.avatarStage{
+  height:430px!important;
+  background:
+    radial-gradient(circle at 50% 27%,rgba(255,255,255,.98) 0 18%,rgba(255,255,255,.44) 19% 39%,transparent 40%),
+    radial-gradient(ellipse at 50% 94%,#bfe9c5 0 20%,#e9f7d9 21% 35%,transparent 36%),
+    linear-gradient(155deg,#d9f4ff 0,#e8e8ff 54%,#fff0cd 100%)!important;
+}
+.avatarStage img{width:92%!important;height:96%!important;object-fit:contain!important;object-position:center bottom!important}
+
+.world{
+  background:
+    radial-gradient(circle at 16% 9%,rgba(255,255,255,.78),transparent 19%),
+    radial-gradient(circle at 82% 13%,rgba(255,255,255,.70),transparent 20%),
+    linear-gradient(180deg,#9eddf9 0 34%,#d8f0d1 34% 72%,#f8df9d 72% 100%)!important;
+  gap:14px!important;
+}
+.zone{
+  min-height:232px!important;
+  border:0!important;
+  background:rgba(255,255,255,.70)!important;
+  backdrop-filter:blur(8px);
+  box-shadow:0 13px 26px rgba(43,76,100,.10),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+.zone:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:58px;height:32px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,91,80,.19),transparent 70%);
+  filter:blur(6px);pointer-events:none;
+}
+.zoneArt{
+  width:100%!important;height:165px!important;
+  background:transparent!important;
+  box-shadow:none!important;border-radius:0!important;
+  overflow:visible!important;
+}
+.zoneArt:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:7px;height:34px;border-radius:50%;
+  background:linear-gradient(180deg,#a8e17a,#73b85d);
+  box-shadow:0 10px 0 #c89c59,0 14px 16px rgba(61,86,71,.18);
+  opacity:.78;
+}
+.zoneArt:after{display:none!important}
+.zoneArt img{position:relative!important;z-index:2!important;width:92%!important;height:94%!important;object-fit:contain!important}
+
+.zone.active{
+  transform:translateY(-3px)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,247,214,.88))!important;
+  box-shadow:0 0 0 4px rgba(255,202,69,.78),0 17px 30px rgba(46,78,104,.15)!important;
+}
+
+.arena{
+  position:relative!important;
+  border:2px solid rgba(255,255,255,.95)!important;
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,255,255,.88),transparent 26%),
+    linear-gradient(180deg,#8ed8f8 0 44%,#c8ebbb 44% 67%,#e9c888 67% 100%)!important;
+  box-shadow:inset 0 0 80px rgba(255,255,255,.28),0 16px 34px rgba(53,87,111,.14)!important;
+}
+.arena:before{
+  content:"";position:absolute;left:0;right:0;top:34%;height:33%;
+  background:
+    radial-gradient(ellipse at 18% 45%,#72be6e 0 12%,transparent 13%),
+    radial-gradient(ellipse at 83% 54%,#79c474 0 13%,transparent 14%);
+  opacity:.55;pointer-events:none;
+}
+.battle{min-height:295px!important}
+.battle .avatarArt,.battle .bossArt{height:240px!important}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important
+}
+.battle .avatarArt:after,.battle .bossArt:after{
+  left:20%!important;right:20%!important;bottom:2px!important;height:20px!important;
+  background:radial-gradient(ellipse,rgba(38,63,79,.23),transparent 70%)!important
+}
+.vs:before{content:"⚡";font-size:26px}.vs{font-size:0!important}
+
+@media(max-width:600px){
+ .avatarStage{height:380px!important}
+ .world{gap:10px!important}
+ .zone{min-height:205px!important;padding:7px 5px!important}
+ .zoneArt{height:142px!important;width:100%!important}
+ .zoneArt:before{left:14%;right:14%;height:28px;bottom:4px}
+ .zone b{font-size:16px!important;line-height:1.1!important}
+ .zone small{font-size:14px!important}
+ .battle{min-height:265px!important}
+ .battle .avatarArt,.battle .bossArt{height:215px!important}
+}
+</style>
+
+
+<style id="v40-game-world-redesign">
+.brandLine{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brandLine h1{margin:0!important}
+.buildBadge{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:34px;padding:0 13px;border-radius:999px;font-size:16px;font-weight:950;letter-spacing:.4px;color:#fff;background:linear-gradient(135deg,#6f63f1,#4779e8);box-shadow:0 8px 18px rgba(78,91,220,.24),inset 0 1px 0 rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.7)}
+.worldIntro{background:radial-gradient(circle at 85% 20%,rgba(255,221,116,.35),transparent 25%),linear-gradient(135deg,#f6fbff,#edf0ff 55%,#fff7df)!important;border:1px solid rgba(255,255,255,.95)!important}
+.worldIntro h2{font-size:25px!important}
+.characterQualityNote{background:rgba(255,255,255,.70)!important;border:1px solid rgba(147,186,218,.25)!important}
+.avatarStudio{align-items:start!important}
+.avatarStage{border-radius:34px!important;background:radial-gradient(circle at 50% 19%,rgba(255,255,255,.98) 0 16%,rgba(255,255,255,.54) 17% 37%,transparent 38%),radial-gradient(ellipse at 50% 91%,#9fd991 0 18%,#74b964 19% 27%,#c49b5d 28% 31%,transparent 32%),linear-gradient(180deg,#aee6ff 0 50%,#dff3d3 50% 72%,#f7dda5 72% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.30),0 18px 36px rgba(39,75,103,.16)!important}
+.avatarStage:before{content:"";position:absolute;left:15%;right:15%;bottom:6.5%;height:17px;border-radius:50%;background:radial-gradient(ellipse,rgba(37,63,78,.24),transparent 72%);filter:blur(5px);z-index:0}
+.avatarStage img{position:relative;z-index:2}
+.world{padding:18px 14px 24px!important;border-radius:34px!important;background:radial-gradient(circle at 12% 10%,rgba(255,255,255,.74),transparent 17%),radial-gradient(circle at 84% 18%,rgba(255,255,255,.70),transparent 19%),linear-gradient(180deg,#8fd7f6 0 35%,#c9e9be 35% 72%,#f1d58e 72% 100%)!important;box-shadow:inset 0 0 75px rgba(255,255,255,.30),0 18px 36px rgba(48,83,107,.10)!important}
+.zone{overflow:visible!important;background:rgba(255,255,255,.45)!important;backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 12px 22px rgba(45,76,99,.09),inset 0 1px 0 rgba(255,255,255,.92)!important}
+.zoneArt{height:170px!important}
+.zoneArt:before{left:16%!important;right:16%!important;bottom:5px!important;height:27px!important;background:linear-gradient(180deg,#93d879,#67b358)!important;border-radius:50%!important;box-shadow:0 9px 0 #b89155,0 12px 15px rgba(62,77,59,.18)!important}
+.zoneArt img{filter:drop-shadow(0 12px 9px rgba(35,64,83,.14))!important}
+.zone b,.zone small{position:relative;z-index:4}
+.zone.active{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,244,203,.80))!important;border-color:#ffd04d!important;box-shadow:0 0 0 4px rgba(255,205,63,.30),0 15px 28px rgba(46,78,101,.14)!important}
+.arena{border-radius:34px!important;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.88),transparent 22%),linear-gradient(180deg,#91d9f8 0 40%,#c8e8b7 40% 62%,#e5bd79 62% 100%)!important}
+.arena:before{content:"";position:absolute!important;left:0!important;right:0!important;top:34%!important;height:34%!important;background:radial-gradient(ellipse at 12% 66%,#5cab61 0 13%,transparent 14%),radial-gradient(ellipse at 88% 68%,#67b86a 0 14%,transparent 15%),linear-gradient(180deg,transparent 0 64%,rgba(91,143,79,.18) 65% 100%)!important;opacity:.72!important;pointer-events:none}
+.battle{position:relative!important;padding-top:24px!important;min-height:315px!important;align-items:end!important}
+.battle:before{content:"";position:absolute;left:8%;right:8%;bottom:24px;height:42px;border-radius:50%;background:radial-gradient(ellipse,rgba(55,76,73,.20),transparent 68%);filter:blur(7px);pointer-events:none}
+.battle .avatarArt,.battle .bossArt{height:250px!important;position:relative;z-index:2}
+.battle .avatarArt img,.battle .bossArt img{filter:drop-shadow(0 15px 10px rgba(40,64,80,.18))!important}
+.vs{position:relative!important;z-index:3!important;align-self:center!important}
+.vs:before{content:"⚡";display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.88);font-size:25px!important;box-shadow:0 8px 18px rgba(107,82,13,.16),inset 0 0 0 2px rgba(255,205,64,.35)}
+@media(max-width:600px){.brandLine{gap:7px}.buildBadge{min-width:48px;height:30px;font-size:14px;padding:0 10px}.world{padding:10px 8px 20px!important}.zone{min-height:216px!important}.zoneArt{height:148px!important}.battle{min-height:280px!important;padding-top:16px!important}.battle .avatarArt,.battle .bossArt{height:222px!important}.worldIntro{padding:13px!important}}
+</style>
+
+
+<style id="v41-scene-integration-pass">
+/* ==========================================================
+   V41 — SCENE INTEGRATION PASS
+   Goal: character proportions + mini-biomes + encounter scene
+   Logic/state/save systems are untouched.
+   ========================================================== */
+
+/* tighter, more game-like header */
+.header{padding-bottom:16px!important}
+.buildBadge{
+  background:linear-gradient(135deg,#6b5de8,#4f83ee)!important;
+  box-shadow:0 7px 16px rgba(74,86,210,.22),inset 0 1px 0 rgba(255,255,255,.42)!important
+}
+
+/* ---- Avatar Studio: reduce oversized character ---- */
+.avatarStage{
+  height:360px!important;
+  min-height:360px!important;
+  border-radius:32px!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 22%,rgba(255,255,255,.98) 0 14%,rgba(255,255,255,.42) 15% 34%,transparent 35%),
+    radial-gradient(ellipse at 50% 91%,#a9dd91 0 17%,#78b968 18% 25%,#c69b5c 26% 29%,transparent 30%),
+    linear-gradient(180deg,#b8e8fb 0 48%,#dff2d3 48% 70%,#f5d99d 70% 100%)!important;
+  box-shadow:inset 0 0 58px rgba(255,255,255,.28),0 16px 32px rgba(41,75,103,.14)!important
+}
+.avatarStage img{
+  width:78%!important;
+  height:86%!important;
+  max-width:320px!important;
+  object-fit:contain!important;
+  object-position:center 78%!important;
+  transform:none!important;
+  filter:drop-shadow(0 14px 11px rgba(37,60,78,.17))!important
+}
+.avatarStage:before{
+  left:22%!important;right:22%!important;bottom:7%!important;height:18px!important;
+  background:radial-gradient(ellipse,rgba(39,62,75,.28),transparent 70%)!important;
+  filter:blur(5px)!important
+}
+
+/* thumbnail characters should feel like selection tokens, not screenshots */
+.avatarChoice{
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#f9fdff,#eef9ff 72%,#fff5d8)!important;
+}
+.avatarChoice .original-art,.avatarChoice .avatar-generated{
+  transform:scale(.92)!important;
+  transform-origin:center bottom!important;
+}
+
+/* ---- World Map: actual mini-biomes for each habit ---- */
+.world{
+  position:relative!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#97d9f5 0 28%,#ccebc1 28% 70%,#f0d28c 70% 100%)!important;
+}
+.zone{
+  isolation:isolate!important;
+  overflow:hidden!important;
+  min-height:222px!important;
+  padding:7px 6px 11px!important;
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+}
+.zone:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-3!important;
+  border-radius:inherit!important;
+  filter:none!important;
+  pointer-events:none!important;
+}
+.zone:nth-child(1):before{
+  background:
+    radial-gradient(circle at 80% 20%,#fff6b9 0 7%,transparent 8%),
+    linear-gradient(180deg,#bdeaff 0 56%,#9fdd83 57% 74%,#e6bd74 75% 100%)!important;
+}
+.zone:nth-child(2):before{
+  background:
+    radial-gradient(circle at 18% 19%,rgba(255,255,255,.9) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9dcff 0 58%,#b8acd9 59% 72%,#d9b57d 73% 100%)!important;
+}
+.zone:nth-child(3):before{
+  background:
+    radial-gradient(circle at 75% 18%,rgba(255,255,255,.85) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9efff 0 58%,#8ed5b0 59% 74%,#d6b276 75% 100%)!important;
+}
+.zone:nth-child(4):before{
+  background:
+    radial-gradient(circle at 22% 17%,#fff8c4 0 7%,transparent 8%),
+    linear-gradient(180deg,#c8eeff 0 54%,#a8d98e 55% 74%,#d6ad69 75% 100%)!important;
+}
+.zone:nth-child(5):before{
+  background:
+    radial-gradient(circle at 74% 18%,#fff7ae 0 8%,transparent 9%),
+    linear-gradient(180deg,#c8eeff 0 54%,#b6dc88 55% 74%,#e4bd77 75% 100%)!important;
+}
+.zone:nth-child(6):before{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.85) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e9ff 0 54%,#b9dc9d 55% 74%,#e1bd7d 75% 100%)!important;
+}
+.zone:nth-child(7):before{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(255,255,255,.9) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e2ff 0 54%,#b8d49d 55% 74%,#d8b87e 75% 100%)!important;
+}
+
+.zoneArt{
+  position:relative!important;
+  width:100%!important;
+  height:152px!important;
+  overflow:visible!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  z-index:2!important;
+}
+.zoneArt:before{
+  content:""!important;
+  position:absolute!important;
+  left:19%!important;right:19%!important;bottom:7px!important;
+  height:22px!important;border-radius:50%!important;
+  background:linear-gradient(180deg,#95d777,#67ad59)!important;
+  box-shadow:0 7px 0 #b98c51,0 12px 14px rgba(53,76,55,.16)!important;
+  opacity:.94!important;
+  z-index:0!important;
+}
+.zoneArt img,.zoneArt svg{
+  position:relative!important;
+  z-index:2!important;
+  width:88%!important;height:92%!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 11px 8px rgba(33,61,81,.16))!important;
+}
+.zone b{
+  margin-top:-2px!important;
+  font-size:17px!important;
+  line-height:1.1!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.75)
+}
+.zone small{font-size:14px!important}
+.zone.active{
+  border-color:#ffd04e!important;
+  box-shadow:0 0 0 4px rgba(255,207,69,.36),0 13px 24px rgba(52,77,98,.14)!important;
+  transform:translateY(-2px)!important
+}
+
+/* ---- Battle/Encounter: remove framed-picture look ---- */
+.arena{
+  position:relative!important;
+  overflow:hidden!important; /* fixes green blobs leaking over HUD */
+  border:0!important;
+  outline:0!important;
+  border-radius:30px!important;
+  padding:0!important;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(255,255,255,.90),transparent 24%),
+    radial-gradient(ellipse at 12% 58%,rgba(71,151,82,.75) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 88% 58%,rgba(79,162,86,.72) 0 10%,transparent 11%),
+    linear-gradient(180deg,#9bdcf7 0 45%,#cae9b7 45% 67%,#e7c27b 67% 100%)!important;
+  box-shadow:0 16px 34px rgba(42,76,103,.13),inset 0 1px 0 rgba(255,255,255,.9)!important
+}
+.arena:before{
+  content:""!important;
+  position:absolute!important;
+  left:-8%!important;right:-8%!important;
+  top:auto!important;bottom:30%!important;
+  height:34%!important;
+  background:
+    radial-gradient(ellipse at 13% 82%,#6ab56b 0 15%,transparent 16%),
+    radial-gradient(ellipse at 88% 82%,#70b972 0 16%,transparent 17%)!important;
+  opacity:.62!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.arena:after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;bottom:0!important;height:35%!important;
+  background:linear-gradient(180deg,rgba(232,197,130,.00),rgba(224,183,112,.45))!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle{
+  position:relative!important;
+  z-index:2!important;
+  min-height:300px!important;
+  padding:28px 14px 8px!important;
+  align-items:end!important;
+  gap:8px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important
+}
+.battle:before{
+  content:""!important;
+  position:absolute!important;
+  left:10%!important;right:10%!important;bottom:14px!important;height:28px!important;
+  background:
+    radial-gradient(ellipse at 22% 50%,rgba(44,65,68,.23),transparent 31%),
+    radial-gradient(ellipse at 78% 50%,rgba(44,65,68,.23),transparent 31%)!important;
+  filter:blur(5px)!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle .avatarArt,.battle .bossArt{
+  width:42%!important;
+  height:228px!important;
+  position:relative!important;
+  z-index:3!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  filter:drop-shadow(0 12px 9px rgba(34,57,75,.17))!important
+}
+.battle .avatarArt img{transform:scale(.88)!important;transform-origin:center bottom!important}
+.battle .bossArt img{transform:scale(.96)!important;transform-origin:center bottom!important}
+.battle .avatarArt:after,.battle .bossArt:after{display:none!important}
+.vs{
+  width:auto!important;
+  min-width:48px!important;
+  position:relative!important;
+  z-index:5!important;
+  align-self:center!important;
+  background:transparent!important
+}
+.vs:before{
+  content:"⚡"!important;
+  width:46px!important;height:46px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.90)!important;
+  box-shadow:0 7px 16px rgba(96,76,15,.14),inset 0 0 0 2px rgba(255,204,63,.38)!important;
+  font-size:24px!important
+}
+
+/* battle labels are part of scene, not picture captions */
+.battleName,.avatarName,.bossName{
+  text-shadow:0 1px 0 rgba(255,255,255,.72)!important
+}
+
+/* make all HUD after the arena clean; no decorative pseudo-layers may overlap it */
+.arena ~ *{position:relative!important;z-index:6!important}
+.stats,.quest,.inputRow,.checklist,.progress,.bar{isolation:isolate}
+
+/* mobile */
+@media(max-width:600px){
+  .avatarStage{height:330px!important;min-height:330px!important}
+  .avatarStage img{width:74%!important;height:82%!important}
+  .world{gap:9px!important;padding:9px 7px 18px!important}
+  .zone{min-height:205px!important;padding:6px 4px 10px!important}
+  .zoneArt{height:137px!important}
+  .zoneArt:before{left:20%!important;right:20%!important;height:20px!important}
+  .zone b{font-size:15px!important}
+  .zone small{font-size:13px!important}
+  .battle{min-height:255px!important;padding:18px 7px 5px!important;gap:2px!important}
+  .battle .avatarArt,.battle .bossArt{height:198px!important;width:43%!important}
+  .battle .avatarArt img{transform:scale(.82)!important}
+  .battle .bossArt img{transform:scale(.91)!important}
+  .vs:before{width:42px!important;height:42px!important;font-size:22px!important}
+}
+</style>
+
+
+<style id="v42-game-ui-polish">
+/* V42 — GAME UI POLISH. Presentation-only; game logic/save state untouched. */
+:root{--v42-glass:rgba(255,255,255,.90);--v42-shadow:0 16px 38px rgba(37,73,105,.13);--v42-ring:rgba(255,204,69,.38)}
+body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255,255,.92),transparent 27rem),linear-gradient(180deg,#8fd8f8 0,#dff5ff 31%,#f5fbff 58%,#fff8e9 100%) fixed!important}
+.header{position:relative;isolation:isolate;overflow:hidden!important}
+.header:before{content:"";position:absolute;inset:-35% -10% auto 42%;height:180px;background:radial-gradient(circle,rgba(255,222,113,.32),transparent 66%);z-index:-1;pointer-events:none}
+.buildBadge:after{content:" • ARENA POLISH";font-size:10px;opacity:.88;margin-left:4px}
+.card{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.nav{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:40;background:rgba(247,252,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:7px;border-radius:22px;box-shadow:0 10px 28px rgba(38,75,108,.11)}
+.nav button{transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
+.nav button:hover{transform:translateY(-2px)}
+.nav button.active{box-shadow:0 0 0 3px rgba(102,174,239,.18),0 10px 22px rgba(67,151,224,.16)!important}
+.world{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 18px 38px rgba(48,83,107,.11)!important}
+.zone{transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important}
+.zone:hover{transform:translateY(-3px)}
+.zone.active{transform:translateY(-4px) scale(1.015)!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;top:8px;right:8px;padding:4px 8px;border-radius:999px;background:#ffd45d;color:#604900;font-size:11px;font-weight:950;z-index:7;box-shadow:0 5px 12px rgba(120,86,0,.16)}
+.zoneArt img,.avatarStage img,.battle img{will-change:transform}
+.arena{box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 18px 40px rgba(44,78,106,.14)!important}
+.battleSceneTitle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.74);padding:7px 11px;border-radius:999px;box-shadow:0 6px 16px rgba(49,79,104,.08)}
+.bigBtn,.smallBtn{transition:transform .12s ease,filter .12s ease,box-shadow .12s ease}.bigBtn:hover,.smallBtn:hover{filter:brightness(1.025);box-shadow:0 8px 18px rgba(43,73,105,.12)}.bigBtn:active,.smallBtn:active{transform:scale(.975)!important}
+.bar{height:18px!important;box-shadow:inset 0 2px 4px rgba(37,65,90,.08)}
+.hp,.xp,.friendFill{transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stat,.mini,.summaryBox,.box{transition:transform .15s ease,box-shadow .15s ease}.stat:hover,.mini:hover,.summaryBox:hover,.box:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(45,75,102,.08)}
+.toast{bottom:calc(18px + env(safe-area-inset-bottom));box-shadow:0 12px 28px rgba(20,35,50,.25);font-weight:850}
+.modal{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}.modalCard{box-shadow:0 24px 60px rgba(30,55,80,.25)}
+@media(max-width:600px){
+ .wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+ .nav{top:calc(4px + env(safe-area-inset-top));grid-template-columns:repeat(3,1fr)!important;border-radius:18px;padding:6px!important}
+ .nav button{min-height:58px!important;border-radius:15px!important;font-size:13px!important}
+ .header{margin-top:2px}.status{gap:6px!important}.pill{padding:7px 8px!important;font-size:13px}
+ .world{border-radius:28px!important}.zone{min-height:205px!important;border-radius:24px!important}.zone.active:after{font-size:10px;padding:3px 6px}
+ .battle{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}.vs:before{width:42px!important;height:42px!important}
+ .bigBtn{min-height:48px;font-size:16px}.smallBtn{min-height:42px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+<style id="v431-big-gameplay">
+:root{
+ --hmw-gold:#ffd25a;
+ --hmw-sky:#8edaf8;
+ --hmw-grass:#a9df8a;
+ --hmw-earth:#e8c47e;
+}
+.buildBadge{
+  min-width:78px!important;
+  background:linear-gradient(135deg,#7659ef,#427eea)!important;
+  box-shadow:0 9px 22px rgba(78,78,218,.28),inset 0 1px 0 rgba(255,255,255,.48)!important;
+}
+.header{padding-bottom:6px!important}
+.status .pill:first-child{
+  background:linear-gradient(135deg,#fff8d7,#eef7ff)!important;
+  color:#394c69!important;
+}
+/* compact navigation */
+.nav{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}
+.nav button{min-height:52px!important;border-radius:16px!important}
+@media(min-width:760px){.nav{grid-template-columns:repeat(6,1fr)!important}}
+
+/* avatar feels like a game character stage */
+.avatarStage{
+  height:330px!important; min-height:330px!important;
+  background:
+   radial-gradient(circle at 50% 17%,rgba(255,255,255,.98) 0 13%,rgba(255,255,255,.4) 14% 32%,transparent 33%),
+   linear-gradient(180deg,#bfeaff 0 46%,#d9efca 46% 68%,#f0cf8b 68% 100%)!important;
+}
+.avatarStage:after{
+  content:"";position:absolute;left:28%;right:28%;bottom:7%;height:22px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,76,71,.28),transparent 68%);filter:blur(5px)
+}
+
+/* world cards: progression + evolution */
+.world{gap:10px!important;padding:12px!important}
+.zone{
+  min-height:248px!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+  padding:8px 8px 12px!important;border-radius:26px!important;
+}
+.zoneArt{height:150px!important;width:100%!important}
+.zoneProgress{margin-top:auto;padding:0 8px 2px}
+.zoneProgress .miniTrack{
+  height:8px;border-radius:999px;background:rgba(226,234,242,.95);overflow:hidden;margin:7px 0 5px
+}
+.zoneProgress .miniFill{
+  height:100%;border-radius:999px;background:linear-gradient(90deg,#8b7ae8,#6dcb9a)
+}
+.zoneProgress .miniText{font-size:12px;font-weight:900;color:#586c82}
+.evoBadge{
+  position:absolute;left:10px;top:10px;z-index:5;
+  border-radius:999px;padding:4px 8px;font-size:10px;font-weight:950;
+  color:#fff;background:linear-gradient(135deg,#725fe8,#4b87ef);
+  box-shadow:0 6px 12px rgba(65,82,170,.18)
+}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffbe3f,#ff8a44);color:#654000}
+
+/* Encounter: shorter, larger characters, pet alongside hero */
+.arena{
+  border-radius:30px!important;
+  background:
+   radial-gradient(circle at 50% 8%,rgba(255,255,255,.92),transparent 22%),
+   linear-gradient(180deg,#91dcfa 0 45%,#cbeab8 45% 66%,#e6c17b 66% 100%)!important;
+}
+.petFollower{position:absolute!important;left:8%!important;bottom:30%!important;width:78px!important;height:78px!important;z-index:8!important}
+.speech{margin:10px 10px 0!important}
+.battle{
+  min-height:270px!important;padding:18px 6px 5px!important;
+  grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr)!important;
+  align-items:end!important;
+}
+.battle .avatarArt,.battle .bossArt{height:225px!important;width:46%!important;max-width:210px!important}
+.vs{align-self:center!important}
+.vs:before{content:"⚡"!important}
+.battle .label{font-size:18px!important}
+.arena .story{background:rgba(255,255,255,.90)!important}
+.arena .stats{margin-top:10px!important}
+.arena .stat{background:rgba(255,255,255,.90)!important}
+
+/* celebratory states */
+.hmwSpark{
+ position:fixed;z-index:9999;pointer-events:none;font-size:26px;
+ animation:hmwBurst 950ms ease-out forwards
+}
+@keyframes hmwBurst{
+ 0%{transform:translate(-50%,-50%) scale(.4);opacity:0}
+ 20%{opacity:1}
+ 100%{transform:translate(var(--dx),var(--dy)) scale(1.25) rotate(22deg);opacity:0}
+}
+.levelPulse{animation:levelPulse .8s ease}
+@keyframes levelPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045);filter:brightness(1.12)}}
+
+/* make summary/reward panels feel like game cards */
+.journeyNode.open,.trophy.done,.closetItem.on{
+  box-shadow:0 9px 20px rgba(56,91,111,.12)!important;
+}
+.journeyNode .big{filter:drop-shadow(0 6px 8px rgba(50,80,105,.12))}
+.enddayHero{
+  text-align:center;padding:18px;border-radius:22px;
+  background:linear-gradient(180deg,#edf7ff,#fff5cf);
+  margin-bottom:12px
+}
+.enddayHero .big{font-size:52px}
+.enddayHero b{font-size:22px}
+
+/* mobile polish */
+@media(max-width:600px){
+ .nav{grid-template-columns:repeat(3,1fr)!important}
+ .nav button{min-height:48px!important;font-size:14px!important;padding:8px 3px!important}
+ .avatarStage{height:300px!important;min-height:300px!important}
+ .zone{min-height:232px!important}
+ .zoneArt{height:142px!important}
+ .battle{min-height:235px!important;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:188px!important;width:47%!important}
+ .petFollower{width:62px!important;height:62px!important;left:6%!important;bottom:31%!important}
+ .battle .label{font-size:16px!important}
+ .stats{gap:6px!important}
+ .stat{padding:7px 4px!important}
+ .stat b{font-size:18px!important}
+}
+</style>
+
+
+<style id="v44-arena-map-polish">
+/* V44 — screenshot-driven polish: compact encounter, bigger actors, clearer world progress */
+.buildBadge{min-width:70px!important;font-size:15px!important;letter-spacing:.4px!important}
+.status .pill:first-child{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+
+/* Make Avatar Studio less vertically dominant on phone */
+@media(max-width:600px){
+  .avatarStage{height:260px!important;min-height:260px!important}
+  .avatarStage svg{max-height:245px!important}
+  .avatarChoices{gap:7px!important}
+  .avatarChoice{min-height:98px!important;padding:5px!important}
+}
+
+/* World Map: give every monster card a visible game-progress footer */
+.zone{overflow:hidden!important;position:relative!important}
+.zone .evoBadge{top:8px!important;left:8px!important;padding:4px 7px!important;font-size:10px!important}
+.zoneProgress{width:100%!important;box-sizing:border-box!important;margin-top:8px!important;padding:0 10px 3px!important}
+.zoneProgress .miniTrack{height:7px!important;background:#e9eef4!important}
+.zoneProgress .miniFill{box-shadow:0 0 8px rgba(108,191,151,.22)!important}
+.zoneProgress .miniText{font-size:11px!important;line-height:1.15!important;text-align:center!important}
+@media(max-width:600px){
+ .zone{min-height:244px!important;padding-bottom:9px!important}
+ .zoneArt{height:137px!important}
+ .zone b{font-size:15px!important;line-height:1.15!important}
+ .zone small{font-size:13px!important}
+}
+
+/* Encounter: remove the giant empty sky seen in V43 screenshots */
+.arena{padding:10px 8px 12px!important;overflow:hidden!important}
+#petFollower.petFollower{position:relative!important;left:auto!important;bottom:auto!important;width:68px!important;height:68px!important;margin:2px auto 2px!important}
+.battle{min-height:210px!important;height:auto!important;padding:3px 4px 2px!important;gap:0!important;align-items:end!important}
+.battle .avatarArt,.battle .bossArt{height:180px!important;width:45%!important;max-width:185px!important;display:flex!important;align-items:flex-end!important;justify-content:center!important}
+.battle .avatarArt svg,.battle .bossArt svg{max-height:176px!important;width:100%!important}
+.vs{align-self:center!important}
+.vs:before{width:44px!important;height:44px!important;font-size:23px!important;box-shadow:0 8px 18px rgba(136,104,24,.15)!important}
+.battle .label{font-size:17px!important;margin-top:0!important;line-height:1.1!important}
+.speech{margin:5px 5px 7px!important;padding:8px!important}
+.arena .story{margin-top:6px!important}
+.arena .stats{margin-top:8px!important}
+@media(max-width:600px){
+ .arena{padding-top:7px!important}
+ #petFollower.petFollower{width:60px!important;height:60px!important}
+ .battle{min-height:188px!important;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:158px!important;width:47%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:155px!important}
+ .vs:before{width:38px!important;height:38px!important;font-size:20px!important}
+ .battle .label{font-size:15px!important}
+}
+
+/* Slightly more lively selected world */
+.zone.active{box-shadow:0 0 0 4px rgba(255,200,62,.2),0 12px 24px rgba(52,95,120,.14)!important}
+.zone.active .zoneArt{animation:v44Float 2.7s ease-in-out infinite}
+@keyframes v44Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V44</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+</div>
+<section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
+<section class="card"><div class="nav">
+<button data-screen="world" class="active">🗺️ โลก</button><button data-screen="daily">📅 Daily</button><button data-screen="journey">🏰 Journey</button><button data-screen="pets">🐾 Pets</button><button data-screen="rewards">🎁 Rewards</button><button data-screen="trophies">🏅 Trophy</button><button data-screen="closet">👕 Closet</button><button data-screen="dashboard">📊 Dashboard</button><button data-screen="endday">🌙 End Day</button><button data-screen="parent">👨‍👩‍👧 Parent</button><button data-screen="backup">💾 Backup</button>
+</div></section>
+
+<div id="world" class="screen active">
+<section class="card">
+<h2>🧭 Avatar Studio</h2>
+<div class="avatarStudio">
+<div id="avatarStage" class="avatarStage"></div>
+<div>
+<div class="setting"><b>ชื่อนักผจญภัย</b><input id="avatarName" placeholder="ใส่ชื่อ"></div>
+<h4>ตัวละครพื้นฐาน</h4><div id="avatarChoices" class="avatarChoices"></div>
+<div class="grid3" style="margin-top:9px">
+<div class="setting"><b>สีผิว</b><select id="skinSel"><option value="light">Light</option><option value="warm">Warm</option><option value="tan">Tan</option><option value="deep">Deep</option></select></div>
+<div class="setting"><b>ทรงผม</b><select id="hairSel"><option value="short">ผมสั้น</option><option value="curly">หยักศก</option><option value="spiky">สปอร์ต</option><option value="long">ผมยาว</option><option value="ponytail">หางม้า</option><option value="bob">ผมบ๊อบ</option></select></div>
+<div class="setting"><b>สีผม</b><select id="hairColorSel"><option value="brown">น้ำตาล</option><option value="black">ดำ</option><option value="chestnut">น้ำตาลแดง</option><option value="gold">ทอง</option></select></div>
+</div>
+<div id="gearRow" class="gearRow"></div>
+<button id="saveAvatarBtn" class="bigBtn green">บันทึก Avatar</button>
+</div>
+</div>
+</section>
+
+<section class="card worldIntro"><h2>✨ Adventure World</h2><div class="story">เลือกนักผจญภัยของคุณ แล้วออกไปฝึกนิสัยกับ Monster แต่ละด่านในโลกเดียวกัน</div><div class="characterQualityNote">ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน ไม่ใช่รูปภาพแยกชิ้น</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<div class="main">
+<main>
+<section class="card arena">
+<div id="petSpeech" class="speech">ไปกันเลย! 🐾</div><div id="petFollower" class="petFollower"></div>
+<div class="battle">
+<div><div id="heroArt" class="avatarArt"></div><div id="heroName" class="label"></div></div>
+<div class="vs">✨</div>
+<div><div id="bossArt" class="bossArt"></div><div id="bossName" class="label"></div></div>
+</div>
+<div class="story" id="monsterTalk"></div>
+<div class="row"><span id="monsterTitle"></span><span id="monsterLevel"></span></div>
+<div class="row"><span>🌫️ พลังนิสัยเดิม</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
+<div id="nextLevelHint" class="note" style="text-align:center;font-weight:850"></div>
+<div class="stats"><div class="stat"><b id="progressText">0</b><span id="progressUnit"></span></div><div class="stat"><b id="monsterWins">0</b>ผ่าน Level</div><div class="stat"><b id="pendingCount">0</b>รออนุมัติ</div><div class="stat"><b id="petMiniText">0</b>Pet XP</div></div>
+<div id="questBox" class="quest"></div>
+</section>
+</main>
+<aside>
+<section class="card"><h3>📅 Daily Summary</h3><div id="dailySummary"></div></section>
+<section class="card"><h3>🏆 Weekly Summary</h3><div id="weeklySummary"></div></section>
+</aside>
+</div>
+</div>
+
+<div id="daily" class="screen"><section class="card"><h2>📅 Daily Quest</h2><div class="story">ทำ 3 ภารกิจหลักให้ครบเพื่อเปิด Treasure Chest</div><div id="dailyQuestGrid" class="grid3"></div><div class="ico" style="text-align:center;font-size:58px" id="dailyChestIcon">🎁</div><button id="dailyChestBtn" class="bigBtn yellow">เปิด Daily Treasure Chest</button><div id="perfectDay" class="story"></div></section></div>
+<div id="journey" class="screen"><section class="card"><h2>🏰 World Journey</h2><div id="journeyGrid" class="journey"></div></section></div>
+
+<div id="pets" class="screen"><section class="card"><h2>🐾 Pet Companions</h2><div class="story">Pet ได้ XP/Friendship จากการทำภารกิจ แต่จะไม่ป่วยหรือเสีย Friendship เมื่อไม่ได้เล่น</div><div class="petStudio"><div><div id="petStage" class="petStage"></div><h3 id="petName" style="text-align:center"></h3><div class="row"><span>❤️ Friendship</span><span id="friendText"></span></div><div class="friendBar"><div id="friendFill" class="friendFill"></div></div><div class="row"><span>⭐ Pet XP</span><span id="petXpText"></span></div><div class="bar"><div id="petXpBar" class="xp"></div></div><div id="petAbility" class="story"></div></div><div><h3>เลือกคู่หู</h3><div id="petChoices" class="petChoices"></div><h3 style="margin-top:12px">🏠 Pet Home</h3><div id="petHome" class="grid4"></div></div></div></section><section class="card"><h3>📸 Adventure Album</h3><div id="petAlbum" class="grid3"></div></section></div>
+
+<div id="rewards" class="screen"><section class="card"><h2>🎁 Rewards</h2><div id="rewardGrid" class="grid3"></div></section></div>
+<div id="trophies" class="screen"><section class="card"><h2>🏅 Trophy Room</h2><div id="trophyGrid" class="trophyGrid"></div></section></div>
+<div id="closet" class="screen"><section class="card"><h2>👕 Closet & Collection</h2><div id="closetGrid" class="closetGrid"></div></section></div>
+<div id="dashboard" class="screen"><section class="card"><h2>📊 Parent Dashboard</h2><div id="dashboardGrid" class="summaryGrid"></div><div id="weekCompare" class="story"></div></section></div>
+<div id="endday" class="screen"><section class="card"><div style="font-size:50px;text-align:center">🌙✨</div><h2 style="text-align:center">สรุปวันนี้</h2><div id="endDaySummary"></div><button id="closeDayBtn" class="bigBtn purple">ปิดวันวันนี้</button></section></div>
+
+<div id="parent" class="screen">
+<section class="card"><h2>🔒 Parent Mode</h2><div class="pinGate"><input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="PIN 4–6 หลัก"><button id="unlockPinBtn" class="smallBtn">ปลดล็อก</button><button id="setPinBtn" class="smallBtn">ตั้ง/เปลี่ยน PIN</button><button id="undoBtn" class="smallBtn">↩️ Undo ล่าสุด</button></div><div id="pinStatus" class="note"></div></section>
+<section class="card"><h3>⚙️ ตั้งค่า</h3><div class="grid3">
+<div class="setting"><b>Parent Approval</b><select id="approvalSel"><option value="trust">Trust Mode</option><option value="parent">Parent Check</option></select></div>
+<div class="setting"><b>Screen Budget (ชม.)</b><input id="screenBudgetSet" type="number" min="0" step=".25"></div>
+<div class="setting"><b>พร้อมตอนเช้าก่อน</b><input id="morningSet" type="time"></div>
+<div class="setting"><b>ห้องน้ำเกินกี่นาทีถือว่านาน</b><input id="toiletSet" type="number" min="1"></div>
+<div class="setting"><b>อาบน้ำเช้าไม่เกิน (นาที)</b><input id="bathMorningSet" type="number" min="1"></div>
+<div class="setting"><b>อาบน้ำเย็นไม่เกิน (นาที)</b><input id="bathEveningSet" type="number" min="1"></div>
+<div class="setting"><b>Cooldown ต่อด่าน (นาที)</b><input id="cooldownSet" type="number" min="0"></div>
+<div class="setting"><b>ดาวสูงสุดต่อด่าน/วัน</b><input id="dailyCapSet" type="number" min="1"></div>
+</div><button id="saveSettingsBtn" class="bigBtn green">บันทึก Settings</button></section>
+<section class="card"><h3>✓ รายการรออนุมัติ</h3><div id="pendingList"></div></section>
+<section class="card"><h3>🎁 กำหนด Reward เอง</h3><div class="grid4"><div class="setting"><b>ชื่อ</b><input id="rewardName"></div><div class="setting"><b>ดาว</b><input id="rewardCost" type="number" min="1" value="50"></div><div class="setting"><b>ประเภท</b><select id="rewardType"><option value="activity">กิจกรรม</option><option value="treat">ของกิน</option><option value="privilege">สิทธิพิเศษ</option><option value="item">ของรางวัล</option></select></div><div class="setting"><b>จำกัดครั้ง (0=ไม่จำกัด)</b><input id="rewardLimit" type="number" min="0" value="0"></div></div><button id="addRewardBtn" class="bigBtn green">+ เพิ่ม Reward</button><div id="rewardEditor"></div></section>
+<section class="card"><h3>🍃 ประวัติใบพัก</h3><div id="restHistory"></div></section>
+<section class="card"><h3>🎁 ประวัติแลกรางวัล</h3><div id="rewardHistory"></div></section>
+</div>
+
+<div id="backup" class="screen"><section class="card"><h2>💾 Backup / Restore</h2><div class="story">⚠️ ข้อมูลเก็บใน browser ของเครื่องนี้ ควร Export Backup เป็นระยะ โดยเฉพาะก่อนเปลี่ยนเวอร์ชัน</div><button id="exportBtn" class="bigBtn blue">Export Save</button><input id="importFile" type="file" accept=".json,application/json" style="margin-top:9px"><button id="importBtn" class="bigBtn orange">Import Save</button><button id="restoreAutoBtn" class="bigBtn yellow">กู้ Auto Backup</button><div id="backupInfo" class="story"></div></section></div>
+</div>
+
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal"><div class="modalCard"><div id="modalIcon" style="font-size:64px"></div><h2 id="modalTitle"></h2><div id="modalText"></div><button id="modalClose" class="bigBtn green">ตกลง</button></div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.4;
+const defs={
+ diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
+ reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
+ homework:{title:"เคลียร์การบ้าน",name:"สไลม์การบ้าน",unit:"งาน",goal:20,hp:120,color:["#bcecff","#4299d7"],talk:["งานเยอะจัง","หายไปทีละงานแล้ว","ใกล้โล่งแล้ว","ทำก่อนแล้วสบายใจ","👑 HERO FORM!"]},
+ messy:{title:"มอนสเตอร์จอมรก",name:"เจ้าจอมรก",unit:"งาน",goal:20,hp:115,color:["#c7ef9d","#58aa50"],talk:["วางไว้ก่อนก็ได้มั้ง","หาอะไรง่ายขึ้นแล้ว","ห้องดูโล่งขึ้น","เก็บแล้วสบายตา","👑 HERO FORM!"]},
+ morning:{title:"เตรียมพร้อมตอนเช้า",name:"เจ้าตะวัน",unit:"วัน",goal:14,hp:100,color:["#fff1a7","#f5b24f"],talk:["ขอช้าอีกนิด","วันนี้พร้อมเร็วขึ้น","มีเวลาเหลือแล้ว","เช้าไม่วุ่นวายเลย","👑 HERO FORM!"]},
+ noDawdle:{title:"ด่านไม่ลีลา",name:"กระต่ายจับเวลา",unit:"หัวข้อ",goal:20,hp:110,color:["#ffd5e5","#dd82ad"],talk:["ขออีกแป๊บ","เริ่มจับเวลาได้แล้ว","เร็วพอดีขึ้น","เหลือเวลาไปทำอย่างอื่น","👑 HERO FORM!"]},
+ screen:{title:"ด่านไม่ติดจอ",name:"เจ้าจอม่วง",unit:"หัวข้อ",goal:20,hp:110,color:["#beb1ff","#5849a8"],talk:["อีก 5 นาทีได้ไหม","วางจอเร็วขึ้นนะ","มีกิจกรรมอื่นสนุกด้วย","จัดเวลาได้ดีขึ้น","👑 HERO FORM!"]}
+};
+const order=["diligent","reading","homework","messy","morning","noDawdle","screen"];
+const fresh=()=>({level:1,hp:100,progress:0,wins:0,lastSubmit:0,dailyStars:{},history:[]});
+const defaults={
+ version:VERSION,stars:0,streak:0,shields:1,maxShields:3,lastActiveDay:null,activeDays:[],lastShieldAward:0,restHistory:[],
+ profile:{name:"นักผจญภัย",preset:"boyA",skin:"light",hair:"short",hairColor:"brown",gear:{hat:true,cape:false,bag:false,star:false}},
+ settings:{approval:"parent",screenBudget:1.5,morning:"06:45",toilet:10,bathMorning:15,bathEvening:15,cooldown:0,dailyCap:40},
+ monsters:{},active:"diligent",messyTasks:["จัดโต๊ะแล้วโต๊ะไม่รก","เก็บรองเท้าเข้าที่","เก็บของเล่น/ของใช้เข้าที่"],
+ totals:{diligent:0,reading:0,homework:0,messy:0,morning:0,noDawdle:0,screen:0},
+ logs:[],pending:[],undo:[],rewards:[
+  {name:"เลือกของหวาน",cost:100,type:"treat",limit:0,redeemed:0},
+  {name:"เลือกหนังดูด้วยกัน",cost:200,type:"activity",limit:0,redeemed:0},
+  {name:"เลือกกิจกรรมวันหยุด",cost:300,type:"activity",limit:0,redeemed:0}
+ ],rewardHistory:[],parentPin:"",parentUnlocked:false,
+ daily:{date:"",done:{},chest:false},closedDays:[],
+ pet:{selected:"puppy",xp:0,friendship:0,owned:["puppy"],bonusDays:[],decor:{bed:true,ball:false,bowl:false,plant:false}},
+ chestHistory:[]
+};
+order.forEach(k=>defaults.monsters[k]=fresh());
+
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function migrate(raw){
+ const d=raw&&raw.data?raw.data:raw;if(!d)return clone(defaults);
+ const s=Object.assign(clone(defaults),d);
+ s.profile=Object.assign(clone(defaults.profile),d.profile||{});
+ s.profile.gear=Object.assign(clone(defaults.profile.gear),(d.profile&&d.profile.gear)||{});
+ s.settings=Object.assign(clone(defaults.settings),d.settings||{});
+ s.monsters=Object.assign({},clone(defaults.monsters),d.monsters||{});
+ order.forEach(k=>s.monsters[k]=Object.assign(fresh(),s.monsters[k]||{}));
+ s.totals=Object.assign(clone(defaults.totals),d.totals||{});
+ s.rewards=Array.isArray(d.rewards)?d.rewards:(Array.isArray(d.coupons)?d.coupons:clone(defaults.rewards));
+ s.messyTasks=Array.isArray(d.messyTasks)&&d.messyTasks.length?d.messyTasks:clone(defaults.messyTasks);
+ s.logs=Array.isArray(d.logs)?d.logs:[];s.pending=Array.isArray(d.pending)?d.pending:[];s.undo=Array.isArray(d.undo)?d.undo:[];
+ s.restHistory=Array.isArray(d.restHistory)?d.restHistory:[];s.rewardHistory=Array.isArray(d.rewardHistory)?d.rewardHistory:[];
+ s.pet=Object.assign(clone(defaults.pet),d.pet||{});s.pet.decor=Object.assign(clone(defaults.pet.decor),(d.pet&&d.pet.decor)||{});
+ s.parentUnlocked=false;s.version=VERSION;return s
+}
+let S;try{S=migrate(JSON.parse(localStorage.getItem(KEY)||"null"))}catch(e){S=clone(defaults)}
+function envelope(){return {version:VERSION,savedAt:new Date().toISOString(),data:S}}
+function save(){localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(BACKUP,JSON.stringify(envelope()))}
+function toast(x){$("toast").textContent=x;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1500)}
+function modal(i,t,x){$("modalIcon").textContent=i;$("modalTitle").textContent=t;$("modalText").innerHTML=x;$("modal").classList.add("show")}
+$("modalClose").onclick=()=>$("modal").classList.remove("show");
+function celebrate(msg){const d=document.createElement("div");d.style.cssText="position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden";for(let i=0;i<22;i++){let s=document.createElement("span");s.textContent=["⭐","✨","🎉"][i%3];s.style.cssText=`position:absolute;left:${Math.random()*100}%;top:-30px;font-size:${18+Math.random()*15}px;animation:fall ${1.2+Math.random()}s linear forwards`;d.appendChild(s)}document.body.appendChild(d);toast(msg);setTimeout(()=>d.remove(),2300)}
+function dayKey(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function diffDays(a,b){return Math.round((new Date(b+"T12:00:00")-new Date(a+"T12:00:00"))/86400000)}
+function ensureDaily(){let d=dayKey();if(S.daily.date!==d)S.daily={date:d,done:{},chest:false}}
+function registerDay(){
+ let d=dayKey();if(S.activeDays.includes(d))return;
+ let prev=S.lastActiveDay;if(!prev)S.streak=1;else{let gap=diffDays(prev,d);if(gap===1)S.streak++;else if(gap===2&&S.shields>0){S.shields--;let x=new Date(prev+"T12:00:00");x.setDate(x.getDate()+1);S.restHistory.unshift({date:dayKey(x),usedOn:d});S.streak++;toast("🍃 ใช้ใบพักแล้ว Streak ยังต่อเนื่อง")}else if(gap>1)S.streak=1}
+ S.activeDays.push(d);S.lastActiveDay=d;let milestone=Math.floor(S.streak/7)*7;if(milestone>=7&&milestone>S.lastShieldAward){S.lastShieldAward=milestone;if(S.shields<S.maxShields){S.shields++;toast("🍃 Streak ครบ 7 วัน ได้ใบพัก +1")}}
+}
+function maxGoal(k){return Math.round(defs[k].goal*(1+(Math.min(5,S.monsters[k].level)-1)*.2))}
+function maxHp(k){return Math.round(defs[k].hp*(1+(Math.min(5,S.monsters[k].level)-1)*.15))}
+function stage(k){return Math.min(4,S.monsters[k].level-1)}
+
+function monsterSVG(k,st=stage(k)){
+ const level=Math.min(5,Math.max(1,st+1));
+ const src=monsterArtURI(k,level);
+ return `<div class="cinematic-slot cinematic-monster original-art" data-kind="${k}" data-level="${level}" aria-label="${defs[k].name}">
+   <img src="${src}" alt="${defs[k].name} Lv.${level}">
+ </div>`;
+}
+
+
+function svgData(svg){
+ return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg.split("\n").join(" ").trim());
+}
+function artFrame(inner,accent="#7fc7ff"){
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+ <defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+   <stop stop-color="#f8fcff"/><stop offset=".62" stop-color="#edf7ff"/><stop offset="1" stop-color="#fff6e2"/>
+  </linearGradient>
+  <radialGradient id="glow" cx=".32" cy=".20" r=".78">
+   <stop stop-color="#ffffff" stop-opacity=".98"/>
+   <stop offset=".45" stop-color="#ffffff" stop-opacity=".18"/>
+   <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%">
+   <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#33516a" flood-opacity=".22"/>
+  </filter>
+  <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
+   <feGaussianBlur stdDeviation="8"/>
+  </filter>
+ </defs>
+ <rect width="420" height="420" rx="54" fill="url(#bg)"/>
+ <rect x="10" y="10" width="400" height="400" rx="48" fill="none" stroke="#fff" stroke-width="4" opacity=".72"/>
+ <ellipse cx="210" cy="354" rx="126" ry="24" fill="#557a96" opacity=".18" filter="url(#blur)"/>
+ <ellipse cx="210" cy="344" rx="91" ry="15" fill="#6f8fa6" opacity=".13"/>
+ <path d="M55 126Q96 35 190 32" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".32"/>
+ <circle cx="110" cy="78" r="8" fill="${accent}" opacity=".24"/>
+ <circle cx="336" cy="84" r="6" fill="${accent}" opacity=".22"/>
+ <circle cx="360" cy="104" r="4" fill="${accent}" opacity=".3"/>
+ <circle cx="210" cy="150" r="165" fill="url(#glow)" opacity=".85"/>
+ <g filter="url(#shadow)">${inner}</g>
+ </svg>`;
+}
+function cuteEye(cx,cy,s=1,mood="happy"){
+ const lid = mood==="sleepy"
+   ? `<path d="M-28 -2 Q0 -18 28 -2" fill="none" stroke="#5e3f4f" stroke-width="7" stroke-linecap="round"/>`
+   : `<ellipse rx="29" ry="34" fill="#fff" stroke="#d9edf7" stroke-width="3"/>
+      <ellipse cy="4" rx="19" ry="24" fill="#70bcec"/>
+      <ellipse cy="8" rx="11" ry="16" fill="#183f5d"/>
+      <ellipse cx="-7" cy="-8" rx="6" ry="8" fill="#fff"/>
+      <circle cx="8" cy="0" r="4" fill="#fff" opacity=".92"/>
+      <path d="M-18 -25Q0 -34 18 -25" fill="none" stroke="#526071" stroke-width="3" opacity=".34"/>`;
+ return `<g transform="translate(${cx} ${cy}) scale(${s})">${lid}</g>`;
+}
+function blushPair(y=214,color="#f4a3b6"){
+ return `<ellipse cx="154" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/><ellipse cx="266" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/>`;
+}
+function smile(cx=210,cy=232,w=44,h=22,color="#9f5365"){
+ return `<path d="M${cx-w/2} ${cy} Q${cx} ${cy+h} ${cx+w/2} ${cy}" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>`;
+}
+function starBurst(level,accent="#ffd86f"){
+ if(level<2)return "";
+ let s=`<g opacity=".95"><path d="M319 96 l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="${accent}"/></g>`;
+ if(level>=3)s+=`<circle cx="96" cy="110" r="8" fill="#fff4a0"/><circle cx="341" cy="164" r="5" fill="#fff"/>`;
+ if(level>=4)s+=`<path d="M202 65l9 18 20 3-15 14 4 20-18-10-18 10 4-20-15-14 20-3z" fill="#ffd65a" stroke="#e4ab2d" stroke-width="3"/>`;
+ if(level>=5)s+=`<path d="M148 91q29-35 63-4 32-32 62 4l-8 18h-109z" fill="#ffe28b" opacity=".8"/>`;
+ return s;
+}
+
+function v37Svg(inner,defs=""){
+ return svgData(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+ <defs>
+   ${defs}
+   <filter id="v37shadow" x="-50%" y="-50%" width="200%" height="220%">
+    <feDropShadow dx="0" dy="15" stdDeviation="11" flood-color="#25445f" flood-opacity=".22"/>
+   </filter>
+   <filter id="v37soft" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8"/>
+   </filter>
+   <radialGradient id="v37eye" cx=".32" cy=".20" r=".82">
+    <stop offset="0" stop-color="#fff"/><stop offset=".18" stop-color="#aeeaff"/>
+    <stop offset=".58" stop-color="#4a9fd0"/><stop offset="1" stop-color="#173b57"/>
+   </radialGradient>
+ </defs>
+ <ellipse cx="210" cy="369" rx="99" ry="18" fill="#25445f" opacity=".13" filter="url(#v37soft)"/>
+ <g filter="url(#v37shadow)">${inner}</g>
+ </svg>`);
+}
+function v37Eye(x,y,s=1){
+ return `<g transform="translate(${x} ${y}) scale(${s})">
+   <ellipse rx="31" ry="35" fill="#fff"/>
+   <ellipse cy="4" rx="19" ry="23" fill="url(#v37eye)"/>
+   <ellipse cy="7" rx="10" ry="14" fill="#102d43"/>
+   <circle cx="-8" cy="-9" r="7" fill="#fff"/>
+   <circle cx="7" cy="-1" r="3.8" fill="#fff" opacity=".95"/>
+ </g>`;
+}
+function v37Mouth(x,y,w=42){
+ return `<path d="M${x-w/2} ${y} Q${x} ${y+24} ${x+w/2} ${y}" fill="none" stroke="#9c4962" stroke-width="8" stroke-linecap="round"/>
+ <path d="M${x-11} ${y+11}q11 7 22 0" stroke="#ffd4df" stroke-width="4" stroke-linecap="round" opacity=".9"/>`;
+}
+function v37Cheeks(y,color="#ff91aa"){
+ return `<ellipse cx="142" cy="${y}" rx="24" ry="10" fill="${color}" opacity=".66"/>
+         <ellipse cx="278" cy="${y}" rx="24" ry="10" fill="${color}" opacity=".66"/>`;
+}
+
+function monsterArtURI(kind,level=1){
+ const lv=Math.max(1,Math.min(5,level||1));
+ const star=lv>=3?`<path d="M323 77l6 13 14 3-11 10 3 14-12-7-13 7 3-14-10-10 14-3z" fill="#ffe37c" opacity=".95"/>`:"";
+ if(kind==="diligent"){
+   const defs=`<radialGradient id="body" cx=".32" cy=".17" r=".9"><stop stop-color="#ffd46a"/><stop offset=".35" stop-color="#ff9a32"/><stop offset="1" stop-color="#df4e20"/></radialGradient>
+   <linearGradient id="crown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff1a6"/><stop offset="1" stop-color="#ffae20"/></linearGradient>`;
+   const spikes=[0,1,2,3,4,5,6,7,8,9].map(i=>{
+     const a=(i*36-90)*Math.PI/180, x=210+Math.cos(a)*118, y=216+Math.sin(a)*112;
+     const rot=i*36; return `<path d="M210 66l-17 55h34z" fill="url(#body)" transform="rotate(${rot} 210 216)"/>`;
+   }).join("");
+   return v37Svg(`${spikes}<ellipse cx="210" cy="220" rx="103" ry="101" fill="url(#body)"/>
+     <ellipse cx="175" cy="151" rx="46" ry="22" fill="#fff" opacity=".26" transform="rotate(-21 175 151)"/>
+     <path d="M158 118l19-27 21 20 19-34 22 34 22-20 20 27-12 26H170z" fill="url(#crown)" stroke="#f39d17" stroke-width="4"/>
+     ${v37Eye(174,212,.8)}${v37Eye(246,212,.8)}${v37Cheeks(253)}${v37Mouth(210,252,48)}
+     <ellipse cx="157" cy="314" rx="30" ry="23" fill="#e85a24"/><ellipse cx="263" cy="314" rx="30" ry="23" fill="#e85a24"/>
+     <ellipse cx="118" cy="240" rx="19" ry="20" fill="#323d4d"/><ellipse cx="302" cy="240" rx="19" ry="20" fill="#323d4d"/>${star}`,defs);
+ }
+ if(kind==="reading"){
+   const defs=`<radialGradient id="body" cx=".32" cy=".17" r=".9"><stop stop-color="#b78aff"/><stop offset=".38" stop-color="#8055e0"/><stop offset="1" stop-color="#5131a6"/></radialGradient>
+   <linearGradient id="book" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#58aef5"/><stop offset="1" stop-color="#2268be"/></linearGradient>`;
+   return v37Svg(`<path d="M126 170l30-75 47 56zM294 170l-30-75-47 56z" fill="url(#body)"/>
+     <ellipse cx="210" cy="218" rx="101" ry="104" fill="url(#body)"/>
+     <ellipse cx="170" cy="150" rx="47" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 170 150)"/>
+     ${v37Eye(174,205,.78)}${v37Eye(246,205,.78)}${v37Cheeks(248,"#ff92c9")}${v37Mouth(210,247,44)}
+     <path d="M118 277q44-20 90 8v69q-43-25-90-8zM302 277q-44-20-90 8v69q43-25 90-8z" fill="url(#book)" stroke="#fff" stroke-width="5"/>
+     <path d="M210 285v66" stroke="#d9efff" stroke-width="5"/><ellipse cx="128" cy="302" rx="22" ry="26" fill="#6e45cc"/><ellipse cx="292" cy="302" rx="22" ry="26" fill="#6e45cc"/>${star}`,defs);
+ }
+ if(kind==="homework"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#9df2ff"/><stop offset=".4" stop-color="#42c4ec"/><stop offset="1" stop-color="#1687c5"/></radialGradient>
+   <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e8f5ff"/></linearGradient>`;
+   return v37Svg(`<path d="M210 72C179 119 118 179 118 248c0 62 42 100 92 100s92-38 92-100c0-69-61-129-92-176z" fill="url(#body)"/>
+     <ellipse cx="180" cy="151" rx="38" ry="19" fill="#fff" opacity=".28" transform="rotate(-24 180 151)"/>
+     ${v37Eye(176,225,.77)}${v37Eye(244,225,.77)}${v37Cheeks(267)}${v37Mouth(210,266,44)}
+     <rect x="146" y="293" width="128" height="68" rx="12" fill="url(#paper)" stroke="#c9e8f8" stroke-width="4"/>
+     <path d="M164 311h82m-82 16h66m-66 16h75" stroke="#81bdda" stroke-width="5" stroke-linecap="round"/>
+     <path d="M291 244l18-16 10 12-18 17z" fill="#ffc956"/><path d="M286 249l13 14" stroke="#8d6d39" stroke-width="6" stroke-linecap="round"/>${star}`,defs);
+ }
+ if(kind==="messy"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#b7f574"/><stop offset=".38" stop-color="#62c94e"/><stop offset="1" stop-color="#2c8739"/></radialGradient>
+   <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8ff9a"/><stop offset="1" stop-color="#378f43"/></linearGradient>`;
+   const leaves=`<ellipse cx="170" cy="116" rx="25" ry="46" fill="url(#leaf)" transform="rotate(-35 170 116)"/><ellipse cx="205" cy="101" rx="26" ry="48" fill="url(#leaf)" transform="rotate(-8 205 101)"/><ellipse cx="244" cy="111" rx="25" ry="46" fill="url(#leaf)" transform="rotate(28 244 111)"/><ellipse cx="273" cy="139" rx="22" ry="40" fill="url(#leaf)" transform="rotate(52 273 139)"/>`;
+   return v37Svg(`${leaves}<ellipse cx="210" cy="229" rx="100" ry="104" fill="url(#body)"/>
+     <ellipse cx="176" cy="162" rx="45" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 176 162)"/>
+     ${v37Eye(175,217,.78)}${v37Eye(245,217,.78)}${v37Cheeks(258)}${v37Mouth(210,258,44)}
+     <path d="M190 286l20-13 20 13-20 21z" fill="#d6f35e" opacity=".9"/>
+     <ellipse cx="166" cy="323" rx="31" ry="22" fill="#3b9f41"/><ellipse cx="254" cy="323" rx="31" ry="22" fill="#3b9f41"/>
+     <path d="M292 276l48 44" stroke="#8f623e" stroke-width="12" stroke-linecap="round"/><path d="M320 303l34 27-28 30-30-39z" fill="#f4b73f"/>${star}`,defs);
+ }
+ if(kind==="morning"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#fff59b"/><stop offset=".38" stop-color="#ffd23e"/><stop offset="1" stop-color="#f09c17"/></radialGradient>`;
+   const rays=[0,1,2,3,4,5,6,7].map(i=>`<rect x="203" y="55" width="14" height="55" rx="7" fill="#ffb629" transform="rotate(${i*45} 210 221)"/>`).join("");
+   return v37Svg(`${rays}<circle cx="210" cy="222" r="101" fill="url(#body)"/>
+     <ellipse cx="174" cy="156" rx="47" ry="21" fill="#fff" opacity=".30" transform="rotate(-20 174 156)"/>
+     ${v37Eye(174,215,.79)}${v37Eye(246,215,.79)}${v37Cheeks(255,"#ff9ba4")}${v37Mouth(210,257,46)}
+     <ellipse cx="167" cy="321" rx="30" ry="22" fill="#f4a91f"/><ellipse cx="253" cy="321" rx="30" ry="22" fill="#f4a91f"/>${star}`,defs);
+ }
+ if(kind==="noDawdle"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#ffd1e3"/><stop offset=".38" stop-color="#ff8dc1"/><stop offset="1" stop-color="#d8538e"/></radialGradient>`;
+   return v37Svg(`<ellipse cx="166" cy="110" rx="27" ry="76" fill="url(#body)" transform="rotate(-5 166 110)"/><ellipse cx="254" cy="110" rx="27" ry="76" fill="url(#body)" transform="rotate(5 254 110)"/>
+     <ellipse cx="210" cy="230" rx="100" ry="106" fill="url(#body)"/>
+     <ellipse cx="175" cy="159" rx="47" ry="21" fill="#fff" opacity=".27" transform="rotate(-20 175 159)"/>
+     ${v37Eye(174,218,.79)}${v37Eye(246,218,.79)}${v37Cheeks(260)}${v37Mouth(210,260,44)}
+     <ellipse cx="168" cy="327" rx="31" ry="22" fill="#cf5b91"/><ellipse cx="252" cy="327" rx="31" ry="22" fill="#cf5b91"/>
+     <circle cx="306" cy="286" r="41" fill="#fff" stroke="#b7c6d5" stroke-width="6"/><path d="M306 286l1-22m-1 22 18 12" stroke="#52687d" stroke-width="6" stroke-linecap="round"/>${star}`,defs);
+ }
+ const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#c6a1ff"/><stop offset=".38" stop-color="#7c57e5"/><stop offset="1" stop-color="#4a2fa6"/></radialGradient>
+ <linearGradient id="phones" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70e3ef"/><stop offset="1" stop-color="#3b65d4"/></linearGradient>`;
+ return v37Svg(`<ellipse cx="210" cy="228" rx="101" ry="105" fill="url(#body)"/>
+   <ellipse cx="175" cy="157" rx="46" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 175 157)"/>
+   ${v37Eye(174,217,.78)}${v37Eye(246,217,.78)}${v37Cheeks(258,"#ff8fca")}${v37Mouth(210,258,44)}
+   <path d="M129 209q10-92 81-92t81 92" fill="none" stroke="url(#phones)" stroke-width="18" stroke-linecap="round"/>
+   <rect x="110" y="202" width="31" height="69" rx="14" fill="url(#phones)"/><rect x="279" y="202" width="31" height="69" rx="14" fill="url(#phones)"/>
+   <ellipse cx="166" cy="325" rx="30" ry="22" fill="#5032ae"/><ellipse cx="254" cy="325" rx="30" ry="22" fill="#5032ae"/>${star}`,defs);
+}
+
+
+function avatarArtURI(p){
+ const id=(p&&p.preset)||"girlA";
+ const C={
+  boyA:{shirt:"#39b8ef",dark:"#197db8",hair:"#68402f",style:"swoop",sex:"b",accent:"#7fdcff"},
+  boyB:{shirt:"#52d29d",dark:"#238f66",hair:"#6a402f",style:"curl",sex:"b",accent:"#9cf0c8"},
+  boyC:{shirt:"#f7a446",dark:"#d36c24",hair:"#623c2c",style:"spike",sex:"b",accent:"#ffd089"},
+  girlA:{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"},
+  girlB:{shirt:"#9583ed",dark:"#6251c8",hair:"#6d432f",style:"pony",sex:"g",accent:"#c9c1ff"},
+  girlC:{shirt:"#ed7984",dark:"#bc4654",hair:"#63402f",style:"long",sex:"g",accent:"#ffb8c0"}
+ }[id]||{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"};
+
+ const defs=`
+ <radialGradient id="skin3" cx=".33" cy=".18" r=".88">
+  <stop stop-color="#fff7ed"/><stop offset=".32" stop-color="#ffd8bd"/><stop offset=".72" stop-color="#efb28f"/><stop offset="1" stop-color="#d89272"/>
+ </radialGradient>
+ <radialGradient id="hair3" cx=".28" cy=".10" r=".95">
+  <stop stop-color="#b97b57"/><stop offset=".30" stop-color="${C.hair}"/><stop offset=".82" stop-color="#4b2a20"/><stop offset="1" stop-color="#2c1814"/>
+ </radialGradient>
+ <radialGradient id="cloth3" cx=".30" cy=".10" r=".95">
+  <stop stop-color="#ffffff" stop-opacity=".72"/><stop offset=".18" stop-color="${C.accent}"/><stop offset=".46" stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </radialGradient>
+ <linearGradient id="shoe3" x1="0" y1="0" x2="0" y2="1">
+  <stop stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </linearGradient>
+ <filter id="innerGlow"><feGaussianBlur stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="arithmetic" k2="1" k3="-0.5"/></filter>`;
+
+ let hairBack="", hairFront="";
+ if(C.style==="bob"){
+   hairBack=`<path d="M119 182Q126 76 210 69Q302 76 304 188L292 287Q263 315 238 320V184H179V320Q147 311 122 284Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M131 149Q153 79 210 77Q274 80 291 153Q253 124 212 127Q169 123 131 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="pony"){
+   hairBack=`<ellipse cx="302" cy="195" rx="44" ry="74" fill="url(#hair3)"/><circle cx="288" cy="131" r="14" fill="${C.accent}"/>`;
+   hairFront=`<path d="M132 150Q154 80 211 77Q269 79 287 149Q257 125 217 126Q172 123 132 150Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="long"){
+   hairBack=`<path d="M119 179Q130 73 210 68Q298 74 304 182V337Q280 361 250 369V184H169V369Q140 360 117 337Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M130 149Q154 78 211 76Q271 78 290 151Q253 126 214 126Q169 123 130 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="curl"){
+   hairBack="";
+   hairFront=`<g fill="url(#hair3)">
+    <circle cx="151" cy="116" r="29"/><circle cx="178" cy="98" r="33"/><circle cx="210" cy="94" r="35"/>
+    <circle cx="244" cy="100" r="32"/><circle cx="270" cy="119" r="28"/>
+    <circle cx="144" cy="139" r="24"/><circle cx="278" cy="140" r="24"/>
+   </g>`;
+ } else if(C.style==="spike"){
+   hairFront=`<path d="M128 148L149 84L181 111L210 56L238 111L276 81L294 149Q253 126 211 127Q169 124 128 148Z" fill="url(#hair3)"/>`;
+ } else {
+   hairFront=`<path d="M126 151Q144 84 196 74Q247 64 291 133L267 127Q237 109 210 114Q166 111 126 151Z" fill="url(#hair3)"/>`;
+ }
+
+ return v37Svg(`
+  ${hairBack}
+  <!-- neck / ears -->
+  <ellipse cx="122" cy="190" rx="25" ry="31" fill="url(#skin3)"/><ellipse cx="298" cy="190" rx="25" ry="31" fill="url(#skin3)"/>
+  <rect x="190" y="252" width="40" height="35" rx="16" fill="url(#skin3)"/>
+  <!-- head -->
+  <ellipse cx="210" cy="183" rx="82" ry="91" fill="url(#skin3)"/>
+  <ellipse cx="174" cy="123" rx="43" ry="20" fill="#fff" opacity=".34" transform="rotate(-18 174 123)"/>
+  ${hairFront}
+  <!-- brows -->
+  <path d="M151 160Q173 149 191 159" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <path d="M229 159Q249 149 269 160" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <!-- eyes -->
+  ${v37Eye(174,188,.72)}${v37Eye(246,188,.72)}
+  ${C.sex==="g"?`<path d="M147 178l-12-6m13 14-13 2m139-10 12-6m-13 14 13 2" stroke="#533a45" stroke-width="4" stroke-linecap="round"/>`:""}
+  ${v37Cheeks(229,"#ff95aa")}
+  <ellipse cx="210" cy="216" rx="9" ry="6" fill="#c98568" opacity=".55"/>
+  ${v37Mouth(210,239,47)}
+  <!-- torso -->
+  <ellipse cx="210" cy="310" rx="70" ry="60" fill="url(#cloth3)"/>
+  <ellipse cx="180" cy="276" rx="34" ry="12" fill="#fff" opacity=".24" transform="rotate(-18 180 276)"/>
+  <path d="M164 279Q210 308 256 279" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".92"/>
+  <!-- shoulders / arms -->
+  <ellipse cx="145" cy="295" rx="25" ry="27" fill="url(#cloth3)"/><ellipse cx="275" cy="295" rx="25" ry="27" fill="url(#cloth3)"/>
+  <rect x="132" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/><rect x="263" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/>
+  <ellipse cx="144" cy="350" rx="14" ry="13" fill="url(#skin3)"/><ellipse cx="276" cy="350" rx="14" ry="13" fill="url(#skin3)"/>
+  <!-- lower body -->
+  ${C.sex==="g"
+    ? `<path d="M154 329Q210 348 266 329L257 366H163Z" fill="${C.dark}" opacity=".98"/>`
+    : `<path d="M154 327H266L259 366H225V338H195V366H161Z" fill="${C.dark}" opacity=".98"/>`}
+  <!-- legs -->
+  <rect x="177" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/><rect x="220" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/>
+  <!-- shoes -->
+  <ellipse cx="174" cy="387" rx="31" ry="18" fill="url(#shoe3)"/><ellipse cx="246" cy="387" rx="31" ry="18" fill="url(#shoe3)"/>
+  <ellipse cx="166" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/><ellipse cx="238" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/>
+  <!-- explorer cap -->
+  <ellipse cx="210" cy="89" rx="66" ry="14" fill="#3aa9e5"/>
+  <path d="M169 48H251L264 88H156Z" fill="#66c5ef"/><ellipse cx="198" cy="57" rx="25" ry="7" fill="#fff" opacity=".32"/>
+  <!-- cinematic rim -->
+  <path d="M145 130Q120 190 145 248" fill="none" stroke="#fff" stroke-width="4" opacity=".26"/>
+ `,defs);
+}
+
+function petArtURI(kind){
+ const cfg={
+  puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],
+  fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]
+ }[kind]||["#e7a35a","#b96f3f","dog"];
+ const [c,d,type]=cfg;
+ let ears="", extra="";
+ if(type==="dog"){ ears=`<ellipse cx="163" cy="143" rx="26" ry="44" fill="${d}"/><ellipse cx="257" cy="143" rx="26" ry="44" fill="${d}"/>`; }
+ if(type==="cat"){ ears=`<path d="M146 173l18-62 47 48zM274 173l-18-62-47 48z" fill="${d}"/>`; }
+ if(type==="bunny"){ ears=`<ellipse cx="171" cy="119" rx="18" ry="56" fill="${c}"/><ellipse cx="249" cy="119" rx="18" ry="56" fill="${c}"/>`; }
+ if(type==="fox"){ ears=`<path d="M148 169l19-68 43 53zM272 169l-19-68-43 53z" fill="${d}"/>`; extra=`<path d="M117 287q39 49 92 39" stroke="#fff5d9" stroke-width="12" stroke-linecap="round" opacity=".55"/>`; }
+ if(type==="owl"){ ears=`<path d="M151 168l26-50 28 39zM269 168l-26-50-28 39z" fill="${d}"/>`; extra=`<ellipse cx="210" cy="240" rx="58" ry="42" fill="#fff" opacity=".28"/>`; }
+ if(type==="dragon"){ ears=`<path d="M150 167l16-50 24 39 20-53 22 53 27-39 14 50z" fill="${d}"/>`; extra=`<path d="M130 257q-52 4-49 57 35-24 70 0M290 257q52 4 49 57-35-24-70 0" fill="#8fe3af"/>`; }
+ const body = `<g>
+   ${ears}${extra}
+   <ellipse cx="210" cy="226" rx="92" ry="95" fill="${c}"/>
+   <ellipse cx="183" cy="175" rx="47" ry="21" fill="#fff" opacity=".18" transform="rotate(-18 183 175)"/>
+   ${cuteEye(180,214,.72,"happy")}${cuteEye(240,214,.72,"happy")}
+   <ellipse cx="210" cy="244" rx="11" ry="8" fill="${d}"/>
+   ${blushPair(232,"#f5aac0")}
+   ${smile(210,258,34,15,"#935061")}
+   <ellipse cx="171" cy="309" rx="22" ry="16" fill="${d}"/><ellipse cx="249" cy="309" rx="22" ry="16" fill="${d}"/>
+ </g>`;
+ return svgData(artFrame(body,c));
+}
+const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
+
+
+function avatarSVG(p=S.profile){
+ const src=avatarArtURI(p);
+ return `<div class="cinematic-slot avatar-generated original-art" data-base="${p.preset||"boyA"}">
+   <img src="${src}" alt="${p.name||"นักผจญภัย"}">
+ </div>`;
+}
+const pets={
+ puppy:{name:"ปุยปุย",color:["#f1b56c","#c97c43"],ability:"ทำครบ 3 ภารกิจในวันเดียว ช่วยหา ⭐ +3",unlock:()=>true},
+ kitty:{name:"มะลิ",color:["#c9a7e8","#8b68c1"],ability:"คู่หู Perfect Day",unlock:()=>S.logs.length>=10},
+ bunny:{name:"โมจิ",color:["#f4abc9","#cf78a4"],ability:"คู่หูตอนเช้า",unlock:()=>S.totals.morning>=5},
+ fox:{name:"ฟ็อกซี่",color:["#f2a058","#d16d39"],ability:"คู่หู Streak",unlock:()=>S.streak>=7},
+ owl:{name:"ฮูกฮูก",color:["#a78bd9","#6c54aa"],ability:"คู่หูนักอ่าน",unlock:()=>S.totals.reading>=300},
+ dragon:{name:"ดราโก้",color:["#78d19b","#399f6b"],ability:"คู่หูนักคิด",unlock:()=>S.totals.diligent>=500}
+};
+
+function petStage(){return S.pet.xp>=240?3:S.pet.xp>=120?2:S.pet.xp>=50?1:0}
+function petSVG(k,st=petStage()){
+ const level=Math.min(4,Math.max(1,st+1));
+ return `<div class="cinematic-slot cinematic-pet original-art" data-kind="${k}" data-level="${level}" aria-label="${pets[k].name}">
+   <span class="art-badge">❤ ${Math.max(1,level)}</span>
+   <img src="${petArtURI(k)}" alt="${pets[k].name}">
+ </div>`;
+}
+function snapshot(label){S.undo.push({label,state:clone(S)});if(S.undo.length>12)S.undo.shift()}
+function antiSpam(k,stars){let m=S.monsters[k],now=Date.now(),cool=S.settings.cooldown*60000;if(cool&&now-m.lastSubmit<cool)return `กรุณารอ ${Math.ceil((cool-(now-m.lastSubmit))/60000)} นาที`;let used=m.dailyStars[dayKey()]||0;if(used+stars>S.settings.dailyCap)return "ด่านนี้ถึงเพดานดาววันนี้แล้ว";return ""}
+function queue(k,p){let err=antiSpam(k,p.stars);if(err)return toast(err);if(S.settings.approval==="parent"){S.pending.push({id:Date.now(),k,p});save();render();return toast("ส่งให้ผู้ปกครองอนุมัติแล้ว")}apply(k,p)}
+function apply(k,p){snapshot(p.label);registerDay();ensureDaily();let m=S.monsters[k],d=dayKey();m.lastSubmit=Date.now();m.dailyStars[d]=(m.dailyStars[d]||0)+p.stars;m.progress+=p.amount;m.hp=Math.max(0,m.hp-p.power);m.history.unshift(p.label);S.stars+=p.stars;S.totals[k]+=p.amount;S.logs.push({date:d,k,label:p.label,amount:p.amount,stars:p.stars});S.pet.xp+=5;S.pet.friendship=Math.min(100,S.pet.friendship+1);if(["diligent","reading","homework"].includes(k))S.daily.done[k]=true;if(m.progress>=maxGoal(k)||m.hp<=0){m.wins++;m.level++;m.progress=0;m.hp=maxHp(k);S.stars+=25;celebrate(m.level<=5?`🌈 ${defs[k].name} ไป Lv.${m.level}`:"👑 HERO Mastery +1")}checkPetBonus();save();render()}
+function checkPetBonus(){let d=dayKey();if(S.pet.bonusDays.includes(d))return;let n=S.logs.filter(x=>x.date===d).length;if(n>=3){S.pet.bonusDays.push(d);S.stars+=3;toast("🐾 Pet หา ⭐ +3 ให้วันนี้")}}
+function questHTML(k){
+ if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" onclick="submitDiligent()">บันทึก</button>`;
+ if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="20"><button class="bigBtn yellow" onclick="submitReading()">บันทึก</button>`;
+ if(k==="homework")return `<div class="questTitle">📚 เคลียร์การบ้านกี่งาน?</div><select id="qHomework" class="wideInput">${Array.from({length:10},(_,i)=>`<option>${i+1}</option>`).join("")}</select><button class="bigBtn blue" onclick="submitHomework()">บันทึก</button>`;
+ if(k==="messy")return `<div class="questTitle">🧹 วันนี้จัดอะไรเรียบร้อยแล้วบ้าง?</div><div class="checkList">${S.messyTasks.map((x,i)=>`<div class="checkRow"><input type="checkbox" data-messy="${i}"><span style="flex:1">${x}</span>${i>=3?`<button class="deleteBtn" onclick="deleteMessy(${i})">🗑️ ลบ</button>`:""}</div>`).join("")}</div><div class="inlineAdd"><input id="newMessy" class="wideInput" placeholder="เพิ่มงานเอง"><button class="smallBtn" onclick="addMessy()">+ เพิ่ม</button></div><button class="bigBtn purple" onclick="submitMessy()">บันทึก</button>`;
+ if(k==="morning")return `<div class="questTitle">🌅 พร้อมตอนเช้า</div><div class="inputRow"><label>เป้า<input value="${S.settings.morning}" disabled></label><label>พร้อมจริง<input id="qMorning" type="time"></label></div><button class="bigBtn orange" onclick="submitMorning()">เช็ก</button>`;
+ if(k==="noDawdle")return `<div class="questTitle">⏱️ ด่านไม่ลีลา</div><div class="triple"><div class="mini"><b>🚻 ห้องน้ำ</b><div class="note">เกิน ${S.settings.toilet} นาที กี่ครั้ง?</div><input id="qToilet" type="number" min="0" value="0"></div><div class="mini"><b>🚿 อาบน้ำเช้า</b><div class="note">เป้า ≤ ${S.settings.bathMorning} นาที</div><input id="qBathM" type="number" min="0"></div><div class="mini"><b>🌙 อาบน้ำเย็น</b><div class="note">เป้า ≤ ${S.settings.bathEvening} นาที</div><input id="qBathE" type="number" min="0"></div></div><button class="bigBtn pink" onclick="submitDawdle()">บันทึก</button>`;
+ return `<div class="questTitle">📵 ด่านไม่ติดจอ</div><label>วันนี้ใช้จอ (ชม.)<input id="qScreen" class="wideInput" type="number" min="0" step=".25"></label><div class="checkList"><label class="checkRow"><input id="qLunch" type="checkbox">🍚 กลางวันไม่ดูจอ</label><label class="checkRow"><input id="qDinner" type="checkbox">🍽️ เย็นไม่ดูจอ</label></div><button class="bigBtn blue" onclick="submitScreen()">บันทึก</button>`
+}
+function submitDiligent(){let n=+$("qCount").value;if(n<1)return toast("ใส่จำนวนข้อ");queue("diligent",{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`})}
+function submitReading(){let n=+$("qMinutes").value;if(n<1)return toast("ใส่นาที");queue("reading",{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`})}
+function submitHomework(){let n=+$("qHomework").value;queue("homework",{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`})}
+function addMessy(){let v=$("newMessy").value.trim();if(!v)return toast("พิมพ์ชื่องาน");if(S.messyTasks.includes(v))return toast("มีงานนี้แล้ว");S.messyTasks.push(v);save();render()}
+function deleteMessy(i){if(i<3)return;S.messyTasks.splice(i,1);save();render()}
+function submitMessy(){let cs=[...document.querySelectorAll("[data-messy]:checked")],names=cs.map(x=>S.messyTasks[+x.dataset.messy]);if(!names.length)return toast("ติ๊กอย่างน้อย 1 งาน");let n=names.length;queue("messy",{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(" • ")}`})}
+function submitMorning(){let a=$("qMorning").value;if(!a)return toast("ใส่เวลา");if(a>S.settings.morning)return toast("วันนี้ยังไม่ทันเป้า");queue("morning",{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`})}
+function submitDawdle(){let over=Math.max(0,+$("qToilet").value||0),bm=+$("qBathM").value||0,be=+$("qBathE").value||0,pass=0,notes=[];if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}if(!pass)return toast("ยังไม่มีหัวข้อที่ผ่านเป้า");queue("noDawdle",{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(" • ")}`})}
+function submitScreen(){let n=+$("qScreen").value;if(!Number.isFinite(n)||n<0)return toast("ใส่เวลาจอ");let lunch=$("qLunch").checked,dinner=$("qDinner").checked,pass=0,notes=[];if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);if(lunch){pass++;notes.push("กลางวันไม่ดูจอ ✓")}if(dinner){pass++;notes.push("เย็นไม่ดูจอ ✓")}if(!pass)return toast("วันนี้ยังไม่ผ่านเป้า");queue("screen",{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(" • ")}`})}
+function summaryRange(days,offset=0){let end=new Date();end.setHours(23,59,59,999);end.setDate(end.getDate()-offset);let start=new Date(end);start.setDate(start.getDate()-days+1);start.setHours(0,0,0,0);let logs=S.logs.filter(x=>{let d=new Date(x.date+"T12:00:00");return d>=start&&d<=end}),sum=k=>logs.filter(x=>x.k===k).reduce((a,x)=>a+x.amount,0);return {diligent:sum("diligent"),reading:sum("reading"),homework:sum("homework"),messy:sum("messy"),morning:sum("morning"),screen:sum("screen"),days:new Set(logs.map(x=>x.date)).size,count:logs.length}}
+function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$("avatarName").value=p.name;$("skinSel").value=p.skin;$("hairSel").value=p.hair;$("hairColorSel").value=p.hairColor;$("avatarChoices").innerHTML=Object.keys(presets).map(id=>{let temp=clone(p);temp.preset=id;temp.hair=presets[id][1];temp.gear={hat:false,cape:false,bag:false,star:false};return `<button class="avatarChoice ${p.preset===id?"on":""}" onclick="pickAvatar('${id}')">${avatarSVG(temp)}<small>${id.toUpperCase()}</small></button>`}).join("");let unlock={hat:true,cape:S.streak>=7,bag:Math.max(...order.map(k=>S.monsters[k].level))>=3,star:order.some(k=>S.monsters[k].level>=5)};$("gearRow").innerHTML=[["hat","🧢 หมวก","เริ่มต้น"],["cape","🦸 เสื้อคลุม","Streak 7 วัน"],["bag","🎒 กระเป๋า","Monster Lv.3"],["star","⭐ Habit Star","HERO FORM"]].map(([k,n,h])=>`<button class="gearChip ${p.gear[k]?"on":""} ${unlock[k]?"":"locked"}" onclick="toggleGear('${k}',${unlock[k]})">${unlock[k]?n:"🔒 "+n}<small style="display:block">${h}</small></button>`).join("")}
+function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();render()}
+function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();render()}
+function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();render();toast("บันทึก Avatar แล้ว")}
+function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").innerHTML=order.map(x=>`<div class="zone ${x===k?"active":""}" onclick="S.active='${x}';save();render()"><div class="zoneArt">${monsterSVG(x)}</div><b>${defs[x].title}</b><br><small>Lv.${S.monsters[x].level}${S.monsters[x].level>=5?" • HERO":""}</small></div>`).join("");$("heroArt").innerHTML=avatarSVG();$("heroName").textContent=S.profile.name;$("bossArt").innerHTML=monsterSVG(k,st);$("bossName").textContent=defs[k].name;$("monsterTitle").textContent=defs[k].title;$("monsterLevel").textContent=`Lv.${m.level}${m.level>=5?" • HERO FORM":""}`;$("monsterTalk").textContent=defs[k].talk[st];$("hpText").textContent=`${m.hp}/${maxHp(k)}`;$("hpBar").style.width=Math.max(0,m.hp/maxHp(k)*100)+"%";$("progressText").textContent=m.progress;$("progressUnit").textContent=defs[k].unit+"สะสม";$("monsterWins").textContent=m.wins;$("pendingCount").textContent=S.pending.filter(x=>x.k===k).length;$("petMiniText").textContent=S.pet.xp;$("nextLevelHint").textContent=m.level>=5?"👑 HERO FORM — สะสม Mastery ต่อได้":`เหลือ ${Math.max(0,maxGoal(k)-m.progress)} ${defs[k].unit} ถึง Lv.${m.level+1}`;$("questBox").innerHTML=questHTML(k);renderPetFollower()}
+function renderSummaries(){let d=summaryRange(1),w=summaryRange(7);$("dailySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">✅<b>${d.count} รายการ</b></div></div>`;$("weeklySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${w.reading} นาที</b></div><div class="summaryBox">📚<b>${w.homework} งาน</b></div><div class="summaryBox">🔥<b>${w.days} active days</b></div></div>`}
+function renderDaily(){ensureDaily();let q=[["diligent","✏️","แบบฝึกหัด"],["reading","📖","อ่าน"],["homework","📚","การบ้าน"]];$("dailyQuestGrid").innerHTML=q.map(([k,i,n])=>`<div class="box ${S.daily.done[k]?"done":""}"><div class="ico">${i}</div><b>${n}</b><br>${S.daily.done[k]?"✅ สำเร็จ":"ยังไม่สำเร็จ"}</div>`).join("");let all=q.every(([k])=>S.daily.done[k]);$("dailyChestBtn").disabled=!all||S.daily.chest;$("dailyChestIcon").textContent=S.daily.chest?"✅":"🎁";$("perfectDay").innerHTML=all?"🌈 PERFECT DAY!":"ทำครบ 3 อย่างเพื่อเปิดกล่อง"}
+function claimChest(){ensureDaily();if(S.daily.chest)return;let all=["diligent","reading","homework"].every(k=>S.daily.done[k]);if(!all)return toast("ทำ Daily Quest ให้ครบ");S.daily.chest=true;let rewards=[["stars","⭐ +10 ดาว"],["pet","🐾 Pet Toy Token"],["collection","🎀 Collection Token"],["badge","🏅 Mystery Badge"]],idx=[...dayKey()].reduce((a,c)=>a+c.charCodeAt(0),0)%rewards.length,r=rewards[idx];if(r[0]==="stars")S.stars+=10;S.chestHistory.unshift({date:dayKey(),reward:r[1]});save();celebrate(`🎁 ${r[1]}`);render()}
+function renderJourney(){let pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5,nodes=[["🏡","Sunny Village",0],["🌲","Reading Forest",100],["🧹","Tidy Town",220],["⛰️","Homework Mountain",400],["🏰","Star Castle",650]];$("journeyGrid").innerHTML=nodes.map(([i,n,v])=>`<div class="journeyNode ${pts>=v?"open":""}"><div class="big">${pts>=v?i:"🔒"}</div><b>${n}</b><br><small>${pts>=v?"เปิดแล้ว":`ต้องการ ${v} pts`}</small></div>`).join("")}
+function updatePetUnlocks(){Object.keys(pets).forEach(k=>{if(pets[k].unlock()&&!S.pet.owned.includes(k))S.pet.owned.push(k)});if(S.pet.friendship>=25)S.pet.decor.ball=true;if(S.pet.friendship>=50)S.pet.decor.bowl=true;if(S.pet.friendship>=80)S.pet.decor.plant=true}
+function renderPets(){updatePetUnlocks();let id=S.pet.selected,p=pets[id],st=petStage();$("petStage").innerHTML=petSVG(id,st);$("petName").textContent=`${p.name} • ${["Baby","Junior","Buddy","Super Buddy"][st]}`;$("friendText").textContent=`${S.pet.friendship}/100`;$("friendFill").style.width=S.pet.friendship+"%";$("petXpText").textContent=`${S.pet.xp}/${st===0?50:st===1?120:240}`;$("petXpBar").style.width=st===3?"100%":Math.min(100,S.pet.xp/(st===0?50:st===1?120:240)*100)+"%";$("petAbility").innerHTML=`<b>✨ Ability</b><br>${p.ability}`;$("petChoices").innerHTML=Object.keys(pets).map(k=>{let own=S.pet.owned.includes(k);return `<button class="petChoice ${k===id?"on":""} ${own?"":"locked"}" onclick="selectPet('${k}')">${petSVG(k,own?Math.min(st,1):0)}<div>${own?pets[k].name:"🔒 "+pets[k].name}</div><small>${own?pets[k].ability:"ยังไม่ปลดล็อก"}</small></button>`}).join("");$("petHome").innerHTML=[["bed","🛏️ เบาะ"],["ball","🎾 ของเล่น"],["bowl","🥣 ชาม"],["plant","🪴 ต้นไม้"]].map(([k,n])=>`<div class="box ${S.pet.decor[k]?"done":""}">${S.pet.decor[k]?n:"🔒 "+n}</div>`).join("");$("petAlbum").innerHTML=[["📖","อ่าน 300 นาที",S.totals.reading>=300],["✏️","โจทย์ 500 ข้อ",S.totals.diligent>=500],["🔥","Streak 7 วัน",S.streak>=7],["❤️","Friendship 50",S.pet.friendship>=50],["🌟","Super Buddy",st>=3],["🐾","Pet 3 ตัว",S.pet.owned.length>=3]].map(([i,n,o])=>`<div class="box ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
+function selectPet(k){if(!S.pet.owned.includes(k))return toast("ยังไม่ปลดล็อก");S.pet.selected=k;save();render()}
+function renderPetFollower(){let k=S.pet.selected;$("petFollower").innerHTML=petSVG(k);$("petSpeech").textContent=`${pets[k].name} เชียร์อยู่นะ! ✨`}
+function renderRewards(){let icon={activity:"🎡",treat:"🍦",privilege:"🎮",item:"🎁"};$("rewardGrid").innerHTML=S.rewards.map((r,i)=>{let sold=r.limit>0&&r.redeemed>=r.limit;return `<div class="box"><div class="ico">${icon[r.type]||"🎁"}</div><b>${r.name}</b><br>⭐ ${r.cost}<br><small>${r.limit?`${r.redeemed}/${r.limit} ครั้ง`:"ไม่จำกัด"}</small><button class="bigBtn green" ${sold?"disabled":""} onclick="redeem(${i})">แลก</button></div>`}).join("")}
+function redeem(i){let r=S.rewards[i];if(r.limit&&r.redeemed>=r.limit)return;if(S.stars<r.cost)return toast("ดาวไม่พอ");if(!confirm(`แลก ${r.name} ใช้ ${r.cost} ดาว?`))return;S.stars-=r.cost;r.redeemed++;S.rewardHistory.unshift({date:dayKey(),name:r.name,cost:r.cost});save();celebrate(`🎁 แลก ${r.name} สำเร็จ`);render()}
+function trophies(){return [["✏️","100 ข้อ",S.totals.diligent>=100],["🧠","500 ข้อ",S.totals.diligent>=500],["📖","อ่าน 100 นาที",S.totals.reading>=100],["🦉","อ่าน 500 นาที",S.totals.reading>=500],["🔥","Streak 7 วัน",S.streak>=7],["🌟","Streak 30 วัน",S.streak>=30],["📚","การบ้าน 50 งาน",S.totals.homework>=50],["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]]}
+function renderTrophies(){$("trophyGrid").innerHTML=trophies().map(([i,n,o])=>`<div class="trophy ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
+function renderCloset(){let maxLv=Math.max(...order.map(k=>S.monsters[k].level)),hero=order.some(k=>S.monsters[k].level>=5),items=[["hat","🧢","หมวกดาว",true,"เริ่มต้น"],["cape","🦸","เสื้อคลุม",S.streak>=7,"Streak 7 วัน"],["bag","🎒","กระเป๋า",maxLv>=3,"Monster Lv.3"],["star","⭐","Habit Star",hero,"HERO FORM"],["reader","🎓","หมวกนักอ่าน",S.totals.reading>=300,"อ่าน 300 นาที"],["pet","🐾","Pet Charm",S.pet.friendship>=50,"Friendship 50"]];$("closetGrid").innerHTML=items.map(([k,i,n,o,h])=>`<button class="closetItem ${o?"":"locked"} ${S.profile.gear[k]?"on":""}" onclick="${["hat","cape","bag","star"].includes(k)?`toggleGear('${k}',${o})`:""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b><br><small>${o?"ปลดล็อกแล้ว":h}</small></button>`).join("")}
+function renderDashboard(){let w=summaryRange(7),prev=summaryRange(7,7),delta=(a,b)=>a-b>0?`▲ ${a-b}`:a-b<0?`▼ ${Math.abs(a-b)}`:"—";$("dashboardGrid").innerHTML=`<div class="summaryBox">✏️ 7 วัน<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖 7 วัน<b>${w.reading} นาที</b></div><div class="summaryBox">📚 7 วัน<b>${w.homework} งาน</b></div><div class="summaryBox">📵 สำเร็จ<b>${w.screen} หัวข้อ</b></div><div class="summaryBox">🧹 จัดของ<b>${w.messy} งาน</b></div><div class="summaryBox">🌅 เช้าทัน<b>${w.morning} วัน</b></div>`;$("weekCompare").innerHTML=`<b>เทียบสัปดาห์ก่อน</b><br>✏️ ${delta(w.diligent,prev.diligent)} • 📖 ${delta(w.reading,prev.reading)} • 📚 ${delta(w.homework,prev.homework)}`}
+function renderEndDay(){let d=summaryRange(1);$("endDaySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✅ รายการ<b>${d.count}</b></div><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">🔥<b>${S.streak} วัน</b></div><div class="summaryBox">❤️ Pet<b>${S.pet.friendship}</b></div></div>`}
+function closeDay(){let d=dayKey();if(S.closedDays.includes(d))return toast("วันนี้ปิดวันแล้ว");S.closedDays.push(d);save();celebrate("🌙 ปิดวันเรียบร้อย");render()}
+function parentGuard(){if(!S.parentUnlocked){toast("🔒 ปลดล็อก Parent Mode ก่อน");return false}return true}
+function renderParent(){$("approvalSel").value=S.settings.approval;$("screenBudgetSet").value=S.settings.screenBudget;$("morningSet").value=S.settings.morning;$("toiletSet").value=S.settings.toilet;$("bathMorningSet").value=S.settings.bathMorning;$("bathEveningSet").value=S.settings.bathEvening;$("cooldownSet").value=S.settings.cooldown;$("dailyCapSet").value=S.settings.dailyCap;$("pinStatus").textContent=S.parentUnlocked?"🔓 ปลดล็อกแล้ว":"🔒 ล็อกอยู่";$("pendingList").innerHTML=S.pending.length?S.pending.map(x=>`<div class="checkRow"><span style="flex:1"><b>${defs[x.k].title}</b><br>${x.p.label}</span><button class="smallBtn" onclick="approve(${x.id})">✓</button><button class="deleteBtn" onclick="reject(${x.id})">✕</button></div>`).join(""):"ไม่มีรายการรออนุมัติ";$("rewardEditor").innerHTML=S.rewards.map((r,i)=>`<div class="checkRow"><span style="flex:1"><b>${r.name}</b> • ⭐${r.cost}</span><button class="smallBtn" onclick="editReward(${i})">แก้</button><button class="deleteBtn" onclick="deleteReward(${i})">ลบ</button></div>`).join("");$("restHistory").innerHTML=S.restHistory.map(x=>`<div class="historyRow">🍃 ใช้แทนวันที่ ${x.date}</div>`).join("")||"ยังไม่มี";$("rewardHistory").innerHTML=S.rewardHistory.map(x=>`<div class="historyRow">🎁 ${x.name} • ⭐${x.cost} • ${x.date}</div>`).join("")||"ยังไม่มี"}
+function unlockPin(){let v=$("pinInput").value;if(!S.parentPin){S.parentUnlocked=true;render();return toast("ยังไม่ได้ตั้ง PIN — ปลดล็อกชั่วคราว")}if(v===S.parentPin){S.parentUnlocked=true;render();toast("ปลดล็อกแล้ว")}else toast("PIN ไม่ถูกต้อง")}
+function setPin(){let v=$("pinInput").value.trim();if(!/^\d{4,6}$/.test(v))return toast("PIN 4–6 หลัก");if(S.parentPin&&!S.parentUnlocked)return toast("ปลดล็อกก่อนเปลี่ยน PIN");S.parentPin=v;S.parentUnlocked=true;save();render();toast("บันทึก PIN แล้ว")}
+function saveSettings(){if(!parentGuard())return;S.settings={approval:$("approvalSel").value,screenBudget:+$("screenBudgetSet").value,morning:$("morningSet").value,toilet:+$("toiletSet").value,bathMorning:+$("bathMorningSet").value,bathEvening:+$("bathEveningSet").value,cooldown:+$("cooldownSet").value,dailyCap:+$("dailyCapSet").value};save();render();toast("บันทึก Settings แล้ว")}
+function approve(id){if(!parentGuard())return;let i=S.pending.findIndex(x=>x.id===id);if(i<0)return;let x=S.pending.splice(i,1)[0];apply(x.k,x.p)}
+function reject(id){if(!parentGuard())return;S.pending=S.pending.filter(x=>x.id!==id);save();render()}
+function addReward(){if(!parentGuard())return;let name=$("rewardName").value.trim(),cost=+$("rewardCost").value;if(!name||cost<1)return toast("กรอกชื่อและดาว");S.rewards.push({name,cost,type:$("rewardType").value,limit:+$("rewardLimit").value||0,redeemed:0});$("rewardName").value="";save();render()}
+function editReward(i){if(!parentGuard())return;let r=S.rewards[i],n=prompt("ชื่อ Reward",r.name);if(n===null)return;let c=prompt("จำนวนดาว",r.cost);if(c===null)return;r.name=n.trim()||r.name;r.cost=Math.max(1,+c||r.cost);save();render()}
+function deleteReward(i){if(!parentGuard())return;if(confirm(`ลบ ${S.rewards[i].name}?`)){S.rewards.splice(i,1);save();render()}}
+function undoLatest(){if(!parentGuard())return;let x=S.undo.pop();if(!x)return toast("ไม่มีรายการให้ Undo");let pin=S.parentPin,unlocked=S.parentUnlocked;S=migrate(x.state);S.parentPin=pin;S.parentUnlocked=unlocked;save();render();toast(`↩️ ยกเลิก ${x.label}`)}
+function renderBackup(){$("backupInfo").innerHTML=`Save Version ${VERSION}<br>Auto Backup: ${localStorage.getItem(BACKUP)?"มี":"ยังไม่มี"}`}
+function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();renderWorld();renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
+document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
+$("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();render()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();render()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();render()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
+$("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
+$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v26-save.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>{let f=$("importFile").files[0];if(!f)return toast("เลือกไฟล์ก่อน");let r=new FileReader();r.onload=()=>{try{S=migrate(JSON.parse(r.result));save();render();toast("Import สำเร็จ")}catch(e){toast("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)};
+$("restoreAutoBtn").onclick=()=>{try{let x=JSON.parse(localStorage.getItem(BACKUP)||"null");if(!x)return toast("ยังไม่มี Auto Backup");S=migrate(x);save();render();toast("กู้คืนแล้ว")}catch(e){toast("กู้ไม่ได้")}};
+setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);render();
+</script>
+
+<script type="module">
+const THREE_SOURCES=[
+ "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+ "https://unpkg.com/three@0.180.0/build/three.module.js",
+ "https://esm.sh/three@0.180.0"
+];
+async function loadThree(){
+ for(const url of THREE_SOURCES){
+  try{const m=await import(url);if(m&&m.WebGLRenderer)return m}catch(e){console.warn("Three.js source failed",url,e)}
+ }
+ return null;
+}
+function show3DError(message){
+ document.querySelectorAll(".three-slot").forEach(el=>{
+  el.innerHTML=`<div style="height:100%;min-height:64px;display:grid;place-items:center;padding:10px;text-align:center;color:#687789;font-weight:800;background:linear-gradient(#eef8ff,#fff7df);border-radius:18px">🧩 ${message}</div>`;
+ });
+}
+const THREE=await loadThree();
+const threeStatus=document.getElementById("threeStatus");
+if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม่สำเร็จ";
+ console.error("Habit Monster: unable to load Three.js");
+ show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
+}else{
+if(threeStatus)threeStatus.textContent="✅ BIG GAMEPLAY • World + Evolution + Celebration";
+
+const running=new WeakMap(), cache=new Map();
+const fallbackMonster={
+ diligent:{color:"#f39a57",accent:"#db5d39",feature:"weights"},
+ reading:{color:"#9b83de",accent:"#684fad",feature:"book"},
+ homework:{color:"#62c4ec",accent:"#3588c4",feature:"paper"},
+ messy:{color:"#8bd36d",accent:"#4f9f49",feature:"broom"},
+ morning:{color:"#ffd86a",accent:"#eda748",feature:"clock"},
+ noDawdle:{color:"#f2a3c4",accent:"#ce75a0",feature:"timer"},
+ screen:{color:"#7866d1",accent:"#493c98",feature:"headset"}
+};
+const petColors={puppy:"#d99554",kitty:"#9b78c8",bunny:"#f0a6c4",fox:"#eb8d45",owl:"#836bc0",dragon:"#57bd7d"};
+const skinColors={light:0xffd7bd,warm:0xefbd91,tan:0xcb946b,deep:0x9c6249};
+const hairColors={brown:0x654439,black:0x30313a,chestnut:0x754538,gold:0xad7a3e};
+
+async function loadJSON(url,fallback){if(cache.has(url))return cache.get(url);try{let r=await fetch(url);if(!r.ok)throw Error(r.status);let j=await r.json();cache.set(url,j);return j}catch(e){return fallback}}
+function hex(x){return typeof x==="string"?parseInt(x.replace("#",""),16):x}
+function mat(c,rough=.38,metal=.01){return new THREE.MeshPhysicalMaterial({color:hex(c),roughness:rough,metalness:metal,clearcoat:.24,clearcoatRoughness:.22,sheen:.16,sheenRoughness:.6})}
+function sphere(r,c,scale=[1,1,1]){let m=new THREE.Mesh(new THREE.SphereGeometry(r,40,28),mat(c));m.scale.set(...scale);m.castShadow=true;return m}
+function box(x,y,z,c){let m=new THREE.Mesh(new THREE.BoxGeometry(x,y,z,2,2,2),mat(c,.3));m.castShadow=true;return m}
+function cyl(r,h,c){let m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,32),mat(c,.3));m.castShadow=true;return m}
+function cone(r,h,c){let m=new THREE.Mesh(new THREE.ConeGeometry(r,h,32),mat(c,.3));m.castShadow=true;return m}
+function eye(x,y,z=.95,s=.2){let g=new THREE.Group(),w=sphere(s,0xf7fbff,[1,.98,.48]);w.position.set(x,y,z);let p=sphere(s*.52,0x25364a,[1,1,.38]);p.position.set(x,y-.01,z+.09);let hi=sphere(s*.14,0xffffff,[1,1,.3]);hi.position.set(x-s*.18,y+s*.22,z+.15);g.add(w,p,hi);return g}
+function star(){let sh=new THREE.Shape();for(let i=0;i<10;i++){let a=-Math.PI/2+i*Math.PI/5,r=i%2?.11:.24,x=Math.cos(a)*r,y=Math.sin(a)*r;i?sh.lineTo(x,y):sh.moveTo(x,y)}sh.closePath();return new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:.08,bevelEnabled:true,bevelSize:.025,bevelThickness:.02}),mat(0xffd654,.22,.08))}
+function crown(){let g=new THREE.Group(),b=cyl(.44,.14,0xffd654);b.rotation.x=Math.PI/2;b.scale.z=.45;g.add(b);for(let i=-2;i<=2;i++){let c=cone(.12,.38,0xffd654);c.position.set(i*.17,.25,0);g.add(c)}return g}
+
+function roundedLimb(r,h,c){
+ let g=new THREE.Group(),mid=cyl(r,h,c),a=sphere(r,c),b=sphere(r,c);
+ a.position.y=h/2;b.position.y=-h/2;g.add(mid,a,b);return g
+}
+function shoe(c=0x3b4653){
+ let s=sphere(.18,c,[1.45,.62,1.55]);s.position.z=.06;return s
+}
+function brow(x,y,z,tilt=0){
+ let g=new THREE.Group();
+ let b=sphere(.105,0x68443a,[1.05,.22,.20]);
+ b.position.set(x,y,z);b.rotation.z=tilt;g.add(b);
+ return g
+}
+
+function lid(x,y,z,c=0xf7efe7,flip=1){
+ let l=sphere(.18,c,[1.02,.32,.30]);
+ l.position.set(x,y,z);l.rotation.z=.04*flip;return l
+}
+function hairLock(x,y,z,c,sx=.75,sy=1.05,rot=0){
+ let q=sphere(.16,c,[sx,sy,.72]);q.position.set(x,y,z);q.rotation.z=rot;return q
+}
+function softArm(x,y,skin,shirt,flip=1){
+ let g=new THREE.Group();
+ let sleeve=sphere(.14,shirt,[.82,1.18,.78]);sleeve.position.set(x,y,0);g.add(sleeve);
+ let arm=capsulePart(.076,.30,skin);arm.position.set(x+flip*.01,y-.23,.02);arm.rotation.z=-flip*.08;g.add(arm);
+ let hand=sphere(.105,skin,[1,.95,.92]);hand.position.set(x+flip*.02,y-.43,.06);g.add(hand);
+ return g
+}
+function softLeg(x,y,skin,shoeColor,trim){
+ let g=new THREE.Group();
+ let leg=capsulePart(.078,.29,skin);leg.position.set(x,y,0);g.add(leg);
+ let sock=capsulePart(.082,.11,trim);sock.position.set(x,y-.15,.02);g.add(sock);
+ let sk=shoe(shoeColor);sk.scale.set(.80,.72,.88);sk.position.set(x,y-.29,.12);g.add(sk);
+ return g
+}
+
+function nose(x=0,y=0,z=0,c=0xf0b496){
+ let n=sphere(.07,c,[.8,.75,.7]);n.position.set(x,y,z);return n
+}
+function smile(y=.25,z=.72){
+ let m=new THREE.Mesh(new THREE.TorusGeometry(.12,.025,10,32,Math.PI),mat(0x8b4b53,.28));
+ m.rotation.z=Math.PI;m.position.set(0,y,z);return m
+}
+function ear(x,y,z,c){
+ let e=sphere(.12,c,[.72,1,.5]);e.position.set(x,y,z);return e
+}
+function hoodieBody(color){
+ let g=new THREE.Group(),body=sphere(.50,color,[.86,1.12,.62]);body.position.y=-.38;g.add(body);
+ let hood=new THREE.Mesh(new THREE.TorusGeometry(.38,.08,16,44,Math.PI),mat(color,.38));
+ hood.rotation.z=Math.PI;hood.position.set(0,.02,-.05);g.add(hood);
+ let pocket=box(.50,.18,.055,0xe9eef4);pocket.position.set(0,-.55,.48);g.add(pocket);
+ return g
+}
+
+
+function capsulePart(r,h,c){
+ let g=new THREE.Group(),m=cyl(r,h,c),a=sphere(r,c),b=sphere(r,c);
+ a.position.y=h/2;b.position.y=-h/2;g.add(m,a,b);return g
+}
+function flattenedSphere(r,c,sx=1,sy=1,sz=1){
+ return sphere(r,c,[sx,sy,sz])
+}
+function irisEye(x,y,z=.95,s=.18,lookX=0){
+ let g=new THREE.Group();
+ let white=sphere(s,0xfdfdfd,[1,.98,.46]);white.position.set(x,y,z);
+ let iris=sphere(s*.56,0x486d8d,[1,1,.30]);iris.position.set(x+lookX,y-.005,z+.105);
+ let pupil=sphere(s*.31,0x172d45,[1,1,.22]);pupil.position.set(x+lookX,y-.01,z+.14);
+ let hi1=sphere(s*.12,0xffffff,[1,1,.18]);hi1.position.set(x-s*.16+lookX,y+s*.18,z+.17);
+ let hi2=sphere(s*.055,0xffffff,[1,1,.15]);hi2.position.set(x+s*.12+lookX,y-.06,z+.17);
+ g.add(white,iris,pupil,hi1,hi2);return g
+}
+function lash(x,y,z,flip=1){
+ let g=new THREE.Group();
+ for(let i=0;i<2;i++){let l=box(.10,.025,.025,0x4a342f);l.position.set(x+flip*(.07+i*.055),y+i*.02,z);l.rotation.z=flip*(.35+i*.18);g.add(l)}
+ return g
+}
+function cheek(x,y,z,c=0xf2a3ad){
+ let q=sphere(.07,c,[1.75,.48,.22]);q.position.set(x,y,z);return q
+}
+function hairBlob(x,y,z,scale,c){
+ let q=sphere(.18,c,scale);q.position.set(x,y,z);return q
+}
+function roundedBody(color,secondary){
+ let g=new THREE.Group();
+ let torso=sphere(.47,color,[.84,1.12,.63]);torso.position.y=-.42;g.add(torso);
+ let collar=new THREE.Mesh(new THREE.TorusGeometry(.31,.045,12,36,Math.PI),mat(secondary||0xffffff,.5));
+ collar.rotation.z=Math.PI;collar.position.set(0,-.05,.37);g.add(collar);
+ return g
+}
+function tinyStarPin(color=0xffd654){
+ let s=star();s.scale.set(.25,.25,.25);s.material=mat(color,.28);return s
+}
+
+function feature(g,kind,accent,level){
+ if(kind==="weights"){for(const x of[-.78,.78]){let q=box(.30,.50,.28,0x59616e);q.position.set(x,-.12,.60);g.add(q)}}
+ if(kind==="book"){let q=box(1.1,.60,.12,0xfff1c4);q.position.set(0,-.68,.80);q.rotation.x=-.12;g.add(q)}
+ if(kind==="paper"){let q=box(1.0,.52,.10,0xffffff);q.position.set(0,-.70,.82);g.add(q)}
+ if(kind==="broom"){let q=cyl(.045,1.2,0x9f6a3a);q.position.set(.72,-.32,.45);q.rotation.z=-.35;g.add(q)}
+ if(kind==="clock"||kind==="timer"){let q=cyl(.29,.10,0xffffff);q.rotation.x=Math.PI/2;q.position.set(.76,-.36,.55);g.add(q)}
+ if(kind==="headset"){let q=new THREE.Mesh(new THREE.TorusGeometry(.78,.07,16,50,Math.PI),mat(0x4ed1e7,.25));q.rotation.z=Math.PI;q.position.y=.50;g.add(q)}
+ if(level>=3){let s=star();s.scale.set(.55,.55,.55);s.position.set(.72,.55,.55);g.add(s)}
+}
+
+
+
+
+
+function monsterFrom(d){
+ let g=new THREE.Group(),lv=d.level||1,kind=d.kind,
+ c=d.body?.color||fallbackMonster[kind]?.color||"#f39a57",
+ accent=d.accent||fallbackMonster[kind]?.accent||"#555";
+
+ function face(z=.66,y=.15,s=.125,expression="happy"){
+   g.add(irisEye(-.19,y,z,s,-.003),irisEye(.19,y,z,s,.003));
+   if(expression==="sleepy"){
+     g.add(lid(-.19,y+.07,z+.04,c,-1),lid(.19,y+.07,z+.04,c,1));
+   }
+   g.add(brow(-.19,y+.20,z+.02,expression==="sleepy"?-.08:.02),
+         brow(.19,y+.20,z+.02,expression==="sleepy"?.08:-.02));
+   let mm=smile(y-.22,z+.03);mm.scale.set(.64,.64,.64);g.add(mm);
+   g.add(cheek(-.31,y-.10,z-.02),cheek(.31,y-.10,z-.02))
+ }
+ function feet(col,y=-.56){
+   for(const x of[-.20,.20]){let f=shoe(col);f.scale.set(.55,.50,.62);f.position.set(x,y,.04);g.add(f)}
+ }
+
+ if(kind==="diligent"){
+   // energetic ember character
+   let body=sphere(.52,c,[1.0,1.12,.90]);body.position.y=-.04;g.add(body);
+   for(const [x,h,r] of [[-.30,.61,-.18],[0,.76,0],[.30,.61,.18]]){
+     let flame=cone(.14,.40,accent);flame.position.set(x,h,-.03);flame.rotation.z=r;g.add(flame)
+   }
+   face(.58,.11,.12);feet(0xe97843,-.57);
+   for(const x of[-.49,.49]){
+     let a=capsulePart(.06,.22,c);a.position.set(x,-.08,0);g.add(a);
+     let bar=cyl(.025,.28,0x48515a);bar.rotation.z=Math.PI/2;bar.position.set(x,-.08,.50);g.add(bar);
+     for(const dx of[-.10,.10]){let p=cyl(.075,.055,0x313943);p.rotation.z=Math.PI/2;p.position.set(x+dx,-.08,.50);g.add(p)}
+   }
+ }else if(kind==="reading"){
+   // sleepy owl-book
+   let body=sphere(.53,c,[1.0,1.08,.92]);body.position.y=-.02;g.add(body);
+   for(const x of[-.33,.33]){let e=cone(.15,.32,accent);e.position.set(x,.58,-.02);e.rotation.z=x<0?.20:-.20;g.add(e)}
+   face(.58,.12,.115,"sleepy");feet(accent,-.58);
+   let l=box(.35,.28,.04,0xfff2cc);l.position.set(-.17,-.43,.54);l.rotation.z=.11;g.add(l);
+   let r=box(.35,.28,.04,0xfff2cc);r.position.set(.17,-.43,.54);r.rotation.z=-.11;g.add(r);
+ }else if(kind==="homework"){
+   // paper sprite
+   let body=sphere(.49,c,[.94,1.16,.91]);body.position.y=-.05;g.add(body);
+   let paperTop=cone(.48,.28,0xdaf2fb);paperTop.position.set(0,.53,-.04);paperTop.rotation.z=Math.PI;g.add(paperTop);
+   face(.54,.09,.115);feet(0x3a8bc3,-.59);
+   let sheet=box(.45,.32,.04,0xffffff);sheet.position.set(-.03,-.34,.54);g.add(sheet);
+   let pencil=capsulePart(.027,.57,0xf0b64b);pencil.position.set(.40,-.05,.33);pencil.rotation.z=-.40;g.add(pencil);
+ }else if(kind==="messy"){
+   // moss puff
+   let body=sphere(.53,c,[1.05,1.05,.92]);body.position.y=-.03;g.add(body);
+   for(const [x,y,r] of [[-.30,.51,-.45],[0,.63,0],[.30,.51,.45]]){
+     let leaf=cone(.12,.25,accent);leaf.position.set(x,y,-.02);leaf.rotation.z=r;g.add(leaf)
+   }
+   face(.58,.11,.118);feet(accent,-.58);
+   let broom=capsulePart(.025,.60,0x9b6c3d);broom.position.set(.41,-.08,.30);broom.rotation.z=-.34;g.add(broom);
+   let br=box(.18,.13,.055,0xc79958);br.position.set(.52,-.34,.34);br.rotation.z=-.34;g.add(br);
+ }else if(kind==="morning"){
+   // cheerful sun mascot
+   let body=sphere(.47,c,[1,1,.92]);body.position.y=.00;g.add(body);
+   for(let i=0;i<12;i++){
+     let a=i*Math.PI*2/12,ray=cone(.075,.25,accent);
+     ray.position.set(Math.cos(a)*.58,Math.sin(a)*.58,-.04);
+     ray.rotation.z=a-Math.PI/2;g.add(ray)
+   }
+   face(.54,.11,.112);feet(0xf0b84b,-.50);
+ }else if(kind==="noDawdle"){
+   // clock bunny
+   let body=sphere(.49,c,[.98,1.08,.92]);body.position.y=-.03;g.add(body);
+   for(const x of[-.21,.21]){let e=sphere(.09,c,[.60,2.25,.58]);e.position.set(x,.59,-.02);g.add(e)}
+   face(.54,.10,.112);feet(0xce76a1,-.56);
+   let clock=cyl(.15,.05,0xffffff);clock.rotation.x=Math.PI/2;clock.position.set(.36,-.13,.49);g.add(clock);
+   let hand=box(.014,.08,.014,0x566573);hand.position.set(.36,-.11,.55);hand.rotation.z=-.50;g.add(hand);
+ }else{
+   // screen robot
+   let body=sphere(.49,c,[1.02,1.02,.92]);body.position.y=-.03;g.add(body);
+   let plate=box(.42,.27,.05,0x7569ca);plate.position.set(0,.10,.50);g.add(plate);
+   g.add(irisEye(-.13,.11,.55,.09),irisEye(.13,.11,.55,.09));
+   let band=new THREE.Mesh(new THREE.TorusGeometry(.40,.035,12,36,Math.PI),mat(0x63d6e8,.30));
+   band.rotation.z=Math.PI;band.position.y=.36;g.add(band);
+   for(const x of[-.39,.39]){let pad=box(.085,.22,.12,0x4ec7dc);pad.position.set(x,.04,.43);g.add(pad)}
+   feet(accent,-.55);
+ }
+
+ if(lv>=2){let pin=tinyStarPin();pin.position.set(-.34,.32,.47);g.add(pin)}
+ if(lv>=3){
+   let scarf=new THREE.Mesh(new THREE.TorusGeometry(.35,.03,12,30,Math.PI),mat(0xffd978,.45));
+   scarf.rotation.z=Math.PI;scarf.position.set(0,-.11,.09);g.add(scarf)
+ }
+ if(lv>=4){
+   let aura=new THREE.Mesh(new THREE.TorusGeometry(.66,.014,12,42),
+     new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.82}));
+   aura.rotation.x=Math.PI/2;aura.position.y=-.02;g.add(aura)
+ }
+ if(lv>=5){let cwn=crown();cwn.position.set(0,.72,0);cwn.scale.set(.36,.36,.36);g.add(cwn)}
+
+ g.userData.characterType="monster";g.userData.kind=kind;
+ g.scale.set(1.02,1.02,1.02);
+ return g
+}
+
+
+
+
+
+
+function avatarFrom(el){
+ let g=new THREE.Group(),
+ skin=skinColors[el.dataset.skin]||skinColors.light,
+ hair=hairColors[el.dataset.haircolor]||hairColors.brown,
+ variant=(el.dataset.base||"boyA").toLowerCase(),
+ girl=variant.startsWith("girl")||el.dataset.gender==="girl",
+ hs=el.dataset.hair||(girl?"long":"short");
+
+ const palette={
+  boya:[0x63b8ea,0x347daf,0xf7fbff],
+  boyb:[0x68c8a3,0x3c8068,0xf6fff9],
+  boyc:[0xf2a35e,0xaa6b43,0xfff8ec],
+  girla:[0xef93bd,0xb6638b,0xfff4f8],
+  girlb:[0xb29bec,0x705bb6,0xf8f4ff],
+  girlc:[0xef898d,0xaa5969,0xfff3f2]
+ };
+ const pc=palette[variant]||palette.boya, shirt=pc[0], lower=pc[1], trim=pc[2];
+
+ // cohesive chibi body
+ let chest=sphere(.43,shirt,[.98,1.18,.76]);chest.position.set(0,-.35,0);g.add(chest);
+ let tummy=sphere(.33,shirt,[1.08,.94,.78]);tummy.position.set(0,-.60,.08);g.add(tummy);
+ let waist=sphere(.29,lower,[1.10,.48,.72]);waist.position.set(0,-.84,.02);g.add(waist);
+
+ let collar=new THREE.Mesh(new THREE.TorusGeometry(.245,.034,12,40,Math.PI),mat(trim,.48));
+ collar.rotation.z=Math.PI;collar.position.set(0,-.08,.35);g.add(collar);
+
+ // head slightly pear-shaped instead of perfect ball
+ let neck=cyl(.105,.10,skin);neck.position.y=-.01;g.add(neck);
+ let head=sphere(.56,skin,[1.00,.99,.95]);head.position.set(0,.66,0);g.add(head);
+ let cheekBase=sphere(.46,skin,[1.07,.86,.91]);cheekBase.position.set(0,.50,.02);g.add(cheekBase);
+
+ // ears
+ for(const x of[-.63,.63]){
+   let e=sphere(.098,skin,[.74,1.0,.53]);e.position.set(x,.68,-.01);g.add(e);
+   let inner=sphere(.05,0xefb8a4,[.60,.82,.25]);inner.position.set(x,.68,.07);g.add(inner);
+ }
+
+ // eyes: smaller, inset, expressive
+ const ey=.72, ez=.575;
+ g.add(irisEye(-.19,ey,ez,.108,-.004), irisEye(.19,ey,ez,.108,.004));
+ // V27.1: eyelids removed to keep the avatar eyes open and clean on mobile
+
+
+ // eyebrows with personality differences
+ let browTilt = variant==="boyc"?-.09:(variant==="girlb"?.06:.025);
+ g.add(brow(-.205,.995,.67,browTilt*.42),brow(.205,.995,.67,-browTilt*.42));
+
+ // small nose + softer smile
+ let n=nose(0,.585,.69,skin);n.scale.set(.72,.64,.58);g.add(n);
+ let mouth=smile(.385,.69);mouth.scale.set(.80,.80,.80);g.add(mouth);
+ g.add(cheek(-.36,.50,.62),cheek(.36,.50,.62));
+
+ if(girl){
+   g.add(lash(-.215,.855,.705,-1),lash(.215,.855,.705,1))
+ }
+
+ // limbs
+ g.add(softArm(-.49,-.28,skin,shirt,-1),softArm(.49,-.28,skin,shirt,1));
+ g.add(softLeg(-.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim),
+       softLeg(.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim));
+
+ // hair cap integrated with head
+ let cap=sphere(.605,hair,[1.01,.58,.94]);cap.position.set(0,1.015,-.025);g.add(cap);
+
+ if(variant==="boya"){
+   [-.38,-.20,-.02,.16,.34].forEach((x,i)=>g.add(hairLock(x,1.00+(i%2)*.015,.54,hair,.82,1.02,(i-2)*.06)));
+ }else if(variant==="boyb"){
+   for(let i=0;i<9;i++){
+     let a=Math.PI*i/8,q=sphere(.13,hair,[.92,.92,.78]);
+     q.position.set(Math.cos(a)*.49,.98+Math.sin(a)*.24,.31);g.add(q)
+   }
+   [-.30,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.95,(i-1.5)*.08)));
+ }else if(variant==="boyc"){
+   for(let i=-3;i<=3;i++){
+     let sp=cone(.095,.27,hair);sp.position.set(i*.135,1.34-Math.abs(i)*.018,.00);sp.rotation.z=-i*.14;g.add(sp)
+   }
+   [-.31,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.01,.53,hair,.80,.92,(i-1.5)*.08)));
+ }else if(variant==="girla"){
+   for(const x of[-.48,.48]){let side=sphere(.17,hair,[.78,1.55,.72]);side.position.set(x,.69,-.06);g.add(side)}
+   [-.34,-.17,0,.17,.34].forEach((x,i)=>g.add(hairLock(x,1.01,.54,hair,.80,1.0,(i-2)*.05)));
+ }else if(variant==="girlb"){
+   let pony=sphere(.20,hair,[.82,1.52,.74]);pony.position.set(.61,.77,-.16);pony.rotation.z=-.32;g.add(pony);
+   [-.31,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.96,(i-1.5)*.08)));
+ }else{
+   let bob=sphere(.57,hair,[1.03,.80,.82]);bob.position.set(0,.80,-.18);g.add(bob);
+   for(const x of[-.45,.45]){let side=sphere(.16,hair,[.75,1.28,.70]);side.position.set(x,.72,-.04);g.add(side)}
+   [-.30,-.10,.11,.31].forEach((x,i)=>g.add(hairLock(x,1.02,.54,hair,.82,.96,(i-1.5)*.07)));
+ }
+
+ if(hs==="ponytail"&&!variant.includes("girlb")){
+  let pony=sphere(.19,hair,[.80,1.45,.72]);pony.position.set(.62,.76,-.17);pony.rotation.z=-.30;g.add(pony)
+ }
+ if(hs==="spiky"&&!variant.includes("boyc")){
+  for(let i=-2;i<=2;i++){let sp=cone(.09,.24,hair);sp.position.set(i*.145,1.33,.0);sp.rotation.z=-i*.12;g.add(sp)}
+ }
+
+ // accessories integrated
+ if(el.dataset.hat==="1"){
+   let dome=sphere(.39,0x4495e3,[1,.42,.93]);dome.position.set(0,1.40,.01);g.add(dome);
+   let brim=box(.35,.045,.18,0x2c73bb);brim.position.set(.13,1.34,.41);g.add(brim)
+ }
+ if(el.dataset.bag==="1"){
+   let bag=sphere(.27,0x6c9a70,[.78,.96,.44]);bag.position.set(.31,-.45,-.42);g.add(bag)
+ }
+ if(el.dataset.cape==="1"){
+   let cape=box(.61,.75,.025,girl?0xca719d:0x436bae);cape.position.set(0,-.40,-.47);cape.rotation.x=.08;g.add(cape)
+ }
+ if(el.dataset.star==="1"){
+   let pin=tinyStarPin();pin.position.set(.27,-.33,.44);g.add(pin)
+ }
+
+ // subtle pose differences
+ if(["boyb","girlb"].includes(variant))g.rotation.y=-.045;
+ if(["boyc","girlc"].includes(variant))g.rotation.y=.045;
+
+ g.userData.characterType="avatar";
+ g.userData.variant=variant;
+ g.scale.set(.82,.82,.82);
+ return g
+}
+
+
+
+
+
+function petFrom(kind,level,color){
+ let g=new THREE.Group();
+ let body=sphere(.46,color,[1.03,1.00,.93]);body.position.y=-.01;g.add(body);
+ let muzzle=sphere(.115,0xffd8c1,[1.16,.62,.42]);muzzle.position.set(0,-.10,.47);g.add(muzzle);
+ g.add(irisEye(-.145,.13,.49,.095,-.002),irisEye(.145,.13,.49,.095,.002));
+ let mm=smile(-.095,.51);mm.scale.set(.50,.50,.50);g.add(mm);
+ g.add(cheek(-.25,-.01,.46),cheek(.25,-.01,.46));
+
+ if(kind==="bunny"){
+   for(const x of[-.19,.19]){let e=sphere(.082,color,[.58,2.35,.58]);e.position.set(x,.54,-.02);g.add(e)}
+ }else if(kind==="kitty"){
+   for(const x of[-.24,.24]){let e=cone(.115,.24,color);e.position.set(x,.48,-.01);e.rotation.z=x<0?.15:-.15;g.add(e)}
+ }else if(kind==="fox"){
+   for(const x of[-.25,.25]){let e=cone(.12,.25,color);e.position.set(x,.50,-.01);e.rotation.z=x<0?.19:-.19;g.add(e)}
+   let tail=sphere(.15,color,[.72,1.45,.68]);tail.position.set(.42,-.17,-.11);tail.rotation.z=-.46;g.add(tail)
+ }else if(kind==="owl"){
+   for(const x of[-.24,.24]){let e=cone(.10,.20,color);e.position.set(x,.46,-.01);g.add(e)}
+   for(const x of[-.29,.29]){let wing=sphere(.11,color,[.60,1.30,.54]);wing.position.set(x,-.07,-.02);g.add(wing)}
+ }else if(kind==="dragon"){
+   for(const x of[-.22,.22]){let h=cone(.085,.18,0xffdf8a);h.position.set(x,.48,-.02);g.add(h)}
+   for(const x of[-.29,.29]){let wing=cone(.11,.25,0x82d2a1);wing.position.set(x,-.08,-.14);wing.rotation.z=x<0?-.62:.62;g.add(wing)}
+ }else{
+   for(const x of[-.22,.22]){let e=sphere(.09,color,[.80,1.20,.64]);e.position.set(x,.44,0);g.add(e)}
+ }
+
+ for(const x of[-.15,.15]){let f=shoe(0xd6a063);f.scale.set(.44,.42,.52);f.position.set(x,-.40,.04);g.add(f)}
+ if(level>=2){let pin=tinyStarPin();pin.position.set(0,-.20,.48);g.add(pin)}
+ if(level>=3){
+   let r=new THREE.Mesh(new THREE.TorusGeometry(.53,.012,10,34),
+     new THREE.MeshStandardMaterial({color:0xffec91,emissive:0xffd64f,emissiveIntensity:.68}));
+   r.rotation.x=Math.PI/2;g.add(r)
+ }
+ if(level>=4){let c=crown();c.scale.set(.28,.28,.28);c.position.set(0,.56,0);g.add(c)}
+ g.userData.characterType="pet";g.scale.set(.98,.98,.98);return g
+}
+
+
+function addBattleEnvironment(scene,kind){
+ const sky=new THREE.Mesh(new THREE.SphereGeometry(8,24,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshBasicMaterial({color:0xbfe8ff,side:THREE.BackSide}));
+ sky.position.y=.2;scene.add(sky);
+ const ground=new THREE.Mesh(new THREE.CircleGeometry(4.8,48),new THREE.MeshStandardMaterial({color:0xdff0b8,roughness:1}));
+ ground.rotation.x=-Math.PI/2;ground.position.y=-1.26;scene.add(ground);
+ const path=new THREE.Mesh(new THREE.PlaneGeometry(2.1,5.2),new THREE.MeshStandardMaterial({color:0xe8c58c,roughness:1}));
+ path.rotation.x=-Math.PI/2;path.rotation.z=.12;path.position.set(.15,-1.245,.4);scene.add(path);
+ for(const p of[[-1.8,2.4,-2.2],[1.8,2.1,-2.5],[.2,2.7,-3]]){
+   let cg=new THREE.Group();
+   for(const q of[[-.28,0,0],[0,0,0],[.3,.02,0],[.08,.16,0]]){let s=sphere(.24,0xffffff,[1.3,.7,.7]);s.position.set(...q);cg.add(s)}
+   cg.position.set(...p);scene.add(cg)
+ }
+ for(const p of[[-2.0,-.45,-3.0],[2.0,-.50,-3.2],[0,-.60,-4.0]]){
+   let hill=sphere(1.2,0x9fd48d,[1.8,.75,1.0]);hill.position.set(...p);scene.add(hill)
+ }
+ const treeColor=kind==="morning"?0xa8d67a:0x7fc78d;
+ for(const p of[[-2.2,-.35,-1.7],[2.3,-.32,-1.9],[-2.7,-.45,-2.6],[2.8,-.45,-2.8]]){
+   let trunk=cyl(.10,.65,0x9d6d45);trunk.position.set(p[0],p[1],p[2]);scene.add(trunk);
+   let crown=sphere(.45,treeColor,[1.05,.95,1.0]);crown.position.set(p[0],p[1]+.55,p[2]);scene.add(crown)
+ }
+ if(kind==="reading"){
+   let book=box(.85,.10,.60,0xf4e6b1);book.position.set(1.45,-1.02,.2);book.rotation.y=-.25;scene.add(book)
+ }else if(kind==="diligent"){
+   for(const x of[-1.55,1.55]){let w=box(.45,.16,.18,0x4c5663);w.position.set(x,-1.05,.2);scene.add(w)}
+ }else if(kind==="morning"){
+   let sun=sphere(.36,0xffe27b);sun.position.set(2.25,2.15,-2.5);scene.add(sun)
+ }
+}
+function addStageEnvironment(scene){
+ const floor=new THREE.Mesh(new THREE.CircleGeometry(2.0,40),new THREE.MeshStandardMaterial({color:0xf4f0df,roughness:1}));
+ floor.rotation.x=-Math.PI/2;floor.position.y=-1.28;scene.add(floor);
+ const back=new THREE.Mesh(new THREE.PlaneGeometry(4.6,4.6),new THREE.MeshStandardMaterial({color:0xeef8ff,roughness:1}));
+ back.position.set(0,.55,-1.6);scene.add(back)
+}
+function setup(el){
+ let scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(27,1,.1,50);
+ const isBattle=el.parentElement?.classList.contains("avatarArt")||el.parentElement?.classList.contains("bossArt");
+ const isStage=el.parentElement?.classList.contains("avatarStage")||el.parentElement?.classList.contains("petStage");
+ camera.position.set(0,isBattle?.55:(isStage?.45:1.0),isBattle?6.9:(isStage?6.5:5.8));
+ camera.lookAt(0,isBattle?-.18:(isStage?.0:.45),0);
+ let renderer;
+ try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:"default"});}
+ catch(err){console.error("WebGL renderer create failed",err);el.innerHTML='<div class="webglNotice">⚠️ เปิด 3D ไม่สำเร็จ ลอง Refresh</div>';return null}
+ const mini=el.parentElement?.classList.contains("avatarChoice")||el.parentElement?.classList.contains("zoneArt");
+ renderer.setPixelRatio(Math.min(devicePixelRatio,mini?1.0:1.5));
+ renderer.shadowMap.enabled=!mini;
+ renderer.outputColorSpace=THREE.SRGBColorSpace;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.22;
+ el.innerHTML="";el.appendChild(renderer.domElement);
+ scene.add(new THREE.HemisphereLight(0xffffff,0xa7bd96,2.70));
+ if(isBattle)addBattleEnvironment(scene,el.dataset.kind||el.closest(".arena")?.dataset?.kind||"reading");
+ else if(isStage)addStageEnvironment(scene);
+ let key=new THREE.DirectionalLight(0xfff6eb,mini?2.6:3.8);key.position.set(-3.2,5.2,5.2);key.castShadow=!mini;scene.add(key);
+ let rim=new THREE.DirectionalLight(0x9ed9ff,1.25);rim.position.set(4,2.5,-3);scene.add(rim);let fill=new THREE.DirectionalLight(0xffd8e8,.65);fill.position.set(-4,1,-2);scene.add(fill);
+ let fl=new THREE.Mesh(new THREE.CircleGeometry(1.55,32),new THREE.MeshStandardMaterial({color:0xeef0dc,roughness:.9,transparent:true,opacity:.75}));
+ fl.rotation.x=-Math.PI/2;fl.position.y=-1.18;fl.receiveShadow=!mini;scene.add(fl);
+ let st={scene,camera,renderer,model:null,raf:0,ro:null,lost:false};
+ renderer.domElement.addEventListener("webglcontextlost",ev=>{
+  ev.preventDefault();st.lost=true;cancelAnimationFrame(st.raf);
+  setTimeout(()=>{disposeSlot(el);if(el.isConnected)observeSlot(el)},300);
+ },false);
+ running.set(el,st);return st
+}
+function disposeObject(obj){
+ if(!obj)return;
+ obj.traverse?.(o=>{
+  o.geometry?.dispose?.();
+  if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m?.dispose?.());else o.material?.dispose?.()}
+ })
+}
+function disposeSlot(el){
+ const st=running.get(el);if(!st)return;
+ cancelAnimationFrame(st.raf);st.ro?.disconnect?.();
+ if(st.model){disposeObject(st.model);st.scene.remove(st.model)}
+ try{st.renderer.dispose();st.renderer.forceContextLoss?.()}catch(e){}
+ running.delete(el);if(el.isConnected)el.innerHTML=""
+}
+async function renderOne(el){
+ if(!el.isConnected)return;
+ let st=running.get(el)||setup(el);if(!st)return;
+ if(st.model){disposeObject(st.model);st.scene.remove(st.model)}
+ let model;
+ try{
+  if(el.classList.contains("three-monster")){
+   let kind=el.dataset.kind,lv=+el.dataset.level||1,f=fallbackMonster[kind],
+       d=await loadJSON(`models/monsters/${kind}_lv${lv}.json`,
+       {kind,level:lv,body:{color:f.color},accent:f.accent,feature:f.feature,badge:lv>=2,special:lv>=3,aura:lv>=4,crown:lv>=5});
+   model=monsterFrom(d)
+  }else if(el.classList.contains("three-pet")){
+   let kind=el.dataset.kind,lv=+el.dataset.level||1,d=await loadJSON(`models/pets/${kind}.json`,{color:petColors[kind]});
+   model=petFrom(kind,lv,d.color||petColors[kind])
+  }else model=avatarFrom(el)
+ }catch(err){
+  console.error("3D model build failed",err,el.dataset.kind||"avatar");
+  el.innerHTML='<div class="webglNotice">⚠️ 3D ตัวนี้โหลดไม่สำเร็จ</div>';return
+ }
+ st.model=model;st.scene.add(model);
+ const resize=()=>{if(!el.isConnected||!st.renderer)return;let w=Math.max(40,el.clientWidth),h=Math.max(40,el.clientHeight);st.renderer.setSize(w,h,false);st.camera.aspect=w/h;st.camera.updateProjectionMatrix()};
+ resize();st.ro=new ResizeObserver(resize);st.ro.observe(el);
+ cancelAnimationFrame(st.raf);let last=0;
+ const loop=ts=>{if(!el.isConnected||st.lost)return;if(ts-last>32){
+  last=ts;let tt=ts*.001,typ=model.userData.characterType||"";
+  model.position.y=Math.sin(tt*(typ==="pet"?2.6:1.8))*(typ==="avatar"?.035:.045);
+  model.rotation.y=Math.sin(tt*.62)*(typ==="avatar"?.055:.075);
+  let breathe=1+Math.sin(tt*2.0)*.008;
+  model.scale.y*=1;
+  if(typ==="monster"&&model.userData.kind==="morning")model.rotation.z=Math.sin(tt*1.3)*.018;
+  if(typ==="pet")model.rotation.z=Math.sin(tt*1.7)*.015;
+  st.renderer.render(st.scene,st.camera)
+ }st.raf=requestAnimationFrame(loop)};
+ st.raf=requestAnimationFrame(loop)
+}
+function isNearViewport(el){const r=el.getBoundingClientRect();return r.bottom>-180&&r.top<innerHeight+180}
+const slotObserver=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  const el=entry.target;
+  if(entry.isIntersecting)renderOne(el);
+  else setTimeout(()=>{if(el.isConnected&&!isNearViewport(el))disposeSlot(el)},180)
+ })
+},{root:null,rootMargin:"160px 0px 160px 0px",threshold:.01});
+function observeSlot(el){try{slotObserver.unobserve(el)}catch(e){}slotObserver.observe(el)}
+function renderAll(){document.querySelectorAll(".three-slot").forEach(observeSlot)}
+window.addEventListener("hmw3d-render",()=>setTimeout(renderAll,25));
+setTimeout(renderAll,80);
+window.addEventListener("load",()=>setTimeout(renderAll,150));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout(renderAll,150)});
+
+}
+</script>
+
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4400").then(r=>r.update()).catch(console.error))}</script>
+<script id="v42-runtime-polish">
+(()=>{
+ document.documentElement.dataset.hmwBuild='43.1';
+ const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V44';};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+})();
+</script>
+
+<script id="v431-big-gameplay-runtime">
+(()=>{
+  document.documentElement.dataset.hmwBuild="43.1";
+
+  const q=(id)=>document.getElementById(id);
+  const pct=(n,d)=>d?Math.max(0,Math.min(100,n/d*100)):0;
+
+  function forceBuild(){
+    const b=document.querySelector(".buildBadge");
+    if(b)b.textContent="V44";
+    const s=q("threeStatus");
+    if(s)s.textContent="🚀 ARENA & MAP POLISH • V44";
+  }
+
+  // Wrap the existing world renderer, preserving all game state + save logic.
+  if(typeof window.renderWorld==="function"){
+    const originalRenderWorld=window.renderWorld;
+    window.renderWorld=function(){
+      originalRenderWorld();
+      try{
+        document.querySelectorAll("#worldMap .zone").forEach((el,i)=>{
+          const k=order[i], m=S.monsters[k], goal=maxGoal(k);
+          const old=el.querySelector(".zoneProgress"); if(old)old.remove();
+          const badge=document.createElement("div");
+          badge.className="evoBadge";
+          const form=m.level>=5?"HERO":`FORM ${Math.min(5,m.level)}/5`;
+          badge.textContent=form;
+          el.appendChild(badge);
+
+          const p=document.createElement("div");
+          p.className="zoneProgress";
+          p.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pct(m.progress,goal)}%"></div></div>
+            <div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+          el.appendChild(p);
+        });
+
+        const arena=document.querySelector(".arena");
+        if(arena)arena.dataset.kind=S.active;
+      }catch(e){console.warn("V44 world polish",e)}
+    };
+  }
+
+  // Expand Journey to 6 worlds while using the same existing totals.
+  if(typeof window.renderJourney==="function"){
+    window.renderJourney=function(){
+      const pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5;
+      const nodes=[
+        ["🏡","Sunny Village",0],
+        ["🌲","Reading Forest",100],
+        ["🧹","Tidy Town",220],
+        ["⛰️","Homework Mountain",400],
+        ["☁️","Sky Garden",520],
+        ["🏰","Star Castle",650]
+      ];
+      q("journeyGrid").innerHTML=nodes.map(([i,n,v],idx)=>`
+        <div class="journeyNode ${pts>=v?"open":""}">
+          <div class="big">${pts>=v?i:"🔒"}</div>
+          <b>${n}</b><br>
+          <small>${pts>=v?(idx===nodes.length-1?"ปลายทางฮีโร่":"เปิดแล้ว"):`ต้องการ ${v} pts`}</small>
+        </div>`).join("");
+    };
+  }
+
+  // Add more meaningful trophies without changing the reward economy.
+  if(typeof window.trophies==="function"){
+    window.trophies=function(){
+      return [
+        ["🌱","เริ่มต้นแล้ว",S.logs.length>=1],
+        ["✏️","100 ข้อ",S.totals.diligent>=100],
+        ["🧠","500 ข้อ",S.totals.diligent>=500],
+        ["📖","อ่าน 100 นาที",S.totals.reading>=100],
+        ["🦉","อ่าน 500 นาที",S.totals.reading>=500],
+        ["📚","การบ้าน 20 งาน",S.totals.homework>=20],
+        ["🔥","Streak 7 วัน",S.streak>=7],
+        ["🌟","Streak 30 วัน",S.streak>=30],
+        ["🐾","Pet Friendship 50",S.pet.friendship>=50],
+        ["🗺️","เปิด 4 โลก", (S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5)>=400],
+        ["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]
+      ];
+    };
+  }
+
+  // Make End Day feel like a conclusion screen, preserving original data.
+  if(typeof window.renderEndDay==="function"){
+    const originalEnd=window.renderEndDay;
+    window.renderEndDay=function(){
+      originalEnd();
+      const host=q("endDaySummary");
+      if(host && !host.querySelector(".enddayHero")){
+        const today=S.logs.filter(x=>x.date===dayKey());
+        const stars=today.reduce((a,x)=>a+(x.stars||0),0);
+        const box=document.createElement("div");
+        box.className="enddayHero";
+        box.innerHTML=`<div class="big">${today.length?"🌟":"🌙"}</div>
+          <b>${today.length?"เก่งมาก วันนี้เดินหน้าแล้ว!":"วันนี้พักได้ พรุ่งนี้ค่อยไปต่อ"}</b>
+          <div>${today.length} กิจกรรม • +${stars} ดาว • Pet XP ${S.pet.xp}</div>`;
+        host.prepend(box);
+      }
+    };
+  }
+
+  // Celebration overlay for stars / level-up. Hooks existing celebrate if present.
+  const oldCelebrate=typeof window.celebrate==="function"?window.celebrate:null;
+  window.celebrate=function(msg){
+    if(oldCelebrate)oldCelebrate(msg);
+    const icons=["✨","⭐","💫","🌟","🎉"];
+    for(let i=0;i<16;i++){
+      const s=document.createElement("span");
+      s.className="hmwSpark";
+      s.textContent=icons[i%icons.length];
+      s.style.left=(45+Math.random()*10)+"vw";
+      s.style.top=(42+Math.random()*12)+"vh";
+      s.style.setProperty("--dx",((Math.random()-.5)*420)+"px");
+      s.style.setProperty("--dy",((-90-Math.random()*260))+"px");
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1100);
+    }
+    document.querySelector(".arena")?.classList.add("levelPulse");
+    setTimeout(()=>document.querySelector(".arena")?.classList.remove("levelPulse"),900);
+  };
+
+  // Re-run render after the overrides are installed.
+  const boot=()=>{
+    forceBuild();
+    try{ if(typeof render==="function") render(); }catch(e){console.warn(e)}
+  };
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});
+  else setTimeout(boot,0);
+
+  // Keep the visible badge correct even if old V42 runtime touches it.
+  setInterval(forceBuild,1500);
+})();
+</script>
+
+
+<script id="v44-runtime">
+(()=>{
+ const $=(id)=>document.getElementById(id);
+ const pc=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+ function mark(){
+   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V44';
+   const s=$('threeStatus'); if(s)s.textContent='🎮 ARENA & MAP POLISH • V44';
+   document.documentElement.dataset.hmwBuild='44';
+ }
+ function decorateWorld(){
+   try{
+     document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+       const k=order[i]; if(!k)return;
+       const m=S.monsters[k], goal=maxGoal(k);
+       el.querySelectorAll('.zoneProgress,.evoBadge').forEach(x=>x.remove());
+       const badge=document.createElement('div');
+       badge.className='evoBadge'; badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+       el.appendChild(badge);
+       const box=document.createElement('div'); box.className='zoneProgress';
+       box.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pc(m.progress,goal)}%"></div></div><div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+       el.appendChild(box);
+     });
+   }catch(e){console.warn('V44 decorateWorld',e)}
+ }
+ const oldRender=typeof window.render==='function'?window.render:null;
+ if(oldRender){
+   window.render=function(){const r=oldRender.apply(this,arguments); mark(); setTimeout(decorateWorld,0); return r;}
+ }
+ const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
+ if(oldWorld){
+   window.renderWorld=function(){const r=oldWorld.apply(this,arguments); setTimeout(decorateWorld,0); return r;}
+ }
+ const boot=()=>{mark(); try{if(typeof render==='function')render();}catch(e){} setTimeout(decorateWorld,60)};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+ setInterval(mark,2000);
+})();
+</script>
+
+
+<style id="v45-game-feel-evolution">
+/* V45 — GAME FEEL & EVOLUTION: visual-only polish; save/data logic unchanged */
+:root{--v45gold:#ffc94f;--v45blue:#5dbcf4;--v45ink:#203b5b}
+.buildBadge{background:linear-gradient(135deg,#765cf0,#3f83ee)!important}
+.buildBadge:after{content:" • GAME FEEL"!important}
+
+/* World cards read like game levels, while keeping all 7 zones visible */
+.world{align-items:stretch!important}
+.zone{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;isolation:isolate}
+.zone .zoneArt{flex:0 0 auto!important}
+.zone b{min-height:2.2em;display:flex!important;align-items:center;justify-content:center;margin:3px 4px 0!important}
+.zone small{display:block;margin-top:1px}
+.zoneProgress{margin-top:auto!important}
+.zone .evoBadge{z-index:7!important;background:linear-gradient(135deg,#6576ee,#4e7bea)!important;color:#fff!important;box-shadow:0 5px 12px rgba(72,93,201,.18)}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffb43d,#ffd963)!important;color:#624400!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;right:7px;top:8px;z-index:8;padding:4px 7px;border-radius:999px;background:#ffe16c;color:#5b4800;font-size:10px;font-weight:950;box-shadow:0 4px 10px rgba(111,87,18,.13)}
+.miniTrack{overflow:hidden!important;border-radius:999px!important}
+.miniFill{background:linear-gradient(90deg,#8877e9,#66c89a)!important;border-radius:999px!important;transition:width .45s ease!important}
+
+/* Encounter composition: pet above, actors anchored to ground, no giant empty sky */
+.arena{background:linear-gradient(180deg,#9ee0fb 0 45%,#c8eab9 45% 69%,#e8ca8d 69% 100%)!important}
+#petFollower.petFollower{z-index:5!important;filter:drop-shadow(0 7px 8px rgba(41,69,88,.16))}
+.battle{position:relative!important}
+.battle:after{content:"";position:absolute;left:10%;right:10%;bottom:5px;height:22px;background:radial-gradient(ellipse,rgba(45,69,71,.22),transparent 70%);filter:blur(5px);pointer-events:none;z-index:0}
+.battle .avatarArt,.battle .bossArt{position:relative!important;z-index:2!important;overflow:visible!important}
+.battle .avatarArt svg,.battle .bossArt svg{filter:drop-shadow(0 12px 9px rgba(35,60,80,.16))!important}
+.vs:before{animation:v45Pulse 1.8s ease-in-out infinite}
+@keyframes v45Pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Make progress / evolution the focal feedback below the arena */
+.arena .bar{height:17px!important;box-shadow:inset 0 1px 2px rgba(43,66,84,.08)}
+.arena .hp{transition:width .5s ease!important;background:linear-gradient(90deg,#9a88ed,#7566d6)!important}
+#nextLevelHint{font-weight:900!important;color:#6f6ca5!important;text-align:center!important;margin-top:5px!important}
+.stats .stat{transition:transform .16s ease,box-shadow .16s ease}
+.stats .stat:active{transform:scale(.97)}
+
+/* Avatar cards: cleaner selection and slightly larger thumbnails */
+.avatarChoice{position:relative!important}
+.avatarChoice.on:after{content:"✓";position:absolute;right:7px;top:7px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#ffd75e;color:#594300;font-weight:1000;box-shadow:0 4px 10px rgba(93,73,18,.15)}
+
+@media(max-width:600px){
+ .world{gap:10px!important}
+ .zone{min-height:250px!important;padding:7px 5px 10px!important}
+ .zoneArt{height:140px!important}
+ .zone b{font-size:15px!important;min-height:2.25em!important}
+ .zoneProgress{padding:0 7px 2px!important}
+ .arena{padding:8px 6px 12px!important}
+ #petFollower.petFollower{width:58px!important;height:58px!important;margin:0 auto 1px!important}
+ .battle{min-height:194px!important;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:166px!important;max-width:none!important;width:100%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:164px!important}
+ .battle .label{font-size:15px!important;font-weight:950!important}
+ .speech{font-size:15px!important}
+ .arena .stats{grid-template-columns:repeat(2,1fr)!important}
+}
+</style>
+<script id="v45-runtime">
+(()=>{
+ const $=id=>document.getElementById(id);
+ const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+ function markV45(){
+   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V45';
+   const s=$('threeStatus'); if(s)s.textContent='✨ GAME FEEL & EVOLUTION • V45';
+   document.documentElement.dataset.hmwBuild='45';
+ }
+ function polishEvolution(){
+   try{
+    document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+      const k=order[i]; if(!k||!S.monsters[k])return;
+      const m=S.monsters[k],goal=maxGoal(k);
+      const badge=el.querySelector('.evoBadge');
+      if(badge) badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+      const fill=el.querySelector('.miniFill'); if(fill)fill.style.width=pct(m.progress,goal)+'%';
+      el.setAttribute('aria-label',`${defs[k].title} เลเวล ${m.level} ความคืบหน้า ${m.progress} จาก ${goal}`);
+    });
+   }catch(e){console.warn('V45 evolution polish',e)}
+ }
+ function boot(){markV45();try{if(typeof render==='function')render()}catch(e){}setTimeout(polishEvolution,80)}
+ const oldRender=typeof window.render==='function'?window.render:null;
+ if(oldRender)window.render=function(){const r=oldRender.apply(this,arguments);markV45();setTimeout(polishEvolution,0);return r};
+ const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
+ if(oldWorld)window.renderWorld=function(){const r=oldWorld.apply(this,arguments);setTimeout(polishEvolution,0);return r};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ setInterval(markV45,2000);
+})();
+</script>
+
+</body>
+</html>
