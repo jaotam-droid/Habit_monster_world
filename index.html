@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V41 Scene Integration Pass";font-weight:800}
+.characterQualityNote:after{content:" • V42 Game UI Polish";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V41 Scene Integration Pass";font-weight:900}
+.characterQualityNote:after{content:" • V42 Game UI Polish";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -991,11 +991,49 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 }
 </style>
 
+
+<style id="v42-game-ui-polish">
+/* V42 — GAME UI POLISH. Presentation-only; game logic/save state untouched. */
+:root{--v42-glass:rgba(255,255,255,.90);--v42-shadow:0 16px 38px rgba(37,73,105,.13);--v42-ring:rgba(255,204,69,.38)}
+body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255,255,.92),transparent 27rem),linear-gradient(180deg,#8fd8f8 0,#dff5ff 31%,#f5fbff 58%,#fff8e9 100%) fixed!important}
+.header{position:relative;isolation:isolate;overflow:hidden!important}
+.header:before{content:"";position:absolute;inset:-35% -10% auto 42%;height:180px;background:radial-gradient(circle,rgba(255,222,113,.32),transparent 66%);z-index:-1;pointer-events:none}
+.buildBadge:after{content:" • POLISH";font-size:10px;opacity:.82;margin-left:3px}
+.card{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.nav{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:40;background:rgba(247,252,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:7px;border-radius:22px;box-shadow:0 10px 28px rgba(38,75,108,.11)}
+.nav button{transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
+.nav button:hover{transform:translateY(-2px)}
+.nav button.active{box-shadow:0 0 0 3px rgba(102,174,239,.18),0 10px 22px rgba(67,151,224,.16)!important}
+.world{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 18px 38px rgba(48,83,107,.11)!important}
+.zone{transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important}
+.zone:hover{transform:translateY(-3px)}
+.zone.active{transform:translateY(-4px) scale(1.015)!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;top:8px;right:8px;padding:4px 8px;border-radius:999px;background:#ffd45d;color:#604900;font-size:11px;font-weight:950;z-index:7;box-shadow:0 5px 12px rgba(120,86,0,.16)}
+.zoneArt img,.avatarStage img,.battle img{will-change:transform}
+.arena{box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 18px 40px rgba(44,78,106,.14)!important}
+.battleSceneTitle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.74);padding:7px 11px;border-radius:999px;box-shadow:0 6px 16px rgba(49,79,104,.08)}
+.bigBtn,.smallBtn{transition:transform .12s ease,filter .12s ease,box-shadow .12s ease}.bigBtn:hover,.smallBtn:hover{filter:brightness(1.025);box-shadow:0 8px 18px rgba(43,73,105,.12)}.bigBtn:active,.smallBtn:active{transform:scale(.975)!important}
+.bar{height:18px!important;box-shadow:inset 0 2px 4px rgba(37,65,90,.08)}
+.hp,.xp,.friendFill{transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stat,.mini,.summaryBox,.box{transition:transform .15s ease,box-shadow .15s ease}.stat:hover,.mini:hover,.summaryBox:hover,.box:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(45,75,102,.08)}
+.toast{bottom:calc(18px + env(safe-area-inset-bottom));box-shadow:0 12px 28px rgba(20,35,50,.25);font-weight:850}
+.modal{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}.modalCard{box-shadow:0 24px 60px rgba(30,55,80,.25)}
+@media(max-width:600px){
+ .wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+ .nav{top:calc(4px + env(safe-area-inset-top));grid-template-columns:repeat(3,1fr)!important;border-radius:18px;padding:6px!important}
+ .nav button{min-height:58px!important;border-radius:15px!important;font-size:13px!important}
+ .header{margin-top:2px}.status{gap:6px!important}.pill{padding:7px 8px!important;font-size:13px}
+ .world{border-radius:28px!important}.zone{min-height:205px!important;border-radius:24px!important}.zone.active:after{font-size:10px;padding:3px 6px}
+ .battle{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}.vs:before{width:42px!important;height:42px!important}
+ .bigBtn{min-height:48px;font-size:16px}.smallBtn{min-height:42px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V41</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V42</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">✨ Character + Scene Integration</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -2092,5 +2130,13 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=410").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=420").then(r=>r.update()).catch(console.error))}</script>
+<script id="v42-runtime-polish">
+(()=>{
+ document.documentElement.dataset.hmwBuild='42';
+ const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V42/.test(b.textContent))b.textContent='V42';};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+})();
+</script>
+</body>
 </html>
