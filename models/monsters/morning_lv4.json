@@ -28,5 +28,24 @@
     "success": "jump",
     "levelUp": "spin-pop",
     "hero": null
+  },
+  "visualStyle": "premium_soft_3d",
+  "renderProfile": {
+    "version": 30,
+    "form": "rounded_volumetric",
+    "material": "soft_matte_toy",
+    "keyLight": "upper_left_softbox",
+    "fillLight": "cool_front",
+    "rimLight": "subtle_warm",
+    "ambientOcclusion": 0.22,
+    "specular": 0.16,
+    "roughness": 0.72,
+    "depth": 1.18,
+    "eyeGloss": 1.12,
+    "cheekSoftness": 1.08,
+    "groundShadow": 1.15,
+    "silhouetteDepth": 1.22,
+    "expressionDepth": 1.12,
+    "propDepth": 1.18
   }
 }
