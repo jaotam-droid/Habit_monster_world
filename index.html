@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V33 PREMIUM CHARACTER REDESIGN</title>
+<title>Habit Monster World V34 FINAL PREMIUM GAME ART</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -691,9 +691,9 @@ img,canvas{image-rendering:auto;}
 <script id="v29-build-label">
 document.addEventListener("DOMContentLoaded",function(){
   const h=document.querySelector("h1");
-  if(h) h.textContent="🌍 Habit Monster World V33 PREMIUM CHARACTER REDESIGN";
+  if(h) h.textContent="🌍 Habit Monster World V34 FINAL PREMIUM GAME ART";
   const s=document.getElementById("threeStatus");
-  if(s) s.textContent="✅ Character Proportion Pass • Softer 3D Film Look";
+  if(s) s.textContent="✅ Premium Game Art • Full Visual Redesign";
 });
 </script>
 
@@ -843,12 +843,68 @@ document.addEventListener("DOMContentLoaded",function(){
 .avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
 .zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
 </style>
+<style id="v34-final-premium-game-art">
+/* V34 FINAL PREMIUM GAME ART — major UI pass */
+:root{--ink:#203954;--muted:#7084a0;--blue:#39a9f4;--purple:#8c62ea;--gold:#ffbf2f}
+body{background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.9),transparent 24%),linear-gradient(180deg,#7ac9f6 0,#bfe9fb 17%,#eef8ff 43%,#fff7e6 100%) fixed!important;color:var(--ink)!important}
+.wrap{max-width:1180px!important;padding:18px!important}
+.header{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(239,246,255,.94))!important;border:1px solid rgba(255,255,255,.95)!important;border-radius:30px!important;box-shadow:0 16px 38px rgba(36,78,110,.14)!important;padding:20px!important}
+.header h1{font-size:clamp(28px,5vw,48px)!important;line-height:1.03!important;letter-spacing:-.03em}.sub{color:#6f55df!important;font-weight:850!important}
+.pill{background:#fff!important;border:1px solid #e7eef5!important;box-shadow:0 8px 18px rgba(45,75,99,.09)!important;border-radius:18px!important}
+.card{border:1px solid rgba(255,255,255,.95)!important;border-radius:30px!important;box-shadow:0 18px 38px rgba(45,75,99,.12)!important;background:rgba(255,255,255,.95)!important}
+.nav{gap:12px!important}.nav button{min-height:88px!important;border-radius:24px!important;border:1px solid #e5eef6!important;background:linear-gradient(180deg,#fff,#eef7fb)!important;box-shadow:0 8px 18px rgba(50,86,115,.08)!important;font-size:18px!important;font-weight:900!important;color:#1688e8!important}
+.nav button.active{background:linear-gradient(180deg,#e8f5ff,#d5ecff)!important;box-shadow:inset 0 0 0 2px #75b8f3,0 10px 18px rgba(50,115,180,.12)!important}
+.avatarStage{background:linear-gradient(145deg,#dff3ff,#e8e0ff 55%,#fff0cf)!important;border:1px solid #fff!important;border-radius:34px!important;box-shadow:inset 0 0 0 1px #dbeaf4,0 18px 38px rgba(44,76,101,.13)!important;min-height:390px!important}
+.avatarChoice,.petChoice,.zone{border-radius:26px!important;border:2px solid #d9e8f2!important;background:linear-gradient(180deg,#fff,#f4fbff 63%,#fff4d8)!important;box-shadow:0 9px 20px rgba(50,78,98,.08)!important}
+.avatarChoice.on,.petChoice.on,.zone.active{border-color:#ffcb53!important;box-shadow:0 0 0 4px #fff0a8,0 12px 24px rgba(50,78,98,.11)!important}
+.setting input,.setting select,.wideInput,input,select{border-radius:16px!important;border:2px solid #dce9f3!important;background:#fff!important}
+.bigBtn{border-radius:20px!important;box-shadow:0 10px 20px rgba(43,76,101,.12)!important}
+.world{gap:18px!important}.zone{padding:14px!important}.zoneArt{border-radius:24px!important;background:transparent!important}.zone b{font-size:20px!important}
+.arena{background:linear-gradient(160deg,#d5f3ff 0,#d8eeff 44%,#e4defd 100%)!important;border:2px solid rgba(255,255,255,.94)!important}
+.speech{border-radius:18px!important;background:#fff!important;box-shadow:0 8px 18px rgba(43,76,101,.08)!important}
+.battle .avatarArt,.battle .bossArt{border-radius:28px!important;background:rgba(255,255,255,.88)!important;box-shadow:0 18px 28px rgba(45,79,104,.14)!important;border:1px solid #fff!important}
+.vs{font-size:34px!important;color:#f5af22!important;text-shadow:0 3px 8px rgba(255,193,63,.25)}
+.stats .stat,.summaryBox,.box,.mini{border-radius:22px!important;background:rgba(255,255,255,.94)!important;border:1px solid #dbe8f2!important;box-shadow:0 8px 18px rgba(50,78,98,.07)!important}
+.bar,.friendBar{height:18px!important;border-radius:20px!important;background:#eaf1f7!important}.hp{background:linear-gradient(90deg,#8d78e9,#6a58d1)!important;border-radius:20px!important}
+.note,.story{border-radius:18px!important}.cinematic-slot img{width:100%!important;height:100%!important;object-fit:contain!important;filter:none!important}
+.avatarStage .cinematic-slot{width:min(94%,520px)!important;margin:auto!important}
+@media(max-width:720px){
+ .wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}
+ .nav{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}.nav button{min-height:78px!important;font-size:15px!important;border-radius:19px!important;padding:8px 4px!important}
+ .card{border-radius:24px!important;padding:14px!important}.avatarStage{min-height:355px!important}.avatarChoices{gap:7px!important}.avatarChoice{border-radius:20px!important;padding:6px!important}
+ .world{gap:12px!important}.zone{border-radius:22px!important;padding:9px!important}.zone b{font-size:17px!important}
+ .battle{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)!important}.battle .avatarArt,.battle .bossArt{height:166px!important}.battle .label{font-size:16px!important}
+}
+</style>
+<style>
+/* V34 cute character motion */
+@keyframes hmwFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-4px) rotate(.35deg)}
+}
+@keyframes hmwGlow{
+  0%,100%{filter:drop-shadow(0 7px 8px rgba(64,108,140,.10))}
+  50%{filter:drop-shadow(0 10px 13px rgba(104,120,205,.18))}
+}
+.avatarStage .cinematic-slot img{
+  animation:hmwFloat 4.8s ease-in-out infinite,hmwGlow 4.8s ease-in-out infinite;
+}
+.zoneArt .cinematic-slot img{
+  animation:hmwFloat 5.6s ease-in-out infinite;
+}
+.zone:nth-child(2n) .cinematic-slot img{animation-delay:-1.4s}
+.zone:nth-child(3n) .cinematic-slot img{animation-delay:-2.7s}
+.petChoice .cinematic-slot img{animation:hmwFloat 5.2s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+ .avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.petChoice .cinematic-slot img{animation:none!important}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V33 PREMIUM CHARACTER REDESIGN</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div><h1>🌍 Habit Monster World V34 FINAL PREMIUM GAME ART</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">✨ Premium Art พร้อม</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -874,7 +930,7 @@ document.addEventListener("DOMContentLoaded",function(){
 </div>
 </section>
 
-<section class="card"><h2>🎮 V27 Cinematic Art Pipeline</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V29 Final Cinematic Art: เพิ่มมิติใบหน้า ผม เสื้อผ้า รองเท้า แสงขอบ เงาสัมผัส และสัดส่วนตัวละครให้ดูเป็นเกมเด็กแบบ soft 3D มากขึ้น พร้อมคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card"><h2>✨ Premium Adventure World</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V34 Final Premium Game Art: Avatar, Monster, Pet, World Map, Battle และ UI ใช้ภาษาภาพเดียวกันแบบเกมการ์ตูน 3D นุ่ม สดใส และอ่านง่ายบนมือถือ โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -936,7 +992,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=32.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=34.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -1017,65 +1073,34 @@ function artFrame(inner,accent="#7fc7ff"){
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
  <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="#ffffff"/>
-    <stop offset=".48" stop-color="#edf9ff"/>
-    <stop offset="1" stop-color="#fff0d1"/>
+   <stop stop-color="#ffffff"/><stop offset=".52" stop-color="#edf8ff"/><stop offset="1" stop-color="#fff0cf"/>
   </linearGradient>
-  <radialGradient id="halo" cx=".42" cy=".24" r=".72">
-    <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
-    <stop offset=".48" stop-color="#ffffff" stop-opacity=".30"/>
-    <stop offset="1" stop-color="${accent}" stop-opacity=".07"/>
+  <radialGradient id="halo" cx=".38" cy=".20" r=".82">
+   <stop offset="0" stop-color="#ffffff"/><stop offset=".48" stop-color="#ffffff" stop-opacity=".64"/><stop offset="1" stop-color="${accent}" stop-opacity=".10"/>
   </radialGradient>
-  <radialGradient id="eyeIris" cx=".34" cy=".24" r=".78">
-    <stop offset="0" stop-color="#dff7ff"/>
-    <stop offset=".38" stop-color="#74c7ee"/>
-    <stop offset=".72" stop-color="#2f6f98"/>
-    <stop offset="1" stop-color="#153e5a"/>
+  <radialGradient id="eyeIris" cx=".31" cy=".22" r=".83">
+   <stop offset="0" stop-color="#e9fbff"/><stop offset=".30" stop-color="#8edafa"/><stop offset=".64" stop-color="#4c9dcc"/><stop offset="1" stop-color="#245574"/>
   </radialGradient>
-  <radialGradient id="eyePupil" cx=".34" cy=".25" r=".78">
-    <stop offset="0" stop-color="#274f69"/>
-    <stop offset="1" stop-color="#071e30"/>
+  <radialGradient id="eyePupil" cx=".34" cy=".24" r=".80">
+   <stop offset="0" stop-color="#315e78"/><stop offset="1" stop-color="#102d42"/>
   </radialGradient>
-  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="#ffffff" stop-opacity=".98"/>
-    <stop offset=".6" stop-color="#ffffff" stop-opacity=".16"/>
-    <stop offset="1" stop-color="#80a7bf" stop-opacity=".20"/>
-  </linearGradient>
-  <filter id="groundBlur" x="-60%" y="-80%" width="220%" height="260%">
-    <feGaussianBlur stdDeviation="11"/>
-  </filter>
-  <filter id="volume" x="-45%" y="-45%" width="190%" height="210%" color-interpolation-filters="sRGB">
-    <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#36536a" flood-opacity=".14"/>
-  </filter>
-  <filter id="softEdge" x="-30%" y="-30%" width="160%" height="160%">
-    <feGaussianBlur stdDeviation=".34"/>
-  </filter>
+  <filter id="softshadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="13" stdDeviation="12" flood-color="#31526b" flood-opacity=".16"/></filter>
  </defs>
- <rect width="420" height="420" rx="52" fill="url(#bg)"/>
- <rect x="5" y="5" width="410" height="410" rx="48" fill="none" stroke="url(#rim)" stroke-width="6"/>
- <circle cx="210" cy="164" r="173" fill="url(#halo)"/>
- <ellipse cx="210" cy="357" rx="122" ry="22" fill="#284b66" opacity=".10" filter="url(#groundBlur)"/>
- <ellipse cx="210" cy="350" rx="88" ry="10" fill="${accent}" opacity=".10"/>
- <circle cx="77" cy="72" r="7" fill="${accent}" opacity=".24"/>
- <circle cx="343" cy="88" r="5" fill="${accent}" opacity=".19"/>
- <circle cx="356" cy="61" r="2.5" fill="#fff"/>
- <g filter="url(#volume)">${inner}</g>
+ <rect width="420" height="420" rx="54" fill="url(#bg)"/>
+ <circle cx="210" cy="174" r="176" fill="url(#halo)"/>
+ <ellipse cx="210" cy="356" rx="108" ry="19" fill="#34566d" opacity=".12"/>
+ <ellipse cx="210" cy="350" rx="78" ry="8" fill="${accent}" opacity=".13"/>
+ <circle cx="70" cy="78" r="7" fill="${accent}" opacity=".22"/><circle cx="342" cy="87" r="5" fill="${accent}" opacity=".18"/>
+ <path d="M341 58l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#fff" opacity=".95"/>
+ <g filter="url(#softshadow)">${inner}</g>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
- if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <path d="M-22 1 Q0 -10 22 1" fill="none" stroke="#5a3c4b" stroke-width="5.5" stroke-linecap="round"/>
-   <path d="M-15 -1 Q0 -7 15 -1" fill="none" stroke="#fff" stroke-width="1.8" opacity=".42"/>
- </g>`;
+ if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M-21 1 Q0 -12 21 1" fill="none" stroke="#6a4a56" stroke-width="5" stroke-linecap="round"/><circle cx="-12" cy="-5" r="2.2" fill="#fff" opacity=".60"/></g>`;
  return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <ellipse cy="3" rx="27" ry="31" fill="#fff"/>
-   <ellipse cy="5" rx="18.5" ry="22" fill="url(#eyeIris)"/>
-   <ellipse cy="7" rx="11.5" ry="16" fill="url(#eyePupil)"/>
-   <ellipse cx="-5" cy="17" rx="8" ry="3.2" fill="#8ed9fa" opacity=".20"/>
-   <circle cx="-8" cy="-8" r="6.2" fill="#fff"/>
-   <circle cx="6" cy="-1" r="3.2" fill="#fff" opacity=".94"/>
-   <circle cx="-1" cy="-3" r="1.8" fill="#fff" opacity=".58"/>
-   <path d="M-21 -17 Q0 -27 21 -17" fill="none" stroke="#513a46" stroke-width="3.2" stroke-linecap="round" opacity=".48"/>
+  <ellipse cy="3" rx="25" ry="29" fill="#fff"/><ellipse cy="5" rx="17" ry="21" fill="url(#eyeIris)"/><ellipse cy="6" rx="10.5" ry="15.5" fill="url(#eyePupil)"/>
+  <circle cx="-8" cy="-8" r="6.5" fill="#fff"/><circle cx="6" cy="-1" r="3.1" fill="#fff"/><circle cx="-1" cy="8" r="1.7" fill="#9ce3ff" opacity=".55"/>
+  <path d="M-20 -17 Q0 -25 20 -17" fill="none" stroke="#6c4d58" stroke-width="2.8" stroke-linecap="round" opacity=".36"/>
  </g>`;
 }
 function blushPair(y,color="#f3a0ad"){
@@ -1144,31 +1169,37 @@ function hairSVG(style,c){
 function avatarArtURI(p){
  const pr=presets[p.preset]||presets.boyA, gender=pr[0], style=p.hair||pr[1], id=p.preset||"boyA";
  const skin=AVATAR_SKIN[p.skin]||AVATAR_SKIN.light, hair=AVATAR_HAIR[p.hairColor]||AVATAR_HAIR.brown;
- const pal=AVATAR_PALETTE[id]||AVATAR_PALETTE.boyA, shirt=pal[0], dark=pal[1], gear=p.gear||{};
- const lashes=gender==="girl"?`<path d="M151 172l-13-11m14 20-15 2m132-11 13-11m-14 20 15 2" stroke="#523a43" stroke-width="4" stroke-linecap="round"/>`:"";
- const ears=`<ellipse cx="128" cy="191" rx="17" ry="24" fill="${skin}"/><ellipse cx="292" cy="191" rx="17" ry="24" fill="${skin}"/>`;
- const hat=gear.hat?`<g><ellipse cx="210" cy="88" rx="68" ry="13" fill="#3f94d4"/><path d="M166 54h88l13 35H153z" fill="#67bce9"/><ellipse cx="194" cy="64" rx="26" ry="7" fill="#fff" opacity=".22"/></g>`:"";
- const bag=gear.bag?`<g><rect x="274" y="252" width="37" height="61" rx="13" fill="#e7a36b" stroke="#af7148" stroke-width="4"/><path d="M281 250q10-20 22 0" fill="none" stroke="#af7148" stroke-width="4"/></g>`:"";
- const cape=gear.cape?`<path d="M151 238q-28 59-13 119l48-20 34-79z" fill="#7669dd" opacity=".9"/>`:"";
- const star=gear.star?`<path d="M289 244l7 15 17 2-12 11 3 16-15-8-15 8 3-16-12-11 17-2z" fill="#ffdc65" stroke="#dfaa2b" stroke-width="3"/>`:"";
- const hairBack=style==="long"?`<path d="M127 145q20-86 83-86 68 0 84 89v151q-16 40-48 45V187h-72v157q-32-7-49-44z" fill="${hair}"/>`:style==="ponytail"?`<ellipse cx="290" cy="202" rx="39" ry="70" fill="${hair}"/><circle cx="283" cy="146" r="15" fill="#f1a8c5"/>`:style==="bob"?`<path d="M128 151q19-88 82-88 69 0 85 89v95q-18 34-43 39v-104h-88v103q-27-7-39-38z" fill="${hair}"/>`:"";
- const fringe=style==="curly"?`<g fill="${hair}"><circle cx="146" cy="118" r="25"/><circle cx="178" cy="106" r="29"/><circle cx="210" cy="102" r="31"/><circle cx="244" cy="108" r="29"/><circle cx="275" cy="119" r="24"/><path d="M132 144q77-39 156 1v27H132z"/></g>`:style==="spiky"?`<path d="M135 151l15-59 33 29 25-57 27 55 40-29 10 62q-76-27-150-1z" fill="${hair}"/>`:style==="long"||style==="ponytail"||style==="bob"?`<path d="M134 149q76-34 153 0v24q-76-17-153 0z" fill="${hair}"/>`:`<path d="M132 153q18-85 80-85 66 0 83 87v23q-41-16-82-14-42 0-81 14z" fill="${hair}"/>`;
- const body=`<g>${cape}${bag}${star}${hairBack}${ears}
-   <ellipse cx="210" cy="188" rx="82" ry="86" fill="#b77755" opacity=".06"/><ellipse cx="210" cy="184" rx="81" ry="85" fill="${skin}"/><ellipse cx="174" cy="145" rx="38" ry="19" fill="#fff" opacity=".32" transform="rotate(-18 174 145)"/>
-   <ellipse cx="180" cy="146" rx="43" ry="20" fill="#fff" opacity=".27" transform="rotate(-18 180 146)"/>
-   ${fringe}${hat}${cuteEye(180,185,.72,"happy")}${cuteEye(240,185,.72,"happy")}${lashes}
-   <ellipse cx="210" cy="214" rx="10" ry="7" fill="#c99277" opacity=".55"/>${blushPair(220,"#f3a4b7")}${smile(210,233,42,18,"#a05465")}
-   <rect x="184" y="254" width="52" height="19" rx="9" fill="${skin}"/>
-   <ellipse cx="210" cy="309" rx="63" ry="66" fill="${dark}" opacity=".08"/><ellipse cx="210" cy="303" rx="62" ry="65" fill="${shirt}"/><ellipse cx="184" cy="281" rx="35" ry="17" fill="#fff" opacity=".22" transform="rotate(-16 184 281)"/>
-   <path d="M170 270q40 30 80 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
-   ${gender==="girl"?`<path d="M156 306q54 23 108 0l-9 35h-90z" fill="${dark}"/>`:`<path d="M159 306h102l-7 39h-33v-28h-22v28h-33z" fill="${dark}"/>`}
-   <rect x="130" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="144" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="144" cy="348" r="14" fill="${skin}"/>
-   <rect x="261" y="274" width="29" height="75" rx="14" fill="${skin}"/><ellipse cx="276" cy="276" rx="23" ry="25" fill="${shirt}"/><circle cx="276" cy="348" r="14" fill="${skin}"/>
-   <rect x="180" y="339" width="19" height="34" rx="9" fill="${skin}"/><rect x="221" y="339" width="19" height="34" rx="9" fill="${skin}"/>
-   <ellipse cx="183" cy="382" rx="30" ry="18" fill="${dark}"/><ellipse cx="237" cy="382" rx="30" ry="18" fill="${dark}"/><ellipse cx="176" cy="376" rx="12" ry="5" fill="#fff" opacity=".28"/><ellipse cx="230" cy="376" rx="12" ry="5" fill="#fff" opacity=".28"/>
+ const pal=AVATAR_PALETTE[id]||AVATAR_PALETTE.boyA, shirt=pal[0], dark=pal[1], gear=p.gear||{}, girl=gender==="girl";
+ let hairBack="",fringe="";
+ if(style==="long"||style==="bob")hairBack=`<path d="M132 138q19-82 78-82 63 0 82 84v130q-16 31-43 38V170h-78v137q-28-8-43-36z" fill="${hair}"/>`;
+ if(style==="ponytail")hairBack=`<ellipse cx="286" cy="194" rx="34" ry="61" fill="${hair}"/><circle cx="282" cy="143" r="13" fill="#f4aac6"/>`;
+ if(style==="curly")fringe=`<g fill="${hair}"><circle cx="153" cy="113" r="22"/><circle cx="181" cy="101" r="25"/><circle cx="211" cy="97" r="27"/><circle cx="242" cy="101" r="25"/><circle cx="269" cy="113" r="22"/><path d="M140 135q69-34 140 0v21H140z"/></g>`;
+ else if(style==="spiky")fringe=`<path d="M141 139l15-51 29 25 24-50 27 48 34-27 9 55q-68-25-138 0z" fill="${hair}"/>`;
+ else fringe=`<path d="M140 137q21-70 70-70 53 0 70 72v21q-68-22-140 1z" fill="${hair}"/>`;
+ const body=`<g>${hairBack}
+  <ellipse cx="133" cy="184" rx="15" ry="21" fill="${skin}"/><ellipse cx="287" cy="184" rx="15" ry="21" fill="${skin}"/>
+  <ellipse cx="210" cy="177" rx="75" ry="78" fill="${skin}"/><ellipse cx="181" cy="135" rx="38" ry="17" fill="#fff" opacity=".22" transform="rotate(-18 181 135)"/>
+  ${cuteEye(180,179,.78,"happy")}${cuteEye(240,179,.78,"happy")}
+  ${girl?`<path d="M157 162l-10-8m11 16-12 1m116-9 10-8m-11 16 12 1" stroke="#6b4651" stroke-width="3.4" stroke-linecap="round"/>`:""}
+  <ellipse cx="210" cy="207" rx="8" ry="5.5" fill="#c88e73" opacity=".50"/>${blushPair(214,"#f4a4b8")}${smile(210,225,38,16,"#a95368")}
+  ${fringe}
+  ${gear.hat?`<g><ellipse cx="210" cy="89" rx="63" ry="12" fill="#3c92d3"/><path d="M171 55h78l12 34h-102z" fill="#66bcea"/><ellipse cx="198" cy="64" rx="22" ry="6" fill="#fff" opacity=".25"/></g>`:""}
+  ${gear.cape?`<path d="M153 249q-24 49-12 102l45-17 30-70z" fill="#796be5" opacity=".86"/>`:""}
+  <rect x="188" y="246" width="44" height="17" rx="8" fill="${skin}"/>
+  <ellipse cx="210" cy="302" rx="57" ry="61" fill="${shirt}"/><ellipse cx="186" cy="278" rx="31" ry="14" fill="#fff" opacity=".20" transform="rotate(-18 186 278)"/>
+  <path d="M171 271q39 25 78 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".94"/>
+  ${girl?`<path d="M160 304q50 20 100 0l-8 35h-84z" fill="${dark}"/>`:`<path d="M162 305h96l-6 36h-31v-25h-22v25h-31z" fill="${dark}"/>`}
+  <rect x="137" y="274" width="25" height="67" rx="13" fill="${skin}"/><circle cx="149" cy="338" r="12" fill="${skin}"/><ellipse cx="149" cy="277" rx="20" ry="22" fill="${shirt}"/>
+  <rect x="258" y="274" width="25" height="67" rx="13" fill="${skin}"/><circle cx="271" cy="338" r="12" fill="${skin}"/><ellipse cx="271" cy="277" rx="20" ry="22" fill="${shirt}"/>
+  <rect x="183" y="337" width="18" height="31" rx="9" fill="${skin}"/><rect x="219" y="337" width="18" height="31" rx="9" fill="${skin}"/>
+  <ellipse cx="183" cy="377" rx="27" ry="16" fill="${dark}"/><ellipse cx="237" cy="377" rx="27" ry="16" fill="${dark}"/>
+  <ellipse cx="175" cy="372" rx="11" ry="4.5" fill="#fff" opacity=".28"/><ellipse cx="229" cy="372" rx="11" ry="4.5" fill="#fff" opacity=".28"/>
+  ${gear.bag?`<rect x="277" y="258" width="32" height="54" rx="11" fill="#e7a36b"/><path d="M283 257q9-17 19 0" fill="none" stroke="#af7148" stroke-width="4"/>`:""}
+  ${gear.star?`<path d="M289 244l6 13 15 2-11 10 3 15-13-7-13 7 3-15-11-10 15-2z" fill="#ffdc65" stroke="#e3ad32" stroke-width="2.5"/>`:""}
  </g>`;
  return svgData(artFrame(body,shirt));
 }
+
 function petArtURI(kind){
  const cfg={puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]}[kind]||["#e7a35a","#b96f3f","dog"];
  const [c,d,type]=cfg;let ears="",extra="";
@@ -1297,7 +1328,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Character Proportion Pass • Softer 3D Film Look";
+if(threeStatus)threeStatus.textContent="✅ Premium Game Art • Full Visual Redesign";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={

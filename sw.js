@@ -1,4 +1,4 @@
-const CACHE="hmw-v33-character-proportion-pass";
+const CACHE="hmw-v34-final-premium-game-art";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{
