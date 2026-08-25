@@ -1,4 +1,4 @@
-const CACHE="hmw-v30-model-character-overhaul";
+const CACHE="hmw-v31-true-volume-render";
 const CORE=["./manifest.webmanifest"];
 
 self.addEventListener("install",event=>{

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V30 MODEL & CHARACTER OVERHAUL</title>
+<title>Habit Monster World V31 TRUE VOLUME RENDER</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -671,9 +671,9 @@ img,canvas{image-rendering:auto;}
 <script id="v29-build-label">
 document.addEventListener("DOMContentLoaded",function(){
   const h=document.querySelector("h1");
-  if(h) h.textContent="🌍 Habit Monster World V30 MODEL & CHARACTER OVERHAUL";
+  if(h) h.textContent="🌍 Habit Monster World V31 TRUE VOLUME RENDER";
   const s=document.getElementById("threeStatus");
-  if(s) s.textContent="✅ Model & Character Overhaul • Volumetric Soft 3D";
+  if(s) s.textContent="✅ True Volume Render • Cinematic Character Art";
 });
 </script>
 
@@ -734,11 +734,31 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 }
 </style>
+<style id="v31-true-volume-render">
+/* V31 TRUE VOLUME RENDER */
+.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt,.petStage{overflow:hidden!important}
+.avatarStage img,.zoneArt img,.bossArt img,.petStage img,.avatarChoice img{
+  image-rendering:auto!important;
+  filter:saturate(1.07) contrast(1.025) drop-shadow(0 10px 11px rgba(42,67,88,.14))!important;
+}
+.zone{background:linear-gradient(180deg,#ffffff 0%,#f5fbff 61%,#fff3d7 100%)!important}
+.zoneArt{transform:translateZ(0)}
+.battle{grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr)!important;gap:4px!important;overflow:hidden!important}
+.battle .avatarArt,.battle .bossArt{height:178px!important;padding:8px!important;box-sizing:border-box!important}
+.battle .avatarArt img,.battle .bossArt img{max-width:82%!important;max-height:86%!important;object-fit:contain!important}
+.battle .label{font-size:17px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
+@media(max-width:600px){
+ .avatarStage{min-height:390px!important}
+ .battle{grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)!important;gap:2px!important}
+ .battle .avatarArt,.battle .bossArt{height:164px!important;padding:6px!important}
+ .battle .avatarArt img,.battle .bossArt img{max-width:78%!important;max-height:83%!important}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V30 MODEL & CHARACTER OVERHAUL</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div><h1>🌍 Habit Monster World V31 TRUE VOLUME RENDER</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🎮 3D กำลังโหลด</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -827,7 +847,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=30.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=31.0;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -909,51 +929,71 @@ function artFrame(inner,accent="#7fc7ff"){
  <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
     <stop stop-color="#ffffff"/>
-    <stop offset=".42" stop-color="#eef8ff"/>
-    <stop offset="1" stop-color="#fff1d7"/>
+    <stop offset=".48" stop-color="#edf9ff"/>
+    <stop offset="1" stop-color="#fff0d1"/>
   </linearGradient>
-  <radialGradient id="halo" cx=".50" cy=".30" r=".62">
-    <stop offset="0" stop-color="#ffffff" stop-opacity=".98"/>
-    <stop offset=".48" stop-color="#ffffff" stop-opacity=".32"/>
-    <stop offset="1" stop-color="${accent}" stop-opacity=".06"/>
+  <radialGradient id="halo" cx=".42" cy=".24" r=".72">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+    <stop offset=".48" stop-color="#ffffff" stop-opacity=".30"/>
+    <stop offset="1" stop-color="${accent}" stop-opacity=".07"/>
+  </radialGradient>
+  <radialGradient id="eyeIris" cx=".34" cy=".24" r=".78">
+    <stop offset="0" stop-color="#dff7ff"/>
+    <stop offset=".38" stop-color="#74c7ee"/>
+    <stop offset=".72" stop-color="#2f6f98"/>
+    <stop offset="1" stop-color="#153e5a"/>
+  </radialGradient>
+  <radialGradient id="eyePupil" cx=".34" cy=".25" r=".78">
+    <stop offset="0" stop-color="#274f69"/>
+    <stop offset="1" stop-color="#071e30"/>
   </radialGradient>
   <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
     <stop stop-color="#ffffff" stop-opacity=".98"/>
-    <stop offset=".55" stop-color="#ffffff" stop-opacity=".12"/>
-    <stop offset="1" stop-color="#7aa8c5" stop-opacity=".18"/>
+    <stop offset=".6" stop-color="#ffffff" stop-opacity=".16"/>
+    <stop offset="1" stop-color="#80a7bf" stop-opacity=".20"/>
   </linearGradient>
-  <filter id="shadow" x="-50%" y="-50%" width="200%" height="220%">
-    <feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#233f59" flood-opacity=".22"/>
+  <filter id="groundBlur" x="-60%" y="-80%" width="220%" height="260%">
+    <feGaussianBlur stdDeviation="11"/>
   </filter>
-  <filter id="soft" x="-35%" y="-35%" width="170%" height="170%">
-    <feGaussianBlur stdDeviation="9"/>
+  <filter id="volume" x="-45%" y="-45%" width="190%" height="210%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="bump"/>
+    <feSpecularLighting in="bump" surfaceScale="4.2" specularConstant=".48" specularExponent="18" lighting-color="#ffffff" result="spec">
+      <fePointLight x="115" y="70" z="180"/>
+    </feSpecularLighting>
+    <feComposite in="spec" in2="SourceAlpha" operator="in" result="specClip"/>
+    <feBlend in="SourceGraphic" in2="specClip" mode="screen" result="lit"/>
+    <feDropShadow in="lit" dx="0" dy="12" stdDeviation="8" flood-color="#263f55" flood-opacity=".24"/>
+  </filter>
+  <filter id="softEdge" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation=".34"/>
   </filter>
  </defs>
  <rect width="420" height="420" rx="52" fill="url(#bg)"/>
  <rect x="5" y="5" width="410" height="410" rx="48" fill="none" stroke="url(#rim)" stroke-width="6"/>
- <circle cx="210" cy="165" r="170" fill="url(#halo)"/>
- <ellipse cx="210" cy="357" rx="126" ry="24" fill="#284b66" opacity=".16" filter="url(#soft)"/>
- <ellipse cx="210" cy="351" rx="92" ry="13" fill="${accent}" opacity=".08"/>
- <circle cx="83" cy="76" r="7" fill="${accent}" opacity=".24"/>
- <circle cx="341" cy="92" r="5" fill="${accent}" opacity=".20"/>
- <circle cx="356" cy="65" r="2.5" fill="#fff"/>
- <g filter="url(#shadow)">${inner}</g>
+ <circle cx="210" cy="164" r="173" fill="url(#halo)"/>
+ <ellipse cx="210" cy="357" rx="122" ry="22" fill="#284b66" opacity=".16" filter="url(#groundBlur)"/>
+ <ellipse cx="210" cy="350" rx="88" ry="10" fill="${accent}" opacity=".10"/>
+ <circle cx="77" cy="72" r="7" fill="${accent}" opacity=".24"/>
+ <circle cx="343" cy="88" r="5" fill="${accent}" opacity=".19"/>
+ <circle cx="356" cy="61" r="2.5" fill="#fff"/>
+ <g filter="url(#volume)">${inner}</g>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
  if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})">
    <path d="M-27 2 Q0 -15 27 2" fill="none" stroke="#5a3c4b" stroke-width="7" stroke-linecap="round"/>
-   <path d="M-19 -2 Q0 -10 19 -2" fill="none" stroke="#fff" stroke-width="2" opacity=".42"/>
+   <path d="M-19 -2 Q0 -10 19 -2" fill="none" stroke="#fff" stroke-width="2" opacity=".48"/>
  </g>`;
  return `<g transform="translate(${cx} ${cy}) scale(${s})">
-   <ellipse cy="2" rx="31" ry="35" fill="#fff"/>
-   <ellipse cy="5" rx="21" ry="25" fill="#8ed3f4"/>
-   <ellipse cy="7" rx="14" ry="19" fill="#23516d"/>
-   <ellipse cy="10" rx="8" ry="12" fill="#102d43"/>
-   <circle cx="-9" cy="-10" r="7.5" fill="#fff"/>
-   <circle cx="7" cy="-1" r="4" fill="#fff" opacity=".95"/>
-   <ellipse cx="-5" cy="19" rx="10" ry="4" fill="#76c7ef" opacity=".22"/>
-   <path d="M-25 -20 Q0 -33 25 -20" fill="none" stroke="#5a3c4b" stroke-width="3.6" stroke-linecap="round" opacity=".50"/>
+   <ellipse cy="3" rx="32" ry="36" fill="#fff"/>
+   <ellipse cy="6" rx="22" ry="26" fill="url(#eyeIris)"/>
+   <ellipse cy="8" rx="13.5" ry="19" fill="url(#eyePupil)"/>
+   <ellipse cx="-7" cy="20" rx="10" ry="4" fill="#8ed9fa" opacity=".24"/>
+   <circle cx="-10" cy="-10" r="8" fill="#fff"/>
+   <circle cx="8" cy="-1" r="4.2" fill="#fff" opacity=".96"/>
+   <circle cx="-2" cy="-3" r="2.4" fill="#fff" opacity=".65"/>
+   <path d="M-26 -20 Q0 -34 26 -20" fill="none" stroke="#513a46" stroke-width="3.8" stroke-linecap="round" opacity=".55"/>
+   <path d="M-23 28 Q0 36 23 28" fill="none" stroke="#8fc3dc" stroke-width="2" opacity=".28"/>
  </g>`;
 }
 function blushPair(y,color="#f3a0ad"){
@@ -1174,7 +1214,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Model & Character Overhaul • Volumetric Soft 3D";
+if(threeStatus)threeStatus.textContent="✅ True Volume Render • Cinematic Character Art";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1703,5 +1743,5 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=300").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=310").then(r=>r.update()).catch(console.error))}</script></body>
 </html>
