@@ -2228,9 +2228,9 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 </style>
 <script id="v49-mobile-runtime">
 (()=>{
- const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
+ const BUILD='V52 • CLEAN MOBILE UI';
  const $q=s=>document.querySelector(s);
- function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V51';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
+ function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V52';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
  function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
  function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
  function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
@@ -2288,12 +2288,12 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
 <script id="v50-mobile-runtime">
 (()=>{
- const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
+ const BUILD='V52 • CLEAN MOBILE UI';
  const q=s=>document.querySelector(s);
  const qa=s=>[...document.querySelectorAll(s)];
  function build(){
    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V51';
+   document.title='Habit Monster World V52';
    document.documentElement.dataset.hmwBuild='50-mobile-ux-final';
  }
  function toast(t){
@@ -2550,7 +2550,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
 <script id="v51-mobile-runtime">
 (()=>{
- const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
+ const BUILD='V52 • CLEAN MOBILE UI';
  const q=s=>document.querySelector(s);
  const qa=s=>[...document.querySelectorAll(s)];
  const DAY_KEY='hmw_v51_daily_goal';
@@ -2558,7 +2558,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
  function mark(){
    const b=q('.buildBadge');if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V51';
+   document.title='Habit Monster World V52';
    document.documentElement.dataset.hmwBuild='51';
  }
 
@@ -2748,6 +2748,386 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
  else refresh();
  addEventListener('load',refresh,{once:true});
+})();
+</script>
+
+
+<style id="v52-clean-mobile-ui">
+/* V52 CLEAN MOBILE UI + STABLE GAME FEEL */
+:root{
+  --v52-blue:#1688e8;
+  --v52-ink:#203b5b;
+  --v52-soft:#eef8ff;
+  --v52-gold:#ffc83d;
+  --v52-mint:#59c99a;
+}
+
+/* Header badge */
+.buildBadge{
+  max-width:100%!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+@media(max-width:600px){
+  .buildBadge{
+    display:inline-flex!important;
+    width:auto!important;
+    max-width:92%!important;
+    padding:8px 14px!important;
+    font-size:13px!important;
+    letter-spacing:.04em!important;
+    line-height:1!important;
+    border-radius:999px!important;
+  }
+}
+
+/* Dock: smaller and safer */
+#v51Dock{
+  right:8px!important;
+  bottom:max(10px,calc(env(safe-area-inset-bottom) + 3px))!important;
+  padding:4px!important;
+  box-shadow:0 7px 20px rgba(39,67,90,.13)!important;
+}
+#v51Dock .v51-main{
+  width:34px!important;height:34px!important;font-size:16px!important
+}
+#v51Dock .v51-extra{
+  padding:7px 9px!important;font-size:11px!important
+}
+#v51Dock.v52-hide{
+  opacity:.06!important;
+  transform:translateY(18px) scale(.92)!important;
+  pointer-events:none!important;
+}
+
+/* Avatar Studio: materially shorter */
+@media(max-width:600px){
+  .avatarStage,.avatar-stage,#avatarPreview,.avatarPreview{
+    height:315px!important;min-height:315px!important;max-height:315px!important;
+  }
+  .avatarStage svg,.avatarStage img,.avatar-stage svg,.avatar-stage img,
+  #avatarPreview svg,#avatarPreview img,.avatarPreview svg,.avatarPreview img{
+    max-height:285px!important;
+  }
+  .avatarChoices{gap:7px!important}
+  .avatarChoices>*{border-radius:18px!important}
+}
+
+/* World map denser */
+@media(max-width:600px){
+  #worldMap .zone{
+    min-height:0!important;
+    padding:6px 5px 7px!important;
+    border-radius:18px!important;
+  }
+  #worldMap .zoneArt{
+    height:104px!important;min-height:104px!important;
+  }
+  #worldMap .zone b{
+    font-size:15px!important;line-height:1.08!important;
+    margin-top:2px!important;
+  }
+  #worldMap .zone small{font-size:10px!important}
+  #worldMap .v49-formchip{
+    font-size:8px!important;padding:2px 5px!important;margin-top:2px!important;
+  }
+  #worldMap .v49-next{
+    font-size:8px!important;line-height:1.1!important;margin-top:1px!important;
+  }
+  #worldMap .v50-zonebar{
+    height:4px!important;margin:3px 8px 1px!important;
+  }
+  .v51-nearest-chip{
+    font-size:8px!important;padding:2px 5px!important;margin-top:2px!important;
+  }
+}
+
+/* Arena simplification */
+.v52-compact-status{
+  display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:8px 0 6px;
+}
+.v52-compact-box{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(216,231,240,.95);
+  border-radius:15px;padding:8px 9px;
+}
+.v52-compact-box b{
+  display:block;font-size:10px;color:#718198;margin-bottom:2px
+}
+.v52-compact-box strong{
+  font-size:16px;color:var(--v52-ink)
+}
+.v51-status-row{display:none!important}
+@media(max-width:600px){
+  .arena{padding:10px!important}
+  .battle{min-height:0!important;padding-top:4px!important}
+  .avatarArt,.bossArt{height:148px!important;min-height:148px!important}
+  #monsterTalk{font-size:14px!important;padding:9px 10px!important}
+  .stats{
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:6px!important;
+  }
+  .stat{min-height:64px!important;padding:7px 4px!important}
+  .stat b{font-size:21px!important}
+  .stat span{font-size:11px!important}
+}
+
+/* hide duplicate/secondary stats that clutter the encounter */
+.v52-secondary-hidden{display:none!important}
+
+/* pet companion beside hero */
+#petFollower.petFollower.v51-pet{
+  position:absolute!important;
+  width:42px!important;height:42px!important;
+  left:8px!important;
+  bottom:88px!important;
+  top:auto!important;
+  z-index:9!important;
+  margin:0!important;
+}
+@media(max-width:390px){
+  #petFollower.petFollower.v51-pet{width:38px!important;height:38px!important;bottom:82px!important}
+}
+
+/* daily goal state */
+.v50-daily{
+  padding:9px 11px!important;
+  border-radius:16px!important;
+}
+.v50-daily.v52-complete{
+  background:linear-gradient(135deg,#fff2a8,#f9ffdf)!important;
+  border-color:#f2d05a!important;
+  box-shadow:0 0 0 2px rgba(255,201,55,.18)!important;
+}
+.v50-daily.v52-complete .v50-daily-head{
+  color:#6b5510!important;
+}
+.v52-goal-pop{
+  animation:v52GoalPop .45s ease-out both!important;
+}
+@keyframes v52GoalPop{
+  0%{transform:scale(1)}
+  45%{transform:scale(1.02)}
+  100%{transform:scale(1)}
+}
+
+/* lightweight progress animation */
+.v52-progress-pulse{
+  animation:v52Pulse .42s ease-out!important;
+}
+@keyframes v52Pulse{
+  0%{filter:none}
+  50%{filter:brightness(1.08)}
+  100%{filter:none}
+}
+
+/* summary polish */
+.v52-summary-title{
+  font-size:12px;font-weight:900;color:#55718c;margin-top:4px
+}
+
+/* touch */
+button,.zone,.avatarChoices>*{
+  -webkit-tap-highlight-color:transparent;
+}
+button:active,.zone:active,.avatarChoices>*:active{
+  transform:scale(.985)!important;
+}
+
+/* reduce expensive effects on mobile */
+@media(max-width:600px){
+  .card,.arena,.zone,.avatarStage,.avatar-stage{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .v52-goal-pop,.v52-progress-pulse{animation:none!important}
+}
+</style>
+
+<script id="v52-clean-mobile-runtime">
+(()=>{
+  const BUILD='V52 • CLEAN MOBILE UI';
+  const q=s=>document.querySelector(s);
+  const qa=s=>[...document.querySelectorAll(s)];
+  const DAY_KEY='hmw_v51_daily_goal';
+  const BONUS_KEY='hmw_v51_daily_bonus';
+
+  function mark(){
+    const b=q('.buildBadge');if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V52';
+    document.documentElement.dataset.hmwBuild='52';
+  }
+
+  function today(){
+    const d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  function getDaily(){
+    try{
+      const x=JSON.parse(localStorage.getItem(DAY_KEY)||'null');
+      if(x && x.date===today())return x;
+    }catch(e){}
+    return {date:today(),count:0};
+  }
+
+  function dockAutoHide(){
+    const n=q('#v51Dock');if(!n||n.dataset.v52)return;
+    n.dataset.v52='1';
+    let last=scrollY,timer;
+    addEventListener('scroll',()=>{
+      const y=scrollY;
+      if(y>last+10)n.classList.add('v52-hide');
+      else if(y<last-8)n.classList.remove('v52-hide');
+      last=y;
+      clearTimeout(timer);
+      timer=setTimeout(()=>n.classList.remove('v52-hide'),500);
+    },{passive:true});
+  }
+
+  function compactStats(){
+    const arena=q('.arena');if(!arena)return;
+    let row=q('.v52-compact-status');
+    if(!row){
+      row=document.createElement('div');
+      row.className='v52-compact-status';
+      const stats=q('.arena .stats');
+      if(stats)stats.before(row);
+    }
+    try{
+      const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
+      const remain=Math.max(0,goal-(m.progress||0));
+      row.innerHTML=
+        `<div class="v52-compact-box"><b>พลังด่านคงเหลือ</b><strong>${m.hp}/${maxHp(k)}</strong></div>`+
+        `<div class="v52-compact-box"><b>ถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
+    }catch(e){}
+
+    // hide original duplicated HP/progress summary blocks when safely identifiable
+    const stats=q('.arena .stats');
+    if(stats){
+      const boxes=[...stats.children];
+      boxes.forEach((box,i)=>{
+        const txt=(box.textContent||'').trim();
+        if(i===0 || /พลังด่านคงเหลือ|อีกเท่าไรถึง Level/i.test(txt)){
+          box.classList.add('v52-secondary-hidden');
+        }
+      });
+    }
+  }
+
+  function pet(){
+    const p=q('#petFollower');if(!p)return;
+    p.classList.add('v51-pet');
+    p.style.visibility='';
+  }
+
+  function oneBolt(){
+    const vs=q('.arena .vs');if(!vs)return;
+    vs.innerHTML='<span class="v51-vsbolt">⚡</span>';
+  }
+
+  function daily(){
+    const box=q('.v50-daily');if(!box)return;
+    const d=getDaily(),goal=5;
+    const head=box.querySelector('.v50-daily-head span:last-child');
+    const fill=box.querySelector('.v50-daily-track i');
+    if(head)head.textContent=`${d.count}/${goal}`;
+    if(fill)fill.style.width=(Math.min(goal,d.count)/goal*100)+'%';
+    box.classList.toggle('v52-complete',d.count>=goal);
+    let r=box.querySelector('.v51-daily-reward');
+    if(r)r.textContent=d.count>=goal?'🎁 รับโบนัสวันนี้แล้ว ⭐ +10':'ครบ 5/5 รับโบนัส ⭐ +10';
+  }
+
+  function world(){
+    const zones=qa('#worldMap .zone');
+    let best=null;
+    zones.forEach((z,i)=>{
+      try{
+        const k=order[i],m=S.monsters[k],goal=maxGoal(k),remain=Math.max(0,goal-(m.progress||0));
+        z.classList.remove('v51-nearest');
+        z.querySelector('.v51-nearest-chip')?.remove();
+        if((m.level||1)<5 && (best===null||remain<best.remain))best={z,remain};
+      }catch(e){}
+    });
+    if(best){
+      best.z.classList.add('v51-nearest');
+      const c=document.createElement('span');
+      c.className='v51-nearest-chip';
+      c.textContent='🔥 ใกล้ Level Up';
+      best.z.appendChild(c);
+    }
+  }
+
+  function thaiSummary(){
+    // replace visible English "active days" only
+    qa('*').forEach(el=>{
+      if(el.children.length===0 && /active days/i.test(el.textContent||'')){
+        el.textContent=el.textContent.replace(/(\d+)\s*active days/i,'ทำสำเร็จ $1 วัน');
+      }
+    });
+  }
+
+  function summaryExtras(){
+    const dailyCard=q('#dailySummary')?.closest('.card,section');
+    if(dailyCard){
+      let s=dailyCard.querySelector('.v52-summary-title');
+      if(!s){
+        s=document.createElement('div');s.className='v52-summary-title';
+        s.textContent='สรุปกิจกรรมวันนี้';
+        dailyCard.appendChild(s);
+      }
+    }
+  }
+
+  function pulseProgress(){
+    const bars=qa('.bar,.miniFill,.v50-zonebar>i,.v50-daily-track>i');
+    bars.forEach(b=>{
+      b.classList.remove('v52-progress-pulse');
+      void b.offsetWidth;
+      b.classList.add('v52-progress-pulse');
+      setTimeout(()=>b.classList.remove('v52-progress-pulse'),480);
+    });
+  }
+
+  function refresh(){
+    mark();dockAutoHide();pet();oneBolt();daily();world();compactStats();thaiSummary();summaryExtras();
+  }
+
+  const oldRW=window.renderWorld;
+  if(typeof oldRW==='function'){
+    window.renderWorld=function(){
+      const r=oldRW.apply(this,arguments);
+      world();compactStats();pet();oneBolt();
+      return r;
+    };
+  }
+
+  const oldApply=window.apply;
+  if(typeof oldApply==='function'){
+    window.apply=function(k,p){
+      const beforeDaily=getDaily().count;
+      const r=oldApply.apply(this,arguments);
+      setTimeout(()=>{
+        daily();world();compactStats();pet();oneBolt();pulseProgress();thaiSummary();
+        const now=getDaily().count;
+        const box=q('.v50-daily');
+        if(box && now!==beforeDaily){
+          box.classList.remove('v52-goal-pop');
+          void box.offsetWidth;
+          box.classList.add('v52-goal-pop');
+        }
+      },0);
+      return r;
+    };
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
+  else refresh();
+  addEventListener('load',refresh,{once:true});
 })();
 </script>
 
