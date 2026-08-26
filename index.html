@@ -2228,9 +2228,9 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 </style>
 <script id="v49-mobile-runtime">
 (()=>{
- const BUILD='V50 • MOBILE UX FINAL';
+ const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
  const $q=s=>document.querySelector(s);
- function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V50 Mobile UX Final';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
+ function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V51';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
  function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
  function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
  function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
@@ -2288,12 +2288,12 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
 <script id="v50-mobile-runtime">
 (()=>{
- const BUILD='V50 • MOBILE UX FINAL';
+ const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
  const q=s=>document.querySelector(s);
  const qa=s=>[...document.querySelectorAll(s)];
  function build(){
    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V50 Mobile UX Final';
+   document.title='Habit Monster World V51';
    document.documentElement.dataset.hmwBuild='50-mobile-ux-final';
  }
  function toast(t){
@@ -2380,6 +2380,373 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
    setTimeout(refresh,0);return r;
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
+ addEventListener('load',refresh,{once:true});
+})();
+</script>
+
+
+<style id="v51-mobile-layout-game-feedback">
+/* V51 — Mobile Layout Fix + Game Feedback */
+:root{
+  --v51-blue:#1687e6;
+  --v51-ink:#203b5b;
+  --v51-gold:#ffc83d;
+  --v51-mint:#57c89a;
+}
+
+/* compact collapsible quick nav */
+#v51Dock{
+  position:fixed;z-index:60;
+  right:14px;
+  bottom:max(14px,calc(env(safe-area-inset-bottom) + 6px));
+  display:flex;align-items:center;gap:6px;
+  padding:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,.93);
+  border:1px solid rgba(206,224,235,.96);
+  box-shadow:0 8px 24px rgba(39,67,90,.15);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+#v51Dock button{
+  border:0;border-radius:999px;background:#eef8ff;color:#167ad0;
+  font-weight:900;font-size:12px;padding:8px 10px;white-space:nowrap;
+}
+#v51Dock .v51-main{width:38px;height:38px;padding:0;font-size:18px;background:#1789e7;color:#fff}
+#v51Dock .v51-extra{display:none}
+#v51Dock.open .v51-extra{display:inline-flex}
+#v51Dock.v51-dim{opacity:.28}
+#v49QuickNav{display:none!important}
+
+/* avatar studio compact */
+@media(max-width:600px){
+  .avatarStage,.avatar-stage,#avatarPreview,.avatarPreview{
+    height:380px!important;min-height:380px!important;max-height:380px!important;
+  }
+  .avatarStage svg,.avatarStage img,.avatar-stage svg,.avatar-stage img,
+  #avatarPreview svg,#avatarPreview img,.avatarPreview svg,.avatarPreview img{
+    max-height:340px!important;
+  }
+  .avatarChoices{gap:8px!important}
+  .avatarChoices>*{min-height:0!important}
+  .world{gap:8px!important}
+  #worldMap .zone{padding:7px 5px 9px!important}
+  #worldMap .zoneArt{height:120px!important;min-height:120px!important}
+}
+
+/* arena pet companion */
+#petFollower.petFollower.v51-pet{
+  position:absolute!important;
+  left:18px!important;
+  bottom:132px!important;
+  top:auto!important;
+  width:46px!important;height:46px!important;
+  margin:0!important;
+  z-index:8!important;
+  pointer-events:none!important;
+  filter:drop-shadow(0 6px 8px rgba(34,63,85,.16));
+}
+#petFollower.petFollower.v51-pet:after{
+  transform:scale(.88);
+  transform-origin:center;
+}
+.v51-pet-cheer{animation:v51PetCheer .45s ease-out!important}
+@keyframes v51PetCheer{
+  0%{transform:translateY(0) scale(1)}
+  45%{transform:translateY(-8px) scale(1.08)}
+  100%{transform:translateY(0) scale(1)}
+}
+
+/* one VS bolt only */
+.arena .v51-vsbolt{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 6px 18px rgba(92,76,14,.13);
+  font-size:23px;
+}
+.arena .vs{font-size:0!important}
+.arena .vs:before,.arena .vs:after{display:none!important}
+.arena .vs .v51-vsbolt{font-size:23px}
+
+/* structured status */
+.v51-status-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  margin:8px 0;
+}
+.v51-status-box{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(216,231,240,.95);
+  border-radius:16px;padding:9px 10px;
+}
+.v51-status-box b{display:block;font-size:11px;color:#718198;margin-bottom:2px}
+.v51-status-box strong{font-size:17px;color:var(--v51-ink)}
+.v51-feedback{
+  position:fixed;z-index:1000;left:50%;top:24%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.97);
+  border:1px solid #d8e8f1;border-radius:18px;
+  padding:10px 14px;min-width:180px;text-align:center;
+  box-shadow:0 10px 26px rgba(31,63,89,.17);
+  font-weight:900;color:#234768;
+  animation:v51Feedback .85s ease both;
+}
+@keyframes v51Feedback{
+  0%{opacity:0;transform:translate(-50%,12px) scale(.93)}
+  22%{opacity:1;transform:translate(-50%,0) scale(1.02)}
+  100%{opacity:0;transform:translate(-50%,-22px) scale(.98)}
+}
+.v51-levelup{
+  position:fixed;inset:0;z-index:999;
+  display:grid;place-items:center;
+  background:rgba(239,249,255,.72);
+  pointer-events:none;
+  animation:v51Overlay .9s ease both;
+}
+.v51-levelup-card{
+  background:white;border-radius:26px;padding:22px 24px;
+  box-shadow:0 14px 34px rgba(35,65,87,.18);
+  text-align:center;min-width:240px;
+}
+.v51-levelup-card .big{font-size:42px}
+.v51-levelup-card b{font-size:22px;color:#284866}
+@keyframes v51Overlay{
+  0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}
+}
+
+/* Daily goal reward */
+.v50-daily.v51-complete{
+  background:linear-gradient(135deg,#fff9d7,#fff);
+  box-shadow:0 0 0 2px rgba(255,199,46,.22);
+}
+.v50-daily .v51-daily-reward{
+  margin-top:6px;font-size:11px;font-weight:900;color:#7d681a;
+}
+
+/* World map emphasis */
+.zone.v51-nearest{
+  box-shadow:0 0 0 3px rgba(255,190,38,.28),0 12px 24px rgba(125,98,22,.11)!important;
+}
+.v51-nearest-chip{
+  display:inline-flex;margin-top:4px;padding:3px 7px;border-radius:999px;
+  font-size:9px;font-weight:950;background:#fff0a9;color:#785900;
+}
+
+/* summary enhancements */
+.v51-summary-note{
+  margin:8px 0 10px;padding:9px 11px;border-radius:15px;
+  background:#f5fbff;border:1px solid #dfeef6;color:#46627e;
+  font-size:12px;font-weight:850;
+}
+
+/* reduce costly effects */
+@media(max-width:600px){
+  .zone,.arena,.card{filter:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .v51-pet-cheer,.v51-feedback,.v51-levelup{animation:none!important}
+}
+</style>
+
+<script id="v51-mobile-runtime">
+(()=>{
+ const BUILD='V51 • MOBILE LAYOUT + GAME FEEDBACK';
+ const q=s=>document.querySelector(s);
+ const qa=s=>[...document.querySelectorAll(s)];
+ const DAY_KEY='hmw_v51_daily_goal';
+ const BONUS_KEY='hmw_v51_daily_bonus';
+
+ function mark(){
+   const b=q('.buildBadge');if(b)b.textContent=BUILD;
+   document.title='Habit Monster World V51';
+   document.documentElement.dataset.hmwBuild='51';
+ }
+
+ function today(){
+   const d=new Date();
+   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+ }
+
+ function getDaily(){
+   try{
+     const x=JSON.parse(localStorage.getItem(DAY_KEY)||'null');
+     if(x && x.date===today()) return x;
+   }catch(e){}
+   return {date:today(),count:0};
+ }
+
+ function setDaily(x){localStorage.setItem(DAY_KEY,JSON.stringify(x))}
+
+ function feedback(lines){
+   if(document.body.classList.contains('v49-lowfx')) return;
+   const d=document.createElement('div');d.className='v51-feedback';
+   d.innerHTML=Array.isArray(lines)?lines.join('<br>'):lines;
+   document.body.appendChild(d);setTimeout(()=>d.remove(),900);
+ }
+
+ function levelUp(level){
+   if(document.body.classList.contains('v49-lowfx')) return;
+   const d=document.createElement('div');d.className='v51-levelup';
+   d.innerHTML=`<div class="v51-levelup-card"><div class="big">🎉✨</div><b>LEVEL UP!</b><div>ปลดล็อก FORM ${Math.min(5,level)}/5</div></div>`;
+   document.body.appendChild(d);setTimeout(()=>d.remove(),950);
+ }
+
+ function dock(){
+   if(q('#v51Dock'))return;
+   const n=document.createElement('nav');n.id='v51Dock';
+   n.innerHTML=`<button class="v51-main" aria-label="เมนูลัด">☰</button>
+   <button class="v51-extra" data-go="top">↑ Top</button>
+   <button class="v51-extra" data-go="world">🌍 World</button>
+   <button class="v51-extra" data-go="arena">⚡ ด่าน</button>`;
+   n.addEventListener('click',e=>{
+     const btn=e.target.closest('button');if(!btn)return;
+     if(btn.classList.contains('v51-main')){n.classList.toggle('open');return}
+     const k=btn.dataset.go;
+     const el=k==='top'?document.body:k==='world'?q('#worldMap'):q('.arena');
+     if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'});
+     n.classList.remove('open');
+   });
+   document.body.appendChild(n);
+   let last=scrollY,t;
+   addEventListener('scroll',()=>{
+     const y=scrollY;
+     n.classList.toggle('v51-dim',y>last+8);
+     last=y;clearTimeout(t);t=setTimeout(()=>n.classList.remove('v51-dim'),550);
+   },{passive:true});
+ }
+
+ function pet(){
+   const p=q('#petFollower');if(!p)return;
+   p.classList.add('v51-pet');
+ }
+
+ function oneBolt(){
+   const vs=q('.arena .vs');if(!vs)return;
+   vs.innerHTML='<span class="v51-vsbolt">⚡</span>';
+ }
+
+ function dailyUI(){
+   const box=q('.v50-daily');if(!box)return;
+   const d=getDaily(),goal=5;
+   const head=box.querySelector('.v50-daily-head span:last-child');
+   const fill=box.querySelector('.v50-daily-track i');
+   if(head)head.textContent=`${d.count}/${goal}`;
+   if(fill)fill.style.width=(Math.min(goal,d.count)/goal*100)+'%';
+   box.classList.toggle('v51-complete',d.count>=goal);
+   let r=box.querySelector('.v51-daily-reward');
+   if(!r){r=document.createElement('div');r.className='v51-daily-reward';box.appendChild(r)}
+   r.textContent=d.count>=goal?'🎁 เป้าหมายวันนี้ครบแล้ว':'ครบ 5/5 รับโบนัส ⭐ +10';
+ }
+
+ function incrementDaily(){
+   const d=getDaily();
+   if(d.count<5)d.count+=1;
+   setDaily(d);
+   let gotBonus=false;
+   if(d.count>=5 && localStorage.getItem(BONUS_KEY)!==today()){
+     try{S.stars=(S.stars||0)+10;save?.();gotBonus=true}catch(e){}
+     localStorage.setItem(BONUS_KEY,today());
+   }
+   dailyUI();
+   return gotBonus;
+ }
+
+ function world(){
+   const zones=qa('#worldMap .zone');
+   let best=null;
+   zones.forEach((z,i)=>{
+     try{
+       const k=order[i],m=S.monsters[k],goal=maxGoal(k),remain=Math.max(0,goal-(m.progress||0));
+       z.classList.remove('v51-nearest');
+       z.querySelector('.v51-nearest-chip')?.remove();
+       if((m.level||1)<5 && (best===null || remain<best.remain))best={z,remain};
+     }catch(e){}
+   });
+   if(best){
+     best.z.classList.add('v51-nearest');
+     const c=document.createElement('span');c.className='v51-nearest-chip';c.textContent='🔥 ใกล้ Level Up ที่สุด';
+     best.z.appendChild(c);
+   }
+ }
+
+ function status(){
+   const arena=q('.arena');if(!arena)return;
+   let row=q('.v51-status-row');
+   if(!row){
+     row=document.createElement('div');row.className='v51-status-row';
+     const stats=q('.arena .stats');
+     if(stats)stats.before(row);
+   }
+   if(!row)return;
+   try{
+     const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
+     const remain=Math.max(0,goal-(m.progress||0));
+     row.innerHTML=`<div class="v51-status-box"><b>พลังด่านคงเหลือ</b><strong>${m.hp}/${maxHp(k)}</strong></div>
+                    <div class="v51-status-box"><b>อีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
+   }catch(e){}
+ }
+
+ function summaryEnhance(){
+   const daily=q('#dailySummary')?.closest('.card,section');
+   if(daily && !daily.querySelector('.v51-summary-note')){
+     const d=getDaily();const n=document.createElement('div');n.className='v51-summary-note';
+     n.textContent=`🎯 วันนี้ทำเป้าหมายแล้ว ${d.count}/5`;
+     daily.insertBefore(n,daily.firstChild?.nextSibling||null);
+   }
+   const weekly=q('#weeklySummary')?.closest('.card,section');
+   if(weekly && !weekly.querySelector('.v51-summary-note')){
+     const n=document.createElement('div');n.className='v51-summary-note';
+     try{
+       const vals=order.map(k=>({k,v:S.totals?.[k]||0})).sort((a,b)=>b.v-a.v);
+       n.textContent=`🏆 ด่านเด่นสัปดาห์นี้: ${defs[vals[0].k].title} • 🔥 Streak ${S.streak||0} วัน`;
+     }catch(e){n.textContent='🏆 สรุปความก้าวหน้าประจำสัปดาห์'}
+     weekly.insertBefore(n,weekly.firstChild?.nextSibling||null);
+   }
+ }
+
+ function refresh(){
+   mark();dock();pet();oneBolt();dailyUI();world();status();summaryEnhance();
+ }
+
+ const oldRW=window.renderWorld;
+ if(typeof oldRW==='function')window.renderWorld=function(){
+   const r=oldRW.apply(this,arguments);
+   world();status();oneBolt();pet();
+   return r;
+ };
+
+ const oldApply=window.apply;
+ if(typeof oldApply==='function')window.apply=function(k,p){
+   let before=1,stars=0,xp=0,prog=0;
+   try{
+     before=S.monsters[k].level||1;
+     stars=S.stars||0;
+     xp=S.pet?.xp||0;
+     prog=S.monsters[k].progress||0;
+   }catch(e){}
+   const r=oldApply.apply(this,arguments);
+   try{
+     const after=S.monsters[k].level||before;
+     const starGain=(S.stars||0)-stars;
+     const xpGain=(S.pet?.xp||0)-xp;
+     const progressGain=(S.monsters[k].progress||0)-prog;
+     const bonus=incrementDaily();
+     const lines=[];
+     if(progressGain>0)lines.push(`+${progressGain} ความคืบหน้า`);
+     if(xpGain>0)lines.push(`🐾 +${xpGain} Pet XP`);
+     if(starGain>0)lines.push(`⭐ +${starGain}`);
+     if(bonus)lines.push('🎁 Daily Bonus +10 ⭐');
+     feedback(lines.length?lines:'✨ บันทึกแล้ว');
+     if(after>before)levelUp(after);
+     const petEl=q('#petFollower');
+     if(petEl){petEl.classList.remove('v51-pet-cheer');void petEl.offsetWidth;petEl.classList.add('v51-pet-cheer');setTimeout(()=>petEl.classList.remove('v51-pet-cheer'),500)}
+     setTimeout(refresh,0);
+   }catch(e){}
+   return r;
+ };
+
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
+ else refresh();
  addEventListener('load',refresh,{once:true});
 })();
 </script>
