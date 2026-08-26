@@ -2228,9 +2228,9 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 </style>
 <script id="v49-mobile-runtime">
 (()=>{
- const BUILD='V49 • MOBILE POLISH';
+ const BUILD='V50 • MOBILE UX FINAL';
  const $q=s=>document.querySelector(s);
- function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V49 Mobile Polish';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
+ function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V50 Mobile UX Final';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
  function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
  function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
  function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
@@ -2240,6 +2240,147 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
  const oldApply=window.apply;if(typeof oldApply==='function')window.apply=function(k,p){const before=S.monsters[k]?.level||1;const r=oldApply.apply(this,arguments);const a=document.querySelector('.arena');if(a){a.classList.remove('v49-react');void a.offsetWidth;a.classList.add('v49-react');setTimeout(()=>a.classList.remove('v49-react'),450)}const after=S.monsters[k]?.level||before;burst(after>before?'🎉✨':'✨');return r};
  function init(){mark();lowFx();quickNav();decorateWorld();metricLabels();document.addEventListener('focusin',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility='hidden'});document.addEventListener('focusout',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility=''})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();window.addEventListener('load',mark,{once:true});
+})();
+</script>
+
+
+<style id="v50-mobile-ux-final">
+/* V50 MOBILE UX FINAL + GAME FEEL — lightweight CSS/DOM only */
+:root{--v50-blue:#1888e8;--v50-ink:#203b5b;--v50-gold:#ffca3d}
+@media(max-width:600px){
+  /* Less scrolling without changing game structure */
+  #worldMap .zone{padding:7px 5px 8px!important;border-radius:18px!important}
+  #worldMap .zoneArt{height:128px!important;min-height:128px!important}
+  #worldMap .zone b{font-size:16px!important}
+  #worldMap .zone small{font-size:11px!important}
+  #worldMap .v49-formchip{margin-top:3px!important;padding:2px 6px!important;font-size:9px!important}
+  #worldMap .v49-next{font-size:9px!important;margin-top:2px!important}
+  #worldMap .v50-zonebar{height:5px!important}
+  /* Avatar preview smaller on phones */
+  #avatarPreview,.avatarPreview,.avatar-stage,.avatarStage{max-height:500px!important}
+  .avatarArt:not(.battle .avatarArt){max-height:430px!important}
+  /* Arena hierarchy */
+  .arena{padding:11px!important}
+  .battle{margin-top:4px!important}
+  .avatarArt,.bossArt{height:165px!important;min-height:165px!important}
+  .stats{margin-top:8px!important}
+  .stat{min-height:72px!important;padding:8px 5px!important}
+  .stat b{font-size:24px!important}
+  /* Quick nav is smaller and translucent */
+  #v49QuickNav{padding:4px!important;gap:3px!important;opacity:.94;transition:opacity .18s ease,transform .18s ease!important}
+  #v49QuickNav button{padding:7px 9px!important;font-size:11px!important}
+  #v49QuickNav.v50-hide{opacity:.18!important;transform:translate(-50%,18px)!important}
+}
+.v50-zonebar{height:6px;background:rgba(255,255,255,.65);border-radius:999px;overflow:hidden;margin:5px 8px 1px}
+.v50-zonebar>i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7e62ed,#52c69c);transition:width .25s ease}
+.v50-daily{margin:10px 0 4px;padding:10px 12px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid rgba(213,229,239,.95)}
+.v50-daily-head{display:flex;justify-content:space-between;gap:8px;font-weight:900;color:var(--v50-ink);font-size:14px}
+.v50-daily-track{height:8px;margin-top:7px;border-radius:999px;overflow:hidden;background:#e8f0f3}
+.v50-daily-track>i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7c61ed,#55c99c)}
+.v50-substat{font-size:11px!important;color:#73859a!important;font-weight:800!important}
+.v50-toast{position:fixed;z-index:1000;left:50%;top:25%;transform:translateX(-50%);background:rgba(255,255,255,.96);border:1px solid #dceaf2;border-radius:999px;padding:9px 15px;box-shadow:0 8px 24px rgba(31,63,89,.16);font-weight:950;color:#274866;pointer-events:none;animation:v50toast .75s ease both}
+@keyframes v50toast{0%{opacity:0;transform:translate(-50%,8px) scale(.9)}25%{opacity:1;transform:translate(-50%,0) scale(1.03)}100%{opacity:0;transform:translate(-50%,-18px) scale(.98)}}
+.arena.v50-near-level{box-shadow:0 0 0 3px rgba(255,205,61,.25),0 12px 28px rgba(255,190,45,.12)!important}
+.arena.v50-near-level #bossArt{filter:drop-shadow(0 7px 8px rgba(255,193,38,.18))}
+#petFollower.petFollower{z-index:3!important}
+@media(prefers-reduced-motion:reduce){.v50-toast{animation:none!important}}
+</style>
+
+<script id="v50-mobile-runtime">
+(()=>{
+ const BUILD='V50 • MOBILE UX FINAL';
+ const q=s=>document.querySelector(s);
+ const qa=s=>[...document.querySelectorAll(s)];
+ function build(){
+   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+   document.title='Habit Monster World V50 Mobile UX Final';
+   document.documentElement.dataset.hmwBuild='50-mobile-ux-final';
+ }
+ function toast(t){
+   if(document.body.classList.contains('v49-lowfx')) return;
+   const x=document.createElement('div');x.className='v50-toast';x.textContent=t;
+   document.body.appendChild(x);setTimeout(()=>x.remove(),800);
+ }
+ function daily(){
+   const arena=q('.arena'); if(!arena || q('.v50-daily'))return;
+   let done=0,total=5;
+   try{
+     const today=new Date().toISOString().slice(0,10);
+     const raw=JSON.parse(localStorage.getItem('hmw_daily')||'{}');
+     if(raw.date===today) done=Math.min(total,Number(raw.count)||0);
+   }catch(e){}
+   const d=document.createElement('div');d.className='v50-daily';
+   d.innerHTML=`<div class="v50-daily-head"><span>🎯 เป้าหมายวันนี้</span><span>${done}/${total}</span></div><div class="v50-daily-track"><i style="width:${done/total*100}%"></i></div>`;
+   const talk=q('#monsterTalk'); (talk?.parentNode||arena).insertBefore(d,talk?.nextSibling||arena.firstChild);
+ }
+ function worldBars(){
+   qa('#worldMap .zone').forEach((z,i)=>{
+     try{
+       const k=order[i], m=S.monsters[k], goal=maxGoal(k), pct=Math.max(0,Math.min(100,(m.progress||0)/goal*100));
+       let bar=z.querySelector('.v50-zonebar');
+       if(!bar){bar=document.createElement('div');bar.className='v50-zonebar';bar.innerHTML='<i></i>';const chip=z.querySelector('.v49-formchip');chip?chip.after(bar):z.appendChild(bar)}
+       bar.firstElementChild.style.width=pct+'%';
+     }catch(e){}
+   });
+ }
+ function arenaLabels(){
+   const hp=q('#hpText');
+   if(hp){
+     const box=hp.closest('.stat')||hp.parentElement;
+     const s=box?.querySelector('span');
+     if(s){s.textContent='พลังด่าน';s.classList.add('v50-substat')}
+   }
+   const p=q('#progressText');
+   if(p){
+     const box=p.closest('.stat')||p.parentElement;
+     const s=box?.querySelector('span');
+     if(s){s.textContent='ความคืบหน้านิสัย';}
+   }
+   try{
+     const k=S.currentMonster||S.selectedMonster||order[0],m=S.monsters[k],remain=Math.max(0,maxGoal(k)-(m.progress||0));
+     const a=q('.arena'); if(a)a.classList.toggle('v50-near-level',remain>0 && remain<=Math.max(5,maxGoal(k)*.15));
+   }catch(e){}
+ }
+ function removeDuplicateBolt(){
+   const arena=q('.arena');if(!arena)return;
+   const bolts=qa('.arena .vs').filter(x=>x.textContent.includes('⚡'));
+   bolts.slice(1).forEach(x=>x.style.display='none');
+ }
+ function petPlacement(){
+   const p=q('#petFollower');const arena=q('.arena');if(!p||!arena)return;
+   p.style.position='relative';p.style.left='auto';p.style.bottom='auto';
+   const battle=arena.querySelector('.battle');
+   if(battle && p.parentElement!==arena){arena.insertBefore(p,battle)}
+ }
+ function navAutoHide(){
+   const n=q('#v49QuickNav');if(!n||n.dataset.v50)return;n.dataset.v50='1';
+   let y=scrollY,t;
+   addEventListener('scroll',()=>{
+     const ny=scrollY;
+     if(ny>y+10)n.classList.add('v50-hide'); else if(ny<y-8)n.classList.remove('v50-hide');
+     y=ny;clearTimeout(t);t=setTimeout(()=>n.classList.remove('v50-hide'),650);
+   },{passive:true});
+ }
+ function refresh(){build();worldBars();daily();arenaLabels();removeDuplicateBolt();petPlacement();navAutoHide()}
+ const oldRW=window.renderWorld;
+ if(typeof oldRW==='function')window.renderWorld=function(){const r=oldRW.apply(this,arguments);worldBars();arenaLabels();return r};
+ const oldApply=window.apply;
+ if(typeof oldApply==='function')window.apply=function(k,p){
+   let before=0,stars=0,xp=0;
+   try{before=S.monsters[k].level||1;stars=S.stars||0;xp=S.petXP||0}catch(e){}
+   const r=oldApply.apply(this,arguments);
+   try{
+     const after=S.monsters[k].level||before;
+     toast(after>before?'🎉 LEVEL UP!':((S.stars||0)>stars?'⭐ +ดาว':((S.petXP||0)>xp?'🐾 +Pet XP':'✨ บันทึกแล้ว')));
+     const today=new Date().toISOString().slice(0,10),raw=JSON.parse(localStorage.getItem('hmw_daily')||'{}');
+     const next=raw.date===today?{date:today,count:Math.min(5,(Number(raw.count)||0)+1)}:{date:today,count:1};
+     localStorage.setItem('hmw_daily',JSON.stringify(next));
+     const d=q('.v50-daily');if(d){d.querySelector('.v50-daily-head span:last-child').textContent=next.count+'/5';d.querySelector('i').style.width=(next.count/5*100)+'%'}
+   }catch(e){}
+   setTimeout(refresh,0);return r;
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
+ addEventListener('load',refresh,{once:true});
 })();
 </script>
 
