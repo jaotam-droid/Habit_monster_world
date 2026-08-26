@@ -1209,17 +1209,6 @@ body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255
 @keyframes v44Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 </style>
 
-
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<script>
-window.addEventListener('DOMContentLoaded',()=>{
-  const b=document.querySelector('.buildBadge'); if(b) b.textContent='V46.1 TEST';
-  const s=document.getElementById('threeStatus'); if(s) s.textContent='🧪 CLEAN TEST • V46.1';
-  document.title='Habit Monster World V46.1 TEST';
-});
-</script>
 </head>
 <body>
 <div class="wrap">
@@ -1771,9 +1760,7 @@ setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);rende
 
 <script type="module">
 const THREE_SOURCES=[
- "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
- "https://unpkg.com/three@0.180.0/build/three.module.js",
- "https://esm.sh/three@0.180.0"
+ "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
 ];
 async function loadThree(){
  for(const url of THREE_SOURCES){
@@ -2321,11 +2308,11 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4400").then(r=>r.update()).catch(console.error))}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4620").then(r=>r.update()).catch(console.error))}</script>
 <script id="v42-runtime-polish">
 (()=>{
  document.documentElement.dataset.hmwBuild='43.1';
- const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V44';};
+ const mark=()=>{}; // V46.2 CLEAN: legacy badge writer disabled
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 })();
 </script>
@@ -2338,10 +2325,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
   const pct=(n,d)=>d?Math.max(0,Math.min(100,n/d*100)):0;
 
   function forceBuild(){
-    const b=document.querySelector(".buildBadge");
-    if(b)b.textContent="V44";
-    const s=q("threeStatus");
-    if(s)s.textContent="🚀 ARENA & MAP POLISH • V44";
+    // V46.2 CLEAN: legacy visual hooks stay, but version badge is owned by one runtime only.
   }
 
   // Wrap the existing world renderer, preserving all game state + save logic.
@@ -2460,46 +2444,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
   else setTimeout(boot,0);
 
   // Keep the visible badge correct even if old V42 runtime touches it.
-  setInterval(forceBuild,1500);
-})();
-</script>
-
-
-<script id="v44-runtime">
-(()=>{
- const $=(id)=>document.getElementById(id);
- const pc=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
- function mark(){
-   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V44';
-   const s=$('threeStatus'); if(s)s.textContent='🎮 ARENA & MAP POLISH • V44';
-   document.documentElement.dataset.hmwBuild='44';
- }
- function decorateWorld(){
-   try{
-     document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
-       const k=order[i]; if(!k)return;
-       const m=S.monsters[k], goal=maxGoal(k);
-       el.querySelectorAll('.zoneProgress,.evoBadge').forEach(x=>x.remove());
-       const badge=document.createElement('div');
-       badge.className='evoBadge'; badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
-       el.appendChild(badge);
-       const box=document.createElement('div'); box.className='zoneProgress';
-       box.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pc(m.progress,goal)}%"></div></div><div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
-       el.appendChild(box);
-     });
-   }catch(e){console.warn('V44 decorateWorld',e)}
- }
- const oldRender=typeof window.render==='function'?window.render:null;
- if(oldRender){
-   window.render=function(){const r=oldRender.apply(this,arguments); mark(); setTimeout(decorateWorld,0); return r;}
- }
- const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
- if(oldWorld){
-   window.renderWorld=function(){const r=oldWorld.apply(this,arguments); setTimeout(decorateWorld,0); return r;}
- }
- const boot=()=>{mark(); try{if(typeof render==='function')render();}catch(e){} setTimeout(decorateWorld,60)};
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
- setInterval(mark,2000);
+  /* V46.2 CLEAN: removed legacy 1500ms build polling */
 })();
 </script>
 
@@ -2859,7 +2804,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 
 <script id="v46-runtime">
 (()=>{
-  const BUILD='V46';
+  const BUILD='V46.2';
   const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
 
   const personality={
@@ -2876,9 +2821,9 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
     const b=document.querySelector('.buildBadge');
     if(b)b.textContent=BUILD;
     const s=document.getElementById('threeStatus');
-    if(s)s.textContent='🎮 MOBILE GAME EXPERIENCE • V46';
-    document.documentElement.dataset.hmwBuild='46';
-    document.title='Habit Monster World V46';
+    if(s)s.textContent='⚡ CLEAN PERFORMANCE • V46.2';
+    document.documentElement.dataset.hmwBuild='46.2';
+    document.title='Habit Monster World V46.2';
   }
 
   function enhanceWorld(){
@@ -2995,13 +2940,13 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
   }else{
     boot();
   }
-  setInterval(markBuild,2500);
+  /* V46.2 CLEAN: removed 2500ms build polling */
 })();
 </script>
 
 
 <style id="v46-1-hotfix-style">
-/* V46.1 screenshot hotfix */
+/* V46.2 clean mobile hotfix */
 .buildBadge:after{content:""!important;display:none!important}
 #threeStatus{white-space:normal}
 
@@ -3026,35 +2971,20 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </style>
 
-<script id="v46-1-hotfix-runtime">
+
+<script id="v462-clean-performance-runtime">
 (()=>{
-  const forceBuild=()=>{
+  const mark=()=>{
     const b=document.querySelector('.buildBadge');
-    if(b && b.textContent!=='V46.1') b.textContent='V46.1';
-
+    if(b)b.textContent='V46.2';
     const s=document.getElementById('threeStatus');
-    if(s && s.textContent!=='🎮 MOBILE GAME EXPERIENCE • V46.1'){
-      s.textContent='🎮 MOBILE GAME EXPERIENCE • V46.1';
-    }
-
-    document.title='Habit Monster World V46.1';
-    document.documentElement.dataset.hmwBuild='46.1';
+    if(s)s.textContent='⚡ CLEAN PERFORMANCE • V46.2';
+    document.title='Habit Monster World V46.2';
+    document.documentElement.dataset.hmwBuild='46.2';
   };
-
-  forceBuild();
-
-  // Legacy V44 code in the inherited source keeps rewriting the badge.
-  // MutationObserver wins immediately without touching game/save logic.
-  const obs=new MutationObserver(forceBuild);
-  obs.observe(document.documentElement,{
-    subtree:true,
-    childList:true,
-    characterData:true
-  });
-
-  window.addEventListener('load',forceBuild);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)forceBuild()});
-  setInterval(forceBuild,500);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mark,{once:true});
+  else mark();
+  window.addEventListener('pageshow',mark,{passive:true});
 })();
 </script>
 

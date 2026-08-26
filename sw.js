@@ -1,17 +1,11 @@
-const CACHE='hmw-v46-1-test-20260826-1';
-const ASSETS=['./','./index.html','./manifest.webmanifest'];
-self.addEventListener('install',event=>{
-  self.skipWaiting();
-  event.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
-});
-self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
-});
-self.addEventListener('fetch',event=>{
-  const req=event.request;
-  if(req.mode==='navigate'){
-    event.respondWith(fetch(req,{cache:'no-store'}).catch(()=>caches.match('./index.html')));
+const CACHE = "hmw-v462-clean-20260826";
+const CORE = ["./", "./index.html", "./manifest.webmanifest"];
+self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE))); });
+self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())); });
+self.addEventListener("fetch", e => {
+  if(e.request.mode === "navigate") {
+    e.respondWith(fetch(e.request).then(r=>{const copy=r.clone(); caches.open(CACHE).then(c=>c.put("./index.html",copy)); return r;}).catch(()=>caches.match("./index.html")));
     return;
   }
-  event.respondWith(fetch(req).catch(()=>caches.match(req)));
+  e.respondWith(caches.match(e.request).then(cached=>cached || fetch(e.request)));
 });
