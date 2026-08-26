@@ -1,9 +1,8 @@
 {
-  "name": "Habit Monster World V46.2",
+  "name": "Habit Monster World V46.1 Recovery",
   "short_name": "HabitMonster",
-  "start_url": "./?v=4620",
-  "scope": "./",
+  "start_url": "./?recovery=461",
   "display": "standalone",
-  "background_color": "#eaf8ff",
-  "theme_color": "#eaf8ff"
+  "background_color": "#ffffff",
+  "theme_color": "#76b9ef"
 }
