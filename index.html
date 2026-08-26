@@ -3169,15 +3169,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V61 • FREE STARS + RELIABLE STAGE SWITCH';
+  const BUILD='V62 • UNIFIED INPUT + SAVE ENGINE';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V61';
-    document.documentElement.dataset.hmwBuild='61-free-stars-reliable-switch';
+    document.title='Habit Monster World V62';
+    document.documentElement.dataset.hmwBuild='62-unified-input-save';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3466,62 +3466,121 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 })();
 </script>
 
-<style id="v61-stage-switch-fix">
-/* V61: map cards must always be the top interactive target on iOS Safari. */
-#worldMap{position:relative!important;z-index:20!important}
-#worldMap .zone[data-stage]{position:relative!important;z-index:21!important;pointer-events:auto!important;-webkit-tap-highlight-color:rgba(255,196,54,.22)}
+
+<style id="v62-unified-input-engine-style">
+/* V62 — one authoritative input path for map + save buttons on mobile Safari */
+#worldMap .zone[data-stage], #questBox button[data-v60-action]{
+  touch-action:manipulation!important;
+  pointer-events:auto!important;
+}
 #worldMap .zone[data-stage] *{pointer-events:none!important}
-/* Daily star cap removed: habits/progress/rewards are not capped. */
-#dailyCapSet{display:none!important}
-.setting:has(#dailyCapSet){display:none!important}
 </style>
-<script id="v61-authoritative-stage-switch">
+<script id="v62-unified-input-engine">
 (()=>{
- const BUILD='V61 • FREE STARS + RELIABLE STAGE SWITCH';
- const q=s=>document.querySelector(s);
- function mark61(){
-   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V61';
-   document.documentElement.dataset.hmwBuild='61-free-stars-reliable-switch';
-   if(S?.settings) S.settings.dailyCap=0;
- }
- function selectStage61(stage){
-   if(!order.includes(stage))return false;
-   S.active=stage;
-   save();
-   /* Always use the V60 canonical renderer, now with uncapped rewards. */
-   if(typeof renderWorld==='function')renderWorld();
-   if(typeof renderSummaries==='function')renderSummaries();
-   return true;
- }
- window.selectStage61=selectStage61;
- /* Capture phase wins over old/bubbled handlers and is reliable on iOS. */
- document.addEventListener('click',e=>{
-   const z=e.target.closest?.('#worldMap .zone[data-stage]');
-   if(!z)return;
-   e.preventDefault();e.stopImmediatePropagation();
-   selectStage61(z.dataset.stage);
- },true);
- document.addEventListener('pointerup',e=>{
-   if(e.pointerType!=='touch')return;
-   const z=e.target.closest?.('#worldMap .zone[data-stage]');
-   if(!z)return;
-   e.preventDefault();e.stopImmediatePropagation();
-   selectStage61(z.dataset.stage);
- },true);
- /* Remove the reward cap at the source, while retaining old data compatibility. */
- window.cappedStarsV61=(k,requested)=>({award:Number(requested)||0,capped:false,used:0,cap:0});
- /* Patch commitActivityV60 by temporarily forcing cap=0. */
- const oldCommit=window.commitActivityV60;
- if(typeof oldCommit==='function'){
-   window.commitActivityV60=function(k,p){
-     const old=S.settings.dailyCap;S.settings.dailyCap=0;
-     try{return oldCommit(k,p)}finally{S.settings.dailyCap=0;save()}
-   };
- }
- function boot(){mark61();save();if(typeof render==='function')render();mark61()}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
- addEventListener('pageshow',()=>{mark61();if(S?.settings)S.settings.dailyCap=0});
+  const BUILD='V62 • UNIFIED INPUT + SAVE ENGINE';
+  const q=s=>document.querySelector(s);
+
+  function mark62(){
+    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V62';
+    document.documentElement.dataset.hmwBuild='62-unified-input-save';
+    if(S && S.settings){
+      S.settings.dailyCap=0;
+      S.settings.cooldown=0;
+      S.settings.approval='trust';
+    }
+  }
+
+  function goStage(stage){
+    if(!order.includes(stage)) return false;
+    S.active=stage;
+    save();
+    /* Full render is intentional: it guarantees the form, arena and summaries
+       are all bound to the newly selected stage, rather than a stale stage. */
+    render();
+    mark62();
+    requestAnimationFrame(()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'}));
+    return true;
+  }
+
+  function submit62(action){
+    /* The V60 commit path already writes progress/totals/logs/summaries.
+       V62 forces all blocking settings off and routes every stage through it. */
+    if(S && S.settings){S.settings.dailyCap=0;S.settings.cooldown=0;S.settings.approval='trust';}
+
+    if(action==='diligent'){
+      const n=+q('#qCount')?.value;if(!(n>=1))return toast('ใส่จำนวนข้อ');
+      return window.commitActivityV60('diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`});
+    }
+    if(action==='reading'){
+      const n=+q('#qMinutes')?.value;if(!(n>=1))return toast('ใส่นาที');
+      return window.commitActivityV60('reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`});
+    }
+    if(action==='homework'){
+      const n=+q('#qHomework')?.value;if(!(n>=1))return toast('เลือกจำนวนงาน');
+      return window.commitActivityV60('homework',{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`});
+    }
+    if(action==='addMessy'){
+      const v=(q('#newMessy')?.value||'').trim();if(!v)return toast('พิมพ์ชื่องาน');
+      if(S.messyTasks.includes(v))return toast('มีงานนี้แล้ว');
+      S.messyTasks.push(v);save();render();mark62();return toast('เพิ่มงานแล้ว');
+    }
+    if(action==='messy'){
+      const cs=[...document.querySelectorAll('[data-messy]:checked')];
+      const names=cs.map(x=>S.messyTasks[+x.dataset.messy]);if(!names.length)return toast('ติ๊กอย่างน้อย 1 งาน');
+      const n=names.length;return window.commitActivityV60('messy',{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(' • ')}`});
+    }
+    if(action==='morning'){
+      const a=q('#qMorning')?.value;if(!a)return toast('ใส่เวลา');
+      if(a>S.settings.morning)return toast('วันนี้ยังไม่ทันเป้า');
+      return window.commitActivityV60('morning',{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`});
+    }
+    if(action==='noDawdle'){
+      const over=Math.max(0,+q('#qToilet')?.value||0),bm=+q('#qBathM')?.value||0,be=+q('#qBathE')?.value||0;
+      let pass=0,notes=[];
+      if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);
+      if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}
+      if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}
+      if(!pass)return toast('ยังไม่มีหัวข้อที่ผ่านเป้า');
+      return window.commitActivityV60('noDawdle',{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(' • ')}`});
+    }
+    if(action==='screen'){
+      const n=+q('#qScreen')?.value;if(!Number.isFinite(n)||n<0)return toast('ใส่เวลาจอ');
+      const lunch=q('#qLunch')?.checked,dinner=q('#qDinner')?.checked;let pass=0,notes=[];
+      if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);
+      if(lunch){pass++;notes.push('กลางวันไม่ดูจอ ✓')}
+      if(dinner){pass++;notes.push('เย็นไม่ดูจอ ✓')}
+      if(!pass)return toast('วันนี้ยังไม่ผ่านเป้า');
+      return window.commitActivityV60('screen',{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(' • ')}`});
+    }
+  }
+
+  /* ONE capture handler only. This fires before old bubble listeners and makes
+     stage switching + save buttons deterministic on iPhone Safari. */
+  document.addEventListener('click',e=>{
+    const zone=e.target.closest?.('#worldMap .zone[data-stage]');
+    if(zone){
+      e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+      goStage(zone.dataset.stage);return;
+    }
+    const btn=e.target.closest?.('#questBox button[data-v60-action]');
+    if(btn){
+      e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+      submit62(btn.dataset.v60Action);return;
+    }
+    const del=e.target.closest?.('#questBox [data-v60-delete-messy]');
+    if(del){
+      e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+      const i=+del.dataset.v60DeleteMessy;if(i>=3){S.messyTasks.splice(i,1);save();render();mark62();}
+    }
+  },true);
+
+  window.selectStage62=goStage;
+  window.submitActivity62=submit62;
+
+  function boot(){mark62();save();render();mark62();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  addEventListener('pageshow',()=>{mark62();if(S?.settings){S.settings.dailyCap=0;S.settings.cooldown=0;S.settings.approval='trust';}});
 })();
 </script>
 
