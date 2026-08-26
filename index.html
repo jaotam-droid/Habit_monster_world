@@ -2988,5 +2988,134 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 })();
 </script>
 
+
+<style id="v46-1-hotfix-style">
+/* V46.1 screenshot hotfix */
+.buildBadge:after{content:""!important;display:none!important}
+#threeStatus{white-space:normal}
+
+/* Pet should feel like part of the encounter, not a floating UI card */
+@media(max-width:600px){
+  #petFollower.petFollower{
+    top:auto!important;
+    right:auto!important;
+    left:10px!important;
+    bottom:154px!important;
+    width:48px!important;
+    height:48px!important;
+    z-index:12!important;
+  }
+  #petFollower.petFollower:after{
+    width:21px!important;
+    height:21px!important;
+    font-size:11px!important;
+    right:-2px!important;
+    top:-5px!important;
+  }
+}
+</style>
+
+<script id="v46-1-hotfix-runtime">
+(()=>{
+  const forceBuild=()=>{
+    const b=document.querySelector('.buildBadge');
+    if(b && b.textContent!=='V46.1') b.textContent='V46.1';
+
+    const s=document.getElementById('threeStatus');
+    if(s && s.textContent!=='🎮 MOBILE GAME EXPERIENCE • V46.1'){
+      s.textContent='🎮 MOBILE GAME EXPERIENCE • V46.1';
+    }
+
+    document.title='Habit Monster World V46.1';
+    document.documentElement.dataset.hmwBuild='46.1';
+  };
+
+  forceBuild();
+
+  // Legacy V44 code in the inherited source keeps rewriting the badge.
+  // MutationObserver wins immediately without touching game/save logic.
+  const obs=new MutationObserver(forceBuild);
+  obs.observe(document.documentElement,{
+    subtree:true,
+    childList:true,
+    characterData:true
+  });
+
+  window.addEventListener('load',forceBuild);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)forceBuild()});
+  setInterval(forceBuild,500);
+})();
+</script>
+
+
+<style id="v47-style">
+/* V47 — EVOLUTION & REACTION */
+.buildBadge:after{content:""!important;display:none!important}
+.v47-react #heroArt{animation:v47HeroCast .55s ease both!important}
+.v47-react #bossArt{animation:v47BossReact .62s ease .12s both!important}
+.v47-react #petFollower{animation:v47PetCheer .7s ease .18s both!important}
+.v47-react .bar{animation:v47BarGlow .8s ease .22s both!important}
+@keyframes v47HeroCast{0%{transform:translateX(0) scale(1)}45%{transform:translateX(12px) scale(1.05)}100%{transform:translateX(0) scale(1)}}
+@keyframes v47BossReact{0%,100%{transform:translateX(0) rotate(0)}35%{transform:translateX(7px) rotate(3deg) scale(.96)}60%{transform:translateX(-5px) rotate(-2deg)}}
+@keyframes v47PetCheer{0%,100%{transform:translateY(0)}35%{transform:translateY(-13px) scale(1.1)}65%{transform:translateY(-4px) rotate(5deg)}}
+@keyframes v47BarGlow{0%,100%{filter:none}45%{filter:drop-shadow(0 0 9px rgba(126,102,255,.7))}}
+.v47-evo-card{text-align:center}.v47-evo-card .form{font-size:14px;font-weight:900;letter-spacing:.08em;color:#6555d9}.v47-evo-card .art{max-width:210px;margin:6px auto}.v47-evo-card .art svg{width:100%;height:auto}.v47-evo-card .reward{margin-top:8px;padding:10px;border-radius:16px;background:#fff7cf;font-weight:850}
+.v47-progress-label{font-weight:850}
+@media(max-width:600px){.v47-evo-card .art{max-width:175px}}
+</style>
+<script id="v47-runtime">
+(()=>{
+ const BUILD='V47';
+ const praise={diligent:['เยี่ยม! พลังขยันเพิ่มแล้ว ✨','ไปต่ออีกนิด เจ้าขี้เกียจเริ่มหวั่นแล้ว!'],reading:['อ่านเพิ่มแล้ว! 📖✨','เก่งมาก นักอ่านกำลังแข็งแรงขึ้น!'],homework:['เคลียร์ไปอีกงานแล้ว! 📚','ดีมาก งานหายไปอีกกอง!'],messy:['สะอาดขึ้นแล้ว! 🧹✨','เยี่ยม ของกลับเข้าที่แล้ว!'],morning:['เช้านี้คล่องขึ้น! ☀️','พร้อมไวขึ้นอีกวัน!'],noDawdle:['เร็วขึ้นแบบพอดี! ⏰','จัดเวลาได้ดีมาก!'],screen:['วางจอได้แล้ว! 👀✨','เก่งมาก มีเวลาให้โลกจริงเพิ่มขึ้น!']};
+ function mark(){
+   const b=document.querySelector('.buildBadge');if(b)b.textContent=BUILD;
+   const st=document.getElementById('threeStatus');if(st)st.textContent='✨ EVOLUTION & REACTION • V47';
+   document.title='Habit Monster World V47';document.documentElement.dataset.hmwBuild='47';
+ }
+ function syncProgress(){
+   try{
+    const k=S.active,m=S.monsters[k],goal=maxGoal(k),pc=Math.max(0,Math.min(100,m.progress/goal*100));
+    const row=document.getElementById('hpText')?.parentElement;
+    if(row){const first=row.querySelector('span:first-child');if(first){first.textContent='⚡ พลังนิสัย';first.classList.add('v47-progress-label')}}
+    const hp=document.getElementById('hpText');if(hp)hp.textContent=`${m.progress}/${goal}`;
+    const bar=document.getElementById('hpBar');if(bar)bar.style.width=pc+'%';
+    const pt=document.getElementById('progressText');if(pt)pt.textContent=m.progress;
+    const pu=document.getElementById('progressUnit');if(pu)pu.textContent=defs[k].unit+'สะสม';
+   }catch(e){console.warn('V47 progress sync',e)}
+ }
+ function react(k){
+   const arena=document.querySelector('.arena');if(!arena)return;
+   arena.classList.remove('v47-react');void arena.offsetWidth;arena.classList.add('v47-react');
+   const t=document.getElementById('monsterTalk');if(t&&praise[k])t.textContent=praise[k][Math.floor(Math.random()*praise[k].length)];
+   setTimeout(()=>arena.classList.remove('v47-react'),950);
+ }
+ function evolution(k,newLevel){
+   const hero=newLevel>=5, form=Math.min(5,newLevel);
+   const art=monsterSVG(k,form-1);
+   modal(hero?'👑':'🌈',hero?'HERO FORM ปลดล็อก!':`EVOLUTION — FORM ${form}`,
+    `<div class="v47-evo-card"><div class="form">${defs[k].title} • FORM ${form}/5</div><div class="art">${art}</div><b>${hero?'สุดยอด! เข้าสู่ HERO FORM แล้ว':'มอนสเตอร์วิวัฒนาการเป็นร่างใหม่แล้ว!'}</b><div class="reward">⭐ โบนัสผ่านร่าง +25 ดาว</div></div>`);
+   celebrate(hero?'👑 HERO FORM!':'🌈 EVOLUTION!');
+ }
+ const oldApply=window.apply;
+ if(typeof oldApply==='function'){
+   window.apply=function(k,p){
+     const before=S.monsters[k].level;
+     const r=oldApply.apply(this,arguments);
+     const after=S.monsters[k].level;
+     setTimeout(()=>{syncProgress();react(k);if(after>before)evolution(k,after)},80);
+     return r;
+   };
+ }
+ const oldRenderWorld=window.renderWorld;
+ if(typeof oldRenderWorld==='function'){
+   window.renderWorld=function(){const r=oldRenderWorld.apply(this,arguments);setTimeout(syncProgress,0);return r};
+ }
+ function boot(){mark();syncProgress()}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ const obs=new MutationObserver(()=>{mark();syncProgress()});obs.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+ window.addEventListener('load',boot);document.addEventListener('visibilitychange',()=>{if(!document.hidden)boot()});setInterval(mark,1200);
+})();
+</script>
+
 </body>
 </html>
