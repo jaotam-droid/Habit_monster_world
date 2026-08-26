@@ -3654,12 +3654,12 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v56-runtime">
 (()=>{
- const BUILD='V56 • MOBILE VISUAL BALANCE';
+ const BUILD='V57 • INTERACTION + PROGRESS FIX';
  function q(s){return document.querySelector(s)}
  function qa(s){return [...document.querySelectorAll(s)]}
  function fix(){
    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V56';
+   document.title='Habit Monster World V57';
    document.documentElement.dataset.uiVersion='56';
    document.documentElement.dataset.hmwBuild='56-mobile-visual-balance';
    /* old file accidentally contained the nav set twice: keep only the first set */
@@ -3672,6 +3672,209 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix,{once:true});else fix();
  addEventListener('load',fix,{once:true});
+})();
+</script>
+
+
+<style id="v57-interaction-progress-fix">
+/* V57 — interaction reliability + progress clarity */
+@media(max-width:600px){
+  #worldMap .zone{touch-action:manipulation!important;cursor:pointer!important}
+  #worldMap .zone.v57-tap{transform:scale(.985)!important}
+  .arena .stats{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .arena .stat{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:center!important;
+    min-height:74px!important;
+  }
+  .arena .stat:last-child:nth-child(odd){
+    grid-column:auto!important;
+    max-width:none!important;
+    width:auto!important;
+  }
+}
+/* Old polish layers created duplicate status readouts. V57 uses the canonical arena UI only. */
+.v51-status-row,.v52-compact-status{display:none!important}
+.v57-stage-hint{
+  margin:6px 0 8px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  color:#64778b;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
+}
+#worldMap .zone[data-v57-stage]{position:relative}
+#worldMap .zone[data-v57-stage]:focus-visible{outline:3px solid #5fa8ef;outline-offset:2px}
+.v57-switch-flash{animation:v57Switch .28s ease-out}
+@keyframes v57Switch{0%{opacity:.68;transform:scale(.985)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.v57-switch-flash{animation:none}}
+</style>
+
+<script id="v57-runtime">
+(()=>{
+  const BUILD='V57 • INTERACTION + PROGRESS FIX';
+  const $q=s=>document.querySelector(s);
+  const $qa=s=>[...document.querySelectorAll(s)];
+
+  function markBuild(){
+    const b=$q('.buildBadge');
+    if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V57';
+    document.documentElement.dataset.uiVersion='57';
+    document.documentElement.dataset.hmwBuild='57-interaction-progress-fix';
+  }
+
+  function activeKey(){
+    return (typeof S!=='undefined' && S.active && order.includes(S.active)) ? S.active : order[0];
+  }
+
+  function cleanProgressCopy(){
+    try{
+      const k=activeKey(), m=S.monsters[k], goal=maxGoal(k);
+      const hpLabel=$q('#hpText')?.closest('.arena')?.querySelector('.row span:first-child');
+      if(hpLabel) hpLabel.textContent='⚡ พลังด่าน';
+      const unit=$q('#progressUnit');
+      if(unit) unit.textContent='ความคืบหน้านิสัย';
+      const next=$q('#nextLevelHint');
+      if(next){
+        next.textContent=m.level>=5
+          ? '👑 HERO — สะสม Mastery ต่อได้'
+          : `เหลือ ${Math.max(0,goal-(m.progress||0))} ${defs[k].unit} ถึง Lv.${m.level+1}`;
+      }
+      $qa('.arena *').forEach(el=>{
+        if(el.children.length===0 && el.textContent){
+          el.textContent=el.textContent
+            .replace(/พลังนิสัยสะสม/g,'พลังด่าน')
+            .replace(/อีกเท่าไรอีกเท่าไรถึง Level ถัดไป/g,'ถึง Level ถัดไป')
+            .replace(/อีกเท่าไรถึง Level ถัดไป/g,'ถึง Level ถัดไป');
+        }
+      });
+    }catch(e){}
+  }
+
+  function translateSummary(){
+    $qa('*').forEach(el=>{
+      if(el.children.length===0 && el.textContent){
+        el.textContent=el.textContent.replace(/(\d+)\s*active days/gi,'ทำกิจกรรม $1/7 วัน');
+      }
+    });
+  }
+
+  function decorateWorldCards(){
+    const world=$q('#worldMap');
+    if(!world || typeof order==='undefined')return;
+    const zones=[...world.querySelectorAll('.zone')];
+    zones.forEach((z,i)=>{
+      const k=order[i];
+      if(!k)return;
+      z.dataset.v57Stage=k;
+      z.setAttribute('role','button');
+      z.setAttribute('tabindex','0');
+      z.setAttribute('aria-label',`เลือก ${defs[k].title}`);
+      /* Remove inherited inline handler so a single reliable V57 path owns stage switching. */
+      z.removeAttribute('onclick');
+    });
+  }
+
+  let switching=false;
+  function selectStage(k, opts={}){
+    if(switching || !order.includes(k))return;
+    switching=true;
+    try{
+      S.active=k;
+      save();
+      /* Full render is deliberate: quest inputs, arena, map highlight and summaries stay in sync. */
+      render();
+      requestAnimationFrame(()=>{
+        decorateWorldCards();
+        cleanProgressCopy();
+        translateSummary();
+        const zone=$q(`#worldMap .zone[data-v57-stage="${k}"]`);
+        if(zone){
+          zone.classList.add('v57-switch-flash');
+          setTimeout(()=>zone.classList.remove('v57-switch-flash'),320);
+        }
+        if(opts.scroll){
+          const arena=$q('.arena');
+          if(arena)arena.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        switching=false;
+      });
+    }catch(err){
+      switching=false;
+      console.error('V57 stage switch failed',err);
+      try{toast('ลองเลือกด่านอีกครั้ง')}catch(e){}
+    }
+  }
+  window.selectStageV57=selectStage;
+
+  function installWorldDelegation(){
+    const world=$q('#worldMap');
+    if(!world || world.dataset.v57Bound)return;
+    world.dataset.v57Bound='1';
+    world.addEventListener('click',e=>{
+      const z=e.target.closest('.zone[data-v57-stage]');
+      if(!z || !world.contains(z))return;
+      e.preventDefault();
+      e.stopPropagation();
+      selectStage(z.dataset.v57Stage,{scroll:true});
+    });
+    world.addEventListener('keydown',e=>{
+      if(e.key!=='Enter' && e.key!==' ')return;
+      const z=e.target.closest('.zone[data-v57-stage]');
+      if(!z)return;
+      e.preventDefault();
+      selectStage(z.dataset.v57Stage,{scroll:true});
+    });
+  }
+
+  function removeDuplicateStatus(){
+    $qa('.v51-status-row,.v52-compact-status').forEach(x=>x.remove());
+  }
+
+  function afterRender(){
+    markBuild();
+    removeDuplicateStatus();
+    decorateWorldCards();
+    installWorldDelegation();
+    cleanProgressCopy();
+    translateSummary();
+  }
+
+  /* Wrap renderWorld once more, but do not alter progression/save logic. */
+  const prevWorld=window.renderWorld;
+  if(typeof prevWorld==='function'){
+    window.renderWorld=function(){
+      const r=prevWorld.apply(this,arguments);
+      removeDuplicateStatus();
+      decorateWorldCards();
+      cleanProgressCopy();
+      return r;
+    };
+  }
+
+  /* After an activity is saved, explicitly release switching state and rebind fresh map nodes. */
+  const prevApply=window.apply;
+  if(typeof prevApply==='function'){
+    window.apply=function(k,p){
+      const r=prevApply.apply(this,arguments);
+      switching=false;
+      setTimeout(afterRender,0);
+      return r;
+    };
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',afterRender,{once:true});
+  else afterRender();
+  addEventListener('load',afterRender,{once:true});
 })();
 </script>
 
