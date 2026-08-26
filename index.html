@@ -3618,5 +3618,62 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 })();
 </script>
 
+
+
+<style id="v56-mobile-visual-balance">
+/* V56 — visual balance pass from real iPhone screenshots */
+@media (max-width:600px){
+  /* Avatar preview: show the whole character, not a face crop */
+  .avatarStage{height:300px!important;min-height:300px!important;max-height:300px!important;border-radius:28px!important}
+  .avatarStage .original-art,.avatarStage .avatar-generated,.avatarStage .cinematic-slot{height:100%!important;width:100%!important;display:grid!important;place-items:end center!important}
+  .avatarStage img{width:76%!important;height:88%!important;max-width:76%!important;max-height:88%!important;object-fit:contain!important;object-position:center bottom!important;transform:none!important}
+  .avatarChoices{gap:7px!important}.avatarChoice{padding:5px!important;min-height:108px!important}.avatarChoice img{max-height:78px!important}
+  .gearRow{gap:7px!important;margin-top:8px!important}
+
+  /* World cards: equal geometry and a real final progress card */
+  .world{gap:10px!important;padding:12px 10px 14px!important}
+  .zone,.v53-world-progress{min-height:214px!important;height:214px!important;border-radius:22px!important}
+  .zone{padding:7px 5px 8px!important}
+  .zoneArt{width:116px!important;height:116px!important;min-height:116px!important}
+  .v53-world-progress{box-sizing:border-box!important;align-self:stretch!important;padding:12px 8px!important;background:linear-gradient(145deg,rgba(255,250,218,.96),rgba(238,248,255,.96))!important;border:2px solid rgba(255,255,255,.9)!important;box-shadow:0 8px 18px rgba(52,92,120,.08),inset 0 1px 0 #fff!important}
+  .v53-world-progress .ico{font-size:34px!important;margin-bottom:3px!important}.v53-world-progress b{font-size:17px!important}.v53-world-progress small{font-size:11px!important}
+
+  /* Arena: companion belongs to hero, never over the form */
+  .battle>div:first-child{position:relative!important}
+  #petFollower.petFollower{position:absolute!important;left:4px!important;right:auto!important;bottom:32px!important;width:42px!important;height:42px!important;margin:0!important;z-index:6!important;pointer-events:none!important}
+  .quest{position:relative!important;z-index:10!important}
+
+  /* summaries and intro consume less vertical space */
+  .worldIntro{padding-top:12px!important;padding-bottom:12px!important}.worldIntro .story,.characterQualityNote{padding:10px!important;margin-top:7px!important}
+  .summaryBox{min-height:76px!important}
+
+  /* edge dock should almost disappear until opened */
+  #v51Dock{right:-25px!important;opacity:.42!important}
+  #v51Dock.open{right:4px!important;opacity:1!important}
+}
+</style>
+<script id="v56-runtime">
+(()=>{
+ const BUILD='V56 • MOBILE VISUAL BALANCE';
+ function q(s){return document.querySelector(s)}
+ function qa(s){return [...document.querySelectorAll(s)]}
+ function fix(){
+   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+   document.title='Habit Monster World V56';
+   document.documentElement.dataset.uiVersion='56';
+   document.documentElement.dataset.hmwBuild='56-mobile-visual-balance';
+   /* old file accidentally contained the nav set twice: keep only the first set */
+   const nav=q('.nav');
+   if(nav){const btn=[...nav.querySelectorAll('button[data-screen]')]; const seen=new Set(); btn.forEach(x=>{const k=x.dataset.screen;if(seen.has(k))x.remove();else seen.add(k)});}
+   /* anchor companion to hero column so it can never drift down over inputs */
+   const pet=q('#petFollower'), hero=q('.battle>div:first-child'); if(pet&&hero&&pet.parentElement!==hero)hero.appendChild(pet);
+   /* concise setup note */
+   const note=q('.characterQualityNote'); if(note)note.textContent='ตัวละครและ Monster ใช้ภาพชุดเดียวกัน เพื่อให้ทั้งเกมดูต่อเนื่อง';
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix,{once:true});else fix();
+ addEventListener('load',fix,{once:true});
+})();
+</script>
+
 </body>
 </html>
