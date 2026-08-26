@@ -3145,40 +3145,49 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 #v51Dock,#v49QuickNav{display:none!important}
 </style>
 
-<script id="v58-authoritative-runtime">
-(()=>{
-  const BUILD='V58 • STABLE SWITCH + ARENA CLEANUP';
-  const DAILY_KEY='hmw_v58_daily_goal';
-  const BONUS_KEY='hmw_v58_daily_bonus';
 
+
+
+<style id="v59-save-reliability">
+/* V59 — stable save pipeline for every stage */
+#questBox button[data-v59-action]{
+  touch-action:manipulation!important;
+  cursor:pointer!important;
+}
+#questBox button[data-v59-action]:active{transform:scale(.992)!important}
+.v59-save-note{
+  margin-top:7px;
+  color:#65788c;
+  font-size:11px;
+  font-weight:850;
+  text-align:center;
+}
+</style>
+
+<script id="v59-authoritative-runtime">
+(()=>{
+  const BUILD='V59 • STABLE SAVE ALL STAGES';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
-
-  function today(){ return dayKey(); }
-  function dailyState(){
-    try{
-      const x=JSON.parse(localStorage.getItem(DAILY_KEY)||'null');
-      if(x && x.date===today()) return x;
-    }catch(e){}
-    return {date:today(),count:0};
-  }
-  function saveDaily(x){ localStorage.setItem(DAILY_KEY,JSON.stringify(x)); }
+  const BONUS_KEY='hmw_v59_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V58';
-    document.documentElement.dataset.hmwBuild='58-stable-switch';
+    document.title='Habit Monster World V59';
+    document.documentElement.dataset.hmwBuild='59-stable-save';
   }
 
-  function worldProgress(){
-    let formSum=0, levelPass=0;
-    order.forEach(k=>{
-      const lv=Math.max(1,S.monsters[k]?.level||1);
-      formSum += Math.min(5,lv);
-      levelPass += Math.max(0,lv-1);
-    });
-    const pct=Math.round(formSum/(order.length*5)*100);
-    return {pct,levelPass};
+  function approvedTodayCount(){
+    const d=dayKey();
+    return Math.min(5, S.logs.filter(x=>x.date===d).length);
+  }
+
+  function pendingTodayCount(){
+    const d=dayKey();
+    return S.pending.filter(x=>{
+      // Older pending rows do not have date; still expose them as pending.
+      return !x.date || x.date===d;
+    }).length;
   }
 
   function renderDailyGoal(){
@@ -3189,18 +3198,50 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
       box.id='v58DailyGoal';
       box.className='v58-goal';
       const talk=q('#monsterTalk');
-      if(talk) talk.after(box); else arena.prepend(box);
+      if(talk)talk.after(box); else arena.prepend(box);
     }
-    const d=dailyState(), n=Math.min(5,d.count||0);
-    const rewarded=localStorage.getItem(BONUS_KEY)===today();
+    const n=approvedTodayCount();
+    const pending=pendingTodayCount();
+    const rewarded=localStorage.getItem(BONUS_KEY)===dayKey();
     box.classList.toggle('done',n>=5);
     box.innerHTML=`
       <div class="v58-goal-head"><span>🎯 เป้าหมายวันนี้</span><span>${n}/5</span></div>
       <div class="v58-goal-track"><i style="width:${n*20}%"></i></div>
-      <small>${n>=5?(rewarded?'✅ รับโบนัส ⭐ +10 แล้ว':'🎁 ครบแล้ว!'):'ทำครบ 5 ครั้ง → รับ ⭐ +10'}</small>`;
+      <small>${n>=5?(rewarded?'✅ รับโบนัส ⭐ +10 แล้ว':'🎁 ครบแล้ว!'):'ทำครบ 5 ครั้ง → รับ ⭐ +10'}${pending?` • รออนุมัติ ${pending}`:''}</small>`;
   }
 
-  function renderWorldV58(){
+  function maybeDailyBonus(){
+    const n=approvedTodayCount();
+    if(n>=5 && localStorage.getItem(BONUS_KEY)!==dayKey()){
+      S.stars=(S.stars||0)+10;
+      localStorage.setItem(BONUS_KEY,dayKey());
+      save();
+      return true;
+    }
+    return false;
+  }
+
+  function worldProgress(){
+    let formSum=0, levelPass=0;
+    order.forEach(k=>{
+      const lv=Math.max(1,S.monsters[k]?.level||1);
+      formSum += Math.min(5,lv);
+      levelPass += Math.max(0,lv-1);
+    });
+    return {pct:Math.round(formSum/(order.length*5)*100),levelPass};
+  }
+
+  function questHTML59(k){
+    if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" data-v59-action="diligent">บันทึก</button>`;
+    if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="20"><button class="bigBtn yellow" data-v59-action="reading">บันทึก</button><div class="v59-save-note">เวลาที่บันทึกจะเพิ่มใน 📖 Daily/Weekly Summary</div>`;
+    if(k==="homework")return `<div class="questTitle">📚 เคลียร์การบ้านกี่งาน?</div><select id="qHomework" class="wideInput">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option>${n}</option>`).join("")}</select><button class="bigBtn blue" data-v59-action="homework">บันทึก</button>`;
+    if(k==="messy")return `<div class="questTitle">🧹 วันนี้เก็บอะไรแล้ว?</div><div class="checkList">${S.messyTasks.map((x,i)=>`<div class="checkRow"><input type="checkbox" data-messy="${i}"><span style="flex:1">${x}</span>${i>=3?`<button class="deleteBtn" data-v59-delete-messy="${i}">🗑️ ลบ</button>`:""}</div>`).join("")}</div><div class="inlineAdd"><input id="newMessy" class="wideInput" placeholder="เพิ่มงานเอง"><button class="smallBtn" data-v59-action="addMessy">+ เพิ่ม</button></div><button class="bigBtn purple" data-v59-action="messy">บันทึก</button>`;
+    if(k==="morning")return `<div class="questTitle">🌅 พร้อมตอนเช้า</div><div class="inputRow"><label>เป้า<input value="${S.settings.morning}" disabled></label><label>พร้อมจริง<input id="qMorning" type="time"></label></div><button class="bigBtn orange" data-v59-action="morning">เช็ก</button>`;
+    if(k==="noDawdle")return `<div class="questTitle">⏱️ ด่านไม่ลีลา</div><div class="triple"><div class="mini"><b>🚻 ห้องน้ำ</b><div class="note">เกิน ${S.settings.toilet} นาที กี่ครั้ง?</div><input id="qToilet" type="number" min="0" value="0"></div><div class="mini"><b>🚿 อาบน้ำเช้า</b><div class="note">เป้า ≤ ${S.settings.bathMorning} นาที</div><input id="qBathM" type="number" min="0"></div><div class="mini"><b>🌙 อาบน้ำเย็น</b><div class="note">เป้า ≤ ${S.settings.bathEvening} นาที</div><input id="qBathE" type="number" min="0"></div></div><button class="bigBtn pink" data-v59-action="noDawdle">บันทึก</button>`;
+    return `<div class="questTitle">📵 ด่านไม่ติดจอ</div><label>วันนี้ใช้จอ (ชม.)<input id="qScreen" class="wideInput" type="number" min="0" step=".25"></label><div class="checkList"><label class="checkRow"><input id="qLunch" type="checkbox">🍚 กลางวันไม่ดูจอ</label><label class="checkRow"><input id="qDinner" type="checkbox">🍽️ เย็นไม่ดูจอ</label></div><button class="bigBtn blue" data-v59-action="screen">บันทึก</button>`;
+  }
+
+  function renderWorld59(){
     const k=order.includes(S.active)?S.active:order[0];
     S.active=k;
     const m=S.monsters[k], st=stage(k), goal=maxGoal(k);
@@ -3211,7 +3252,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
         const mm=S.monsters[x], lv=mm.level||1, g=maxGoal(x);
         const pct=Math.max(0,Math.min(100,(mm.progress||0)/g*100));
         const rem=Math.max(0,g-(mm.progress||0));
-        return `<div class="zone ${x===k?'active':''}" data-stage="${x}" role="button" tabindex="0" aria-label="เลือก ${defs[x].title}">
+        return `<div class="zone ${x===k?'active':''}" data-stage="${x}" role="button" tabindex="0">
           <div class="zoneArt">${monsterSVG(x)}</div>
           <b>${defs[x].title}</b><br>
           <small>Lv.${lv}${lv>=5?' • HERO':''}</small>
@@ -3235,92 +3276,187 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
     q('#monsterTitle').textContent=defs[k].title;
     q('#monsterLevel').textContent=`Lv.${m.level}${m.level>=5?' • HERO FORM':''}`;
     q('#monsterTalk').textContent=defs[k].talk[st];
-
-    const energyRow=q('#hpText')?.closest('.row');
-    if(energyRow){
-      energyRow.classList.add('v58-energy-row');
-      const label=energyRow.querySelector('span:first-child');
-      if(label)label.textContent='⚡ พลังมอนสเตอร์';
-    }
     q('#hpText').textContent=`${m.hp}/${maxHp(k)}`;
     q('#hpBar').style.width=Math.max(0,Math.min(100,m.hp/maxHp(k)*100))+'%';
-
-    const rem=Math.max(0,goal-(m.progress||0));
-    q('#nextLevelHint').textContent=m.level>=5
-      ? '👑 HERO FORM — สะสม Mastery ต่อได้'
-      : `อีก ${rem} ${defs[k].unit} ถึง Lv.${m.level+1}`;
-
     q('#progressText').textContent=`${m.progress||0}/${goal}`;
     q('#progressUnit').textContent=`${defs[k].unit}สะสม`;
     q('#monsterWins').textContent=m.wins||0;
     q('#pendingCount').textContent=S.pending.filter(x=>x.k===k).length;
     q('#petMiniText').textContent=S.pet.xp||0;
-    q('#questBox').innerHTML=questHTML(k);
+    q('#nextLevelHint').textContent=m.level>=5?'👑 HERO FORM — สะสม Mastery ต่อได้':`อีก ${Math.max(0,goal-(m.progress||0))} ${defs[k].unit} ถึง Lv.${m.level+1}`;
+    q('#questBox').innerHTML=questHTML59(k);
     renderPetFollower();
     renderDailyGoal();
-
-    // Remove stale runtime-created duplicate nodes if cached DOM survived a soft navigation.
     qa('.v49-metric-label,.v51-status-row,.v52-compact-status').forEach(x=>x.remove());
   }
+  window.renderWorld=renderWorld59;
 
-  // Replace all earlier wrappers with this single canonical renderer.
-  window.renderWorld=renderWorldV58;
+  function commit(k,p){
+    const err=antiSpam(k,p.stars);
+    if(err){ toast(err); return false; }
 
-  function switchStage(k){
-    if(!order.includes(k))return;
-    S.active=k;
+    if(S.settings.approval==="parent"){
+      S.pending.push({id:Date.now(),date:dayKey(),k,p});
+      save();
+      render();
+      toast(`ส่ง ${defs[k].title} ให้ผู้ปกครองอนุมัติแล้ว`);
+      return true;
+    }
+
+    snapshot(p.label);
+    registerDay();
+    ensureDaily();
+    const m=S.monsters[k], d=dayKey();
+    m.lastSubmit=Date.now();
+    m.dailyStars[d]=(m.dailyStars[d]||0)+p.stars;
+    m.progress=(m.progress||0)+p.amount;
+    m.hp=Math.max(0,m.hp-p.power);
+    m.history.unshift(p.label);
+    S.stars=(S.stars||0)+p.stars;
+    S.totals[k]=(S.totals[k]||0)+p.amount;
+    S.logs.push({date:d,k,label:p.label,amount:p.amount,stars:p.stars});
+    S.pet.xp=(S.pet.xp||0)+5;
+    S.pet.friendship=Math.min(100,(S.pet.friendship||0)+1);
+    if(["diligent","reading","homework"].includes(k))S.daily.done[k]=true;
+
+    let levelup=false;
+    if(m.progress>=maxGoal(k)||m.hp<=0){
+      m.wins=(m.wins||0)+1;
+      m.level=(m.level||1)+1;
+      m.progress=0;
+      m.hp=maxHp(k);
+      S.stars+=25;
+      levelup=true;
+    }
+
+    checkPetBonus();
     save();
-    renderWorldV58(); // crucial: do not call full render() just to switch stages
-    const a=q('.arena');
-    if(a)a.scrollIntoView({behavior:'smooth',block:'start'});
-  }
-  window.switchStageV58=switchStage;
+    render();
 
-  function installStageDelegation(){
-    const map=q('#worldMap'); if(!map || map.dataset.v58Bound)return;
-    map.dataset.v58Bound='1';
-    map.addEventListener('click',e=>{
-      const z=e.target.closest('.zone[data-stage]');
-      if(!z || !map.contains(z))return;
+    const bonus=maybeDailyBonus();
+    if(bonus){ save(); render(); }
+
+    toast(levelup
+      ? `🌈 ${defs[k].name} ไป Lv.${m.level}`
+      : `✅ บันทึก ${p.label.replace(/^[^ ]+\s*/,'')} แล้ว`);
+    return true;
+  }
+  window.commitActivityV59=commit;
+
+  function submitAction(action){
+    if(action==="diligent"){
+      const n=+q('#qCount')?.value;
+      if(!(n>=1))return toast('ใส่จำนวนข้อ');
+      return commit('diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`});
+    }
+    if(action==="reading"){
+      const n=+q('#qMinutes')?.value;
+      if(!(n>=1))return toast('ใส่นาที');
+      return commit('reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`});
+    }
+    if(action==="homework"){
+      const n=+q('#qHomework')?.value;
+      if(!(n>=1))return toast('เลือกจำนวนงาน');
+      return commit('homework',{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`});
+    }
+    if(action==="addMessy"){
+      const v=(q('#newMessy')?.value||'').trim();
+      if(!v)return toast('พิมพ์ชื่องาน');
+      if(S.messyTasks.includes(v))return toast('มีงานนี้แล้ว');
+      S.messyTasks.push(v);save();renderWorld59();return toast('เพิ่มงานแล้ว');
+    }
+    if(action==="messy"){
+      const cs=[...document.querySelectorAll('[data-messy]:checked')];
+      const names=cs.map(x=>S.messyTasks[+x.dataset.messy]);
+      if(!names.length)return toast('ติ๊กอย่างน้อย 1 งาน');
+      const n=names.length;
+      return commit('messy',{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(' • ')}`});
+    }
+    if(action==="morning"){
+      const a=q('#qMorning')?.value;
+      if(!a)return toast('ใส่เวลา');
+      if(a>S.settings.morning)return toast('วันนี้ยังไม่ทันเป้า');
+      return commit('morning',{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`});
+    }
+    if(action==="noDawdle"){
+      const over=Math.max(0,+q('#qToilet')?.value||0),bm=+q('#qBathM')?.value||0,be=+q('#qBathE')?.value||0;
+      let pass=0,notes=[];
+      if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);
+      if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}
+      if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}
+      if(!pass)return toast('ยังไม่มีหัวข้อที่ผ่านเป้า');
+      return commit('noDawdle',{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(' • ')}`});
+    }
+    if(action==="screen"){
+      const n=+q('#qScreen')?.value;
+      if(!Number.isFinite(n)||n<0)return toast('ใส่เวลาจอ');
+      const lunch=q('#qLunch')?.checked,dinner=q('#qDinner')?.checked;
+      let pass=0,notes=[];
+      if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);
+      if(lunch){pass++;notes.push('กลางวันไม่ดูจอ ✓')}
+      if(dinner){pass++;notes.push('เย็นไม่ดูจอ ✓')}
+      if(!pass)return toast('วันนี้ยังไม่ผ่านเป้า');
+      return commit('screen',{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(' • ')}`});
+    }
+  }
+
+  function bindQuestDelegation(){
+    const box=q('#questBox');
+    if(!box || box.dataset.v59Bound)return;
+    box.dataset.v59Bound='1';
+    box.addEventListener('click',e=>{
+      const del=e.target.closest('[data-v59-delete-messy]');
+      if(del){
+        e.preventDefault();
+        const i=+del.dataset.v59DeleteMessy;
+        if(i>=3){S.messyTasks.splice(i,1);save();renderWorld59();}
+        return;
+      }
+      const btn=e.target.closest('button[data-v59-action]');
+      if(!btn)return;
       e.preventDefault();
-      switchStage(z.dataset.stage);
+      e.stopPropagation();
+      submitAction(btn.dataset.v59Action);
     });
-    map.addEventListener('keydown',e=>{
-      if(e.key!=='Enter' && e.key!==' ')return;
+  }
+
+  function bindStageDelegation(){
+    const map=q('#worldMap');
+    if(!map || map.dataset.v59Bound)return;
+    map.dataset.v59Bound='1';
+    map.addEventListener('click',e=>{
       const z=e.target.closest('.zone[data-stage]');
       if(!z)return;
       e.preventDefault();
-      switchStage(z.dataset.stage);
+      S.active=z.dataset.stage;
+      save();
+      renderWorld59();
+      q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    map.addEventListener('keydown',e=>{
+      if(e.key!=='Enter'&&e.key!==' ')return;
+      const z=e.target.closest('.zone[data-stage]');
+      if(!z)return;
+      e.preventDefault();
+      S.active=z.dataset.stage;save();renderWorld59();
     });
   }
 
-  // One wrapper around the original/base apply. It never rebinds stage handlers.
-  const baseApply=window.apply;
-  if(typeof baseApply==='function'){
-    window.apply=function(k,p){
-      const beforeStars=S.stars||0;
-      const r=baseApply.call(this,k,p); // base render() now calls authoritative renderWorldV58
-      try{
-        const d=dailyState();
-        d.count=Math.min(5,(d.count||0)+1);
-        saveDaily(d);
-        let bonus=false;
-        if(d.count>=5 && localStorage.getItem(BONUS_KEY)!==today()){
-          S.stars=(S.stars||0)+10;
-          localStorage.setItem(BONUS_KEY,today());
-          save();
-          q('#stars').textContent=S.stars;
-          bonus=true;
-        }
-        renderDailyGoal();
-        if(bonus) toast('🎁 Daily Goal ครบ • ⭐ +10');
-      }catch(err){ console.error('V58 daily goal',err); }
-      return r;
-    };
-  }
+  // Parent approval must use the same canonical transaction, not old apply wrappers.
+  window.approve=function(id){
+    if(!parentGuard())return;
+    const i=S.pending.findIndex(x=>x.id===id);
+    if(i<0)return;
+    const x=S.pending.splice(i,1)[0];
+    // Temporarily force direct commit because parent has explicitly approved.
+    const old=S.settings.approval;
+    S.settings.approval='trust';
+    commit(x.k,x.p);
+    S.settings.approval=old;
+    save();
+  };
 
-  function cleanSummaries(){
-    // Keep original summary logic, just normalize language.
+  function normalizeSummaryLanguage(){
     qa('*').forEach(el=>{
       if(el.children.length===0 && el.textContent){
         el.textContent=el.textContent.replace(/(\d+)\s*active days/gi,'ทำกิจกรรม $1/7 วัน');
@@ -3330,16 +3466,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
   function init(){
     mark();
-    renderWorldV58();
-    installStageDelegation();
-    cleanSummaries();
-    // Event is attached to #worldMap itself; its innerHTML may render forever without losing the listener.
-    window.addEventListener('hmw3d-render',cleanSummaries,{passive:true});
+    renderWorld59();
+    bindStageDelegation();
+    bindQuestDelegation();
+    normalizeSummaryLanguage();
   }
-
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
-  addEventListener('load',()=>{mark();installStageDelegation();},{once:true});
+  addEventListener('load',()=>{mark();bindStageDelegation();bindQuestDelegation();},{once:true});
 })();
 </script>
 
