@@ -2315,22 +2315,7 @@ html,body{scroll-behavior:auto!important}
 @media(prefers-reduced-motion:reduce){.v49-burst,.v49-react #heroArt,.v49-react #bossArt{animation:none!important}*{scroll-behavior:auto!important}}
 body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49-react #bossArt{animation:none!important}
 </style>
-<script id="v49-mobile-runtime">
-(()=>{
- const BUILD='V54 • MOBILE GAME SCREEN POLISH';
- const $q=s=>document.querySelector(s);
- function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V54';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
- function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
- function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
- function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
- function metricLabels(){const hp=document.getElementById('hpText');if(hp&&!hp.parentElement.querySelector('.v49-metric-label')){const d=document.createElement('div');d.className='v49-metric-label';d.textContent='พลังนิสัยสะสม';hp.parentElement.parentElement.insertBefore(d,hp.parentElement.nextSibling)}const p=document.getElementById('progressText');if(p){const s=p.closest('.stat')?.querySelector('span');if(s&&!s.dataset.v49){s.dataset.v49='1';s.textContent='ความคืบหน้านิสัย'}}}
- function decorateWorld(){document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{try{const k=order[i],lv=S.monsters[k].level||1,form=Math.min(5,lv);z.classList.toggle('v49-hero',lv>=5);let chip=z.querySelector('.v49-formchip');if(!chip){chip=document.createElement('span');chip.className='v49-formchip';z.appendChild(chip)}chip.textContent=lv>=5?'👑 HERO FORM':`ร่าง ${form}/5`;let nx=z.querySelector('.v49-next');if(!nx){nx=document.createElement('span');nx.className='v49-next';z.appendChild(nx)}nx.textContent=lv>=5?'Mastery ต่อได้':`อีก ${Math.max(0,maxGoal(k)-S.monsters[k].progress)} ${defs[k].unit} → Lv.${lv+1}`;}catch(e){}})}
- const oldRW=window.renderWorld;if(typeof oldRW==='function')window.renderWorld=function(){const r=oldRW.apply(this,arguments);decorateWorld();metricLabels();return r};
- const oldApply=window.apply;if(typeof oldApply==='function')window.apply=function(k,p){const before=S.monsters[k]?.level||1;const r=oldApply.apply(this,arguments);const a=document.querySelector('.arena');if(a){a.classList.remove('v49-react');void a.offsetWidth;a.classList.add('v49-react');setTimeout(()=>a.classList.remove('v49-react'),450)}const after=S.monsters[k]?.level||before;burst(after>before?'🎉✨':'✨');return r};
- function init(){mark();lowFx();quickNav();decorateWorld();metricLabels();document.addEventListener('focusin',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility='hidden'});document.addEventListener('focusout',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility=''})}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();window.addEventListener('load',mark,{once:true});
-})();
-</script>
+
 
 
 <style id="v50-mobile-ux-final">
@@ -2375,103 +2360,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 @media(prefers-reduced-motion:reduce){.v50-toast{animation:none!important}}
 </style>
 
-<script id="v50-mobile-runtime">
-(()=>{
- const BUILD='V54 • MOBILE GAME SCREEN POLISH';
- const q=s=>document.querySelector(s);
- const qa=s=>[...document.querySelectorAll(s)];
- function build(){
-   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V54';
-   document.documentElement.dataset.hmwBuild='50-mobile-ux-final';
- }
- function toast(t){
-   if(document.body.classList.contains('v49-lowfx')) return;
-   const x=document.createElement('div');x.className='v50-toast';x.textContent=t;
-   document.body.appendChild(x);setTimeout(()=>x.remove(),800);
- }
- function daily(){
-   const arena=q('.arena'); if(!arena || q('.v50-daily'))return;
-   let done=0,total=5;
-   try{
-     const today=new Date().toISOString().slice(0,10);
-     const raw=JSON.parse(localStorage.getItem('hmw_daily')||'{}');
-     if(raw.date===today) done=Math.min(total,Number(raw.count)||0);
-   }catch(e){}
-   const d=document.createElement('div');d.className='v50-daily';
-   d.innerHTML=`<div class="v50-daily-head"><span>🎯 เป้าหมายวันนี้</span><span>${done}/${total}</span></div><div class="v50-daily-track"><i style="width:${done/total*100}%"></i></div>`;
-   const talk=q('#monsterTalk'); (talk?.parentNode||arena).insertBefore(d,talk?.nextSibling||arena.firstChild);
- }
- function worldBars(){
-   qa('#worldMap .zone').forEach((z,i)=>{
-     try{
-       const k=order[i], m=S.monsters[k], goal=maxGoal(k), pct=Math.max(0,Math.min(100,(m.progress||0)/goal*100));
-       let bar=z.querySelector('.v50-zonebar');
-       if(!bar){bar=document.createElement('div');bar.className='v50-zonebar';bar.innerHTML='<i></i>';const chip=z.querySelector('.v49-formchip');chip?chip.after(bar):z.appendChild(bar)}
-       bar.firstElementChild.style.width=pct+'%';
-     }catch(e){}
-   });
- }
- function arenaLabels(){
-   const hp=q('#hpText');
-   if(hp){
-     const box=hp.closest('.stat')||hp.parentElement;
-     const s=box?.querySelector('span');
-     if(s){s.textContent='พลังด่าน';s.classList.add('v50-substat')}
-   }
-   const p=q('#progressText');
-   if(p){
-     const box=p.closest('.stat')||p.parentElement;
-     const s=box?.querySelector('span');
-     if(s){s.textContent='ความคืบหน้านิสัย';}
-   }
-   try{
-     const k=S.currentMonster||S.selectedMonster||order[0],m=S.monsters[k],remain=Math.max(0,maxGoal(k)-(m.progress||0));
-     const a=q('.arena'); if(a)a.classList.toggle('v50-near-level',remain>0 && remain<=Math.max(5,maxGoal(k)*.15));
-   }catch(e){}
- }
- function removeDuplicateBolt(){
-   const arena=q('.arena');if(!arena)return;
-   const bolts=qa('.arena .vs').filter(x=>x.textContent.includes('⚡'));
-   bolts.slice(1).forEach(x=>x.style.display='none');
- }
- function petPlacement(){
-   const p=q('#petFollower');const arena=q('.arena');if(!p||!arena)return;
-   p.style.position='relative';p.style.left='auto';p.style.bottom='auto';
-   const battle=arena.querySelector('.battle');
-   if(battle && p.parentElement!==arena){arena.insertBefore(p,battle)}
- }
- function navAutoHide(){
-   const n=q('#v49QuickNav');if(!n||n.dataset.v50)return;n.dataset.v50='1';
-   let y=scrollY,t;
-   addEventListener('scroll',()=>{
-     const ny=scrollY;
-     if(ny>y+10)n.classList.add('v50-hide'); else if(ny<y-8)n.classList.remove('v50-hide');
-     y=ny;clearTimeout(t);t=setTimeout(()=>n.classList.remove('v50-hide'),650);
-   },{passive:true});
- }
- function refresh(){build();worldBars();daily();arenaLabels();removeDuplicateBolt();petPlacement();navAutoHide()}
- const oldRW=window.renderWorld;
- if(typeof oldRW==='function')window.renderWorld=function(){const r=oldRW.apply(this,arguments);worldBars();arenaLabels();return r};
- const oldApply=window.apply;
- if(typeof oldApply==='function')window.apply=function(k,p){
-   let before=0,stars=0,xp=0;
-   try{before=S.monsters[k].level||1;stars=S.stars||0;xp=S.petXP||0}catch(e){}
-   const r=oldApply.apply(this,arguments);
-   try{
-     const after=S.monsters[k].level||before;
-     toast(after>before?'🎉 LEVEL UP!':((S.stars||0)>stars?'⭐ +ดาว':((S.petXP||0)>xp?'🐾 +Pet XP':'✨ บันทึกแล้ว')));
-     const today=new Date().toISOString().slice(0,10),raw=JSON.parse(localStorage.getItem('hmw_daily')||'{}');
-     const next=raw.date===today?{date:today,count:Math.min(5,(Number(raw.count)||0)+1)}:{date:today,count:1};
-     localStorage.setItem('hmw_daily',JSON.stringify(next));
-     const d=q('.v50-daily');if(d){d.querySelector('.v50-daily-head span:last-child').textContent=next.count+'/5';d.querySelector('i').style.width=(next.count/5*100)+'%'}
-   }catch(e){}
-   setTimeout(refresh,0);return r;
- };
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
- addEventListener('load',refresh,{once:true});
-})();
-</script>
+
 
 
 <style id="v51-mobile-layout-game-feedback">
@@ -2637,208 +2526,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 }
 </style>
 
-<script id="v51-mobile-runtime">
-(()=>{
- const BUILD='V54 • MOBILE GAME SCREEN POLISH';
- const q=s=>document.querySelector(s);
- const qa=s=>[...document.querySelectorAll(s)];
- const DAY_KEY='hmw_v51_daily_goal';
- const BONUS_KEY='hmw_v51_daily_bonus';
 
- function mark(){
-   const b=q('.buildBadge');if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V54';
-   document.documentElement.dataset.hmwBuild='51';
- }
-
- function today(){
-   const d=new Date();
-   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
- }
-
- function getDaily(){
-   try{
-     const x=JSON.parse(localStorage.getItem(DAY_KEY)||'null');
-     if(x && x.date===today()) return x;
-   }catch(e){}
-   return {date:today(),count:0};
- }
-
- function setDaily(x){localStorage.setItem(DAY_KEY,JSON.stringify(x))}
-
- function feedback(lines){
-   if(document.body.classList.contains('v49-lowfx')) return;
-   const d=document.createElement('div');d.className='v51-feedback';
-   d.innerHTML=Array.isArray(lines)?lines.join('<br>'):lines;
-   document.body.appendChild(d);setTimeout(()=>d.remove(),900);
- }
-
- function levelUp(level){
-   if(document.body.classList.contains('v49-lowfx')) return;
-   const d=document.createElement('div');d.className='v51-levelup';
-   d.innerHTML=`<div class="v51-levelup-card"><div class="big">🎉✨</div><b>LEVEL UP!</b><div>ปลดล็อก ร่าง ${Math.min(5,level)}/5</div></div>`;
-   document.body.appendChild(d);setTimeout(()=>d.remove(),950);
- }
-
- function dock(){
-   if(q('#v51Dock'))return;
-   const n=document.createElement('nav');n.id='v51Dock';
-   n.innerHTML=`<button class="v51-main" aria-label="เมนูลัด">☰</button>
-   <button class="v51-extra" data-go="top">↑ Top</button>
-   <button class="v51-extra" data-go="world">🌍 World</button>
-   <button class="v51-extra" data-go="arena">⚡ ด่าน</button>`;
-   n.addEventListener('click',e=>{
-     const btn=e.target.closest('button');if(!btn)return;
-     if(btn.classList.contains('v51-main')){n.classList.toggle('open');return}
-     const k=btn.dataset.go;
-     const el=k==='top'?document.body:k==='world'?q('#worldMap'):q('.arena');
-     if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'});
-     n.classList.remove('open');
-   });
-   document.body.appendChild(n);
-   let last=scrollY,t;
-   addEventListener('scroll',()=>{
-     const y=scrollY;
-     n.classList.toggle('v51-dim',y>last+8);
-     last=y;clearTimeout(t);t=setTimeout(()=>n.classList.remove('v51-dim'),550);
-   },{passive:true});
- }
-
- function pet(){
-   const p=q('#petFollower');if(!p)return;
-   p.classList.add('v51-pet');
- }
-
- function oneBolt(){
-   const vs=q('.arena .vs');if(!vs)return;
-   vs.innerHTML='<span class="v51-vsbolt">⚡</span>';
- }
-
- function dailyUI(){
-   const box=q('.v50-daily');if(!box)return;
-   const d=getDaily(),goal=5;
-   const head=box.querySelector('.v50-daily-head span:last-child');
-   const fill=box.querySelector('.v50-daily-track i');
-   if(head)head.textContent=`${d.count}/${goal}`;
-   if(fill)fill.style.width=(Math.min(goal,d.count)/goal*100)+'%';
-   box.classList.toggle('v51-complete',d.count>=goal);
-   let r=box.querySelector('.v51-daily-reward');
-   if(!r){r=document.createElement('div');r.className='v51-daily-reward';box.appendChild(r)}
-   r.textContent=d.count>=goal?'🎁 เป้าหมายวันนี้ครบแล้ว':'ครบ 5/5 รับโบนัส ⭐ +10';
- }
-
- function incrementDaily(){
-   const d=getDaily();
-   if(d.count<5)d.count+=1;
-   setDaily(d);
-   let gotBonus=false;
-   if(d.count>=5 && localStorage.getItem(BONUS_KEY)!==today()){
-     try{S.stars=(S.stars||0)+10;save?.();gotBonus=true}catch(e){}
-     localStorage.setItem(BONUS_KEY,today());
-   }
-   dailyUI();
-   return gotBonus;
- }
-
- function world(){
-   const zones=qa('#worldMap .zone');
-   let best=null;
-   zones.forEach((z,i)=>{
-     try{
-       const k=order[i],m=S.monsters[k],goal=maxGoal(k),remain=Math.max(0,goal-(m.progress||0));
-       z.classList.remove('v51-nearest');
-       z.querySelector('.v51-nearest-chip')?.remove();
-       if((m.level||1)<5 && (best===null || remain<best.remain))best={z,remain};
-     }catch(e){}
-   });
-   if(best){
-     best.z.classList.add('v51-nearest');
-     const c=document.createElement('span');c.className='v51-nearest-chip';c.textContent='🔥 ใกล้ Level Up ที่สุด';
-     best.z.appendChild(c);
-   }
- }
-
- function status(){
-   const arena=q('.arena');if(!arena)return;
-   let row=q('.v51-status-row');
-   if(!row){
-     row=document.createElement('div');row.className='v51-status-row';
-     const stats=q('.arena .stats');
-     if(stats)stats.before(row);
-   }
-   if(!row)return;
-   try{
-     const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
-     const remain=Math.max(0,goal-(m.progress||0));
-     row.innerHTML=`<div class="v51-status-box"><b>พลังนิสัยสะสม</b><strong>${m.hp}/${maxHp(k)}</strong></div>
-                    <div class="v51-status-box"><b>อีกเท่าไรอีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
-   }catch(e){}
- }
-
- function summaryEnhance(){
-   const daily=q('#dailySummary')?.closest('.card,section');
-   if(daily && !daily.querySelector('.v51-summary-note')){
-     const d=getDaily();const n=document.createElement('div');n.className='v51-summary-note';
-     n.textContent=`🎯 วันนี้ทำเป้าหมายแล้ว ${d.count}/5`;
-     daily.insertBefore(n,daily.firstChild?.nextSibling||null);
-   }
-   const weekly=q('#weeklySummary')?.closest('.card,section');
-   if(weekly && !weekly.querySelector('.v51-summary-note')){
-     const n=document.createElement('div');n.className='v51-summary-note';
-     try{
-       const vals=order.map(k=>({k,v:S.totals?.[k]||0})).sort((a,b)=>b.v-a.v);
-       n.textContent=`🏆 ด่านเด่นสัปดาห์นี้: ${defs[vals[0].k].title} • 🔥 Streak ${S.streak||0} วัน`;
-     }catch(e){n.textContent='🏆 สรุปความก้าวหน้าประจำสัปดาห์'}
-     weekly.insertBefore(n,weekly.firstChild?.nextSibling||null);
-   }
- }
-
- function refresh(){
-   mark();dock();pet();oneBolt();dailyUI();world();status();summaryEnhance();
- }
-
- const oldRW=window.renderWorld;
- if(typeof oldRW==='function')window.renderWorld=function(){
-   const r=oldRW.apply(this,arguments);
-   world();status();oneBolt();pet();
-   return r;
- };
-
- const oldApply=window.apply;
- if(typeof oldApply==='function')window.apply=function(k,p){
-   let before=1,stars=0,xp=0,prog=0;
-   try{
-     before=S.monsters[k].level||1;
-     stars=S.stars||0;
-     xp=S.pet?.xp||0;
-     prog=S.monsters[k].progress||0;
-   }catch(e){}
-   const r=oldApply.apply(this,arguments);
-   try{
-     const after=S.monsters[k].level||before;
-     const starGain=(S.stars||0)-stars;
-     const xpGain=(S.pet?.xp||0)-xp;
-     const progressGain=(S.monsters[k].progress||0)-prog;
-     const bonus=incrementDaily();
-     const lines=[];
-     if(progressGain>0)lines.push(`+${progressGain} ความคืบหน้า`);
-     if(xpGain>0)lines.push(`🐾 +${xpGain} Pet XP`);
-     if(starGain>0)lines.push(`⭐ +${starGain}`);
-     if(bonus)lines.push('🎁 Daily Bonus +10 ⭐');
-     feedback(lines.length?lines:'✨ บันทึกแล้ว');
-     if(after>before)levelUp(after);
-     const petEl=q('#petFollower');
-     if(petEl){petEl.classList.remove('v51-pet-cheer');void petEl.offsetWidth;petEl.classList.add('v51-pet-cheer');setTimeout(()=>petEl.classList.remove('v51-pet-cheer'),500)}
-     setTimeout(refresh,0);
-   }catch(e){}
-   return r;
- };
-
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
- else refresh();
- addEventListener('load',refresh,{once:true});
-})();
-</script>
 
 
 <style id="v52-clean-mobile-ui">
@@ -3037,188 +2725,7 @@ button:active,.zone:active,.avatarChoices>*:active{
 }
 </style>
 
-<script id="v52-clean-mobile-runtime">
-(()=>{
-  const BUILD='V54 • MOBILE GAME SCREEN POLISH';
-  const q=s=>document.querySelector(s);
-  const qa=s=>[...document.querySelectorAll(s)];
-  const DAY_KEY='hmw_v51_daily_goal';
-  const BONUS_KEY='hmw_v51_daily_bonus';
 
-  function mark(){
-    const b=q('.buildBadge');if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V54';
-    document.documentElement.dataset.hmwBuild='52';
-  }
-
-  function today(){
-    const d=new Date();
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-
-  function getDaily(){
-    try{
-      const x=JSON.parse(localStorage.getItem(DAY_KEY)||'null');
-      if(x && x.date===today())return x;
-    }catch(e){}
-    return {date:today(),count:0};
-  }
-
-  function dockAutoHide(){
-    const n=q('#v51Dock');if(!n||n.dataset.v52)return;
-    n.dataset.v52='1';
-    let last=scrollY,timer;
-    addEventListener('scroll',()=>{
-      const y=scrollY;
-      if(y>last+10)n.classList.add('v52-hide');
-      else if(y<last-8)n.classList.remove('v52-hide');
-      last=y;
-      clearTimeout(timer);
-      timer=setTimeout(()=>n.classList.remove('v52-hide'),500);
-    },{passive:true});
-  }
-
-  function compactStats(){
-    const arena=q('.arena');if(!arena)return;
-    let row=q('.v52-compact-status');
-    if(!row){
-      row=document.createElement('div');
-      row.className='v52-compact-status';
-      const stats=q('.arena .stats');
-      if(stats)stats.before(row);
-    }
-    try{
-      const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
-      const remain=Math.max(0,goal-(m.progress||0));
-      row.innerHTML=
-        `<div class="v52-compact-box"><b>พลังนิสัยสะสม</b><strong>${m.hp}/${maxHp(k)}</strong></div>`+
-        `<div class="v52-compact-box"><b>อีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
-    }catch(e){}
-
-    // hide original duplicated HP/progress summary blocks when safely identifiable
-    const stats=q('.arena .stats');
-    if(stats){
-      const boxes=[...stats.children];
-      boxes.forEach((box,i)=>{
-        const txt=(box.textContent||'').trim();
-        if(i===0 || /พลังนิสัยสะสม|อีกเท่าไรถึง Level/i.test(txt)){
-          box.classList.add('v52-secondary-hidden');
-        }
-      });
-    }
-  }
-
-  function pet(){
-    const p=q('#petFollower');if(!p)return;
-    p.classList.add('v51-pet');
-    p.style.visibility='';
-  }
-
-  function oneBolt(){
-    const vs=q('.arena .vs');if(!vs)return;
-    vs.innerHTML='<span class="v51-vsbolt">⚡</span>';
-  }
-
-  function daily(){
-    const box=q('.v50-daily');if(!box)return;
-    const d=getDaily(),goal=5;
-    const head=box.querySelector('.v50-daily-head span:last-child');
-    const fill=box.querySelector('.v50-daily-track i');
-    if(head)head.textContent=`${d.count}/${goal}`;
-    if(fill)fill.style.width=(Math.min(goal,d.count)/goal*100)+'%';
-    box.classList.toggle('v52-complete',d.count>=goal);
-    let r=box.querySelector('.v51-daily-reward');
-    if(r)r.textContent=d.count>=goal?'🎁 รับโบนัสวันนี้แล้ว ⭐ +10':'ครบ 5/5 รับโบนัส ⭐ +10';
-  }
-
-  function world(){
-    const zones=qa('#worldMap .zone');
-    let best=null;
-    zones.forEach((z,i)=>{
-      try{
-        const k=order[i],m=S.monsters[k],goal=maxGoal(k),remain=Math.max(0,goal-(m.progress||0));
-        z.classList.remove('v51-nearest');
-        z.querySelector('.v51-nearest-chip')?.remove();
-        if((m.level||1)<5 && (best===null||remain<best.remain))best={z,remain};
-      }catch(e){}
-    });
-    if(best){
-      best.z.classList.add('v51-nearest');
-      const c=document.createElement('span');
-      c.className='v51-nearest-chip';
-      c.textContent='🔥 ใกล้ Level Up';
-      best.z.appendChild(c);
-    }
-  }
-
-  function thaiSummary(){
-    // replace visible English "active days" only
-    qa('*').forEach(el=>{
-      if(el.children.length===0 && /active days/i.test(el.textContent||'')){
-        el.textContent=el.textContent.replace(/(\d+)\s*active days/i,'ทำสำเร็จ $1 วัน');
-      }
-    });
-  }
-
-  function summaryExtras(){
-    const dailyCard=q('#dailySummary')?.closest('.card,section');
-    if(dailyCard){
-      let s=dailyCard.querySelector('.v52-summary-title');
-      if(!s){
-        s=document.createElement('div');s.className='v52-summary-title';
-        s.textContent='สรุปกิจกรรมวันนี้';
-        dailyCard.appendChild(s);
-      }
-    }
-  }
-
-  function pulseProgress(){
-    const bars=qa('.bar,.miniFill,.v50-zonebar>i,.v50-daily-track>i');
-    bars.forEach(b=>{
-      b.classList.remove('v52-progress-pulse');
-      void b.offsetWidth;
-      b.classList.add('v52-progress-pulse');
-      setTimeout(()=>b.classList.remove('v52-progress-pulse'),480);
-    });
-  }
-
-  function refresh(){
-    mark();dockAutoHide();pet();oneBolt();daily();world();compactStats();thaiSummary();summaryExtras();
-  }
-
-  const oldRW=window.renderWorld;
-  if(typeof oldRW==='function'){
-    window.renderWorld=function(){
-      const r=oldRW.apply(this,arguments);
-      world();compactStats();pet();oneBolt();
-      return r;
-    };
-  }
-
-  const oldApply=window.apply;
-  if(typeof oldApply==='function'){
-    window.apply=function(k,p){
-      const beforeDaily=getDaily().count;
-      const r=oldApply.apply(this,arguments);
-      setTimeout(()=>{
-        daily();world();compactStats();pet();oneBolt();pulseProgress();thaiSummary();
-        const now=getDaily().count;
-        const box=q('.v50-daily');
-        if(box && now!==beforeDaily){
-          box.classList.remove('v52-goal-pop');
-          void box.offsetWidth;
-          box.classList.add('v52-goal-pop');
-        }
-      },0);
-      return r;
-    };
-  }
-
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
-  else refresh();
-  addEventListener('load',refresh,{once:true});
-})();
-</script>
 
 
 <style id="v53-game-ui-consistency">
@@ -3359,198 +2866,10 @@ button:active,.zone:active,.avatarChoices>*:active{
 }
 </style>
 
-<script id="v53-game-ui-runtime">
-(()=>{
-  const BUILD='V54 • MOBILE GAME SCREEN POLISH';
-  const q=s=>document.querySelector(s);
-  const qa=s=>[...document.querySelectorAll(s)];
-  const DAY_KEY='hmw_v51_daily_goal';
-  const BONUS_KEY='hmw_v51_daily_bonus';
-
-  function mark(){
-    const b=q('.buildBadge');if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V54';
-    document.documentElement.dataset.hmwBuild='53';
-    const note=q('.characterQualityNote');
-    if(note) note.innerHTML='ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน • <b>V54 Game UI Consistency</b>';
-  }
-
-  function today(){
-    const d=new Date();
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-
-  function getDaily(){
-    try{
-      const x=JSON.parse(localStorage.getItem(DAY_KEY)||'null');
-      if(x && x.date===today())return x;
-    }catch(e){}
-    return {date:today(),count:0};
-  }
-
-  function dailyText(){
-    const box=q('.v50-daily');if(!box)return;
-    const d=getDaily();
-    const r=box.querySelector('.v51-daily-reward');
-    if(r){
-      if(d.count>=5 && localStorage.getItem(BONUS_KEY)===today()){
-        r.textContent='✅ เป้าหมายวันนี้สำเร็จ • รับ ⭐ +10 แล้ว';
-      }else{
-        r.textContent='ทำครบ 5 ครั้ง → รับ ⭐ +10';
-      }
-    }
-  }
-
-  function pet(){
-    const p=q('#petFollower');if(!p)return;
-    p.classList.add('v51-pet');
-    const arena=q('.arena'),battle=q('.arena .battle');
-    if(arena && battle && p.parentElement!==arena){
-      arena.appendChild(p);
-    }
-  }
-
-  function cleanArenaStats(){
-    const stats=q('.arena .stats');if(!stats)return;
-    // Keep meaningful secondary stats only: Passed Level, Pending, Pet XP.
-    const boxes=[...stats.children];
-    boxes.forEach(box=>{
-      box.classList.remove('v53-hide-duplicate','v52-secondary-hidden');
-      const t=(box.textContent||'').trim();
-      if(/พลังนิสัยสะสม|ความคืบหน้านิสัย|ข้อสะสม|นาทีสะสม|งานสะสม/i.test(t)){
-        box.classList.add('v53-hide-duplicate');
-      }
-    });
-  }
-
-  function worldProgress(){
-    const world=q('#worldMap');if(!world)return;
-    world.querySelector('.v53-world-progress')?.remove();
-    let levels=0, forms=0, total=0;
-    try{
-      order.forEach(k=>{
-        const lv=S.monsters[k]?.level||1;
-        levels+=Math.max(0,lv-1);
-        forms+=Math.min(5,lv);
-        total++;
-      });
-    }catch(e){}
-    const maxForms=Math.max(1,total*5);
-    const pct=Math.max(0,Math.min(100,forms/maxForms*100));
-    const card=document.createElement('div');
-    card.className='v53-world-progress';
-    card.innerHTML=`<div class="ico">🏆</div><b>World Progress</b>
-      <div class="track"><i style="width:${pct}%"></i></div>
-      <small>${Math.round(pct)}% • ผ่าน Level รวม ${levels}</small>`;
-    world.appendChild(card);
-  }
-
-  function nearestLabel(){
-    qa('.v51-nearest-chip').forEach(x=>{
-      if(x.textContent.includes('Level Up'))x.textContent='🔥 ใกล้ Level Up';
-    });
-  }
-
-  function summary(){
-    const dailyCard=q('#dailySummary')?.closest('.card,section');
-    if(dailyCard){
-      let chip=dailyCard.querySelector('.v53-summary-chip');
-      if(!chip){
-        chip=document.createElement('div');chip.className='v53-summary-chip';
-        dailyCard.appendChild(chip);
-      }
-      const d=getDaily();
-      chip.textContent=`🎯 Daily Goal ${d.count}/5`;
-    }
-    const weeklyCard=q('#weeklySummary')?.closest('.card,section');
-    if(weeklyCard){
-      qa('*').forEach(el=>{
-        if(el.children.length===0 && /active days/i.test(el.textContent||'')){
-          el.textContent=el.textContent.replace(/(\d+)\s*active days/i,'ทำสำเร็จ $1 วัน');
-        }
-      });
-    }
-  }
-
-  function dock(){
-    const d=q('#v51Dock');
-    if(!d)return;
-    d.classList.remove('v52-hide');
-  }
-
-  function refresh(){
-    mark();
-    pet();
-    cleanArenaStats();
-    worldProgress();
-    nearestLabel();
-    dailyText();
-    summary();
-    dock();
-  }
-
-  const oldRW=window.renderWorld;
-  if(typeof oldRW==='function'){
-    window.renderWorld=function(){
-      const r=oldRW.apply(this,arguments);
-      worldProgress();nearestLabel();cleanArenaStats();pet();
-      return r;
-    };
-  }
-
-  const oldApply=window.apply;
-  if(typeof oldApply==='function'){
-    window.apply=function(k,p){
-      const r=oldApply.apply(this,arguments);
-      setTimeout(()=>{
-        dailyText();
-        cleanArenaStats();
-        worldProgress();
-        nearestLabel();
-        pet();
-        summary();
-      },0);
-      return r;
-    };
-  }
-
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});
-  else refresh();
-  addEventListener('load',refresh,{once:true});
-})();
-</script>
 
 
-<script id="v54-runtime-polish">
-document.addEventListener('DOMContentLoaded', () => {
-  // Remove legacy version copy wherever it survived in rendered text.
-  document.querySelectorAll('body *').forEach(el => {
-    if (el.children.length === 0 && el.textContent) {
-      el.textContent = el.textContent
-        .replace(/V44\s*Arena\s*&\s*Map\s*Polish/gi,'V54 Mobile Game Screen Polish')
-        .replace(/\bFORM\s*(\d+\/5)\b/gi,'ร่าง $1')
-        .replace(/พลังด่านคงเหลือ/g,'พลังนิสัยสะสม')
-        .replace(/\b2\s*active\s*days\b/gi,'ทำกิจกรรม 2/7 วัน');
-    }
-  });
 
-  // Hide duplicate Daily Goal chips inside the Daily Summary; retain the first meaningful display.
-  const dailySummary = [...document.querySelectorAll('section,.card,.panel,div')]
-    .find(el => /Daily Summary/i.test(el.textContent || '') && el.querySelectorAll('*').length < 120);
-  if (dailySummary) {
-    const goalNodes = [...dailySummary.querySelectorAll('*')].filter(el =>
-      el.children.length === 0 && /Daily Goal\s*\d+\/5|เป้าหมาย.*\d+\/5/i.test(el.textContent || '')
-    );
-    goalNodes.slice(1).forEach(el => {
-      const box = el.closest('.chip,.badge,.pill,.goal-chip') || el;
-      box.style.display = 'none';
-    });
-  }
 
-  // Mark version for debugging without modifying saved player data.
-  document.documentElement.dataset.uiVersion = '54';
-});
-</script>
 
 
 
@@ -3587,36 +2906,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* Keep floating companions away from active form controls on all widths */
 body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(textarea:focus) #petFollower{visibility:hidden!important}
 </style>
-<script id="v55-cleanup-runtime">
-(()=>{
- const BUILD='V55 • CLEANUP + MOBILE FINAL';
- const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
- function clean(){
-   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V55';
-   document.documentElement.dataset.uiVersion='55';
-   document.documentElement.dataset.hmwBuild='55-cleanup-mobile-final';
-   const note=q('.characterQualityNote');
-   if(note) note.textContent='ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน';
-   /* scrub build/debug copy outside the single build badge */
-   qa('body *').forEach(el=>{
-     if(el===b || el.children.length) return;
-     const t=el.textContent||'';
-     if(/V(?:44|5[0-4])\s*(?:Arena|Game UI|Mobile Game|Mobile Layout|Clean Mobile)/i.test(t)){
-       el.textContent=t.replace(/\s*[•·-]?\s*V(?:44|5[0-4])[^•·\n]*/gi,'').trim();
-     }
-   });
-   /* only one summary goal chip */
-   const dc=q('#dailySummary')?.closest('.card,section');
-   if(dc){const chips=qa('.v53-summary-chip').filter(x=>dc.contains(x));chips.slice(1).forEach(x=>x.remove())}
-   /* keep dock collapsed after navigation */
-   const d=q('#v51Dock');
-   if(d){d.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>setTimeout(()=>d.classList.remove('open'),80),{passive:true}))}
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean,{once:true}); else clean();
- addEventListener('load',clean,{once:true});
-})();
-</script>
+
 
 
 
@@ -3652,28 +2942,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
   #v51Dock.open{right:4px!important;opacity:1!important}
 }
 </style>
-<script id="v56-runtime">
-(()=>{
- const BUILD='V57 • INTERACTION + PROGRESS FIX';
- function q(s){return document.querySelector(s)}
- function qa(s){return [...document.querySelectorAll(s)]}
- function fix(){
-   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V57';
-   document.documentElement.dataset.uiVersion='56';
-   document.documentElement.dataset.hmwBuild='56-mobile-visual-balance';
-   /* old file accidentally contained the nav set twice: keep only the first set */
-   const nav=q('.nav');
-   if(nav){const btn=[...nav.querySelectorAll('button[data-screen]')]; const seen=new Set(); btn.forEach(x=>{const k=x.dataset.screen;if(seen.has(k))x.remove();else seen.add(k)});}
-   /* anchor companion to hero column so it can never drift down over inputs */
-   const pet=q('#petFollower'), hero=q('.battle>div:first-child'); if(pet&&hero&&pet.parentElement!==hero)hero.appendChild(pet);
-   /* concise setup note */
-   const note=q('.characterQualityNote'); if(note)note.textContent='ตัวละครและ Monster ใช้ภาพชุดเดียวกัน เพื่อให้ทั้งเกมดูต่อเนื่อง';
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix,{once:true});else fix();
- addEventListener('load',fix,{once:true});
-})();
-</script>
+
 
 
 <style id="v57-interaction-progress-fix">
@@ -3718,163 +2987,359 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 @media(prefers-reduced-motion:reduce){.v57-switch-flash{animation:none}}
 </style>
 
-<script id="v57-runtime">
+
+
+
+<style id="v58-authoritative-ui">
+/* V58 — one authoritative interaction/render layer */
+#worldMap .zone{
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+}
+#worldMap .zone:active{transform:scale(.987)!important}
+#worldMap .zone[data-stage]:focus-visible{
+  outline:3px solid #5fa8ef!important;
+  outline-offset:2px!important;
+}
+#worldMap .v58-form{
+  display:block;
+  margin-top:4px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:rgba(255,255,255,.76);
+  color:#6258c9;
+  font-size:10px;
+  font-weight:950;
+}
+#worldMap .v58-mini{
+  height:5px;
+  margin:5px 8px 2px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.75);
+}
+#worldMap .v58-mini i{
+  display:block;height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#7e62ed,#55c99b);
+}
+#worldMap .v58-next{
+  display:block;
+  margin-top:3px;
+  color:#718198;
+  font-size:9px;
+  font-weight:850;
+}
+#worldMap .v58-world-progress{
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  text-align:center!important;
+  padding:14px 10px!important;
+  border:1px solid rgba(218,229,236,.98)!important;
+  border-radius:20px!important;
+  background:linear-gradient(145deg,#fff8d6,#eef9ff)!important;
+}
+.v58-world-progress .v58-cup{font-size:36px;line-height:1}
+.v58-world-progress b{font-size:18px;color:#203b5b}
+.v58-world-progress small{font-size:11px;color:#718198;font-weight:850}
+.v58-world-progress .v58-worldbar{
+  width:86%;height:7px;border-radius:999px;overflow:hidden;
+  margin:8px 0 5px;background:#e7eff2;
+}
+.v58-world-progress .v58-worldbar i{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#7d62ed,#55c99a);
+}
+
+/* Remove all legacy runtime-generated duplicate rows if stale DOM exists */
+.v49-metric-label,.v51-status-row,.v52-compact-status,
+.v51-summary-note,.v52-summary-title,.v53-summary-chip{
+  display:none!important;
+}
+
+/* Canonical Arena hierarchy */
+.arena .row.v58-energy-row span:first-child{font-weight:900}
+#progressText{white-space:nowrap}
+#progressUnit{display:block}
+.v58-goal{
+  margin:9px 0 8px;
+  padding:10px 12px;
+  border-radius:17px;
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(216,231,240,.96);
+}
+.v58-goal-head{
+  display:flex;justify-content:space-between;gap:10px;
+  color:#203b5b;font-weight:950;font-size:14px;
+}
+.v58-goal-track{
+  height:8px;margin-top:7px;border-radius:999px;overflow:hidden;background:#e7eef1;
+}
+.v58-goal-track i{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,#7d62ed,#55c99a);
+  transition:width .25s ease;
+}
+.v58-goal small{display:block;margin-top:6px;color:#806613;font-weight:900}
+.v58-goal.done{background:linear-gradient(135deg,#fff4b4,#f0ffd9)}
+.v58-switch-toast{
+  position:fixed;z-index:120;left:50%;bottom:22%;
+  transform:translateX(-50%);
+  padding:8px 14px;border-radius:999px;
+  background:#243b55;color:#fff;font-weight:900;
+  box-shadow:0 8px 20px rgba(22,47,68,.18);
+  pointer-events:none;
+  animation:v58toast .72s ease both;
+}
+@keyframes v58toast{
+  0%{opacity:0;transform:translate(-50%,8px)}
+  20%{opacity:1;transform:translate(-50%,0)}
+  100%{opacity:0;transform:translate(-50%,-12px)}
+}
+
+/* Arena mobile balance */
+@media(max-width:600px){
+  .arena{padding:11px!important}
+  .battle{
+    grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important;
+    gap:8px!important;
+    min-height:190px!important;
+  }
+  .battle .avatarArt,.battle .bossArt{
+    height:162px!important;min-height:162px!important;
+  }
+  .arena .stats{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .arena .stat{
+    min-height:72px!important;
+    padding:8px 5px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .arena .stat b{font-size:23px!important}
+  .arena .stat span{font-size:11px!important}
+  #petFollower.petFollower{
+    position:absolute!important;
+    left:7%!important;
+    top:205px!important;
+    bottom:auto!important;
+    width:44px!important;height:44px!important;
+    z-index:8!important;
+    pointer-events:none!important;
+  }
+  #petFollower .art-badge{transform:scale(.8);transform-origin:top left}
+  #worldMap .zone{padding:7px 6px 9px!important}
+  #worldMap .zoneArt{height:118px!important;min-height:118px!important}
+  #worldMap .zone b{font-size:16px!important;line-height:1.12!important}
+  #worldMap .zone small{font-size:11px!important}
+}
+/* No floating legacy menu in V58: prevents stage cards from being covered on iPhone */
+#v51Dock,#v49QuickNav{display:none!important}
+</style>
+
+<script id="v58-authoritative-runtime">
 (()=>{
-  const BUILD='V57 • INTERACTION + PROGRESS FIX';
-  const $q=s=>document.querySelector(s);
-  const $qa=s=>[...document.querySelectorAll(s)];
+  const BUILD='V58 • STABLE SWITCH + ARENA CLEANUP';
+  const DAILY_KEY='hmw_v58_daily_goal';
+  const BONUS_KEY='hmw_v58_daily_bonus';
 
-  function markBuild(){
-    const b=$q('.buildBadge');
-    if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V57';
-    document.documentElement.dataset.uiVersion='57';
-    document.documentElement.dataset.hmwBuild='57-interaction-progress-fix';
-  }
+  const q=s=>document.querySelector(s);
+  const qa=s=>[...document.querySelectorAll(s)];
 
-  function activeKey(){
-    return (typeof S!=='undefined' && S.active && order.includes(S.active)) ? S.active : order[0];
-  }
-
-  function cleanProgressCopy(){
+  function today(){ return dayKey(); }
+  function dailyState(){
     try{
-      const k=activeKey(), m=S.monsters[k], goal=maxGoal(k);
-      const hpLabel=$q('#hpText')?.closest('.arena')?.querySelector('.row span:first-child');
-      if(hpLabel) hpLabel.textContent='⚡ พลังด่าน';
-      const unit=$q('#progressUnit');
-      if(unit) unit.textContent='ความคืบหน้านิสัย';
-      const next=$q('#nextLevelHint');
-      if(next){
-        next.textContent=m.level>=5
-          ? '👑 HERO — สะสม Mastery ต่อได้'
-          : `เหลือ ${Math.max(0,goal-(m.progress||0))} ${defs[k].unit} ถึง Lv.${m.level+1}`;
-      }
-      $qa('.arena *').forEach(el=>{
-        if(el.children.length===0 && el.textContent){
-          el.textContent=el.textContent
-            .replace(/พลังนิสัยสะสม/g,'พลังด่าน')
-            .replace(/อีกเท่าไรอีกเท่าไรถึง Level ถัดไป/g,'ถึง Level ถัดไป')
-            .replace(/อีกเท่าไรถึง Level ถัดไป/g,'ถึง Level ถัดไป');
-        }
-      });
+      const x=JSON.parse(localStorage.getItem(DAILY_KEY)||'null');
+      if(x && x.date===today()) return x;
     }catch(e){}
+    return {date:today(),count:0};
+  }
+  function saveDaily(x){ localStorage.setItem(DAILY_KEY,JSON.stringify(x)); }
+
+  function mark(){
+    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V58';
+    document.documentElement.dataset.hmwBuild='58-stable-switch';
   }
 
-  function translateSummary(){
-    $qa('*').forEach(el=>{
+  function worldProgress(){
+    let formSum=0, levelPass=0;
+    order.forEach(k=>{
+      const lv=Math.max(1,S.monsters[k]?.level||1);
+      formSum += Math.min(5,lv);
+      levelPass += Math.max(0,lv-1);
+    });
+    const pct=Math.round(formSum/(order.length*5)*100);
+    return {pct,levelPass};
+  }
+
+  function renderDailyGoal(){
+    const arena=q('.arena'); if(!arena)return;
+    let box=q('#v58DailyGoal');
+    if(!box){
+      box=document.createElement('div');
+      box.id='v58DailyGoal';
+      box.className='v58-goal';
+      const talk=q('#monsterTalk');
+      if(talk) talk.after(box); else arena.prepend(box);
+    }
+    const d=dailyState(), n=Math.min(5,d.count||0);
+    const rewarded=localStorage.getItem(BONUS_KEY)===today();
+    box.classList.toggle('done',n>=5);
+    box.innerHTML=`
+      <div class="v58-goal-head"><span>🎯 เป้าหมายวันนี้</span><span>${n}/5</span></div>
+      <div class="v58-goal-track"><i style="width:${n*20}%"></i></div>
+      <small>${n>=5?(rewarded?'✅ รับโบนัส ⭐ +10 แล้ว':'🎁 ครบแล้ว!'):'ทำครบ 5 ครั้ง → รับ ⭐ +10'}</small>`;
+  }
+
+  function renderWorldV58(){
+    const k=order.includes(S.active)?S.active:order[0];
+    S.active=k;
+    const m=S.monsters[k], st=stage(k), goal=maxGoal(k);
+
+    const map=q('#worldMap');
+    if(map){
+      const zones=order.map(x=>{
+        const mm=S.monsters[x], lv=mm.level||1, g=maxGoal(x);
+        const pct=Math.max(0,Math.min(100,(mm.progress||0)/g*100));
+        const rem=Math.max(0,g-(mm.progress||0));
+        return `<div class="zone ${x===k?'active':''}" data-stage="${x}" role="button" tabindex="0" aria-label="เลือก ${defs[x].title}">
+          <div class="zoneArt">${monsterSVG(x)}</div>
+          <b>${defs[x].title}</b><br>
+          <small>Lv.${lv}${lv>=5?' • HERO':''}</small>
+          <span class="v58-form">${lv>=5?'👑 HERO FORM':`ร่าง ${Math.min(5,lv)}/5`}</span>
+          <span class="v58-mini"><i style="width:${pct}%"></i></span>
+          <span class="v58-next">${lv>=5?'Mastery ต่อได้':`อีก ${rem} ${defs[x].unit} → Lv.${lv+1}`}</span>
+        </div>`;
+      }).join('');
+      const wp=worldProgress();
+      map.innerHTML=zones+`<div class="v58-world-progress">
+        <div class="v58-cup">🏆</div><b>World Progress</b>
+        <div class="v58-worldbar"><i style="width:${wp.pct}%"></i></div>
+        <small>${wp.pct}% • ผ่าน Level รวม ${wp.levelPass}</small>
+      </div>`;
+    }
+
+    q('#heroArt').innerHTML=avatarSVG();
+    q('#heroName').textContent=S.profile.name;
+    q('#bossArt').innerHTML=monsterSVG(k,st);
+    q('#bossName').textContent=defs[k].name;
+    q('#monsterTitle').textContent=defs[k].title;
+    q('#monsterLevel').textContent=`Lv.${m.level}${m.level>=5?' • HERO FORM':''}`;
+    q('#monsterTalk').textContent=defs[k].talk[st];
+
+    const energyRow=q('#hpText')?.closest('.row');
+    if(energyRow){
+      energyRow.classList.add('v58-energy-row');
+      const label=energyRow.querySelector('span:first-child');
+      if(label)label.textContent='⚡ พลังมอนสเตอร์';
+    }
+    q('#hpText').textContent=`${m.hp}/${maxHp(k)}`;
+    q('#hpBar').style.width=Math.max(0,Math.min(100,m.hp/maxHp(k)*100))+'%';
+
+    const rem=Math.max(0,goal-(m.progress||0));
+    q('#nextLevelHint').textContent=m.level>=5
+      ? '👑 HERO FORM — สะสม Mastery ต่อได้'
+      : `อีก ${rem} ${defs[k].unit} ถึง Lv.${m.level+1}`;
+
+    q('#progressText').textContent=`${m.progress||0}/${goal}`;
+    q('#progressUnit').textContent=`${defs[k].unit}สะสม`;
+    q('#monsterWins').textContent=m.wins||0;
+    q('#pendingCount').textContent=S.pending.filter(x=>x.k===k).length;
+    q('#petMiniText').textContent=S.pet.xp||0;
+    q('#questBox').innerHTML=questHTML(k);
+    renderPetFollower();
+    renderDailyGoal();
+
+    // Remove stale runtime-created duplicate nodes if cached DOM survived a soft navigation.
+    qa('.v49-metric-label,.v51-status-row,.v52-compact-status').forEach(x=>x.remove());
+  }
+
+  // Replace all earlier wrappers with this single canonical renderer.
+  window.renderWorld=renderWorldV58;
+
+  function switchStage(k){
+    if(!order.includes(k))return;
+    S.active=k;
+    save();
+    renderWorldV58(); // crucial: do not call full render() just to switch stages
+    const a=q('.arena');
+    if(a)a.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  window.switchStageV58=switchStage;
+
+  function installStageDelegation(){
+    const map=q('#worldMap'); if(!map || map.dataset.v58Bound)return;
+    map.dataset.v58Bound='1';
+    map.addEventListener('click',e=>{
+      const z=e.target.closest('.zone[data-stage]');
+      if(!z || !map.contains(z))return;
+      e.preventDefault();
+      switchStage(z.dataset.stage);
+    });
+    map.addEventListener('keydown',e=>{
+      if(e.key!=='Enter' && e.key!==' ')return;
+      const z=e.target.closest('.zone[data-stage]');
+      if(!z)return;
+      e.preventDefault();
+      switchStage(z.dataset.stage);
+    });
+  }
+
+  // One wrapper around the original/base apply. It never rebinds stage handlers.
+  const baseApply=window.apply;
+  if(typeof baseApply==='function'){
+    window.apply=function(k,p){
+      const beforeStars=S.stars||0;
+      const r=baseApply.call(this,k,p); // base render() now calls authoritative renderWorldV58
+      try{
+        const d=dailyState();
+        d.count=Math.min(5,(d.count||0)+1);
+        saveDaily(d);
+        let bonus=false;
+        if(d.count>=5 && localStorage.getItem(BONUS_KEY)!==today()){
+          S.stars=(S.stars||0)+10;
+          localStorage.setItem(BONUS_KEY,today());
+          save();
+          q('#stars').textContent=S.stars;
+          bonus=true;
+        }
+        renderDailyGoal();
+        if(bonus) toast('🎁 Daily Goal ครบ • ⭐ +10');
+      }catch(err){ console.error('V58 daily goal',err); }
+      return r;
+    };
+  }
+
+  function cleanSummaries(){
+    // Keep original summary logic, just normalize language.
+    qa('*').forEach(el=>{
       if(el.children.length===0 && el.textContent){
         el.textContent=el.textContent.replace(/(\d+)\s*active days/gi,'ทำกิจกรรม $1/7 วัน');
       }
     });
   }
 
-  function decorateWorldCards(){
-    const world=$q('#worldMap');
-    if(!world || typeof order==='undefined')return;
-    const zones=[...world.querySelectorAll('.zone')];
-    zones.forEach((z,i)=>{
-      const k=order[i];
-      if(!k)return;
-      z.dataset.v57Stage=k;
-      z.setAttribute('role','button');
-      z.setAttribute('tabindex','0');
-      z.setAttribute('aria-label',`เลือก ${defs[k].title}`);
-      /* Remove inherited inline handler so a single reliable V57 path owns stage switching. */
-      z.removeAttribute('onclick');
-    });
+  function init(){
+    mark();
+    renderWorldV58();
+    installStageDelegation();
+    cleanSummaries();
+    // Event is attached to #worldMap itself; its innerHTML may render forever without losing the listener.
+    window.addEventListener('hmw3d-render',cleanSummaries,{passive:true});
   }
 
-  let switching=false;
-  function selectStage(k, opts={}){
-    if(switching || !order.includes(k))return;
-    switching=true;
-    try{
-      S.active=k;
-      save();
-      /* Full render is deliberate: quest inputs, arena, map highlight and summaries stay in sync. */
-      render();
-      requestAnimationFrame(()=>{
-        decorateWorldCards();
-        cleanProgressCopy();
-        translateSummary();
-        const zone=$q(`#worldMap .zone[data-v57-stage="${k}"]`);
-        if(zone){
-          zone.classList.add('v57-switch-flash');
-          setTimeout(()=>zone.classList.remove('v57-switch-flash'),320);
-        }
-        if(opts.scroll){
-          const arena=$q('.arena');
-          if(arena)arena.scrollIntoView({behavior:'smooth',block:'start'});
-        }
-        switching=false;
-      });
-    }catch(err){
-      switching=false;
-      console.error('V57 stage switch failed',err);
-      try{toast('ลองเลือกด่านอีกครั้ง')}catch(e){}
-    }
-  }
-  window.selectStageV57=selectStage;
-
-  function installWorldDelegation(){
-    const world=$q('#worldMap');
-    if(!world || world.dataset.v57Bound)return;
-    world.dataset.v57Bound='1';
-    world.addEventListener('click',e=>{
-      const z=e.target.closest('.zone[data-v57-stage]');
-      if(!z || !world.contains(z))return;
-      e.preventDefault();
-      e.stopPropagation();
-      selectStage(z.dataset.v57Stage,{scroll:true});
-    });
-    world.addEventListener('keydown',e=>{
-      if(e.key!=='Enter' && e.key!==' ')return;
-      const z=e.target.closest('.zone[data-v57-stage]');
-      if(!z)return;
-      e.preventDefault();
-      selectStage(z.dataset.v57Stage,{scroll:true});
-    });
-  }
-
-  function removeDuplicateStatus(){
-    $qa('.v51-status-row,.v52-compact-status').forEach(x=>x.remove());
-  }
-
-  function afterRender(){
-    markBuild();
-    removeDuplicateStatus();
-    decorateWorldCards();
-    installWorldDelegation();
-    cleanProgressCopy();
-    translateSummary();
-  }
-
-  /* Wrap renderWorld once more, but do not alter progression/save logic. */
-  const prevWorld=window.renderWorld;
-  if(typeof prevWorld==='function'){
-    window.renderWorld=function(){
-      const r=prevWorld.apply(this,arguments);
-      removeDuplicateStatus();
-      decorateWorldCards();
-      cleanProgressCopy();
-      return r;
-    };
-  }
-
-  /* After an activity is saved, explicitly release switching state and rebind fresh map nodes. */
-  const prevApply=window.apply;
-  if(typeof prevApply==='function'){
-    window.apply=function(k,p){
-      const r=prevApply.apply(this,arguments);
-      switching=false;
-      setTimeout(afterRender,0);
-      return r;
-    };
-  }
-
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',afterRender,{once:true});
-  else afterRender();
-  addEventListener('load',afterRender,{once:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+  addEventListener('load',()=>{mark();installStageDelegation();},{once:true});
 })();
 </script>
 
