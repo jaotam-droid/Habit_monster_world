@@ -3169,15 +3169,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V60 • SAVE EVEN AT STAR CAP';
+  const BUILD='V61 • FREE STARS + RELIABLE STAGE SWITCH';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V60';
-    document.documentElement.dataset.hmwBuild='60-save-even-at-star-cap';
+    document.title='Habit Monster World V61';
+    document.documentElement.dataset.hmwBuild='61-free-stars-reliable-switch';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3214,13 +3214,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
     return '';
   }
 
-  function cappedStars(k,requested){
-    const cap=Math.max(0,Number(S.settings.dailyCap)||0);
-    if(!cap)return {award:requested,capped:false,used:usedStarsToday(k),cap:0};
-    const used=usedStarsToday(k);
-    const left=Math.max(0,cap-used);
-    return {award:Math.min(requested,left),capped:requested>left,used,cap};
-  }
+  function cappedStars(k,requested){ return {award:Number(requested)||0,capped:false,used:usedStarsToday(k),cap:0}; }
 
   function renderDailyGoal(){
     const arena=q('.arena'); if(!arena)return;
@@ -3263,7 +3257,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
   function questHTML60(k){
     if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" data-v60-action="diligent">บันทึก</button>`;
-    if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="30"><button class="bigBtn yellow" data-v60-action="reading">บันทึก</button><div class="v59-save-note">บันทึกได้เสมอ แม้ดาววันนี้เต็ม • นาทีจะเพิ่มใน 📖 Daily/Weekly Summary</div>`;
+    if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="30"><button class="bigBtn yellow" data-v60-action="reading">บันทึก</button><div class="v59-save-note">บันทึกได้ไม่จำกัด • นาทีจะเพิ่มใน 📖 Daily/Weekly Summary</div>`;
     if(k==="homework")return `<div class="questTitle">📚 เคลียร์การบ้านกี่งาน?</div><select id="qHomework" class="wideInput">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option>${n}</option>`).join("")}</select><button class="bigBtn blue" data-v60-action="homework">บันทึก</button>`;
     if(k==="messy")return `<div class="questTitle">🧹 วันนี้เก็บอะไรแล้ว?</div><div class="checkList">${S.messyTasks.map((x,i)=>`<div class="checkRow"><input type="checkbox" data-messy="${i}"><span style="flex:1">${x}</span>${i>=3?`<button class="deleteBtn" data-v60-delete-messy="${i}">🗑️ ลบ</button>`:""}</div>`).join("")}</div><div class="inlineAdd"><input id="newMessy" class="wideInput" placeholder="เพิ่มงานเอง"><button class="smallBtn" data-v60-action="addMessy">+ เพิ่ม</button></div><button class="bigBtn purple" data-v60-action="messy">บันทึก</button>`;
     if(k==="morning")return `<div class="questTitle">🌅 พร้อมตอนเช้า</div><div class="inputRow"><label>เป้า<input value="${S.settings.morning}" disabled></label><label>พร้อมจริง<input id="qMorning" type="time"></label></div><button class="bigBtn orange" data-v60-action="morning">เช็ก</button>`;
@@ -3469,6 +3463,65 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
   addEventListener('load',()=>{mark();bindMap();bindQuest();},{once:true});
+})();
+</script>
+
+<style id="v61-stage-switch-fix">
+/* V61: map cards must always be the top interactive target on iOS Safari. */
+#worldMap{position:relative!important;z-index:20!important}
+#worldMap .zone[data-stage]{position:relative!important;z-index:21!important;pointer-events:auto!important;-webkit-tap-highlight-color:rgba(255,196,54,.22)}
+#worldMap .zone[data-stage] *{pointer-events:none!important}
+/* Daily star cap removed: habits/progress/rewards are not capped. */
+#dailyCapSet{display:none!important}
+.setting:has(#dailyCapSet){display:none!important}
+</style>
+<script id="v61-authoritative-stage-switch">
+(()=>{
+ const BUILD='V61 • FREE STARS + RELIABLE STAGE SWITCH';
+ const q=s=>document.querySelector(s);
+ function mark61(){
+   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+   document.title='Habit Monster World V61';
+   document.documentElement.dataset.hmwBuild='61-free-stars-reliable-switch';
+   if(S?.settings) S.settings.dailyCap=0;
+ }
+ function selectStage61(stage){
+   if(!order.includes(stage))return false;
+   S.active=stage;
+   save();
+   /* Always use the V60 canonical renderer, now with uncapped rewards. */
+   if(typeof renderWorld==='function')renderWorld();
+   if(typeof renderSummaries==='function')renderSummaries();
+   return true;
+ }
+ window.selectStage61=selectStage61;
+ /* Capture phase wins over old/bubbled handlers and is reliable on iOS. */
+ document.addEventListener('click',e=>{
+   const z=e.target.closest?.('#worldMap .zone[data-stage]');
+   if(!z)return;
+   e.preventDefault();e.stopImmediatePropagation();
+   selectStage61(z.dataset.stage);
+ },true);
+ document.addEventListener('pointerup',e=>{
+   if(e.pointerType!=='touch')return;
+   const z=e.target.closest?.('#worldMap .zone[data-stage]');
+   if(!z)return;
+   e.preventDefault();e.stopImmediatePropagation();
+   selectStage61(z.dataset.stage);
+ },true);
+ /* Remove the reward cap at the source, while retaining old data compatibility. */
+ window.cappedStarsV61=(k,requested)=>({award:Number(requested)||0,capped:false,used:0,cap:0});
+ /* Patch commitActivityV60 by temporarily forcing cap=0. */
+ const oldCommit=window.commitActivityV60;
+ if(typeof oldCommit==='function'){
+   window.commitActivityV60=function(k,p){
+     const old=S.settings.dailyCap;S.settings.dailyCap=0;
+     try{return oldCommit(k,p)}finally{S.settings.dailyCap=0;save()}
+   };
+ }
+ function boot(){mark61();save();if(typeof render==='function')render();mark61()}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ addEventListener('pageshow',()=>{mark61();if(S?.settings)S.settings.dailyCap=0});
 })();
 </script>
 
