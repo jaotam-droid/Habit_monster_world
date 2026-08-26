@@ -3552,5 +3552,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+
+<style id="v55-cleanup-mobile-final">
+/* V55 — CLEANUP + MOBILE FINAL POLISH */
+.characterQualityNote:after{content:""!important;display:none!important}
+@media(max-width:600px){
+  /* Avatar setup stays useful without dominating the page */
+  .avatarStage{height:235px!important;min-height:235px!important;width:min(330px,88vw)!important;border-radius:28px!important}
+  .avatarStage img{height:94%!important;width:86%!important;object-fit:contain!important;object-position:center bottom!important}
+  .avatarStudio{gap:9px!important}
+  .avatarChoices{gap:7px!important}
+  .avatarChoice{padding:5px!important;min-height:102px!important}
+  .avatarChoice svg,.avatarChoice img{max-height:76px!important}
+  /* World cards: consistent rhythm and no oversized empty cells */
+  .world{gap:8px!important;padding:8px!important;align-items:stretch!important}
+  .zone{min-height:205px!important;height:auto!important;padding:8px 5px 9px!important;border-radius:22px!important}
+  .zoneArt{height:128px!important;min-height:128px!important;width:128px!important}
+  .v53-world-progress{min-height:205px!important;border-radius:22px!important;padding:10px 7px!important}
+  /* Arena: reserve the viewport for the actual action */
+  .arena{padding:8px 7px 10px!important}
+  .battle{min-height:205px!important;padding:2px 3px 0!important}
+  .battle .avatarArt,.battle .bossArt{height:175px!important;max-height:175px!important}
+  #petSpeech{margin:2px 0 5px!important;padding:7px 9px!important}
+  /* Companion becomes part of the hero side, never a form overlay */
+  #petFollower.petFollower.v51-pet{left:7%!important;bottom:72px!important;width:34px!important;height:34px!important;z-index:4!important;opacity:.96!important}
+  /* Edge navigation is deliberately quiet and mostly outside content */
+  #v51Dock{right:-20px!important;bottom:calc(env(safe-area-inset-bottom) + 104px)!important;opacity:.58!important;transition:.18s ease!important}
+  #v51Dock.open{right:5px!important;opacity:1!important}
+  #v51Dock .v51-main{width:27px!important;height:40px!important;font-size:13px!important}
+  /* tighter summaries */
+  .summaryGrid{gap:7px!important}.summaryBox{min-height:82px!important;padding:9px!important}
+}
+/* Keep floating companions away from active form controls on all widths */
+body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(textarea:focus) #petFollower{visibility:hidden!important}
+</style>
+<script id="v55-cleanup-runtime">
+(()=>{
+ const BUILD='V55 • CLEANUP + MOBILE FINAL';
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ function clean(){
+   const b=q('.buildBadge'); if(b)b.textContent=BUILD;
+   document.title='Habit Monster World V55';
+   document.documentElement.dataset.uiVersion='55';
+   document.documentElement.dataset.hmwBuild='55-cleanup-mobile-final';
+   const note=q('.characterQualityNote');
+   if(note) note.textContent='ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน';
+   /* scrub build/debug copy outside the single build badge */
+   qa('body *').forEach(el=>{
+     if(el===b || el.children.length) return;
+     const t=el.textContent||'';
+     if(/V(?:44|5[0-4])\s*(?:Arena|Game UI|Mobile Game|Mobile Layout|Clean Mobile)/i.test(t)){
+       el.textContent=t.replace(/\s*[•·-]?\s*V(?:44|5[0-4])[^•·\n]*/gi,'').trim();
+     }
+   });
+   /* only one summary goal chip */
+   const dc=q('#dailySummary')?.closest('.card,section');
+   if(dc){const chips=qa('.v53-summary-chip').filter(x=>dc.contains(x));chips.slice(1).forEach(x=>x.remove())}
+   /* keep dock collapsed after navigation */
+   const d=q('#v51Dock');
+   if(d){d.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>setTimeout(()=>d.classList.remove('open'),80),{passive:true}))}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean,{once:true}); else clean();
+ addEventListener('load',clean,{once:true});
+})();
+</script>
+
 </body>
 </html>
