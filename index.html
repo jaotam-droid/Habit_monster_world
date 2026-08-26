@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:800}
+.characterQualityNote:after{content:" • V54 Mobile Game Screen Polish";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -598,7 +598,7 @@ body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed
 <style id="v39-character-system-overhaul">
 /* === V39: character-first game presentation === */
 .header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
-.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:900}
+.characterQualityNote:after{content:" • V54 Mobile Game Screen Polish";font-weight:900}
 
 .avatarStage{
   height:430px!important;
@@ -1209,6 +1209,95 @@ body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255
 @keyframes v44Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 </style>
 
+
+<style id="v54-mobile-game-screen-polish">
+:root{
+  --v54-gap:14px;
+  --v54-radius:24px;
+}
+html{scroll-padding-bottom:calc(92px + env(safe-area-inset-bottom));}
+body{
+  padding-bottom:calc(74px + env(safe-area-inset-bottom)) !important;
+  overflow-x:hidden;
+}
+@media (max-width: 600px){
+  .container,.wrap,.app,.page,.shell{max-width:100%;}
+  h1{line-height:1.06;}
+  /* tighter mobile rhythm */
+  section,.section,.card,.panel{scroll-margin-top:10px;}
+  /* Avatar Studio: keep the character important, but reduce the long first screen */
+  #avatarStudio .avatar-preview,
+  .avatar-studio .avatar-preview,
+  .avatarPreview,
+  .avatar-stage{
+    max-height:48vh !important;
+    min-height:0 !important;
+  }
+  #avatarStudio img,
+  .avatar-studio .avatar-preview img,
+  .avatarPreview img{
+    max-height:44vh !important;
+    object-fit:contain !important;
+  }
+  .avatar-options,.avatar-grid,.character-grid{
+    gap:8px !important;
+  }
+  /* World map: consistent card geometry */
+  .world-grid,.stage-grid,.monster-grid,.map-grid{
+    align-items:stretch !important;
+    gap:10px !important;
+  }
+  .world-card,.stage-card,.monster-card,.map-card{
+    min-width:0 !important;
+    height:auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+  .world-card .progress,.stage-card .progress,.monster-card .progress,.map-card .progress{
+    margin-top:auto !important;
+  }
+  /* Arena hierarchy and symmetrical stats */
+  .arena-stats,.battle-stats,.stats-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+  .arena-stats > *, .battle-stats > *, .stats-grid > *{
+    min-width:0 !important;
+  }
+  /* summaries: compact and aligned */
+  .summary-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+}
+/* floating menu becomes a quiet edge tab and respects iPhone safe areas */
+.floating-menu,.floatingMenu,.fab-menu,.menu-fab,.quick-menu{
+  position:fixed !important;
+  right:max(0px,env(safe-area-inset-right)) !important;
+  left:auto !important;
+  bottom:calc(94px + env(safe-area-inset-bottom)) !important;
+  width:52px !important;
+  height:58px !important;
+  border-radius:18px 0 0 18px !important;
+  opacity:.88 !important;
+  z-index:80 !important;
+  box-shadow:0 8px 20px rgba(30,80,120,.18) !important;
+}
+.floating-menu:hover,.floatingMenu:hover,.fab-menu:hover,.menu-fab:hover,.quick-menu:hover,
+.floating-menu:focus,.floatingMenu:focus,.fab-menu:focus,.menu-fab:focus,.quick-menu:focus{
+  opacity:1 !important;
+}
+/* keep decorative/pet overlays out of form controls and browser-safe bottom zone */
+.pet-float,.floating-pet,.pet-overlay{
+  pointer-events:none !important;
+  z-index:20 !important;
+  bottom:calc(160px + env(safe-area-inset-bottom)) !important;
+}
+input,select,button,textarea{min-height:44px;}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -1719,7 +1808,7 @@ function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$
 function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();render()}
 function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();render()}
 function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();render();toast("บันทึก Avatar แล้ว")}
-function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").innerHTML=order.map(x=>`<div class="zone ${x===k?"active":""}" onclick="S.active='${x}';save();render()"><div class="zoneArt">${monsterSVG(x)}</div><b>${defs[x].title}</b><br><small>Lv.${S.monsters[x].level}${S.monsters[x].level>=5?" • HERO":""}</small></div>`).join("");$("heroArt").innerHTML=avatarSVG();$("heroName").textContent=S.profile.name;$("bossArt").innerHTML=monsterSVG(k,st);$("bossName").textContent=defs[k].name;$("monsterTitle").textContent=defs[k].title;$("monsterLevel").textContent=`Lv.${m.level}${m.level>=5?" • HERO FORM":""}`;$("monsterTalk").textContent=defs[k].talk[st];$("hpText").textContent=`${m.hp}/${maxHp(k)}`;$("hpBar").style.width=Math.max(0,m.hp/maxHp(k)*100)+"%";$("progressText").textContent=m.progress;$("progressUnit").textContent=defs[k].unit+"สะสม";$("monsterWins").textContent=m.wins;$("pendingCount").textContent=S.pending.filter(x=>x.k===k).length;$("petMiniText").textContent=S.pet.xp;$("nextLevelHint").textContent=m.level>=5?"👑 HERO FORM — สะสม Mastery ต่อได้":`เหลือ ${Math.max(0,maxGoal(k)-m.progress)} ${defs[k].unit} ถึง Lv.${m.level+1}`;$("questBox").innerHTML=questHTML(k);renderPetFollower()}
+function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").innerHTML=order.map(x=>`<div class="zone ${x===k?"active":""}" onclick="S.active='${x}';save();render()"><div class="zoneArt">${monsterSVG(x)}</div><b>${defs[x].title}</b><br><small>Lv.${S.monsters[x].level}${S.monsters[x].level>=5?" • HERO":""}</small></div>`).join("");$("heroArt").innerHTML=avatarSVG();$("heroName").textContent=S.profile.name;$("bossArt").innerHTML=monsterSVG(k,st);$("bossName").textContent=defs[k].name;$("monsterTitle").textContent=defs[k].title;$("monsterLevel").textContent=`Lv.${m.level}${m.level>=5?" • HERO FORM":""}`;$("monsterTalk").textContent=defs[k].talk[st];$("hpText").textContent=`${m.hp}/${maxHp(k)}`;$("hpBar").style.width=Math.max(0,m.hp/maxHp(k)*100)+"%";$("progressText").textContent=m.progress;$("progressUnit").textContent=defs[k].unit+"สะสม";$("monsterWins").textContent=m.wins;$("pendingCount").textContent=S.pending.filter(x=>x.k===k).length;$("petMiniText").textContent=S.pet.xp;$("nextLevelHint").textContent=m.level>=5?"👑 HERO ร่าง — สะสม Mastery ต่อได้":`เหลือ ${Math.max(0,maxGoal(k)-m.progress)} ${defs[k].unit} ถึง Lv.${m.level+1}`;$("questBox").innerHTML=questHTML(k);renderPetFollower()}
 function renderSummaries(){let d=summaryRange(1),w=summaryRange(7);$("dailySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">✅<b>${d.count} รายการ</b></div></div>`;$("weeklySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${w.reading} นาที</b></div><div class="summaryBox">📚<b>${w.homework} งาน</b></div><div class="summaryBox">🔥<b>${w.days} active days</b></div></div>`}
 function renderDaily(){ensureDaily();let q=[["diligent","✏️","แบบฝึกหัด"],["reading","📖","อ่าน"],["homework","📚","การบ้าน"]];$("dailyQuestGrid").innerHTML=q.map(([k,i,n])=>`<div class="box ${S.daily.done[k]?"done":""}"><div class="ico">${i}</div><b>${n}</b><br>${S.daily.done[k]?"✅ สำเร็จ":"ยังไม่สำเร็จ"}</div>`).join("");let all=q.every(([k])=>S.daily.done[k]);$("dailyChestBtn").disabled=!all||S.daily.chest;$("dailyChestIcon").textContent=S.daily.chest?"✅":"🎁";$("perfectDay").innerHTML=all?"🌈 PERFECT DAY!":"ทำครบ 3 อย่างเพื่อเปิดกล่อง"}
 function claimChest(){ensureDaily();if(S.daily.chest)return;let all=["diligent","reading","homework"].every(k=>S.daily.done[k]);if(!all)return toast("ทำ Daily Quest ให้ครบ");S.daily.chest=true;let rewards=[["stars","⭐ +10 ดาว"],["pet","🐾 Pet Toy Token"],["collection","🎀 Collection Token"],["badge","🏅 Mystery Badge"]],idx=[...dayKey()].reduce((a,c)=>a+c.charCodeAt(0),0)%rewards.length,r=rewards[idx];if(r[0]==="stars")S.stars+=10;S.chestHistory.unshift({date:dayKey(),reward:r[1]});save();celebrate(`🎁 ${r[1]}`);render()}
@@ -2228,14 +2317,14 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 </style>
 <script id="v49-mobile-runtime">
 (()=>{
- const BUILD='V53 • GAME UI CONSISTENCY';
+ const BUILD='V54 • MOBILE GAME SCREEN POLISH';
  const $q=s=>document.querySelector(s);
- function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V53';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
+ function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V54';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
  function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
  function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
  function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
- function metricLabels(){const hp=document.getElementById('hpText');if(hp&&!hp.parentElement.querySelector('.v49-metric-label')){const d=document.createElement('div');d.className='v49-metric-label';d.textContent='พลังด่านคงเหลือ';hp.parentElement.parentElement.insertBefore(d,hp.parentElement.nextSibling)}const p=document.getElementById('progressText');if(p){const s=p.closest('.stat')?.querySelector('span');if(s&&!s.dataset.v49){s.dataset.v49='1';s.textContent='ความคืบหน้านิสัย'}}}
- function decorateWorld(){document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{try{const k=order[i],lv=S.monsters[k].level||1,form=Math.min(5,lv);z.classList.toggle('v49-hero',lv>=5);let chip=z.querySelector('.v49-formchip');if(!chip){chip=document.createElement('span');chip.className='v49-formchip';z.appendChild(chip)}chip.textContent=lv>=5?'👑 HERO FORM':`FORM ${form}/5`;let nx=z.querySelector('.v49-next');if(!nx){nx=document.createElement('span');nx.className='v49-next';z.appendChild(nx)}nx.textContent=lv>=5?'Mastery ต่อได้':`อีก ${Math.max(0,maxGoal(k)-S.monsters[k].progress)} ${defs[k].unit} → Lv.${lv+1}`;}catch(e){}})}
+ function metricLabels(){const hp=document.getElementById('hpText');if(hp&&!hp.parentElement.querySelector('.v49-metric-label')){const d=document.createElement('div');d.className='v49-metric-label';d.textContent='พลังนิสัยสะสม';hp.parentElement.parentElement.insertBefore(d,hp.parentElement.nextSibling)}const p=document.getElementById('progressText');if(p){const s=p.closest('.stat')?.querySelector('span');if(s&&!s.dataset.v49){s.dataset.v49='1';s.textContent='ความคืบหน้านิสัย'}}}
+ function decorateWorld(){document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{try{const k=order[i],lv=S.monsters[k].level||1,form=Math.min(5,lv);z.classList.toggle('v49-hero',lv>=5);let chip=z.querySelector('.v49-formchip');if(!chip){chip=document.createElement('span');chip.className='v49-formchip';z.appendChild(chip)}chip.textContent=lv>=5?'👑 HERO FORM':`ร่าง ${form}/5`;let nx=z.querySelector('.v49-next');if(!nx){nx=document.createElement('span');nx.className='v49-next';z.appendChild(nx)}nx.textContent=lv>=5?'Mastery ต่อได้':`อีก ${Math.max(0,maxGoal(k)-S.monsters[k].progress)} ${defs[k].unit} → Lv.${lv+1}`;}catch(e){}})}
  const oldRW=window.renderWorld;if(typeof oldRW==='function')window.renderWorld=function(){const r=oldRW.apply(this,arguments);decorateWorld();metricLabels();return r};
  const oldApply=window.apply;if(typeof oldApply==='function')window.apply=function(k,p){const before=S.monsters[k]?.level||1;const r=oldApply.apply(this,arguments);const a=document.querySelector('.arena');if(a){a.classList.remove('v49-react');void a.offsetWidth;a.classList.add('v49-react');setTimeout(()=>a.classList.remove('v49-react'),450)}const after=S.monsters[k]?.level||before;burst(after>before?'🎉✨':'✨');return r};
  function init(){mark();lowFx();quickNav();decorateWorld();metricLabels();document.addEventListener('focusin',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility='hidden'});document.addEventListener('focusout',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility=''})}
@@ -2288,12 +2377,12 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
 <script id="v50-mobile-runtime">
 (()=>{
- const BUILD='V53 • GAME UI CONSISTENCY';
+ const BUILD='V54 • MOBILE GAME SCREEN POLISH';
  const q=s=>document.querySelector(s);
  const qa=s=>[...document.querySelectorAll(s)];
  function build(){
    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V53';
+   document.title='Habit Monster World V54';
    document.documentElement.dataset.hmwBuild='50-mobile-ux-final';
  }
  function toast(t){
@@ -2550,7 +2639,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
 <script id="v51-mobile-runtime">
 (()=>{
- const BUILD='V53 • GAME UI CONSISTENCY';
+ const BUILD='V54 • MOBILE GAME SCREEN POLISH';
  const q=s=>document.querySelector(s);
  const qa=s=>[...document.querySelectorAll(s)];
  const DAY_KEY='hmw_v51_daily_goal';
@@ -2558,7 +2647,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
 
  function mark(){
    const b=q('.buildBadge');if(b)b.textContent=BUILD;
-   document.title='Habit Monster World V53';
+   document.title='Habit Monster World V54';
    document.documentElement.dataset.hmwBuild='51';
  }
 
@@ -2587,7 +2676,7 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
  function levelUp(level){
    if(document.body.classList.contains('v49-lowfx')) return;
    const d=document.createElement('div');d.className='v51-levelup';
-   d.innerHTML=`<div class="v51-levelup-card"><div class="big">🎉✨</div><b>LEVEL UP!</b><div>ปลดล็อก FORM ${Math.min(5,level)}/5</div></div>`;
+   d.innerHTML=`<div class="v51-levelup-card"><div class="big">🎉✨</div><b>LEVEL UP!</b><div>ปลดล็อก ร่าง ${Math.min(5,level)}/5</div></div>`;
    document.body.appendChild(d);setTimeout(()=>d.remove(),950);
  }
 
@@ -2681,8 +2770,8 @@ body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49
    try{
      const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
      const remain=Math.max(0,goal-(m.progress||0));
-     row.innerHTML=`<div class="v51-status-box"><b>พลังด่านคงเหลือ</b><strong>${m.hp}/${maxHp(k)}</strong></div>
-                    <div class="v51-status-box"><b>อีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
+     row.innerHTML=`<div class="v51-status-box"><b>พลังนิสัยสะสม</b><strong>${m.hp}/${maxHp(k)}</strong></div>
+                    <div class="v51-status-box"><b>อีกเท่าไรอีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
    }catch(e){}
  }
 
@@ -2950,7 +3039,7 @@ button:active,.zone:active,.avatarChoices>*:active{
 
 <script id="v52-clean-mobile-runtime">
 (()=>{
-  const BUILD='V53 • GAME UI CONSISTENCY';
+  const BUILD='V54 • MOBILE GAME SCREEN POLISH';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const DAY_KEY='hmw_v51_daily_goal';
@@ -2958,7 +3047,7 @@ button:active,.zone:active,.avatarChoices>*:active{
 
   function mark(){
     const b=q('.buildBadge');if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V53';
+    document.title='Habit Monster World V54';
     document.documentElement.dataset.hmwBuild='52';
   }
 
@@ -3002,8 +3091,8 @@ button:active,.zone:active,.avatarChoices>*:active{
       const k=S.active||order[0],m=S.monsters[k],goal=maxGoal(k);
       const remain=Math.max(0,goal-(m.progress||0));
       row.innerHTML=
-        `<div class="v52-compact-box"><b>พลังด่านคงเหลือ</b><strong>${m.hp}/${maxHp(k)}</strong></div>`+
-        `<div class="v52-compact-box"><b>ถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
+        `<div class="v52-compact-box"><b>พลังนิสัยสะสม</b><strong>${m.hp}/${maxHp(k)}</strong></div>`+
+        `<div class="v52-compact-box"><b>อีกเท่าไรถึง Level ถัดไป</b><strong>${remain} ${defs[k].unit}</strong></div>`;
     }catch(e){}
 
     // hide original duplicated HP/progress summary blocks when safely identifiable
@@ -3012,7 +3101,7 @@ button:active,.zone:active,.avatarChoices>*:active{
       const boxes=[...stats.children];
       boxes.forEach((box,i)=>{
         const txt=(box.textContent||'').trim();
-        if(i===0 || /พลังด่านคงเหลือ|อีกเท่าไรถึง Level/i.test(txt)){
+        if(i===0 || /พลังนิสัยสะสม|อีกเท่าไรถึง Level/i.test(txt)){
           box.classList.add('v52-secondary-hidden');
         }
       });
@@ -3133,7 +3222,7 @@ button:active,.zone:active,.avatarChoices>*:active{
 
 
 <style id="v53-game-ui-consistency">
-/* V53 GAME UI CONSISTENCY — bundled mobile polish, lightweight only */
+/* V54 GAME UI CONSISTENCY — bundled mobile polish, lightweight only */
 :root{
   --v53-blue:#1688e8;
   --v53-ink:#203b5b;
@@ -3272,7 +3361,7 @@ button:active,.zone:active,.avatarChoices>*:active{
 
 <script id="v53-game-ui-runtime">
 (()=>{
-  const BUILD='V53 • GAME UI CONSISTENCY';
+  const BUILD='V54 • MOBILE GAME SCREEN POLISH';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const DAY_KEY='hmw_v51_daily_goal';
@@ -3280,10 +3369,10 @@ button:active,.zone:active,.avatarChoices>*:active{
 
   function mark(){
     const b=q('.buildBadge');if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V53';
+    document.title='Habit Monster World V54';
     document.documentElement.dataset.hmwBuild='53';
     const note=q('.characterQualityNote');
-    if(note) note.innerHTML='ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน • <b>V53 Game UI Consistency</b>';
+    if(note) note.innerHTML='ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน • <b>V54 Game UI Consistency</b>';
   }
 
   function today(){
@@ -3328,7 +3417,7 @@ button:active,.zone:active,.avatarChoices>*:active{
     boxes.forEach(box=>{
       box.classList.remove('v53-hide-duplicate','v52-secondary-hidden');
       const t=(box.textContent||'').trim();
-      if(/พลังด่านคงเหลือ|ความคืบหน้านิสัย|ข้อสะสม|นาทีสะสม|งานสะสม/i.test(t)){
+      if(/พลังนิสัยสะสม|ความคืบหน้านิสัย|ข้อสะสม|นาทีสะสม|งานสะสม/i.test(t)){
         box.classList.add('v53-hide-duplicate');
       }
     });
@@ -3429,6 +3518,38 @@ button:active,.zone:active,.avatarChoices>*:active{
   else refresh();
   addEventListener('load',refresh,{once:true});
 })();
+</script>
+
+
+<script id="v54-runtime-polish">
+document.addEventListener('DOMContentLoaded', () => {
+  // Remove legacy version copy wherever it survived in rendered text.
+  document.querySelectorAll('body *').forEach(el => {
+    if (el.children.length === 0 && el.textContent) {
+      el.textContent = el.textContent
+        .replace(/V44\s*Arena\s*&\s*Map\s*Polish/gi,'V54 Mobile Game Screen Polish')
+        .replace(/\bFORM\s*(\d+\/5)\b/gi,'ร่าง $1')
+        .replace(/พลังด่านคงเหลือ/g,'พลังนิสัยสะสม')
+        .replace(/\b2\s*active\s*days\b/gi,'ทำกิจกรรม 2/7 วัน');
+    }
+  });
+
+  // Hide duplicate Daily Goal chips inside the Daily Summary; retain the first meaningful display.
+  const dailySummary = [...document.querySelectorAll('section,.card,.panel,div')]
+    .find(el => /Daily Summary/i.test(el.textContent || '') && el.querySelectorAll('*').length < 120);
+  if (dailySummary) {
+    const goalNodes = [...dailySummary.querySelectorAll('*')].filter(el =>
+      el.children.length === 0 && /Daily Goal\s*\d+\/5|เป้าหมาย.*\d+\/5/i.test(el.textContent || '')
+    );
+    goalNodes.slice(1).forEach(el => {
+      const box = el.closest('.chip,.badge,.pill,.goal-chip') || el;
+      box.style.display = 'none';
+    });
+  }
+
+  // Mark version for debugging without modifying saved player data.
+  document.documentElement.dataset.uiVersion = '54';
+});
 </script>
 
 </body>
