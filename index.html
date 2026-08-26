@@ -2143,13 +2143,95 @@ html,body{scroll-behavior:auto!important}
 <script id="safe-mobile-runtime">
 (()=>{
   const setBadge=()=>{
-    const b=document.querySelector('.buildBadge'); if(b)b.textContent='SAFE MOBILE';
-    document.title='Habit Monster World — SAFE MOBILE';
+    const b=document.querySelector('.buildBadge'); if(b && !document.documentElement.dataset.hmwBuild)b.textContent='SAFE MOBILE';
+    if(!document.documentElement.dataset.hmwBuild)document.title='Habit Monster World — SAFE MOBILE';
     document.documentElement.dataset.hmwBuild='safe-mobile';
   };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',setBadge,{once:true}); else setBadge();
   window.addEventListener('load',setBadge,{once:true});
 })();
 </script>
+
+<style id="v48-mobile-style">
+/* V48 MOBILE EDITION — lightweight game feel, no WebGL/no observers */
+:root{--v48-glow:rgba(119,100,255,.30)}
+.buildBadge{background:linear-gradient(135deg,#7168f3,#438ee9)!important;color:#fff!important;box-shadow:0 7px 18px rgba(80,88,210,.20)!important}
+.zone{position:relative;overflow:hidden;contain:layout paint style}
+.zone.active{border-color:#ffcf4d!important;background:linear-gradient(180deg,#fffdf4,#fff4ca)!important;box-shadow:0 10px 24px rgba(224,176,49,.16)!important}
+.zone.active:after{content:'✓ เลือกอยู่';position:absolute;right:8px;top:8px;padding:4px 7px;border-radius:999px;background:#ffe36e;color:#6a5200;font-size:11px;font-weight:900}
+.zoneArt img,.bossArt img,.avatarArt img{max-width:100%;max-height:100%;object-fit:contain}
+.arena{border-radius:28px!important;background:linear-gradient(180deg,#c9efff 0 49%,#dff4ce 49% 72%,#ffe3a9 72% 100%)!important;box-shadow:0 16px 34px rgba(46,92,126,.12)!important}
+.battle{padding-top:8px}
+.vs{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.88);box-shadow:0 6px 16px rgba(42,73,101,.12);font-size:0!important}
+.vs:after{content:'⚡';font-size:24px}
+#monsterTalk{background:rgba(255,255,255,.88)!important;border-color:rgba(255,255,255,.95)!important}
+.v48-react #heroArt{animation:v48Hero .38s ease-out!important}
+.v48-react #bossArt{animation:v48Boss .42s ease-out!important}
+.v48-react #petFollower{animation:v48Pet .44s ease-out!important}
+.v48-react #hpBar{animation:v48Bar .5s ease-out!important}
+@keyframes v48Hero{0%{transform:translateX(0) scale(1)}45%{transform:translateX(7px) scale(1.035)}100%{transform:none}}
+@keyframes v48Boss{0%{transform:none}40%{transform:translateX(5px) rotate(1.5deg) scale(.975)}100%{transform:none}}
+@keyframes v48Pet{0%{transform:none}45%{transform:translateY(-7px) scale(1.06)}100%{transform:none}}
+@keyframes v48Bar{0%{filter:none}50%{filter:drop-shadow(0 0 7px var(--v48-glow))}100%{filter:none}}
+.v48-evo-card{text-align:center}.v48-evo-art{width:min(220px,70vw);height:220px;margin:4px auto;display:grid;place-items:center}.v48-evo-art img,.v48-evo-art svg{max-width:100%;max-height:100%}.v48-form{font-size:13px;font-weight:950;letter-spacing:.08em;color:#6a60d9}.v48-reward{margin-top:8px;padding:9px 12px;border-radius:14px;background:#fff5c8;font-weight:900}.v48-hero-ring{box-shadow:0 0 0 5px rgba(255,216,75,.18),0 12px 30px rgba(169,122,14,.12)!important}
+@media(max-width:600px){.arena{border-radius:24px!important}.v48-evo-art{height:180px}.zone.active:after{font-size:10px}}
+</style>
+<script id="v48-mobile-runtime">
+(()=>{
+ const BUILD='V48 • MOBILE EDITION';
+ const praise={
+  diligent:['พลังขยันเพิ่มแล้ว! ✨','เยี่ยม! เจ้าขี้เกียจเริ่มหวั่นแล้ว'],
+  reading:['อ่านเพิ่มแล้ว! 📖✨','นักอ่านแข็งแรงขึ้นอีกนิด!'],
+  homework:['เคลียร์ไปอีกงานแล้ว! 📚','ดีมาก งานหายไปอีกกอง!'],
+  messy:['เรียบร้อยขึ้นแล้ว! 🧹✨','เยี่ยม ของกลับเข้าที่แล้ว!'],
+  morning:['เช้านี้คล่องขึ้น! ☀️','พร้อมไวขึ้นอีกวัน!'],
+  noDawdle:['เร็วขึ้นแบบพอดี! ⏰','จัดเวลาได้ดีมาก!'],
+  screen:['วางจอได้แล้ว! 👀✨','มีเวลาให้โลกจริงเพิ่มขึ้น!']
+ };
+ function mark(){
+  const b=document.querySelector('.buildBadge'); if(b)b.textContent=BUILD;
+  document.title='Habit Monster World V48 Mobile Edition';
+  document.documentElement.dataset.hmwBuild='48-mobile';
+ }
+ function react(k){
+  const a=document.querySelector('.arena'); if(!a)return;
+  a.classList.remove('v48-react'); void a.offsetWidth; a.classList.add('v48-react');
+  const t=document.getElementById('monsterTalk'); const arr=praise[k]; if(t&&arr)t.textContent=arr[Math.floor(Math.random()*arr.length)];
+  setTimeout(()=>a.classList.remove('v48-react'),520);
+ }
+ function evo(k,lv){
+  try{
+   const hero=lv>=5, form=Math.min(5,lv), art=monsterSVG(k,form-1);
+   modal(hero?'👑':'🌈',hero?'HERO FORM ปลดล็อก!':`EVOLUTION — FORM ${form}`,
+    `<div class="v48-evo-card"><div class="v48-form">${defs[k].title} • FORM ${form}/5</div><div class="v48-evo-art">${art}</div><b>${hero?'เข้าสู่ HERO FORM แล้ว!':'มอนสเตอร์วิวัฒนาการเป็นร่างใหม่แล้ว!'}</b><div class="v48-reward">⭐ โบนัสผ่านร่าง +25 ดาว</div></div>`);
+  }catch(e){console.warn('V48 evo',e)}
+ }
+ const originalApply=window.apply;
+ if(typeof originalApply==='function'){
+  window.apply=function(k,p){
+   const before=S.monsters[k]?.level||1;
+   const result=originalApply.apply(this,arguments);
+   const after=S.monsters[k]?.level||before;
+   react(k);
+   if(after>before)setTimeout(()=>evo(k,after),140);
+   return result;
+  };
+ }
+ const originalRenderWorld=window.renderWorld;
+ if(typeof originalRenderWorld==='function'){
+  window.renderWorld=function(){
+   const r=originalRenderWorld.apply(this,arguments);
+   try{
+    const hero=document.querySelector('.arena');
+    if(hero)hero.classList.toggle('v48-hero-ring',(S.monsters[S.active]?.level||1)>=5);
+   }catch(e){}
+   return r;
+  };
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+ window.addEventListener('load',mark,{once:true});
+})();
+</script>
+
 </body>
 </html>

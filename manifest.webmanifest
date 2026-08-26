@@ -1,8 +1,1 @@
-{
-  "name":"Habit Monster World Safe Mobile",
-  "short_name":"HabitMonster",
-  "start_url":"./?safe=1",
-  "display":"standalone",
-  "background_color":"#dff4ff",
-  "theme_color":"#dff4ff"
-}
+{"name":"Habit Monster World V48 Mobile Edition","short_name":"HabitMonster","start_url":"./","display":"standalone","background_color":"#edf8ff","theme_color":"#76b9ef"}
