@@ -1,9 +1,9 @@
 {
-  "name": "Habit Monster World V34",
-  "short_name": "Habit Monster V34",
-  "start_url": "./",
+  "name": "Habit Monster World V46.1 Test",
+  "short_name": "HabitMonster",
+  "start_url": "./index.html?build=46.1-test",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#edf8ff",
-  "theme_color": "#76b9ef"
+  "background_color": "#ffffff",
+  "theme_color": "#dff4ff"
 }

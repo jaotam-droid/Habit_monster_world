@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V34 FINAL PREMIUM GAME ART</title>
+<title>Habit Monster World</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -14,7 +14,7 @@
 .nav{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.nav button{border:0;border-radius:13px;padding:10px 5px;background:#edf4f8;font-weight:900}.nav button.active{background:#dceeff;color:#285e9b}
 .screen{display:none}.screen.active{display:block}
 .world{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.zone{border:2px solid var(--line);border-radius:18px;padding:11px;text-align:center;background:#fff;cursor:pointer;transition:.15s;min-height:150px}.zone:active{transform:scale(.97)}.zone.active{border-color:#6b9ee5;background:#eef6ff}.zoneArt{width:104px;height:104px;margin:auto}.zoneArt svg{width:100%;height:100%}
-.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#cfeeff 0 52%,#eaf7dc 52%);min-height:470px;overflow:hidden;position:relative}.battle{overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:end;text-align:center;gap:4px;overflow:hidden}.avatarArt{width:150px;height:175px;margin:auto;overflow:hidden}.bossArt{width:180px;height:190px;margin:auto;overflow:hidden}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
+.main{display:grid;grid-template-columns:1.4fr .8fr;gap:11px}.arena{background:linear-gradient(#cfeeff 0 52%,#eaf7dc 52%);min-height:470px;overflow:hidden;position:relative}.battle{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:end;text-align:center;gap:4px;overflow:hidden}.avatarArt{width:150px;height:175px;margin:auto;overflow:hidden}.bossArt{width:180px;height:190px;margin:auto;overflow:hidden}.avatarArt svg,.bossArt svg{width:100%;height:100%;filter:drop-shadow(0 10px 12px rgba(45,73,104,.16))}
 .vs{font-size:30px;font-weight:1000;color:#789}.label{font-weight:950}.story{background:#f7fbff;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}.row{display:flex;justify-content:space-between;gap:8px;font-weight:900}
 .bar{height:16px;background:#edf2f6;border-radius:999px;overflow:hidden;border:1px solid #dae5ec;margin:5px 0 9px}.hp{height:100%;background:linear-gradient(90deg,#a49fe9,#786fd1)}.xp{height:100%;background:linear-gradient(90deg,#65cbff,#6278ff)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.stat{background:#f7fbfd;border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center}.stat b{display:block;font-size:20px}
@@ -257,7 +257,7 @@
 .arena{background:linear-gradient(180deg,#cceeff 0 48%,#d9f3c9 48% 66%,#fff0d0 66% 100%)!important}
 .zone{background:linear-gradient(180deg,#ffffff,#f8fcff 68%,#fff8e8)!important}
 .zoneArt{filter:none!important}
-.characterQualityNote:after{content:" • V27.3 uses original in-game character artwork";font-weight:800}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:800}
 @media(max-width:600px){
  .zoneArt{height:112px!important;width:112px!important}
  .avatarStage{height:340px!important}
@@ -274,388 +274,6 @@
 .zoneArt .original-art img{transform:scale(1.04)!important}
 .battle .avatarArt,.battle .bossArt{height:206px!important}
 
-
-/* V27.7 CHARACTER VISUAL UPGRADE */
-.cinematic-slot img{filter:drop-shadow(0 12px 14px rgba(42,68,92,.18));transition:transform .22s ease,filter .22s ease}
-.avatarStage .cinematic-slot img{transform:scale(1.055);filter:drop-shadow(0 18px 20px rgba(42,68,92,.20))}
-.avatarChoice .cinematic-slot img{transform:scale(1.06)}
-.zoneArt .cinematic-slot img{transform:scale(1.04)}
-.petStage .cinematic-slot img{transform:scale(1.05)}
-.battle .avatar-generated img,.battle .cinematic-monster img{transform:scale(1.04)}
-.avatarChoice.on .cinematic-slot img,.zone.active .cinematic-slot img{filter:drop-shadow(0 13px 16px rgba(62,113,168,.25)) saturate(1.05)}
-.characterQualityNote{border-left:5px solid #78b9ef;padding-left:12px}
-
-/* V27.8 PREMIUM VISUAL POLISH */
-body{
-  background:
-    radial-gradient(circle at 18% 5%,rgba(183,228,255,.65),transparent 28%),
-    radial-gradient(circle at 84% 10%,rgba(255,231,185,.55),transparent 26%),
-    linear-gradient(180deg,#edf8ff 0%,#f9fcff 48%,#fff8e9 100%);
-}
-.card{
-  border:1px solid rgba(255,255,255,.96);
-  box-shadow:0 14px 34px rgba(45,73,104,.12),inset 0 1px 0 rgba(255,255,255,.95);
-}
-.nav button{
-  min-height:64px;
-  background:linear-gradient(180deg,#f7fbff,#e9f2f7);
-  box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(56,87,116,.07);
-  transition:transform .14s ease,box-shadow .14s ease;
-}
-.nav button:active{transform:translateY(1px) scale(.98)}
-.zone{
-  background:linear-gradient(180deg,#fff 0%,#fffdf7 100%);
-  box-shadow:0 8px 20px rgba(51,80,108,.07),inset 0 1px 0 #fff;
-  border-color:#dbe8f1;
-}
-.zone.active{
-  background:linear-gradient(180deg,#edf7ff,#f8fbff);
-  box-shadow:0 0 0 3px rgba(107,158,229,.12),0 10px 22px rgba(61,102,151,.12);
-}
-.zoneArt{border-radius:22px;overflow:hidden;filter:saturate(1.06) contrast(1.02)}
-.cinematic-slot img,.zoneArt img{
-  filter:drop-shadow(0 12px 15px rgba(47,74,101,.17)) saturate(1.06) contrast(1.02);
-}
-.avatarArt,.bossArt{border-radius:26px}
-.arena{
-  background:
-    radial-gradient(circle at 50% 12%,rgba(255,255,255,.92),transparent 31%),
-    linear-gradient(#caebff 0 50%,#dff3cf 50% 100%);
-  border:1px solid rgba(124,172,205,.22);
-}
-.battle>div:not(.vs){animation:floatV278 3.8s ease-in-out infinite}
-.battle>div:nth-child(3){animation-delay:-1.4s}
-@keyframes floatV278{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.pill{box-shadow:0 7px 18px rgba(49,78,107,.10),inset 0 1px 0 #fff}
-.bigBtn{
-  box-shadow:0 7px 15px rgba(55,84,109,.12),inset 0 1px 0 rgba(255,255,255,.28);
-  transition:transform .12s ease,filter .12s ease;
-}
-.bigBtn:active{transform:scale(.985);filter:brightness(.98)}
-@media(max-width:700px){
-  .zone{min-height:172px;padding:10px 8px}
-  .zoneArt{width:116px;height:116px}
-  .avatarArt{width:168px;height:196px}
-  .bossArt{width:186px;height:198px}
-}
-
-
-/* V27.9 CHARACTER ART OVERHAUL */
-:root{--premiumGlow:rgba(116,190,240,.22)}
-.avatarArt,.bossArt,.zoneArt{
- transform:translateZ(0); image-rendering:auto;
-}
-.zoneArt{
- background:radial-gradient(circle at 50% 28%,#fff 0 24%,#edf8ff 58%,#fff1d9 100%);
- box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 12px 24px rgba(43,72,99,.10);
-}
-.zone:hover .zoneArt{transform:translateY(-2px)}
-.cinematic-slot{
- position:relative; overflow:hidden;
- background:radial-gradient(circle at 50% 30%,#fff 0 22%,#eaf7ff 62%,#fff0d0 100%);
-}
-.cinematic-slot:before{
- content:"";position:absolute;inset:5% 12% 48%;
- border-radius:50%;background:rgba(255,255,255,.72);filter:blur(18px);pointer-events:none;
-}
-.cinematic-slot img{position:relative;z-index:1}
-.arena .cinematic-slot{box-shadow:0 14px 28px rgba(41,74,103,.13)}
-.battle .cinematic-slot:first-child{transform:rotate(-.5deg)}
-.battle .cinematic-slot:last-child{transform:rotate(.5deg)}
-@keyframes heroBreath279{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.008)}}
-.avatarArt{animation:heroBreath279 4.2s ease-in-out infinite}
-
-
-/* =========================================================
-   V28 CHARACTER REDESIGN — visual-only layer
-   Keeps V27.9 game logic/save/progression intact.
-   ========================================================= */
-:root{
- --v28-ink:#263b53;
- --v28-sky:#eaf8ff;
- --v28-cream:#fff5df;
- --v28-shadow:rgba(37,66,92,.16);
- --v28-rim:rgba(255,255,255,.86);
-}
-body{
- background:
-  radial-gradient(circle at 18% 5%,rgba(177,231,255,.62),transparent 27rem),
-  linear-gradient(180deg,#eaf8ff 0,#f7fbff 44%,#fffdf5 100%);
-}
-.card{
- box-shadow:0 14px 34px rgba(45,75,101,.10);
- border:1px solid rgba(255,255,255,.86);
-}
-.avatarStudio,.arena{
- box-shadow:0 18px 46px rgba(42,74,101,.12);
-}
-.cinematic-slot,.zoneArt{
- isolation:isolate;
- overflow:hidden;
- background:
-  radial-gradient(circle at 47% 30%,#fff 0 21%,#eefaff 47%,#fff4dd 100%);
- box-shadow:
-  inset 0 0 0 1px rgba(255,255,255,.92),
-  inset 0 -20px 36px rgba(255,219,155,.12),
-  0 15px 28px rgba(38,67,91,.12);
-}
-.cinematic-slot:after,.zoneArt:after{
- content:"";position:absolute;z-index:0;left:14%;right:14%;bottom:7%;
- height:10%;border-radius:50%;
- background:rgba(45,71,92,.15);filter:blur(9px);
-}
-.cinematic-slot:before,.zoneArt:before{
- content:"";position:absolute;z-index:0;left:9%;right:9%;top:4%;height:53%;
- border-radius:50%;
- background:
-  radial-gradient(circle at 35% 25%,rgba(255,255,255,.94),rgba(255,255,255,.22) 46%,transparent 68%);
- filter:blur(5px);
-}
-.cinematic-slot>*,.zoneArt>*{position:relative;z-index:1}
-.avatarArt,.bossArt,.zoneArt svg,.zoneArt img{
- filter:
-  drop-shadow(0 2px 1px rgba(255,255,255,.8))
-  drop-shadow(0 10px 10px rgba(46,72,93,.12));
-}
-.avatarArt{
- transform-origin:50% 83%;
- animation:v28HeroIdle 4.6s cubic-bezier(.45,0,.55,1) infinite;
-}
-.zoneArt svg,.zoneArt img{
- transform-origin:50% 78%;
- animation:v28MonsterIdle 5.4s ease-in-out infinite;
-}
-.zone:nth-child(2n) .zoneArt svg,.zone:nth-child(2n) .zoneArt img{animation-delay:-1.4s}
-.zone:nth-child(3n) .zoneArt svg,.zone:nth-child(3n) .zoneArt img{animation-delay:-2.6s}
-@keyframes v28HeroIdle{
- 0%,100%{transform:translateY(0) scale(1)}
- 48%{transform:translateY(-5px) scale(1.012)}
- 55%{transform:translateY(-4px) scale(1.012)}
-}
-@keyframes v28MonsterIdle{
- 0%,100%{transform:translateY(0) rotate(0)}
- 50%{transform:translateY(-3px) rotate(.35deg)}
-}
-.avatarChoice{
- transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-}
-.avatarChoice:active{transform:scale(.97)}
-.avatarChoice.selected{
- box-shadow:0 9px 24px rgba(255,190,54,.22),inset 0 0 0 1px rgba(255,255,255,.8);
-}
-.zone{
- transition:transform .18s ease,box-shadow .18s ease;
-}
-.zone:active{transform:scale(.985)}
-.zone.selected{
- box-shadow:0 14px 30px rgba(58,128,220,.15);
-}
-.battle{
- gap:18px;
- align-items:end;
-}
-.battle .cinematic-slot{
- min-width:0;
- border-radius:30px;
-}
-.battle .cinematic-slot:first-child{transform:perspective(800px) rotateY(2deg)}
-.battle .cinematic-slot:last-child{transform:perspective(800px) rotateY(-2deg)}
-@media(max-width:600px){
- .battle{gap:10px}
- .battle .cinematic-slot{border-radius:24px}
- .zoneArt{border-radius:24px}
-}
-
-
-svg .eyeWhite, svg [fill="#fff"]{filter:drop-shadow(0 2px 1px rgba(53,78,96,.10))}
-svg ellipse[fill*="pink"],svg ellipse[fill="#f3a0ad"]{filter:blur(.15px)}
-
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
-</style>
-<style id="v29-final-cinematic-art">
-/* ==========================================================
-   V29 FINAL CINEMATIC ART
-   Visual / responsive pass only — original game logic intact
-   ========================================================== */
-:root{
-  --v29-ink:#263d57;
-  --v29-line:#d9e8f4;
-  --v29-blue:#68c2ef;
-  --v29-cream:#fff4d8;
-  --v29-shadow:0 16px 38px rgba(40,72,102,.13);
-}
-body{
-  overflow-x:hidden;
-  background:
-    radial-gradient(circle at 18% 4%,rgba(134,218,255,.30),transparent 28rem),
-    radial-gradient(circle at 90% 30%,rgba(255,220,143,.18),transparent 25rem),
-    linear-gradient(180deg,#eef9ff 0%,#f7fbff 48%,#fffaf0 100%)!important;
-}
-.card{
-  border:1px solid rgba(255,255,255,.92)!important;
-  box-shadow:var(--v29-shadow)!important;
-}
-
-/* Main avatar: softer "animated-film toy" presentation */
-.avatarStage{
-  position:relative!important;
-  overflow:hidden!important;
-  min-height:420px!important;
-  border-radius:34px!important;
-  background:
-    radial-gradient(circle at 50% 20%,#fff 0 15%,#e8f8ff 50%,#fff2cf 100%)!important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.98),
-    inset 0 -35px 70px rgba(255,213,126,.10),
-    0 20px 44px rgba(42,73,104,.15)!important;
-}
-.avatarStage:before{
-  content:"";position:absolute;z-index:0;left:10%;right:10%;top:7%;height:58%;
-  border-radius:50%;
-  background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.98),rgba(173,228,255,.18) 48%,transparent 70%);
-  filter:blur(5px);pointer-events:none;
-}
-.avatarStage:after{
-  content:"";position:absolute;z-index:0;left:25%;right:25%;bottom:9%;height:8%;
-  border-radius:50%;background:rgba(39,70,94,.13);filter:blur(12px);pointer-events:none;
-}
-.avatarStage>*{position:relative;z-index:1}
-.avatarArt,.avatarStage img,.avatarStage svg,.avatarStage canvas{
-  filter:saturate(1.08) contrast(1.035) drop-shadow(0 15px 13px rgba(45,67,88,.16))!important;
-  transform-origin:50% 84%;
-}
-@keyframes v29HeroIdle{
-  0%,100%{transform:translateY(0) scale(1)}
-  48%,55%{transform:translateY(-5px) scale(1.012)}
-}
-.avatarArt{animation:v29HeroIdle 4.8s ease-in-out infinite!important}
-
-/* Avatar thumbnails */
-.avatarChoice{
-  overflow:hidden!important;
-  border-color:#d8e8f4!important;
-  background:linear-gradient(180deg,#fff 0%,#f6fbff 68%,#fff5d9 100%)!important;
-  box-shadow:0 8px 20px rgba(42,73,104,.09)!important;
-}
-.avatarChoice.on{
-  background:linear-gradient(180deg,#fffef7,#fff2bd)!important;
-  box-shadow:0 0 0 3px rgba(255,194,57,.65),0 14px 28px rgba(48,86,127,.13)!important;
-}
-.avatarChoice img,.avatarChoice svg{
-  filter:saturate(1.08) contrast(1.03) drop-shadow(0 7px 7px rgba(42,67,88,.13))!important;
-}
-
-/* World cards */
-.world{gap:15px!important;perspective:900px}
-.zone{
-  position:relative!important;
-  overflow:hidden!important;
-  border-color:#d8e8f4!important;
-  background:
-    radial-gradient(circle at 50% 16%,#fff 0 15%,#edfaff 54%,#fff5dc 100%)!important;
-  box-shadow:0 12px 28px rgba(45,78,109,.10),inset 0 0 0 1px rgba(255,255,255,.88)!important;
-}
-.zone:before{
-  content:"";position:absolute;left:17%;right:17%;bottom:23%;height:9%;
-  border-radius:50%;background:rgba(47,75,98,.11);filter:blur(10px);pointer-events:none;
-}
-.zone.active{
-  transform:translateY(-2px);
-  box-shadow:0 0 0 4px rgba(78,149,244,.17),0 17px 32px rgba(47,86,130,.15)!important;
-}
-.zoneArt{
-  position:relative!important;
-  z-index:1;
-  min-height:150px!important;
-  overflow:visible!important;
-}
-.zoneArt img,.zoneArt svg,.zoneArt canvas{
-  max-width:100%!important;max-height:100%!important;
-  object-fit:contain!important;
-  filter:saturate(1.10) contrast(1.035) drop-shadow(0 12px 10px rgba(41,65,86,.16))!important;
-  transform-origin:50% 82%;
-}
-@keyframes v29MonsterIdle{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-3px)}
-}
-.zoneArt img,.zoneArt svg{animation:v29MonsterIdle 5.3s ease-in-out infinite}
-
-/* Battle: keep both characters completely inside frame on iPhone */
-.arena{
-  overflow:hidden!important;
-  background:
-    radial-gradient(circle at 50% 13%,rgba(255,255,255,.92),transparent 30%),
-    linear-gradient(180deg,#ccefff 0 47%,#dff4cf 47% 67%,#ffedc7 67% 100%)!important;
-}
-.battle{
-  width:100%!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
-  overflow:hidden!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important;
-  align-items:end!important;
-  gap:4px!important;
-}
-.battle .avatarArt,.battle .bossArt{
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  height:205px!important;
-  overflow:hidden!important;
-  box-sizing:border-box!important;
-  display:flex!important;
-  justify-content:center!important;
-  align-items:flex-end!important;
-  border-radius:28px!important;
-}
-.battle .avatarArt img,.battle .bossArt img,
-.battle .avatarArt svg,.battle .bossArt svg,
-.battle .avatarArt canvas,.battle .bossArt canvas{
-  width:auto!important;height:auto!important;
-  max-width:88%!important;max-height:91%!important;
-  object-fit:contain!important;
-  object-position:center bottom!important;
-  filter:saturate(1.09) contrast(1.04) drop-shadow(0 12px 10px rgba(40,64,86,.17))!important;
-}
-
-/* Pet card consistency */
-.petCard,.pet-card,[class*="pet"]{
-  image-rendering:auto;
-}
-.petCard img,.pet-card img{
-  object-fit:contain!important;
-  filter:saturate(1.08) contrast(1.03) drop-shadow(0 9px 8px rgba(40,64,86,.13))!important;
-}
-
-/* Tap and mobile refinements */
-button,.avatarChoice,.zone{-webkit-tap-highlight-color:transparent}
-button:active,.avatarChoice:active,.zone:active{transform:scale(.985)}
-@media(max-width:600px){
-  .avatarStage{min-height:400px!important}
-  .zoneArt{height:146px!important;min-height:146px!important}
-  .world{gap:11px!important}
-  .battle{grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr)!important;gap:2px!important}
-  .battle .avatarArt,.battle .bossArt{height:172px!important;border-radius:22px!important}
-  .battle .avatarArt img,.battle .bossArt img,
-  .battle .avatarArt svg,.battle .bossArt svg,
-  .battle .avatarArt canvas,.battle .bossArt canvas{
-    max-width:84%!important;max-height:88%!important;
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  .avatarArt,.zoneArt img,.zoneArt svg{animation:none!important}
-}
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
 </style>
 
 <style id="v275-final-polish">
@@ -669,242 +287,945 @@ img,canvas{image-rendering:auto;}
  filter:saturate(1.05) contrast(1.015) drop-shadow(0 7px 8px rgba(48,63,91,.12));
 }
 @media(max-width:600px){body{overflow-x:hidden}input,select,button,textarea{font-size:16px}}
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
 </style>
 
 
-<style id="v276-art-polish">
-.cinematic-slot img{transform:translateZ(0);transition:transform .2s ease,filter .2s ease;filter:saturate(1.08) contrast(1.02) drop-shadow(0 10px 12px rgba(39,65,87,.12))}
-.zone:hover .cinematic-slot img,.avatarChoice:hover .cinematic-slot img{transform:translateY(-2px) scale(1.015)}
-.zone.active{box-shadow:0 0 0 3px rgba(70,139,230,.18),0 12px 24px rgba(55,94,135,.10)}
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
-</style>
-
-<script id="v29-build-label">
-document.addEventListener("DOMContentLoaded",function(){
-  const h=document.querySelector("h1");
-  if(h) h.textContent="🌍 Habit Monster World V34 FINAL PREMIUM GAME ART";
-  const s=document.getElementById("threeStatus");
-  if(s) s.textContent="✅ Premium Game Art • Full Visual Redesign";
-});
-</script>
-
-<style id="v30-model-character-overhaul">
-/* V30 MODEL & CHARACTER OVERHAUL */
-:root{--v30-depth:0 18px 36px rgba(39,67,94,.16)}
-/* stronger volumetric treatment of the actual rendered character layers */
-.avatarArt img,.avatarArt svg,.avatarArt canvas,
-.zoneArt img,.zoneArt svg,.zoneArt canvas,
-.bossArt img,.bossArt svg,.bossArt canvas,
-.petCard img,.pet-card img{
-  filter:
-    saturate(1.11)
-    contrast(1.045)
-    drop-shadow(0 2px 1px rgba(255,255,255,.68))
-    drop-shadow(0 11px 9px rgba(37,60,82,.18))!important;
+<style id="v35-premium-character-final">
+:root{
+  --v35-ink:#203a59; --v35-blue:#69b9f5; --v35-gold:#ffd56a;
+  --v35-lav:#9d82ef; --v35-mint:#82d8b2; --v35-pink:#f6a7c8;
 }
-/* cinematic key-light sheen, contained inside art frame */
-.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt{
-  isolation:isolate;
+body{
+  background:
+    radial-gradient(circle at 10% 4%,rgba(255,255,255,.95),transparent 22rem),
+    linear-gradient(180deg,#dff4ff 0,#eef8ff 38%,#fffaf0 100%)!important;
 }
-.avatarStage:before,.zoneArt:after,.battle .avatarArt:after,.battle .bossArt:after{
-  content:"";position:absolute;pointer-events:none;z-index:3;
-  inset:5% 8% 38% 8%;border-radius:50%;
-  background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,0) 48%);
-  mix-blend-mode:screen;opacity:.72;
+.header h1{
+  letter-spacing:-.035em;
+  text-shadow:0 2px 0 #fff,0 8px 22px rgba(56,91,137,.12);
 }
-.zoneArt:after{inset:4% 9% 34% 9%;opacity:.48}
-/* give cards a real toy-display plinth */
-.zoneArt:before,.battle .avatarArt:before,.battle .bossArt:before{
-  content:"";position:absolute;z-index:0;left:20%;right:20%;bottom:7%;height:10%;
-  border-radius:50%;background:rgba(39,63,84,.14);filter:blur(10px);
+.card{
+  border:1px solid rgba(255,255,255,.92)!important;
+  box-shadow:0 12px 34px rgba(47,79,115,.11)!important;
 }
-.zoneArt>*{position:relative;z-index:1}
-.zone{
-  border-radius:32px!important;
-  background:linear-gradient(180deg,#fff 0%,#f2fbff 58%,#fff1ce 100%)!important;
+.avatarStage{
+  background:
+    radial-gradient(circle at 50% 30%,#fff 0 24%,rgba(255,255,255,.42) 25% 47%,transparent 48%),
+    linear-gradient(145deg,#e8f7ff,#f0ecff 52%,#fff1cf)!important;
+  border:2px solid rgba(255,255,255,.96)!important;
+  box-shadow:inset 0 0 0 1px rgba(106,173,225,.18),0 18px 35px rgba(50,83,120,.13)!important;
+}
+.avatarStage .avatar-generated img{
+  transform:scale(1.10)!important;
+  filter:saturate(1.08) contrast(1.025) drop-shadow(0 18px 13px rgba(51,71,94,.20))!important;
 }
 .avatarChoice{
-  border-radius:25px!important;
+  transition:transform .18s ease,box-shadow .18s ease!important;
 }
-.avatarChoice img,.avatarChoice svg{
-  transform:scale(1.035);
+.avatarChoice:active{transform:scale(.96)!important}
+.avatarChoice.on{
+  border:3px solid #ffd05b!important;
+  box-shadow:0 0 0 4px rgba(255,214,101,.22),0 12px 24px rgba(75,101,137,.13)!important;
 }
-/* battle stage: safer proportions and more visual focus */
-.battle{align-items:center!important}
-.battle .avatarArt,.battle .bossArt{
-  position:relative!important;
-  background:radial-gradient(circle at 50% 30%,#fff 0%,#edfaff 58%,#fff1d1 100%)!important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 13px 26px rgba(40,69,97,.13)!important;
+.avatarChoice .avatar-generated img{transform:scale(1.09)!important}
+.zone{
+  overflow:hidden;
+  background:linear-gradient(180deg,#fff 0 62%,#fff5d7 100%)!important;
+  border:2px solid #d8e9f6!important;
+  box-shadow:0 10px 24px rgba(54,83,112,.09)!important;
 }
-@media(max-width:600px){
-  .battle .avatarArt,.battle .bossArt{height:184px!important}
-  .battle .avatarArt img,.battle .bossArt img,
-  .battle .avatarArt svg,.battle .bossArt svg,
-  .battle .avatarArt canvas,.battle .bossArt canvas{
-    max-width:80%!important;max-height:86%!important;
-  }
+.zone.active{
+  border:3px solid #ffd25e!important;
+  box-shadow:0 0 0 5px rgba(255,211,94,.20),0 13px 28px rgba(62,91,122,.13)!important;
 }
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
-</style>
-<style id="v31-true-volume-render">
-/* V31 TRUE VOLUME RENDER */
-.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt,.petStage{overflow:hidden!important}
-.avatarStage img,.zoneArt img,.bossArt img,.petStage img,.avatarChoice img{
-  image-rendering:auto!important;
-  filter:saturate(1.07) contrast(1.025) drop-shadow(0 10px 11px rgba(42,67,88,.14))!important;
+.zoneArt{
+  background:
+    radial-gradient(circle at 50% 34%,rgba(255,255,255,.96),rgba(239,249,255,.84) 56%,rgba(255,245,216,.8))!important;
+  border-radius:28px!important;
 }
-.zone{background:linear-gradient(180deg,#ffffff 0%,#f5fbff 61%,#fff3d7 100%)!important}
-.zoneArt{transform:translateZ(0)}
-.battle{grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr)!important;gap:4px!important;overflow:hidden!important}
-.battle .avatarArt,.battle .bossArt{height:178px!important;padding:8px!important;box-sizing:border-box!important}
-.battle .avatarArt img,.battle .bossArt img{max-width:82%!important;max-height:86%!important;object-fit:contain!important}
-.battle .label{font-size:17px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important}
-@media(max-width:600px){
- .avatarStage{min-height:390px!important}
- .battle{grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)!important;gap:2px!important}
- .battle .avatarArt,.battle .bossArt{height:164px!important;padding:6px!important}
- .battle .avatarArt img,.battle .bossArt img{max-width:78%!important;max-height:83%!important}
-}
-
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
-</style>
-<style id="v32-character-proportion-pass">
-/* V33 PREMIUM CHARACTER REDESIGN */
-.avatarStage{
-  min-height:375px!important;
-}
-.avatarStage .cinematic-slot{
-  transform:scale(.94);
-  transform-origin:center center;
-}
-.avatarChoice .cinematic-slot{
-  transform:scale(.90);
-  transform-origin:center center;
-}
-.zoneArt .cinematic-slot{
-  transform:scale(.91);
-  transform-origin:center center;
+.zoneArt .original-art img{
+  transform:scale(1.12)!important;
+  filter:saturate(1.10) contrast(1.02) drop-shadow(0 12px 10px rgba(45,66,90,.17))!important;
 }
 .battle{
-  grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr)!important;
-  align-items:start!important;
-  gap:5px!important;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,255,255,.86),transparent 31%),
+    linear-gradient(180deg,#d9f4ff 0 46%,#ccefc2 46% 65%,#fff0c8 65% 100%)!important;
+  border:2px solid rgba(255,255,255,.9)!important;
+  box-shadow:inset 0 0 0 1px rgba(77,151,205,.12),0 18px 40px rgba(43,75,109,.12)!important;
 }
-.battle>div{
-  min-width:0!important;
+.battle .avatarArt img,.battle .bossArt img{
+  transform:scale(1.08)!important;
+  filter:saturate(1.10) contrast(1.025) drop-shadow(0 16px 12px rgba(43,64,88,.20))!important;
+}
+.cinematic-pet img{
+  filter:saturate(1.12) contrast(1.025) drop-shadow(0 12px 10px rgba(43,64,88,.18))!important;
+}
+@keyframes v35Float{
+  0%,100%{transform:translateY(0) scale(1.08)}
+  50%{transform:translateY(-5px) scale(1.08)}
+}
+.battle .bossArt img{animation:v35Float 3.2s ease-in-out infinite!important}
+@media(max-width:600px){
+  .avatarStage{min-height:370px!important}
+  .zoneArt{height:124px!important;width:124px!important}
+  .battle .avatarArt,.battle .bossArt{height:205px!important}
+}
+</style>
+
+
+<style id="v36-true-3d-character-edition">
+:root{
+ --v36-blue:#4aaaf4;
+ --v36-gold:#ffca4c;
+ --v36-purple:#7850dc;
+ --v36-ink:#173b64;
+}
+body{
+ background:
+ radial-gradient(circle at 50% -10%,rgba(255,255,255,.95),transparent 30rem),
+ linear-gradient(180deg,#8ed5ff 0,#dff4ff 30%,#f3fbff 55%,#fff8e8 100%) fixed!important;
+}
+.header{
+ background:linear-gradient(135deg,#ffffff 0,#eff7ff 60%,#f4eeff 100%)!important;
+ border:2px solid rgba(255,255,255,.95)!important;
+ box-shadow:0 18px 42px rgba(38,83,126,.16)!important;
+}
+.header h1{
+ color:#173b64!important;
+ text-shadow:0 2px 0 #fff,0 10px 25px rgba(31,72,117,.14)!important;
+}
+.sub{color:#704ee3!important;font-weight:900!important}
+.pill{
+ border:1px solid #e5edf5!important;
+ box-shadow:0 8px 20px rgba(41,76,109,.10)!important;
+}
+.card{
+ background:rgba(255,255,255,.96)!important;
+ border:1px solid rgba(255,255,255,.98)!important;
+ box-shadow:0 16px 38px rgba(44,78,110,.12)!important;
+}
+.avatarStage{
+ background:
+ radial-gradient(circle at 50% 23%,rgba(255,255,255,.96),transparent 24%),
+ linear-gradient(145deg,#ffeaf2,#eef2ff 48%,#fff1cc)!important;
+ border-radius:34px!important;
+ overflow:hidden!important;
+}
+.avatarStage img{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+ border-radius:28px!important;
+ filter:saturate(1.08) contrast(1.02) drop-shadow(0 15px 16px rgba(44,67,91,.18))!important;
+ animation:none!important;
+}
+.avatarChoice img{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+ border-radius:18px!important;
+ filter:saturate(1.08) contrast(1.03)!important;
+ animation:none!important;
+}
+.avatarChoice.on{
+ border-color:var(--v36-gold)!important;
+ box-shadow:0 0 0 4px rgba(255,211,95,.28),0 12px 25px rgba(48,76,103,.12)!important;
+}
+.world{
+ background:
+ radial-gradient(circle at 45% 25%,rgba(255,255,255,.45),transparent 15rem),
+ linear-gradient(180deg,#dff6ff 0,#eefbff 46%,#f8f4dc 100%)!important;
+ border-radius:28px!important;
+}
+.zone{
+ background:linear-gradient(180deg,#fff,#f8fcff 63%,#fff4d5)!important;
+ border:2px solid #dcebf6!important;
+ overflow:hidden!important;
+}
+.zone.active{
+ border-color:var(--v36-gold)!important;
+ box-shadow:0 0 0 5px rgba(255,211,95,.24),0 15px 30px rgba(46,78,109,.13)!important;
+}
+.zoneArt{
+ width:100%!important;
+ height:150px!important;
+ border-radius:24px!important;
+ overflow:hidden!important;
+ background:#eef9ff!important;
+}
+.zoneArt img{
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;
+ object-position:center center!important;
+ transform:none!important;
+ filter:saturate(1.10) contrast(1.03) drop-shadow(0 8px 8px rgba(30,54,77,.10))!important;
+ animation:none!important;
+}
+.zone b{font-weight:950!important;color:#183b62!important}
+.arena,.battle{
+ background:
+ radial-gradient(circle at 50% 8%,rgba(255,255,255,.92),transparent 20rem),
+ linear-gradient(180deg,#ccefff 0 42%,#d7f1bf 42% 64%,#ffe9bb 64% 100%)!important;
 }
 .battle .avatarArt,.battle .bossArt{
-  width:100%!important;
-  height:158px!important;
-  margin:0!important;
-  border-radius:24px!important;
+ overflow:hidden!important;
+ border-radius:28px!important;
+ background:#fff!important;
+ border:2px solid rgba(255,255,255,.95)!important;
+ box-shadow:0 17px 30px rgba(40,69,99,.15)!important;
 }
-.battle .avatarArt .cinematic-slot,.battle .bossArt .cinematic-slot{
-  transform:scale(.82)!important;
-  transform-origin:center center!important;
+.battle .avatarArt img,.battle .bossArt img{
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;
+ transform:none!important;
+ filter:saturate(1.08) contrast(1.03)!important;
+ animation:none!important;
 }
-.battle .label{
-  display:block!important;
-  margin-top:8px!important;
-  padding:0 3px!important;
-  font-size:16px!important;
-  line-height:1.22!important;
-  min-height:39px!important;
-  white-space:normal!important;
-  overflow-wrap:anywhere!important;
-  text-align:center!important;
+.vs{
+ color:#ff9f24!important;
+ font-size:38px!important;
+ text-shadow:0 3px 0 #fff,0 7px 16px rgba(255,147,40,.30)!important;
 }
-@media(max-width:600px){
-  .avatarStage{min-height:360px!important}
-  .battle{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)!important;gap:3px!important}
-  .battle .avatarArt,.battle .bossArt{height:145px!important}
-  .battle .avatarArt .cinematic-slot,.battle .bossArt .cinematic-slot{transform:scale(.77)!important}
-  .battle .label{font-size:15px!important;min-height:38px!important}
+.nav button{
+ background:linear-gradient(180deg,#fff,#eef7ff)!important;
+ box-shadow:0 8px 18px rgba(45,82,116,.09)!important;
+}
+.nav button.active{
+ background:linear-gradient(180deg,#e9f7ff,#d6ecff)!important;
+ border-color:#73b8f1!important;
+}
+@media(max-width:720px){
+ .avatarStage{height:420px!important;min-height:420px!important}
+ .zoneArt{height:132px!important}
+ .battle .avatarArt,.battle .bossArt{height:195px!important}
+}
+</style>
+
+
+<style id="v37-integrated-3d">
+/* No pasted-picture look: all character images are transparent SVG renders. */
+.avatarStage,.zoneArt,.battle .avatarArt,.battle .bossArt{
+  position:relative!important;
+  overflow:visible!important;
+}
+.avatarStage{
+  background:
+   radial-gradient(circle at 50% 33%,rgba(255,255,255,.98) 0 23%,rgba(255,255,255,.45) 24% 42%,transparent 43%),
+   radial-gradient(circle at 50% 105%,#ffeac2 0 28%,transparent 29%),
+   linear-gradient(155deg,#dff5ff,#efeaff 55%,#fff5d8)!important;
+}
+.avatarStage:after{
+ content:"";position:absolute;left:14%;right:14%;bottom:8%;height:12%;
+ background:radial-gradient(ellipse,rgba(52,81,104,.16),transparent 69%);
+ filter:blur(6px);pointer-events:none;
+}
+.avatarStage img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:96%!important;height:96%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.avatarChoice img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.zoneArt{
+ height:160px!important;
+ background:
+  radial-gradient(circle at 50% 28%,#fff 0 18%,rgba(255,255,255,.48) 19% 46%,transparent 47%),
+  linear-gradient(180deg,#e9f8ff 0 68%,#fff0c8 68% 100%)!important;
+ border-radius:26px!important;
+}
+.zoneArt:after{
+ content:"";position:absolute;left:20%;right:20%;bottom:12px;height:16px;
+ background:radial-gradient(ellipse,rgba(42,67,87,.18),transparent 70%);
+ filter:blur(4px);pointer-events:none;
+}
+.zoneArt img{
+ object-fit:contain!important;object-position:center center!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.battle{
+ background:
+  radial-gradient(circle at 18% 24%,rgba(255,255,255,.68),transparent 18rem),
+  radial-gradient(circle at 82% 24%,rgba(255,255,255,.60),transparent 18rem),
+  linear-gradient(180deg,#ccefff 0 45%,#dff3c0 45% 67%,#ffe9b8 67% 100%)!important;
+}
+.battle .avatarArt,.battle .bossArt{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+.battle .avatarArt:after,.battle .bossArt:after{
+ content:"";position:absolute;left:18%;right:18%;bottom:6px;height:18px;
+ background:radial-gradient(ellipse,rgba(39,64,84,.20),transparent 70%);
+ filter:blur(5px);pointer-events:none;
+}
+.battle .avatarArt img,.battle .bossArt img{
+ object-fit:contain!important;object-position:center bottom!important;
+ width:100%!important;height:100%!important;border-radius:0!important;
+ filter:none!important;background:transparent!important;
+}
+.vs{z-index:3!important}
+@media(max-width:720px){
+ .avatarStage{height:390px!important;min-height:390px!important}
+ .zoneArt{height:146px!important}
+ .battle .avatarArt,.battle .bossArt{height:205px!important}
+}
+</style>
+
+
+<style id="v38-overhaul">
+:root{--v38blue:#78c9f4;--v38ink:#243b5a;--v38cream:#fff8df;--v38glass:rgba(255,255,255,.88)}
+body{background:linear-gradient(180deg,#8bd3f6 0,#dff5ff 38%,#f6fbff 100%) fixed!important}
+.wrap{max-width:980px!important}
+.header{position:relative;overflow:hidden;padding:18px 20px!important;border-radius:28px!important;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(236,246,255,.91))!important;box-shadow:0 16px 38px rgba(44,92,130,.15)!important;border:1px solid rgba(255,255,255,.9)!important}
+.header:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;top:-110px;background:radial-gradient(circle,rgba(143,121,255,.22),transparent 68%);pointer-events:none}
+.header h1{font-size:clamp(27px,5.4vw,46px)!important;line-height:1.02!important;letter-spacing:-1.2px!important;margin:0!important;color:var(--v38ink)!important}
+.header .sub{font-size:clamp(15px,3.4vw,21px)!important;color:#6c5be7!important;font-weight:800!important;margin-top:7px}
+.status{gap:8px!important;margin-top:14px!important}.pill{box-shadow:0 7px 18px rgba(50,80,110,.08)!important;border:1px solid rgba(120,180,220,.16)!important}
+.card{border-radius:28px!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:0 14px 34px rgba(49,83,108,.10)!important}
+.nav button{border-radius:20px!important;min-height:82px!important;box-shadow:inset 0 1px 0 #fff,0 7px 16px rgba(49,83,108,.06)!important}.nav button.active{transform:translateY(-2px);box-shadow:0 10px 22px rgba(67,151,224,.18)!important}
+#world h2{font-size:clamp(25px,5vw,38px)!important;color:var(--v38ink)}
+.avatarStage{position:relative!important;overflow:hidden!important;background:radial-gradient(circle at 50% 20%,#fff 0 15%,#eaf8ff 40%,#e7e3ff 72%,#ffecc9 100%)!important;border:2px solid rgba(255,255,255,.95)!important;box-shadow:inset 0 0 50px rgba(255,255,255,.9),0 18px 34px rgba(58,85,119,.16)!important}
+.avatarStage:before{content:"";position:absolute;inset:auto 8% 5% 8%;height:24%;border-radius:50%;background:radial-gradient(ellipse,rgba(101,128,156,.16),transparent 68%);filter:blur(7px);pointer-events:none}
+.avatarChoice{border-radius:22px!important;background:linear-gradient(180deg,#fff,#f4fbff 70%,#fff7df)!important;box-shadow:0 7px 18px rgba(55,84,112,.07)!important}.avatarChoice.on{box-shadow:0 0 0 4px #ffd45c,0 10px 22px rgba(255,190,55,.18)!important}
+.world{position:relative!important;padding:12px!important;border-radius:30px!important;background:linear-gradient(180deg,#cceeff 0 42%,#dff3d1 42% 70%,#fff1c8 70% 100%)!important;overflow:hidden!important}.world:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 16%,rgba(255,255,255,.75),transparent 17%),radial-gradient(circle at 80% 23%,rgba(255,255,255,.65),transparent 19%);pointer-events:none}
+.zone{position:relative!important;z-index:1;border-radius:26px!important;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,250,228,.94))!important;border:2px solid rgba(195,222,239,.88)!important;box-shadow:0 10px 24px rgba(51,84,111,.10)!important}.zone.active{border-color:#ffc84d!important;box-shadow:0 0 0 4px rgba(255,211,84,.28),0 14px 28px rgba(60,91,119,.14)!important;transform:translateY(-2px)}
+.zoneArt{background:radial-gradient(circle at 50% 27%,#fff 0 14%,rgba(234,248,255,.95) 55%,rgba(255,242,202,.86) 100%)!important;border-radius:24px!important;overflow:hidden!important;box-shadow:inset 0 0 24px rgba(255,255,255,.9)!important}
+.arena{border-radius:30px!important;overflow:hidden!important;background:linear-gradient(180deg,#aee3ff 0 42%,#d7f0c6 42% 64%,#f8dba4 64% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.32)!important}.arena:after{content:"";position:absolute;left:5%;right:5%;bottom:29%;height:1px;background:rgba(255,255,255,.7);box-shadow:0 18px 45px 12px rgba(95,137,98,.12);pointer-events:none}.battle{position:relative!important;z-index:2!important;min-height:270px!important;padding:12px 8px 0!important}.battle .avatarArt,.battle .bossArt{filter:drop-shadow(0 14px 12px rgba(37,60,82,.16))!important}.vs{font-size:28px!important;filter:drop-shadow(0 5px 5px rgba(255,174,0,.18))}
+#petFollower{border-radius:22px!important;filter:drop-shadow(0 8px 10px rgba(46,76,101,.12))}
+@media(max-width:600px){.wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}.header .sub{font-size:16px!important}.status{display:grid!important;grid-template-columns:1fr 1fr!important}.status .pill:first-child{grid-column:1/-1}.nav{grid-template-columns:repeat(4,1fr)!important;gap:7px!important}.nav button{min-height:72px!important;font-size:14px!important;padding:8px 4px!important}.avatarStudio{grid-template-columns:1fr!important}.avatarStage{width:min(360px,90vw)!important;height:390px!important}.world{grid-template-columns:repeat(2,1fr)!important;padding:8px!important;gap:10px!important}.zone{min-height:188px!important;padding:9px 5px!important}.zoneArt{width:132px!important;height:132px!important}.battle{min-height:250px!important;gap:4px!important}.battle .avatarArt,.battle .bossArt{height:210px!important}.card{border-radius:24px!important}}
+</style>
+
+
+<style id="v39-character-system-overhaul">
+/* === V39: character-first game presentation === */
+.header h1{font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif!important;font-weight:950!important}
+.characterQualityNote:after{content:" • V44 Arena & Map Polish";font-weight:900}
+
+.avatarStage{
+  height:430px!important;
+  background:
+    radial-gradient(circle at 50% 27%,rgba(255,255,255,.98) 0 18%,rgba(255,255,255,.44) 19% 39%,transparent 40%),
+    radial-gradient(ellipse at 50% 94%,#bfe9c5 0 20%,#e9f7d9 21% 35%,transparent 36%),
+    linear-gradient(155deg,#d9f4ff 0,#e8e8ff 54%,#fff0cd 100%)!important;
+}
+.avatarStage img{width:92%!important;height:96%!important;object-fit:contain!important;object-position:center bottom!important}
+
+.world{
+  background:
+    radial-gradient(circle at 16% 9%,rgba(255,255,255,.78),transparent 19%),
+    radial-gradient(circle at 82% 13%,rgba(255,255,255,.70),transparent 20%),
+    linear-gradient(180deg,#9eddf9 0 34%,#d8f0d1 34% 72%,#f8df9d 72% 100%)!important;
+  gap:14px!important;
+}
+.zone{
+  min-height:232px!important;
+  border:0!important;
+  background:rgba(255,255,255,.70)!important;
+  backdrop-filter:blur(8px);
+  box-shadow:0 13px 26px rgba(43,76,100,.10),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+.zone:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:58px;height:32px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,91,80,.19),transparent 70%);
+  filter:blur(6px);pointer-events:none;
+}
+.zoneArt{
+  width:100%!important;height:165px!important;
+  background:transparent!important;
+  box-shadow:none!important;border-radius:0!important;
+  overflow:visible!important;
+}
+.zoneArt:before{
+  content:"";position:absolute;left:12%;right:12%;bottom:7px;height:34px;border-radius:50%;
+  background:linear-gradient(180deg,#a8e17a,#73b85d);
+  box-shadow:0 10px 0 #c89c59,0 14px 16px rgba(61,86,71,.18);
+  opacity:.78;
+}
+.zoneArt:after{display:none!important}
+.zoneArt img{position:relative!important;z-index:2!important;width:92%!important;height:94%!important;object-fit:contain!important}
+
+.zone.active{
+  transform:translateY(-3px)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,247,214,.88))!important;
+  box-shadow:0 0 0 4px rgba(255,202,69,.78),0 17px 30px rgba(46,78,104,.15)!important;
 }
 
-/* V33 premium redesign */
-.cinematic-slot img{filter:none!important;image-rendering:auto!important}
-.avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.avatarArt .cinematic-slot img,.bossArt .cinematic-slot img{filter:drop-shadow(0 12px 16px rgba(49,86,116,.10))!important}
-.zoneArt{background:radial-gradient(circle at 50% 25%,#fff 0,#f0fbff 55%,#fff7df 100%)}
-</style>
-<style id="v34-final-premium-game-art">
-/* V34 FINAL PREMIUM GAME ART — major UI pass */
-:root{--ink:#203954;--muted:#7084a0;--blue:#39a9f4;--purple:#8c62ea;--gold:#ffbf2f}
-body{background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.9),transparent 24%),linear-gradient(180deg,#7ac9f6 0,#bfe9fb 17%,#eef8ff 43%,#fff7e6 100%) fixed!important;color:var(--ink)!important}
-.wrap{max-width:1180px!important;padding:18px!important}
-.header{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(239,246,255,.94))!important;border:1px solid rgba(255,255,255,.95)!important;border-radius:30px!important;box-shadow:0 16px 38px rgba(36,78,110,.14)!important;padding:20px!important}
-.header h1{font-size:clamp(28px,5vw,48px)!important;line-height:1.03!important;letter-spacing:-.03em}.sub{color:#6f55df!important;font-weight:850!important}
-.pill{background:#fff!important;border:1px solid #e7eef5!important;box-shadow:0 8px 18px rgba(45,75,99,.09)!important;border-radius:18px!important}
-.card{border:1px solid rgba(255,255,255,.95)!important;border-radius:30px!important;box-shadow:0 18px 38px rgba(45,75,99,.12)!important;background:rgba(255,255,255,.95)!important}
-.nav{gap:12px!important}.nav button{min-height:88px!important;border-radius:24px!important;border:1px solid #e5eef6!important;background:linear-gradient(180deg,#fff,#eef7fb)!important;box-shadow:0 8px 18px rgba(50,86,115,.08)!important;font-size:18px!important;font-weight:900!important;color:#1688e8!important}
-.nav button.active{background:linear-gradient(180deg,#e8f5ff,#d5ecff)!important;box-shadow:inset 0 0 0 2px #75b8f3,0 10px 18px rgba(50,115,180,.12)!important}
-.avatarStage{background:linear-gradient(145deg,#dff3ff,#e8e0ff 55%,#fff0cf)!important;border:1px solid #fff!important;border-radius:34px!important;box-shadow:inset 0 0 0 1px #dbeaf4,0 18px 38px rgba(44,76,101,.13)!important;min-height:390px!important}
-.avatarChoice,.petChoice,.zone{border-radius:26px!important;border:2px solid #d9e8f2!important;background:linear-gradient(180deg,#fff,#f4fbff 63%,#fff4d8)!important;box-shadow:0 9px 20px rgba(50,78,98,.08)!important}
-.avatarChoice.on,.petChoice.on,.zone.active{border-color:#ffcb53!important;box-shadow:0 0 0 4px #fff0a8,0 12px 24px rgba(50,78,98,.11)!important}
-.setting input,.setting select,.wideInput,input,select{border-radius:16px!important;border:2px solid #dce9f3!important;background:#fff!important}
-.bigBtn{border-radius:20px!important;box-shadow:0 10px 20px rgba(43,76,101,.12)!important}
-.world{gap:18px!important}.zone{padding:14px!important}.zoneArt{border-radius:24px!important;background:transparent!important}.zone b{font-size:20px!important}
-.arena{background:linear-gradient(160deg,#d5f3ff 0,#d8eeff 44%,#e4defd 100%)!important;border:2px solid rgba(255,255,255,.94)!important}
-.speech{border-radius:18px!important;background:#fff!important;box-shadow:0 8px 18px rgba(43,76,101,.08)!important}
-.battle .avatarArt,.battle .bossArt{border-radius:28px!important;background:rgba(255,255,255,.88)!important;box-shadow:0 18px 28px rgba(45,79,104,.14)!important;border:1px solid #fff!important}
-.vs{font-size:34px!important;color:#f5af22!important;text-shadow:0 3px 8px rgba(255,193,63,.25)}
-.stats .stat,.summaryBox,.box,.mini{border-radius:22px!important;background:rgba(255,255,255,.94)!important;border:1px solid #dbe8f2!important;box-shadow:0 8px 18px rgba(50,78,98,.07)!important}
-.bar,.friendBar{height:18px!important;border-radius:20px!important;background:#eaf1f7!important}.hp{background:linear-gradient(90deg,#8d78e9,#6a58d1)!important;border-radius:20px!important}
-.note,.story{border-radius:18px!important}.cinematic-slot img{width:100%!important;height:100%!important;object-fit:contain!important;filter:none!important}
-.avatarStage .cinematic-slot{width:min(94%,520px)!important;margin:auto!important}
-@media(max-width:720px){
- .wrap{padding:10px!important}.header{padding:15px!important;border-radius:24px!important}.header h1{font-size:29px!important}
- .nav{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}.nav button{min-height:78px!important;font-size:15px!important;border-radius:19px!important;padding:8px 4px!important}
- .card{border-radius:24px!important;padding:14px!important}.avatarStage{min-height:355px!important}.avatarChoices{gap:7px!important}.avatarChoice{border-radius:20px!important;padding:6px!important}
- .world{gap:12px!important}.zone{border-radius:22px!important;padding:9px!important}.zone b{font-size:17px!important}
- .battle{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)!important}.battle .avatarArt,.battle .bossArt{height:166px!important}.battle .label{font-size:16px!important}
+.arena{
+  position:relative!important;
+  border:2px solid rgba(255,255,255,.95)!important;
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,255,255,.88),transparent 26%),
+    linear-gradient(180deg,#8ed8f8 0 44%,#c8ebbb 44% 67%,#e9c888 67% 100%)!important;
+  box-shadow:inset 0 0 80px rgba(255,255,255,.28),0 16px 34px rgba(53,87,111,.14)!important;
+}
+.arena:before{
+  content:"";position:absolute;left:0;right:0;top:34%;height:33%;
+  background:
+    radial-gradient(ellipse at 18% 45%,#72be6e 0 12%,transparent 13%),
+    radial-gradient(ellipse at 83% 54%,#79c474 0 13%,transparent 14%);
+  opacity:.55;pointer-events:none;
+}
+.battle{min-height:295px!important}
+.battle .avatarArt,.battle .bossArt{height:240px!important}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important
+}
+.battle .avatarArt:after,.battle .bossArt:after{
+  left:20%!important;right:20%!important;bottom:2px!important;height:20px!important;
+  background:radial-gradient(ellipse,rgba(38,63,79,.23),transparent 70%)!important
+}
+.vs:before{content:"⚡";font-size:26px}.vs{font-size:0!important}
+
+@media(max-width:600px){
+ .avatarStage{height:380px!important}
+ .world{gap:10px!important}
+ .zone{min-height:205px!important;padding:7px 5px!important}
+ .zoneArt{height:142px!important;width:100%!important}
+ .zoneArt:before{left:14%;right:14%;height:28px;bottom:4px}
+ .zone b{font-size:16px!important;line-height:1.1!important}
+ .zone small{font-size:14px!important}
+ .battle{min-height:265px!important}
+ .battle .avatarArt,.battle .bossArt{height:215px!important}
 }
 </style>
-<style>
-/* V34 cute character motion */
-@keyframes hmwFloat{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  50%{transform:translateY(-4px) rotate(.35deg)}
+
+
+<style id="v40-game-world-redesign">
+.brandLine{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brandLine h1{margin:0!important}
+.buildBadge{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:34px;padding:0 13px;border-radius:999px;font-size:16px;font-weight:950;letter-spacing:.4px;color:#fff;background:linear-gradient(135deg,#6f63f1,#4779e8);box-shadow:0 8px 18px rgba(78,91,220,.24),inset 0 1px 0 rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.7)}
+.worldIntro{background:radial-gradient(circle at 85% 20%,rgba(255,221,116,.35),transparent 25%),linear-gradient(135deg,#f6fbff,#edf0ff 55%,#fff7df)!important;border:1px solid rgba(255,255,255,.95)!important}
+.worldIntro h2{font-size:25px!important}
+.characterQualityNote{background:rgba(255,255,255,.70)!important;border:1px solid rgba(147,186,218,.25)!important}
+.avatarStudio{align-items:start!important}
+.avatarStage{border-radius:34px!important;background:radial-gradient(circle at 50% 19%,rgba(255,255,255,.98) 0 16%,rgba(255,255,255,.54) 17% 37%,transparent 38%),radial-gradient(ellipse at 50% 91%,#9fd991 0 18%,#74b964 19% 27%,#c49b5d 28% 31%,transparent 32%),linear-gradient(180deg,#aee6ff 0 50%,#dff3d3 50% 72%,#f7dda5 72% 100%)!important;box-shadow:inset 0 0 70px rgba(255,255,255,.30),0 18px 36px rgba(39,75,103,.16)!important}
+.avatarStage:before{content:"";position:absolute;left:15%;right:15%;bottom:6.5%;height:17px;border-radius:50%;background:radial-gradient(ellipse,rgba(37,63,78,.24),transparent 72%);filter:blur(5px);z-index:0}
+.avatarStage img{position:relative;z-index:2}
+.world{padding:18px 14px 24px!important;border-radius:34px!important;background:radial-gradient(circle at 12% 10%,rgba(255,255,255,.74),transparent 17%),radial-gradient(circle at 84% 18%,rgba(255,255,255,.70),transparent 19%),linear-gradient(180deg,#8fd7f6 0 35%,#c9e9be 35% 72%,#f1d58e 72% 100%)!important;box-shadow:inset 0 0 75px rgba(255,255,255,.30),0 18px 36px rgba(48,83,107,.10)!important}
+.zone{overflow:visible!important;background:rgba(255,255,255,.45)!important;backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 12px 22px rgba(45,76,99,.09),inset 0 1px 0 rgba(255,255,255,.92)!important}
+.zoneArt{height:170px!important}
+.zoneArt:before{left:16%!important;right:16%!important;bottom:5px!important;height:27px!important;background:linear-gradient(180deg,#93d879,#67b358)!important;border-radius:50%!important;box-shadow:0 9px 0 #b89155,0 12px 15px rgba(62,77,59,.18)!important}
+.zoneArt img{filter:drop-shadow(0 12px 9px rgba(35,64,83,.14))!important}
+.zone b,.zone small{position:relative;z-index:4}
+.zone.active{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,244,203,.80))!important;border-color:#ffd04d!important;box-shadow:0 0 0 4px rgba(255,205,63,.30),0 15px 28px rgba(46,78,101,.14)!important}
+.arena{border-radius:34px!important;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.88),transparent 22%),linear-gradient(180deg,#91d9f8 0 40%,#c8e8b7 40% 62%,#e5bd79 62% 100%)!important}
+.arena:before{content:"";position:absolute!important;left:0!important;right:0!important;top:34%!important;height:34%!important;background:radial-gradient(ellipse at 12% 66%,#5cab61 0 13%,transparent 14%),radial-gradient(ellipse at 88% 68%,#67b86a 0 14%,transparent 15%),linear-gradient(180deg,transparent 0 64%,rgba(91,143,79,.18) 65% 100%)!important;opacity:.72!important;pointer-events:none}
+.battle{position:relative!important;padding-top:24px!important;min-height:315px!important;align-items:end!important}
+.battle:before{content:"";position:absolute;left:8%;right:8%;bottom:24px;height:42px;border-radius:50%;background:radial-gradient(ellipse,rgba(55,76,73,.20),transparent 68%);filter:blur(7px);pointer-events:none}
+.battle .avatarArt,.battle .bossArt{height:250px!important;position:relative;z-index:2}
+.battle .avatarArt img,.battle .bossArt img{filter:drop-shadow(0 15px 10px rgba(40,64,80,.18))!important}
+.vs{position:relative!important;z-index:3!important;align-self:center!important}
+.vs:before{content:"⚡";display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.88);font-size:25px!important;box-shadow:0 8px 18px rgba(107,82,13,.16),inset 0 0 0 2px rgba(255,205,64,.35)}
+@media(max-width:600px){.brandLine{gap:7px}.buildBadge{min-width:48px;height:30px;font-size:14px;padding:0 10px}.world{padding:10px 8px 20px!important}.zone{min-height:216px!important}.zoneArt{height:148px!important}.battle{min-height:280px!important;padding-top:16px!important}.battle .avatarArt,.battle .bossArt{height:222px!important}.worldIntro{padding:13px!important}}
+</style>
+
+
+<style id="v41-scene-integration-pass">
+/* ==========================================================
+   V41 — SCENE INTEGRATION PASS
+   Goal: character proportions + mini-biomes + encounter scene
+   Logic/state/save systems are untouched.
+   ========================================================== */
+
+/* tighter, more game-like header */
+.header{padding-bottom:16px!important}
+.buildBadge{
+  background:linear-gradient(135deg,#6b5de8,#4f83ee)!important;
+  box-shadow:0 7px 16px rgba(74,86,210,.22),inset 0 1px 0 rgba(255,255,255,.42)!important
 }
-@keyframes hmwGlow{
-  0%,100%{filter:drop-shadow(0 7px 8px rgba(64,108,140,.10))}
-  50%{filter:drop-shadow(0 10px 13px rgba(104,120,205,.18))}
+
+/* ---- Avatar Studio: reduce oversized character ---- */
+.avatarStage{
+  height:360px!important;
+  min-height:360px!important;
+  border-radius:32px!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 22%,rgba(255,255,255,.98) 0 14%,rgba(255,255,255,.42) 15% 34%,transparent 35%),
+    radial-gradient(ellipse at 50% 91%,#a9dd91 0 17%,#78b968 18% 25%,#c69b5c 26% 29%,transparent 30%),
+    linear-gradient(180deg,#b8e8fb 0 48%,#dff2d3 48% 70%,#f5d99d 70% 100%)!important;
+  box-shadow:inset 0 0 58px rgba(255,255,255,.28),0 16px 32px rgba(41,75,103,.14)!important
 }
-.avatarStage .cinematic-slot img{
-  animation:hmwFloat 4.8s ease-in-out infinite,hmwGlow 4.8s ease-in-out infinite;
+.avatarStage img{
+  width:78%!important;
+  height:86%!important;
+  max-width:320px!important;
+  object-fit:contain!important;
+  object-position:center 78%!important;
+  transform:none!important;
+  filter:drop-shadow(0 14px 11px rgba(37,60,78,.17))!important
 }
-.zoneArt .cinematic-slot img{
-  animation:hmwFloat 5.6s ease-in-out infinite;
+.avatarStage:before{
+  left:22%!important;right:22%!important;bottom:7%!important;height:18px!important;
+  background:radial-gradient(ellipse,rgba(39,62,75,.28),transparent 70%)!important;
+  filter:blur(5px)!important
 }
-.zone:nth-child(2n) .cinematic-slot img{animation-delay:-1.4s}
-.zone:nth-child(3n) .cinematic-slot img{animation-delay:-2.7s}
-.petChoice .cinematic-slot img{animation:hmwFloat 5.2s ease-in-out infinite}
-@media (prefers-reduced-motion: reduce){
- .avatarStage .cinematic-slot img,.zoneArt .cinematic-slot img,.petChoice .cinematic-slot img{animation:none!important}
+
+/* thumbnail characters should feel like selection tokens, not screenshots */
+.avatarChoice{
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#f9fdff,#eef9ff 72%,#fff5d8)!important;
+}
+.avatarChoice .original-art,.avatarChoice .avatar-generated{
+  transform:scale(.92)!important;
+  transform-origin:center bottom!important;
+}
+
+/* ---- World Map: actual mini-biomes for each habit ---- */
+.world{
+  position:relative!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,#97d9f5 0 28%,#ccebc1 28% 70%,#f0d28c 70% 100%)!important;
+}
+.zone{
+  isolation:isolate!important;
+  overflow:hidden!important;
+  min-height:222px!important;
+  padding:7px 6px 11px!important;
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+}
+.zone:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-3!important;
+  border-radius:inherit!important;
+  filter:none!important;
+  pointer-events:none!important;
+}
+.zone:nth-child(1):before{
+  background:
+    radial-gradient(circle at 80% 20%,#fff6b9 0 7%,transparent 8%),
+    linear-gradient(180deg,#bdeaff 0 56%,#9fdd83 57% 74%,#e6bd74 75% 100%)!important;
+}
+.zone:nth-child(2):before{
+  background:
+    radial-gradient(circle at 18% 19%,rgba(255,255,255,.9) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9dcff 0 58%,#b8acd9 59% 72%,#d9b57d 73% 100%)!important;
+}
+.zone:nth-child(3):before{
+  background:
+    radial-gradient(circle at 75% 18%,rgba(255,255,255,.85) 0 6%,transparent 7%),
+    linear-gradient(180deg,#c9efff 0 58%,#8ed5b0 59% 74%,#d6b276 75% 100%)!important;
+}
+.zone:nth-child(4):before{
+  background:
+    radial-gradient(circle at 22% 17%,#fff8c4 0 7%,transparent 8%),
+    linear-gradient(180deg,#c8eeff 0 54%,#a8d98e 55% 74%,#d6ad69 75% 100%)!important;
+}
+.zone:nth-child(5):before{
+  background:
+    radial-gradient(circle at 74% 18%,#fff7ae 0 8%,transparent 9%),
+    linear-gradient(180deg,#c8eeff 0 54%,#b6dc88 55% 74%,#e4bd77 75% 100%)!important;
+}
+.zone:nth-child(6):before{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.85) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e9ff 0 54%,#b9dc9d 55% 74%,#e1bd7d 75% 100%)!important;
+}
+.zone:nth-child(7):before{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(255,255,255,.9) 0 7%,transparent 8%),
+    linear-gradient(180deg,#d5e2ff 0 54%,#b8d49d 55% 74%,#d8b87e 75% 100%)!important;
+}
+
+.zoneArt{
+  position:relative!important;
+  width:100%!important;
+  height:152px!important;
+  overflow:visible!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  z-index:2!important;
+}
+.zoneArt:before{
+  content:""!important;
+  position:absolute!important;
+  left:19%!important;right:19%!important;bottom:7px!important;
+  height:22px!important;border-radius:50%!important;
+  background:linear-gradient(180deg,#95d777,#67ad59)!important;
+  box-shadow:0 7px 0 #b98c51,0 12px 14px rgba(53,76,55,.16)!important;
+  opacity:.94!important;
+  z-index:0!important;
+}
+.zoneArt img,.zoneArt svg{
+  position:relative!important;
+  z-index:2!important;
+  width:88%!important;height:92%!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 11px 8px rgba(33,61,81,.16))!important;
+}
+.zone b{
+  margin-top:-2px!important;
+  font-size:17px!important;
+  line-height:1.1!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.75)
+}
+.zone small{font-size:14px!important}
+.zone.active{
+  border-color:#ffd04e!important;
+  box-shadow:0 0 0 4px rgba(255,207,69,.36),0 13px 24px rgba(52,77,98,.14)!important;
+  transform:translateY(-2px)!important
+}
+
+/* ---- Battle/Encounter: remove framed-picture look ---- */
+.arena{
+  position:relative!important;
+  overflow:hidden!important; /* fixes green blobs leaking over HUD */
+  border:0!important;
+  outline:0!important;
+  border-radius:30px!important;
+  padding:0!important;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(255,255,255,.90),transparent 24%),
+    radial-gradient(ellipse at 12% 58%,rgba(71,151,82,.75) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 88% 58%,rgba(79,162,86,.72) 0 10%,transparent 11%),
+    linear-gradient(180deg,#9bdcf7 0 45%,#cae9b7 45% 67%,#e7c27b 67% 100%)!important;
+  box-shadow:0 16px 34px rgba(42,76,103,.13),inset 0 1px 0 rgba(255,255,255,.9)!important
+}
+.arena:before{
+  content:""!important;
+  position:absolute!important;
+  left:-8%!important;right:-8%!important;
+  top:auto!important;bottom:30%!important;
+  height:34%!important;
+  background:
+    radial-gradient(ellipse at 13% 82%,#6ab56b 0 15%,transparent 16%),
+    radial-gradient(ellipse at 88% 82%,#70b972 0 16%,transparent 17%)!important;
+  opacity:.62!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.arena:after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;bottom:0!important;height:35%!important;
+  background:linear-gradient(180deg,rgba(232,197,130,.00),rgba(224,183,112,.45))!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle{
+  position:relative!important;
+  z-index:2!important;
+  min-height:300px!important;
+  padding:28px 14px 8px!important;
+  align-items:end!important;
+  gap:8px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important
+}
+.battle:before{
+  content:""!important;
+  position:absolute!important;
+  left:10%!important;right:10%!important;bottom:14px!important;height:28px!important;
+  background:
+    radial-gradient(ellipse at 22% 50%,rgba(44,65,68,.23),transparent 31%),
+    radial-gradient(ellipse at 78% 50%,rgba(44,65,68,.23),transparent 31%)!important;
+  filter:blur(5px)!important;
+  pointer-events:none!important;
+  z-index:0!important
+}
+.battle .avatarArt,.battle .bossArt{
+  width:42%!important;
+  height:228px!important;
+  position:relative!important;
+  z-index:3!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important
+}
+.battle .avatarArt img,.battle .bossArt img{
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  filter:drop-shadow(0 12px 9px rgba(34,57,75,.17))!important
+}
+.battle .avatarArt img{transform:scale(.88)!important;transform-origin:center bottom!important}
+.battle .bossArt img{transform:scale(.96)!important;transform-origin:center bottom!important}
+.battle .avatarArt:after,.battle .bossArt:after{display:none!important}
+.vs{
+  width:auto!important;
+  min-width:48px!important;
+  position:relative!important;
+  z-index:5!important;
+  align-self:center!important;
+  background:transparent!important
+}
+.vs:before{
+  content:"⚡"!important;
+  width:46px!important;height:46px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.90)!important;
+  box-shadow:0 7px 16px rgba(96,76,15,.14),inset 0 0 0 2px rgba(255,204,63,.38)!important;
+  font-size:24px!important
+}
+
+/* battle labels are part of scene, not picture captions */
+.battleName,.avatarName,.bossName{
+  text-shadow:0 1px 0 rgba(255,255,255,.72)!important
+}
+
+/* make all HUD after the arena clean; no decorative pseudo-layers may overlap it */
+.arena ~ *{position:relative!important;z-index:6!important}
+.stats,.quest,.inputRow,.checklist,.progress,.bar{isolation:isolate}
+
+/* mobile */
+@media(max-width:600px){
+  .avatarStage{height:330px!important;min-height:330px!important}
+  .avatarStage img{width:74%!important;height:82%!important}
+  .world{gap:9px!important;padding:9px 7px 18px!important}
+  .zone{min-height:205px!important;padding:6px 4px 10px!important}
+  .zoneArt{height:137px!important}
+  .zoneArt:before{left:20%!important;right:20%!important;height:20px!important}
+  .zone b{font-size:15px!important}
+  .zone small{font-size:13px!important}
+  .battle{min-height:255px!important;padding:18px 7px 5px!important;gap:2px!important}
+  .battle .avatarArt,.battle .bossArt{height:198px!important;width:43%!important}
+  .battle .avatarArt img{transform:scale(.82)!important}
+  .battle .bossArt img{transform:scale(.91)!important}
+  .vs:before{width:42px!important;height:42px!important;font-size:22px!important}
 }
 </style>
+
+
+<style id="v42-game-ui-polish">
+/* V42 — GAME UI POLISH. Presentation-only; game logic/save state untouched. */
+:root{--v42-glass:rgba(255,255,255,.90);--v42-shadow:0 16px 38px rgba(37,73,105,.13);--v42-ring:rgba(255,204,69,.38)}
+body{min-height:100dvh;background:radial-gradient(circle at 50% -5%,rgba(255,255,255,.92),transparent 27rem),linear-gradient(180deg,#8fd8f8 0,#dff5ff 31%,#f5fbff 58%,#fff8e9 100%) fixed!important}
+.header{position:relative;isolation:isolate;overflow:hidden!important}
+.header:before{content:"";position:absolute;inset:-35% -10% auto 42%;height:180px;background:radial-gradient(circle,rgba(255,222,113,.32),transparent 66%);z-index:-1;pointer-events:none}
+.buildBadge:after{content:" • ARENA POLISH";font-size:10px;opacity:.88;margin-left:4px}
+.card{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.nav{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:40;background:rgba(247,252,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:7px;border-radius:22px;box-shadow:0 10px 28px rgba(38,75,108,.11)}
+.nav button{transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
+.nav button:hover{transform:translateY(-2px)}
+.nav button.active{box-shadow:0 0 0 3px rgba(102,174,239,.18),0 10px 22px rgba(67,151,224,.16)!important}
+.world{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 18px 38px rgba(48,83,107,.11)!important}
+.zone{transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important}
+.zone:hover{transform:translateY(-3px)}
+.zone.active{transform:translateY(-4px) scale(1.015)!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;top:8px;right:8px;padding:4px 8px;border-radius:999px;background:#ffd45d;color:#604900;font-size:11px;font-weight:950;z-index:7;box-shadow:0 5px 12px rgba(120,86,0,.16)}
+.zoneArt img,.avatarStage img,.battle img{will-change:transform}
+.arena{box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 18px 40px rgba(44,78,106,.14)!important}
+.battleSceneTitle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.74);padding:7px 11px;border-radius:999px;box-shadow:0 6px 16px rgba(49,79,104,.08)}
+.bigBtn,.smallBtn{transition:transform .12s ease,filter .12s ease,box-shadow .12s ease}.bigBtn:hover,.smallBtn:hover{filter:brightness(1.025);box-shadow:0 8px 18px rgba(43,73,105,.12)}.bigBtn:active,.smallBtn:active{transform:scale(.975)!important}
+.bar{height:18px!important;box-shadow:inset 0 2px 4px rgba(37,65,90,.08)}
+.hp,.xp,.friendFill{transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stat,.mini,.summaryBox,.box{transition:transform .15s ease,box-shadow .15s ease}.stat:hover,.mini:hover,.summaryBox:hover,.box:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(45,75,102,.08)}
+.toast{bottom:calc(18px + env(safe-area-inset-bottom));box-shadow:0 12px 28px rgba(20,35,50,.25);font-weight:850}
+.modal{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}.modalCard{box-shadow:0 24px 60px rgba(30,55,80,.25)}
+@media(max-width:600px){
+ .wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+ .nav{top:calc(4px + env(safe-area-inset-top));grid-template-columns:repeat(3,1fr)!important;border-radius:18px;padding:6px!important}
+ .nav button{min-height:58px!important;border-radius:15px!important;font-size:13px!important}
+ .header{margin-top:2px}.status{gap:6px!important}.pill{padding:7px 8px!important;font-size:13px}
+ .world{border-radius:28px!important}.zone{min-height:205px!important;border-radius:24px!important}.zone.active:after{font-size:10px;padding:3px 6px}
+ .battle{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}.vs:before{width:42px!important;height:42px!important}
+ .bigBtn{min-height:48px;font-size:16px}.smallBtn{min-height:42px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+<style id="v431-big-gameplay">
+:root{
+ --hmw-gold:#ffd25a;
+ --hmw-sky:#8edaf8;
+ --hmw-grass:#a9df8a;
+ --hmw-earth:#e8c47e;
+}
+.buildBadge{
+  min-width:78px!important;
+  background:linear-gradient(135deg,#7659ef,#427eea)!important;
+  box-shadow:0 9px 22px rgba(78,78,218,.28),inset 0 1px 0 rgba(255,255,255,.48)!important;
+}
+.header{padding-bottom:6px!important}
+.status .pill:first-child{
+  background:linear-gradient(135deg,#fff8d7,#eef7ff)!important;
+  color:#394c69!important;
+}
+/* compact navigation */
+.nav{grid-template-columns:repeat(4,1fr)!important;gap:8px!important}
+.nav button{min-height:52px!important;border-radius:16px!important}
+@media(min-width:760px){.nav{grid-template-columns:repeat(6,1fr)!important}}
+
+/* avatar feels like a game character stage */
+.avatarStage{
+  height:330px!important; min-height:330px!important;
+  background:
+   radial-gradient(circle at 50% 17%,rgba(255,255,255,.98) 0 13%,rgba(255,255,255,.4) 14% 32%,transparent 33%),
+   linear-gradient(180deg,#bfeaff 0 46%,#d9efca 46% 68%,#f0cf8b 68% 100%)!important;
+}
+.avatarStage:after{
+  content:"";position:absolute;left:28%;right:28%;bottom:7%;height:22px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(52,76,71,.28),transparent 68%);filter:blur(5px)
+}
+
+/* world cards: progression + evolution */
+.world{gap:10px!important;padding:12px!important}
+.zone{
+  min-height:248px!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+  padding:8px 8px 12px!important;border-radius:26px!important;
+}
+.zoneArt{height:150px!important;width:100%!important}
+.zoneProgress{margin-top:auto;padding:0 8px 2px}
+.zoneProgress .miniTrack{
+  height:8px;border-radius:999px;background:rgba(226,234,242,.95);overflow:hidden;margin:7px 0 5px
+}
+.zoneProgress .miniFill{
+  height:100%;border-radius:999px;background:linear-gradient(90deg,#8b7ae8,#6dcb9a)
+}
+.zoneProgress .miniText{font-size:12px;font-weight:900;color:#586c82}
+.evoBadge{
+  position:absolute;left:10px;top:10px;z-index:5;
+  border-radius:999px;padding:4px 8px;font-size:10px;font-weight:950;
+  color:#fff;background:linear-gradient(135deg,#725fe8,#4b87ef);
+  box-shadow:0 6px 12px rgba(65,82,170,.18)
+}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffbe3f,#ff8a44);color:#654000}
+
+/* Encounter: shorter, larger characters, pet alongside hero */
+.arena{
+  border-radius:30px!important;
+  background:
+   radial-gradient(circle at 50% 8%,rgba(255,255,255,.92),transparent 22%),
+   linear-gradient(180deg,#91dcfa 0 45%,#cbeab8 45% 66%,#e6c17b 66% 100%)!important;
+}
+.petFollower{position:absolute!important;left:8%!important;bottom:30%!important;width:78px!important;height:78px!important;z-index:8!important}
+.speech{margin:10px 10px 0!important}
+.battle{
+  min-height:270px!important;padding:18px 6px 5px!important;
+  grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr)!important;
+  align-items:end!important;
+}
+.battle .avatarArt,.battle .bossArt{height:225px!important;width:46%!important;max-width:210px!important}
+.vs{align-self:center!important}
+.vs:before{content:"⚡"!important}
+.battle .label{font-size:18px!important}
+.arena .story{background:rgba(255,255,255,.90)!important}
+.arena .stats{margin-top:10px!important}
+.arena .stat{background:rgba(255,255,255,.90)!important}
+
+/* celebratory states */
+.hmwSpark{
+ position:fixed;z-index:9999;pointer-events:none;font-size:26px;
+ animation:hmwBurst 950ms ease-out forwards
+}
+@keyframes hmwBurst{
+ 0%{transform:translate(-50%,-50%) scale(.4);opacity:0}
+ 20%{opacity:1}
+ 100%{transform:translate(var(--dx),var(--dy)) scale(1.25) rotate(22deg);opacity:0}
+}
+.levelPulse{animation:levelPulse .8s ease}
+@keyframes levelPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045);filter:brightness(1.12)}}
+
+/* make summary/reward panels feel like game cards */
+.journeyNode.open,.trophy.done,.closetItem.on{
+  box-shadow:0 9px 20px rgba(56,91,111,.12)!important;
+}
+.journeyNode .big{filter:drop-shadow(0 6px 8px rgba(50,80,105,.12))}
+.enddayHero{
+  text-align:center;padding:18px;border-radius:22px;
+  background:linear-gradient(180deg,#edf7ff,#fff5cf);
+  margin-bottom:12px
+}
+.enddayHero .big{font-size:52px}
+.enddayHero b{font-size:22px}
+
+/* mobile polish */
+@media(max-width:600px){
+ .nav{grid-template-columns:repeat(3,1fr)!important}
+ .nav button{min-height:48px!important;font-size:14px!important;padding:8px 3px!important}
+ .avatarStage{height:300px!important;min-height:300px!important}
+ .zone{min-height:232px!important}
+ .zoneArt{height:142px!important}
+ .battle{min-height:235px!important;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:188px!important;width:47%!important}
+ .petFollower{width:62px!important;height:62px!important;left:6%!important;bottom:31%!important}
+ .battle .label{font-size:16px!important}
+ .stats{gap:6px!important}
+ .stat{padding:7px 4px!important}
+ .stat b{font-size:18px!important}
+}
+</style>
+
+
+<style id="v44-arena-map-polish">
+/* V44 — screenshot-driven polish: compact encounter, bigger actors, clearer world progress */
+.buildBadge{min-width:70px!important;font-size:15px!important;letter-spacing:.4px!important}
+.status .pill:first-child{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+
+/* Make Avatar Studio less vertically dominant on phone */
+@media(max-width:600px){
+  .avatarStage{height:260px!important;min-height:260px!important}
+  .avatarStage svg{max-height:245px!important}
+  .avatarChoices{gap:7px!important}
+  .avatarChoice{min-height:98px!important;padding:5px!important}
+}
+
+/* World Map: give every monster card a visible game-progress footer */
+.zone{overflow:hidden!important;position:relative!important}
+.zone .evoBadge{top:8px!important;left:8px!important;padding:4px 7px!important;font-size:10px!important}
+.zoneProgress{width:100%!important;box-sizing:border-box!important;margin-top:8px!important;padding:0 10px 3px!important}
+.zoneProgress .miniTrack{height:7px!important;background:#e9eef4!important}
+.zoneProgress .miniFill{box-shadow:0 0 8px rgba(108,191,151,.22)!important}
+.zoneProgress .miniText{font-size:11px!important;line-height:1.15!important;text-align:center!important}
+@media(max-width:600px){
+ .zone{min-height:244px!important;padding-bottom:9px!important}
+ .zoneArt{height:137px!important}
+ .zone b{font-size:15px!important;line-height:1.15!important}
+ .zone small{font-size:13px!important}
+}
+
+/* Encounter: remove the giant empty sky seen in V43 screenshots */
+.arena{padding:10px 8px 12px!important;overflow:hidden!important}
+#petFollower.petFollower{position:relative!important;left:auto!important;bottom:auto!important;width:68px!important;height:68px!important;margin:2px auto 2px!important}
+.battle{min-height:210px!important;height:auto!important;padding:3px 4px 2px!important;gap:0!important;align-items:end!important}
+.battle .avatarArt,.battle .bossArt{height:180px!important;width:45%!important;max-width:185px!important;display:flex!important;align-items:flex-end!important;justify-content:center!important}
+.battle .avatarArt svg,.battle .bossArt svg{max-height:176px!important;width:100%!important}
+.vs{align-self:center!important}
+.vs:before{width:44px!important;height:44px!important;font-size:23px!important;box-shadow:0 8px 18px rgba(136,104,24,.15)!important}
+.battle .label{font-size:17px!important;margin-top:0!important;line-height:1.1!important}
+.speech{margin:5px 5px 7px!important;padding:8px!important}
+.arena .story{margin-top:6px!important}
+.arena .stats{margin-top:8px!important}
+@media(max-width:600px){
+ .arena{padding-top:7px!important}
+ #petFollower.petFollower{width:60px!important;height:60px!important}
+ .battle{min-height:188px!important;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:158px!important;width:47%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:155px!important}
+ .vs:before{width:38px!important;height:38px!important;font-size:20px!important}
+ .battle .label{font-size:15px!important}
+}
+
+/* Slightly more lively selected world */
+.zone.active{box-shadow:0 0 0 4px rgba(255,200,62,.2),0 12px 24px rgba(52,95,120,.14)!important}
+.zone.active .zoneArt{animation:v44Float 2.7s ease-in-out infinite}
+@keyframes v44Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+</style>
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  const b=document.querySelector('.buildBadge'); if(b) b.textContent='V46.1 TEST';
+  const s=document.getElementById('threeStatus'); if(s) s.textContent='🧪 CLEAN TEST • V46.1';
+  document.title='Habit Monster World V46.1 TEST';
+});
+</script>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div><h1>🌍 Habit Monster World V34 FINAL PREMIUM GAME ART</h1><div class="sub">Clean Build • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">✨ Premium Art พร้อม</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V44</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -930,7 +1251,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.9),transparen
 </div>
 </section>
 
-<section class="card"><h2>✨ Premium Adventure World</h2><div class="story">Monster 35 ร่าง + Pet 6 ตัวถูกแยกเป็น model asset ภายนอกแล้ว เพื่อให้เปลี่ยนเป็น sculpted .GLB ในอนาคตโดยไม่แตะ logic เกม</div><div class="story">ตัว Monster / Avatar / Pet ในเวอร์ชันนี้ render เป็น WebGL 3D จริง มีแสง กล้อง และ animation ไม่ใช่รูปภาพแปะ</div><div class="characterQualityNote">V34 Final Premium Game Art: Avatar, Monster, Pet, World Map, Battle และ UI ใช้ภาษาภาพเดียวกันแบบเกมการ์ตูน 3D นุ่ม สดใส และอ่านง่ายบนมือถือ โดยคง logic เกมเดิมทั้งหมด</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
+<section class="card worldIntro"><h2>✨ Adventure World</h2><div class="story">เลือกนักผจญภัยของคุณ แล้วออกไปฝึกนิสัยกับ Monster แต่ละด่านในโลกเดียวกัน</div><div class="characterQualityNote">ตัวละคร นักผจญภัย Monster และฉากต่อสู้ใช้ระบบภาพเดียวกัน เพื่อให้ดูเป็นเกมเดียวกัน ไม่ใช่รูปภาพแยกชิ้น</div></section><section class="card"><h2>🗺️ World Map — ทุกด่านเปิด Level 1</h2><div id="worldMap" class="world"></div></section>
 <div class="main">
 <main>
 <section class="card arena">
@@ -942,7 +1263,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.9),transparen
 </div>
 <div class="story" id="monsterTalk"></div>
 <div class="row"><span id="monsterTitle"></span><span id="monsterLevel"></span></div>
-<div class="row"><span>🌫️ พลังนิสัยเดิม</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
+<div class="row"><span>⚡ พลังนิสัย</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="hp"></div></div>
 <div id="nextLevelHint" class="note" style="text-align:center;font-weight:850"></div>
 <div class="stats"><div class="stat"><b id="progressText">0</b><span id="progressUnit"></span></div><div class="stat"><b id="monsterWins">0</b>ผ่าน Level</div><div class="stat"><b id="pendingCount">0</b>รออนุมัติ</div><div class="stat"><b id="petMiniText">0</b>Pet XP</div></div>
 <div id="questBox" class="quest"></div>
@@ -992,7 +1313,7 @@ body{background:radial-gradient(circle at 15% 5%,rgba(255,255,255,.9),transparen
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=34.0;
+const KEY="hmw26_model",BACKUP="hmw26_model_backup",VERSION=27.4;
 const defs={
  diligent:{title:"ด่านขยัน",name:"เจ้าขี้เกียจ",unit:"ข้อ",goal:100,hp:100,color:["#ffbd71","#e8663d"],talk:["เริ่มทีละนิดก็ได้","เริ่มคล่องขึ้นแล้ว","เก่งขึ้นทุกวัน","เกือบสุดทางแล้ว","👑 HERO FORM!"]},
  reading:{title:"จอมไม่อยากอ่าน",name:"นกฮูกนักอ่าน",unit:"นาที",goal:200,hp:110,color:["#cab9ff","#745bc5"],talk:["อ่านนิดเดียวก่อนก็ได้","เรื่องนี้เริ่มสนุกนะ","อ่านสม่ำเสมอขึ้นแล้ว","ใกล้เป็นนักอ่านแล้ว","👑 HERO FORM!"]},
@@ -1072,44 +1393,46 @@ function svgData(svg){
 function artFrame(inner,accent="#7fc7ff"){
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
  <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-   <stop stop-color="#ffffff"/><stop offset=".52" stop-color="#edf8ff"/><stop offset="1" stop-color="#fff0cf"/>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+   <stop stop-color="#f8fcff"/><stop offset=".62" stop-color="#edf7ff"/><stop offset="1" stop-color="#fff6e2"/>
   </linearGradient>
-  <radialGradient id="halo" cx=".38" cy=".20" r=".82">
-   <stop offset="0" stop-color="#ffffff"/><stop offset=".48" stop-color="#ffffff" stop-opacity=".64"/><stop offset="1" stop-color="${accent}" stop-opacity=".10"/>
+  <radialGradient id="glow" cx=".32" cy=".20" r=".78">
+   <stop stop-color="#ffffff" stop-opacity=".98"/>
+   <stop offset=".45" stop-color="#ffffff" stop-opacity=".18"/>
+   <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="eyeIris" cx=".31" cy=".22" r=".83">
-   <stop offset="0" stop-color="#e9fbff"/><stop offset=".30" stop-color="#8edafa"/><stop offset=".64" stop-color="#4c9dcc"/><stop offset="1" stop-color="#245574"/>
-  </radialGradient>
-  <radialGradient id="eyePupil" cx=".34" cy=".24" r=".80">
-   <stop offset="0" stop-color="#315e78"/><stop offset="1" stop-color="#102d42"/>
-  </radialGradient>
-  <filter id="softshadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="13" stdDeviation="12" flood-color="#31526b" flood-opacity=".16"/></filter>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%">
+   <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#33516a" flood-opacity=".22"/>
+  </filter>
+  <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
+   <feGaussianBlur stdDeviation="8"/>
+  </filter>
  </defs>
  <rect width="420" height="420" rx="54" fill="url(#bg)"/>
- <circle cx="210" cy="174" r="176" fill="url(#halo)"/>
- <ellipse cx="210" cy="356" rx="108" ry="19" fill="#34566d" opacity=".12"/>
- <ellipse cx="210" cy="350" rx="78" ry="8" fill="${accent}" opacity=".13"/>
- <circle cx="70" cy="78" r="7" fill="${accent}" opacity=".22"/><circle cx="342" cy="87" r="5" fill="${accent}" opacity=".18"/>
- <path d="M341 58l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#fff" opacity=".95"/>
- <g filter="url(#softshadow)">${inner}</g>
+ <rect x="10" y="10" width="400" height="400" rx="48" fill="none" stroke="#fff" stroke-width="4" opacity=".72"/>
+ <ellipse cx="210" cy="354" rx="126" ry="24" fill="#557a96" opacity=".18" filter="url(#blur)"/>
+ <ellipse cx="210" cy="344" rx="91" ry="15" fill="#6f8fa6" opacity=".13"/>
+ <path d="M55 126Q96 35 190 32" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".32"/>
+ <circle cx="110" cy="78" r="8" fill="${accent}" opacity=".24"/>
+ <circle cx="336" cy="84" r="6" fill="${accent}" opacity=".22"/>
+ <circle cx="360" cy="104" r="4" fill="${accent}" opacity=".3"/>
+ <circle cx="210" cy="150" r="165" fill="url(#glow)" opacity=".85"/>
+ <g filter="url(#shadow)">${inner}</g>
  </svg>`;
 }
 function cuteEye(cx,cy,s=1,mood="happy"){
- if(mood==="sleepy") return `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M-21 1 Q0 -12 21 1" fill="none" stroke="#6a4a56" stroke-width="5" stroke-linecap="round"/><circle cx="-12" cy="-5" r="2.2" fill="#fff" opacity=".60"/></g>`;
- return `<g transform="translate(${cx} ${cy}) scale(${s})">
-  <ellipse cy="3" rx="25" ry="29" fill="#fff"/><ellipse cy="5" rx="17" ry="21" fill="url(#eyeIris)"/><ellipse cy="6" rx="10.5" ry="15.5" fill="url(#eyePupil)"/>
-  <circle cx="-8" cy="-8" r="6.5" fill="#fff"/><circle cx="6" cy="-1" r="3.1" fill="#fff"/><circle cx="-1" cy="8" r="1.7" fill="#9ce3ff" opacity=".55"/>
-  <path d="M-20 -17 Q0 -25 20 -17" fill="none" stroke="#6c4d58" stroke-width="2.8" stroke-linecap="round" opacity=".36"/>
- </g>`;
+ const lid = mood==="sleepy"
+   ? `<path d="M-28 -2 Q0 -18 28 -2" fill="none" stroke="#5e3f4f" stroke-width="7" stroke-linecap="round"/>`
+   : `<ellipse rx="29" ry="34" fill="#fff" stroke="#d9edf7" stroke-width="3"/>
+      <ellipse cy="4" rx="19" ry="24" fill="#70bcec"/>
+      <ellipse cy="8" rx="11" ry="16" fill="#183f5d"/>
+      <ellipse cx="-7" cy="-8" rx="6" ry="8" fill="#fff"/>
+      <circle cx="8" cy="0" r="4" fill="#fff" opacity=".92"/>
+      <path d="M-18 -25Q0 -34 18 -25" fill="none" stroke="#526071" stroke-width="3" opacity=".34"/>`;
+ return `<g transform="translate(${cx} ${cy}) scale(${s})">${lid}</g>`;
 }
-function blushPair(y,color="#f3a0ad"){
- return `<g opacity=".88">
-  <ellipse cx="137" cy="${y}" rx="30" ry="11" fill="${color}" opacity=".52"/>
-  <ellipse cx="283" cy="${y}" rx="30" ry="11" fill="${color}" opacity=".52"/>
-  <ellipse cx="130" cy="${y-3}" rx="11" ry="3.5" fill="#fff" opacity=".34"/>
-  <ellipse cx="276" cy="${y-3}" rx="11" ry="3.5" fill="#fff" opacity=".34"/>
- </g>`;
+function blushPair(y=214,color="#f4a3b6"){
+ return `<ellipse cx="154" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/><ellipse cx="266" cy="${y}" rx="23" ry="8" fill="${color}" opacity=".64"/>`;
 }
 function smile(cx=210,cy=232,w=44,h=22,color="#9f5365"){
  return `<path d="M${cx-w/2} ${cy} Q${cx} ${cy+h} ${cx+w/2} ${cy}" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>`;
@@ -1122,94 +1445,235 @@ function starBurst(level,accent="#ffd86f"){
  if(level>=5)s+=`<path d="M148 91q29-35 63-4 32-32 62 4l-8 18h-109z" fill="#ffe28b" opacity=".8"/>`;
  return s;
 }
+
+function v37Svg(inner,defs=""){
+ return svgData(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+ <defs>
+   ${defs}
+   <filter id="v37shadow" x="-50%" y="-50%" width="200%" height="220%">
+    <feDropShadow dx="0" dy="15" stdDeviation="11" flood-color="#25445f" flood-opacity=".22"/>
+   </filter>
+   <filter id="v37soft" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8"/>
+   </filter>
+   <radialGradient id="v37eye" cx=".32" cy=".20" r=".82">
+    <stop offset="0" stop-color="#fff"/><stop offset=".18" stop-color="#aeeaff"/>
+    <stop offset=".58" stop-color="#4a9fd0"/><stop offset="1" stop-color="#173b57"/>
+   </radialGradient>
+ </defs>
+ <ellipse cx="210" cy="369" rx="99" ry="18" fill="#25445f" opacity=".13" filter="url(#v37soft)"/>
+ <g filter="url(#v37shadow)">${inner}</g>
+ </svg>`);
+}
+function v37Eye(x,y,s=1){
+ return `<g transform="translate(${x} ${y}) scale(${s})">
+   <ellipse rx="31" ry="35" fill="#fff"/>
+   <ellipse cy="4" rx="19" ry="23" fill="url(#v37eye)"/>
+   <ellipse cy="7" rx="10" ry="14" fill="#102d43"/>
+   <circle cx="-8" cy="-9" r="7" fill="#fff"/>
+   <circle cx="7" cy="-1" r="3.8" fill="#fff" opacity=".95"/>
+ </g>`;
+}
+function v37Mouth(x,y,w=42){
+ return `<path d="M${x-w/2} ${y} Q${x} ${y+24} ${x+w/2} ${y}" fill="none" stroke="#9c4962" stroke-width="8" stroke-linecap="round"/>
+ <path d="M${x-11} ${y+11}q11 7 22 0" stroke="#ffd4df" stroke-width="4" stroke-linecap="round" opacity=".9"/>`;
+}
+function v37Cheeks(y,color="#ff91aa"){
+ return `<ellipse cx="142" cy="${y}" rx="24" ry="10" fill="${color}" opacity=".66"/>
+         <ellipse cx="278" cy="${y}" rx="24" ry="10" fill="${color}" opacity=".66"/>`;
+}
+
 function monsterArtURI(kind,level=1){
- const cfg={
-  diligent:{body:"#ff9250",shade:"#d96732",accent:"#ffd37b"},reading:{body:"#8f71dd",shade:"#654bb4",accent:"#d9ccff"},
-  homework:{body:"#59c6ed",shade:"#318fbd",accent:"#bfefff"},messy:{body:"#87d56f",shade:"#4fa044",accent:"#ddf9c1"},
-  morning:{body:"#ffd760",shade:"#e8aa2e",accent:"#fff3aa"},noDawdle:{body:"#f5a2c7",shade:"#cc709a",accent:"#ffd9e9"},
-  screen:{body:"#7d68df",shade:"#4d3fab",accent:"#cbc5ff"}
- }[kind]||{body:"#7dc8e9",shade:"#4ba0c6",accent:"#c8f4ff"};
- let head="",prop="",mood="happy";
- if(kind==="diligent"){head=`<path d="M147 166l18-58 31 35 24-58 28 57 38-31-7 62q-68-22-132-7z" fill="${cfg.shade}"/><path d="M163 122l12-17 8 25z" fill="#ffbf76" opacity=".75"/>`;prop=`<g><rect x="94" y="238" width="58" height="12" rx="6" fill="#394754"/><circle cx="94" cy="244" r="18" fill="#26313b"/><circle cx="152" cy="244" r="18" fill="#26313b"/><rect x="268" y="238" width="58" height="12" rx="6" fill="#394754"/><circle cx="268" cy="244" r="18" fill="#26313b"/><circle cx="326" cy="244" r="18" fill="#26313b"/></g>`;}
- if(kind==="reading"){head=`<path d="M148 156l28-46 34 28 37-29 28 47q-63-20-127 0z" fill="${cfg.shade}"/>`;prop=`<g><path d="M133 265q39-25 77 3 38-28 77-3v72q-39-11-77 11-38-22-77-11z" fill="#fff4d6" stroke="#d6bb73" stroke-width="5"/><path d="M210 268v72" stroke="#d6bb73" stroke-width="4"/></g>`;mood="sleepy";}
- if(kind==="homework")prop=`<g><rect x="144" y="255" width="132" height="84" rx="18" fill="#fff" stroke="#d2e6f2" stroke-width="5"/><path d="M166 279h77M166 298h92M166 318h64" stroke="#70a8c7" stroke-width="6" stroke-linecap="round"/><rect x="280" y="235" width="16" height="106" rx="8" fill="#ffd462" transform="rotate(13 288 288)"/></g>`;
- if(kind==="messy"){head=`<path d="M150 158q18-60 48-25 14-58 34-2 29-30 43 27" fill="${cfg.shade}"/>`;prop=`<g><rect x="286" y="211" width="14" height="121" rx="7" fill="#8f613c" transform="rotate(-16 293 271)"/><path d="M271 309l61 22-20 35-58-22z" fill="#efba5c"/></g>`;}
- if(kind==="morning")prop=`<g stroke="#efb33a" stroke-width="10" stroke-linecap="round">${[0,45,90,135].map(a=>`<line x1="210" y1="78" x2="210" y2="45" transform="rotate(${a} 210 210)"/><line x1="210" y1="342" x2="210" y2="375" transform="rotate(${a} 210 210)"/>`).join("")}</g>`;
- if(kind==="noDawdle")prop=`<g><ellipse cx="171" cy="117" rx="18" ry="55" fill="#f7bad2" transform="rotate(-6 171 117)"/><ellipse cx="249" cy="117" rx="18" ry="55" fill="#f7bad2" transform="rotate(6 249 117)"/><circle cx="301" cy="282" r="36" fill="#fff" stroke="#b9c9d5" stroke-width="6"/><path d="M301 282v-22m0 22 15 9" stroke="#536574" stroke-width="6" stroke-linecap="round"/></g>`;
- if(kind==="screen")prop=`<g><path d="M137 154q73-64 146 0" fill="none" stroke="#60dbe8" stroke-width="17"/><rect x="113" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="282" y="158" width="25" height="71" rx="11" fill="#60dbe8"/><rect x="157" y="267" width="106" height="58" rx="15" fill="#2c3d52"/><rect x="168" y="278" width="84" height="34" rx="8" fill="#78e7fb" opacity=".9"/></g>`;
- const y=kind==="morning"?214:221;
- const shape={diligent:[98,82],reading:[88,100],homework:[104,78],messy:[96,91],morning:[82,82],noDawdle:[86,94],screen:[100,84]}[kind]||[91,91];
- const body=`<g>${starBurst(level,cfg.accent)}${prop}
-   <ellipse cx="210" cy="${y+8}" rx="${shape[0]+4}" ry="${shape[1]+3}" fill="${cfg.shade}" opacity=".12"/>
-   <ellipse cx="210" cy="${y}" rx="${shape[0]}" ry="${shape[1]}" fill="${cfg.body}"/><path d="M145 ${y-10} Q158 ${y-76} 214 ${y-82}" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".20"/>
-   <ellipse cx="184" cy="166" rx="54" ry="25" fill="#fff" opacity=".28" transform="rotate(-18 184 166)"/>
-   <ellipse cx="247" cy="278" rx="52" ry="30" fill="${cfg.shade}" opacity=".18"/>
-   ${head}${cuteEye(180,194,.66,mood)}${cuteEye(240,194,.66,mood)}
-   <ellipse cx="210" cy="220" rx="9" ry="6" fill="${cfg.shade}" opacity=".55"/>
-   ${blushPair(228,kind==="screen"?"#d7b4ff":"#f3a5b7")}${smile(210,240,40,18,kind==="screen"?"#9a6ad0":"#995567")}
-   <ellipse cx="159" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(22 159 246)"/><ellipse cx="261" cy="246" rx="18" ry="28" fill="${cfg.body}" transform="rotate(-22 261 246)"/>
-   <ellipse cx="168" cy="313" rx="27" ry="18" fill="${cfg.shade}"/><ellipse cx="252" cy="313" rx="27" ry="18" fill="${cfg.shade}"/>
- </g>`;
- return svgData(artFrame(body,cfg.accent));
+ const lv=Math.max(1,Math.min(5,level||1));
+ const star=lv>=3?`<path d="M323 77l6 13 14 3-11 10 3 14-12-7-13 7 3-14-10-10 14-3z" fill="#ffe37c" opacity=".95"/>`:"";
+ if(kind==="diligent"){
+   const defs=`<radialGradient id="body" cx=".32" cy=".17" r=".9"><stop stop-color="#ffd46a"/><stop offset=".35" stop-color="#ff9a32"/><stop offset="1" stop-color="#df4e20"/></radialGradient>
+   <linearGradient id="crown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff1a6"/><stop offset="1" stop-color="#ffae20"/></linearGradient>`;
+   const spikes=[0,1,2,3,4,5,6,7,8,9].map(i=>{
+     const a=(i*36-90)*Math.PI/180, x=210+Math.cos(a)*118, y=216+Math.sin(a)*112;
+     const rot=i*36; return `<path d="M210 66l-17 55h34z" fill="url(#body)" transform="rotate(${rot} 210 216)"/>`;
+   }).join("");
+   return v37Svg(`${spikes}<ellipse cx="210" cy="220" rx="103" ry="101" fill="url(#body)"/>
+     <ellipse cx="175" cy="151" rx="46" ry="22" fill="#fff" opacity=".26" transform="rotate(-21 175 151)"/>
+     <path d="M158 118l19-27 21 20 19-34 22 34 22-20 20 27-12 26H170z" fill="url(#crown)" stroke="#f39d17" stroke-width="4"/>
+     ${v37Eye(174,212,.8)}${v37Eye(246,212,.8)}${v37Cheeks(253)}${v37Mouth(210,252,48)}
+     <ellipse cx="157" cy="314" rx="30" ry="23" fill="#e85a24"/><ellipse cx="263" cy="314" rx="30" ry="23" fill="#e85a24"/>
+     <ellipse cx="118" cy="240" rx="19" ry="20" fill="#323d4d"/><ellipse cx="302" cy="240" rx="19" ry="20" fill="#323d4d"/>${star}`,defs);
+ }
+ if(kind==="reading"){
+   const defs=`<radialGradient id="body" cx=".32" cy=".17" r=".9"><stop stop-color="#b78aff"/><stop offset=".38" stop-color="#8055e0"/><stop offset="1" stop-color="#5131a6"/></radialGradient>
+   <linearGradient id="book" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#58aef5"/><stop offset="1" stop-color="#2268be"/></linearGradient>`;
+   return v37Svg(`<path d="M126 170l30-75 47 56zM294 170l-30-75-47 56z" fill="url(#body)"/>
+     <ellipse cx="210" cy="218" rx="101" ry="104" fill="url(#body)"/>
+     <ellipse cx="170" cy="150" rx="47" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 170 150)"/>
+     ${v37Eye(174,205,.78)}${v37Eye(246,205,.78)}${v37Cheeks(248,"#ff92c9")}${v37Mouth(210,247,44)}
+     <path d="M118 277q44-20 90 8v69q-43-25-90-8zM302 277q-44-20-90 8v69q43-25 90-8z" fill="url(#book)" stroke="#fff" stroke-width="5"/>
+     <path d="M210 285v66" stroke="#d9efff" stroke-width="5"/><ellipse cx="128" cy="302" rx="22" ry="26" fill="#6e45cc"/><ellipse cx="292" cy="302" rx="22" ry="26" fill="#6e45cc"/>${star}`,defs);
+ }
+ if(kind==="homework"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#9df2ff"/><stop offset=".4" stop-color="#42c4ec"/><stop offset="1" stop-color="#1687c5"/></radialGradient>
+   <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e8f5ff"/></linearGradient>`;
+   return v37Svg(`<path d="M210 72C179 119 118 179 118 248c0 62 42 100 92 100s92-38 92-100c0-69-61-129-92-176z" fill="url(#body)"/>
+     <ellipse cx="180" cy="151" rx="38" ry="19" fill="#fff" opacity=".28" transform="rotate(-24 180 151)"/>
+     ${v37Eye(176,225,.77)}${v37Eye(244,225,.77)}${v37Cheeks(267)}${v37Mouth(210,266,44)}
+     <rect x="146" y="293" width="128" height="68" rx="12" fill="url(#paper)" stroke="#c9e8f8" stroke-width="4"/>
+     <path d="M164 311h82m-82 16h66m-66 16h75" stroke="#81bdda" stroke-width="5" stroke-linecap="round"/>
+     <path d="M291 244l18-16 10 12-18 17z" fill="#ffc956"/><path d="M286 249l13 14" stroke="#8d6d39" stroke-width="6" stroke-linecap="round"/>${star}`,defs);
+ }
+ if(kind==="messy"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#b7f574"/><stop offset=".38" stop-color="#62c94e"/><stop offset="1" stop-color="#2c8739"/></radialGradient>
+   <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8ff9a"/><stop offset="1" stop-color="#378f43"/></linearGradient>`;
+   const leaves=`<ellipse cx="170" cy="116" rx="25" ry="46" fill="url(#leaf)" transform="rotate(-35 170 116)"/><ellipse cx="205" cy="101" rx="26" ry="48" fill="url(#leaf)" transform="rotate(-8 205 101)"/><ellipse cx="244" cy="111" rx="25" ry="46" fill="url(#leaf)" transform="rotate(28 244 111)"/><ellipse cx="273" cy="139" rx="22" ry="40" fill="url(#leaf)" transform="rotate(52 273 139)"/>`;
+   return v37Svg(`${leaves}<ellipse cx="210" cy="229" rx="100" ry="104" fill="url(#body)"/>
+     <ellipse cx="176" cy="162" rx="45" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 176 162)"/>
+     ${v37Eye(175,217,.78)}${v37Eye(245,217,.78)}${v37Cheeks(258)}${v37Mouth(210,258,44)}
+     <path d="M190 286l20-13 20 13-20 21z" fill="#d6f35e" opacity=".9"/>
+     <ellipse cx="166" cy="323" rx="31" ry="22" fill="#3b9f41"/><ellipse cx="254" cy="323" rx="31" ry="22" fill="#3b9f41"/>
+     <path d="M292 276l48 44" stroke="#8f623e" stroke-width="12" stroke-linecap="round"/><path d="M320 303l34 27-28 30-30-39z" fill="#f4b73f"/>${star}`,defs);
+ }
+ if(kind==="morning"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#fff59b"/><stop offset=".38" stop-color="#ffd23e"/><stop offset="1" stop-color="#f09c17"/></radialGradient>`;
+   const rays=[0,1,2,3,4,5,6,7].map(i=>`<rect x="203" y="55" width="14" height="55" rx="7" fill="#ffb629" transform="rotate(${i*45} 210 221)"/>`).join("");
+   return v37Svg(`${rays}<circle cx="210" cy="222" r="101" fill="url(#body)"/>
+     <ellipse cx="174" cy="156" rx="47" ry="21" fill="#fff" opacity=".30" transform="rotate(-20 174 156)"/>
+     ${v37Eye(174,215,.79)}${v37Eye(246,215,.79)}${v37Cheeks(255,"#ff9ba4")}${v37Mouth(210,257,46)}
+     <ellipse cx="167" cy="321" rx="30" ry="22" fill="#f4a91f"/><ellipse cx="253" cy="321" rx="30" ry="22" fill="#f4a91f"/>${star}`,defs);
+ }
+ if(kind==="noDawdle"){
+   const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#ffd1e3"/><stop offset=".38" stop-color="#ff8dc1"/><stop offset="1" stop-color="#d8538e"/></radialGradient>`;
+   return v37Svg(`<ellipse cx="166" cy="110" rx="27" ry="76" fill="url(#body)" transform="rotate(-5 166 110)"/><ellipse cx="254" cy="110" rx="27" ry="76" fill="url(#body)" transform="rotate(5 254 110)"/>
+     <ellipse cx="210" cy="230" rx="100" ry="106" fill="url(#body)"/>
+     <ellipse cx="175" cy="159" rx="47" ry="21" fill="#fff" opacity=".27" transform="rotate(-20 175 159)"/>
+     ${v37Eye(174,218,.79)}${v37Eye(246,218,.79)}${v37Cheeks(260)}${v37Mouth(210,260,44)}
+     <ellipse cx="168" cy="327" rx="31" ry="22" fill="#cf5b91"/><ellipse cx="252" cy="327" rx="31" ry="22" fill="#cf5b91"/>
+     <circle cx="306" cy="286" r="41" fill="#fff" stroke="#b7c6d5" stroke-width="6"/><path d="M306 286l1-22m-1 22 18 12" stroke="#52687d" stroke-width="6" stroke-linecap="round"/>${star}`,defs);
+ }
+ const defs=`<radialGradient id="body" cx=".31" cy=".17" r=".9"><stop stop-color="#c6a1ff"/><stop offset=".38" stop-color="#7c57e5"/><stop offset="1" stop-color="#4a2fa6"/></radialGradient>
+ <linearGradient id="phones" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70e3ef"/><stop offset="1" stop-color="#3b65d4"/></linearGradient>`;
+ return v37Svg(`<ellipse cx="210" cy="228" rx="101" ry="105" fill="url(#body)"/>
+   <ellipse cx="175" cy="157" rx="46" ry="20" fill="#fff" opacity=".24" transform="rotate(-18 175 157)"/>
+   ${v37Eye(174,217,.78)}${v37Eye(246,217,.78)}${v37Cheeks(258,"#ff8fca")}${v37Mouth(210,258,44)}
+   <path d="M129 209q10-92 81-92t81 92" fill="none" stroke="url(#phones)" stroke-width="18" stroke-linecap="round"/>
+   <rect x="110" y="202" width="31" height="69" rx="14" fill="url(#phones)"/><rect x="279" y="202" width="31" height="69" rx="14" fill="url(#phones)"/>
+   <ellipse cx="166" cy="325" rx="30" ry="22" fill="#5032ae"/><ellipse cx="254" cy="325" rx="30" ry="22" fill="#5032ae"/>${star}`,defs);
 }
-const AVATAR_SKIN={light:"#f7d5bb",warm:"#ebb98f",tan:"#c98c64",deep:"#965d45"};
-const AVATAR_HAIR={brown:"#7c4a37",black:"#2b2c34",chestnut:"#94563f",gold:"#bf8747"};
-const AVATAR_PALETTE={
- boyA:["#58bdf0","#2f7fa8"],boyB:["#63d3aa","#3d9875"],boyC:["#f4ad5e","#bf7438"],
- girlA:["#f6a2c3","#c86c96"],girlB:["#b6a5f4","#7e66cd"],girlC:["#f197a3","#c35f72"]
-};
-function hairSVG(style,c){
- if(style==="curly") return `<g fill="${c}"><circle cx="145" cy="119" r="24"/><circle cx="177" cy="108" r="30"/><circle cx="210" cy="103" r="32"/><circle cx="245" cy="109" r="29"/><circle cx="276" cy="120" r="24"/><path d="M129 144q79-44 160 0v27H129z"/></g>`;
- if(style==="spiky") return `<path d="M134 151l16-58 34 30 24-57 26 56 40-30 11 59q-74-28-151 0z" fill="${c}"/>`;
- if(style==="long") return `<g fill="${c}"><path d="M128 152q17-84 82-84 66 0 82 84v157q-22 26-46 26v-145h-72v144q-38-3-56-27z"/><path d="M138 146q67-34 144 0v22H138z" fill="#fff" opacity=".08"/></g>`;
- if(style==="ponytail") return `<g fill="${c}"><path d="M129 153q17-86 82-86 66 0 82 86v24H129z"/><ellipse cx="289" cy="205" rx="34" ry="66"/><circle cx="282" cy="153" r="14" fill="#f2a8c4"/></g>`;
- if(style==="bob") return `<g fill="${c}"><path d="M130 152q17-84 80-84 68 0 84 85v90q-13 34-38 40v-102h-92v100q-35-8-48-39z"/></g>`;
- return `<g fill="${c}"><path d="M132 154q19-84 80-84 65 0 82 85v22q-39-15-80-14-42 0-82 14z"/><path d="M137 147q67-28 151 0" stroke="#fff" stroke-opacity=".14" stroke-width="6" fill="none"/></g>`;
-}
+
+
 function avatarArtURI(p){
- const pr=presets[p.preset]||presets.boyA, gender=pr[0], style=p.hair||pr[1], id=p.preset||"boyA";
- const skin=AVATAR_SKIN[p.skin]||AVATAR_SKIN.light, hair=AVATAR_HAIR[p.hairColor]||AVATAR_HAIR.brown;
- const pal=AVATAR_PALETTE[id]||AVATAR_PALETTE.boyA, shirt=pal[0], dark=pal[1], gear=p.gear||{}, girl=gender==="girl";
- let hairBack="",fringe="";
- if(style==="long"||style==="bob")hairBack=`<path d="M132 138q19-82 78-82 63 0 82 84v130q-16 31-43 38V170h-78v137q-28-8-43-36z" fill="${hair}"/>`;
- if(style==="ponytail")hairBack=`<ellipse cx="286" cy="194" rx="34" ry="61" fill="${hair}"/><circle cx="282" cy="143" r="13" fill="#f4aac6"/>`;
- if(style==="curly")fringe=`<g fill="${hair}"><circle cx="153" cy="113" r="22"/><circle cx="181" cy="101" r="25"/><circle cx="211" cy="97" r="27"/><circle cx="242" cy="101" r="25"/><circle cx="269" cy="113" r="22"/><path d="M140 135q69-34 140 0v21H140z"/></g>`;
- else if(style==="spiky")fringe=`<path d="M141 139l15-51 29 25 24-50 27 48 34-27 9 55q-68-25-138 0z" fill="${hair}"/>`;
- else fringe=`<path d="M140 137q21-70 70-70 53 0 70 72v21q-68-22-140 1z" fill="${hair}"/>`;
- const body=`<g>${hairBack}
-  <ellipse cx="133" cy="184" rx="15" ry="21" fill="${skin}"/><ellipse cx="287" cy="184" rx="15" ry="21" fill="${skin}"/>
-  <ellipse cx="210" cy="177" rx="75" ry="78" fill="${skin}"/><ellipse cx="181" cy="135" rx="38" ry="17" fill="#fff" opacity=".22" transform="rotate(-18 181 135)"/>
-  ${cuteEye(180,179,.78,"happy")}${cuteEye(240,179,.78,"happy")}
-  ${girl?`<path d="M157 162l-10-8m11 16-12 1m116-9 10-8m-11 16 12 1" stroke="#6b4651" stroke-width="3.4" stroke-linecap="round"/>`:""}
-  <ellipse cx="210" cy="207" rx="8" ry="5.5" fill="#c88e73" opacity=".50"/>${blushPair(214,"#f4a4b8")}${smile(210,225,38,16,"#a95368")}
-  ${fringe}
-  ${gear.hat?`<g><ellipse cx="210" cy="89" rx="63" ry="12" fill="#3c92d3"/><path d="M171 55h78l12 34h-102z" fill="#66bcea"/><ellipse cx="198" cy="64" rx="22" ry="6" fill="#fff" opacity=".25"/></g>`:""}
-  ${gear.cape?`<path d="M153 249q-24 49-12 102l45-17 30-70z" fill="#796be5" opacity=".86"/>`:""}
-  <rect x="188" y="246" width="44" height="17" rx="8" fill="${skin}"/>
-  <ellipse cx="210" cy="302" rx="57" ry="61" fill="${shirt}"/><ellipse cx="186" cy="278" rx="31" ry="14" fill="#fff" opacity=".20" transform="rotate(-18 186 278)"/>
-  <path d="M171 271q39 25 78 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".94"/>
-  ${girl?`<path d="M160 304q50 20 100 0l-8 35h-84z" fill="${dark}"/>`:`<path d="M162 305h96l-6 36h-31v-25h-22v25h-31z" fill="${dark}"/>`}
-  <rect x="137" y="274" width="25" height="67" rx="13" fill="${skin}"/><circle cx="149" cy="338" r="12" fill="${skin}"/><ellipse cx="149" cy="277" rx="20" ry="22" fill="${shirt}"/>
-  <rect x="258" y="274" width="25" height="67" rx="13" fill="${skin}"/><circle cx="271" cy="338" r="12" fill="${skin}"/><ellipse cx="271" cy="277" rx="20" ry="22" fill="${shirt}"/>
-  <rect x="183" y="337" width="18" height="31" rx="9" fill="${skin}"/><rect x="219" y="337" width="18" height="31" rx="9" fill="${skin}"/>
-  <ellipse cx="183" cy="377" rx="27" ry="16" fill="${dark}"/><ellipse cx="237" cy="377" rx="27" ry="16" fill="${dark}"/>
-  <ellipse cx="175" cy="372" rx="11" ry="4.5" fill="#fff" opacity=".28"/><ellipse cx="229" cy="372" rx="11" ry="4.5" fill="#fff" opacity=".28"/>
-  ${gear.bag?`<rect x="277" y="258" width="32" height="54" rx="11" fill="#e7a36b"/><path d="M283 257q9-17 19 0" fill="none" stroke="#af7148" stroke-width="4"/>`:""}
-  ${gear.star?`<path d="M289 244l6 13 15 2-11 10 3 15-13-7-13 7 3-15-11-10 15-2z" fill="#ffdc65" stroke="#e3ad32" stroke-width="2.5"/>`:""}
- </g>`;
- return svgData(artFrame(body,shirt));
+ const id=(p&&p.preset)||"girlA";
+ const C={
+  boyA:{shirt:"#39b8ef",dark:"#197db8",hair:"#68402f",style:"swoop",sex:"b",accent:"#7fdcff"},
+  boyB:{shirt:"#52d29d",dark:"#238f66",hair:"#6a402f",style:"curl",sex:"b",accent:"#9cf0c8"},
+  boyC:{shirt:"#f7a446",dark:"#d36c24",hair:"#623c2c",style:"spike",sex:"b",accent:"#ffd089"},
+  girlA:{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"},
+  girlB:{shirt:"#9583ed",dark:"#6251c8",hair:"#6d432f",style:"pony",sex:"g",accent:"#c9c1ff"},
+  girlC:{shirt:"#ed7984",dark:"#bc4654",hair:"#63402f",style:"long",sex:"g",accent:"#ffb8c0"}
+ }[id]||{shirt:"#f48fba",dark:"#c94e83",hair:"#68402f",style:"bob",sex:"g",accent:"#ffc3dc"};
+
+ const defs=`
+ <radialGradient id="skin3" cx=".33" cy=".18" r=".88">
+  <stop stop-color="#fff7ed"/><stop offset=".32" stop-color="#ffd8bd"/><stop offset=".72" stop-color="#efb28f"/><stop offset="1" stop-color="#d89272"/>
+ </radialGradient>
+ <radialGradient id="hair3" cx=".28" cy=".10" r=".95">
+  <stop stop-color="#b97b57"/><stop offset=".30" stop-color="${C.hair}"/><stop offset=".82" stop-color="#4b2a20"/><stop offset="1" stop-color="#2c1814"/>
+ </radialGradient>
+ <radialGradient id="cloth3" cx=".30" cy=".10" r=".95">
+  <stop stop-color="#ffffff" stop-opacity=".72"/><stop offset=".18" stop-color="${C.accent}"/><stop offset=".46" stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </radialGradient>
+ <linearGradient id="shoe3" x1="0" y1="0" x2="0" y2="1">
+  <stop stop-color="${C.shirt}"/><stop offset="1" stop-color="${C.dark}"/>
+ </linearGradient>
+ <filter id="innerGlow"><feGaussianBlur stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="arithmetic" k2="1" k3="-0.5"/></filter>`;
+
+ let hairBack="", hairFront="";
+ if(C.style==="bob"){
+   hairBack=`<path d="M119 182Q126 76 210 69Q302 76 304 188L292 287Q263 315 238 320V184H179V320Q147 311 122 284Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M131 149Q153 79 210 77Q274 80 291 153Q253 124 212 127Q169 123 131 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="pony"){
+   hairBack=`<ellipse cx="302" cy="195" rx="44" ry="74" fill="url(#hair3)"/><circle cx="288" cy="131" r="14" fill="${C.accent}"/>`;
+   hairFront=`<path d="M132 150Q154 80 211 77Q269 79 287 149Q257 125 217 126Q172 123 132 150Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="long"){
+   hairBack=`<path d="M119 179Q130 73 210 68Q298 74 304 182V337Q280 361 250 369V184H169V369Q140 360 117 337Z" fill="url(#hair3)"/>`;
+   hairFront=`<path d="M130 149Q154 78 211 76Q271 78 290 151Q253 126 214 126Q169 123 130 149Z" fill="url(#hair3)"/>`;
+ } else if(C.style==="curl"){
+   hairBack="";
+   hairFront=`<g fill="url(#hair3)">
+    <circle cx="151" cy="116" r="29"/><circle cx="178" cy="98" r="33"/><circle cx="210" cy="94" r="35"/>
+    <circle cx="244" cy="100" r="32"/><circle cx="270" cy="119" r="28"/>
+    <circle cx="144" cy="139" r="24"/><circle cx="278" cy="140" r="24"/>
+   </g>`;
+ } else if(C.style==="spike"){
+   hairFront=`<path d="M128 148L149 84L181 111L210 56L238 111L276 81L294 149Q253 126 211 127Q169 124 128 148Z" fill="url(#hair3)"/>`;
+ } else {
+   hairFront=`<path d="M126 151Q144 84 196 74Q247 64 291 133L267 127Q237 109 210 114Q166 111 126 151Z" fill="url(#hair3)"/>`;
+ }
+
+ return v37Svg(`
+  ${hairBack}
+  <!-- neck / ears -->
+  <ellipse cx="122" cy="190" rx="25" ry="31" fill="url(#skin3)"/><ellipse cx="298" cy="190" rx="25" ry="31" fill="url(#skin3)"/>
+  <rect x="190" y="252" width="40" height="35" rx="16" fill="url(#skin3)"/>
+  <!-- head -->
+  <ellipse cx="210" cy="183" rx="82" ry="91" fill="url(#skin3)"/>
+  <ellipse cx="174" cy="123" rx="43" ry="20" fill="#fff" opacity=".34" transform="rotate(-18 174 123)"/>
+  ${hairFront}
+  <!-- brows -->
+  <path d="M151 160Q173 149 191 159" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <path d="M229 159Q249 149 269 160" fill="none" stroke="#5a3d37" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <!-- eyes -->
+  ${v37Eye(174,188,.72)}${v37Eye(246,188,.72)}
+  ${C.sex==="g"?`<path d="M147 178l-12-6m13 14-13 2m139-10 12-6m-13 14 13 2" stroke="#533a45" stroke-width="4" stroke-linecap="round"/>`:""}
+  ${v37Cheeks(229,"#ff95aa")}
+  <ellipse cx="210" cy="216" rx="9" ry="6" fill="#c98568" opacity=".55"/>
+  ${v37Mouth(210,239,47)}
+  <!-- torso -->
+  <ellipse cx="210" cy="310" rx="70" ry="60" fill="url(#cloth3)"/>
+  <ellipse cx="180" cy="276" rx="34" ry="12" fill="#fff" opacity=".24" transform="rotate(-18 180 276)"/>
+  <path d="M164 279Q210 308 256 279" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".92"/>
+  <!-- shoulders / arms -->
+  <ellipse cx="145" cy="295" rx="25" ry="27" fill="url(#cloth3)"/><ellipse cx="275" cy="295" rx="25" ry="27" fill="url(#cloth3)"/>
+  <rect x="132" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/><rect x="263" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/>
+  <ellipse cx="144" cy="350" rx="14" ry="13" fill="url(#skin3)"/><ellipse cx="276" cy="350" rx="14" ry="13" fill="url(#skin3)"/>
+  <!-- lower body -->
+  ${C.sex==="g"
+    ? `<path d="M154 329Q210 348 266 329L257 366H163Z" fill="${C.dark}" opacity=".98"/>`
+    : `<path d="M154 327H266L259 366H225V338H195V366H161Z" fill="${C.dark}" opacity=".98"/>`}
+  <!-- legs -->
+  <rect x="177" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/><rect x="220" y="354" width="23" height="30" rx="11" fill="url(#skin3)"/>
+  <!-- shoes -->
+  <ellipse cx="174" cy="387" rx="31" ry="18" fill="url(#shoe3)"/><ellipse cx="246" cy="387" rx="31" ry="18" fill="url(#shoe3)"/>
+  <ellipse cx="166" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/><ellipse cx="238" cy="380" rx="12" ry="5" fill="#fff" opacity=".42"/>
+  <!-- explorer cap -->
+  <ellipse cx="210" cy="89" rx="66" ry="14" fill="#3aa9e5"/>
+  <path d="M169 48H251L264 88H156Z" fill="#66c5ef"/><ellipse cx="198" cy="57" rx="25" ry="7" fill="#fff" opacity=".32"/>
+  <!-- cinematic rim -->
+  <path d="M145 130Q120 190 145 248" fill="none" stroke="#fff" stroke-width="4" opacity=".26"/>
+ `,defs);
 }
 
 function petArtURI(kind){
- const cfg={puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]}[kind]||["#e7a35a","#b96f3f","dog"];
- const [c,d,type]=cfg;let ears="",extra="";
- if(type==="dog")ears=`<ellipse cx="164" cy="144" rx="27" ry="45" fill="${d}"/><ellipse cx="256" cy="144" rx="27" ry="45" fill="${d}"/>`;
- if(type==="cat")ears=`<path d="M144 174l20-66 48 51zm132 0-20-66-48 51z" fill="${d}"/>`;
- if(type==="bunny")ears=`<ellipse cx="171" cy="119" rx="19" ry="58" fill="${c}"/><ellipse cx="249" cy="119" rx="19" ry="58" fill="${c}"/><ellipse cx="171" cy="119" rx="8" ry="39" fill="#ffd2df"/><ellipse cx="249" cy="119" rx="8" ry="39" fill="#ffd2df"/>`;
- if(type==="fox"){ears=`<path d="M146 171l20-70 44 54zm128 0-20-70-44 54z" fill="${d}"/>`;extra=`<path d="M116 287q42 50 96 37" stroke="#fff1d8" stroke-width="13" stroke-linecap="round" opacity=".65"/>`;}
- if(type==="owl"){ears=`<path d="M149 168l28-52 29 41zm122 0-28-52-29 41z" fill="${d}"/>`;extra=`<ellipse cx="210" cy="250" rx="60" ry="46" fill="#fff" opacity=".25"/>`;}
- if(type==="dragon"){ears=`<path d="M148 168l18-52 24 39 20-54 23 54 27-39 13 52z" fill="${d}"/>`;extra=`<path d="M132 258q-54 3-50 58 36-25 72-1m134-57q54 3 50 58-36-25-72-1" fill="#91e2af"/>`;}
- const body=`<g>${ears}${extra}<ellipse cx="210" cy="234" rx="91" ry="94" fill="${d}" opacity=".22"/><ellipse cx="210" cy="228" rx="89" ry="92" fill="${c}"/><ellipse cx="180" cy="177" rx="48" ry="22" fill="#fff" opacity=".27" transform="rotate(-18 180 177)"/>${cuteEye(181,216,.64,"happy")}${cuteEye(239,216,.64,"happy")}<ellipse cx="210" cy="246" rx="11" ry="8" fill="${d}"/>${blushPair(234,"#f3a6ba")}${smile(210,260,34,15,"#925061")}<ellipse cx="169" cy="311" rx="24" ry="17" fill="${d}"/><ellipse cx="251" cy="311" rx="24" ry="17" fill="${d}"/></g>`;
+ const cfg={
+  puppy:["#e7a35a","#b96f3f","dog"],kitty:["#b595ee","#7a5ec7","cat"],bunny:["#f6abc8","#d2749e","bunny"],
+  fox:["#f39757","#cb6d3a","fox"],owl:["#8d77dd","#5e49b6","owl"],dragon:["#74d098","#41a66f","dragon"]
+ }[kind]||["#e7a35a","#b96f3f","dog"];
+ const [c,d,type]=cfg;
+ let ears="", extra="";
+ if(type==="dog"){ ears=`<ellipse cx="163" cy="143" rx="26" ry="44" fill="${d}"/><ellipse cx="257" cy="143" rx="26" ry="44" fill="${d}"/>`; }
+ if(type==="cat"){ ears=`<path d="M146 173l18-62 47 48zM274 173l-18-62-47 48z" fill="${d}"/>`; }
+ if(type==="bunny"){ ears=`<ellipse cx="171" cy="119" rx="18" ry="56" fill="${c}"/><ellipse cx="249" cy="119" rx="18" ry="56" fill="${c}"/>`; }
+ if(type==="fox"){ ears=`<path d="M148 169l19-68 43 53zM272 169l-19-68-43 53z" fill="${d}"/>`; extra=`<path d="M117 287q39 49 92 39" stroke="#fff5d9" stroke-width="12" stroke-linecap="round" opacity=".55"/>`; }
+ if(type==="owl"){ ears=`<path d="M151 168l26-50 28 39zM269 168l-26-50-28 39z" fill="${d}"/>`; extra=`<ellipse cx="210" cy="240" rx="58" ry="42" fill="#fff" opacity=".28"/>`; }
+ if(type==="dragon"){ ears=`<path d="M150 167l16-50 24 39 20-53 22 53 27-39 14 50z" fill="${d}"/>`; extra=`<path d="M130 257q-52 4-49 57 35-24 70 0M290 257q52 4 49 57-35-24-70 0" fill="#8fe3af"/>`; }
+ const body = `<g>
+   ${ears}${extra}
+   <ellipse cx="210" cy="226" rx="92" ry="95" fill="${c}"/>
+   <ellipse cx="183" cy="175" rx="47" ry="21" fill="#fff" opacity=".18" transform="rotate(-18 183 175)"/>
+   ${cuteEye(180,214,.72,"happy")}${cuteEye(240,214,.72,"happy")}
+   <ellipse cx="210" cy="244" rx="11" ry="8" fill="${d}"/>
+   ${blushPair(232,"#f5aac0")}
+   ${smile(210,258,34,15,"#935061")}
+   <ellipse cx="171" cy="309" rx="22" ry="16" fill="${d}"/><ellipse cx="249" cy="309" rx="22" ry="16" fill="${d}"/>
+ </g>`;
  return svgData(artFrame(body,c));
 }
 const presets={boyA:["boy","short"],boyB:["boy","curly"],boyC:["boy","spiky"],girlA:["girl","long"],girlB:["girl","ponytail"],girlC:["girl","bob"]};
@@ -1328,7 +1792,7 @@ if(!THREE){if(threeStatus)threeStatus.textContent="⚠️ 3D โหลดไม�
  console.error("Habit Monster: unable to load Three.js");
  show3DError("3D engine โหลดไม่สำเร็จ — แตะ Refresh อีกครั้งเมื่อออนไลน์");
 }else{
-if(threeStatus)threeStatus.textContent="✅ Premium Game Art • Full Visual Redesign";
+if(threeStatus)threeStatus.textContent="✅ BIG GAMEPLAY • World + Evolution + Celebration";
 
 const running=new WeakMap(), cache=new Map();
 const fallbackMonster={
@@ -1584,8 +2048,8 @@ function avatarFrom(el){
  const pc=palette[variant]||palette.boya, shirt=pc[0], lower=pc[1], trim=pc[2];
 
  // cohesive chibi body
- let chest=sphere(.40,shirt,[.92,1.10,.70]);chest.position.set(0,-.38,0);g.add(chest);
- let tummy=sphere(.31,shirt,[1.06,.88,.74]);tummy.position.set(0,-.60,.09);g.add(tummy);
+ let chest=sphere(.43,shirt,[.98,1.18,.76]);chest.position.set(0,-.35,0);g.add(chest);
+ let tummy=sphere(.33,shirt,[1.08,.94,.78]);tummy.position.set(0,-.60,.08);g.add(tummy);
  let waist=sphere(.29,lower,[1.10,.48,.72]);waist.position.set(0,-.84,.02);g.add(waist);
 
  let collar=new THREE.Mesh(new THREE.TorusGeometry(.245,.034,12,40,Math.PI),mat(trim,.48));
@@ -1593,8 +2057,8 @@ function avatarFrom(el){
 
  // head slightly pear-shaped instead of perfect ball
  let neck=cyl(.105,.10,skin);neck.position.y=-.01;g.add(neck);
- let head=sphere(.62,skin,[1.00,.97,.93]);head.position.set(0,.70,0);g.add(head);
- let cheekBase=sphere(.50,skin,[1.06,.84,.90]);cheekBase.position.set(0,.52,.02);g.add(cheekBase);
+ let head=sphere(.56,skin,[1.00,.99,.95]);head.position.set(0,.66,0);g.add(head);
+ let cheekBase=sphere(.46,skin,[1.07,.86,.91]);cheekBase.position.set(0,.50,.02);g.add(cheekBase);
 
  // ears
  for(const x of[-.63,.63]){
@@ -1603,8 +2067,8 @@ function avatarFrom(el){
  }
 
  // eyes: smaller, inset, expressive
- const ey=.76, ez=.625;
- g.add(irisEye(-.205,ey,ez,.128,-.004), irisEye(.205,ey,ez,.128,.004));
+ const ey=.72, ez=.575;
+ g.add(irisEye(-.19,ey,ez,.108,-.004), irisEye(.19,ey,ez,.108,.004));
  // V27.1: eyelids removed to keep the avatar eyes open and clean on mobile
 
 
@@ -1627,7 +2091,7 @@ function avatarFrom(el){
        softLeg(.16,-1.02,skin,girl?0xe98fb5:0x4388bc,trim));
 
  // hair cap integrated with head
- let cap=sphere(.665,hair,[1.01,.57,.94]);cap.position.set(0,1.075,-.025);g.add(cap);
+ let cap=sphere(.605,hair,[1.01,.58,.94]);cap.position.set(0,1.015,-.025);g.add(cap);
 
  if(variant==="boya"){
    [-.38,-.20,-.02,.16,.34].forEach((x,i)=>g.add(hairLock(x,1.00+(i%2)*.015,.54,hair,.82,1.02,(i-2)*.06)));
@@ -1682,7 +2146,7 @@ function avatarFrom(el){
 
  g.userData.characterType="avatar";
  g.userData.variant=variant;
- g.scale.set(.76,.76,.76);
+ g.scale.set(.82,.82,.82);
  return g
 }
 
@@ -1857,5 +2321,742 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)setTimeout
 }
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=320").then(r=>r.update()).catch(console.error))}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4400").then(r=>r.update()).catch(console.error))}</script>
+<script id="v42-runtime-polish">
+(()=>{
+ document.documentElement.dataset.hmwBuild='43.1';
+ const mark=()=>{const b=document.querySelector('.buildBadge');if(b&&!/V43\.1/.test(b.textContent))b.textContent='V44';};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+})();
+</script>
+
+<script id="v431-big-gameplay-runtime">
+(()=>{
+  document.documentElement.dataset.hmwBuild="43.1";
+
+  const q=(id)=>document.getElementById(id);
+  const pct=(n,d)=>d?Math.max(0,Math.min(100,n/d*100)):0;
+
+  function forceBuild(){
+    const b=document.querySelector(".buildBadge");
+    if(b)b.textContent="V44";
+    const s=q("threeStatus");
+    if(s)s.textContent="🚀 ARENA & MAP POLISH • V44";
+  }
+
+  // Wrap the existing world renderer, preserving all game state + save logic.
+  if(typeof window.renderWorld==="function"){
+    const originalRenderWorld=window.renderWorld;
+    window.renderWorld=function(){
+      originalRenderWorld();
+      try{
+        document.querySelectorAll("#worldMap .zone").forEach((el,i)=>{
+          const k=order[i], m=S.monsters[k], goal=maxGoal(k);
+          const old=el.querySelector(".zoneProgress"); if(old)old.remove();
+          const badge=document.createElement("div");
+          badge.className="evoBadge";
+          const form=m.level>=5?"HERO":`FORM ${Math.min(5,m.level)}/5`;
+          badge.textContent=form;
+          el.appendChild(badge);
+
+          const p=document.createElement("div");
+          p.className="zoneProgress";
+          p.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pct(m.progress,goal)}%"></div></div>
+            <div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+          el.appendChild(p);
+        });
+
+        const arena=document.querySelector(".arena");
+        if(arena)arena.dataset.kind=S.active;
+      }catch(e){console.warn("V44 world polish",e)}
+    };
+  }
+
+  // Expand Journey to 6 worlds while using the same existing totals.
+  if(typeof window.renderJourney==="function"){
+    window.renderJourney=function(){
+      const pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5;
+      const nodes=[
+        ["🏡","Sunny Village",0],
+        ["🌲","Reading Forest",100],
+        ["🧹","Tidy Town",220],
+        ["⛰️","Homework Mountain",400],
+        ["☁️","Sky Garden",520],
+        ["🏰","Star Castle",650]
+      ];
+      q("journeyGrid").innerHTML=nodes.map(([i,n,v],idx)=>`
+        <div class="journeyNode ${pts>=v?"open":""}">
+          <div class="big">${pts>=v?i:"🔒"}</div>
+          <b>${n}</b><br>
+          <small>${pts>=v?(idx===nodes.length-1?"ปลายทางฮีโร่":"เปิดแล้ว"):`ต้องการ ${v} pts`}</small>
+        </div>`).join("");
+    };
+  }
+
+  // Add more meaningful trophies without changing the reward economy.
+  if(typeof window.trophies==="function"){
+    window.trophies=function(){
+      return [
+        ["🌱","เริ่มต้นแล้ว",S.logs.length>=1],
+        ["✏️","100 ข้อ",S.totals.diligent>=100],
+        ["🧠","500 ข้อ",S.totals.diligent>=500],
+        ["📖","อ่าน 100 นาที",S.totals.reading>=100],
+        ["🦉","อ่าน 500 นาที",S.totals.reading>=500],
+        ["📚","การบ้าน 20 งาน",S.totals.homework>=20],
+        ["🔥","Streak 7 วัน",S.streak>=7],
+        ["🌟","Streak 30 วัน",S.streak>=30],
+        ["🐾","Pet Friendship 50",S.pet.friendship>=50],
+        ["🗺️","เปิด 4 โลก", (S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5)>=400],
+        ["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]
+      ];
+    };
+  }
+
+  // Make End Day feel like a conclusion screen, preserving original data.
+  if(typeof window.renderEndDay==="function"){
+    const originalEnd=window.renderEndDay;
+    window.renderEndDay=function(){
+      originalEnd();
+      const host=q("endDaySummary");
+      if(host && !host.querySelector(".enddayHero")){
+        const today=S.logs.filter(x=>x.date===dayKey());
+        const stars=today.reduce((a,x)=>a+(x.stars||0),0);
+        const box=document.createElement("div");
+        box.className="enddayHero";
+        box.innerHTML=`<div class="big">${today.length?"🌟":"🌙"}</div>
+          <b>${today.length?"เก่งมาก วันนี้เดินหน้าแล้ว!":"วันนี้พักได้ พรุ่งนี้ค่อยไปต่อ"}</b>
+          <div>${today.length} กิจกรรม • +${stars} ดาว • Pet XP ${S.pet.xp}</div>`;
+        host.prepend(box);
+      }
+    };
+  }
+
+  // Celebration overlay for stars / level-up. Hooks existing celebrate if present.
+  const oldCelebrate=typeof window.celebrate==="function"?window.celebrate:null;
+  window.celebrate=function(msg){
+    if(oldCelebrate)oldCelebrate(msg);
+    const icons=["✨","⭐","💫","🌟","🎉"];
+    for(let i=0;i<16;i++){
+      const s=document.createElement("span");
+      s.className="hmwSpark";
+      s.textContent=icons[i%icons.length];
+      s.style.left=(45+Math.random()*10)+"vw";
+      s.style.top=(42+Math.random()*12)+"vh";
+      s.style.setProperty("--dx",((Math.random()-.5)*420)+"px");
+      s.style.setProperty("--dy",((-90-Math.random()*260))+"px");
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1100);
+    }
+    document.querySelector(".arena")?.classList.add("levelPulse");
+    setTimeout(()=>document.querySelector(".arena")?.classList.remove("levelPulse"),900);
+  };
+
+  // Re-run render after the overrides are installed.
+  const boot=()=>{
+    forceBuild();
+    try{ if(typeof render==="function") render(); }catch(e){console.warn(e)}
+  };
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});
+  else setTimeout(boot,0);
+
+  // Keep the visible badge correct even if old V42 runtime touches it.
+  setInterval(forceBuild,1500);
+})();
+</script>
+
+
+<script id="v44-runtime">
+(()=>{
+ const $=(id)=>document.getElementById(id);
+ const pc=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+ function mark(){
+   const b=document.querySelector('.buildBadge'); if(b)b.textContent='V44';
+   const s=$('threeStatus'); if(s)s.textContent='🎮 ARENA & MAP POLISH • V44';
+   document.documentElement.dataset.hmwBuild='44';
+ }
+ function decorateWorld(){
+   try{
+     document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+       const k=order[i]; if(!k)return;
+       const m=S.monsters[k], goal=maxGoal(k);
+       el.querySelectorAll('.zoneProgress,.evoBadge').forEach(x=>x.remove());
+       const badge=document.createElement('div');
+       badge.className='evoBadge'; badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+       el.appendChild(badge);
+       const box=document.createElement('div'); box.className='zoneProgress';
+       box.innerHTML=`<div class="miniTrack"><div class="miniFill" style="width:${pc(m.progress,goal)}%"></div></div><div class="miniText">${m.progress}/${goal} ${defs[k].unit}</div>`;
+       el.appendChild(box);
+     });
+   }catch(e){console.warn('V44 decorateWorld',e)}
+ }
+ const oldRender=typeof window.render==='function'?window.render:null;
+ if(oldRender){
+   window.render=function(){const r=oldRender.apply(this,arguments); mark(); setTimeout(decorateWorld,0); return r;}
+ }
+ const oldWorld=typeof window.renderWorld==='function'?window.renderWorld:null;
+ if(oldWorld){
+   window.renderWorld=function(){const r=oldWorld.apply(this,arguments); setTimeout(decorateWorld,0); return r;}
+ }
+ const boot=()=>{mark(); try{if(typeof render==='function')render();}catch(e){} setTimeout(decorateWorld,60)};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+ setInterval(mark,2000);
+})();
+</script>
+
+
+<style id="v45-game-feel-evolution">
+/* V45 — GAME FEEL & EVOLUTION: visual-only polish; save/data logic unchanged */
+:root{--v45gold:#ffc94f;--v45blue:#5dbcf4;--v45ink:#203b5b}
+.buildBadge{background:linear-gradient(135deg,#765cf0,#3f83ee)!important}
+.buildBadge:after{content:" • GAME FEEL"!important}
+
+/* World cards read like game levels, while keeping all 7 zones visible */
+.world{align-items:stretch!important}
+.zone{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;isolation:isolate}
+.zone .zoneArt{flex:0 0 auto!important}
+.zone b{min-height:2.2em;display:flex!important;align-items:center;justify-content:center;margin:3px 4px 0!important}
+.zone small{display:block;margin-top:1px}
+.zoneProgress{margin-top:auto!important}
+.zone .evoBadge{z-index:7!important;background:linear-gradient(135deg,#6576ee,#4e7bea)!important;color:#fff!important;box-shadow:0 5px 12px rgba(72,93,201,.18)}
+.zone.active .evoBadge{background:linear-gradient(135deg,#ffb43d,#ffd963)!important;color:#624400!important}
+.zone.active:after{content:"✓ เลือกอยู่";position:absolute;right:7px;top:8px;z-index:8;padding:4px 7px;border-radius:999px;background:#ffe16c;color:#5b4800;font-size:10px;font-weight:950;box-shadow:0 4px 10px rgba(111,87,18,.13)}
+.miniTrack{overflow:hidden!important;border-radius:999px!important}
+.miniFill{background:linear-gradient(90deg,#8877e9,#66c89a)!important;border-radius:999px!important;transition:width .45s ease!important}
+
+/* Encounter composition: pet above, actors anchored to ground, no giant empty sky */
+.arena{background:linear-gradient(180deg,#9ee0fb 0 45%,#c8eab9 45% 69%,#e8ca8d 69% 100%)!important}
+#petFollower.petFollower{z-index:5!important;filter:drop-shadow(0 7px 8px rgba(41,69,88,.16))}
+.battle{position:relative!important}
+.battle:after{content:"";position:absolute;left:10%;right:10%;bottom:5px;height:22px;background:radial-gradient(ellipse,rgba(45,69,71,.22),transparent 70%);filter:blur(5px);pointer-events:none;z-index:0}
+.battle .avatarArt,.battle .bossArt{position:relative!important;z-index:2!important;overflow:visible!important}
+.battle .avatarArt svg,.battle .bossArt svg{filter:drop-shadow(0 12px 9px rgba(35,60,80,.16))!important}
+.vs:before{animation:v45Pulse 1.8s ease-in-out infinite}
+@keyframes v45Pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Make progress / evolution the focal feedback below the arena */
+.arena .bar{height:17px!important;box-shadow:inset 0 1px 2px rgba(43,66,84,.08)}
+.arena .hp{transition:width .5s ease!important;background:linear-gradient(90deg,#9a88ed,#7566d6)!important}
+#nextLevelHint{font-weight:900!important;color:#6f6ca5!important;text-align:center!important;margin-top:5px!important}
+.stats .stat{transition:transform .16s ease,box-shadow .16s ease}
+.stats .stat:active{transform:scale(.97)}
+
+/* Avatar cards: cleaner selection and slightly larger thumbnails */
+.avatarChoice{position:relative!important}
+.avatarChoice.on:after{content:"✓";position:absolute;right:7px;top:7px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#ffd75e;color:#594300;font-weight:1000;box-shadow:0 4px 10px rgba(93,73,18,.15)}
+
+@media(max-width:600px){
+ .world{gap:10px!important}
+ .zone{min-height:250px!important;padding:7px 5px 10px!important}
+ .zoneArt{height:140px!important}
+ .zone b{font-size:15px!important;min-height:2.25em!important}
+ .zoneProgress{padding:0 7px 2px!important}
+ .arena{padding:8px 6px 12px!important}
+ #petFollower.petFollower{width:58px!important;height:58px!important;margin:0 auto 1px!important}
+ .battle{min-height:194px!important;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)!important}
+ .battle .avatarArt,.battle .bossArt{height:166px!important;max-width:none!important;width:100%!important}
+ .battle .avatarArt svg,.battle .bossArt svg{max-height:164px!important}
+ .battle .label{font-size:15px!important;font-weight:950!important}
+ .speech{font-size:15px!important}
+ .arena .stats{grid-template-columns:repeat(2,1fr)!important}
+}
+</style>
+
+<style id="v46-mobile-game-experience">
+/* =========================================================
+   V46 — MOBILE GAME EXPERIENCE
+   Visual / UX upgrade only. Existing save logic is preserved.
+   ========================================================= */
+
+:root{
+  --v46-gold:#ffd65c;
+  --v46-blue:#6d8cff;
+  --v46-deep:#24364a;
+  --v46-card-shadow:0 12px 28px rgba(43,73,105,.13);
+}
+
+/* Header + navigation hierarchy */
+.header{position:relative}
+.buildBadge{
+  background:linear-gradient(135deg,#6675f3,#4e7be9)!important;
+  color:#fff!important;
+  box-shadow:0 7px 15px rgba(75,94,201,.22)!important;
+}
+.nav button[data-screen="world"],
+.nav button[data-screen="daily"],
+.nav button[data-screen="journey"]{
+  background:linear-gradient(180deg,#f7fbff,#e8f4ff)!important;
+  box-shadow:0 5px 12px rgba(67,113,150,.08)!important;
+}
+.nav button[data-screen="parent"],
+.nav button[data-screen="backup"],
+.nav button[data-screen="dashboard"]{
+  color:#5f7285!important;
+  background:#f4f7f9!important;
+}
+
+/* Avatar Studio becomes a setup panel, not the main event */
+.avatarStudio{
+  align-items:start!important;
+}
+.avatarStage{
+  box-shadow:inset 0 0 50px rgba(255,255,255,.55),0 10px 24px rgba(43,73,105,.08)!important;
+}
+
+/* World map = compact selectable game stages */
+.world{
+  align-items:stretch!important;
+}
+.zone{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+  box-shadow:0 8px 18px rgba(52,92,120,.08)!important;
+}
+.zone:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:7px;
+  background:linear-gradient(90deg,#8ad4ff,#84df9a,#ffd877);
+  opacity:.8;
+}
+.zone.active{
+  border-color:#ffc94a!important;
+  box-shadow:0 0 0 4px rgba(255,200,62,.19),0 14px 28px rgba(52,95,120,.14)!important;
+  background:linear-gradient(180deg,#fffef5,#fff8d9)!important;
+}
+.zone .zoneArt{
+  flex:0 0 auto!important;
+  margin-top:3px!important;
+}
+.zone b{
+  line-height:1.16!important;
+}
+.zone small{
+  color:#607183!important;
+}
+.zoneProgress{
+  margin-top:auto!important;
+}
+.zone .evoBadge{
+  font-size:10px!important;
+  letter-spacing:.02em!important;
+}
+.zone .v46-next-form{
+  margin:4px 5px 0;
+  min-height:1.25em;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:900;
+  color:#6e6b91;
+}
+.zone.active .v46-next-form{color:#8a6812}
+
+/* Arena = one unified encounter scene */
+.arena{
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,255,255,.78) 0 10%,transparent 28%),
+    linear-gradient(180deg,#9edffa 0 47%,#cceebd 47% 69%,#f5d89e 69% 100%)!important;
+}
+.arena .speech{
+  position:relative!important;
+  z-index:7!important;
+  margin-bottom:2px!important;
+}
+#petFollower.petFollower{
+  position:absolute!important;
+  right:12px!important;
+  left:auto!important;
+  top:54px!important;
+  width:62px!important;
+  height:62px!important;
+  z-index:9!important;
+  margin:0!important;
+}
+#petFollower.petFollower:after{
+  content:"❤";
+  position:absolute;
+  right:-4px;
+  top:-6px;
+  display:grid;
+  place-items:center;
+  width:24px;height:24px;
+  background:#fff;
+  border-radius:50%;
+  font-size:13px;
+  box-shadow:0 5px 10px rgba(54,77,94,.13);
+}
+.battle{
+  min-height:215px!important;
+  padding:9px 5px 2px!important;
+  align-items:end!important;
+}
+.battle .avatarArt,.battle .bossArt{
+  height:178px!important;
+  width:100%!important;
+  max-width:230px!important;
+}
+.battle .avatarArt svg,.battle .bossArt svg{
+  max-height:176px!important;
+}
+.vs:before{
+  width:42px!important;height:42px!important;
+  font-size:22px!important;
+  background:rgba(255,255,255,.92)!important;
+  box-shadow:0 8px 18px rgba(93,103,97,.13)!important;
+}
+#monsterTalk{
+  background:rgba(255,255,255,.9)!important;
+  border:1px solid rgba(210,224,235,.95)!important;
+  border-radius:14px!important;
+  margin-top:4px!important;
+  padding:9px 11px!important;
+  font-weight:850!important;
+}
+#nextLevelHint{
+  background:rgba(255,255,255,.58);
+  border-radius:999px;
+  padding:5px 10px;
+  margin:7px auto 4px!important;
+  width:max-content;
+  max-width:100%;
+}
+.arena .stats .stat{
+  background:rgba(255,255,255,.9)!important;
+  box-shadow:0 6px 14px rgba(44,70,91,.08)!important;
+}
+.arena .bar{
+  height:15px!important;
+}
+.arena .hp{
+  background:linear-gradient(90deg,#8f82ef,#6e73df,#66c99b)!important;
+}
+
+/* Tiny feedback animation without changing game logic */
+@keyframes v46PetBounce{
+  0%,100%{transform:translateY(0) rotate(0)}
+  45%{transform:translateY(-4px) rotate(-2deg)}
+  65%{transform:translateY(-2px) rotate(2deg)}
+}
+@keyframes v46SelectedFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
+#petFollower.petFollower{animation:v46PetBounce 2.4s ease-in-out infinite}
+.zone.active .zoneArt{animation:v46SelectedFloat 2.7s ease-in-out infinite!important}
+
+/* Desktop remains spacious */
+@media(min-width:601px){
+  .world{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .zone{min-height:220px!important}
+}
+
+/* iPhone / mobile layout */
+@media(max-width:600px){
+  .wrap{
+    padding:
+      calc(8px + env(safe-area-inset-top))
+      9px
+      calc(96px + env(safe-area-inset-bottom))!important;
+  }
+  .card{margin-top:9px!important}
+  .header{padding:14px!important}
+  .header h1{font-size:28px!important}
+  .header .sub{font-size:15px!important;margin-top:8px!important}
+  .status{gap:6px!important}
+  .status .pill{padding:7px 9px!important;font-size:14px!important}
+
+  .nav{
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:6px!important;
+  }
+  .nav button{
+    min-height:60px!important;
+    font-size:13px!important;
+    padding:7px 3px!important;
+  }
+
+  /* Avatar setup takes less vertical space */
+  #world > section.card:first-of-type{padding:12px!important}
+  .avatarStage{
+    width:min(330px,88vw)!important;
+    height:320px!important;
+  }
+  .avatarChoices{gap:6px!important}
+  .avatarChoice{min-height:112px!important}
+
+  /* World cards: 2 columns, substantially shorter */
+  .world{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+    padding:7px!important;
+  }
+  .zone{
+    min-height:204px!important;
+    padding:7px 5px 8px!important;
+    border-radius:22px!important;
+  }
+  .zoneArt{
+    width:112px!important;
+    height:112px!important;
+  }
+  .zone b{
+    font-size:14px!important;
+    min-height:2.25em!important;
+  }
+  .zone small{font-size:12px!important}
+  .zoneProgress{padding:0 7px 1px!important}
+  .zone .evoBadge{top:7px!important;left:7px!important}
+  .zone.active:after{
+    right:5px!important;
+    top:7px!important;
+    font-size:9px!important;
+    padding:4px 6px!important;
+  }
+
+  /* Arena is compact: pet + hero + monster belong to the same scene */
+  .arena{padding:8px 6px 10px!important;min-height:0!important}
+  #petFollower.petFollower{
+    width:54px!important;height:54px!important;
+    top:49px!important;right:9px!important;
+  }
+  .battle{
+    min-height:202px!important;
+    grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important;
+    padding:5px 3px 1px!important;
+  }
+  .battle .avatarArt,.battle .bossArt{
+    height:164px!important;
+    max-width:190px!important;
+  }
+  .battle .avatarArt svg,.battle .bossArt svg{max-height:162px!important}
+  .battle .label{font-size:14px!important}
+  #monsterTalk{font-size:14px!important;padding:8px 9px!important}
+  .arena .row{font-size:14px!important}
+  #nextLevelHint{font-size:13px!important}
+  .arena .stats{
+    grid-template-columns:repeat(2,1fr)!important;
+    gap:6px!important;
+  }
+  .arena .stats .stat{min-height:70px!important}
+
+  /* Keep section headings away from mobile browser chrome */
+  #worldMap{scroll-margin-top:12px}
+  #world h2{line-height:1.15!important}
+}
+
+/* Smallest iPhones */
+@media(max-width:390px){
+  .zone{min-height:194px!important}
+  .zoneArt{width:104px!important;height:104px!important}
+  .battle .avatarArt,.battle .bossArt{height:150px!important}
+  .battle{min-height:185px!important}
+}
+</style>
+
+
+<script id="v46-runtime">
+(()=>{
+  const BUILD='V46';
+  const pct=(n,d)=>d?Math.max(0,Math.min(100,Math.round(n/d*100))):0;
+
+  const personality={
+    diligent:["ยังไม่รีบก็ได้น้า 😝","โอ๊ะ เริ่มขยันจริงแล้วสิ","ทำต่อแบบนี้ฉันเริ่มหวั่นแล้ว ✨","ใกล้เปลี่ยนร่างแล้วนะ!"],
+    reading:["เปิดแค่หน้าเดียวก่อนก็ได้ 📖","เอ๊ะ อ่านเพลินขึ้นแล้ว","นักอ่านกำลังมาแล้ว!","อีกนิดเดียวจะเปลี่ยนร่าง ✨"],
+    homework:["เดี๋ยวค่อยทำก็ได้มั้ง 😴","งานเริ่มหายไปแล้ว","โต๊ะการบ้านโล่งขึ้นเยอะ","ใกล้แปลงร่างแล้ว!"],
+    messy:["วางตรงนี้ก่อนก็ได้มั้ง 😜","หาอะไรง่ายขึ้นแล้วนะ","พื้นที่สะอาดขึ้นเรื่อย ๆ","ฉันจะเปลี่ยนร่างแล้ว!"],
+    morning:["อีกห้านาทีเอง ☀️","เช้านี้คล่องขึ้นนะ","พร้อมไวขึ้นทุกวัน","เกือบได้ร่างใหม่แล้ว!"],
+    noDawdle:["ขออีกแป๊บนึง ⏰","จับเวลาเก่งขึ้นแล้ว","เร็วแบบไม่รีบเกินไป เยี่ยม!","อีกนิดเดียว!"],
+    screen:["อีก 5 นาทีได้ไหม 👀","วางจอเร็วขึ้นแล้วนะ","มีกิจกรรมอื่นสนุกด้วย","ใกล้ปลดล็อกร่างใหม่!"]
+  };
+
+  function markBuild(){
+    const b=document.querySelector('.buildBadge');
+    if(b)b.textContent=BUILD;
+    const s=document.getElementById('threeStatus');
+    if(s)s.textContent='🎮 MOBILE GAME EXPERIENCE • V46';
+    document.documentElement.dataset.hmwBuild='46';
+    document.title='Habit Monster World V46';
+  }
+
+  function enhanceWorld(){
+    try{
+      document.querySelectorAll('#worldMap .zone').forEach((el,i)=>{
+        const k=order[i];
+        if(!k || !S.monsters[k])return;
+        const m=S.monsters[k];
+        const goal=maxGoal(k);
+        const remaining=Math.max(0,goal-m.progress);
+        const progress=pct(m.progress,goal);
+
+        const badge=el.querySelector('.evoBadge');
+        if(badge) badge.textContent=m.level>=5?'👑 HERO':`FORM ${Math.min(m.level,5)}/5`;
+
+        let teaser=el.querySelector('.v46-next-form');
+        if(!teaser){
+          teaser=document.createElement('div');
+          teaser.className='v46-next-form';
+          const progressBox=el.querySelector('.zoneProgress');
+          (progressBox||el).appendChild(teaser);
+        }
+
+        if(m.level>=5){
+          teaser.textContent='✨ HERO FORM — Mastery';
+        }else if(progress>=80){
+          teaser.textContent=`✨ ใกล้แปลงร่าง! อีก ${remaining} ${defs[k].unit}`;
+        }else{
+          teaser.textContent=`🔒 FORM ${m.level+1} • อีก ${remaining} ${defs[k].unit}`;
+        }
+
+        const fill=el.querySelector('.miniFill');
+        if(fill)fill.style.width=progress+'%';
+      });
+    }catch(e){console.warn('V46 world enhance',e)}
+  }
+
+  function enhanceArena(){
+    try{
+      const k=S.active,m=S.monsters[k],goal=maxGoal(k);
+      const progress=pct(m.progress,goal);
+      const talk=document.getElementById('monsterTalk');
+      if(talk && personality[k]){
+        const idx=m.level>=5 ? 3 : progress>=80 ? 3 : progress>=45 ? 2 : progress>=15 ? 1 : 0;
+        talk.textContent=personality[k][idx];
+      }
+
+      const hint=document.getElementById('nextLevelHint');
+      if(hint){
+        const rem=Math.max(0,goal-m.progress);
+        hint.textContent=m.level>=5
+          ? '👑 HERO FORM • เก็บ Mastery ต่อได้'
+          : progress>=80
+            ? `✨ ใกล้ EVOLUTION! อีก ${rem} ${defs[k].unit}`
+            : `🔒 FORM ${m.level+1} • อีก ${rem} ${defs[k].unit}`;
+      }
+
+      const unit=document.getElementById('progressUnit');
+      if(unit)unit.textContent=defs[k].unit+'สะสม';
+
+      const pet=document.getElementById('petSpeech');
+      if(pet){
+        const petName=(typeof pets!=='undefined' && pets[S.pet.selected]) ? pets[S.pet.selected].name : 'Pet';
+        pet.textContent=progress>=80
+          ? `${petName}: อีกนิดเดียว! ✨`
+          : `${petName} เชียร์อยู่นะ! 🐾`;
+      }
+    }catch(e){console.warn('V46 arena enhance',e)}
+  }
+
+  function enhanceDaily(){
+    try{
+      const btn=document.querySelector('[data-screen="daily"]');
+      if(!btn || !S.daily)return;
+      const done=['diligent','reading','homework'].filter(k=>S.daily.done && S.daily.done[k]).length;
+      btn.setAttribute('aria-label',`Daily Quest ${done}/3`);
+      btn.title=`Daily Quest ${done}/3`;
+    }catch(e){}
+  }
+
+  function polish(){
+    markBuild();
+    enhanceWorld();
+    enhanceArena();
+    enhanceDaily();
+  }
+
+  function boot(){
+    markBuild();
+    setTimeout(polish,100);
+  }
+
+  // Existing code calls render() directly. Wrap it without changing save/progress logic.
+  const originalRender=window.render;
+  if(typeof originalRender==='function'){
+    window.render=function(){
+      const result=originalRender.apply(this,arguments);
+      setTimeout(polish,0);
+      return result;
+    };
+  }
+
+  const originalWorld=window.renderWorld;
+  if(typeof originalWorld==='function'){
+    window.renderWorld=function(){
+      const result=originalWorld.apply(this,arguments);
+      setTimeout(()=>{enhanceWorld();enhanceArena()},0);
+      return result;
+    };
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',boot,{once:true});
+  }else{
+    boot();
+  }
+  setInterval(markBuild,2500);
+})();
+</script>
+
+
+<style id="v46-1-hotfix-style">
+/* V46.1 screenshot hotfix */
+.buildBadge:after{content:""!important;display:none!important}
+#threeStatus{white-space:normal}
+
+/* Pet should feel like part of the encounter, not a floating UI card */
+@media(max-width:600px){
+  #petFollower.petFollower{
+    top:auto!important;
+    right:auto!important;
+    left:10px!important;
+    bottom:154px!important;
+    width:48px!important;
+    height:48px!important;
+    z-index:12!important;
+  }
+  #petFollower.petFollower:after{
+    width:21px!important;
+    height:21px!important;
+    font-size:11px!important;
+    right:-2px!important;
+    top:-5px!important;
+  }
+}
+</style>
+
+<script id="v46-1-hotfix-runtime">
+(()=>{
+  const forceBuild=()=>{
+    const b=document.querySelector('.buildBadge');
+    if(b && b.textContent!=='V46.1') b.textContent='V46.1';
+
+    const s=document.getElementById('threeStatus');
+    if(s && s.textContent!=='🎮 MOBILE GAME EXPERIENCE • V46.1'){
+      s.textContent='🎮 MOBILE GAME EXPERIENCE • V46.1';
+    }
+
+    document.title='Habit Monster World V46.1';
+    document.documentElement.dataset.hmwBuild='46.1';
+  };
+
+  forceBuild();
+
+  // Legacy V44 code in the inherited source keeps rewriting the badge.
+  // MutationObserver wins immediately without touching game/save logic.
+  const obs=new MutationObserver(forceBuild);
+  obs.observe(document.documentElement,{
+    subtree:true,
+    childList:true,
+    characterData:true
+  });
+
+  window.addEventListener('load',forceBuild);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)forceBuild()});
+  setInterval(forceBuild,500);
+})();
+</script>
+
+</body>
 </html>
