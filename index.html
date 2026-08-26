@@ -2176,60 +2176,70 @@ html,body{scroll-behavior:auto!important}
 .v48-evo-card{text-align:center}.v48-evo-art{width:min(220px,70vw);height:220px;margin:4px auto;display:grid;place-items:center}.v48-evo-art img,.v48-evo-art svg{max-width:100%;max-height:100%}.v48-form{font-size:13px;font-weight:950;letter-spacing:.08em;color:#6a60d9}.v48-reward{margin-top:8px;padding:9px 12px;border-radius:14px;background:#fff5c8;font-weight:900}.v48-hero-ring{box-shadow:0 0 0 5px rgba(255,216,75,.18),0 12px 30px rgba(169,122,14,.12)!important}
 @media(max-width:600px){.arena{border-radius:24px!important}.v48-evo-art{height:180px}.zone.active:after{font-size:10px}}
 </style>
-<script id="v48-mobile-runtime">
+<script id="v48-mobile-runtime-disabled">/* superseded by V49 */</script>
+
+
+<style id="v49-mobile-polish">
+/* V49 MOBILE POLISH — no WebGL, no observers, no background animation loops */
+:root{--v49-radius:22px;--v49-gap:12px}
+.buildBadge{background:linear-gradient(135deg,#655be9,#318de8)!important}
+@media(max-width:600px){
+  body{padding-bottom:70px!important}
+  .card{padding:14px!important;margin:10px auto!important;border-radius:24px!important}
+  .topHero{padding:18px 16px!important}
+  .topHero h1{font-size:clamp(28px,8.5vw,42px)!important;line-height:1.02!important;margin-bottom:8px!important}
+  .topHero .subtitle{font-size:17px!important;margin:8px 0!important}
+  .resourceRow{gap:8px!important;margin-top:10px!important}
+  .resourcePill{padding:8px 12px!important}
+  .menuGrid{gap:8px!important}
+  .menuBtn{min-height:72px!important;padding:9px 5px!important}
+  .world{gap:9px!important}
+  .zone{min-height:0!important;padding:9px 6px 10px!important;border-radius:20px!important}
+  .zoneArt{height:150px!important;min-height:150px!important}
+  .zone b{font-size:17px!important;line-height:1.12!important}
+  .zone small{font-size:12px!important}
+  .arena{padding:12px!important;border-radius:22px!important}
+  .battle{gap:8px!important;align-items:end!important}
+  .avatarArt,.bossArt{height:180px!important;min-height:180px!important}
+  .label{font-size:18px!important}
+  .vs{width:40px!important;height:40px!important}
+  .stats{gap:8px!important}
+  .stat{padding:10px 6px!important;min-height:82px!important}
+  .stat b{font-size:27px!important}
+  #monsterTalk{padding:10px 12px!important;margin:7px 0!important}
+  #petFollower.petFollower{position:relative!important;left:auto!important;bottom:auto!important;width:52px!important;height:52px!important;margin:0 auto 2px!important;pointer-events:none!important}
+  #petSpeech{padding:5px 8px!important;margin-bottom:2px!important;font-size:13px!important}
+}
+.zone .v49-formchip{display:inline-flex;margin-top:5px;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.72);font-size:10px;font-weight:900;color:#6258c9}
+.zone .v49-next{display:block;margin-top:3px;font-size:9px;color:#708197;font-weight:800}
+.zone.v49-hero{box-shadow:0 0 0 3px rgba(255,207,65,.26),0 9px 20px rgba(151,111,13,.12)!important}
+.zone.v49-hero .v49-formchip{background:#fff0a9;color:#775800}
+#v49QuickNav{position:fixed;z-index:40;left:50%;bottom:max(8px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:5px;padding:6px;background:rgba(255,255,255,.90);border:1px solid rgba(208,224,235,.95);border-radius:999px;box-shadow:0 7px 22px rgba(34,64,90,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#v49QuickNav button{border:0;background:#eef8ff;color:#197bd3;border-radius:999px;padding:8px 11px;font-weight:900;font-size:12px;white-space:nowrap}
+#v49QuickNav button:active,.menuBtn:active,.zone:active,button:active{transform:scale(.97)!important}
+.v49-metric-label{font-size:11px;font-weight:900;color:#718198;margin-top:2px;text-align:right}
+.v49-burst{position:fixed;z-index:999;left:50%;top:44%;transform:translate(-50%,-50%);font-size:42px;pointer-events:none;animation:v49Burst .65s ease-out both!important}
+@keyframes v49Burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}35%{opacity:1;transform:translate(-50%,-58%) scale(1.12)}100%{opacity:0;transform:translate(-50%,-90%) scale(.9)}}
+.v49-react #heroArt{animation:v49Hero .34s ease-out!important}.v49-react #bossArt{animation:v49Boss .38s ease-out!important}
+@keyframes v49Hero{0%{transform:none}45%{transform:translateX(5px) scale(1.025)}100%{transform:none}}
+@keyframes v49Boss{0%{transform:none}45%{transform:translateX(4px) rotate(1deg) scale(.98)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.v49-burst,.v49-react #heroArt,.v49-react #bossArt{animation:none!important}*{scroll-behavior:auto!important}}
+body.v49-lowfx .v49-burst,body.v49-lowfx .v49-react #heroArt,body.v49-lowfx .v49-react #bossArt{animation:none!important}
+</style>
+<script id="v49-mobile-runtime">
 (()=>{
- const BUILD='V48 • MOBILE EDITION';
- const praise={
-  diligent:['พลังขยันเพิ่มแล้ว! ✨','เยี่ยม! เจ้าขี้เกียจเริ่มหวั่นแล้ว'],
-  reading:['อ่านเพิ่มแล้ว! 📖✨','นักอ่านแข็งแรงขึ้นอีกนิด!'],
-  homework:['เคลียร์ไปอีกงานแล้ว! 📚','ดีมาก งานหายไปอีกกอง!'],
-  messy:['เรียบร้อยขึ้นแล้ว! 🧹✨','เยี่ยม ของกลับเข้าที่แล้ว!'],
-  morning:['เช้านี้คล่องขึ้น! ☀️','พร้อมไวขึ้นอีกวัน!'],
-  noDawdle:['เร็วขึ้นแบบพอดี! ⏰','จัดเวลาได้ดีมาก!'],
-  screen:['วางจอได้แล้ว! 👀✨','มีเวลาให้โลกจริงเพิ่มขึ้น!']
- };
- function mark(){
-  const b=document.querySelector('.buildBadge'); if(b)b.textContent=BUILD;
-  document.title='Habit Monster World V48 Mobile Edition';
-  document.documentElement.dataset.hmwBuild='48-mobile';
- }
- function react(k){
-  const a=document.querySelector('.arena'); if(!a)return;
-  a.classList.remove('v48-react'); void a.offsetWidth; a.classList.add('v48-react');
-  const t=document.getElementById('monsterTalk'); const arr=praise[k]; if(t&&arr)t.textContent=arr[Math.floor(Math.random()*arr.length)];
-  setTimeout(()=>a.classList.remove('v48-react'),520);
- }
- function evo(k,lv){
-  try{
-   const hero=lv>=5, form=Math.min(5,lv), art=monsterSVG(k,form-1);
-   modal(hero?'👑':'🌈',hero?'HERO FORM ปลดล็อก!':`EVOLUTION — FORM ${form}`,
-    `<div class="v48-evo-card"><div class="v48-form">${defs[k].title} • FORM ${form}/5</div><div class="v48-evo-art">${art}</div><b>${hero?'เข้าสู่ HERO FORM แล้ว!':'มอนสเตอร์วิวัฒนาการเป็นร่างใหม่แล้ว!'}</b><div class="v48-reward">⭐ โบนัสผ่านร่าง +25 ดาว</div></div>`);
-  }catch(e){console.warn('V48 evo',e)}
- }
- const originalApply=window.apply;
- if(typeof originalApply==='function'){
-  window.apply=function(k,p){
-   const before=S.monsters[k]?.level||1;
-   const result=originalApply.apply(this,arguments);
-   const after=S.monsters[k]?.level||before;
-   react(k);
-   if(after>before)setTimeout(()=>evo(k,after),140);
-   return result;
-  };
- }
- const originalRenderWorld=window.renderWorld;
- if(typeof originalRenderWorld==='function'){
-  window.renderWorld=function(){
-   const r=originalRenderWorld.apply(this,arguments);
-   try{
-    const hero=document.querySelector('.arena');
-    if(hero)hero.classList.toggle('v48-hero-ring',(S.monsters[S.active]?.level||1)>=5);
-   }catch(e){}
-   return r;
-  };
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
- window.addEventListener('load',mark,{once:true});
+ const BUILD='V49 • MOBILE POLISH';
+ const $q=s=>document.querySelector(s);
+ function mark(){const b=$q('.buildBadge');if(b)b.textContent=BUILD;document.title='Habit Monster World V49 Mobile Polish';document.documentElement.dataset.hmwBuild='49-mobile-polish'}
+ function lowFx(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=2)document.body.classList.add('v49-lowfx')}catch(e){}}
+ function burst(txt='✨'){if(document.body.classList.contains('v49-lowfx'))return;const d=document.createElement('div');d.className='v49-burst';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),720)}
+ function quickNav(){if(document.getElementById('v49QuickNav'))return;const n=document.createElement('nav');n.id='v49QuickNav';n.innerHTML='<button data-go="top">↑ Top</button><button data-go="world">🌍 World</button><button data-go="arena">⚡ ด่าน</button>';n.addEventListener('click',e=>{const k=e.target.dataset.go;if(!k)return;let el=k==='top'?document.body:k==='world'?document.getElementById('worldMap'):document.querySelector('.arena');if(el)el.scrollIntoView({behavior:'smooth',block:k==='top'?'start':'center'})});document.body.appendChild(n)}
+ function metricLabels(){const hp=document.getElementById('hpText');if(hp&&!hp.parentElement.querySelector('.v49-metric-label')){const d=document.createElement('div');d.className='v49-metric-label';d.textContent='พลังด่านคงเหลือ';hp.parentElement.parentElement.insertBefore(d,hp.parentElement.nextSibling)}const p=document.getElementById('progressText');if(p){const s=p.closest('.stat')?.querySelector('span');if(s&&!s.dataset.v49){s.dataset.v49='1';s.textContent='ความคืบหน้านิสัย'}}}
+ function decorateWorld(){document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{try{const k=order[i],lv=S.monsters[k].level||1,form=Math.min(5,lv);z.classList.toggle('v49-hero',lv>=5);let chip=z.querySelector('.v49-formchip');if(!chip){chip=document.createElement('span');chip.className='v49-formchip';z.appendChild(chip)}chip.textContent=lv>=5?'👑 HERO FORM':`FORM ${form}/5`;let nx=z.querySelector('.v49-next');if(!nx){nx=document.createElement('span');nx.className='v49-next';z.appendChild(nx)}nx.textContent=lv>=5?'Mastery ต่อได้':`อีก ${Math.max(0,maxGoal(k)-S.monsters[k].progress)} ${defs[k].unit} → Lv.${lv+1}`;}catch(e){}})}
+ const oldRW=window.renderWorld;if(typeof oldRW==='function')window.renderWorld=function(){const r=oldRW.apply(this,arguments);decorateWorld();metricLabels();return r};
+ const oldApply=window.apply;if(typeof oldApply==='function')window.apply=function(k,p){const before=S.monsters[k]?.level||1;const r=oldApply.apply(this,arguments);const a=document.querySelector('.arena');if(a){a.classList.remove('v49-react');void a.offsetWidth;a.classList.add('v49-react');setTimeout(()=>a.classList.remove('v49-react'),450)}const after=S.monsters[k]?.level||before;burst(after>before?'🎉✨':'✨');return r};
+ function init(){mark();lowFx();quickNav();decorateWorld();metricLabels();document.addEventListener('focusin',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility='hidden'});document.addEventListener('focusout',()=>{const p=document.getElementById('petFollower');if(p)p.style.visibility=''})}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();window.addEventListener('load',mark,{once:true});
 })();
 </script>
 
