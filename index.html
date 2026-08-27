@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=67"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=70"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -3183,14 +3183,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V69';
+    document.title='Habit Monster World V68';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3491,12 +3491,12 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V69';
+    document.title='Habit Monster World V68';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(S && S.settings){
       S.settings.dailyCap=0;
@@ -3601,13 +3601,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V69';
+    document.title='Habit Monster World V68';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3750,10 +3750,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
 
   function buildMark(){
-    document.title='Habit Monster World V69';
+    document.title='Habit Monster World V68';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3875,13 +3875,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V69';
+    document.title='Habit Monster World V68';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3958,13 +3958,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+ const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxHp==='function'?Number(maxHp(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V69';
+  document.title='Habit Monster World V68';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -4032,21 +4032,105 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<script id="v69-authoritative-build-marker">
+<style id="v70-release-polish">
+/* V70 — RELEASE POLISH: presentation/clarity only. Canonical V60/V62 save path is untouched. */
+:root{--v70-ink:#24364a;--v70-soft:#f5f9fc;--v70-gold:#ffd257}
+html{scroll-padding-top:calc(10px + env(safe-area-inset-top))}
+body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
+#v70ReleaseNote{margin:8px 0 12px;padding:9px 12px;border-radius:16px;background:linear-gradient(135deg,#f6fbff,#fff9e8);border:1px solid #e5edf3;color:#61758a;font-size:11px;font-weight:850;text-align:center}
+.v70-pet-next{display:block;margin-top:3px;font-size:10.5px;color:#6f8295;font-weight:850}
+.v70-end-note{margin-top:10px;padding:11px 12px;border-radius:15px;background:#f4faff;border:1px solid #dceaf4;line-height:1.45;font-weight:850;color:#3d5973}
+.v70-end-note.done{background:#eefaf1;border-color:#d4eedb;color:#34704a}
+#v69QuickStatus{cursor:pointer}
+@media(max-width:600px){
+ .wrap{padding-left:9px!important;padding-right:9px!important;padding-bottom:max(84px,calc(66px + env(safe-area-inset-bottom)))!important}
+ .card{padding:12px!important;margin-top:9px!important;border-radius:20px!important}
+ .header{gap:7px!important}.header h1{font-size:29px!important}.sub{line-height:1.35}
+ .nav{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}.nav button{min-height:58px!important;padding:8px 4px!important;font-size:13px!important}
+ .avatarStage{height:230px!important;min-height:230px!important;max-height:230px!important}
+ .avatarChoices{gap:6px!important}.avatarChoice{padding:5px!important}.avatarChoice img{max-height:88px!important}
+ .avatarStudio .bigBtn{position:static!important;margin-top:8px!important;min-height:54px!important}
+ #worldMap.world{gap:7px!important;padding:8px 7px 10px!important}
+ #worldMap .zone,#worldMap .v53-world-progress{height:218px!important;min-height:218px!important}
+ #worldMap .zone{padding:6px 5px 8px!important}
+ #worldMap .zoneArt{height:103px!important;min-height:103px!important;width:103px!important}
+ #worldMap .zoneTitle,#worldMap .zone b{line-height:1.13!important}
+ #worldMap .zoneProgress{min-height:42px!important}
+ #worldMap .miniText,#worldMap .v58-next{font-size:10.3px!important;line-height:1.18!important}
+ #worldMap .zone.active:after{top:6px!important;right:6px!important;font-size:9.5px!important;padding:4px 6px!important}
+ .arena{min-height:0!important}.battle{min-height:230px!important}.battle .avatarArt,.battle .bossArt{height:180px!important}
+ .stats{gap:6px!important}.stat{padding:7px 5px!important}.stat b{font-size:19px!important}
+ .quest{padding:10px!important}.questTitle{font-size:17px!important}.bigBtn{min-height:52px!important}
+ .summaryGrid{gap:7px!important}.summaryBox{min-height:76px!important;padding:9px!important}
+ #v69QuickStatus{margin:8px 0 10px!important;padding:8px 10px!important}
+}
+</style>
+<script id="v70-authoritative-release">
 (()=>{
- const BUILD='V69 • MOBILE CLARITY + UX POLISH';
- function apply(){
-   document.title='Habit Monster World V69';
-   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-   if(b)b.textContent=BUILD;
-   document.documentElement.dataset.hmwBuild='69-authoritative';
+ const BUILD='V70 • RELEASE POLISH + DATA SAFETY';
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
+ function mark(){
+   document.title='Habit Monster World V70';
+   document.documentElement.dataset.hmwBuild='70-release-polish';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
- addEventListener('pageshow',apply);
- addEventListener('hmw3d-render',()=>setTimeout(apply,220));
- document.addEventListener('click',()=>setTimeout(apply,260),true);
- setTimeout(apply,400);
+ function todayLogs(){try{return (S.logs||[]).filter(x=>x.date===dayKey())}catch(_){return []}}
+ function uniqueToday(){return [...new Set(todayLogs().map(x=>x.k).filter(Boolean))]}
+ function petHint(){
+   try{
+    const el=q('#petMiniText'); if(!el)return;
+    const xp=Number(S.pet?.xp)||0, next=xp<50?50:xp<120?120:xp<240?240:null;
+    let n=el.parentElement?.querySelector('.v70-pet-next');
+    if(!n){n=document.createElement('span');n.className='v70-pet-next';el.parentElement?.appendChild(n)}
+    n.textContent=next?`อีก ${Math.max(0,next-xp)} XP → Pet โต`:'Super Buddy ✨';
+   }catch(_){}
+ }
+ function dailyPriority(){
+   try{
+    const d=q('#dailySummary'); if(!d)return;
+    const boxes=qa('#dailySummary .summaryBox'); if(boxes.length<4)return;
+    const n=uniqueToday().length, count=todayLogs().length;
+    boxes[3].innerHTML=`✅ <b>${n}/7 ด่าน</b><small style="display:block;margin-top:3px;color:#71849a;font-weight:800">บันทึกรวม ${count} ครั้ง</small>`;
+    boxes[3].setAttribute('aria-label',`วันนี้ทำแล้ว ${n} จาก 7 ด่าน บันทึกรวม ${count} ครั้ง`);
+   }catch(_){}
+ }
+ function endDayInsight(){
+   try{
+    const host=q('#endDaySummary'); if(!host)return;
+    let n=q('#v70EndNote'); if(!n){n=document.createElement('div');n.id='v70EndNote';n.className='v70-end-note';host.appendChild(n)}
+    const done=uniqueToday(), missing=order.filter(k=>!done.includes(k));
+    n.classList.toggle('done',missing.length===0);
+    n.innerHTML=missing.length?`วันนี้ทำแล้ว <b>${done.length}/7 ด่าน</b><br><small>ยังไม่ได้ทำ: ${missing.map(k=>defs[k].title).join(' • ')}</small>`:`🎉 <b>วันนี้ครบ 7/7 ด่านแล้ว</b> พร้อมปิดวันได้เลย`;
+   }catch(_){}
+ }
+ function backupInfo(){
+   try{
+    const n=q('#backupInfo'); if(!n)return;
+    const has=!!localStorage.getItem('hmw26_model_backup');
+    n.innerHTML=`Game Build <b>V70</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>V70 ใช้ข้อมูลเดิมจาก V69 ต่อได้ ไม่รีเซ็ตดาว/Level/Streak</small>`;
+   }catch(_){}
+ }
+ function worldText(){
+   try{
+    qa('#worldMap .zone').forEach((z,i)=>{
+      const k=order[i],m=S.monsters[k]; if(!k||!m)return;
+      z.setAttribute('aria-label',`${defs[k].title} Level ${m.level} ${k===S.active?'กำลังเล่น':''}`);
+    });
+   }catch(_){}
+ }
+ function releaseNote(){
+   let n=q('#v70ReleaseNote'); if(n)return;
+   const h=q('.header'); if(!h)return;
+   n=document.createElement('div');n.id='v70ReleaseNote';n.textContent='V70 เน้นความชัดเจนบนมือถือ + รักษาข้อมูลเดิม + ไม่เปลี่ยนระบบบันทึกหลัก';h.insertAdjacentElement('afterend',n);
+ }
+ function run(){mark();releaseNote();petHint();dailyPriority();endDayInsight();backupInfo();worldText()}
+ const late=()=>setTimeout(run,380);
+ addEventListener('pageshow',late);addEventListener('hmw3d-render',late);document.addEventListener('click',late,true);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',late,{once:true});else late();
+ setTimeout(run,900);
 })();
 </script>
+
 </body>
 </html>
