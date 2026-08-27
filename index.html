@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=64"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=67"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -3183,15 +3183,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V67';
-    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
+    document.title='Habit Monster World V68';
+    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3295,7 +3295,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
           <small>Lv.${lv}${lv>=5?' • HERO':''}</small>
           <span class="v58-form">${lv>=5?'👑 HERO FORM':`ร่าง ${Math.min(5,lv)}/5`}</span>
           <span class="v58-mini"><i style="width:${pct}%"></i></span>
-          <span class="v58-next">${lv>=5?'Mastery ต่อได้':`อีก ${rem} ${defs[x].unit} → Lv.${lv+1}`}</span>
+          <span class="v58-next">${lv>=5?'Mastery ต่อได้':`${mm.progress||0}/${g} ${defs[x].unit} • อีก ${rem} ถึง Lv.${lv+1}`}</span>
         </div>`;
       }).join('');
       const wp=worldProgress();
@@ -3315,7 +3315,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
     q('#hpText').textContent=`${m.hp}/${maxHp(k)}`;
     q('#hpBar').style.width=Math.max(0,Math.min(100,m.hp/maxHp(k)*100))+'%';
     q('#progressText').textContent=`${m.progress||0}/${goal}`;
-    q('#progressUnit').textContent=`${defs[k].unit}สะสม`;
+    q('#progressUnit').textContent=`ความคืบหน้า • ${defs[k].unit}สะสม`;
     q('#monsterWins').textContent=m.wins||0;
     q('#pendingCount').textContent=S.pending.filter(x=>x.k===k).length;
     q('#petMiniText').textContent=S.pet.xp||0;
@@ -3491,13 +3491,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V67';
-    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
+    document.title='Habit Monster World V68';
+    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3599,16 +3599,16 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </script>
 
 
-<script id="v67-progression-mobile-ux">
+<script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V67';
-    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
+    document.title='Habit Monster World V68';
+    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
 
@@ -3661,22 +3661,38 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
     }
     const x=payload(action); if(!x)return false;
     const sig=action+'|'+JSON.stringify(x[1]); const now=Date.now();
-    if(busy || (sig===lastSig && now-lastAt<700))return false;
+    if(busy || (sig===lastSig && now-lastAt<900)){toast('กำลังบันทึกอยู่ กรุณารอสักครู่');return false;}
+    const beforeLevel=Number(S?.monsters?.[x[0]]?.level||1);
     busy=true; lastSig=sig; lastAt=now;
     try{
       if(S?.settings){S.settings.approval='trust';S.settings.cooldown=0;S.settings.dailyCap=0;}
       const ok=window.commitActivityV60(x[0],x[1]);
+      if(ok===false) return false;
       save(); render(); mark64();
-      return ok;
-    }catch(err){ console.error('V64 save error',err); toast('บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง'); return false; }
-    finally{setTimeout(()=>busy=false,120)}
+      const afterLevel=Number(S?.monsters?.[x[0]]?.level||beforeLevel);
+      const unit=(window.defs?.[x[0]]?.unit)||'';
+      if(window.v66Flash){
+        if(afterLevel>beforeLevel) window.v66Flash(`🌈 Level Up! Lv.${afterLevel}`);
+        else window.v66Flash(`✅ บันทึก +${x[1].amount} ${unit}`);
+      }
+      // Clear only free-entry fields after a successful save; keep useful defaults/selects.
+      const clearIds={reading:'qMinutes',morning:'qMorning',screen:'qScreen'};
+      const id=clearIds[action]; if(id){const el=$q('#'+id); if(el)el.value='';}
+      if(action==='messy') document.querySelectorAll('[data-messy]:checked').forEach(el=>el.checked=false);
+      return true;
+    }catch(err){ console.error('V67 save error',err); toast('บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง'); return false; }
+    finally{setTimeout(()=>busy=false,350)}
   }
   window.saveActivityV64=save64;
 
   // Capture at window level, before document-level handlers from older builds.
   window.addEventListener('click',e=>{
     const btn=e.target.closest?.('#questBox button[data-v60-action]'); if(!btn)return;
-    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); save64(btn.dataset.v60Action);
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    if(btn.disabled)return;
+    const oldText=btn.textContent; btn.disabled=true; btn.textContent='กำลังบันทึก…'; btn.classList.add('v67-saving');
+    const ok=save64(btn.dataset.v60Action);
+    setTimeout(()=>{ if(btn.isConnected){btn.disabled=false;btn.textContent=ok===false?oldText:'บันทึกแล้ว ✓';btn.classList.remove('v67-saving'); setTimeout(()=>{if(btn.isConnected)btn.textContent=oldText},700);} },380);
   },true);
 
   function boot(){mark64(); if(S?.settings){S.settings.approval='trust';S.settings.cooldown=0;S.settings.dailyCap=0;save();} render(); mark64();}
@@ -3734,11 +3750,11 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
 
   function buildMark(){
-    document.title='Habit Monster World V67';
-    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
+    document.title='Habit Monster World V68';
+    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
   }
@@ -3835,52 +3851,144 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v67-progression-mobile-ux-style">
-@media (max-width:600px){
- #worldMap.world{gap:9px!important;padding:9px!important}
- #worldMap .zone{min-height:238px!important;height:auto!important;padding:8px 7px 12px!important;overflow:hidden!important}
- #worldMap .zoneArt{height:132px!important;min-height:132px!important}
- #worldMap .zoneProgress{min-height:45px!important;padding:0 5px 3px!important}
- #worldMap .zoneProgress .miniText{display:block!important;line-height:1.25!important;white-space:normal!important;overflow-wrap:anywhere!important;font-size:11px!important}
- .avatarStage{height:285px!important;min-height:285px!important}
- .avatarStudio{gap:8px!important}
- #questBox input,#questBox select,#questBox button{min-height:44px}
+<style id="v67-progression-ux">
+/* V67 — progression clarity + mobile UX hardening. No storage schema changes. */
+#worldMap .zone{display:flex!important;flex-direction:column!important;align-items:center!important}
+#worldMap .zone .v58-next{margin-top:auto!important;min-height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1.2!important}
+#worldMap .zone .v58-form{white-space:nowrap!important}
+#questBox .bigBtn:disabled{opacity:.72!important;filter:saturate(.8);cursor:wait!important}
+#questBox .v67-saving{transform:none!important}
+.v67-progress-note{margin:8px 0 2px;padding:9px 11px;border-radius:14px;background:rgba(255,255,255,.72);font-size:12px;font-weight:800;color:#65788c;text-align:center}
+.v67-summary-note{margin-top:9px;padding:9px 11px;border-radius:14px;background:#eef8ff;border:1px solid #d9eaf7;color:#486780;font-size:12px;font-weight:850;text-align:center}
+.v67-delta{display:inline-flex;align-items:center;justify-content:center;margin-left:6px;padding:2px 7px;border-radius:999px;background:#eaf9ef;color:#2f8051;font-size:11px;font-weight:950}
+@media(max-width:600px){
+  .avatarStage{height:280px!important;min-height:280px!important}
+  #worldMap .zone{min-height:244px!important;padding:8px 7px 12px!important}
+  #worldMap .zoneArt{height:128px!important;min-height:128px!important}
+  #worldMap .zone b{min-height:38px;display:flex;align-items:center;justify-content:center;text-align:center}
+  #worldMap .v58-next{font-size:10.5px!important}
+  .avatarStudio .bigBtn{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:20}
+  input,select,textarea{font-size:16px!important}
+  .summaryGrid{gap:8px!important}
+  .summaryBox{min-height:88px!important}
 }
-#worldMap .zone.active{outline:3px solid rgba(255,177,52,.38)!important;outline-offset:-3px!important}
-.v67-progress-help{margin:7px 0 0;padding:9px 10px;border-radius:14px;background:#f4f8ff;color:#536a82;font-size:12px;font-weight:800;line-height:1.35}
 </style>
-<script id="v67-progression-mobile-ux-script">
+<script id="v67-progression-ux">
 (()=>{
- const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
- function mark(){
-  const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-  if(b)b.textContent=BUILD;
-  document.title='Habit Monster World V67';
-  document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
- }
- function unit(k){return ({diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'})[k]||'แต้ม'}
- function clarify(){
-  try{
-   const k=S.active,m=S.monsters[k],goal=typeof maxHp==='function'?maxHp(k):0;
-   const bar=document.getElementById('v66Sticky');
-   if(bar)bar.textContent=`👾 ${defs[k].title} · Lv.${m.level} | พลังนิสัย ⚡ ${m.hp}/${goal}`;
+  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const q=s=>document.querySelector(s);
+  const qa=s=>[...document.querySelectorAll(s)];
+
+  function mark(){
+    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V68';
+    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
+  }
+
+  function todayLogs(){
+    try{return (S.logs||[]).filter(x=>x.date===dayKey())}catch(_){return []}
+  }
+  function stageCount(){return new Set(todayLogs().map(x=>x.k).filter(Boolean)).size}
+
+  function clarifyArena(){
+    const arena=q('.arena'); if(!arena)return;
+    let n=q('#v67ProgressNote');
+    if(!n){n=document.createElement('div');n.id='v67ProgressNote';n.className='v67-progress-note';const hint=q('#nextLevelHint');hint?.after(n)}
+    try{
+      const k=S.active,m=S.monsters[k],goal=maxGoal(k),unit=defs[k].unit;
+      n.textContent=`⚡ พลังนิสัย = พลังต่อสู้ • ${m.progress||0}/${goal} ${unit} = ความคืบหน้าสู่ Level ถัดไป`;
+    }catch(_){n.textContent='⚡ พลังนิสัย และความคืบหน้า Level เป็นคนละค่า'}
+  }
+
+  function polishSummaries(){
+    const d=q('#dailySummary'),w=q('#weeklySummary');
+    if(d){
+      d.innerHTML=d.innerHTML.replace(/รายการ/g,'ครั้งที่บันทึก').replace(/กิจกรรม/g,'ครั้งที่บันทึก');
+      let n=d.querySelector('.v67-summary-note');
+      if(!n){n=document.createElement('div');n.className='v67-summary-note';d.appendChild(n)}
+      n.textContent=`วันนี้ทำแล้ว ${stageCount()}/${(window.order||[]).length||7} ด่าน • บันทึกรวม ${todayLogs().length} ครั้ง`;
+    }
+    if(w) w.innerHTML=w.innerHTML.replace(/active days/g,'วันมีกิจกรรม').replace(/วันมีกิจกรรม days/g,'วันมีกิจกรรม');
+  }
+
+  function inputHints(){
+    qa('#questBox input[type="number"]').forEach(el=>{el.inputMode='decimal'});
+    const r=q('#qMinutes');if(r){r.placeholder='เช่น 30';r.setAttribute('aria-label','จำนวนนาทีที่อ่านหรือทบทวน')}
+    const c=q('#qCount');if(c)c.setAttribute('aria-label','จำนวนข้อแบบฝึกหัด');
+  }
+
+  function mapA11y(){
+    qa('#worldMap .zone[data-stage]').forEach(z=>{
+      z.setAttribute('aria-pressed',z.classList.contains('active')?'true':'false');
+      z.setAttribute('aria-label',`${z.querySelector('b')?.textContent||'ด่าน'} ${z.querySelector('small')?.textContent||''}`.trim());
+    });
+  }
+
+  function decorate(){mark();clarifyArena();polishSummaries();inputHints();mapA11y()}
+  addEventListener('hmw3d-render',()=>requestAnimationFrame(decorate));
+  addEventListener('pageshow',decorate);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',decorate,{once:true});else decorate();
+
+  // Re-decorate after dynamic render cycles that do not emit the custom render event.
+  let t=0;
+  const mo=new MutationObserver(()=>{clearTimeout(t);t=setTimeout(decorate,40)});
+  document.addEventListener('DOMContentLoaded',()=>{const app=q('#app')||document.body;mo.observe(app,{childList:true,subtree:true})},{once:true});
+})();
+</script>
+
+
+<style id="v68-game-polish">
+.v68-progress-help{margin:8px 0 0;padding:9px 11px;border-radius:14px;background:rgba(255,255,255,.58);color:#50677e;font-size:12px;font-weight:800;line-height:1.35}
+.v68-saved{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:6px 10px;border-radius:999px;background:#eafff1;color:#278652;font-size:12px;font-weight:900;opacity:0;transform:translateY(3px);transition:.18s ease;pointer-events:none}
+.v68-saved.show{opacity:1;transform:none}
+#worldMap .zone.active{box-shadow:0 0 0 4px rgba(255,190,58,.28),0 10px 22px rgba(46,88,120,.10)!important}
+#worldMap .zone.active:after{content:"กำลังเล่น";position:absolute;top:8px;right:8px;padding:4px 7px;border-radius:999px;background:#ffd85c;color:#624b00;font-size:10px;font-weight:900;z-index:5}
+@media(max-width:600px){
+ .avatarStage{height:260px!important;min-height:260px!important;max-height:260px!important}
+ .avatarStage img{max-height:94%!important}
+ #worldMap.world{gap:8px!important;padding:9px 8px 11px!important}
+ #worldMap .zone,#worldMap .v53-world-progress{min-height:205px!important;height:205px!important}
+ #worldMap .zone{padding:6px 5px 7px!important}
+ #worldMap .zoneArt{height:108px!important;min-height:108px!important;width:108px!important}
+ #worldMap .zoneTitle{line-height:1.15!important}
+ #worldMap .zoneProgress{min-height:39px!important}
+ #worldMap .miniText{font-size:10.5px!important;line-height:1.2!important;white-space:normal!important}
+ .summaryGrid{gap:7px!important}.summaryBox{min-height:78px!important}
+}
+</style>
+<script id="v68-game-polish-script">
+(()=>{
+ const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+ const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
+ function st(){try{return window.S||S}catch(_){return null}}
+ function g(k){try{return typeof maxHp==='function'?Number(maxHp(k))||0:0}catch(_){return 0}}
+ function run(){
+  const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
+  document.title='Habit Monster World V68';
+  const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+  document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
+  document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
+  if(k&&m){
    const arena=document.querySelector('.arena');
    if(arena){
-    let n=document.getElementById('v67ProgressHelp');
-    if(!n){n=document.createElement('div');n.id='v67ProgressHelp';n.className='v67-progress-help';(arena.querySelector('.stats')||arena).insertAdjacentElement('afterend',n)}
-    n.textContent=`พลังนิสัย ⚡ ใช้ผ่าน Level ของมอนสเตอร์ • ยอดสะสม ${Number(m.total)||0} ${unit(k)} ใช้ติดตามนิสัยระยะยาว`;
+    let n=document.getElementById('v68ProgressHelp');
+    if(!n){n=document.createElement('div');n.id='v68ProgressHelp';n.className='v68-progress-help';(arena.querySelector('.stats')||arena).insertAdjacentElement('afterend',n)}
+    const total=Number(m.total)||0,u=UNITS[k]||'แต้ม',left=Math.max(0,g(k)-(Number(m.hp)||0));
+    n.textContent=`⚡ พลังนิสัยใช้ผ่าน Level • สะสมทั้งหมด ${total} ${u}${left?` • อีก ${left} ${u} ถึง Level ถัดไป`:' • พร้อมก้าวต่อแล้ว'}`;
    }
-  }catch(_){}
+   const ps=document.getElementById('petSpeech'),left=Math.max(0,g(k)-(Number(m.hp)||0));if(ps&&left>0&&left<=10)ps.textContent='อีกนิดเดียว เราจะโตแล้ว! ✨';
+  }
+  const d=document.getElementById('dailySummary');if(d)d.innerHTML=d.innerHTML.replace(/(\d+)\s*ครั้งที่บันทึก/g,'บันทึกแล้ว $1 ครั้ง');
+  const w=document.getElementById('weeklySummary');if(w)w.innerHTML=w.innerHTML.replace(/(\d+)\s*active days/g,'มีกิจกรรม $1 วัน').replace(/(\d+)\s*วันมีกิจกรรม/g,'มีกิจกรรม $1 วัน');
+  document.querySelectorAll('*').forEach(el=>{if(el.children.length===0&&/รับโบนัส.*\+10.*แล้ว/.test(el.textContent||''))el.textContent='✅ เป้าหมายวันนี้สำเร็จ • รับ ⭐ +10 แล้ว'});
+  document.querySelectorAll('input[type="number"]').forEach(i=>{if(!i.placeholder)i.placeholder='เช่น 5'});
+  document.querySelectorAll('button').forEach(btn=>{
+   if(!/บันทึก/.test(btn.textContent||'')||btn.dataset.v68Save)return;
+   btn.dataset.v68Save='1';const tag=document.createElement('span');tag.className='v68-saved';tag.textContent='✓ บันทึกแล้ว';btn.insertAdjacentElement('afterend',tag);
+   btn.addEventListener('click',()=>setTimeout(()=>{tag.classList.add('show');clearTimeout(tag._t);tag._t=setTimeout(()=>tag.classList.remove('show'),1800)},100),true);
+  });
  }
- function polish(){
-  const d=document.getElementById('dailySummary');if(d)d.innerHTML=d.innerHTML.replace(/(\d+)\s*กิจกรรม/g,'$1 ครั้งที่บันทึก');
-  const w=document.getElementById('weeklySummary');if(w)w.innerHTML=w.innerHTML.replace(/active days/g,'วันมีกิจกรรม');
-  const q=document.getElementById('qCount');if(q&&!q.placeholder)q.placeholder='เช่น 5';
-  const r=document.getElementById('qMinutes');if(r&&!r.placeholder)r.placeholder='เช่น 20';
- }
- function run(){mark();clarify();polish()}
- addEventListener('hmw3d-render',()=>setTimeout(run,0));
- addEventListener('pageshow',run);
+ addEventListener('pageshow',run);addEventListener('hmw3d-render',()=>setTimeout(run,0));document.addEventListener('click',()=>setTimeout(run,140),true);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
 })();
 </script>
