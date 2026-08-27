@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=73"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=77"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -1316,7 +1316,7 @@ input,select,button,textarea{min-height:44px;}
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V44</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V77 • GAMEPLAY + REWARD CLAIM</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -4135,12 +4135,12 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V75 • LIVE SYNC + COMPACT UI';
+ const BUILD='V77 • GAMEPLAY + REWARD CLAIM';
  function lock(){
-   document.title='Habit Monster World V75';
+   document.title='Habit Monster World V77';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
    if(b && b.textContent!==BUILD) b.textContent=BUILD;
-   document.documentElement.dataset.hmwBuild='71-version-lock';
+   document.documentElement.dataset.hmwBuild='77-version-lock';
  }
  const mo=new MutationObserver(()=>lock());
  function boot(){lock();const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)mo.observe(b,{childList:true,characterData:true,subtree:true});}
@@ -4814,6 +4814,13 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  addEventListener('pageshow',()=>{burst();const x=readPending();if(x)setTimeout(()=>showPending(x),180)});
  addEventListener('hmw3d-render',()=>setTimeout(burst,0));
  function bind(){const chest=q('#dailyChestBtn');if(chest)chest.onclick=window.claimChest;}
+ // V77 final authority: legacy renderers may refresh UI, but the visible build must never regress.
+ const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+ if(badge && !badge.__v77Lock){
+   const obs=new MutationObserver(()=>{if(badge.textContent!==BUILD)badge.textContent=BUILD;});
+   obs.observe(badge,{childList:true,characterData:true,subtree:true});
+   badge.__v77Lock=obs;
+ }
  bind();
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{bind();burst();const x=readPending();if(x)setTimeout(()=>showPending(x),220)},{once:true});else{bind();burst();const x=readPending();if(x)setTimeout(()=>showPending(x),220)}
 })();
