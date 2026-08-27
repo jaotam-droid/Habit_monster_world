@@ -3183,15 +3183,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
+  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V66';
-    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
+    document.title='Habit Monster World V67';
+    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3491,13 +3491,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
+  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V66';
-    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
+    document.title='Habit Monster World V67';
+    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3599,16 +3599,16 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </script>
 
 
-<script id="v66-mobile-polish-safe-save">
+<script id="v67-progression-mobile-ux">
 (()=>{
-  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
+  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V66';
-    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
+    document.title='Habit Monster World V67';
+    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
 
@@ -3734,11 +3734,11 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
+  const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
 
   function buildMark(){
-    document.title='Habit Monster World V66';
-    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
+    document.title='Habit Monster World V67';
+    document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
   }
@@ -3831,6 +3831,57 @@ input[type="number"]{font-size:18px}
     if(!b) return;
     setTimeout(()=>flash(),80);
   },false);
+})();
+</script>
+
+
+<style id="v67-progression-mobile-ux-style">
+@media (max-width:600px){
+ #worldMap.world{gap:9px!important;padding:9px!important}
+ #worldMap .zone{min-height:238px!important;height:auto!important;padding:8px 7px 12px!important;overflow:hidden!important}
+ #worldMap .zoneArt{height:132px!important;min-height:132px!important}
+ #worldMap .zoneProgress{min-height:45px!important;padding:0 5px 3px!important}
+ #worldMap .zoneProgress .miniText{display:block!important;line-height:1.25!important;white-space:normal!important;overflow-wrap:anywhere!important;font-size:11px!important}
+ .avatarStage{height:285px!important;min-height:285px!important}
+ .avatarStudio{gap:8px!important}
+ #questBox input,#questBox select,#questBox button{min-height:44px}
+}
+#worldMap .zone.active{outline:3px solid rgba(255,177,52,.38)!important;outline-offset:-3px!important}
+.v67-progress-help{margin:7px 0 0;padding:9px 10px;border-radius:14px;background:#f4f8ff;color:#536a82;font-size:12px;font-weight:800;line-height:1.35}
+</style>
+<script id="v67-progression-mobile-ux-script">
+(()=>{
+ const BUILD='V67 • PROGRESSION CLARITY + MOBILE UX';
+ function mark(){
+  const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+  if(b)b.textContent=BUILD;
+  document.title='Habit Monster World V67';
+  document.documentElement.dataset.hmwBuild='67-progression-mobile-ux';
+ }
+ function unit(k){return ({diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'})[k]||'แต้ม'}
+ function clarify(){
+  try{
+   const k=S.active,m=S.monsters[k],goal=typeof maxHp==='function'?maxHp(k):0;
+   const bar=document.getElementById('v66Sticky');
+   if(bar)bar.textContent=`👾 ${defs[k].title} · Lv.${m.level} | พลังนิสัย ⚡ ${m.hp}/${goal}`;
+   const arena=document.querySelector('.arena');
+   if(arena){
+    let n=document.getElementById('v67ProgressHelp');
+    if(!n){n=document.createElement('div');n.id='v67ProgressHelp';n.className='v67-progress-help';(arena.querySelector('.stats')||arena).insertAdjacentElement('afterend',n)}
+    n.textContent=`พลังนิสัย ⚡ ใช้ผ่าน Level ของมอนสเตอร์ • ยอดสะสม ${Number(m.total)||0} ${unit(k)} ใช้ติดตามนิสัยระยะยาว`;
+   }
+  }catch(_){}
+ }
+ function polish(){
+  const d=document.getElementById('dailySummary');if(d)d.innerHTML=d.innerHTML.replace(/(\d+)\s*กิจกรรม/g,'$1 ครั้งที่บันทึก');
+  const w=document.getElementById('weeklySummary');if(w)w.innerHTML=w.innerHTML.replace(/active days/g,'วันมีกิจกรรม');
+  const q=document.getElementById('qCount');if(q&&!q.placeholder)q.placeholder='เช่น 5';
+  const r=document.getElementById('qMinutes');if(r&&!r.placeholder)r.placeholder='เช่น 20';
+ }
+ function run(){mark();clarify();polish()}
+ addEventListener('hmw3d-render',()=>setTimeout(run,0));
+ addEventListener('pageshow',run);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
 })();
 </script>
 
