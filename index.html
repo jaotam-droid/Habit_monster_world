@@ -3183,15 +3183,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V65 • STORAGE FIX';
+  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V65';
-    document.documentElement.dataset.hmwBuild='65-storage-fix';
+    document.title='Habit Monster World V66';
+    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3491,13 +3491,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V65 • STORAGE FIX';
+  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V65';
-    document.documentElement.dataset.hmwBuild='65-storage-fix';
+    document.title='Habit Monster World V66';
+    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3599,16 +3599,16 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </script>
 
 
-<script id="v65-storage-fix">
+<script id="v66-mobile-polish-safe-save">
 (()=>{
-  const BUILD='V65 • STORAGE FIX';
+  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V65';
-    document.documentElement.dataset.hmwBuild='65-storage-fix';
+    document.title='Habit Monster World V66';
+    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
 
@@ -3682,6 +3682,155 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
   function boot(){mark64(); if(S?.settings){S.settings.approval='trust';S.settings.cooldown=0;S.settings.dailyCap=0;save();} render(); mark64();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
   addEventListener('pageshow',()=>{mark64();});
+})();
+</script>
+
+
+<style id="v66-mobile-polish">
+/* V66: visual/UX polish only. Keep V65 canonical storage/commit path intact. */
+@media (max-width:600px){
+  .avatarStage{
+    height:315px!important;
+    min-height:315px!important;
+  }
+  .avatarStudio{gap:10px!important}
+  .world{gap:10px!important;padding:10px!important}
+  .zone{
+    min-height:232px!important;
+    height:auto!important;
+    padding:8px 7px 13px!important;
+    overflow:hidden!important;
+  }
+  .zoneArt{
+    height:138px!important;
+    min-height:138px!important;
+  }
+  .zone b{line-height:1.18!important}
+}
+html{scroll-padding-top:16px}
+body{
+  padding-bottom:max(24px,env(safe-area-inset-bottom))!important;
+}
+input[type="number"]{font-size:18px}
+.v66-save-flash{
+  position:fixed;left:50%;bottom:max(82px,calc(env(safe-area-inset-bottom) + 64px));
+  transform:translateX(-50%) translateY(12px);
+  z-index:99999;background:#18344f;color:white;border-radius:999px;
+  padding:10px 16px;font-weight:900;box-shadow:0 10px 30px rgba(20,45,70,.25);
+  opacity:0;pointer-events:none;transition:.18s ease;white-space:nowrap
+}
+.v66-save-flash.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.v66-sticky{
+  position:sticky;top:max(6px,env(safe-area-inset-top));z-index:50;
+  margin:8px 0;padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);box-shadow:0 5px 18px rgba(37,70,103,.12);
+  font-weight:900;text-align:center;font-size:13px
+}
+.v66-closed-note{
+  margin-top:10px;padding:10px;border-radius:14px;background:#eef8f1;
+  text-align:center;font-weight:800;color:#34704a
+}
+</style>
+<script id="v66-mobile-polish">
+(()=>{
+  const BUILD='V66 • MOBILE POLISH + SAFE SAVE';
+
+  function buildMark(){
+    document.title='Habit Monster World V66';
+    document.documentElement.dataset.hmwBuild='66-mobile-polish-safe-save';
+    const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
+    if(badge) badge.textContent=BUILD;
+  }
+
+  function flash(msg='💾 บันทึกในเครื่องแล้ว'){
+    let n=document.getElementById('v66SaveFlash');
+    if(!n){
+      n=document.createElement('div');
+      n.id='v66SaveFlash'; n.className='v66-save-flash';
+      document.body.appendChild(n);
+    }
+    n.textContent=msg; n.classList.add('on');
+    clearTimeout(n._t); n._t=setTimeout(()=>n.classList.remove('on'),1200);
+  }
+  window.v66Flash=flash;
+
+  // Add a compact live status strip above the encounter.
+  function sticky(){
+    const map=document.getElementById('worldMap');
+    if(!map) return;
+    let bar=document.getElementById('v66Sticky');
+    if(!bar){
+      bar=document.createElement('div'); bar.id='v66Sticky'; bar.className='v66-sticky';
+      map.insertAdjacentElement('afterend',bar);
+    }
+    try{
+      const k=S.active,m=S.monsters[k];
+      const goal=(typeof maxHp==='function')?maxHp(k):0;
+      bar.textContent=`👾 ${defs[k].title} · Lv.${m.level}  |  ⚡ ${m.hp}/${goal}`;
+    }catch(e){}
+  }
+
+  // Improve summaries without changing stored data.
+  function polishSummary(){
+    const w=document.getElementById('weeklySummary');
+    if(w) w.innerHTML=w.innerHTML.replace(/active days/g,'วันมีกิจกรรม');
+    const d=document.getElementById('dailySummary');
+    if(d) d.innerHTML=d.innerHTML.replace(/รายการ/g,'กิจกรรม');
+  }
+
+  // Helpful numeric placeholder for screen time.
+  function inputs(){
+    const el=document.querySelector('#qScreenHours,input[id*="Screen"][type="number"],input[id*="screen"][type="number"]');
+    if(el && !el.placeholder) el.placeholder='เช่น 1.5';
+  }
+
+  // End Day confirmation + visibly lock the day after closing.
+  function endDayGuard(){
+    const b=document.getElementById('closeDayBtn');
+    if(!b || b.dataset.v66) return;
+    b.dataset.v66='1';
+    const old=b.onclick;
+    b.onclick=(e)=>{
+      try{
+        const d=(typeof dayKey==='function')?dayKey():null;
+        if(d && S.closedDays?.includes(d)){ flash('🌙 วันนี้ปิดวันแล้ว'); return false; }
+        if(!confirm('สรุปวันนี้และปิดวันใช่ไหม?')) return false;
+      }catch(_){}
+      const r=old ? old.call(b,e) : (typeof closeDay==='function' ? closeDay() : null);
+      setTimeout(()=>{flash('🌙 ปิดวันเรียบร้อย'); decorate();},0);
+      return r;
+    };
+  }
+
+  function closedNote(){
+    const host=document.getElementById('endDaySummary');
+    if(!host) return;
+    host.querySelector('.v66-closed-note')?.remove();
+    try{
+      const d=dayKey();
+      if(S.closedDays?.includes(d)){
+        host.insertAdjacentHTML('beforeend','<div class="v66-closed-note">🔒 สรุปวันนี้ถูกปิดวันแล้ว</div>');
+      }
+    }catch(_){}
+  }
+
+  function decorate(){
+    buildMark(); sticky(); polishSummary(); inputs(); endDayGuard(); closedNote();
+  }
+
+  // Observe renders from the existing app without replacing V65 storage logic.
+  addEventListener('hmw3d-render',()=>setTimeout(decorate,0));
+  addEventListener('pageshow',decorate);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',decorate,{once:true});
+  else decorate();
+
+  // Successful quest save feedback. V65 remains the source of truth.
+  addEventListener('click',e=>{
+    const b=e.target.closest?.('#questBox button[data-v60-action]');
+    if(!b) return;
+    setTimeout(()=>flash(),80);
+  },false);
 })();
 </script>
 
