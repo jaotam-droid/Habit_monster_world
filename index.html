@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=70"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=71"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -3183,14 +3183,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V71 • VERSION LOCK + UI SYNC';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V71';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3491,12 +3491,12 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V71 • VERSION LOCK + UI SYNC';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V71';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(S && S.settings){
       S.settings.dailyCap=0;
@@ -3601,13 +3601,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V71 • VERSION LOCK + UI SYNC';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V71';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3750,10 +3750,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V71 • VERSION LOCK + UI SYNC';
 
   function buildMark(){
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V71';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3875,13 +3875,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V71 • VERSION LOCK + UI SYNC';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V71';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3958,13 +3958,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+ const BUILD='V71 • VERSION LOCK + UI SYNC';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxHp==='function'?Number(maxHp(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V68';
+  document.title='Habit Monster World V71';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -3993,7 +3993,7 @@ input[type="number"]{font-size:18px}
 })();
 </script>
 
-<style id="v69-mobile-clarity">
+<style id="v71-version-lock">
 /* V69 — mobile layout + clarity only; canonical V60/V62 save/progression stays untouched */
 @media(max-width:600px){
  #worldMap .zone,#worldMap .v53-world-progress{height:auto!important;min-height:238px!important}
@@ -4011,13 +4011,13 @@ input[type="number"]{font-size:18px}
 .v69-toast{position:fixed;left:50%;bottom:max(76px,calc(env(safe-area-inset-bottom) + 58px));transform:translateX(-50%) translateY(8px);z-index:100000;padding:9px 15px;border-radius:999px;background:#18344f;color:#fff;font-weight:900;opacity:0;pointer-events:none;transition:.18s}
 .v69-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
-<script id="v69-mobile-clarity-script">
+<script id="v71-version-lock-script">
 (()=>{
- const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+ const BUILD='V71 • VERSION LOCK + UI SYNC';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
- function mark(){document.title='Habit Monster World V69';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='69-mobile-clarity'}
+ function mark(){document.title='Habit Monster World V71';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
  function goal(k){try{return typeof maxHp==='function'?Number(maxHp(k))||0:0}catch(_){return 0}}
  function toast(t){let n=q('#v69Toast');if(!n){n=document.createElement('div');n.id='v69Toast';n.className='v69-toast';document.body.appendChild(n)}n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),1100)}
  function status(){try{const map=q('#worldMap'),k=S.active,m=S.monsters[k];if(!map||!k||!m)return;let n=q('#v69QuickStatus');if(!n){n=document.createElement('div');n.id='v69QuickStatus';map.insertAdjacentElement('afterend',n)}const g=goal(k),left=Math.max(0,g-(Number(m.hp)||0)),u=UNITS[k]||'แต้ม';n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${m.hp}/${g}<span class="sub">${left?`อีก ${left} ${u} → Lv.${m.level+1}`:'พร้อมไป Level ถัดไป ✨'}</span>`;n.onclick=()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}}
@@ -4032,7 +4032,7 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v70-release-polish">
+<style id="v71-version-lock">
 /* V70 — RELEASE POLISH: presentation/clarity only. Canonical V60/V62 save path is untouched. */
 :root{--v70-ink:#24364a;--v70-soft:#f5f9fc;--v70-gold:#ffd257}
 html{scroll-padding-top:calc(10px + env(safe-area-inset-top))}
@@ -4067,12 +4067,12 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V70 • RELEASE POLISH + DATA SAFETY';
+ const BUILD='V71 • VERSION LOCK + UI SYNC';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
-   document.title='Habit Monster World V70';
-   document.documentElement.dataset.hmwBuild='70-release-polish';
+   document.title='Habit Monster World V71';
+   document.documentElement.dataset.hmwBuild='71-version-lock';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
  function todayLogs(){try{return (S.logs||[]).filter(x=>x.date===dayKey())}catch(_){return []}}
@@ -4108,7 +4108,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    try{
     const n=q('#backupInfo'); if(!n)return;
     const has=!!localStorage.getItem('hmw26_model_backup');
-    n.innerHTML=`Game Build <b>V70</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>V70 ใช้ข้อมูลเดิมจาก V69 ต่อได้ ไม่รีเซ็ตดาว/Level/Streak</small>`;
+    n.innerHTML=`Game Build <b>V71</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>V71 ใช้ข้อมูลเดิมต่อได้ ไม่รีเซ็ตดาว/Level/Streak</small>`;
    }catch(_){}
  }
  function worldText(){
@@ -4122,7 +4122,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function releaseNote(){
    let n=q('#v70ReleaseNote'); if(n)return;
    const h=q('.header'); if(!h)return;
-   n=document.createElement('div');n.id='v70ReleaseNote';n.textContent='V70 เน้นความชัดเจนบนมือถือ + รักษาข้อมูลเดิม + ไม่เปลี่ยนระบบบันทึกหลัก';h.insertAdjacentElement('afterend',n);
+   n=document.createElement('div');n.id='v70ReleaseNote';n.textContent='V71 ล็อกเลขเวอร์ชันให้ตรงกันทุกจุด + รักษาข้อมูลเดิม + ไม่เปลี่ยนระบบบันทึกหลัก';h.insertAdjacentElement('afterend',n);
  }
  function run(){mark();releaseNote();petHint();dailyPriority();endDayInsight();backupInfo();worldText()}
  const late=()=>setTimeout(run,380);
@@ -4132,5 +4132,21 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 })();
 </script>
 
+
+<script id="v71-version-lock">
+(()=>{
+ const BUILD='V71 • VERSION LOCK + UI SYNC';
+ function lock(){
+   document.title='Habit Monster World V71';
+   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+   if(b && b.textContent!==BUILD) b.textContent=BUILD;
+   document.documentElement.dataset.hmwBuild='71-version-lock';
+ }
+ const mo=new MutationObserver(()=>lock());
+ function boot(){lock();const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)mo.observe(b,{childList:true,characterData:true,subtree:true});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ addEventListener('pageshow',lock);addEventListener('hmw3d-render',()=>setTimeout(lock,0));
+})();
+</script>
 </body>
 </html>
