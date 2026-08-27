@@ -3183,14 +3183,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V69';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3491,12 +3491,12 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V69';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(S && S.settings){
       S.settings.dailyCap=0;
@@ -3601,13 +3601,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V69';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3750,10 +3750,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
 
   function buildMark(){
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V69';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3875,13 +3875,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+  const BUILD='V69 • MOBILE CLARITY + UX POLISH';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V68';
+    document.title='Habit Monster World V69';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3958,13 +3958,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V68 • GAME POLISH + PROGRESS SYNC';
+ const BUILD='V69 • MOBILE CLARITY + UX POLISH';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxHp==='function'?Number(maxHp(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V68';
+  document.title='Habit Monster World V69';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -4031,5 +4031,22 @@ input[type="number"]{font-size:18px}
 })();
 </script>
 
+
+<script id="v69-authoritative-build-marker">
+(()=>{
+ const BUILD='V69 • MOBILE CLARITY + UX POLISH';
+ function apply(){
+   document.title='Habit Monster World V69';
+   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+   if(b)b.textContent=BUILD;
+   document.documentElement.dataset.hmwBuild='69-authoritative';
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
+ addEventListener('pageshow',apply);
+ addEventListener('hmw3d-render',()=>setTimeout(apply,220));
+ document.addEventListener('click',()=>setTimeout(apply,260),true);
+ setTimeout(apply,400);
+})();
+</script>
 </body>
 </html>
