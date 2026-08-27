@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=72"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=73"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -4296,6 +4296,182 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function run(){mark();repairState();hideCapSetting();wireImport();backupInfo();todayStages();petHint();stageAria()}
  const later=()=>setTimeout(run,120);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{run();setTimeout(run,500)},{once:true});else{run();setTimeout(run,500)}
+ addEventListener('pageshow',later);addEventListener('hmw3d-render',later);document.addEventListener('click',later,true);
+})();
+</script>
+
+
+<style id="v73-stabilization-polish">
+/* V73 — stabilization + compact mobile polish. No save-schema change. */
+#v70ReleaseNote{display:none!important}
+.v67-summary-note{display:none!important}
+#v72ImportNote{font-size:11px!important}
+.header{padding:18px 20px!important}
+.header h1{margin-bottom:4px!important}
+.header .subtitle{margin-top:4px!important}
+.header + .card .note{font-size:13px!important;line-height:1.45!important}
+#worldMap .zone{min-height:205px!important}
+#worldMap .zoneArt{height:112px!important;min-height:112px!important}
+#worldMap .v58-next{min-height:26px!important}
+.avatarStage{height:285px!important;min-height:285px!important}
+#v72TodayStages{margin-top:10px!important}
+.v72-stage-row{gap:5px!important}
+.v72-stage-chip{padding:5px 8px!important;font-size:10.5px!important}
+#v73UnifiedProgress{margin:8px 0 4px;padding:10px 12px;border-radius:15px;background:rgba(255,255,255,.78);border:1px solid #dcebf5;text-align:center;font-size:12px;font-weight:900;color:#526b82}
+#v73UnifiedProgress b{font-size:14px;color:#263f59}
+#v73PetBar{height:8px;border-radius:999px;background:#e8eef3;overflow:hidden;margin-top:5px}
+#v73PetBar>i{display:block;height:100%;background:linear-gradient(90deg,#8b79f5,#55c99a);border-radius:inherit}
+@media(max-width:600px){
+  .wrap{padding-left:9px!important;padding-right:9px!important}
+  .header{padding:14px 16px!important;border-radius:24px!important}
+  .header h1{font-size:30px!important;line-height:1.05!important}
+  .buildBadge,.versionBadge,.version-badge,#versionBadge{font-size:13px!important}
+  .status{gap:7px!important}
+  .status .pill{padding:8px 11px!important}
+  #worldMap{gap:7px!important}
+  #worldMap .zone{min-height:192px!important;padding:6px 5px 8px!important}
+  #worldMap .zoneArt{height:98px!important;min-height:98px!important}
+  #worldMap .zone b{font-size:15px!important;min-height:34px!important}
+  #worldMap .zone small{font-size:11px!important}
+  .avatarStage{height:255px!important;min-height:255px!important}
+  .avatarStage svg{max-height:100%!important}
+  .summaryBox{min-height:74px!important;padding:8px!important}
+  .summaryBox b{font-size:24px!important}
+  .quest{padding:9px!important}
+  .bigBtn{min-height:48px!important}
+}
+</style>
+<script id="v73-authoritative-runtime">
+(()=>{
+ 'use strict';
+ const BUILD='V73 • STABILIZATION + POLISH';
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ let busy=false;
+ function num(v){v=Number(v);return Number.isFinite(v)?v:0}
+ function toast(t){ if(typeof window.v66Flash==='function')return window.v66Flash(t); try{window.toast?.(t)}catch(_){} }
+ function today(){try{return (S.logs||[]).filter(x=>x.date===dayKey())}catch(_){return []}}
+ function mark(){
+   document.title='Habit Monster World V73';
+   document.documentElement.dataset.hmwBuild='73-stabilization-polish';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+   q('#v70ReleaseNote')?.remove();
+ }
+ function snapshotUpgrade(){
+   try{
+     const key='hmw_v73_preupgrade_once';
+     if(!localStorage.getItem(key)){
+       localStorage.setItem('hmw_v73_preupgrade_snapshot',JSON.stringify(S));
+       localStorage.setItem(key,new Date().toISOString());
+     }
+   }catch(_){}
+ }
+ function repair(){
+   try{
+     if(!S||typeof S!=='object')return;
+     S.settings=S.settings||{};S.settings.dailyCap=0;S.settings.cooldown=0;
+     if(!order.includes(S.active))S.active=order[0];
+     S.logs=Array.isArray(S.logs)?S.logs:[];
+     S.stars=Math.max(0,num(S.stars));S.streak=Math.max(0,num(S.streak));
+     order.forEach(k=>{
+       const m=S.monsters?.[k];if(!m)return;
+       m.level=Math.max(1,Math.floor(num(m.level)||1));
+       m.progress=Math.max(0,num(m.progress));
+       m.wins=Math.max(0,Math.floor(num(m.wins)));
+       if(!m.dailyStars||typeof m.dailyStars!=='object')m.dailyStars={};
+       m.dailyStars[dayKey()]=today().filter(x=>x.k===k).reduce((a,x)=>a+Math.max(0,num(x.stars)),0);
+     });
+     save();
+   }catch(e){console.warn('V73 repair',e)}
+ }
+ // One progression system: activity progress is the only Level trigger.
+ function commit(k,p){
+   if(busy)return false;
+   busy=true;
+   try{
+     if(!order.includes(k)||!p)return false;
+     const amount=Math.max(0,num(p.amount)),stars=Math.max(0,num(p.stars));
+     if(amount<=0){toast('กรอกจำนวนให้มากกว่า 0');return false}
+     if(typeof snapshot==='function')snapshot(p.label||defs[k].title);
+     if(typeof registerDay==='function')registerDay();
+     if(typeof ensureDaily==='function')ensureDaily();
+     const m=S.monsters[k],d=dayKey(),goal=maxGoal(k);
+     m.lastSubmit=Date.now();
+     m.progress=Math.max(0,num(m.progress))+amount;
+     m.history=Array.isArray(m.history)?m.history:[];
+     m.history.unshift(p.label||defs[k].title);
+     S.stars=Math.max(0,num(S.stars))+stars;
+     S.totals=S.totals||{};S.totals[k]=Math.max(0,num(S.totals[k]))+amount;
+     S.logs=Array.isArray(S.logs)?S.logs:[];
+     S.logs.push({date:d,k,label:p.label||defs[k].title,amount,stars});
+     S.pet=S.pet||{xp:0,friendship:0};
+     S.pet.xp=Math.max(0,num(S.pet.xp))+5;
+     S.pet.friendship=Math.min(100,Math.max(0,num(S.pet.friendship))+1);
+     if(['diligent','reading','homework'].includes(k)){ensureDaily();S.daily.done[k]=true}
+     m.dailyStars=m.dailyStars&&typeof m.dailyStars==='object'?m.dailyStars:{};
+     m.dailyStars[d]=today().filter(x=>x.k===k).reduce((a,x)=>a+Math.max(0,num(x.stars)),0);
+     let levelup=false;
+     if(m.progress>=goal){
+       m.wins=Math.max(0,num(m.wins))+1;
+       m.level=Math.max(1,num(m.level))+1;
+       m.progress=0;
+       m.hp=maxHp(k); // retained only for backward-compatible save shape.
+       S.stars+=25;levelup=true;
+     }
+     if(typeof checkPetBonus==='function')checkPetBonus();
+     if(save()===false)throw new Error('save failed');
+     render();
+     toast(levelup?`🌈 ${defs[k].name} ไป Lv.${m.level}`:`✅ บันทึกแล้ว • ⭐ +${stars}`);
+     return true;
+   }catch(e){console.error('V73 commit',e);toast('บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง');return false}
+   finally{setTimeout(()=>busy=false,300)}
+ }
+ window.commitActivityV60=commit;
+
+ function unifiedProgress(){
+   try{
+     const k=S.active,m=S.monsters[k],goal=maxGoal(k),cur=Math.max(0,num(m.progress)),pct=Math.min(100,cur/goal*100),left=Math.max(0,goal-cur),unit=defs[k].unit;
+     // Re-purpose the old battle HP display so it cannot contradict Level progress.
+     const ht=q('#hpText'),hb=q('#hpBar');if(ht)ht.textContent=`${cur}/${goal}`;if(hb)hb.style.width=pct+'%';
+     const hint=q('#nextLevelHint');if(hint)hint.textContent=m.level>=5?`👑 HERO FORM • ${cur}/${goal} ${unit}`:`อีก ${left} ${unit} ถึง Lv.${m.level+1}`;
+     const old=q('#v67ProgressNote');if(old)old.style.display='none';
+     let n=q('#v73UnifiedProgress');if(!n){n=document.createElement('div');n.id='v73UnifiedProgress';hint?.after(n)}
+     if(n)n.innerHTML=`<b>${cur}/${goal} ${unit}</b> • ความคืบหน้า Level ${m.level} → ${m.level+1}`;
+     const s=q('#v66Sticky');if(s)s.textContent=`👾 ${defs[k].title} · Lv.${m.level} • ${cur}/${goal} ${unit}`;
+     // World cards: same canonical progress everywhere.
+     qa('#worldMap .zone').forEach((z,i)=>{
+       const x=order[i],mm=S.monsters[x];if(!x||!mm)return;
+       const g=maxGoal(x),c=Math.max(0,num(mm.progress)),rem=Math.max(0,g-c);
+       const next=z.querySelector('.v58-next');
+       if(next)next.textContent=mm.level>=5?`${c}/${g} ${defs[x].unit} • Mastery`:`${c}/${g} ${defs[x].unit} • อีก ${rem} ถึง Lv.${mm.level+1}`;
+     });
+   }catch(_){}
+ }
+ function compactSummary(){
+   try{
+     q('#dailySummary .v67-summary-note')?.remove();
+     const n=q('#v72TodayStages');if(n){
+       const logs=today(),done=new Set(logs.map(x=>x.k).filter(Boolean)),stars=logs.reduce((a,x)=>a+Math.max(0,num(x.stars)),0);
+       n.innerHTML=`<b>วันนี้ ${done.size}/7 ด่าน • ⭐ +${stars}</b><div class="v72-stage-row">${order.map(k=>`<span class="v72-stage-chip ${done.has(k)?'done':''}">${done.has(k)?'✓':'○'} ${defs[k].title}</span>`).join('')}</div>`;
+     }
+   }catch(_){}
+ }
+ function pet(){
+   try{
+     const xp=Math.max(0,num(S.pet?.xp)),next=xp<50?50:xp<120?120:xp<240?240:null;
+     const el=q('#petMiniText');if(!el)return;
+     let n=el.parentElement?.querySelector('.v72-pet-progress');if(!n){n=document.createElement('span');n.className='v72-pet-progress';el.parentElement?.appendChild(n)}
+     if(!next){n.innerHTML=`Pet: ${xp} XP • Super Buddy ✨`;return}
+     const pct=Math.min(100,xp/next*100);
+     n.innerHTML=`Pet ${xp}/${next} XP • อีก ${next-xp} XP จะโต<div id="v73PetBar"><i style="width:${pct}%"></i></div>`;
+   }catch(_){}
+ }
+ function simplifyTop(){
+   const note=q('.header + .card .note');
+   if(note)note.innerHTML='<b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับวันละครั้ง • <b>🍃 ใบพัก</b> ช่วยรักษา Streak เมื่อเว้น 1 วัน';
+ }
+ function run(){mark();snapshotUpgrade();repair();simplifyTop();unifiedProgress();compactSummary();pet()}
+ const later=()=>setTimeout(run,160);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{run();setTimeout(run,600)},{once:true});else{run();setTimeout(run,600)}
  addEventListener('pageshow',later);addEventListener('hmw3d-render',later);document.addEventListener('click',later,true);
 })();
 </script>
