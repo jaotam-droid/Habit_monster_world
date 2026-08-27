@@ -3183,14 +3183,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+  const BUILD='V75 • LIVE SYNC + COMPACT UI';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V74';
+    document.title='Habit Monster World V75';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3491,12 +3491,12 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+  const BUILD='V75 • LIVE SYNC + COMPACT UI';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V74';
+    document.title='Habit Monster World V75';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(S && S.settings){
       S.settings.dailyCap=0;
@@ -3601,13 +3601,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+  const BUILD='V75 • LIVE SYNC + COMPACT UI';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V74';
+    document.title='Habit Monster World V75';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3750,10 +3750,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+  const BUILD='V75 • LIVE SYNC + COMPACT UI';
 
   function buildMark(){
-    document.title='Habit Monster World V74';
+    document.title='Habit Monster World V75';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3875,13 +3875,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+  const BUILD='V75 • LIVE SYNC + COMPACT UI';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V74';
+    document.title='Habit Monster World V75';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3958,13 +3958,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V74';
+  document.title='Habit Monster World V75';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -4013,11 +4013,11 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v71-version-lock-script">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
- function mark(){document.title='Habit Monster World V74';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
+ function mark(){document.title='Habit Monster World V75';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
  function goal(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function toast(t){let n=q('#v69Toast');if(!n){n=document.createElement('div');n.id='v69Toast';n.className='v69-toast';document.body.appendChild(n)}n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),1100)}
  function status(){try{const map=q('#worldMap'),k=S.active,m=S.monsters[k];if(!map||!k||!m)return;let n=q('#v69QuickStatus');if(!n){n=document.createElement('div');n.id='v69QuickStatus';map.insertAdjacentElement('afterend',n)}const g=goal(k),p=Number(m.progress)||0,left=Math.max(0,g-p),u=UNITS[k]||'แต้ม';n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${p}/${g}<span class="sub">${left?`อีก ${left} ${u} → Lv.${m.level+1}`:'พร้อมไป Level ถัดไป ✨'}</span>`;n.onclick=()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}}
@@ -4067,11 +4067,11 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
-   document.title='Habit Monster World V74';
+   document.title='Habit Monster World V75';
    document.documentElement.dataset.hmwBuild='71-version-lock';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4135,9 +4135,9 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  function lock(){
-   document.title='Habit Monster World V74';
+   document.title='Habit Monster World V75';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
    if(b && b.textContent!==BUILD) b.textContent=BUILD;
    document.documentElement.dataset.hmwBuild='71-version-lock';
@@ -4170,7 +4170,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v72-authoritative-runtime">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const BACKUP_KEY='hmw26_model_backup';
  const PREIMPORT_KEY='hmw_v72_pre_import';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -4180,7 +4180,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  let commitBusy=false,lastCommitSig='',lastCommitAt=0;
 
  function mark(){
-   document.title='Habit Monster World V74';
+   document.title='Habit Monster World V75';
    document.documentElement.dataset.hmwBuild='72-reliability-progression';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4343,13 +4343,13 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v73-authoritative-ux">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const safe=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function todayKey(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
  function todayLogs(){try{return (S.logs||[]).filter(x=>x&&x.date===todayKey())}catch(_){return []}}
  function mark(){
-   document.title='Habit Monster World V74';
+   document.title='Habit Monster World V75';
    document.documentElement.dataset.hmwBuild='73-stability-mobile-ux';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🛡️ STABLE SAVE + MOBILE UX • V73';
@@ -4424,14 +4424,14 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v74-authoritative-consistency">
 (()=>{
- const BUILD='V74 • CONSISTENCY + FINAL POLISH';
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function mark(){
-   document.title='Habit Monster World V74';
+   document.title='Habit Monster World V75';
    document.documentElement.dataset.hmwBuild='74-consistency-final-polish';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
-   const st=q('#threeStatus');if(st)st.textContent='✨ CONSISTENT PROGRESS + MOBILE POLISH • V74';
+   const st=q('#threeStatus');if(st)st.textContent='✨ LIVE SYNC + COMPACT UI • V75';
  }
  function activeData(){
    try{const k=order.includes(S.active)?S.active:order[0],m=S.monsters[k];return {k,m,goal:maxGoal(k),hpGoal:maxHp(k),unit:defs[k].unit}}catch(_){return null}
@@ -4483,6 +4483,125 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{run();setTimeout(run,600)},{once:true});else{run();setTimeout(run,600)}
  addEventListener('pageshow',late);addEventListener('hmw3d-render',late);document.addEventListener('click',late,true);
  const app=q('#app')||document.body;if(app)new MutationObserver(late).observe(app,{childList:true,subtree:true});
+})();
+</script>
+
+
+
+<style id="v75-live-sync-compact-ui">
+/* V75 — live-sync + compact mobile UI. Storage schema/progression formulas untouched. */
+#v66Sticky{display:none!important}
+.v67-summary-note{display:none!important}
+#v75SyncStamp{display:none!important}
+#worldMap .zone.v73-done:before{
+  content:"✓ ทำแล้ววันนี้"!important;
+  top:11px!important;left:9px!important;right:auto!important;
+  padding:4px 7px!important;border:1px solid rgba(85,174,116,.20)!important;
+  background:rgba(239,252,243,.96)!important;color:#2f8051!important;
+  box-shadow:0 4px 10px rgba(47,128,81,.10)!important;
+  line-height:1!important;white-space:nowrap!important;
+}
+#v69QuickStatus{position:relative!important;z-index:3}
+#v75DailyStageChips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#v75DailyStageChips span{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#eaf9ef;color:#2f8051;font-size:10.5px;font-weight:900}
+@media(max-width:600px){
+  .avatarStage{height:215px!important;min-height:215px!important;max-height:215px!important}
+  .avatarChoice{min-height:98px!important;padding:4px!important}
+  .avatarChoice img{max-height:76px!important}
+  #worldMap.world{gap:7px!important;padding:8px 7px 9px!important}
+  #worldMap .zone,#worldMap .v53-world-progress{height:190px!important;min-height:190px!important}
+  #worldMap .zone{padding:7px 5px 6px!important;overflow:hidden!important}
+  #worldMap .zoneArt{height:92px!important;min-height:92px!important;width:92px!important}
+  #worldMap .zone b{min-height:30px!important;font-size:15px!important;line-height:1.08!important}
+  #worldMap .zone small{font-size:10.5px!important;line-height:1.05!important}
+  #worldMap .v58-form{font-size:9.2px!important;padding:2px 6px!important;margin-top:2px!important}
+  #worldMap .v58-mini{height:4px!important;margin:3px 8px 1px!important}
+  #worldMap .v58-next{min-height:24px!important;font-size:9.5px!important;line-height:1.12!important;margin-top:2px!important}
+  #worldMap .zone.active:after{top:7px!important;right:6px!important;font-size:9px!important;padding:4px 6px!important}
+  #worldMap .zone.v73-done:before{top:8px!important;left:6px!important;font-size:8.7px!important;padding:3px 6px!important}
+  #v69QuickStatus{margin:7px 0 9px!important;padding:8px 9px!important;font-size:11.6px!important}
+  #v69QuickStatus .sub{font-size:10.2px!important}
+  .battle{min-height:205px!important}
+  .battle .avatarArt,.battle .bossArt{height:158px!important;min-height:158px!important}
+  #v74ArenaLegend{margin-top:6px!important;padding:7px 8px!important;font-size:10.5px!important}
+  #v72TodayStages{padding:9px 10px!important;margin-top:8px!important}
+}
+</style>
+<script id="v75-authoritative-live-sync">
+(()=>{
+ const BUILD='V75 • LIVE SYNC + COMPACT UI';
+ const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+ const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
+ let syncing=false, timers=[];
+ function current(){
+   try{const k=order.includes(S.active)?S.active:order[0],m=S.monsters[k];return {k,m,goal:maxGoal(k),hpGoal:maxHp(k),unit:defs[k].unit||'แต้ม'}}catch(_){return null}
+ }
+ function mark(){
+   document.title='Habit Monster World V75';
+   document.documentElement.dataset.hmwBuild='75-live-sync-compact-ui';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+   const st=q('#threeStatus');if(st)st.textContent='🔄 LIVE SYNC + COMPACT UI • V75';
+   q('#v66Sticky')?.remove();
+ }
+ function arena(){
+   const d=current();if(!d)return;const {k,m,goal,hpGoal,unit}=d,p=num(m.progress),hp=num(m.hp),left=Math.max(0,goal-p);
+   const ht=q('#hpText');if(ht)ht.textContent=`${hp}/${hpGoal}`;
+   const hb=q('#hpBar');if(hb)hb.style.width=Math.max(0,Math.min(100,hpGoal?hp/hpGoal*100:0))+'%';
+   const pt=q('#progressText');if(pt)pt.textContent=`${p}/${goal}`;
+   const pu=q('#progressUnit');if(pu)pu.textContent=`⚡ ความคืบหน้า Level • ${unit}`;
+   const nh=q('#nextLevelHint');if(nh)nh.textContent=m.level>=5?'👑 HERO FORM — สะสม Mastery ต่อได้':`อีก ${left} ${unit} ถึง Lv.${m.level+1}`;
+   let legend=q('#v74ArenaLegend');const stats=q('.arena .stats');
+   if(stats&&!legend){legend=document.createElement('div');legend.id='v74ArenaLegend';stats.insertAdjacentElement('afterend',legend)}
+   if(legend)legend.innerHTML=`💜 <b>${hp}/${hpGoal}</b> = พลังมอนสเตอร์ที่เหลือ &nbsp;•&nbsp; ⚡ <b>${p}/${goal} ${unit}</b> = ความคืบหน้า Level`;
+ }
+ function quick(){
+   const d=current();if(!d)return;const {k,m,goal,unit}=d,p=num(m.progress),left=Math.max(0,goal-p);
+   let n=q('#v69QuickStatus'),map=q('#worldMap');if(!n&&map){n=document.createElement('div');n.id='v69QuickStatus';map.insertAdjacentElement('afterend',n)}
+   if(n){n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${p}/${goal}<span class="sub">${m.level>=5?'HERO FORM • สะสม Mastery ต่อได้':`อีก ${left} ${unit} → Lv.${m.level+1}`}</span>`;n.onclick=()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'})}
+   q('#v66Sticky')?.remove();
+ }
+ function pet(){
+   if(!S?.pet)return;const el=q('#petMiniText');if(!el)return;const xp=num(S.pet.xp),next=xp<50?50:xp<120?120:xp<240?240:null;
+   el.textContent=next?`${xp}/${next}`:`${xp}`;
+   const stat=el.closest('.stat')||el.parentElement;if(!stat)return;
+   qa('.v70-pet-next,.v72-pet-progress,.v73-pet-wrap').forEach(x=>x.remove());
+   let h=q('#v74PetHint');if(!h){h=document.createElement('small');h.id='v74PetHint';stat.appendChild(h)}
+   h.textContent=next?`อีก ${Math.max(0,next-xp)} XP จะโต`:'Super Buddy ✨';
+ }
+ function world(){
+   let logs=[];try{logs=(S.logs||[]).filter(x=>x&&x.date===dayKey())}catch(_){}const done=new Set(logs.map(x=>x.k).filter(Boolean));
+   qa('#worldMap .zone[data-stage]').forEach(z=>{const k=z.dataset.stage,m=S.monsters[k];if(!m)return;const goal=maxGoal(k),p=num(m.progress),left=Math.max(0,goal-p);
+     z.classList.toggle('v73-done',done.has(k));
+     const lv=z.querySelector('small');if(lv)lv.textContent=`Lv.${m.level}${m.level>=5?' • HERO':''}`;
+     const form=z.querySelector('.v58-form');if(form)form.textContent=m.level>=5?'👑 HERO FORM':`วิวัฒนาการ ${Math.min(5,m.level)}/5`;
+     const bar=z.querySelector('.v58-mini i');if(bar)bar.style.width=Math.max(0,Math.min(100,goal?p/goal*100:0))+'%';
+     const next=z.querySelector('.v58-next');if(next)next.textContent=m.level>=5?'Mastery ต่อได้':`${p}/${goal} ${defs[k].unit} • อีก ${left} ถึง Lv.${m.level+1}`;
+     z.classList.toggle('active',k===S.active);
+   });
+ }
+ function daily(){
+   const d=q('#dailySummary');if(!d)return;let logs=[];try{logs=(S.logs||[]).filter(x=>x&&x.date===dayKey())}catch(_){}
+   const done=[...new Set(logs.map(x=>x.k).filter(Boolean))],stars=logs.reduce((a,x)=>a+num(x.stars),0);
+   const boxes=qa('#dailySummary .summaryBox');
+   if(boxes[3])boxes[3].innerHTML=`✅ <b>${done.length}/7 ด่าน</b><small style="display:block;margin-top:3px;color:#71849a;font-weight:800">⭐ +${stars} วันนี้</small>`;
+   qa('#dailySummary .v67-summary-note').forEach(x=>x.remove());
+   let n=q('#v72TodayStages');if(!n){n=document.createElement('div');n.id='v72TodayStages';d.appendChild(n)}
+   n.innerHTML=`<b>บันทึกรวม ${logs.length} ครั้ง</b><div id="v75DailyStageChips">${done.map(k=>`<span>✓ ${defs[k].title}</span>`).join('')}</div>`;
+ }
+ function sync(){
+   if(syncing)return;syncing=true;
+   try{mark();world();quick();arena();pet();daily()}catch(e){console.warn('V75 sync skipped',e)}finally{syncing=false}
+ }
+ function burst(){timers.forEach(clearTimeout);timers=[];sync();requestAnimationFrame(sync);[60,180,420,900].forEach(ms=>timers.push(setTimeout(sync,ms)))}
+ // Wrap the canonical commit so every successful activity pushes one synchronized UI state.
+ if(typeof window.commitActivityV60==='function'&&!window.commitActivityV60.__v75){
+   const base=window.commitActivityV60;
+   const wrapped=function(...args){const out=base.apply(this,args);burst();return out};wrapped.__v75=true;window.commitActivityV60=wrapped;
+ }
+ // Stage switches and legacy render passes can still rebuild the DOM; reassert V75 after them.
+ document.addEventListener('click',e=>{if(e.target.closest?.('#worldMap .zone[data-stage],#questBox button[data-v60-action]'))setTimeout(burst,0)},true);
+ addEventListener('pageshow',burst);addEventListener('hmw3d-render',()=>setTimeout(burst,0));
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{burst();setTimeout(burst,700)},{once:true});else{burst();setTimeout(burst,700)}
 })();
 </script>
 
