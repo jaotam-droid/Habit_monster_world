@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=63"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=64"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -3183,15 +3183,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V63 • CACHE RESET + UNIFIED SAVE';
+  const BUILD='V64 • DIRECT SAVE FIX';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V63';
-    document.documentElement.dataset.hmwBuild='63-cache-reset-unified-save';
+    document.title='Habit Monster World V64';
+    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3491,13 +3491,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V63 • CACHE RESET + UNIFIED SAVE';
+  const BUILD='V64 • DIRECT SAVE FIX';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V63';
-    document.documentElement.dataset.hmwBuild='63-cache-reset-unified-save';
+    document.title='Habit Monster World V64';
+    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3595,6 +3595,93 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
   function boot(){mark62();save();render();mark62();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
   addEventListener('pageshow',()=>{mark62();if(S?.settings){S.settings.dailyCap=0;S.settings.cooldown=0;S.settings.approval='trust';}});
+})();
+</script>
+
+
+<script id="v64-direct-save-fix">
+(()=>{
+  const BUILD='V64 • DIRECT SAVE FIX';
+  const $q=s=>document.querySelector(s);
+  let busy=false,lastSig='',lastAt=0;
+
+  function mark64(){
+    const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V64';
+    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
+    if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
+  }
+
+  function payload(action){
+    if(action==='diligent'){
+      const n=Number($q('#qCount')?.value); if(!(n>=1)){toast('ใส่จำนวนข้อ');return null;}
+      return ['diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`}];
+    }
+    if(action==='reading'){
+      const n=Number($q('#qMinutes')?.value); if(!(n>=1)){toast('ใส่นาที');return null;}
+      return ['reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`}];
+    }
+    if(action==='homework'){
+      const n=Number($q('#qHomework')?.value); if(!(n>=1)){toast('เลือกจำนวนงาน');return null;}
+      return ['homework',{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`}];
+    }
+    if(action==='messy'){
+      const cs=[...document.querySelectorAll('[data-messy]:checked')];
+      const names=cs.map(x=>S.messyTasks[+x.dataset.messy]); if(!names.length){toast('ติ๊กอย่างน้อย 1 งาน');return null;}
+      const n=names.length; return ['messy',{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(' • ')}`}];
+    }
+    if(action==='morning'){
+      const a=$q('#qMorning')?.value; if(!a){toast('ใส่เวลา');return null;} if(a>S.settings.morning){toast('วันนี้ยังไม่ทันเป้า');return null;}
+      return ['morning',{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`}];
+    }
+    if(action==='noDawdle'){
+      const over=Math.max(0,Number($q('#qToilet')?.value)||0),bm=Number($q('#qBathM')?.value)||0,be=Number($q('#qBathE')?.value)||0;
+      let pass=0,notes=[];
+      if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);
+      if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}
+      if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}
+      if(!pass){toast('ยังไม่มีหัวข้อที่ผ่านเป้า');return null;}
+      return ['noDawdle',{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(' • ')}`}];
+    }
+    if(action==='screen'){
+      const n=Number($q('#qScreen')?.value); if(!Number.isFinite(n)||n<0){toast('ใส่เวลาจอ');return null;}
+      const lunch=$q('#qLunch')?.checked,dinner=$q('#qDinner')?.checked; let pass=0,notes=[];
+      if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);
+      if(lunch){pass++;notes.push('กลางวันไม่ดูจอ ✓')} if(dinner){pass++;notes.push('เย็นไม่ดูจอ ✓')}
+      if(!pass){toast('วันนี้ยังไม่ผ่านเป้า');return null;}
+      return ['screen',{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(' • ')}`}];
+    }
+    return null;
+  }
+
+  function save64(action){
+    if(action==='addMessy'){
+      const v=($q('#newMessy')?.value||'').trim(); if(!v)return toast('พิมพ์ชื่องาน'); if(S.messyTasks.includes(v))return toast('มีงานนี้แล้ว');
+      S.messyTasks.push(v); save(); render(); mark64(); return toast('เพิ่มงานแล้ว');
+    }
+    const x=payload(action); if(!x)return false;
+    const sig=action+'|'+JSON.stringify(x[1]); const now=Date.now();
+    if(busy || (sig===lastSig && now-lastAt<700))return false;
+    busy=true; lastSig=sig; lastAt=now;
+    try{
+      if(S?.settings){S.settings.approval='trust';S.settings.cooldown=0;S.settings.dailyCap=0;}
+      const ok=window.commitActivityV60(x[0],x[1]);
+      save(); render(); mark64();
+      return ok;
+    }catch(err){ console.error('V64 save error',err); toast('บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง'); return false; }
+    finally{setTimeout(()=>busy=false,120)}
+  }
+  window.saveActivityV64=save64;
+
+  // Capture at window level, before document-level handlers from older builds.
+  window.addEventListener('click',e=>{
+    const btn=e.target.closest?.('#questBox button[data-v60-action]'); if(!btn)return;
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); save64(btn.dataset.v60Action);
+  },true);
+
+  function boot(){mark64(); if(S?.settings){S.settings.approval='trust';S.settings.cooldown=0;S.settings.dailyCap=0;save();} render(); mark64();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+  addEventListener('pageshow',()=>{mark64();});
 })();
 </script>
 
