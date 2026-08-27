@@ -1453,7 +1453,7 @@ function migrate(raw){
 }
 let S;try{S=migrate(JSON.parse(localStorage.getItem(KEY)||"null"))}catch(e){S=clone(defaults)}
 function envelope(){return {version:VERSION,savedAt:new Date().toISOString(),data:S}}
-function save(){localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(BACKUP,JSON.stringify(envelope()))}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(BACKUP,JSON.stringify(envelope()));return true}catch(e){console.warn('save recovery',e);try{S.undo=[];localStorage.removeItem(BACKUP);localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(BACKUP,JSON.stringify(envelope()));return true}catch(e2){console.error('save failed',e2);return false}}}
 function toast(x){$("toast").textContent=x;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1500)}
 function modal(i,t,x){$("modalIcon").textContent=i;$("modalTitle").textContent=t;$("modalText").innerHTML=x;$("modal").classList.add("show")}
 $("modalClose").onclick=()=>$("modal").classList.remove("show");
@@ -1794,7 +1794,7 @@ function petSVG(k,st=petStage()){
    <img src="${petArtURI(k)}" alt="${pets[k].name}">
  </div>`;
 }
-function snapshot(label){S.undo.push({label,state:clone(S)});if(S.undo.length>12)S.undo.shift()}
+function snapshot(label){const snap=clone(S);snap.undo=[];S.undo.push({label,state:snap});if(S.undo.length>5)S.undo=S.undo.slice(-5)}
 function antiSpam(k,stars){let m=S.monsters[k],now=Date.now(),cool=S.settings.cooldown*60000;if(cool&&now-m.lastSubmit<cool)return `กรุณารอ ${Math.ceil((cool-(now-m.lastSubmit))/60000)} นาที`;let used=m.dailyStars[dayKey()]||0;if(used+stars>S.settings.dailyCap)return "ด่านนี้ถึงเพดานดาววันนี้แล้ว";return ""}
 function queue(k,p){let err=antiSpam(k,p.stars);if(err)return toast(err);if(S.settings.approval==="parent"){S.pending.push({id:Date.now(),k,p});save();render();return toast("ส่งให้ผู้ปกครองอนุมัติแล้ว")}apply(k,p)}
 function apply(k,p){snapshot(p.label);registerDay();ensureDaily();let m=S.monsters[k],d=dayKey();m.lastSubmit=Date.now();m.dailyStars[d]=(m.dailyStars[d]||0)+p.stars;m.progress+=p.amount;m.hp=Math.max(0,m.hp-p.power);m.history.unshift(p.label);S.stars+=p.stars;S.totals[k]+=p.amount;S.logs.push({date:d,k,label:p.label,amount:p.amount,stars:p.stars});S.pet.xp+=5;S.pet.friendship=Math.min(100,S.pet.friendship+1);if(["diligent","reading","homework"].includes(k))S.daily.done[k]=true;if(m.progress>=maxGoal(k)||m.hp<=0){m.wins++;m.level++;m.progress=0;m.hp=maxHp(k);S.stars+=25;celebrate(m.level<=5?`🌈 ${defs[k].name} ไป Lv.${m.level}`:"👑 HERO Mastery +1")}checkPetBonus();save();render()}
@@ -3183,15 +3183,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V64 • DIRECT SAVE FIX';
+  const BUILD='V65 • STORAGE FIX';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V64';
-    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
+    document.title='Habit Monster World V65';
+    document.documentElement.dataset.hmwBuild='65-storage-fix';
   }
 
   function logsFor(k,date=dayKey()){
@@ -3491,13 +3491,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V64 • DIRECT SAVE FIX';
+  const BUILD='V65 • STORAGE FIX';
   const q=s=>document.querySelector(s);
 
   function mark62(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V64';
-    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
+    document.title='Habit Monster World V65';
+    document.documentElement.dataset.hmwBuild='65-storage-fix';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3599,16 +3599,16 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </script>
 
 
-<script id="v64-direct-save-fix">
+<script id="v65-storage-fix">
 (()=>{
-  const BUILD='V64 • DIRECT SAVE FIX';
+  const BUILD='V65 • STORAGE FIX';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V64';
-    document.documentElement.dataset.hmwBuild='64-direct-save-fix';
+    document.title='Habit Monster World V65';
+    document.documentElement.dataset.hmwBuild='65-storage-fix';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
 
