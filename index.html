@@ -4605,5 +4605,98 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 })();
 </script>
 
+
+<style id="v76-final-ux-celebration">
+/* V76 — Final UX + positive habit energy + celebration polish. No storage schema changes. */
+#v76WorldGoal{margin:8px 6px 2px;padding:9px 10px;border-radius:16px;background:rgba(255,255,255,.76);border:1px solid rgba(210,226,238,.9);font-weight:900;color:#536b83;text-align:center}
+#v76WorldGoal b{color:#273f5c}
+#v76Perfect{display:none;margin:8px 0 0;padding:9px 12px;border-radius:16px;background:linear-gradient(135deg,#fff6ba,#e7fff0);border:1px solid #f2d86b;text-align:center;font-weight:950;color:#6c5a16}
+#v76Perfect.on{display:block}
+#v76ArenaEnergy{margin:7px 0 4px;padding:8px 10px;border-radius:15px;background:rgba(255,255,255,.70);border:1px solid rgba(255,255,255,.9);font-size:11px;font-weight:850;color:#526a82;text-align:center}
+#v76ArenaEnergy b{color:#2f8051}
+#worldMap .zone .v58-next{display:block!important}
+@media(max-width:600px){
+  .avatarStage{height:195px!important;min-height:195px!important;max-height:195px!important}
+  .avatarChoice{min-height:92px!important}
+  .avatarChoice img{max-height:69px!important}
+  #worldMap .zone,#worldMap .v53-world-progress{height:202px!important;min-height:202px!important}
+  #worldMap .zoneArt{height:88px!important;min-height:88px!important;width:88px!important}
+  #worldMap .zone b{font-size:14.5px!important}
+  #worldMap .v58-next{min-height:20px!important;font-size:9.3px!important;line-height:1.1!important;margin-top:3px!important}
+  .battle{min-height:190px!important}
+  .battle .avatarArt,.battle .bossArt{height:146px!important;min-height:146px!important}
+  .arena{padding-bottom:max(18px,env(safe-area-inset-bottom))!important}
+  #questBox{padding-bottom:max(16px,env(safe-area-inset-bottom))!important}
+  #v76WorldGoal{font-size:10px!important;margin-top:6px!important}
+}
+</style>
+<script id="v76-authoritative-final-ux">
+(()=>{
+ const BUILD='V76 • FINAL UX + CELEBRATION';
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
+ let busy=false,timers=[];
+ function cur(){try{const k=order.includes(S.active)?S.active:order[0],m=S.monsters[k];return {k,m,goal:maxGoal(k),hpGoal:maxHp(k),unit:defs[k].unit||'แต้ม'}}catch(_){return null}}
+ function mark(){
+   document.title='Habit Monster World V76';document.documentElement.dataset.hmwBuild='76-final-ux-celebration';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+   const st=q('#threeStatus');if(st)st.textContent='✨ FINAL UX + CELEBRATION • V76';
+ }
+ function world(){
+   let logs=[];try{logs=(S.logs||[]).filter(x=>x&&x.date===dayKey())}catch(_){}
+   const done=new Set(logs.map(x=>x.k).filter(Boolean));
+   qa('#worldMap .zone[data-stage]').forEach(z=>{
+     const k=z.dataset.stage,m=S.monsters[k];if(!m)return;const goal=maxGoal(k),p=num(m.progress),left=Math.max(0,goal-p),unit=defs[k].unit||'แต้ม';
+     z.classList.toggle('v73-done',done.has(k));z.classList.toggle('active',k===S.active);
+     const lv=z.querySelector('small');if(lv)lv.textContent=`Lv.${m.level}${m.level>=5?' • HERO':''}`;
+     const form=z.querySelector('.v58-form');if(form)form.textContent=m.level>=5?'👑 HERO FORM':`ร่าง ${Math.min(5,m.level)}/5`;
+     const next=z.querySelector('.v58-next');if(next)next.textContent=m.level>=5?`Mastery ${p} ${unit}`:`${p}/${goal} ${unit} • อีก ${left}`;
+     const bar=z.querySelector('.v58-mini i');if(bar)bar.style.width=Math.max(0,Math.min(100,goal?p/goal*100:0))+'%';
+   });
+   const map=q('#worldMap');if(map){let g=q('#v76WorldGoal');if(!g){g=document.createElement('div');g.id='v76WorldGoal';map.insertAdjacentElement('afterend',g)}
+     const minLv=Math.min(...order.map(k=>num(S.monsters[k]?.level)||1)),next=minLv+1,need=order.filter(k=>(num(S.monsters[k]?.level)||1)<next).length;
+     g.innerHTML=minLv>=5?'🏆 <b>HERO WORLD</b> • ทุกด่านถึงร่างสูงสุดแล้ว':`🏆 <b>World Lv.${minLv}</b> • อีก ${need} ด่านให้ถึง Lv.${next} เพื่อเปิด World Lv.${next}`;
+   }
+ }
+ function quick(){const d=cur();if(!d)return;const {k,m,goal,unit}=d,p=num(m.progress),left=Math.max(0,goal-p);let n=q('#v69QuickStatus');if(n)n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${p}/${goal}<span class="sub">${m.level>=5?'HERO FORM • สะสม Mastery ต่อได้':`อีก ${left} ${unit} → Lv.${m.level+1}`}</span>`}
+ function arena(){
+   const d=cur();if(!d)return;const {m,goal,hpGoal,unit}=d,p=num(m.progress),hp=num(m.hp),trained=Math.max(0,hpGoal-hp),left=Math.max(0,goal-p);
+   const ht=q('#hpText');if(ht)ht.textContent=`${trained}/${hpGoal}`;
+   const hb=q('#hpBar');if(hb)hb.style.width=Math.max(0,Math.min(100,hpGoal?trained/hpGoal*100:0))+'%';
+   const hpLabel=ht?.parentElement?.querySelector('span');if(hpLabel&&/พลัง/.test(hpLabel.textContent||''))hpLabel.textContent='🌱 พลังฝึกนิสัย';
+   const pt=q('#progressText');if(pt)pt.textContent=`${p}/${goal}`;const pu=q('#progressUnit');if(pu)pu.textContent=`⚡ ความคืบหน้า Level • ${unit}`;
+   const nh=q('#nextLevelHint');if(nh)nh.textContent=m.level>=5?'👑 HERO FORM — สะสม Mastery ต่อได้':`อีก ${left} ${unit} ถึง Lv.${m.level+1}`;
+   q('#v74ArenaLegend')?.remove();let e=q('#v76ArenaEnergy'),stats=q('.arena .stats');if(stats&&!e){e=document.createElement('div');e.id='v76ArenaEnergy';stats.insertAdjacentElement('afterend',e)}
+   if(e)e.innerHTML=`🌱 พลังฝึกนิสัย <b>${trained}/${hpGoal}</b> • ⚡ ความคืบหน้า Level <b>${p}/${goal} ${unit}</b>`;
+ }
+ function pet(){if(!S?.pet)return;const el=q('#petMiniText');if(!el)return;const xp=num(S.pet.xp),next=xp<50?50:xp<120?120:xp<240?240:null;el.textContent=next?`${xp}/${next}`:`${xp}`;const h=q('#v74PetHint');if(h)h.textContent=next?`อีก ${next-xp} XP จะโต`:'Super Buddy ✨'}
+ function daily(){
+   const d=q('#dailySummary');if(!d)return;let logs=[];try{logs=(S.logs||[]).filter(x=>x&&x.date===dayKey())}catch(_){}
+   const done=[...new Set(logs.map(x=>x.k).filter(Boolean))],stars=logs.reduce((a,x)=>a+num(x.stars),0),boxes=qa('#dailySummary .summaryBox');
+   if(boxes[3])boxes[3].innerHTML=`✅ <b>${done.length}/7 ด่าน</b><small style="display:block;margin-top:3px;color:#71849a;font-weight:800">⭐ +${stars} วันนี้</small>`;
+   let p=q('#v76Perfect');if(!p){p=document.createElement('div');p.id='v76Perfect';boxes[3]?.closest('.summaryGrid')?.insertAdjacentElement('afterend',p)}
+   if(p){p.classList.toggle('on',done.length===7);p.textContent=done.length===7?'🌈 PERFECT DAY! วันนี้ทำครบ 7/7 ด่านแล้ว ✨':`วันนี้ทำแล้ว ${done.length}/7 ด่าน`}
+ }
+ function sync(){if(busy)return;busy=true;try{mark();world();quick();arena();pet();daily()}catch(e){console.warn('V76 polish skipped',e)}finally{busy=false}}
+ function burst(){timers.forEach(clearTimeout);timers=[];sync();requestAnimationFrame(sync);[70,220,520,1000].forEach(ms=>timers.push(setTimeout(sync,ms)))}
+ // Preserve V75 canonical save path; V76 only observes the completed commit and adds milestone feedback.
+ if(typeof window.commitActivityV60==='function'&&!window.commitActivityV60.__v76){
+   const base=window.commitActivityV60;const wrapped=function(...args){
+     const beforeStars=num(S?.stars),beforeStreak=num(S?.streak),beforeLevels=order.map(k=>num(S.monsters[k]?.level));
+     const out=base.apply(this,args);burst();
+     setTimeout(()=>{try{
+       const today=[...new Set((S.logs||[]).filter(x=>x?.date===dayKey()).map(x=>x.k).filter(Boolean))];
+       const key='hmw_v76_perfect_'+dayKey();if(today.length===7&&!localStorage.getItem(key)){localStorage.setItem(key,'1');celebrate('🌈 PERFECT DAY! ครบ 7/7 ด่าน ✨')}
+       const milestones=[3,7,14,30,60,100],hit=milestones.find(x=>num(S.streak)===x&&beforeStreak<x);if(hit)celebrate(`🔥 Streak ${hit} วัน! เก่งมาก`);
+       const li=order.findIndex((k,i)=>num(S.monsters[k]?.level)>beforeLevels[i]);if(li>=0){const k=order[li];toast(`✨ ${defs[k].title} พัฒนาเป็นร่าง ${Math.min(5,S.monsters[k].level)}/5 แล้ว`)}
+       if(num(S.stars)>beforeStars&&today.length<7)toast(`⭐ บันทึกสำเร็จ • วันนี้ ${today.length}/7 ด่าน`);
+     }catch(_){}},120);return out};wrapped.__v76=true;window.commitActivityV60=wrapped;
+ }
+ document.addEventListener('click',e=>{if(e.target.closest?.('#worldMap .zone[data-stage],#questBox button[data-v60-action],[data-screen]'))setTimeout(burst,0)},true);
+ addEventListener('pageshow',burst);addEventListener('hmw3d-render',()=>setTimeout(burst,0));
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{burst();setTimeout(burst,750)},{once:true});else{burst();setTimeout(burst,750)}
+})();
+</script>
+
 </body>
 </html>
