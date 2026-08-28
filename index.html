@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=85"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=83"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V85</title>
+<title>Habit Monster World V84</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1851,7 +1851,7 @@ function editReward(i){if(!parentGuard())return;let r=S.rewards[i],n=prompt("ช
 function deleteReward(i){if(!parentGuard())return;if(confirm(`ลบ ${S.rewards[i].name}?`)){S.rewards.splice(i,1);save();render()}}
 function undoLatest(){if(!parentGuard())return;let x=S.undo.pop();if(!x)return toast("ไม่มีรายการให้ Undo");let pin=S.parentPin,unlocked=S.parentUnlocked;S=migrate(x.state);S.parentPin=pin;S.parentUnlocked=unlocked;save();render();toast(`↩️ ยกเลิก ${x.label}`)}
 function renderBackup(){$("backupInfo").innerHTML=`Save Version ${VERSION}<br>Auto Backup: ${localStorage.getItem(BACKUP)?"มี":"ยังไม่มี"}`}
-function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();renderWorld();renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
+function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();(window.renderWorld?window.renderWorld():renderWorld());renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
 document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
 $("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();render()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();render()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();render()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
 $("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
@@ -3748,7 +3748,7 @@ input[type="number"]{font-size:18px}
   text-align:center;font-weight:800;color:#34704a
 }
 </style>
-<script id="v66-mobile-polish">
+<script id="v66-mobile-polish-runtime">
 (()=>{
   const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
 
@@ -3851,7 +3851,7 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v67-progression-ux">
+<style id="v67-progression-ux-style">
 /* V67 — progression clarity + mobile UX hardening. No storage schema changes. */
 #worldMap .zone{display:flex!important;flex-direction:column!important;align-items:center!important}
 #worldMap .zone .v58-next{margin-top:auto!important;min-height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1.2!important}
@@ -3873,7 +3873,7 @@ input[type="number"]{font-size:18px}
   .summaryBox{min-height:88px!important}
 }
 </style>
-<script id="v67-progression-ux">
+<script id="v67-progression-ux-runtime">
 (()=>{
   const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
   const q=s=>document.querySelector(s);
@@ -3993,7 +3993,7 @@ input[type="number"]{font-size:18px}
 })();
 </script>
 
-<style id="v71-version-lock">
+<style id="v69-mobile-clarity-style">
 /* V69 — mobile layout + clarity only; canonical V60/V62 save/progression stays untouched */
 @media(max-width:600px){
  #worldMap .zone,#worldMap .v53-world-progress{height:auto!important;min-height:238px!important}
@@ -4032,7 +4032,7 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v71-version-lock">
+<style id="v70-release-polish-style">
 /* V70 — RELEASE POLISH: presentation/clarity only. Canonical V60/V62 save path is untouched. */
 :root{--v70-ink:#24364a;--v70-soft:#f5f9fc;--v70-gold:#ffd257}
 html{scroll-padding-top:calc(10px + env(safe-area-inset-top))}
@@ -4133,7 +4133,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </script>
 
 
-<script id="v71-version-lock">
+<script id="v71-version-lock-runtime">
 (()=>{
  const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
  function lock(){
@@ -5314,124 +5314,109 @@ body{padding-bottom:calc(18px + env(safe-area-inset-bottom))!important}
 </script>
 
 
-<style id="v85-stability-cleanup-final">
-/* V85 — FINAL STABILITY/CLEANUP PASS. No save-schema reset. */
-#v85RuntimeNote{margin-top:8px;padding:8px 10px;border-radius:13px;background:#eefaf5;border:1px solid #d4eddf;color:#486a5a;font-size:11px;font-weight:850}
-#v85RuntimeNote b{color:#2d7252}
+<style id="v85-stable-game-polish">
+/* V85 — AUTHORITATIVE RENDER + TODAY MISSION + FEEDBACK
+   Storage schema and V78 cleanCommit remain unchanged. */
+#v85TodayMission{margin:8px 0 0;padding:10px 11px;border:1px solid #d9e9f4;border-radius:16px;background:linear-gradient(135deg,#f7fcff,#fff9e9);box-shadow:0 7px 18px rgba(45,78,106,.07)}
+#v85TodayMission .v85-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:950}
+#v85TodayMission .v85-score{white-space:nowrap;color:#5a6f84;font-size:12px}
+#v85TodayMission .v85-bar{height:9px;margin:7px 0;background:#e9f0f5;border-radius:999px;overflow:hidden}
+#v85TodayMission .v85-bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#63c9a2,#77b9f4);border-radius:inherit;transition:width .28s ease}
+#v85TodayMission .v85-next{font-size:11.5px;color:#62788d;font-weight:850;line-height:1.35}
+#v85TodayMission.done{background:linear-gradient(135deg,#effcf2,#fff7cf);border-color:#cfe9c9}
+#v85TodayMission.done .v85-next{color:#39714c}
+.v85-feedback{position:fixed;left:50%;top:max(72px,calc(env(safe-area-inset-top) + 58px));transform:translate(-50%,-10px) scale(.97);z-index:99998;opacity:0;pointer-events:none;min-width:min(330px,88vw);max-width:88vw;padding:11px 15px;border-radius:18px;background:rgba(255,255,255,.97);box-shadow:0 16px 36px rgba(35,65,92,.20);border:1px solid rgba(132,184,222,.28);text-align:center;font-weight:950;color:#244663;transition:.2s ease}
+.v85-feedback.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.v85-feedback.level{background:linear-gradient(135deg,#fff8cc,#f4edff);border-color:#ead273;font-size:16px}
+#questBox.v85-saved,.arena.v85-saved{animation:v85Pulse .34s ease-out}
+@keyframes v85Pulse{0%{filter:none}45%{filter:brightness(1.06)}100%{filter:none}}
 @media(max-width:700px){
-  #questBox button,.nav button,#worldMap .zone[data-stage],.avatarChoice,.gearChip{touch-action:manipulation}
-  #worldMap .zone[data-stage]{cursor:pointer}
+ #v85TodayMission{padding:8px 9px;margin-top:6px;border-radius:14px}
+ #v85TodayMission .v85-head{font-size:12px}
+ #v85TodayMission .v85-score{font-size:10px}
+ #v85TodayMission .v85-next{font-size:10px}
+ #v85TodayMission .v85-bar{height:7px;margin:5px 0}
+ #questBox button[data-v60-action]{min-height:48px!important}
+ #questBox input,#questBox select{font-size:16px!important}
 }
+@media(max-width:390px){.v85-feedback{top:max(60px,calc(env(safe-area-inset-top) + 48px));font-size:13px;padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){#v85TodayMission .v85-bar>i,.v85-feedback{transition:none!important}#questBox.v85-saved,.arena.v85-saved{animation:none!important}}
 </style>
-<script id="v85-stability-cleanup-authority">
+<script id="v85-authoritative-game-runtime">
 (()=>{
-  'use strict';
-  const BUILD='V85 • STABILITY + CLEANUP + GAMEPLAY QA';
-  const BUILD_ID='85-stability-cleanup-gameplay-qa';
-  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
-  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
-  let lockedObserver=null, stageBusy=false, refreshQueued=false;
-
-  function disconnectLegacyBuildLocks(){
-    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-    if(!b)return;
-    ['__v77Lock','__v78Lock','__v79Lock','__v80Lock','__v81Lock','__v82Lock','__v83Lock','__v84Lock'].forEach(k=>{
-      try{b[k]?.disconnect?.()}catch(_){}
-      try{delete b[k]}catch(_){}
-    });
-  }
-  function mark(){
-    document.title='Habit Monster World V85';
-    document.documentElement.dataset.hmwBuild=BUILD_ID;
-    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-    if(b&&b.textContent!==BUILD)b.textContent=BUILD;
-    const st=q('#threeStatus');if(st)st.textContent='✅ STABLE CORE + CLEAN SAVE + GAMEPLAY QA • V85';
-    const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V85</b>');
-  }
-  function repairState(){
-    try{
-      if(!window.S||typeof S!=='object')return;
-      if(!Array.isArray(S.logs))S.logs=[];
-      if(!Array.isArray(S.activeDays))S.activeDays=[];
-      S.activeDays=[...new Set(S.activeDays.filter(Boolean))].sort();
-      if(!S.settings)S.settings={};
-      // V85 keeps the user's requested no-cap/no-cooldown gameplay.
-      S.settings.dailyCap=0;S.settings.cooldown=0;
-      if(!S.totals)S.totals={};
-      if(!S.pet)S.pet={xp:0,friendship:0};
-      if(!Array.isArray(S.pet.owned))S.pet.owned=['puppy'];
-      if(!order.includes(S.active))S.active=order[0];
-      order.forEach(k=>{
-        const m=S.monsters?.[k];if(!m)return;
-        m.level=Math.max(1,num(m.level)||1);
-        m.progress=Math.max(0,num(m.progress));
-        m.wins=Math.max(0,num(m.wins));
-        if(!Array.isArray(m.history))m.history=[];
-        if(!m.dailyStars||typeof m.dailyStars!=='object')m.dailyStars={};
-        S.totals[k]=Math.max(0,num(S.totals[k]));
-      });
-    }catch(e){console.warn('V85 repair skipped',e)}
-  }
-  function dailyTruth(){
-    try{
-      const d=dayKey(), logs=(S.logs||[]).filter(x=>x?.date===d);
-      const done=[...new Set(logs.map(x=>x.k).filter(k=>order.includes(k)))];
-      const stars=logs.reduce((a,x)=>a+num(x.stars),0);
-      const host=q('#v72TodayStages');
-      if(host){
-        const head=host.querySelector('b');if(head)head.textContent=`วันนี้: ${done.length}/7 ด่าน • ⭐ +${stars}`;
-        qa('#v72TodayStages .v72-stage-chip').forEach((el,i)=>{const k=order[i];if(!k)return;el.classList.toggle('done',done.includes(k));el.textContent=`${done.includes(k)?'✓':'○'} ${defs[k].title}`});
-      }
-      const p=q('#v76Perfect');if(p){p.classList.toggle('on',done.length===7);p.textContent=done.length===7?'🌈 PERFECT DAY! ครบ 7/7 ด่านแล้ว ✨':`วันนี้ทำแล้ว ${done.length}/7 ด่าน`}
-    }catch(_){}
-  }
-  function stageTruth(){
-    try{qa('#worldMap .zone[data-stage]').forEach(z=>{const on=z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false');z.setAttribute('tabindex','0')})}catch(_){}
-  }
-  function note(){
-    if(q('#v85RuntimeNote'))return;
-    const host=q('#backupInfo')?.parentElement;if(!host)return;
-    const n=document.createElement('div');n.id='v85RuntimeNote';
-    n.innerHTML='<b>V85:</b> ข้อมูลเดิมใช้ต่อได้ • Save schema เดิม • ตัด build observers เก่า • 7 ด่านสลับเล่นต่อเนื่อง • ไม่จำกัดดาว / ไม่มี cooldown';
-    host.appendChild(n);
-  }
-  function refresh(){refreshQueued=false;repairState();mark();stageTruth();dailyTruth();note()}
-  function scheduleRefresh(){if(refreshQueued)return;refreshQueued=true;requestAnimationFrame(refresh)}
-
-  function selectStage(k){
-    if(stageBusy||!order.includes(k))return;
-    stageBusy=true;
-    try{
-      repairState();
-      if(S.active!==k){S.active=k;save();}
-      // Canonical renderer rebuilds quest + arena + map consistently.
-      if(typeof window.renderWorld==='function')window.renderWorld();else if(typeof render==='function')render();
-      scheduleRefresh();
-    }catch(e){console.warn('V85 stage switch fallback',e);try{S.active=k;save();render();}catch(_){} }
-    finally{setTimeout(()=>stageBusy=false,80)}
-  }
-
-  // One late canonical map handler. stopImmediatePropagation prevents stale bubble handlers.
-  document.addEventListener('click',e=>{
-    const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
-    e.preventDefault();e.stopImmediatePropagation();selectStage(z.dataset.stage);
-  },false);
-  document.addEventListener('keydown',e=>{
-    if(e.key!=='Enter'&&e.key!==' ')return;
-    const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
-    e.preventDefault();e.stopImmediatePropagation();selectStage(z.dataset.stage);
-  },false);
-
-  function boot(){
-    repairState();disconnectLegacyBuildLocks();mark();stageTruth();dailyTruth();note();
-    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-    if(b&&!lockedObserver){lockedObserver=new MutationObserver(()=>{if(b.textContent!==BUILD)mark()});lockedObserver.observe(b,{childList:true,characterData:true,subtree:true})}
-    // persist repaired shape only; never reset progress/rewards.
-    try{save()}catch(_){}
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  addEventListener('pageshow',()=>{disconnectLegacyBuildLocks();boot();scheduleRefresh()},{passive:true});
-  addEventListener('hmw3d-render',scheduleRefresh,{passive:true});
+ 'use strict';
+ const BUILD='V85 • STABLE GAME FLOW + TODAY MISSION';
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
+ const day=()=>{try{return typeof dayKey==='function'?dayKey():new Date().toISOString().slice(0,10)}catch(_){return new Date().toISOString().slice(0,10)}};
+ let refreshQueued=false, feedbackTimer=0;
+ function mark(){
+   document.title='Habit Monster World V85';
+   document.documentElement.dataset.hmwBuild='85-stable-game-flow-today-mission';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b&&b.textContent!==BUILD)b.textContent=BUILD;
+   const st=q('#threeStatus');if(st)st.textContent='✅ STABLE GAME FLOW + TODAY MISSION • V85';
+ }
+ function keys(){
+   try{if(Array.isArray(window.order)&&order.length)return order.slice()}catch(_){}
+   return [...new Set(qa('#worldMap .zone[data-stage]').map(z=>z.dataset.stage).filter(Boolean))];
+ }
+ function title(k){try{return defs?.[k]?.title||k}catch(_){return k}}
+ function todayLogs(){try{return Array.isArray(S?.logs)?S.logs.filter(x=>x&&x.date===day()):[]}catch(_){return []}}
+ function mission(){
+   const map=q('#worldMap');if(!map)return;
+   let host=q('#v85TodayMission');
+   if(!host){host=document.createElement('div');host.id='v85TodayMission';host.setAttribute('aria-live','polite');map.insertAdjacentElement('afterend',host)}
+   const ks=keys(),logs=todayLogs(),done=new Set(logs.map(x=>x.k).filter(k=>ks.includes(k))),total=ks.length||7;
+   const missing=ks.filter(k=>!done.has(k)),stars=logs.reduce((a,x)=>a+num(x.stars),0),pct=Math.round(done.size/Math.max(1,total)*100);
+   host.classList.toggle('done',done.size===total);
+   host.innerHTML=`<div class="v85-head"><span>${done.size===total?'🌈 ภารกิจวันนี้ครบแล้ว':'🎯 ภารกิจวันนี้'}</span><span class="v85-score">${done.size}/${total} ด่าน • ⭐ +${stars}</span></div><div class="v85-bar"><i style="width:${pct}%"></i></div><div class="v85-next">${missing.length?`ต่อไป: ${missing.slice(0,3).map(title).join(' • ')}${missing.length>3?' • …':''}`:'เก่งมาก! วันนี้ทำครบทุกด่านแล้ว 🎉'}</div>`;
+ }
+ function authoritativeWorld(){
+   try{if(typeof window.renderWorld==='function')window.renderWorld()}catch(e){console.warn('V85 authoritative world refresh skipped',e)}
+ }
+ function refresh(){refreshQueued=false;mark();authoritativeWorld();mission();
+   qa('#worldMap .zone[data-stage]').forEach(z=>{const on=!!window.S&&z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false')});
+ }
+ function schedule(){if(refreshQueued)return;refreshQueued=true;requestAnimationFrame(refresh)}
+ function feedback(msg,level=false){
+   let n=q('#v85Feedback');if(!n){n=document.createElement('div');n.id='v85Feedback';n.className='v85-feedback';n.setAttribute('role','status');document.body.appendChild(n)}
+   n.textContent=msg;n.classList.toggle('level',level);n.classList.remove('on');requestAnimationFrame(()=>n.classList.add('on'));
+   clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>n.classList.remove('on'),level?1900:1100);
+ }
+ // V78 cleanCommit stays the save authority. V85 only observes successful commits for UI feedback.
+ if(typeof window.commitActivityV60==='function'&&!window.commitActivityV60.__v85){
+   const base=window.commitActivityV60;
+   const wrapped=function(k,p){
+     let beforeLevel=0,beforeStars=0,beforeDone=0;
+     try{beforeLevel=num(S?.monsters?.[k]?.level);beforeStars=num(S?.stars);beforeDone=new Set(todayLogs().map(x=>x.k)).size}catch(_){}
+     const ok=base.apply(this,arguments);
+     if(ok!==false){setTimeout(()=>{
+       try{
+         const afterLevel=num(S?.monsters?.[k]?.level),afterStars=num(S?.stars),afterDone=new Set(todayLogs().map(x=>x.k)).size;
+         const level=afterLevel>beforeLevel;
+         feedback(level?`🌈 LEVEL UP! ${title(k)} → Lv.${afterLevel}`:`✅ บันทึกแล้ว • ⭐ +${Math.max(0,afterStars-beforeStars)}`,level);
+         ['#questBox','.arena'].forEach(sel=>{const el=q(sel);if(el){el.classList.remove('v85-saved');void el.offsetWidth;el.classList.add('v85-saved');setTimeout(()=>el.classList.remove('v85-saved'),420)}});
+         if(afterDone>beforeDone||level)mission();schedule();
+       }catch(_){schedule()}
+     },60)}
+     return ok;
+   };
+   wrapped.__v85=true;wrapped.__v78=base.__v78;window.commitActivityV60=wrapped;
+ }
+ // If a legacy renderer ever rebuilds the quest, immediately restore the authoritative V60/V78 UI.
+ const quest=q('#questBox');
+ if(quest&&!quest.__v85Observer){
+   const mo=new MutationObserver(()=>{const legacy=quest.querySelector('button[onclick^="submit"]');if(legacy)schedule();});
+   mo.observe(quest,{childList:true,subtree:true});quest.__v85Observer=mo;
+ }
+ // Reassert V85 after old build-label locks and render passes without adding another click handler.
+ const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+ ['__v78Lock','__v83Lock','__v84Lock'].forEach(k=>{try{badge?.[k]?.disconnect?.()}catch(_){}});
+ if(badge&&!badge.__v85Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)mark()});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v85Lock=mo}
+ try{if(typeof window.renderSummaries==='function'&&!window.renderSummaries.__v85){const base=window.renderSummaries;const w=function(){const r=base.apply(this,arguments);schedule();return r};w.__v85=true;window.renderSummaries=w}}catch(_){}
+ addEventListener('pageshow',schedule,{passive:true});addEventListener('hmw3d-render',schedule,{passive:true});
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+ setTimeout(schedule,180);
 })();
 </script>
 
