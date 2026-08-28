@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=82"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=83"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -4832,7 +4832,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 #v78RuntimeNote{margin-top:8px;padding:8px 10px;border-radius:13px;background:#f2f9ff;border:1px solid #dbeaf5;color:#5f7488;font-size:11px;font-weight:850}
 #v78RuntimeNote b{color:#315f88}
 #dailyQuestGrid:before{content:"Daily Quest 3/3";display:block;grid-column:1/-1;font-size:11px;font-weight:950;color:#607890;margin-bottom:1px}
-#v72TodayStages:before{content:"Today Stages 7/7";display:block;font-size:11px;font-weight:950;color:#607890;margin-bottom:4px}
+#v72TodayStages:before{content:"ด่านวันนี้";display:block;font-size:11px;font-weight:950;color:#607890;margin-bottom:4px}
 @media(max-width:600px){
  #v77ClaimLayer button{min-height:50px!important}
  #worldMap .zone[data-stage]{touch-action:manipulation!important;-webkit-tap-highlight-color:transparent}
@@ -4983,80 +4983,131 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 }
 </style>
 
-<style id="v82-clean-runtime-polish">
-/* V82 — cleanup/stability/mobile truth layer. Storage schema remains unchanged. */
+
+<style id="v83-ux-truth-compact">
+/* V83 — UX + Truth + Compact. No storage/schema reset. */
 html,body{max-width:100%;overflow-x:hidden}
-#v82RuntimeNote{margin-top:8px;padding:9px 11px;border-radius:14px;background:#f4fbf7;border:1px solid #d6ecdf;color:#4f705e;font-size:11px;font-weight:850;line-height:1.4}
-#v82RuntimeNote b{color:#286448}
-#v72TodayStages{overflow:hidden}
+#v72TodayStages:before{content:"ด่านวันนี้"!important;display:block;font-size:11px;font-weight:950;color:#607890;margin-bottom:4px}
+#v72TodayStages{overflow:hidden!important}
 #v72TodayStages .v72-stage-row{margin-top:7px!important}
-#v76Perfect{transition:transform .18s ease,box-shadow .18s ease}
+#v72TodayStages .v72-stage-chip{transition:none!important}
+#v76Perfect{transition:transform .16s ease,box-shadow .16s ease}
 #v76Perfect.on{box-shadow:0 0 0 2px rgba(255,200,61,.16)}
-#worldMap .zone[data-stage],#questBox button,.nav button{touch-action:manipulation}
-@media(max-width:700px){
-  .wrap{max-width:100%!important;overflow-x:hidden!important}
-  #dailySummary .summaryGrid,#weeklySummary .summaryGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  #dailySummary .summaryBox,#weeklySummary .summaryBox{min-width:0!important}
-  #v72TodayStages .v72-stage-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  #v72TodayStages .v72-stage-chip{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere}
-  #questBox .inputRow{grid-template-columns:1fr!important}
-  #questBox input,#questBox select,#questBox button{max-width:100%!important}
-  #worldMap.world{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  #worldMap .zone{min-width:0!important}
-  .battle{grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)!important}
+#worldMap .zone[data-stage],#questBox button,.nav button,.avatarChoice,.gearChip{touch-action:manipulation}
+/* Keep pet reaction visible but out of the hero/name area. */
+.arena{position:relative!important}
+#petFollower.petFollower,#petFollower.petFollower.v51-pet{
+ position:absolute!important;left:50%!important;right:auto!important;top:104px!important;bottom:auto!important;
+ width:40px!important;height:40px!important;margin:0!important;transform:translateX(-50%)!important;z-index:5!important;
+ pointer-events:none!important;
 }
-@media(max-width:370px){#v72TodayStages .v72-stage-row{grid-template-columns:1fr!important}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+#petFollower .v51-heart,#petFollower [class*="heart"]{transform:scale(.82)!important;transform-origin:center!important}
+/* One primary progress explanation is enough on phone. */
+#v74ArenaLegend{font-size:11px!important;line-height:1.3!important;margin:7px 0!important}
+#v77PetProgress{display:block;font-size:10px!important;line-height:1.2!important;color:#71849a!important}
+#v83RuntimeNote{margin-top:8px;padding:9px 11px;border-radius:14px;background:#f4fbf7;border:1px solid #d6ecdf;color:#4f705e;font-size:11px;font-weight:850;line-height:1.4}
+#v83RuntimeNote b{color:#286448}
+
+@media(max-width:700px){
+ .wrap{max-width:100%!important;overflow-x:hidden!important;padding-left:8px!important;padding-right:8px!important;padding-bottom:92px!important}
+ .card{padding:10px!important;margin-top:8px!important;border-radius:20px!important}
+ .header{gap:7px!important;padding:14px!important}.header h1{font-size:26px!important}.header .sub{font-size:15px!important;line-height:1.25!important}
+ .status{gap:6px!important}.pill{padding:6px 8px!important;font-size:12px!important}
+ .nav{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}.nav button{min-height:62px!important;padding:6px 3px!important;font-size:12px!important;line-height:1.15!important}
+ /* Avatar: preserve large character, remove excessive vertical travel. */
+ .avatarStudio{gap:10px!important}.avatarStage{width:min(330px,88vw)!important;height:310px!important;min-height:310px!important;border-radius:26px!important}
+ .avatarChoices{gap:6px!important}.avatarChoice{min-height:104px!important;padding:5px!important}.avatarChoice .three-slot,.avatarChoice .avatar-generated{height:66px!important;min-height:66px!important}
+ /* World: two-column map, shorter cards, monsters remain clear. */
+ #worldMap.world{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding:8px!important}
+ #worldMap .zone{min-width:0!important;min-height:174px!important;padding:7px 5px!important;border-radius:22px!important}
+ #worldMap .zoneArt{height:112px!important;width:100%!important;min-height:112px!important}
+ #worldMap .zone b{font-size:15px!important;line-height:1.08!important;margin-top:1px!important}
+ #worldMap .zone small,.v58-next{font-size:11px!important;line-height:1.15!important}
+ /* Arena: reduce empty space, keep characters as the focal point. */
+ .arena{padding:10px!important}
+ .battle{grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr)!important;gap:2px!important;min-height:222px!important;padding-top:8px!important}
+ .battle .avatarArt,.battle .bossArt{height:182px!important;width:100%!important;max-width:170px!important}
+ .battle .label{font-size:14px!important;line-height:1.1!important}
+ .vs:before{width:34px!important;height:34px!important;font-size:18px!important}
+ #petSpeech{padding:7px 9px!important;margin-bottom:4px!important;font-size:13px!important}
+ #petFollower.petFollower,#petFollower.petFollower.v51-pet{top:76px!important;width:34px!important;height:34px!important}
+ .arena .story{padding:8px!important;margin:6px 0!important}
+ .arena .bar{margin:4px 0 6px!important;height:14px!important}
+ #nextLevelHint{font-size:12px!important;margin:3px 0!important}
+ .arena .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;margin-top:6px!important}
+ .arena .stat{min-height:64px!important;padding:7px 5px!important}.arena .stat b{font-size:20px!important}
+ #v74ArenaLegend{display:none!important}
+ #v77PetProgress{font-size:9.5px!important}
+ #questBox{margin-top:8px!important;padding:10px!important}
+ #questBox .inputRow{grid-template-columns:1fr!important}#questBox input,#questBox select,#questBox button{max-width:100%!important}
+ /* Summary: single truth source + complete stage list. */
+ #dailySummary .summaryGrid,#weeklySummary .summaryGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+ #dailySummary .summaryBox,#weeklySummary .summaryBox{min-width:0!important;min-height:74px!important;padding:7px 5px!important}
+ #dailySummary .summaryBox b,#weeklySummary .summaryBox b{font-size:17px!important}
+ #v72TodayStages .v72-stage-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+ #v72TodayStages .v72-stage-chip{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;justify-content:flex-start!important;line-height:1.12!important}
+}
+@media(max-width:390px){
+ .header h1{font-size:24px!important}.avatarStage{height:290px!important;min-height:290px!important}
+ #worldMap .zone{min-height:166px!important}#worldMap .zoneArt{height:104px!important;min-height:104px!important}
+ .battle .avatarArt,.battle .bossArt{height:172px!important}.nav button{font-size:11px!important;min-height:58px!important}
+}
+@media(max-width:350px){#v72TodayStages .v72-stage-row{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.zone,.avatarChoice,.gearChip,#v76Perfect{transition:none!important}}
 </style>
-<script id="v82-authoritative-runtime">
+<script id="v83-authoritative-ui-runtime">
 (()=>{
  'use strict';
- const BUILD='V82 • CLEAN RUNTIME + DAILY TRUTH';
+ const BUILD='V83 • UX + TRUTH + COMPACT';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let queued=false;
  function day(){try{return typeof dayKey==='function'?dayKey():new Date().toISOString().slice(0,10)}catch(_){return new Date().toISOString().slice(0,10)}}
  function keys(){const a=qa('#worldMap .zone[data-stage]').map(z=>z.dataset.stage).filter(Boolean);return [...new Set(a.length?a:(Array.isArray(window.order)?window.order:[]))]}
- function name(k){try{return window.defs?.[k]?.title||k}catch(_){return k}}
- function todayLogs(){try{return Array.isArray(window.S?.logs)?S.logs.filter(x=>x&&x.date===day()):[]}catch(_){return []}}
+ function stageName(k){try{return window.defs?.[k]?.title||k}catch(_){return k}}
+ function logsToday(){try{return Array.isArray(window.S?.logs)?S.logs.filter(x=>x&&x.date===day()):[]}catch(_){return []}}
  function mark(){
-   document.title='Habit Monster World V82';
-   document.documentElement.dataset.hmwBuild='82-clean-runtime-daily-truth';
+   document.title='Habit Monster World V83';
+   document.documentElement.dataset.hmwBuild='83-ux-truth-compact';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
-   const st=q('#threeStatus');if(st)st.textContent='✅ CLEAN RUNTIME + DAILY TRUTH • V82';
+   const st=q('#threeStatus');if(st&&st.textContent!=='✅ UX + TRUTH + COMPACT • V83')st.textContent='✅ UX + TRUTH + COMPACT • V83';
  }
  function truth(){
    try{
-     const ks=keys(), total=ks.length||7, logs=todayLogs();
-     const done=new Set(logs.map(x=>x.k).filter(k=>ks.includes(k)));
-     const stars=logs.reduce((a,x)=>a+num(x.stars),0);
+     const ks=keys(),total=ks.length||7,logs=logsToday(),done=new Set(logs.map(x=>x.k).filter(k=>ks.includes(k))),stars=logs.reduce((a,x)=>a+num(x.stars),0);
      const host=q('#v72TodayStages');
-     if(host){host.removeAttribute('data-stage-label');host.innerHTML=`<b>วันนี้: ${done.size}/${total} ด่าน • ⭐ +${stars}</b><div class="v72-stage-row">${ks.map(k=>`<span class="v72-stage-chip ${done.has(k)?'done':''}">${done.has(k)?'✓':'○'} ${name(k)}</span>`).join('')}</div>`}
-     const p=q('#v76Perfect');if(p){p.classList.toggle('on',done.size===total);p.textContent=done.size===total?`🌈 PERFECT DAY! ครบ ${total}/${total} ด่านแล้ว ✨`:`วันนี้ทำแล้ว ${done.size}/${total} ด่าน`}
+     if(host){
+       const expectedHead=`วันนี้: ${done.size}/${total} ด่าน • ⭐ +${stars}`;
+       const expectedChips=ks.map(k=>`${done.has(k)?'✓':'○'} ${stageName(k)}`);
+       const nowHead=host.querySelector('b')?.textContent||'', nowChips=qa('#v72TodayStages .v72-stage-chip').map(x=>x.textContent.trim());
+       if(nowHead!==expectedHead || nowChips.length!==expectedChips.length || nowChips.some((x,i)=>x!==expectedChips[i])){
+         host.innerHTML=`<b>${expectedHead}</b><div class="v72-stage-row">${ks.map(k=>`<span class="v72-stage-chip ${done.has(k)?'done':''}">${done.has(k)?'✓':'○'} ${stageName(k)}</span>`).join('')}</div>`;
+       }
+     }
+     const p=q('#v76Perfect');if(p){const txt=done.size===total?`🌈 PERFECT DAY! ครบ ${total}/${total} ด่านแล้ว ✨`:`วันนี้ทำแล้ว ${done.size}/${total} ด่าน`;p.classList.toggle('on',done.size===total);if(p.textContent!==txt)p.textContent=txt}
      const boxes=qa('#dailySummary .summaryGrid .summaryBox');
-     if(boxes[3]){const b=boxes[3].querySelector('b'),sm=boxes[3].querySelector('small');if(b)b.textContent=`${done.size}/${total} ด่าน`;if(sm)sm.textContent=`${logs.length} บันทึก • ⭐ +${stars}`;boxes[3].setAttribute('aria-label',`วันนี้ทำแล้ว ${done.size} จาก ${total} ด่าน บันทึก ${logs.length} ครั้ง ดาว ${stars}`)}
-     const end=q('#v70EndNote');if(end){const missing=ks.filter(k=>!done.has(k));end.classList.toggle('done',missing.length===0);end.innerHTML=missing.length?`วันนี้ทำแล้ว <b>${done.size}/${total} ด่าน</b><br><small>ยังไม่ได้ทำ: ${missing.map(name).join(' • ')}</small>`:`🎉 <b>วันนี้ครบ ${total}/${total} ด่านแล้ว</b> พร้อมปิดวันได้เลย`}
-   }catch(e){console.warn('V82 truth skipped',e)}
+     if(boxes[3]){const b=boxes[3].querySelector('b'),sm=boxes[3].querySelector('small'),bt=`${done.size}/${total} ด่าน`,st=`${logs.length} บันทึก • ⭐ +${stars}`;if(b&&b.textContent!==bt)b.textContent=bt;if(sm&&sm.textContent!==st)sm.textContent=st;boxes[3].setAttribute('aria-label',`วันนี้ทำแล้ว ${done.size} จาก ${total} ด่าน บันทึก ${logs.length} ครั้ง ดาว ${stars}`)}
+     const end=q('#v70EndNote');if(end){const missing=ks.filter(k=>!done.has(k)),html=missing.length?`วันนี้ทำแล้ว <b>${done.size}/${total} ด่าน</b><br><small>ยังไม่ได้ทำ: ${missing.map(stageName).join(' • ')}</small>`:`🎉 <b>วันนี้ครบ ${total}/${total} ด่านแล้ว</b> พร้อมปิดวันได้เลย`;end.classList.toggle('done',missing.length===0);if(end.innerHTML!==html)end.innerHTML=html}
+   }catch(e){console.warn('V83 truth skipped',e)}
  }
- function view(){
-   try{if(!window.S)return;const ks=keys();if(ks.length&&!ks.includes(S.active)){S.active=ks[0];try{save?.()}catch(_){}}qa('#worldMap .zone[data-stage]').forEach(z=>{const on=z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false');z.setAttribute('tabindex','0')})}catch(_){ }
- }
+ function world(){try{if(!window.S)return;const ks=keys();if(ks.length&&!ks.includes(S.active)){S.active=ks[0];try{save?.()}catch(_){}}qa('#worldMap .zone[data-stage]').forEach(z=>{const on=z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false');z.setAttribute('tabindex','0')})}catch(_){}}
  function backup(){
-   try{const n=q('#backupInfo');if(n){n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V82</b>').replace(/<small>V73 ใช้ข้อมูลเดิมต่อได้ ไม่รีเซ็ตดาว\/Level\/Streak<\/small>/,'<small>V82 ใช้ข้อมูลเดิมต่อได้ • ไม่รีเซ็ตดาว / Level / Streak</small>')}}catch(_){ }
-   qa('#v78RuntimeNote,#v80RuntimeNote').forEach(n=>n.remove());
-   let n=q('#v82RuntimeNote');if(!n){const h=q('#backupInfo')?.parentElement;if(h){n=document.createElement('div');n.id='v82RuntimeNote';n.innerHTML='<b>V82:</b> Save schema เดิม • V78 cleanCommit เป็นทางบันทึกหลัก • Daily Summary อ่านจาก log วันนี้โดยตรง • Mobile UI cleanup';h.appendChild(n)}}
+   try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V83</b>').replace(/<small>V\d+ ใช้ข้อมูลเดิมต่อได้[^<]*<\/small>/,'<small>V83 ใช้ข้อมูลเดิมต่อได้ • ไม่รีเซ็ตดาว / Level / Streak</small>')}catch(_){}
+   qa('#v78RuntimeNote,#v80RuntimeNote,#v82RuntimeNote').forEach(n=>n.remove());
+   let n=q('#v83RuntimeNote');if(!n){const h=q('#backupInfo')?.parentElement;if(h){n=document.createElement('div');n.id='v83RuntimeNote';n.innerHTML='<b>V83:</b> Save schema เดิม • V78 cleanCommit ยังเป็นทางบันทึกหลัก • Daily/Perfect/End Day อ่านจาก log จริงชุดเดียว • Compact สำหรับ iPhone';h.appendChild(n)}}
  }
- function run(){queued=false;mark();view();truth();backup()}
+ function run(){queued=false;mark();world();truth();backup()}
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(run)}
- // Retire late build locks we can identify; V82 becomes the visible authority.
  const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
- ['__v77Lock','__v78Lock','__v79Lock','__v80Lock','__v81Lock'].forEach(k=>{try{badge?.[k]?.disconnect?.()}catch(_){}});
- if(badge&&!badge.__v82Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)mark()});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v82Lock=mo}
- // Hook summary renderer instead of another document-wide click listener.
- try{if(typeof window.renderSummaries==='function'&&!window.renderSummaries.__v82){const base=window.renderSummaries;const wrap=function(...a){const r=base.apply(this,a);schedule();return r};wrap.__v82=true;window.renderSummaries=wrap}}catch(_){ }
+ ['__v77Lock','__v78Lock','__v79Lock','__v80Lock','__v81Lock','__v82Lock'].forEach(k=>{try{badge?.[k]?.disconnect?.()}catch(_){}});
+ if(badge&&!badge.__v83Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)mark()});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v83Lock=mo}
+ const status=q('#threeStatus');if(status&&!status.__v83Lock){const mo=new MutationObserver(()=>{if(status.textContent!=='✅ UX + TRUTH + COMPACT • V83')mark()});mo.observe(status,{childList:true,characterData:true,subtree:true});status.__v83Lock=mo}
+ // Small scoped observer: legacy renderers may rebuild Daily Summary after a save.
+ const daily=q('#dailySummary');if(daily&&!daily.__v83Truth){const mo=new MutationObserver(schedule);mo.observe(daily,{childList:true,subtree:true,characterData:true});daily.__v83Truth=mo}
+ try{if(typeof window.renderSummaries==='function'&&!window.renderSummaries.__v83){const base=window.renderSummaries;const wrap=function(...a){const r=base.apply(this,a);schedule();return r};wrap.__v83=true;window.renderSummaries=wrap}}catch(_){}
  addEventListener('pageshow',schedule,{passive:true});addEventListener('hmw3d-render',schedule,{passive:true});
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
- setTimeout(schedule,250);
+ setTimeout(schedule,220);
 })();
 </script>
 
