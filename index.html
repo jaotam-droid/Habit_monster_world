@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V83</title>
+<title>Habit Monster World V84</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -5172,6 +5172,142 @@ body{padding-bottom:calc(18px + env(safe-area-inset-bottom))!important}
     const st=document.querySelector('#threeStatus');if(st)st.textContent='✅ STABLE CORE + MOBILE POLISH • V83';
   }
   const boot=()=>{mark();setTimeout(mark,120);setTimeout(mark,500)};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  addEventListener('pageshow',boot,{passive:true});
+})();
+</script>
+
+
+<style id="v84-compact-game-ui-polish">
+/* V84 — MOBILE COMPACT + GAME UI POLISH
+   Visual hierarchy/spacing only. V83 save schema and game logic remain unchanged. */
+@media(max-width:700px){
+  html{scroll-padding-top:8px}
+  .wrap{padding:6px 7px calc(96px + env(safe-area-inset-bottom))!important}
+
+  /* Header: faster path into the game */
+  .header{padding:10px 11px!important;border-radius:20px!important}
+  .brandLine{gap:5px!important;flex-wrap:wrap!important}
+  .header h1{font-size:25px!important;letter-spacing:-.7px!important}
+  .buildBadge{height:25px!important;padding:0 9px!important;font-size:10.5px!important;border-radius:999px!important}
+  .sub{font-size:13px!important;margin-top:3px!important}
+  .status{gap:5px!important;margin-top:6px!important}
+  .status .pill{padding:5px 5px!important;font-size:11px!important;min-height:32px!important}
+  .header + .card{padding:7px 10px!important;margin-top:6px!important}
+  .header + .card .note{font-size:10.5px!important;line-height:1.35!important}
+
+  /* Navigation: keep all destinations, reduce dashboard feel */
+  .card:has(.nav){padding:7px!important;margin-top:7px!important}
+  .nav{gap:5px!important;padding:3px!important}
+  .nav button{min-height:50px!important;padding:4px 2px!important;font-size:11px!important;border-radius:13px!important}
+
+  /* Global mobile rhythm */
+  .card{margin-top:7px!important;border-radius:19px!important}
+  #world>section.card:first-of-type h2,
+  #worldMap.closest h2{line-height:1.05!important}
+  h2{margin-top:3px!important;margin-bottom:7px!important}
+
+  /* Avatar Studio */
+  #world>section.card:first-of-type{padding:9px!important}
+  #world>section.card:first-of-type h2{font-size:23px!important}
+  .avatarStudio{gap:7px!important}
+  .avatarStage{width:min(320px,88vw)!important;height:225px!important;min-height:225px!important;max-height:225px!important;border-radius:21px!important}
+  .avatarStage .original-art img,.avatarStage .avatar-generated img{transform:scale(1.02)!important}
+  .setting{margin-top:5px!important}
+  .setting b,h4{font-size:13px!important;margin:5px 0!important}
+  #avatarName{min-height:42px!important;padding:7px 9px!important}
+  .avatarChoices{gap:5px!important}
+  .avatarChoice{min-height:80px!important;padding:3px!important;border-radius:14px!important}
+  .avatarChoice .three-slot,.avatarChoice .avatar-generated{height:53px!important;min-height:53px!important}
+  .avatarChoice img{max-height:53px!important}
+  .avatarChoice small,.avatarChoice b{font-size:10.5px!important;line-height:1!important}
+  .grid3{gap:5px!important}
+  .grid3 .setting select{min-height:40px!important;padding:5px!important;font-size:14px!important}
+  .gearRow{gap:5px!important;margin-top:5px!important}
+  .gearChip{min-height:38px!important;padding:5px 7px!important;font-size:10.5px!important}
+
+  /* World intro + map */
+  .worldIntro{padding:8px 10px!important}
+  .worldIntro h2{font-size:18px!important;margin:0 0 3px!important}
+  .worldIntro .story{padding:6px 8px!important;margin:3px 0!important;font-size:11px!important}
+  #world>section.card:has(#worldMap){padding:8px!important}
+  #world>section.card:has(#worldMap)>h2{font-size:20px!important;margin:1px 0 5px!important}
+  #worldMap.world{
+    gap:7px!important;padding:7px!important;border-radius:21px!important;
+    background:
+      radial-gradient(circle at 20% 10%,rgba(255,255,255,.62),transparent 23%),
+      linear-gradient(180deg,#d9f3ff 0 48%,#e5f5dd 48% 74%,#fff0c9 74% 100%)!important;
+  }
+  #worldMap .zone,#worldMap .v58-world-progress{
+    min-height:174px!important;padding:5px 4px 6px!important;border-radius:18px!important;
+    background:rgba(255,255,255,.78)!important;
+  }
+  #worldMap .zone.active{
+    box-shadow:0 0 0 3px rgba(255,202,69,.72),0 10px 20px rgba(46,78,104,.12)!important;
+    transform:none!important;
+  }
+  #worldMap .zoneArt{width:82px!important;height:82px!important;min-height:82px!important;margin:0 auto 1px!important}
+  #worldMap .zone b{font-size:13px!important;line-height:1.08!important;min-height:29px!important}
+  #worldMap .zone small{font-size:9.5px!important;line-height:1.05!important}
+  #worldMap .v58-form{font-size:10px!important}
+  #worldMap .v58-next{font-size:8.5px!important;min-height:15px!important}
+  #worldMap .zone:before,#worldMap .zone.active:after{font-size:8.5px!important;padding:3px 5px!important}
+
+  /* Arena: characters first, action controls sooner */
+  .arena{padding:8px!important;border-radius:21px!important}
+  #petSpeech.speech{padding:6px 8px!important;font-size:11px!important}
+  #petFollower.petFollower,#petFollower.petFollower.v51-pet{width:38px!important;height:38px!important}
+  .battle{min-height:172px!important;padding:1px 2px 0!important}
+  .battle .avatarArt,.battle .bossArt{height:132px!important;min-height:132px!important;max-width:138px!important}
+  .battle .label{font-size:12.5px!important}
+  .vs:before{width:31px!important;height:31px!important;font-size:16px!important}
+  .arena .story{padding:6px 8px!important;margin:4px 0!important;font-size:11.5px!important}
+  .arena .row{font-size:11.5px!important}
+  .arena .bar{height:10px!important;margin:3px 0 4px!important}
+  #nextLevelHint{font-size:10.5px!important;margin:2px 0!important;padding:5px 7px!important}
+  .arena .stats{gap:5px!important;margin-top:5px!important}
+  .arena .stat{min-height:55px!important;padding:5px 4px!important;border-radius:12px!important}
+  .arena .stat b{font-size:17px!important}
+  .arena .stat span{font-size:9.5px!important}
+  #v74ArenaLegend{padding:5px 7px!important;margin:4px 0 0!important;font-size:9.5px!important}
+  #questBox.quest{margin-top:6px!important;padding:8px!important}
+  #questBox .questTitle{font-size:15px!important;margin-bottom:5px!important}
+
+  /* Daily / Weekly summary: information-dense but still touch friendly */
+  .main aside{display:grid!important;gap:7px!important}
+  .main aside .card{margin-top:0!important;padding:8px!important;border-radius:18px!important}
+  .main aside .card h3{font-size:20px!important;margin:2px 0 6px!important}
+  #dailySummary .summaryGrid,#weeklySummary .summaryGrid{gap:5px!important}
+  #dailySummary .summaryBox,#weeklySummary .summaryBox{min-height:58px!important;padding:5px 4px!important;border-radius:12px!important}
+  #dailySummary .summaryBox b,#weeklySummary .summaryBox b{font-size:15px!important}
+  #dailySummary .summaryBox small,#weeklySummary .summaryBox small{font-size:9px!important}
+  #dailySummary .story,#weeklySummary .story{padding:7px!important;margin-top:5px!important;font-size:10.5px!important}
+
+  /* Long Thai labels */
+  .zone,.avatarChoice,.nav button,.gearChip,.stat,.summaryBox{overflow-wrap:anywhere}
+}
+
+@media(max-width:380px){
+  .header h1{font-size:23px!important}
+  .avatarStage{height:210px!important;min-height:210px!important;max-height:210px!important}
+  #worldMap .zone,#worldMap .v58-world-progress{min-height:168px!important}
+  #worldMap .zoneArt{width:78px!important;height:78px!important;min-height:78px!important}
+  .battle .avatarArt,.battle .bossArt{height:126px!important;min-height:126px!important}
+}
+</style>
+<script id="v84-build-authority">
+(()=>{
+  'use strict';
+  const BUILD='V84 • MOBILE COMPACT + GAME UI POLISH';
+  function mark(){
+    document.title='Habit Monster World V84';
+    document.documentElement.dataset.hmwBuild='84-mobile-compact-game-ui';
+    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+    if(b)b.textContent=BUILD;
+    const st=document.querySelector('#threeStatus');
+    if(st)st.textContent='✅ STABLE CORE + COMPACT GAME UI • V84';
+  }
+  const boot=()=>{mark();setTimeout(mark,120);setTimeout(mark,600)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
   addEventListener('pageshow',boot,{passive:true});
 })();
