@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=83"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=85"><meta name="theme-color" content="#76b9ef">
 <script id="v63-cache-reset">
 (()=>{
   try{
@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V84</title>
+<title>Habit Monster World V85</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -5310,6 +5310,128 @@ body{padding-bottom:calc(18px + env(safe-area-inset-bottom))!important}
   const boot=()=>{mark();setTimeout(mark,120);setTimeout(mark,600)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
   addEventListener('pageshow',boot,{passive:true});
+})();
+</script>
+
+
+<style id="v85-stability-cleanup-final">
+/* V85 — FINAL STABILITY/CLEANUP PASS. No save-schema reset. */
+#v85RuntimeNote{margin-top:8px;padding:8px 10px;border-radius:13px;background:#eefaf5;border:1px solid #d4eddf;color:#486a5a;font-size:11px;font-weight:850}
+#v85RuntimeNote b{color:#2d7252}
+@media(max-width:700px){
+  #questBox button,.nav button,#worldMap .zone[data-stage],.avatarChoice,.gearChip{touch-action:manipulation}
+  #worldMap .zone[data-stage]{cursor:pointer}
+}
+</style>
+<script id="v85-stability-cleanup-authority">
+(()=>{
+  'use strict';
+  const BUILD='V85 • STABILITY + CLEANUP + GAMEPLAY QA';
+  const BUILD_ID='85-stability-cleanup-gameplay-qa';
+  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
+  let lockedObserver=null, stageBusy=false, refreshQueued=false;
+
+  function disconnectLegacyBuildLocks(){
+    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+    if(!b)return;
+    ['__v77Lock','__v78Lock','__v79Lock','__v80Lock','__v81Lock','__v82Lock','__v83Lock','__v84Lock'].forEach(k=>{
+      try{b[k]?.disconnect?.()}catch(_){}
+      try{delete b[k]}catch(_){}
+    });
+  }
+  function mark(){
+    document.title='Habit Monster World V85';
+    document.documentElement.dataset.hmwBuild=BUILD_ID;
+    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+    if(b&&b.textContent!==BUILD)b.textContent=BUILD;
+    const st=q('#threeStatus');if(st)st.textContent='✅ STABLE CORE + CLEAN SAVE + GAMEPLAY QA • V85';
+    const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V85</b>');
+  }
+  function repairState(){
+    try{
+      if(!window.S||typeof S!=='object')return;
+      if(!Array.isArray(S.logs))S.logs=[];
+      if(!Array.isArray(S.activeDays))S.activeDays=[];
+      S.activeDays=[...new Set(S.activeDays.filter(Boolean))].sort();
+      if(!S.settings)S.settings={};
+      // V85 keeps the user's requested no-cap/no-cooldown gameplay.
+      S.settings.dailyCap=0;S.settings.cooldown=0;
+      if(!S.totals)S.totals={};
+      if(!S.pet)S.pet={xp:0,friendship:0};
+      if(!Array.isArray(S.pet.owned))S.pet.owned=['puppy'];
+      if(!order.includes(S.active))S.active=order[0];
+      order.forEach(k=>{
+        const m=S.monsters?.[k];if(!m)return;
+        m.level=Math.max(1,num(m.level)||1);
+        m.progress=Math.max(0,num(m.progress));
+        m.wins=Math.max(0,num(m.wins));
+        if(!Array.isArray(m.history))m.history=[];
+        if(!m.dailyStars||typeof m.dailyStars!=='object')m.dailyStars={};
+        S.totals[k]=Math.max(0,num(S.totals[k]));
+      });
+    }catch(e){console.warn('V85 repair skipped',e)}
+  }
+  function dailyTruth(){
+    try{
+      const d=dayKey(), logs=(S.logs||[]).filter(x=>x?.date===d);
+      const done=[...new Set(logs.map(x=>x.k).filter(k=>order.includes(k)))];
+      const stars=logs.reduce((a,x)=>a+num(x.stars),0);
+      const host=q('#v72TodayStages');
+      if(host){
+        const head=host.querySelector('b');if(head)head.textContent=`วันนี้: ${done.length}/7 ด่าน • ⭐ +${stars}`;
+        qa('#v72TodayStages .v72-stage-chip').forEach((el,i)=>{const k=order[i];if(!k)return;el.classList.toggle('done',done.includes(k));el.textContent=`${done.includes(k)?'✓':'○'} ${defs[k].title}`});
+      }
+      const p=q('#v76Perfect');if(p){p.classList.toggle('on',done.length===7);p.textContent=done.length===7?'🌈 PERFECT DAY! ครบ 7/7 ด่านแล้ว ✨':`วันนี้ทำแล้ว ${done.length}/7 ด่าน`}
+    }catch(_){}
+  }
+  function stageTruth(){
+    try{qa('#worldMap .zone[data-stage]').forEach(z=>{const on=z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false');z.setAttribute('tabindex','0')})}catch(_){}
+  }
+  function note(){
+    if(q('#v85RuntimeNote'))return;
+    const host=q('#backupInfo')?.parentElement;if(!host)return;
+    const n=document.createElement('div');n.id='v85RuntimeNote';
+    n.innerHTML='<b>V85:</b> ข้อมูลเดิมใช้ต่อได้ • Save schema เดิม • ตัด build observers เก่า • 7 ด่านสลับเล่นต่อเนื่อง • ไม่จำกัดดาว / ไม่มี cooldown';
+    host.appendChild(n);
+  }
+  function refresh(){refreshQueued=false;repairState();mark();stageTruth();dailyTruth();note()}
+  function scheduleRefresh(){if(refreshQueued)return;refreshQueued=true;requestAnimationFrame(refresh)}
+
+  function selectStage(k){
+    if(stageBusy||!order.includes(k))return;
+    stageBusy=true;
+    try{
+      repairState();
+      if(S.active!==k){S.active=k;save();}
+      // Canonical renderer rebuilds quest + arena + map consistently.
+      if(typeof window.renderWorld==='function')window.renderWorld();else if(typeof render==='function')render();
+      scheduleRefresh();
+    }catch(e){console.warn('V85 stage switch fallback',e);try{S.active=k;save();render();}catch(_){} }
+    finally{setTimeout(()=>stageBusy=false,80)}
+  }
+
+  // One late canonical map handler. stopImmediatePropagation prevents stale bubble handlers.
+  document.addEventListener('click',e=>{
+    const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
+    e.preventDefault();e.stopImmediatePropagation();selectStage(z.dataset.stage);
+  },false);
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
+    e.preventDefault();e.stopImmediatePropagation();selectStage(z.dataset.stage);
+  },false);
+
+  function boot(){
+    repairState();disconnectLegacyBuildLocks();mark();stageTruth();dailyTruth();note();
+    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+    if(b&&!lockedObserver){lockedObserver=new MutationObserver(()=>{if(b.textContent!==BUILD)mark()});lockedObserver.observe(b,{childList:true,characterData:true,subtree:true})}
+    // persist repaired shape only; never reset progress/rewards.
+    try{save()}catch(_){}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  addEventListener('pageshow',()=>{disconnectLegacyBuildLocks();boot();scheduleRefresh()},{passive:true});
+  addEventListener('hmw3d-render',scheduleRefresh,{passive:true});
 })();
 </script>
 
