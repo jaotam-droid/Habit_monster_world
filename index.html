@@ -5073,5 +5073,56 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 })();
 </script>
 
+
+
+<style id="v81-summary-truth-fix">
+/* V81 — Daily Summary truth fix: the heading and chips are derived from today's real logs. */
+#v72TodayStages:before{content:attr(data-stage-label)!important}
+#v72TodayStages .v72-stage-row{margin-top:7px!important}
+@media(max-width:700px){#v72TodayStages .v72-stage-row{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
+<script id="v81-final-truth-runtime">
+(()=>{
+ const BUILD='V81 • DAILY TRUTH + UI CONSISTENCY';
+ const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+ const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
+ let timer=0;
+ function today(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
+ function stageOrder(){
+   const a=qa('#worldMap .zone[data-stage]').map(z=>z.dataset.stage).filter(Boolean);
+   return [...new Set(a)];
+ }
+ function stageName(k){try{return defs?.[k]?.title||k}catch(_){return k}}
+ function logsToday(){try{return (S?.logs||[]).filter(x=>x&&x.date===today())}catch(_){return []}}
+ function truth(){
+   try{
+     const keys=stageOrder(),logs=logsToday(),done=new Set(logs.map(x=>x.k).filter(Boolean)),stars=logs.reduce((a,x)=>a+num(x.stars),0);
+     const host=q('#v72TodayStages');
+     if(host){
+       host.dataset.stageLabel=`Today Stages ${done.size}/${keys.length||7}`;
+       host.innerHTML=`<b>วันนี้: ${done.size}/${keys.length||7} ด่าน • ⭐ +${stars}</b><div class="v72-stage-row">${keys.map(k=>`<span class="v72-stage-chip ${done.has(k)?'done':''}">${done.has(k)?'✓':'○'} ${stageName(k)}</span>`).join('')}</div>`;
+     }
+     const p=q('#v76Perfect');if(p){const total=keys.length||7;p.classList.toggle('on',done.size===total);p.textContent=done.size===total?`🌈 PERFECT DAY! ครบ ${total}/${total} ด่านแล้ว ✨`:`วันนี้ทำแล้ว ${done.size}/${total} ด่าน`}
+     const boxes=qa('#dailySummary .summaryGrid .summaryBox');
+     if(boxes[3]){const total=keys.length||7;const b=boxes[3].querySelector('b'),sm=boxes[3].querySelector('small');if(b)b.textContent=`${done.size}/${total} ด่าน`;if(sm)sm.textContent=`${logs.length} บันทึก • ⭐ +${stars}`}
+   }catch(e){console.warn('V81 truth sync skipped',e)}
+ }
+ function mark(){
+   document.title='Habit Monster World V81';document.documentElement.dataset.hmwBuild='81-daily-truth-ui-consistency';
+   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
+   const st=q('#threeStatus');if(st)st.textContent='✅ DAILY TRUTH + UI CONSISTENCY • V81';
+   try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V81</b>')}catch(_){}
+ }
+ function run(){mark();truth()}
+ function schedule(){clearTimeout(timer);timer=setTimeout(()=>{run();requestAnimationFrame(run)},60)}
+ const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+ try{badge?.__v77Lock?.disconnect?.()}catch(_){}try{badge?.__v78Lock?.disconnect?.()}catch(_){}try{badge?.__v79Lock?.disconnect?.()}catch(_){}try{badge?.__v80Lock?.disconnect?.()}catch(_){}
+ if(badge&&!badge.__v81Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)badge.textContent=BUILD});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v81Lock=mo}
+ document.addEventListener('click',e=>{if(e.target.closest?.('#worldMap .zone[data-stage],#questBox button,[data-screen]'))schedule()},true);
+ addEventListener('pageshow',schedule);addEventListener('hmw3d-render',schedule);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+})();
+</script>
+
 </body>
 </html>
