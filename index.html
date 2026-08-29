@@ -4,7 +4,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=103"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=104"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
@@ -6883,6 +6883,49 @@ if(root){
   const mo=new MutationObserver(schedule);
   mo.observe(root,{childList:true,subtree:true});
 }
+})();
+</script>
+
+
+<style id="v104-final-ui-cleanup">
+/* V104 FINAL UI CLEANUP + GAME FEEL — presentation only; save/progression logic untouched */
+@media(max-width:600px){
+  /* cleaner map badges and card rhythm */
+  #worldMap .zone{position:relative!important;padding-top:30px!important}
+  #worldMap .zone .v80-done,#worldMap .zone .v80-active,#worldMap .zone .v86-done,#worldMap .zone .v86-active,
+  #worldMap .zone .doneToday,#worldMap .zone .todayBadge,#worldMap .zone [class*="doneBadge"],#worldMap .zone [class*="activeBadge"]{
+    top:7px!important;max-width:45%!important;font-size:10px!important;line-height:1.05!important;padding:4px 7px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
+  }
+  /* compact secondary navigation without reducing tap target */
+  .nav{gap:6px!important}.nav button{min-height:58px!important;padding:7px 3px!important;font-size:13px!important;line-height:1.15!important}
+  /* avatar controls read as collectible gear */
+  .gearRow{gap:6px!important;margin-top:9px!important}.gearChip{min-height:44px!important;padding:6px 9px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+  /* reduce excessive dashboard tail while keeping Safari safe area */
+  #dashboard .card:last-child{margin-bottom:0!important}.wrap{padding-bottom:max(66px,calc(44px + env(safe-area-inset-bottom)))!important}
+}
+/* Progress vocabulary: two systems must look intentionally different. */
+#v104ProgressLegend{margin:7px 0 0;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid #e3edf4;text-align:center;font-size:11px;font-weight:850;color:#63788d}
+/* Battle micro-HUD: prevent tiny floating counters from colliding with avatar art. */
+.battle .avatarArt{isolation:isolate}.battle .avatarArt [class*="heart"],.battle .avatarArt [class*="Heart"]{z-index:5!important}
+</style>
+<script id="v104-final-ui-authority">
+(()=>{
+'use strict';
+const BUILD='V104 • FINAL UI CLEANUP + GAME FEEL';
+function q(s){return document.querySelector(s)}
+function apply(){
+ document.title='Habit Monster World V104';
+ document.documentElement.dataset.hmwBuild='104-final-ui-cleanup';
+ const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+ const st=q('#threeStatus');if(st)st.textContent='✨ FINAL UI CLEANUP • V104';
+ const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V104</b>');
+ const arena=q('.arena');
+ if(arena&&!q('#v104ProgressLegend')){const n=document.createElement('div');n.id='v104ProgressLegend';n.innerHTML='🌱 พลังฝึกนิสัย = ความสม่ำเสมอ • ⚡ Monster Level = ความคืบหน้าด่าน';const stats=arena.querySelector('.stats');if(stats)stats.insertAdjacentElement('afterend',n)}
+}
+function boot(){apply();setTimeout(apply,120)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+addEventListener('pageshow',boot,{passive:true});addEventListener('hmw3d-render',()=>setTimeout(apply,20),{passive:true});
+document.addEventListener('click',()=>setTimeout(apply,30),true);
 })();
 </script>
 
