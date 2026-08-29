@@ -7072,5 +7072,57 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
+
+<style id="v109-monster-life-update">
+/* V109 Monster Life Update */
+.monsterMood,.levelUpFlash,.rewardSpark{
+  animation:hmwPop .55s ease;
+}
+@keyframes hmwPop{
+  0%{transform:scale(.92);opacity:.4}
+  70%{transform:scale(1.06)}
+  100%{transform:scale(1);opacity:1}
+}
+.v109-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff1a8,#ffd76f);
+  color:#735000;
+  font-weight:900;
+}
+.monster-card,.zone{
+  transition:.2s ease;
+}
+.monster-card:hover,.zone:hover{
+  transform:translateY(-2px);
+}
+</style>
+<script>
+(function(){
+function hmwV109(){
+ document.title='Habit Monster World V109';
+ document.documentElement.dataset.hmwBuild='109-monster-life-update';
+ const title=document.querySelector('title');
+ if(title) title.textContent='Habit Monster World V109';
+
+ const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+ if(badge && !/V109/.test(badge.textContent)) badge.textContent='V109';
+
+ // Small life messages for existing toast systems
+ window.hmwV109Messages=[
+  '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
+  '🌱 Monster โตขึ้นทุกวันจากนิสัยที่ดี',
+  '🎁 รางวัลใหม่รอการปลดล็อก'
+ ];
+}
+if(document.readyState==='loading'){
+ document.addEventListener('DOMContentLoaded',hmwV109,{once:true});
+}else hmwV109();
+})();
+</script>
+
 </body>
 </html>
