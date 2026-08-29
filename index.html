@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V132</title>
+<title>Habit Monster World V133</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -7405,10 +7405,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V132';
+ document.title='Habit Monster World V133';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V132';
+ if(title) title.textContent='Habit Monster World V133';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7547,7 +7547,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V132</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V133</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7575,7 +7575,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V132";
+ document.title="Habit Monster World V133";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7614,7 +7614,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V132";
+document.title="Habit Monster World V133";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
@@ -7666,7 +7666,7 @@ else hmwV124();
 <script>
 (()=>{
 window.HMW_VERSION="V129";
-document.title="Habit Monster World V132";
+document.title="Habit Monster World V133";
 
 function hmwV129(){
   document.querySelectorAll(".buildBadge").forEach(e=>{
@@ -7718,7 +7718,7 @@ else hmwV129();
 function v128Init(){
  document.querySelectorAll(".buildBadge").forEach(e=>e.textContent="V129");
  window.HMW_VERSION="V129";
- document.title="Habit Monster World V132";
+ document.title="Habit Monster World V133";
 
  // reward visual helper
  window.HMWReward=function(text="เก่งมาก!"){
@@ -7760,9 +7760,9 @@ else v128Init();
 <script id="v130-evolution-system">
 (()=>{
 function v130(){
- document.title="Habit Monster World V132";
+ document.title="Habit Monster World V133";
  // version label
- document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V132");
+ document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V133");
  document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V131 • EVOLUTION POLISH");
 
  // add evolution hints to monster cards without touching save data
@@ -7872,7 +7872,7 @@ else v130();
 </script>
 
 <style id="v132-big-evolution-pass">
-/* V132 Big Feature Pass */
+/* V133 Big Feature Pass */
 .evoBadge{
  position:absolute;left:10px;top:10px;
  background:linear-gradient(135deg,#fff1a8,#ffd45c);
@@ -7945,5 +7945,53 @@ else start();
 })();
 </script>
 
+
+<style id="v133-major-evolution">
+/* V133 Major Evolution Update */
+.evoBadge{
+ position:absolute;top:8px;right:8px;z-index:5;
+ background:linear-gradient(135deg,#fff,#fff3b5);
+ border:2px solid #ffd45b;border-radius:999px;
+ padding:5px 10px;font-weight:950;font-size:12px;
+ box-shadow:0 8px 18px rgba(80,80,50,.14)
+}
+.evoGlow{animation:evoPulse .9s ease}
+@keyframes evoPulse{50%{filter:brightness(1.2);transform:scale(1.03)}}
+.evoCard{background:linear-gradient(135deg,#fff,#f2fbff);border:2px solid #cfe8ff;border-radius:18px;padding:10px}
+.monsterStageUp{animation:stageUp .8s ease}
+@keyframes stageUp{0%{transform:scale(.9)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+.rewardBurst{position:fixed;left:50%;top:35%;transform:translate(-50%,-50%);font-size:42px;font-weight:1000;z-index:9999;opacity:0;pointer-events:none}
+.rewardBurst.show{opacity:1;animation:burst .9s ease}
+@keyframes burst{0%{transform:translate(-50%,-50%) scale(.5)}60%{transform:translate(-50%,-50%) scale(1.2)}100%{opacity:0}}
+</style>
+<script>
+(function v133(){
+function run(){
+ // stronger evolution presentation
+ document.querySelectorAll('.monster-card,.zone').forEach((el,i)=>{
+   el.classList.add('evoCard');
+ });
+ // reward feedback layer
+ let r=document.createElement('div');
+ r.className='rewardBurst';
+ r.textContent='✨ Monster UP! 🎁';
+ document.body.appendChild(r);
+ document.querySelectorAll('.bigBtn,.green,.yellow').forEach(btn=>{
+   btn.addEventListener('click',()=>{
+    r.classList.remove('show');void r.offsetWidth;r.classList.add('show');
+   });
+ });
+ // add pet mood indicator when pet area exists
+ document.querySelectorAll('.petChoice,.pet-card').forEach(p=>{
+   if(!p.querySelector('.petMood')){
+    let x=document.createElement('small');
+    x.className='petMood';x.textContent=' 💚 Happy';x.style.fontWeight='900';
+    p.appendChild(x);
+   }
+ });
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+})();
+</script>
 </body>
 </html>
