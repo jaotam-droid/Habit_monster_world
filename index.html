@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=90"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=91"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V90</title>
+<title>Habit Monster World V91</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -3378,11 +3378,11 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
   function submit(action){
     if(action==="diligent"){
-      const n=+q('#qCount')?.value;if(!(n>=1))return toast('ใส่จำนวนข้อ');
+      const box=document.getElementById('questBox'),n=Number(box?.querySelector('#qCount')?.value);if(!Number.isFinite(n)||n<1)return toast('ใส่จำนวนข้อ');
       return commit('diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`});
     }
     if(action==="reading"){
-      const n=+q('#qMinutes')?.value;if(!(n>=1))return toast('ใส่นาที');
+      const box=document.getElementById('questBox'),n=Number(box?.querySelector('#qMinutes')?.value);if(!Number.isFinite(n)||n<1)return toast('ใส่นาที');
       return commit('reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`});
     }
     if(action==="homework"){
@@ -5741,6 +5741,61 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
  addEventListener('pageshow',boot,{passive:true});addEventListener('hmw3d-render',sync,{passive:true});
  document.addEventListener('click',e=>{if(e.target.closest('#questBox button,[data-stage]'))sync()},{passive:true});
  const host=q('#dailySummary');if(host&&!host.__v90Observer){const mo=new MutationObserver(()=>{const foot=host.querySelector('.v86-summary-foot');const ks=keys(),done=new Set(todayLogs().map(x=>x.k).filter(k=>ks.includes(k)));if(foot&&!foot.textContent.includes(`ด่านที่ทำวันนี้ ${done.size}/${ks.length||7}`))sync()});mo.observe(host,{childList:true,subtree:true,characterData:true});host.__v90Observer=mo}
+})();
+</script>
+
+
+<style id="v91-primary-save-hotfix">
+#questBox button[data-v60-action="diligent"],
+#questBox button[data-v60-action="reading"]{
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  position:relative!important;
+  z-index:20!important;
+}
+#questBox button.v91-saving{opacity:.72!important}
+</style>
+<script id="v91-primary-save-hotfix-authority">
+(()=>{
+'use strict';
+const BUILD='V91 • PRIMARY SAVE HOTFIX', BUILD_ID='91-primary-save-hotfix';
+const q=s=>document.querySelector(s);
+function mark(){
+  document.title='Habit Monster World V91';
+  document.documentElement.dataset.hmwBuild=BUILD_ID;
+  const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+  if(b)b.textContent=BUILD;
+  const st=q('#threeStatus');if(st)st.textContent='✅ SAVE HOTFIX • V91';
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V91</b>');
+}
+function reinforce(){
+  ['diligent','reading'].forEach(k=>{
+    const b=q(`#questBox button[data-v60-action="${k}"]`);
+    if(!b)return;
+    b.disabled=false;
+    b.removeAttribute('aria-disabled');
+    b.style.pointerEvents='auto';
+  });
+}
+let busy=false;
+document.addEventListener('click',e=>{
+  const b=e.target.closest?.('#questBox button[data-v60-action="diligent"],#questBox button[data-v60-action="reading"]');
+  if(!b)return;
+  // V62 remains the canonical capture router. This listener only restores the
+  // control immediately if an older visual guard left it disabled.
+  if(b.disabled){e.preventDefault();b.disabled=false}
+  if(!busy){
+    busy=true;b.classList.add('v91-saving');
+    setTimeout(()=>{busy=false;if(b.isConnected){b.disabled=false;b.classList.remove('v91-saving')}},520);
+  }
+},true);
+function boot(){mark();reinforce();setTimeout(reinforce,120);setTimeout(reinforce,500)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+addEventListener('pageshow',boot,{passive:true});
+addEventListener('hmw3d-render',()=>setTimeout(reinforce,30),{passive:true});
+const box=q('#questBox');
+if(box&&!box.__v91Observer){const mo=new MutationObserver(()=>setTimeout(reinforce,0));mo.observe(box,{childList:true,subtree:true});box.__v91Observer=mo}
 })();
 </script>
 
