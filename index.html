@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=126"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=127"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V126</title>
+<title>Habit Monster World V127</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1620,7 +1620,7 @@ body{overflow-x:hidden!important}
 </style>
 
 <style id="v125-premium-polish">
-/* V126 Premium Polish */
+/* V127 Premium Polish */
 .buildBadge{
   background:linear-gradient(135deg,#7467f5,#4b8df5)!important;
   box-shadow:0 8px 20px rgba(74,86,210,.24)!important;
@@ -1645,6 +1645,40 @@ body{overflow-x:hidden!important}
 }
 </style>
 
+
+<style id="v127-final-foundation-polish">
+/* V127 Final Foundation Polish */
+.card{
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:active{
+  transform:scale(.995);
+}
+.zone{
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.zone:hover{
+  transform:translateY(-2px);
+}
+.bigBtn{
+  transition:transform .16s ease, filter .16s ease;
+}
+.bigBtn:active{
+  transform:scale(.98);
+  filter:brightness(1.03);
+}
+.quest,.summaryBox,.stat{
+  transition:box-shadow .18s ease;
+}
+.quest:hover,.summaryBox:hover,.stat:hover{
+  box-shadow:0 10px 24px rgba(43,73,105,.10);
+}
+/* make mobile touch targets more app-like */
+@media(max-width:600px){
+  .bigBtn{min-height:48px}
+  .smallBtn{min-height:40px}
+}
+</style>
 </head>
 <body>
 <!-- V124 Premium Evolution -->
@@ -7332,10 +7366,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V126';
+ document.title='Habit Monster World V127';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V126';
+ if(title) title.textContent='Habit Monster World V127';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7474,7 +7508,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V126</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V127</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7502,7 +7536,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V126";
+ document.title="Habit Monster World V127";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7541,7 +7575,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V126";
+document.title="Habit Monster World V127";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
