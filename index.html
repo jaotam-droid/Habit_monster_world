@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=118"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=119"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V118</title>
+<title>Habit Monster World V120</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1525,6 +1525,31 @@ body{overflow-x:hidden!important}
   50%{transform:translateY(-3px)}
 }
 </style>
+
+<style id="v119-premium-polish">
+/* V120 Premium Polish Pass */
+.buildBadge{
+  background:linear-gradient(135deg,#6d63f5,#3d8df5)!important;
+  letter-spacing:.6px!important;
+}
+.avatarChoice.on{
+  transform:translateY(-2px)!important;
+  box-shadow:0 0 0 4px rgba(255,211,94,.3),0 16px 28px rgba(45,80,120,.16)!important;
+}
+.zone{
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+.zone:active{
+  transform:scale(.98)!important;
+}
+.zone.active{
+  box-shadow:0 0 0 5px rgba(255,210,75,.22),0 18px 34px rgba(45,80,120,.16)!important;
+}
+.stat{
+  backdrop-filter:blur(5px);
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -7211,10 +7236,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V118';
+ document.title='Habit Monster World V120';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V118';
+ if(title) title.textContent='Habit Monster World V120';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7353,7 +7378,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V118</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V120</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7381,7 +7406,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V118";
+ document.title="Habit Monster World V120";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7405,5 +7430,32 @@ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded"
 else hmwV118();
 })();
 </script>
+
+<style id="v120-big-polish">
+/* V120 Big Polish Round */
+.buildBadge::after{content:" • PREMIUM POLISH";font-size:11px;margin-left:4px}
+.zone .growthBadge{filter:drop-shadow(0 4px 6px rgba(0,0,0,.12))}
+.rewardGlow,.trophy.done,.closetItem.on{
+  box-shadow:0 0 0 3px rgba(255,214,90,.18),0 12px 25px rgba(60,90,120,.12)!important;
+}
+.friendBar{box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.unlockCard{border-radius:18px}
+</style>
+<script>
+(()=>{
+// V120 polish hooks
+window.HMW_VERSION="V120";
+document.title="Habit Monster World V120";
+function hmwV120(){
+ document.querySelectorAll(".buildBadge").forEach(e=>{
+   if(!e.textContent.includes("V120")) e.textContent="V120";
+ });
+ document.querySelectorAll("[data-version]").forEach(e=>e.dataset.version="V120");
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV120,{once:true});
+else hmwV120();
+})();
+</script>
+
 </body>
 </html>
