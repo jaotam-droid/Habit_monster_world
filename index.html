@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=91"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=92"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V91</title>
+<title>Habit Monster World V92</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -3173,14 +3173,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V90 • RELEASE CANDIDATE';
+  const BUILD='V92 • SAVE PIPELINE FIX';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V90';
+    document.title='Habit Monster World V92';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3260,8 +3260,8 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
   }
 
   function questHTML60(k){
-    if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" data-v60-action="diligent">บันทึก</button>`;
-    if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="30"><button class="bigBtn yellow" data-v60-action="reading">บันทึก</button><div class="v59-save-note">บันทึกได้ไม่จำกัด • นาทีจะเพิ่มใน 📖 Daily/Weekly Summary</div>`;
+    if(k==="diligent")return `<div class="questTitle">✏️ ทำแบบฝึกหัดกี่ข้อ?</div><input id="qCount" class="wideInput" type="number" min="1" value="5"><button class="bigBtn green" type="button" data-v60-action="diligent">บันทึก</button>`;
+    if(k==="reading")return `<div class="questTitle">📖 อ่าน/ทบทวนกี่นาที?</div><input id="qMinutes" class="wideInput" type="number" min="1" value="30"><button class="bigBtn yellow" type="button" data-v60-action="reading">บันทึก</button><div class="v59-save-note">บันทึกได้ไม่จำกัด • นาทีจะเพิ่มใน 📖 Daily/Weekly Summary</div>`;
     if(k==="homework")return `<div class="questTitle">📚 เคลียร์การบ้านกี่งาน?</div><select id="qHomework" class="wideInput">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option>${n}</option>`).join("")}</select><button class="bigBtn blue" data-v60-action="homework">บันทึก</button>`;
     if(k==="messy")return `<div class="questTitle">🧹 วันนี้เก็บอะไรแล้ว?</div><div class="checkList">${S.messyTasks.map((x,i)=>`<div class="checkRow"><input type="checkbox" data-messy="${i}"><span style="flex:1">${x}</span>${i>=3?`<button class="deleteBtn" data-v60-delete-messy="${i}">🗑️ ลบ</button>`:""}</div>`).join("")}</div><div class="inlineAdd"><input id="newMessy" class="wideInput" placeholder="เพิ่มงานเอง"><button class="smallBtn" data-v60-action="addMessy">+ เพิ่ม</button></div><button class="bigBtn purple" data-v60-action="messy">บันทึก</button>`;
     if(k==="morning")return `<div class="questTitle">🌅 พร้อมตอนเช้า</div><div class="inputRow"><label>เป้า<input value="${S.settings.morning}" disabled></label><label>พร้อมจริง<input id="qMorning" type="time"></label></div><button class="bigBtn orange" data-v60-action="morning">เช็ก</button>`;
@@ -3481,13 +3481,15 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 </style>
 <script id="v62-unified-input-engine">
 (()=>{
-  const BUILD='V90 • RELEASE CANDIDATE';
+  'use strict';
+  const BUILD='V92 • SAVE PIPELINE FIX';
   const q=s=>document.querySelector(s);
+  let lastTouchAt=0,lastTouchAction='';
 
   function mark62(){
-    const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V90';
-    document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
+    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
+    document.title='Habit Monster World V92';
+    document.documentElement.dataset.hmwBuild='92-save-pipeline-fix';
     if(S && S.settings){
       S.settings.dailyCap=0;
       S.settings.cooldown=0;
@@ -3499,88 +3501,120 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
     if(!order.includes(stage)) return false;
     S.active=stage;
     save();
-    /* Full render is intentional: it guarantees the form, arena and summaries
-       are all bound to the newly selected stage, rather than a stale stage. */
     render();
     mark62();
     requestAnimationFrame(()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'}));
     return true;
   }
 
-  function submit62(action){
-    /* The V60 commit path already writes progress/totals/logs/summaries.
-       V62 forces all blocking settings off and routes every stage through it. */
+  function inputNumber(btn,id,msg,min=1){
+    const box=btn?.closest?.('#questBox') || document.getElementById('questBox');
+    const el=box?.querySelector(id);
+    const n=Number(el?.value);
+    if(!Number.isFinite(n) || n<min){toast(msg);el?.focus?.();return null}
+    return n;
+  }
+
+  function canonicalCommit(k,p){
+    const fn=window.commitActivityV60;
+    if(typeof fn!=='function'){toast('ระบบบันทึกยังไม่พร้อม • กรุณารีเฟรชหน้า');return false}
+    const ok=fn(k,p);
+    if(ok===false)return false;
+    setTimeout(mark62,30);
+    return ok;
+  }
+
+  function submit62(action,btn){
     if(S && S.settings){S.settings.dailyCap=0;S.settings.cooldown=0;S.settings.approval='trust';}
 
     if(action==='diligent'){
-      const n=+q('#qCount')?.value;if(!(n>=1))return toast('ใส่จำนวนข้อ');
-      return window.commitActivityV60('diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`});
+      const n=inputNumber(btn,'#qCount','ใส่จำนวนข้อ',1);if(n===null)return false;
+      return canonicalCommit('diligent',{amount:n,power:Math.max(5,Math.ceil(n/5)*6),stars:Math.min(15,Math.max(3,Math.ceil(n/5)*3)),label:`✏️ ทำแบบฝึกหัด ${n} ข้อ`});
     }
     if(action==='reading'){
-      const n=+q('#qMinutes')?.value;if(!(n>=1))return toast('ใส่นาที');
-      return window.commitActivityV60('reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`});
+      const n=inputNumber(btn,'#qMinutes','ใส่นาที',1);if(n===null)return false;
+      return canonicalCommit('reading',{amount:n,power:Math.max(5,Math.ceil(n/10)*5),stars:Math.min(15,Math.max(3,Math.ceil(n/10)*4)),label:`📖 อ่าน/ทบทวน ${n} นาที`});
     }
     if(action==='homework'){
-      const n=+q('#qHomework')?.value;if(!(n>=1))return toast('เลือกจำนวนงาน');
-      return window.commitActivityV60('homework',{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`});
+      const n=inputNumber(btn,'#qHomework','เลือกจำนวนงาน',1);if(n===null)return false;
+      return canonicalCommit('homework',{amount:n,power:n*10,stars:Math.min(20,n*4),label:`📚 เคลียร์การบ้าน ${n} งาน`});
     }
     if(action==='addMessy'){
-      const v=(q('#newMessy')?.value||'').trim();if(!v)return toast('พิมพ์ชื่องาน');
+      const box=btn?.closest?.('#questBox')||document.getElementById('questBox');
+      const v=(box?.querySelector('#newMessy')?.value||'').trim();if(!v)return toast('พิมพ์ชื่องาน');
       if(S.messyTasks.includes(v))return toast('มีงานนี้แล้ว');
       S.messyTasks.push(v);save();render();mark62();return toast('เพิ่มงานแล้ว');
     }
     if(action==='messy'){
-      const cs=[...document.querySelectorAll('[data-messy]:checked')];
+      const box=btn?.closest?.('#questBox')||document.getElementById('questBox');
+      const cs=[...(box?.querySelectorAll('[data-messy]:checked')||[])];
       const names=cs.map(x=>S.messyTasks[+x.dataset.messy]);if(!names.length)return toast('ติ๊กอย่างน้อย 1 งาน');
-      const n=names.length;return window.commitActivityV60('messy',{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(' • ')}`});
+      const n=names.length;return canonicalCommit('messy',{amount:n,power:n*8,stars:Math.min(15,n*5),label:`🧹 ${names.join(' • ')}`});
     }
     if(action==='morning'){
-      const a=q('#qMorning')?.value;if(!a)return toast('ใส่เวลา');
+      const box=btn?.closest?.('#questBox')||document.getElementById('questBox');
+      const a=box?.querySelector('#qMorning')?.value;if(!a)return toast('ใส่เวลา');
       if(a>S.settings.morning)return toast('วันนี้ยังไม่ทันเป้า');
-      return window.commitActivityV60('morning',{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`});
+      return canonicalCommit('morning',{amount:1,power:10,stars:5,label:`🌅 พร้อม ${a} ก่อน ${S.settings.morning}`});
     }
     if(action==='noDawdle'){
-      const over=Math.max(0,+q('#qToilet')?.value||0),bm=+q('#qBathM')?.value||0,be=+q('#qBathE')?.value||0;
+      const box=btn?.closest?.('#questBox')||document.getElementById('questBox');
+      const over=Math.max(0,+box?.querySelector('#qToilet')?.value||0),bm=+box?.querySelector('#qBathM')?.value||0,be=+box?.querySelector('#qBathE')?.value||0;
       let pass=0,notes=[];
       if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);
       if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}
       if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}
       if(!pass)return toast('ยังไม่มีหัวข้อที่ผ่านเป้า');
-      return window.commitActivityV60('noDawdle',{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(' • ')}`});
+      return canonicalCommit('noDawdle',{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(' • ')}`});
     }
     if(action==='screen'){
-      const n=+q('#qScreen')?.value;if(!Number.isFinite(n)||n<0)return toast('ใส่เวลาจอ');
-      const lunch=q('#qLunch')?.checked,dinner=q('#qDinner')?.checked;let pass=0,notes=[];
+      const box=btn?.closest?.('#questBox')||document.getElementById('questBox');
+      const n=Number(box?.querySelector('#qScreen')?.value);if(!Number.isFinite(n)||n<0)return toast('ใส่เวลาจอ');
+      const lunch=box?.querySelector('#qLunch')?.checked,dinner=box?.querySelector('#qDinner')?.checked;let pass=0,notes=[];
       if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);
       if(lunch){pass++;notes.push('กลางวันไม่ดูจอ ✓')}
       if(dinner){pass++;notes.push('เย็นไม่ดูจอ ✓')}
       if(!pass)return toast('วันนี้ยังไม่ผ่านเป้า');
-      return window.commitActivityV60('screen',{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(' • ')}`});
+      return canonicalCommit('screen',{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(' • ')}`});
     }
+    return false;
   }
 
-  /* ONE capture handler only. This fires before old bubble listeners and makes
-     stage switching + save buttons deterministic on iPhone Safari. */
-  document.addEventListener('click',e=>{
-    const zone=e.target.closest?.('#worldMap .zone[data-stage]');
+  function route(e,source){
+    const zone=e.target?.closest?.('#worldMap .zone[data-stage]');
     if(zone){
       e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
-      goStage(zone.dataset.stage);return;
+      goStage(zone.dataset.stage);return true;
     }
-    const btn=e.target.closest?.('#questBox button[data-v60-action]');
+    const btn=e.target?.closest?.('#questBox button[data-v60-action]');
     if(btn){
+      const action=btn.dataset.v60Action||'';
+      if(source==='click' && Date.now()-lastTouchAt<800 && lastTouchAction===action){
+        e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();return true;
+      }
       e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
-      submit62(btn.dataset.v60Action);return;
+      if(source==='pointer'){lastTouchAt=Date.now();lastTouchAction=action}
+      submit62(action,btn);return true;
     }
-    const del=e.target.closest?.('#questBox [data-v60-delete-messy]');
+    const del=e.target?.closest?.('#questBox [data-v60-delete-messy]');
     if(del){
       e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
       const i=+del.dataset.v60DeleteMessy;if(i>=3){S.messyTasks.splice(i,1);save();render();mark62();}
+      return true;
     }
+    return false;
+  }
+
+  // iPhone Safari: primary touch path fires on pointerup.
+  document.addEventListener('pointerup',e=>{
+    if(e.pointerType==='touch'||e.pointerType==='pen')route(e,'pointer');
   },true);
 
+  // Keyboard / mouse / fallback path.
+  document.addEventListener('click',e=>route(e,'click'),true);
+
   window.selectStage62=goStage;
-  window.submitActivity62=submit62;
+  window.submitActivity62=(action)=>submit62(action,document.querySelector(`#questBox button[data-v60-action="${action}"]`));
 
   function boot(){mark62();save();render();mark62();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
@@ -3591,13 +3625,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V90 • RELEASE CANDIDATE';
+  const BUILD='V92 • SAVE PIPELINE FIX';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V90';
+    document.title='Habit Monster World V92';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3740,10 +3774,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V90 • RELEASE CANDIDATE';
+  const BUILD='V92 • SAVE PIPELINE FIX';
 
   function buildMark(){
-    document.title='Habit Monster World V90';
+    document.title='Habit Monster World V92';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3865,13 +3899,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V90 • RELEASE CANDIDATE';
+  const BUILD='V92 • SAVE PIPELINE FIX';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V90';
+    document.title='Habit Monster World V92';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3948,13 +3982,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V90';
+  document.title='Habit Monster World V92';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -4003,11 +4037,11 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v71-version-lock-script">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
- function mark(){document.title='Habit Monster World V90';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
+ function mark(){document.title='Habit Monster World V92';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
  function goal(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function toast(t){let n=q('#v69Toast');if(!n){n=document.createElement('div');n.id='v69Toast';n.className='v69-toast';document.body.appendChild(n)}n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),1100)}
  function status(){try{const map=q('#worldMap'),k=S.active,m=S.monsters[k];if(!map||!k||!m)return;let n=q('#v69QuickStatus');if(!n){n=document.createElement('div');n.id='v69QuickStatus';map.insertAdjacentElement('afterend',n)}const g=goal(k),p=Number(m.progress)||0,left=Math.max(0,g-p),u=UNITS[k]||'แต้ม';n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${p}/${g}<span class="sub">${left?`อีก ${left} ${u} → Lv.${m.level+1}`:'พร้อมไป Level ถัดไป ✨'}</span>`;n.onclick=()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}}
@@ -4057,11 +4091,11 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='71-version-lock';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4098,7 +4132,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    try{
     const n=q('#backupInfo'); if(!n)return;
     const has=!!localStorage.getItem('hmw26_model_backup');
-    n.innerHTML=`Game Build <b>V90</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>V73 ใช้ข้อมูลเดิมต่อได้ ไม่รีเซ็ตดาว/Level/Streak</small>`;
+    n.innerHTML=`Game Build <b>V92</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>V73 ใช้ข้อมูลเดิมต่อได้ ไม่รีเซ็ตดาว/Level/Streak</small>`;
    }catch(_){}
  }
  function worldText(){
@@ -4125,9 +4159,9 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  function lock(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
    if(b && b.textContent!==BUILD) b.textContent=BUILD;
    document.documentElement.dataset.hmwBuild='77-version-lock';
@@ -4160,7 +4194,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v72-authoritative-runtime">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const BACKUP_KEY='hmw26_model_backup';
  const PREIMPORT_KEY='hmw_v72_pre_import';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -4170,7 +4204,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  let commitBusy=false,lastCommitSig='',lastCommitAt=0;
 
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='72-reliability-progression';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4279,7 +4313,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function backupInfo(){
    const n=q('#backupInfo');if(!n)return;
    let has=false,stamp='—';try{has=!!localStorage.getItem(BACKUP_KEY);const t=localStorage.getItem(BACKUP_TIME);if(t)stamp=new Date(t).toLocaleString('th-TH')}catch(_){}
-   n.innerHTML=`Game Build <b>V90</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br><small>ไม่จำกัดดาวต่อวัน • มี Recovery checkpoint ก่อนบันทึกสำคัญ • ข้อมูลเดิม ดาว/Level/Streak/Hero/Pet ใช้ต่อได้</small>`;
+   n.innerHTML=`Game Build <b>V92</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br><small>ไม่จำกัดดาวต่อวัน • มี Recovery checkpoint ก่อนบันทึกสำคัญ • ข้อมูลเดิม ดาว/Level/Streak/Hero/Pet ใช้ต่อได้</small>`;
  }
  function todayStages(){
    const host=q('#dailySummary');if(!host)return;let n=q('#v72TodayStages');if(!n){n=document.createElement('div');n.id='v72TodayStages';host.appendChild(n)}
@@ -4333,13 +4367,13 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v73-authoritative-ux">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const safe=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function todayKey(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
  function todayLogs(){try{return (S.logs||[]).filter(x=>x&&x.date===todayKey())}catch(_){return []}}
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='73-stability-mobile-ux';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🛡️ STABLE SAVE + MOBILE UX • V73';
@@ -4373,7 +4407,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function backup(){
    const n=q('#backupInfo');if(!n)return;
    let has=false,stamp='—',checkpoint=false;try{has=!!localStorage.getItem('hmw26_model_backup');checkpoint=!!localStorage.getItem('hmw_v73_pre_commit');const t=localStorage.getItem('hmw_v72_backup_time');if(t)stamp=new Date(t).toLocaleString('th-TH')}catch(_){}
-   n.innerHTML=`Game Build <b>V90</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br>Recovery checkpoint: <b>${checkpoint?'พร้อม':'จะสร้างเมื่อบันทึกครั้งถัดไป'}</b><br><small>ไม่จำกัดดาวต่อวัน • ดาว/Level/Streak/Hero/Pet เดิมใช้ต่อได้</small>`;
+   n.innerHTML=`Game Build <b>V92</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br>Recovery checkpoint: <b>${checkpoint?'พร้อม':'จะสร้างเมื่อบันทึกครั้งถัดไป'}</b><br><small>ไม่จำกัดดาวต่อวัน • ดาว/Level/Streak/Hero/Pet เดิมใช้ต่อได้</small>`;
  }
  function run(){try{mark();world();pet();endCard();backup()}catch(e){console.warn('V73 UX refresh skipped',e)}}
  let scheduled=false;function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;run()})}
@@ -4414,11 +4448,11 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v74-authoritative-consistency">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='74-consistency-final-polish';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✨ LIVE SYNC + COMPACT UI • V75';
@@ -4519,7 +4553,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v75-authoritative-live-sync">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let syncing=false, timers=[];
@@ -4527,7 +4561,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    try{const k=order.includes(S.active)?S.active:order[0],m=S.monsters[k];return {k,m,goal:maxGoal(k),hpGoal:maxHp(k),unit:defs[k].unit||'แต้ม'}}catch(_){return null}
  }
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='75-live-sync-compact-ui';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🔄 LIVE SYNC + COMPACT UI • V75';
@@ -4712,14 +4746,14 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v77-authoritative-gameplay-clarity">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const PENDING='hmw_v77_pending_claim';
  const CLAIMED='hmw_v77_claimed_';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let claiming=false, busy=false, timers=[];
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='77-gameplay-reward-claim';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🎮 STABILITY + CLEAN SAVE • V78';
@@ -4831,7 +4865,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v78-authoritative-runtime">
 (()=>{
- const BUILD='V90 • RELEASE CANDIDATE';
+ const BUILD='V92 • SAVE PIPELINE FIX';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -4839,7 +4873,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  let saving=false,lastSig='',lastAt=0,uiTimer=0;
 
  function mark(){
-   document.title='Habit Monster World V90';
+   document.title='Habit Monster World V92';
    document.documentElement.dataset.hmwBuild='78-stability-clean-save';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🛡️ STABILITY + SAVE HARDENING • V80';
@@ -4903,7 +4937,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    }catch(_){}
  }
  function worldUI(){try{qa('#worldMap .zone[data-stage]').forEach(z=>{const k=z.dataset.stage,m=S.monsters?.[k];if(!m)return;z.classList.toggle('active',k===S.active);z.setAttribute('aria-label',`${defs[k].title} Level ${m.level}${k===S.active?' กำลังเล่น':''}`)})}catch(_){} }
- function backupUI(){try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V90</b>')}catch(_){} }
+ function backupUI(){try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V92</b>')}catch(_){} }
  function runtimeNote(){let n=q('#v78RuntimeNote');if(n)return;const h=q('#backupInfo')?.parentElement;if(!h)return;n=document.createElement('div');n.id='v78RuntimeNote';n.innerHTML='<b>V80:</b> Stability + Save hardening • Save เดียว 7 ด่าน • ไม่จำกัดดาว • ไม่มี cooldown • rollback ก่อนบันทึก';h.appendChild(n)}
  function refreshUI(){mark();repair();worldUI();dailyUI();backupUI();runtimeNote()}
  function scheduleUI(){clearTimeout(uiTimer);uiTimer=setTimeout(()=>{refreshUI();requestAnimationFrame(refreshUI)},40)}
@@ -5380,8 +5414,8 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
 <script id="v88-clean-core-authority">
 (()=>{
  'use strict';
- const BUILD='V90 • RELEASE CANDIDATE';
- const BUILD_ID='90-release-candidate';
+ const BUILD='V92 • SAVE PIPELINE FIX';
+ const BUILD_ID='92-save-pipeline-fix';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -5437,10 +5471,10 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
  function stageName(k){try{return defs?.[k]?.title||k}catch(_){return k}}
 
  function mark(){
-   document.title='Habit Monster World V90';document.documentElement.dataset.hmwBuild=BUILD_ID;
+   document.title='Habit Monster World V92';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
-   const st=q('#threeStatus');if(st)st.textContent='✅ RELEASE CANDIDATE • V90';
-   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V90</b>');
+   const st=q('#threeStatus');if(st)st.textContent='✅ SAVE PIPELINE FIX • V92';
+   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V92</b>');
    qa('#v66RuntimeNote,#v72RuntimeNote,#v73RuntimeNote,#v74RuntimeNote,#v75RuntimeNote,#v76RuntimeNote,#v77RuntimeNote,#v78RuntimeNote,#v80RuntimeNote,#v83RuntimeNote,#v85RuntimeNote,#v86RuntimeNote,#v87RuntimeNote').forEach(n=>n.remove());
    if(!q('#v88RuntimeNote')){const host=bi?.parentElement;if(host){const n=document.createElement('div');n.id='v88RuntimeNote';n.innerHTML='<b>V88:</b> save authority เดียว • ตรวจ state แบบไม่ลบข้อมูล • Summary/Progress ใช้ log/state ชุดเดียว • รองรับข้อมูล V87 เดิม <span id="v88DataHealth">✓ Data OK</span>';host.appendChild(n)}}
  }
@@ -5497,7 +5531,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
      const m=S.monsters[k],amount=num(p.amount),power=Math.max(0,num(p.power)),stars=Math.max(0,num(p.stars));
      m.lastSubmit=now;m.progress=num(m.progress)+amount;m.hp=Math.max(0,num(m.hp)-power);m.history.unshift(p.label||'บันทึก');
      S.stars=num(S.stars)+stars;S.totals[k]=num(S.totals[k])+amount;
-     S.logs.push({date:d,k,label:p.label||'',amount,stars,requestedStars:stars,build:90});
+     S.logs.push({date:d,k,label:p.label||'',amount,stars,requestedStars:stars,build:92});
      S.pet.xp=num(S.pet.xp)+5;S.pet.friendship=Math.min(100,num(S.pet.friendship)+1);
      if(['diligent','reading','homework'].includes(k)){ensureDaily();S.daily.done[k]=true}
      m.dailyStars[d]=S.logs.filter(x=>x&&x.date===d&&x.k===k).reduce((a,x)=>a+num(x.stars),0);
@@ -5730,10 +5764,10 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
    }catch(e){console.warn('V90 summary sync skipped',e)}
  }
  function mark(){
-   document.title='Habit Monster World V90';document.documentElement.dataset.hmwBuild=BUILD_ID;
+   document.title='Habit Monster World V92';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
-   const st=q('#threeStatus');if(st)st.textContent='✅ RELEASE CANDIDATE • V90';
-   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V90</b>');
+   const st=q('#threeStatus');if(st)st.textContent='✅ SAVE PIPELINE FIX • V92';
+   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V92</b>');
  }
  let t=0;function sync(){clearTimeout(t);t=setTimeout(()=>{mark();fixSummary()},45)}
  function boot(){mark();fixSummary();setTimeout(fixSummary,150);setTimeout(fixSummary,600)}
@@ -5744,60 +5778,6 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
 })();
 </script>
 
-
-<style id="v91-primary-save-hotfix">
-#questBox button[data-v60-action="diligent"],
-#questBox button[data-v60-action="reading"]{
-  pointer-events:auto!important;
-  touch-action:manipulation!important;
-  -webkit-tap-highlight-color:transparent!important;
-  position:relative!important;
-  z-index:20!important;
-}
-#questBox button.v91-saving{opacity:.72!important}
-</style>
-<script id="v91-primary-save-hotfix-authority">
-(()=>{
-'use strict';
-const BUILD='V91 • PRIMARY SAVE HOTFIX', BUILD_ID='91-primary-save-hotfix';
-const q=s=>document.querySelector(s);
-function mark(){
-  document.title='Habit Monster World V91';
-  document.documentElement.dataset.hmwBuild=BUILD_ID;
-  const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-  if(b)b.textContent=BUILD;
-  const st=q('#threeStatus');if(st)st.textContent='✅ SAVE HOTFIX • V91';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V91</b>');
-}
-function reinforce(){
-  ['diligent','reading'].forEach(k=>{
-    const b=q(`#questBox button[data-v60-action="${k}"]`);
-    if(!b)return;
-    b.disabled=false;
-    b.removeAttribute('aria-disabled');
-    b.style.pointerEvents='auto';
-  });
-}
-let busy=false;
-document.addEventListener('click',e=>{
-  const b=e.target.closest?.('#questBox button[data-v60-action="diligent"],#questBox button[data-v60-action="reading"]');
-  if(!b)return;
-  // V62 remains the canonical capture router. This listener only restores the
-  // control immediately if an older visual guard left it disabled.
-  if(b.disabled){e.preventDefault();b.disabled=false}
-  if(!busy){
-    busy=true;b.classList.add('v91-saving');
-    setTimeout(()=>{busy=false;if(b.isConnected){b.disabled=false;b.classList.remove('v91-saving')}},520);
-  }
-},true);
-function boot(){mark();reinforce();setTimeout(reinforce,120);setTimeout(reinforce,500)}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-addEventListener('pageshow',boot,{passive:true});
-addEventListener('hmw3d-render',()=>setTimeout(reinforce,30),{passive:true});
-const box=q('#questBox');
-if(box&&!box.__v91Observer){const mo=new MutationObserver(()=>setTimeout(reinforce,0));mo.observe(box,{childList:true,subtree:true});box.__v91Observer=mo}
-})();
-</script>
 
 </body>
 </html>
