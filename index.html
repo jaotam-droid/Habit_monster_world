@@ -7486,5 +7486,61 @@ else hmwV121();
 })();
 </script>
 
+
+<style id="v122-premium-evolution">
+/* V122 Premium Evolution */
+.buildBadge{
+  letter-spacing:.5px;
+}
+.avatarStage{
+  position:relative!important;
+}
+.avatarStage:after{
+  content:"✨ Hero Studio";
+  position:absolute;
+  right:12px;
+  top:12px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.85);
+  color:#58708c;
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 5px 12px rgba(50,80,110,.12);
+  z-index:5;
+}
+.zone.active{
+  animation:hmwZonePulse 2.8s ease-in-out infinite;
+}
+@keyframes hmwZonePulse{
+  0%,100%{transform:translateY(-2px)}
+  50%{transform:translateY(-5px)}
+}
+.monster-card,.zone,.pet-card{
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.monster-card:active,.zone:active,.pet-card:active{
+  transform:scale(.98);
+}
+</style>
+<script>
+(()=>{
+window.HMW_VERSION="V122";
+document.title="Habit Monster World V122";
+
+function hmwV122(){
+  document.querySelectorAll(".buildBadge").forEach(e=>{
+    e.textContent="V122";
+  });
+  document.querySelectorAll("[data-version]").forEach(e=>{
+    e.dataset.version="V122";
+  });
+}
+if(document.readyState==="loading")
+ document.addEventListener("DOMContentLoaded",hmwV122,{once:true});
+else hmwV122();
+})();
+</script>
+
 </body>
 </html>
