@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V138</title>
+<title>Habit Monster World V139</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -8284,5 +8284,57 @@ window.HMW_V136={
  }else run();
 })();
 </script>
+
+<style id="v139-evolution-world">
+/* V139 Monster Evolution Polish */
+.evoReady{
+ display:flex;align-items:center;justify-content:center;gap:8px;
+ margin-top:10px;padding:12px;border-radius:18px;
+ background:linear-gradient(135deg,#fff4bf,#eef7ff);
+ border:2px solid #ffd45b;color:#7b5a12;font-weight:950;
+ box-shadow:0 10px 22px rgba(90,110,130,.12);
+}
+.evoCard{transition:.2s}
+.evoCard:hover{transform:translateY(-2px)}
+.levelChip{
+ display:inline-block;padding:4px 10px;border-radius:999px;
+ background:#eef6ff;color:#3269a8;font-weight:900;margin-top:5px
+}
+.evolutionGlow{
+ animation:evoPulse 1.8s infinite;
+}
+@keyframes evoPulse{
+ 0%,100%{box-shadow:0 0 0 0 rgba(255,211,80,.0)}
+ 50%{box-shadow:0 0 0 8px rgba(255,211,80,.25)}
+}
+</style>
+<script>
+(function v139(){
+function run(){
+ window.HMW_V139={
+  version:"V139",
+  features:[
+   "Monster Evolution Progress Polish",
+   "Evolution Ready Visual Feedback",
+   "Reward Collection Foundation"
+  ]
+ };
+ document.querySelectorAll('.monster-card,.zone,.box').forEach(el=>{
+   el.classList.add('evoCard');
+ });
+ const stage=document.querySelector('.avatarStage');
+ if(stage && !document.querySelector('.evoReady')){
+   const e=document.createElement('div');
+   e.className='evoReady evolutionGlow';
+   e.textContent='⭐ Hero Evolution Journey Ready';
+   stage.insertAdjacentElement('afterend',e);
+ }
+}
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",run,{once:true});
+}else run();
+})();
+</script>
+
 </body>
 </html>
