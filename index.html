@@ -4,21 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=83"><meta name="theme-color" content="#76b9ef">
-<script id="v63-cache-reset">
-(()=>{
-  try{
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.map(r=>r.unregister()))).catch(()=>{});
-    }
-    if('caches' in window){caches.keys().then(ks=>Promise.all(ks.map(k=>caches.delete(k)))).catch(()=>{});}
-  }catch(e){}
-})();
-</script>
+<link rel="manifest" href="manifest.webmanifest?v=85"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V84</title>
+<title>Habit Monster World V85</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1316,7 +1306,7 @@ input,select,button,textarea{min-height:44px;}
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V83 • MOBILE LAYOUT POLISH + STABLE CORE</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V85 • CLEAN CORE + MOBILE STABILITY</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -1819,9 +1809,9 @@ function submitDawdle(){let over=Math.max(0,+$("qToilet").value||0),bm=+$("qBath
 function submitScreen(){let n=+$("qScreen").value;if(!Number.isFinite(n)||n<0)return toast("ใส่เวลาจอ");let lunch=$("qLunch").checked,dinner=$("qDinner").checked,pass=0,notes=[];if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);if(lunch){pass++;notes.push("กลางวันไม่ดูจอ ✓")}if(dinner){pass++;notes.push("เย็นไม่ดูจอ ✓")}if(!pass)return toast("วันนี้ยังไม่ผ่านเป้า");queue("screen",{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(" • ")}`})}
 function summaryRange(days,offset=0){let end=new Date();end.setHours(23,59,59,999);end.setDate(end.getDate()-offset);let start=new Date(end);start.setDate(start.getDate()-days+1);start.setHours(0,0,0,0);let logs=S.logs.filter(x=>{let d=new Date(x.date+"T12:00:00");return d>=start&&d<=end}),sum=k=>logs.filter(x=>x.k===k).reduce((a,x)=>a+x.amount,0);return {diligent:sum("diligent"),reading:sum("reading"),homework:sum("homework"),messy:sum("messy"),morning:sum("morning"),screen:sum("screen"),days:new Set(logs.map(x=>x.date)).size,count:logs.length}}
 function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$("avatarName").value=p.name;$("skinSel").value=p.skin;$("hairSel").value=p.hair;$("hairColorSel").value=p.hairColor;$("avatarChoices").innerHTML=Object.keys(presets).map(id=>{let temp=clone(p);temp.preset=id;temp.hair=presets[id][1];temp.gear={hat:false,cape:false,bag:false,star:false};return `<button class="avatarChoice ${p.preset===id?"on":""}" onclick="pickAvatar('${id}')">${avatarSVG(temp)}<small>${id.toUpperCase()}</small></button>`}).join("");let unlock={hat:true,cape:S.streak>=7,bag:Math.max(...order.map(k=>S.monsters[k].level))>=3,star:order.some(k=>S.monsters[k].level>=5)};$("gearRow").innerHTML=[["hat","🧢 หมวก","เริ่มต้น"],["cape","🦸 เสื้อคลุม","Streak 7 วัน"],["bag","🎒 กระเป๋า","Monster Lv.3"],["star","⭐ Habit Star","HERO FORM"]].map(([k,n,h])=>`<button class="gearChip ${p.gear[k]?"on":""} ${unlock[k]?"":"locked"}" onclick="toggleGear('${k}',${unlock[k]})">${unlock[k]?n:"🔒 "+n}<small style="display:block">${h}</small></button>`).join("")}
-function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();render()}
-function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();render()}
-function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();render();toast("บันทึก Avatar แล้ว")}
+function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();renderAvatar();renderWorld()}
+function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();renderAvatar();renderWorld()}
+function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();renderAvatar();renderWorld();toast("บันทึก Avatar แล้ว")}
 function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").innerHTML=order.map(x=>`<div class="zone ${x===k?"active":""}" onclick="S.active='${x}';save();render()"><div class="zoneArt">${monsterSVG(x)}</div><b>${defs[x].title}</b><br><small>Lv.${S.monsters[x].level}${S.monsters[x].level>=5?" • HERO":""}</small></div>`).join("");$("heroArt").innerHTML=avatarSVG();$("heroName").textContent=S.profile.name;$("bossArt").innerHTML=monsterSVG(k,st);$("bossName").textContent=defs[k].name;$("monsterTitle").textContent=defs[k].title;$("monsterLevel").textContent=`Lv.${m.level}${m.level>=5?" • HERO FORM":""}`;$("monsterTalk").textContent=defs[k].talk[st];$("hpText").textContent=`${m.hp}/${maxHp(k)}`;$("hpBar").style.width=Math.max(0,m.hp/maxHp(k)*100)+"%";$("progressText").textContent=m.progress;$("progressUnit").textContent=defs[k].unit+"สะสม";$("monsterWins").textContent=m.wins;$("pendingCount").textContent=S.pending.filter(x=>x.k===k).length;$("petMiniText").textContent=S.pet.xp;$("nextLevelHint").textContent=m.level>=5?"👑 HERO ร่าง — สะสม Mastery ต่อได้":`เหลือ ${Math.max(0,maxGoal(k)-m.progress)} ${defs[k].unit} ถึง Lv.${m.level+1}`;$("questBox").innerHTML=questHTML(k);renderPetFollower()}
 function renderSummaries(){let d=summaryRange(1),w=summaryRange(7);$("dailySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">✅<b>${d.count} รายการ</b></div></div>`;$("weeklySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${w.reading} นาที</b></div><div class="summaryBox">📚<b>${w.homework} งาน</b></div><div class="summaryBox">🔥<b>${w.days} active days</b></div></div>`}
 function renderDaily(){ensureDaily();let q=[["diligent","✏️","แบบฝึกหัด"],["reading","📖","อ่าน"],["homework","📚","การบ้าน"]];$("dailyQuestGrid").innerHTML=q.map(([k,i,n])=>`<div class="box ${S.daily.done[k]?"done":""}"><div class="ico">${i}</div><b>${n}</b><br>${S.daily.done[k]?"✅ สำเร็จ":"ยังไม่สำเร็จ"}</div>`).join("");let all=q.every(([k])=>S.daily.done[k]);$("dailyChestBtn").disabled=!all||S.daily.chest;$("dailyChestIcon").textContent=S.daily.chest?"✅":"🎁";$("perfectDay").innerHTML=all?"🌈 PERFECT DAY!":"ทำครบ 3 อย่างเพื่อเปิดกล่อง"}
@@ -1851,9 +1841,9 @@ function editReward(i){if(!parentGuard())return;let r=S.rewards[i],n=prompt("ช
 function deleteReward(i){if(!parentGuard())return;if(confirm(`ลบ ${S.rewards[i].name}?`)){S.rewards.splice(i,1);save();render()}}
 function undoLatest(){if(!parentGuard())return;let x=S.undo.pop();if(!x)return toast("ไม่มีรายการให้ Undo");let pin=S.parentPin,unlocked=S.parentUnlocked;S=migrate(x.state);S.parentPin=pin;S.parentUnlocked=unlocked;save();render();toast(`↩️ ยกเลิก ${x.label}`)}
 function renderBackup(){$("backupInfo").innerHTML=`Save Version ${VERSION}<br>Auto Backup: ${localStorage.getItem(BACKUP)?"มี":"ยังไม่มี"}`}
-function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();(window.renderWorld?window.renderWorld():renderWorld());renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
+function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.stars;$("streakTop").textContent=S.streak;$("shieldsTop").textContent=S.shields;renderAvatar();renderWorld();renderSummaries();renderDaily();renderJourney();renderPets();renderRewards();renderTrophies();renderCloset();renderDashboard();renderEndDay();renderParent();renderBackup();setTimeout(()=>window.dispatchEvent(new Event("hmw3d-render")),0)}
 document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
-$("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();render()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();render()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();render()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
+$("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();renderAvatar();renderWorld()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();renderAvatar();renderWorld()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();renderAvatar();renderWorld()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
 $("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
 $("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v26-save.json";a.click();URL.revokeObjectURL(a.href)};
 $("importBtn").onclick=()=>{let f=$("importFile").files[0];if(!f)return toast("เลือกไฟล์ก่อน");let r=new FileReader();r.onload=()=>{try{S=migrate(JSON.parse(r.result));save();render();toast("Import สำเร็จ")}catch(e){toast("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)};
@@ -3748,7 +3738,7 @@ input[type="number"]{font-size:18px}
   text-align:center;font-weight:800;color:#34704a
 }
 </style>
-<script id="v66-mobile-polish-runtime">
+<script id="v66-mobile-polish">
 (()=>{
   const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
 
@@ -3851,7 +3841,7 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v67-progression-ux-style">
+<style id="v67-progression-ux">
 /* V67 — progression clarity + mobile UX hardening. No storage schema changes. */
 #worldMap .zone{display:flex!important;flex-direction:column!important;align-items:center!important}
 #worldMap .zone .v58-next{margin-top:auto!important;min-height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1.2!important}
@@ -3873,7 +3863,7 @@ input[type="number"]{font-size:18px}
   .summaryBox{min-height:88px!important}
 }
 </style>
-<script id="v67-progression-ux-runtime">
+<script id="v67-progression-ux">
 (()=>{
   const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
   const q=s=>document.querySelector(s);
@@ -3993,7 +3983,7 @@ input[type="number"]{font-size:18px}
 })();
 </script>
 
-<style id="v69-mobile-clarity-style">
+<style id="v71-version-lock">
 /* V69 — mobile layout + clarity only; canonical V60/V62 save/progression stays untouched */
 @media(max-width:600px){
  #worldMap .zone,#worldMap .v53-world-progress{height:auto!important;min-height:238px!important}
@@ -4032,7 +4022,7 @@ input[type="number"]{font-size:18px}
 </script>
 
 
-<style id="v70-release-polish-style">
+<style id="v71-version-lock">
 /* V70 — RELEASE POLISH: presentation/clarity only. Canonical V60/V62 save path is untouched. */
 :root{--v70-ink:#24364a;--v70-soft:#f5f9fc;--v70-gold:#ffd257}
 html{scroll-padding-top:calc(10px + env(safe-area-inset-top))}
@@ -4133,7 +4123,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </script>
 
 
-<script id="v71-version-lock-runtime">
+<script id="v71-version-lock">
 (()=>{
  const BUILD='V83 • MOBILE LAYOUT POLISH + STABLE CORE';
  function lock(){
@@ -4878,7 +4868,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
      const m=S.monsters[k],d=today(),amount=num(p.amount),power=Math.max(0,num(p.power)),stars=Math.max(0,num(p.stars));
      m.lastSubmit=now;m.progress=num(m.progress)+amount;m.hp=Math.max(0,num(m.hp)-power);m.history.unshift(p.label||'บันทึก');
      S.stars=num(S.stars)+stars;S.totals[k]=num(S.totals[k])+amount;
-     S.logs.push({date:d,k,label:p.label||'',amount,stars,requestedStars:stars,build:78});
+     S.logs.push({date:d,k,label:p.label||'',amount,stars,requestedStars:stars,build:85});
      S.pet.xp=num(S.pet.xp)+5;S.pet.friendship=Math.min(100,num(S.pet.friendship)+1);
      if(['diligent','reading','homework'].includes(k)){ensureDaily();S.daily.done[k]=true}
      m.dailyStars[d]=(S.logs||[]).filter(x=>x&&x.date===d&&x.k===k).reduce((a,x)=>a+num(x.stars),0);
@@ -4922,7 +4912,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  document.addEventListener('click',e=>{
    const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
    const k=z.dataset.stage;if(!order.includes(k))return;
-   S.active=k;save();render();scheduleUI();
+   S.active=k;save();renderWorld();scheduleUI();
  },true);
  document.addEventListener('keydown',e=>{
    if(e.key!=='Enter'&&e.key!==' ')return;const z=e.target.closest?.('#worldMap .zone[data-stage]');if(!z)return;
@@ -5295,128 +5285,46 @@ body{padding-bottom:calc(18px + env(safe-area-inset-bottom))!important}
   .battle .avatarArt,.battle .bossArt{height:126px!important;min-height:126px!important}
 }
 </style>
-<script id="v84-build-authority">
+<style id="v85-clean-core-polish">
+/* V85 Clean Core: small stability/accessibility additions only. Storage schema unchanged. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+#v85RuntimeNote{margin-top:8px;padding:8px 10px;border-radius:13px;background:#f1fbf5;border:1px solid #d4eddd;color:#496b59;font-size:11px;font-weight:850}
+#v85RuntimeNote b{color:#26724a}
+#worldMap .zone[data-stage],#questBox button,.avatarChoice,.gearChip{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+</style>
+<script id="v85-clean-core-authority">
 (()=>{
   'use strict';
-  const BUILD='V84 • MOBILE COMPACT + GAME UI POLISH';
+  const BUILD='V85 • CLEAN CORE + MOBILE STABILITY';
+  const BUILD_ID='85-clean-core-mobile-stability';
+  let markTimer=0;
   function mark(){
-    document.title='Habit Monster World V84';
-    document.documentElement.dataset.hmwBuild='84-mobile-compact-game-ui';
-    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
-    if(b)b.textContent=BUILD;
-    const st=document.querySelector('#threeStatus');
-    if(st)st.textContent='✅ STABLE CORE + COMPACT GAME UI • V84';
+    try{
+      if(document.title!=='Habit Monster World V85')document.title='Habit Monster World V85';
+      document.documentElement.dataset.hmwBuild=BUILD_ID;
+      const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+      if(b&&b.textContent!==BUILD)b.textContent=BUILD;
+      const st=document.querySelector('#threeStatus');
+      if(st&&st.textContent!=='✅ CLEAN CORE + MOBILE STABILITY • V85')st.textContent='✅ CLEAN CORE + MOBILE STABILITY • V85';
+      if(window.S?.settings){S.settings.dailyCap=0;S.settings.cooldown=0;}
+      const bi=document.querySelector('#backupInfo');
+      if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V85</b>');
+      if(!document.querySelector('#v85RuntimeNote')){
+        const host=bi?.parentElement;
+        if(host){const n=document.createElement('div');n.id='v85RuntimeNote';n.innerHTML='<b>V85 Clean Core:</b> save schema เดิม • V78 cleanCommit เป็นแกนบันทึก • stage/avatar ลด full render • cache ไม่ถูกล้างทุกครั้ง';host.appendChild(n)}
+      }
+    }catch(e){console.warn('V85 mark skipped',e)}
   }
-  const boot=()=>{mark();setTimeout(mark,120);setTimeout(mark,600)};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  addEventListener('pageshow',boot,{passive:true});
-})();
-</script>
-
-
-<style id="v85-stable-game-polish">
-/* V85 — AUTHORITATIVE RENDER + TODAY MISSION + FEEDBACK
-   Storage schema and V78 cleanCommit remain unchanged. */
-#v85TodayMission{margin:8px 0 0;padding:10px 11px;border:1px solid #d9e9f4;border-radius:16px;background:linear-gradient(135deg,#f7fcff,#fff9e9);box-shadow:0 7px 18px rgba(45,78,106,.07)}
-#v85TodayMission .v85-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:950}
-#v85TodayMission .v85-score{white-space:nowrap;color:#5a6f84;font-size:12px}
-#v85TodayMission .v85-bar{height:9px;margin:7px 0;background:#e9f0f5;border-radius:999px;overflow:hidden}
-#v85TodayMission .v85-bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#63c9a2,#77b9f4);border-radius:inherit;transition:width .28s ease}
-#v85TodayMission .v85-next{font-size:11.5px;color:#62788d;font-weight:850;line-height:1.35}
-#v85TodayMission.done{background:linear-gradient(135deg,#effcf2,#fff7cf);border-color:#cfe9c9}
-#v85TodayMission.done .v85-next{color:#39714c}
-.v85-feedback{position:fixed;left:50%;top:max(72px,calc(env(safe-area-inset-top) + 58px));transform:translate(-50%,-10px) scale(.97);z-index:99998;opacity:0;pointer-events:none;min-width:min(330px,88vw);max-width:88vw;padding:11px 15px;border-radius:18px;background:rgba(255,255,255,.97);box-shadow:0 16px 36px rgba(35,65,92,.20);border:1px solid rgba(132,184,222,.28);text-align:center;font-weight:950;color:#244663;transition:.2s ease}
-.v85-feedback.on{opacity:1;transform:translate(-50%,0) scale(1)}
-.v85-feedback.level{background:linear-gradient(135deg,#fff8cc,#f4edff);border-color:#ead273;font-size:16px}
-#questBox.v85-saved,.arena.v85-saved{animation:v85Pulse .34s ease-out}
-@keyframes v85Pulse{0%{filter:none}45%{filter:brightness(1.06)}100%{filter:none}}
-@media(max-width:700px){
- #v85TodayMission{padding:8px 9px;margin-top:6px;border-radius:14px}
- #v85TodayMission .v85-head{font-size:12px}
- #v85TodayMission .v85-score{font-size:10px}
- #v85TodayMission .v85-next{font-size:10px}
- #v85TodayMission .v85-bar{height:7px;margin:5px 0}
- #questBox button[data-v60-action]{min-height:48px!important}
- #questBox input,#questBox select{font-size:16px!important}
-}
-@media(max-width:390px){.v85-feedback{top:max(60px,calc(env(safe-area-inset-top) + 48px));font-size:13px;padding:9px 12px}}
-@media(prefers-reduced-motion:reduce){#v85TodayMission .v85-bar>i,.v85-feedback{transition:none!important}#questBox.v85-saved,.arena.v85-saved{animation:none!important}}
-</style>
-<script id="v85-authoritative-game-runtime">
-(()=>{
- 'use strict';
- const BUILD='V85 • STABLE GAME FLOW + TODAY MISSION';
- const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
- const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
- const day=()=>{try{return typeof dayKey==='function'?dayKey():new Date().toISOString().slice(0,10)}catch(_){return new Date().toISOString().slice(0,10)}};
- let refreshQueued=false, feedbackTimer=0;
- function mark(){
-   document.title='Habit Monster World V85';
-   document.documentElement.dataset.hmwBuild='85-stable-game-flow-today-mission';
-   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b&&b.textContent!==BUILD)b.textContent=BUILD;
-   const st=q('#threeStatus');if(st)st.textContent='✅ STABLE GAME FLOW + TODAY MISSION • V85';
- }
- function keys(){
-   try{if(Array.isArray(window.order)&&order.length)return order.slice()}catch(_){}
-   return [...new Set(qa('#worldMap .zone[data-stage]').map(z=>z.dataset.stage).filter(Boolean))];
- }
- function title(k){try{return defs?.[k]?.title||k}catch(_){return k}}
- function todayLogs(){try{return Array.isArray(S?.logs)?S.logs.filter(x=>x&&x.date===day()):[]}catch(_){return []}}
- function mission(){
-   const map=q('#worldMap');if(!map)return;
-   let host=q('#v85TodayMission');
-   if(!host){host=document.createElement('div');host.id='v85TodayMission';host.setAttribute('aria-live','polite');map.insertAdjacentElement('afterend',host)}
-   const ks=keys(),logs=todayLogs(),done=new Set(logs.map(x=>x.k).filter(k=>ks.includes(k))),total=ks.length||7;
-   const missing=ks.filter(k=>!done.has(k)),stars=logs.reduce((a,x)=>a+num(x.stars),0),pct=Math.round(done.size/Math.max(1,total)*100);
-   host.classList.toggle('done',done.size===total);
-   host.innerHTML=`<div class="v85-head"><span>${done.size===total?'🌈 ภารกิจวันนี้ครบแล้ว':'🎯 ภารกิจวันนี้'}</span><span class="v85-score">${done.size}/${total} ด่าน • ⭐ +${stars}</span></div><div class="v85-bar"><i style="width:${pct}%"></i></div><div class="v85-next">${missing.length?`ต่อไป: ${missing.slice(0,3).map(title).join(' • ')}${missing.length>3?' • …':''}`:'เก่งมาก! วันนี้ทำครบทุกด่านแล้ว 🎉'}</div>`;
- }
- function authoritativeWorld(){
-   try{if(typeof window.renderWorld==='function')window.renderWorld()}catch(e){console.warn('V85 authoritative world refresh skipped',e)}
- }
- function refresh(){refreshQueued=false;mark();authoritativeWorld();mission();
-   qa('#worldMap .zone[data-stage]').forEach(z=>{const on=!!window.S&&z.dataset.stage===S.active;z.classList.toggle('active',on);z.setAttribute('aria-pressed',on?'true':'false')});
- }
- function schedule(){if(refreshQueued)return;refreshQueued=true;requestAnimationFrame(refresh)}
- function feedback(msg,level=false){
-   let n=q('#v85Feedback');if(!n){n=document.createElement('div');n.id='v85Feedback';n.className='v85-feedback';n.setAttribute('role','status');document.body.appendChild(n)}
-   n.textContent=msg;n.classList.toggle('level',level);n.classList.remove('on');requestAnimationFrame(()=>n.classList.add('on'));
-   clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>n.classList.remove('on'),level?1900:1100);
- }
- // V78 cleanCommit stays the save authority. V85 only observes successful commits for UI feedback.
- if(typeof window.commitActivityV60==='function'&&!window.commitActivityV60.__v85){
-   const base=window.commitActivityV60;
-   const wrapped=function(k,p){
-     let beforeLevel=0,beforeStars=0,beforeDone=0;
-     try{beforeLevel=num(S?.monsters?.[k]?.level);beforeStars=num(S?.stars);beforeDone=new Set(todayLogs().map(x=>x.k)).size}catch(_){}
-     const ok=base.apply(this,arguments);
-     if(ok!==false){setTimeout(()=>{
-       try{
-         const afterLevel=num(S?.monsters?.[k]?.level),afterStars=num(S?.stars),afterDone=new Set(todayLogs().map(x=>x.k)).size;
-         const level=afterLevel>beforeLevel;
-         feedback(level?`🌈 LEVEL UP! ${title(k)} → Lv.${afterLevel}`:`✅ บันทึกแล้ว • ⭐ +${Math.max(0,afterStars-beforeStars)}`,level);
-         ['#questBox','.arena'].forEach(sel=>{const el=q(sel);if(el){el.classList.remove('v85-saved');void el.offsetWidth;el.classList.add('v85-saved');setTimeout(()=>el.classList.remove('v85-saved'),420)}});
-         if(afterDone>beforeDone||level)mission();schedule();
-       }catch(_){schedule()}
-     },60)}
-     return ok;
-   };
-   wrapped.__v85=true;wrapped.__v78=base.__v78;window.commitActivityV60=wrapped;
- }
- // If a legacy renderer ever rebuilds the quest, immediately restore the authoritative V60/V78 UI.
- const quest=q('#questBox');
- if(quest&&!quest.__v85Observer){
-   const mo=new MutationObserver(()=>{const legacy=quest.querySelector('button[onclick^="submit"]');if(legacy)schedule();});
-   mo.observe(quest,{childList:true,subtree:true});quest.__v85Observer=mo;
- }
- // Reassert V85 after old build-label locks and render passes without adding another click handler.
- const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
- ['__v78Lock','__v83Lock','__v84Lock'].forEach(k=>{try{badge?.[k]?.disconnect?.()}catch(_){}});
- if(badge&&!badge.__v85Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)mark()});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v85Lock=mo}
- try{if(typeof window.renderSummaries==='function'&&!window.renderSummaries.__v85){const base=window.renderSummaries;const w=function(){const r=base.apply(this,arguments);schedule();return r};w.__v85=true;window.renderSummaries=w}}catch(_){}
- addEventListener('pageshow',schedule,{passive:true});addEventListener('hmw3d-render',schedule,{passive:true});
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
- setTimeout(schedule,180);
+  function burst(){clearTimeout(markTimer);mark();requestAnimationFrame(mark);[80,240,650,1200,2000].forEach(ms=>setTimeout(mark,ms));}
+  // Save state when iOS backgrounds the PWA/tab; no full render is triggered here.
+  function persist(){try{if(typeof save==='function')save()}catch(_){}}
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')persist()},{passive:true});
+  addEventListener('pagehide',persist,{passive:true});
+  addEventListener('pageshow',burst,{passive:true});
+  addEventListener('hmw3d-render',()=>{clearTimeout(markTimer);markTimer=setTimeout(mark,30)},{passive:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',burst,{once:true});else burst();
 })();
 </script>
 
