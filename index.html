@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V130</title>
+<title>Habit Monster World V131</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1708,7 +1708,7 @@ body{overflow-x:hidden!important}
 </style>
 
 <style id="v130-evolution-polish">
-/* V130: Evolution + reward polish */
+/* V131: Evolution + reward polish */
 .evoBadge{display:inline-block;margin-top:5px;padding:4px 9px;border-radius:999px;background:#fff3bf;color:#7a5a00;font-weight:900;font-size:12px}
 .monster-card,.zone,.box{transition:.18s ease}
 .monster-card:hover,.zone:hover{transform:translateY(-3px)}
@@ -7405,10 +7405,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V130';
+ document.title='Habit Monster World V131';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V130';
+ if(title) title.textContent='Habit Monster World V131';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7547,7 +7547,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V130</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V131</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7575,7 +7575,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V130";
+ document.title="Habit Monster World V131";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7614,7 +7614,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V130";
+document.title="Habit Monster World V131";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
@@ -7666,7 +7666,7 @@ else hmwV124();
 <script>
 (()=>{
 window.HMW_VERSION="V129";
-document.title="Habit Monster World V130";
+document.title="Habit Monster World V131";
 
 function hmwV129(){
   document.querySelectorAll(".buildBadge").forEach(e=>{
@@ -7718,7 +7718,7 @@ else hmwV129();
 function v128Init(){
  document.querySelectorAll(".buildBadge").forEach(e=>e.textContent="V129");
  window.HMW_VERSION="V129";
- document.title="Habit Monster World V130";
+ document.title="Habit Monster World V131";
 
  // reward visual helper
  window.HMWReward=function(text="เก่งมาก!"){
@@ -7760,10 +7760,10 @@ else v128Init();
 <script id="v130-evolution-system">
 (()=>{
 function v130(){
- document.title="Habit Monster World V130";
+ document.title="Habit Monster World V131";
  // version label
- document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V130");
- document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V130 • EVOLUTION POLISH");
+ document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V131");
+ document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V131 • EVOLUTION POLISH");
 
  // add evolution hints to monster cards without touching save data
  const cards=[...document.querySelectorAll(".monster-card,.pet-card,.zone")];
@@ -7793,6 +7793,81 @@ function v130(){
 }
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",v130,{once:true});
 else v130();
+})();
+</script>
+
+<style id="v131-living-monster-update">
+/* V131 Living Monster Update */
+.evoBadge{
+ position:absolute;right:8px;top:8px;padding:5px 8px;border-radius:999px;
+ background:#fff8d8;border:1px solid #ffd35a;color:#765400;
+ font-size:11px;font-weight:950;z-index:5;
+}
+.monster-card,.pet-card,.zone{position:relative}
+.levelUpGlow{animation:v131Glow .9s ease}
+@keyframes v131Glow{
+ 0%{filter:brightness(1)}
+ 50%{filter:brightness(1.35) drop-shadow(0 0 18px #ffd45c)}
+ 100%{filter:brightness(1)}
+}
+.rewardChest{
+ display:flex;align-items:center;justify-content:center;gap:8px;
+ padding:12px;border-radius:18px;background:linear-gradient(#fff9dc,#fff);
+ border:2px solid #ffd76a;font-weight:950;margin-top:10px;
+}
+.rewardChest.open{animation:chestOpen .8s}
+@keyframes chestOpen{
+ 50%{transform:scale(1.08) rotate(-2deg)}
+}
+.lifeBubble{
+ position:absolute;right:10px;bottom:10px;background:white;border-radius:999px;
+ padding:5px 8px;font-size:12px;font-weight:900;box-shadow:0 5px 12px #0002;
+}
+@keyframes heroIdle{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-5px)}
+}
+.avatarStage img,.battle img,.petStage img{
+ animation:heroIdle 3s ease-in-out infinite;
+}
+.xp,.friendFill{transition:width .8s ease}
+</style>
+<script>
+(function v131(){
+ function run(){
+  // Evolution system visual layer
+  document.querySelectorAll(".monster-card,.pet-card,.zone").forEach((el,i)=>{
+    if(!el.querySelector(".lifeBubble")){
+      const b=document.createElement("div");
+      b.className="lifeBubble";
+      b.textContent=["🌱 Baby","⭐ Friend","🌈 Hero","✨ Legend"][i%4];
+      el.appendChild(b);
+    }
+  });
+
+  // Level-up feedback on progress bars
+  document.querySelectorAll(".xp,.friendFill").forEach(bar=>{
+    bar.addEventListener("click",()=>{
+      bar.classList.add("levelUpGlow");
+      setTimeout(()=>bar.classList.remove("levelUpGlow"),900);
+    });
+  });
+
+  // reward chest interaction
+  document.querySelectorAll("button").forEach(btn=>{
+    if(!btn.dataset.v131){
+      btn.dataset.v131="1";
+      btn.addEventListener("click",()=>{
+        if(/reward|รับ|gift|รางวัล|กล่อง/i.test(btn.textContent)){
+          btn.classList.add("rewardChest","open");
+          setTimeout(()=>btn.classList.remove("open"),800);
+        }
+      });
+    }
+  });
+ }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run,{once:true});
+ else run();
 })();
 </script>
 </body>
