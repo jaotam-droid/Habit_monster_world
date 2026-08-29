@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=97"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=98"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V97</title>
+<title>Habit Monster World V98</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -6484,6 +6484,61 @@ function boot(){mark()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 addEventListener('pageshow',boot,{passive:true});
 addEventListener('hmw3d-render',()=>setTimeout(boot,20),{passive:true});
+})();
+</script>
+
+
+<style id="v98-final-layout-fix">
+/* V98 FINAL LAYOUT FIX — visual spacing only; gameplay/save/progression untouched */
+@media (max-width:900px){
+  /* V97 safe-area rule also padded the nested <main>, creating the large blank
+     space between Arena and Daily Summary. Keep safe area only on outer shell. */
+  .main > main{
+    padding-bottom:0!important;
+    margin-bottom:0!important;
+    min-height:0!important;
+  }
+  .main > aside{
+    margin-top:9px!important;
+    padding-bottom:0!important;
+    min-height:0!important;
+  }
+  .main > aside > .card:first-child{margin-top:0!important}
+
+  /* Arena / summary rhythm */
+  .arena{margin-bottom:0!important}
+  .arena #questBox{margin-bottom:0!important}
+  .main aside .card{margin-bottom:0!important}
+  .main aside .card + .card{margin-top:9px!important}
+
+  /* Weekly card should end naturally; safe area belongs to page shell, not card. */
+  #weeklySummary,.weeklySummary{
+    margin-bottom:0!important;
+    padding-bottom:0!important;
+  }
+  .main aside .card:last-child{margin-bottom:0!important}
+
+  /* One controlled Safari bottom reserve. */
+  .wrap,.app{
+    padding-bottom:max(84px,calc(58px + env(safe-area-inset-bottom)))!important;
+  }
+}
+</style>
+
+<script id="v98-final-layout-authority">
+(()=>{
+'use strict';
+const BUILD='V98 • FINAL LAYOUT FIX', ID='98-final-layout-fix';
+const q=s=>document.querySelector(s);
+function mark(){
+  document.title='Habit Monster World V98';
+  document.documentElement.dataset.hmwBuild=ID;
+  const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+  const st=q('#threeStatus');if(st)st.textContent='✅ FINAL LAYOUT • V98';
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V98</b>');
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+addEventListener('pageshow',mark,{passive:true});
 })();
 </script>
 
