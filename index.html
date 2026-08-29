@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V147</title>
+<title>Habit Monster World V148</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1777,7 +1777,7 @@ body{overflow-x:hidden!important}
 
 
 <style id="v143-evolution-polish">
-/* V147 Monster Awakening + avatar presentation polish */
+/* V148 Monster Awakening + avatar presentation polish */
 .journeyNode{
   transition:.18s ease;
   position:relative;
@@ -8472,7 +8472,7 @@ if(document.readyState==="loading"){
 
 
 <style id="v142-monster-awakening">
-/* V147 Monster Awakening System */
+/* V148 Monster Awakening System */
 .hm142-evolution{
  background:linear-gradient(135deg,#fff8d8,#eef8ff);
  border:2px solid #ffd45b;
@@ -8498,8 +8498,8 @@ if(document.readyState==="loading"){
 <script>
 (function v142(){
 function run(){
- window.HMW_V147={
-  version:"V147",
+ window.HMW_V148={
+  version:"V148",
   features:[
    "Monster Awakening Evolution",
    "Hero Journey Expansion",
@@ -8508,10 +8508,10 @@ function run(){
  };
 
  // update visible build/version labels safely
- document.title="Habit Monster World V147";
+ document.title="Habit Monster World V148";
  document.querySelectorAll("body *").forEach(function(el){
    if(el.children.length===0 && /V141/.test(el.textContent)){
-      el.textContent=el.textContent.replace(/V141/g,"V147");
+      el.textContent=el.textContent.replace(/V141/g,"V148");
    }
  });
 
@@ -8543,7 +8543,7 @@ if(document.readyState==="loading"){
 
 
 <style id="hmw-v144-monster-life-update">
-/* V147 Monster Life Update */
+/* V148 Monster Life Update */
 .hm144-panel{
  margin-top:12px;background:linear-gradient(135deg,#fffdf0,#effbf4);
  border:2px solid #ffd76f;border-radius:22px;padding:14px;
@@ -8564,9 +8564,9 @@ if(document.readyState==="loading"){
 @media(max-width:600px){.hm144-grid{grid-template-columns:1fr 1fr}}
 </style>
 <script>
-(function hmwV147(){
+(function hmwV148(){
 function init(){
- document.title="Habit Monster World V147";
+ document.title="Habit Monster World V148";
 
  if(!document.querySelector(".hm144-panel")){
    const target=document.querySelector(".hm142-evolution") || document.querySelector(".hm142-bonus") || document.querySelector(".avatarStage");
@@ -8592,8 +8592,8 @@ function init(){
   document.body.appendChild(t);
  }
 
- window.HMW_V147={
-  version:"V147",
+ window.HMW_V148={
+  version:"V148",
   features:[
    "Monster Life System",
    "Reward Loop Expansion",
@@ -8628,9 +8628,9 @@ else init();
 @media(max-width:600px){.hm145-grid{grid-template-columns:1fr 1fr}}
 </style>
 <script>
-(function hmwV147(){
+(function hmwV148(){
 function init(){
- document.title="Habit Monster World V147";
+ document.title="Habit Monster World V148";
 
  if(!document.querySelector(".hm145-panel")){
    const target=document.querySelector(".hm144-panel") || document.querySelector(".hm144-toast") || document.querySelector(".avatarStage");
@@ -8649,8 +8649,8 @@ function init(){
     target.insertAdjacentElement("afterend",box);
    }
  }
- window.HMW_V147={
-   version:"V147",
+ window.HMW_V148={
+   version:"V148",
    features:[
     "Monster Evolution Path",
     "Monster Emotion System",
@@ -8666,7 +8666,7 @@ else init();
 
 
 <style id="v146-monster-life-upgrade">
-/* V147 Monster Life Gameplay Upgrade */
+/* V148 Monster Life Gameplay Upgrade */
 .hm146-panel{margin-top:12px;background:linear-gradient(135deg,#fffdf2,#eefaff);border:2px solid #ffd76f;border-radius:24px;padding:15px;box-shadow:0 12px 28px rgba(50,80,110,.10)}
 .hm146-title{font-size:24px;font-weight:950;color:#8a6418;margin-bottom:12px}
 .hm146-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -8700,7 +8700,7 @@ function hm146(){
  const box=document.createElement("div");
  box.className="hm146-panel";
  box.innerHTML=
- `<div class="hm146-title">🌟 Monster Soul Gameplay V147</div>
+ `<div class="hm146-title">🌟 Monster Soul Gameplay V148</div>
  <div class="hm146-grid">
   <div class="hm146-box">⚡ Evolution Energy<b>${energy}</b><div class="hm146-energy"><div style="width:${Math.min(100,energy/15)}%"></div></div></div>
   <div class="hm146-box">❤️ Bond Level<b>${bond}</b></div>
@@ -8721,7 +8721,7 @@ function hm146(){
    box.querySelectorAll(".hm146-box")[2].querySelector("b").textContent=chest;
    box.querySelectorAll(".hm146-box")[3].querySelector("b").textContent=level();
  };
- window.HMW_V147={version:"V147",features:["Evolution Energy","Reward Chest","Bond Level","Monster Care Loop"]};
+ window.HMW_V148={version:"V148",features:["Evolution Energy","Reward Chest","Bond Level","Monster Care Loop"]};
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm146,{once:true});
 else hm146();
@@ -8729,7 +8729,7 @@ else hm146();
 </script>
 
 
-<!-- Habit Monster World V147 Monster Life 2.0 Patch -->
+<!-- Habit Monster World V148 Monster Life 2.0 Patch -->
 <style id="hmw-v147-life">
 .hm147-panel{background:linear-gradient(135deg,#fffdf3,#f3fbff);border:2px solid #ffe08a;border-radius:22px;padding:14px;margin-top:12px;box-shadow:0 10px 24px rgba(60,90,120,.10)}
 .hm147-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
@@ -8750,7 +8750,7 @@ function hm147(){
  box.id="hm147";
  box.className="card hm147-panel";
  box.innerHTML=`
- <h3>🌟 Monster Life V147</h3>
+ <h3>🌟 Monster Life V148</h3>
  <div class="hm147-grid">
    <div class="hm147-card">😊<br>Mood<br><span class="hm147-big">${data.mood}</span></div>
    <div class="hm147-card">⚡<br>Evolution Energy<br><span class="hm147-big">${data.energy}</span></div>
@@ -8774,12 +8774,75 @@ function hm147(){
    box.querySelectorAll(".hm147-card")[3].innerHTML="🎁<br>Reward Chest<br><span class='hm147-big'>"+data.chest+"</span>";
    box.querySelector(".hm147-reward").textContent="🎉 Monster มีความสุข! Energy +5 • Bond +1 • ได้กล่องรางวัล";
  };
- window.HMW_V147={version:"V147",features:["Mood System","Care Action","Bond Growth","Reward Chest Loop"]};
+ window.HMW_V148={version:"V148",features:["Mood System","Care Action","Bond Growth","Reward Chest Loop"]};
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm147,{once:true});
 else hm147();
 })();
 </script>
 
+
+<style id="v148-monster-home">
+.hm148-panel{margin-top:12px;background:linear-gradient(135deg,#fffdf3,#effaff);border:2px solid #ffd76f;border-radius:26px;padding:15px;box-shadow:0 12px 30px rgba(50,80,110,.12)}
+.hm148-title{font-size:24px;font-weight:950;color:#8a6418;margin-bottom:12px}
+.hm148-room{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.hm148-card{background:#fff;border:1px solid #dce8f2;border-radius:18px;padding:12px;text-align:center;font-weight:900}
+.hm148-card span{display:block;font-size:30px}
+.hm148-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.hm148-btn{border:0;border-radius:14px;padding:11px;font-weight:950;background:#fff0b5}
+.hm148-msg{margin-top:10px;background:#f1fbf4;border-radius:14px;padding:10px;text-align:center;font-weight:900}
+@media(max-width:600px){.hm148-room,.hm148-actions{grid-template-columns:repeat(2,1fr)}.hm148-title{font-size:21px}}
+</style>
+<script>
+(function(){
+function hm148(){
+ if(window.__hm148)return; window.__hm148=true;
+ const target=document.querySelector("#world")||document.querySelector(".world");
+ if(!target)return;
+ let mood=localStorage.getItem("hm148Mood")||"😊 Happy";
+ let care=Number(localStorage.getItem("hm148Care")||0);
+ let item=Number(localStorage.getItem("hm148Item")||0);
+ function save(){localStorage.setItem("hm148Mood",mood);localStorage.setItem("hm148Care",care);localStorage.setItem("hm148Item",item);}
+ const box=document.createElement("div");
+ box.className="hm148-panel";
+ box.innerHTML=`
+ <div class="hm148-title">🏠 Monster Room V148</div>
+ <div class="hm148-room">
+  <div class="hm148-card">😊 Mood<b>${mood}</b></div>
+  <div class="hm148-card">❤️ Care<b>${care}</b></div>
+  <div class="hm148-card">🎁 Item<b>${item}</b></div>
+  <div class="hm148-card">🌱 Growth<b>${Math.floor(care/10)+1}</b></div>
+ </div>
+ <div class="hm148-actions">
+  <button class="hm148-btn">🍎 ให้อาหาร</button>
+  <button class="hm148-btn">🧸 เล่นด้วย</button>
+  <button class="hm148-btn">📚 ฝึกนิสัย</button>
+  <button class="hm148-btn">😴 พักผ่อน</button>
+ </div>
+ <div class="hm148-msg">Monster รอเพื่อนมาดูแล ✨</div>`;
+ target.insertAdjacentElement("afterend",box);
+ const buttons=box.querySelectorAll("button"), msg=box.querySelector(".hm148-msg");
+ const acts=[
+  ["🍎 อิ่มแล้ว! Bond เพิ่มขึ้น ❤️", "🥰 Happy"],
+  ["🧸 สนุกมาก! Monster มีความสุข ✨","😍 Joy"],
+  ["📚 เก่งขึ้น! Evolution เพิ่ม 🌱","🤩 Proud"],
+  ["😴 พักเต็มพลัง ⚡","😴 Rest"]
+ ];
+ buttons.forEach((b,i)=>b.onclick=()=>{
+   care++;
+   if(i===2||i===0)item++;
+   mood=acts[i][1];
+   save();
+   box.querySelectorAll(".hm148-card b")[0].textContent=mood;
+   box.querySelectorAll(".hm148-card b")[1].textContent=care;
+   box.querySelectorAll(".hm148-card b")[2].textContent=item;
+   box.querySelectorAll(".hm148-card b")[3].textContent=Math.floor(care/10)+1;
+   msg.textContent=acts[i][0];
+ });
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm148,{once:true});
+else hm148();
+})();
+</script>
 </body>
 </html>
