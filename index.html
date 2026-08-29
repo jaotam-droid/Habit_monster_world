@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V108</title>
+<title>Habit Monster World V111</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -7074,7 +7074,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 
 <style id="v110-monster-life-update">
-/* V110 Monster Life Update */
+/* V111 Monster Life Update */
 .monsterMood,.levelUpFlash,.rewardSpark{
   animation:hmwPop .55s ease;
 }
@@ -7102,50 +7102,78 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </style>
 <script>
 (function(){
-function hmwV110(){
- document.title='Habit Monster World V110';
+function hmwV111(){
+ document.title='Habit Monster World V111';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V110';
+ if(title) title.textContent='Habit Monster World V111';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
- if(badge && !/V110/.test(badge.textContent)) badge.textContent='V110';
+ if(badge && !/V111/.test(badge.textContent)) badge.textContent='V111';
 
  // Small life messages for existing toast systems
- window.hmwV110Messages=[
+ window.hmwV111Messages=[
   '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
   '🌱 Monster โตขึ้นทุกวันจากนิสัยที่ดี',
   '🎁 รางวัลใหม่รอการปลดล็อก'
  ];
 }
 if(document.readyState==='loading'){
- document.addEventListener('DOMContentLoaded',hmwV110,{once:true});
-}else hmwV110();
+ document.addEventListener('DOMContentLoaded',hmwV111,{once:true});
+}else hmwV111();
 })();
 </script>
 
 
 <style id="hmw-v110-monster-life">
-/* V110 Monster Life Premium polish */
+/* V111 Monster Life Premium polish */
 .monsterMood{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:#f5fbff;border:1px solid #dbeaf5;font-weight:900}
 .levelPop{animation:hmwPop .45s ease}
 @keyframes hmwPop{0%{transform:scale(.8);opacity:.2}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 </style>
 <script>
 (function(){
-function hmwV110(){
- window.hmwV110Messages=[
+function hmwV111(){
+ window.hmwV111Messages=[
  '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
  '🌱 นิสัยดีทุกวัน ทำให้ Monster เติบโต',
  '🎁 กล่องรางวัลใหม่พร้อมปลดล็อก'
  ];
  const b=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
- if(b) b.textContent=b.textContent.replace(/V\d+/,'V110');
+ if(b) b.textContent=b.textContent.replace(/V\d+/,'V111');
  document.body.dataset.hmwVersion='110';
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV110,{once:true}); else hmwV110();
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV111,{once:true}); else hmwV111();
 })();
 </script>
 
+
+<style id="hmw-v111-life-world">
+/* V111 Monster personality + premium reward polish */
+.monsterLifeCard{background:linear-gradient(180deg,#fff,#f4fbff);border:1px solid #dceaf4;border-radius:18px;padding:10px;margin-top:8px}
+.monsterMoodBubble{display:inline-flex;align-items:center;gap:6px;background:#fff7d9;border:1px solid #ffd56b;border-radius:999px;padding:6px 12px;font-weight:900}
+.rewardGlow{animation:hmwRewardGlow 1.8s ease-in-out infinite}
+@keyframes hmwRewardGlow{50%{filter:drop-shadow(0 0 10px rgba(255,210,80,.55))}}
+.levelCelebration{position:fixed;inset:0;display:none;place-items:center;background:rgba(30,45,70,.35);z-index:999}
+.levelCelebration.show{display:grid}
+.levelCelebrationBox{background:#fff;border-radius:28px;padding:25px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.18);font-weight:950}
+</style>
+<script>
+(function(){
+function hmwV111(){
+ window.HMWMonsterLife={
+  "เจ้าขยันจัง":"☀️ สู้ต่ออีกนิด เราจะโตไปด้วยกัน!",
+  "น้องบุ๊กบุ๊ก":"📚 อ่านเพิ่มอีกหน่อย ความรู้กำลังเพิ่ม!",
+  "เจ้ารกกี้":"🧹 ขอบคุณที่ช่วยจัดโลกของเรา!",
+  "น้องพิกเซล":"📵 เก่งมากที่ควบคุมเวลา!"
+ };
+ const badge=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
+ if(badge) badge.textContent=badge.textContent.replace(/V\d+/,'V111');
+ document.body.dataset.hmwVersion='111';
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV111,{once:true});
+else hmwV111();
+})();
+</script>
 </body>
 </html>
