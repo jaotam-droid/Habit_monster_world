@@ -7073,8 +7073,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 
 
-<style id="v109-monster-life-update">
-/* V109 Monster Life Update */
+<style id="v110-monster-life-update">
+/* V110 Monster Life Update */
 .monsterMood,.levelUpFlash,.rewardSpark{
   animation:hmwPop .55s ease;
 }
@@ -7083,7 +7083,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   70%{transform:scale(1.06)}
   100%{transform:scale(1);opacity:1}
 }
-.v109-badge{
+.v110-badge{
   display:inline-flex;
   align-items:center;
   gap:5px;
@@ -7102,25 +7102,48 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </style>
 <script>
 (function(){
-function hmwV109(){
- document.title='Habit Monster World V109';
+function hmwV110(){
+ document.title='Habit Monster World V110';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V109';
+ if(title) title.textContent='Habit Monster World V110';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
- if(badge && !/V109/.test(badge.textContent)) badge.textContent='V109';
+ if(badge && !/V110/.test(badge.textContent)) badge.textContent='V110';
 
  // Small life messages for existing toast systems
- window.hmwV109Messages=[
+ window.hmwV110Messages=[
   '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
   '🌱 Monster โตขึ้นทุกวันจากนิสัยที่ดี',
   '🎁 รางวัลใหม่รอการปลดล็อก'
  ];
 }
 if(document.readyState==='loading'){
- document.addEventListener('DOMContentLoaded',hmwV109,{once:true});
-}else hmwV109();
+ document.addEventListener('DOMContentLoaded',hmwV110,{once:true});
+}else hmwV110();
+})();
+</script>
+
+
+<style id="hmw-v110-monster-life">
+/* V110 Monster Life Premium polish */
+.monsterMood{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:#f5fbff;border:1px solid #dbeaf5;font-weight:900}
+.levelPop{animation:hmwPop .45s ease}
+@keyframes hmwPop{0%{transform:scale(.8);opacity:.2}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+</style>
+<script>
+(function(){
+function hmwV110(){
+ window.hmwV110Messages=[
+ '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
+ '🌱 นิสัยดีทุกวัน ทำให้ Monster เติบโต',
+ '🎁 กล่องรางวัลใหม่พร้อมปลดล็อก'
+ ];
+ const b=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
+ if(b) b.textContent=b.textContent.replace(/V\d+/,'V110');
+ document.body.dataset.hmwVersion='110';
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV110,{once:true}); else hmwV110();
 })();
 </script>
 
