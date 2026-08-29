@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V148</title>
+<title>Habit Monster World V149</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -8844,5 +8844,63 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 else hm148();
 })();
 </script>
+
+<style id="v149-mega-monster-soul">
+.hm149-panel{margin-top:12px;background:linear-gradient(135deg,#fffdf0,#f3fbff);border:2px solid #ffd76f;border-radius:26px;padding:15px;box-shadow:0 12px 30px rgba(50,80,110,.12)}
+.hm149-title{font-size:25px;font-weight:950;color:#7b5b00;margin-bottom:10px}
+.hm149-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.hm149-box{background:#fff;border:1px solid #dce7ef;border-radius:16px;padding:12px;text-align:center;font-weight:850}
+.hm149-box b{display:block;font-size:24px;margin-top:4px}
+.hm149-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.hm149-btn{border:0;border-radius:14px;padding:12px;background:#ffe27d;font-weight:950;color:#624900}
+.hm149-btn:active{transform:scale(.97)}
+.hm149-stage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.hm149-stage div{padding:10px;border-radius:14px;background:#f7fbff;border:1px solid #dce7ef;text-align:center;font-weight:900}
+@media(max-width:600px){.hm149-grid,.hm149-actions{grid-template-columns:1fr}.hm149-stage{grid-template-columns:repeat(2,1fr)}}
+</style>
+<script>
+(()=>{
+function hm149(){
+ if(window.__hm149)return; window.__hm149=true;
+ const anchor=document.querySelector(".hm148-panel")||document.querySelector("#world")||document.body;
+ let data=JSON.parse(localStorage.getItem("hm149Soul")||'{"bond":0,"energy":0,"chest":0,"stage":0,"mood":"😊 Happy","name":"Monster"}');
+ const save=()=>localStorage.setItem("hm149Soul",JSON.stringify(data));
+ const el=document.createElement("div"); el.className="hm149-panel";
+ el.innerHTML=`
+ <div class="hm149-title">🌟 Monster Soul V149</div>
+ <div class="hm149-grid">
+  <div class="hm149-box">❤️ Bond Level<b>${data.bond}</b></div>
+  <div class="hm149-box">⚡ Evolution Energy<b>${data.energy}</b></div>
+  <div class="hm149-box">🎁 Reward Chest<b>${data.chest}</b></div>
+  <div class="hm149-box">😊 Mood<b>${data.mood}</b></div>
+ </div>
+ <div class="hm149-stage">
+  <div>🌱 Baby<br><small>เริ่มต้น</small></div>
+  <div>⭐ Child<br><small>Bond 20</small></div>
+  <div>🌈 Hero<br><small>Bond 50</small></div>
+  <div>👑 Legend<br><small>Bond 100</small></div>
+  <div>✨ Master<br><small>Habit Master</small></div>
+ </div>
+ <div class="hm149-actions">
+  <button class="hm149-btn">🍎 ให้อาหาร</button>
+  <button class="hm149-btn">🧸 เล่นด้วย</button>
+  <button class="hm149-btn">📚 ฝึกนิสัย</button>
+  <button class="hm149-btn">🎁 เปิดกล่อง</button>
+ </div>`;
+ anchor.insertAdjacentElement("afterend",el);
+ const update=()=>{let b=el.querySelectorAll(".hm149-box b");b[0].textContent=data.bond;b[1].textContent=data.energy;b[2].textContent=data.chest;b[3].textContent=data.mood;save();};
+ el.querySelectorAll("button").forEach((btn,i)=>btn.onclick=()=>{
+  data.bond+=1;
+  data.energy+= i===2?3:1;
+  if(i===3)data.chest++;
+  data.mood=["🥰 Happy","😍 Excited","🤩 Proud","🎉 Reward"][i];
+  update();
+ });
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm149,{once:true});
+else hm149();
+})();
+</script>
+
 </body>
 </html>
