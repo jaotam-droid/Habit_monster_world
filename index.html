@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=98"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=99"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V98</title>
+<title>Habit Monster World V99</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -6539,6 +6539,46 @@ function mark(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 addEventListener('pageshow',mark,{passive:true});
+})();
+</script>
+
+<style id="v99-final-mobile-tightening">
+/* V99 final mobile tightening — visual only */
+@media (max-width:900px){
+  .main{gap:9px!important}
+  .main>aside{margin-top:7px!important}
+  .main aside .card+.card{margin-top:7px!important}
+  #weeklySummary,.weeklySummary{min-height:0!important;height:auto!important}
+  #weeklySummary .summaryGrid,.weeklySummary .summaryGrid{margin-bottom:0!important}
+  #dailySummary,.dailySummary{padding-bottom:12px!important}
+  .arena{padding-bottom:10px!important}
+  .arena .battle{margin-bottom:5px!important}
+  #monsterTalk{margin-top:5px!important;margin-bottom:7px!important}
+  #worldMap .zone{overflow:hidden}
+  #worldMap .zone .progress,#worldMap .zone [class*="progress"]{max-width:100%!important}
+  #avatarCard,.avatarCard{padding-bottom:13px!important}
+  #avatarCard .setting:last-of-type,.avatarCard .setting:last-of-type{margin-bottom:7px!important}
+}
+@media (max-width:390px){
+  .nav button{min-height:52px!important;padding:8px 4px!important}
+  #worldMap .zone{padding-left:7px!important;padding-right:7px!important}
+  .arena .stats{gap:6px!important}
+}
+</style>
+<script id="v99-final-mobile-authority">
+(()=>{
+'use strict';
+const BUILD='V99 • FINAL MOBILE TIGHTENING', ID='99-final-mobile-tightening';
+function mark(){
+ document.title='Habit Monster World V99';
+ document.documentElement.dataset.hmwBuild=ID;
+ const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
+ const st=document.querySelector('#threeStatus');if(st)st.textContent='✅ FINAL MOBILE • V99';
+ const bi=document.querySelector('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V99</b>');
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
+addEventListener('pageshow',mark,{passive:true});
+addEventListener('hmw3d-render',()=>setTimeout(mark,20),{passive:true});
 })();
 </script>
 
