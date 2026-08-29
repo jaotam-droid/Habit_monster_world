@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=128"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=143"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V142</title>
+<title>Habit Monster World V143</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1772,6 +1772,35 @@ body{overflow-x:hidden!important}
 }
 .quest:hover,.summaryBox:hover{
   box-shadow:0 12px 28px rgba(50,90,120,.12);
+}
+</style>
+
+
+<style id="v143-evolution-polish">
+/* V143 Monster Awakening + avatar presentation polish */
+.journeyNode{
+  transition:.18s ease;
+  position:relative;
+  overflow:hidden;
+}
+.journeyNode.open{
+  box-shadow:0 8px 18px rgba(80,150,120,.12);
+}
+.journeyNode.open:after{
+  content:"✨";
+  position:absolute;
+  right:8px;
+  top:6px;
+  font-size:16px;
+}
+.avatarStage .avatar-generated img{
+  object-position:center bottom!important;
+}
+.monster-card,.zone{
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.monster-card:active,.zone:active{
+  transform:scale(.98);
 }
 </style>
 
@@ -8443,7 +8472,7 @@ if(document.readyState==="loading"){
 
 
 <style id="v142-monster-awakening">
-/* V142 Monster Awakening System */
+/* V143 Monster Awakening System */
 .hm142-evolution{
  background:linear-gradient(135deg,#fff8d8,#eef8ff);
  border:2px solid #ffd45b;
@@ -8469,8 +8498,8 @@ if(document.readyState==="loading"){
 <script>
 (function v142(){
 function run(){
- window.HMW_V142={
-  version:"V142",
+ window.HMW_V143={
+  version:"V143",
   features:[
    "Monster Awakening Evolution",
    "Hero Journey Expansion",
@@ -8479,10 +8508,10 @@ function run(){
  };
 
  // update visible build/version labels safely
- document.title="Habit Monster World V142";
+ document.title="Habit Monster World V143";
  document.querySelectorAll("body *").forEach(function(el){
    if(el.children.length===0 && /V141/.test(el.textContent)){
-      el.textContent=el.textContent.replace(/V141/g,"V142");
+      el.textContent=el.textContent.replace(/V141/g,"V143");
    }
  });
 
