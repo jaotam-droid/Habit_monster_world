@@ -6904,28 +6904,64 @@ if(root){
   #dashboard .card:last-child{margin-bottom:0!important}.wrap{padding-bottom:max(66px,calc(44px + env(safe-area-inset-bottom)))!important}
 }
 /* Progress vocabulary: two systems must look intentionally different. */
-#v104ProgressLegend{margin:7px 0 0;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid #e3edf4;text-align:center;font-size:11px;font-weight:850;color:#63788d}
+#v105ProgressLegend{margin:7px 0 0;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid #e3edf4;text-align:center;font-size:11px;font-weight:850;color:#63788d}
 /* Battle micro-HUD: prevent tiny floating counters from colliding with avatar art. */
 .battle .avatarArt{isolation:isolate}.battle .avatarArt [class*="heart"],.battle .avatarArt [class*="Heart"]{z-index:5!important}
 </style>
 <script id="v104-final-ui-authority">
 (()=>{
 'use strict';
-const BUILD='V104 • FINAL UI CLEANUP + GAME FEEL';
+const BUILD='V105 • PREMIUM GAME POLISH';
 function q(s){return document.querySelector(s)}
 function apply(){
- document.title='Habit Monster World V104';
+ document.title='Habit Monster World V105';
  document.documentElement.dataset.hmwBuild='104-final-ui-cleanup';
  const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
  const st=q('#threeStatus');if(st)st.textContent='✨ FINAL UI CLEANUP • V104';
- const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V104</b>');
+ const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V105</b>');
  const arena=q('.arena');
- if(arena&&!q('#v104ProgressLegend')){const n=document.createElement('div');n.id='v104ProgressLegend';n.innerHTML='🌱 พลังฝึกนิสัย = ความสม่ำเสมอ • ⚡ Monster Level = ความคืบหน้าด่าน';const stats=arena.querySelector('.stats');if(stats)stats.insertAdjacentElement('afterend',n)}
+ if(arena&&!q('#v105ProgressLegend')){const n=document.createElement('div');n.id='v105ProgressLegend';n.innerHTML='🌱 พลังฝึกนิสัย = ความสม่ำเสมอ • ⚡ Monster Level = ความคืบหน้าด่าน';const stats=arena.querySelector('.stats');if(stats)stats.insertAdjacentElement('afterend',n)}
 }
 function boot(){apply();setTimeout(apply,120)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 addEventListener('pageshow',boot,{passive:true});addEventListener('hmw3d-render',()=>setTimeout(apply,20),{passive:true});
 document.addEventListener('click',()=>setTimeout(apply,30),true);
+})();
+</script>
+
+
+<style id="v105-premium-game-polish">
+/* V105 premium game polish */
+.nav button{position:relative;}
+.nav button.active:after{content:"";position:absolute;left:22%;right:22%;bottom:7px;height:4px;border-radius:99px;background:#6cb7ef;}
+.gearChip{transition:.18s ease;min-height:38px}
+.gearChip.on{transform:translateY(-2px);box-shadow:0 8px 16px rgba(255,205,80,.25)}
+.world .zone{transition:.18s ease}
+.world .zone:hover{transform:translateY(-2px)}
+.summaryBox{min-height:86px;display:flex;flex-direction:column;justify-content:center}
+#v105ProgressLegend{margin:10px auto;background:rgba(255,255,255,.75);border:1px solid #dce7ef;border-radius:999px;padding:8px 12px;text-align:center;font-weight:850;color:#49627b}
+.battle .label{font-weight:950;text-shadow:0 2px 0 #fff}
+.battle .bossArt,.battle .avatarArt{position:relative}
+.battle .bossArt:before,.battle .avatarArt:before{content:"";position:absolute;bottom:3px;left:25%;right:25%;height:10px;background:rgba(50,70,90,.15);filter:blur(5px);border-radius:50%}
+/* reward feeling */
+.box.done:before{content:"✓ ";font-weight:900;color:#39a36b}
+@media(max-width:600px){
+ .nav button{min-height:68px}
+ .summaryGrid{gap:10px}
+ #v105ProgressLegend{font-size:13px}
+}
+</style>
+<script>
+(()=>{
+function v105(){
+ document.title='Habit Monster World V105';
+ document.documentElement.dataset.hmwBuild='105-premium-game-polish';
+ const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+ if(b)b.textContent='V105';
+ const st=document.querySelector('#threeStatus');
+ if(st)st.textContent='✨ PREMIUM GAME POLISH • V105';
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',v105,{once:true});else v105();
 })();
 </script>
 
