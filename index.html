@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V131</title>
+<title>Habit Monster World V132</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -7405,10 +7405,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V131';
+ document.title='Habit Monster World V132';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V131';
+ if(title) title.textContent='Habit Monster World V132';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7547,7 +7547,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V131</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V132</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7575,7 +7575,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V131";
+ document.title="Habit Monster World V132";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7614,7 +7614,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V131";
+document.title="Habit Monster World V132";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
@@ -7666,7 +7666,7 @@ else hmwV124();
 <script>
 (()=>{
 window.HMW_VERSION="V129";
-document.title="Habit Monster World V131";
+document.title="Habit Monster World V132";
 
 function hmwV129(){
   document.querySelectorAll(".buildBadge").forEach(e=>{
@@ -7718,7 +7718,7 @@ else hmwV129();
 function v128Init(){
  document.querySelectorAll(".buildBadge").forEach(e=>e.textContent="V129");
  window.HMW_VERSION="V129";
- document.title="Habit Monster World V131";
+ document.title="Habit Monster World V132";
 
  // reward visual helper
  window.HMWReward=function(text="เก่งมาก!"){
@@ -7760,9 +7760,9 @@ else v128Init();
 <script id="v130-evolution-system">
 (()=>{
 function v130(){
- document.title="Habit Monster World V131";
+ document.title="Habit Monster World V132";
  // version label
- document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V131");
+ document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V132");
  document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V131 • EVOLUTION POLISH");
 
  // add evolution hints to monster cards without touching save data
@@ -7870,5 +7870,80 @@ else v130();
  else run();
 })();
 </script>
+
+<style id="v132-big-evolution-pass">
+/* V132 Big Feature Pass */
+.evoBadge{
+ position:absolute;left:10px;top:10px;
+ background:linear-gradient(135deg,#fff1a8,#ffd45c);
+ color:#6b5200;font-weight:950;
+ padding:5px 10px;border-radius:999px;
+ box-shadow:0 6px 15px rgba(120,90,0,.18);
+ z-index:5;font-size:12px;
+}
+.evoGlow{
+ animation:evoGlow .9s ease;
+}
+@keyframes evoGlow{
+ 0%{filter:brightness(1)}
+ 50%{filter:brightness(1.5) drop-shadow(0 0 18px #ffd45c)}
+ 100%{filter:brightness(1)}
+}
+.levelPopup{
+ position:fixed;left:50%;top:45%;
+ transform:translate(-50%,-50%) scale(.8);
+ background:white;padding:20px 28px;border-radius:24px;
+ box-shadow:0 20px 50px #0003;
+ font-size:24px;font-weight:950;
+ z-index:999;opacity:0;pointer-events:none;
+ transition:.35s;
+}
+.levelPopup.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.questMagic{
+ background:linear-gradient(135deg,#f4fbff,#fff8d9);
+ border:2px solid #ffe08a;
+}
+</style>
+<script>
+(function v132(){
+function start(){
+ // Add evolution badges to monster cards
+ document.querySelectorAll(".monster-card,.zone").forEach((el,i)=>{
+   if(!el.querySelector(".evoBadge")){
+     let b=document.createElement("div");
+     b.className="evoBadge";
+     b.textContent=["🥚 Baby","🌱 Friend","⭐ Hero","👑 Legend"][i%4];
+     el.style.position="relative";
+     el.appendChild(b);
+   }
+ });
+
+ // Evolution popup feedback
+ let pop=document.createElement("div");
+ pop.className="levelPopup";
+ pop.textContent="✨ Monster Evolution!";
+ document.body.appendChild(pop);
+
+ document.querySelectorAll(".xp,.friendFill").forEach(bar=>{
+   bar.addEventListener("click",()=>{
+     bar.classList.add("evoGlow");
+     pop.classList.add("show");
+     setTimeout(()=>{
+       bar.classList.remove("evoGlow");
+       pop.classList.remove("show");
+     },900);
+   });
+ });
+
+ // improve locked areas presentation
+ document.querySelectorAll(".zone.locked,.zone[disabled]").forEach(z=>{
+   z.insertAdjacentHTML("afterbegin","<div class='evoBadge'>🔒 Crystal Area</div>");
+ });
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start,{once:true});
+else start();
+})();
+</script>
+
 </body>
 </html>
