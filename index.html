@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=121"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=123"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V121</title>
+<title>Habit Monster World V123</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1527,7 +1527,7 @@ body{overflow-x:hidden!important}
 </style>
 
 <style id="v119-premium-polish">
-/* V121 Premium Polish Pass */
+/* V123 Premium Polish Pass */
 .buildBadge{
   background:linear-gradient(135deg,#6d63f5,#3d8df5)!important;
   letter-spacing:.6px!important;
@@ -1552,7 +1552,7 @@ body{overflow-x:hidden!important}
 
 
 <style id="v121-premium-evolution">
-/* V121 Premium Evolution */
+/* V123 Premium Evolution */
 .buildBadge{letter-spacing:.5px}
 .premiumBadge{
  display:inline-flex;align-items:center;gap:5px;
@@ -1578,9 +1578,30 @@ body{overflow-x:hidden!important}
 }
 </style>
 
+
+<style id="v123-premium-polish">
+/* V123 Avatar + Monster Collection polish */
+.header .buildBadge{letter-spacing:.6px}
+.avatarStage{height:400px!important;border-radius:34px!important;}
+.avatarStage img{object-fit:contain!important;object-position:center bottom!important;transform:scale(1.04);}
+.avatarChoice{transition:.18s ease!important;}
+.avatarChoice.on{transform:translateY(-2px)!important;}
+.zone{transition:.18s ease!important;}
+.zone:hover{transform:translateY(-2px)}
+.zoneArt img{object-fit:contain!important;transform:scale(1.06)!important;}
+.monster-card,.zone{backdrop-filter:blur(8px)}
+.quest,.summaryBox,.stat{border-radius:16px!important}
+.bigBtn{min-height:48px!important;font-size:17px!important}
+@media(max-width:600px){
+ .avatarStage{height:350px!important}
+ .zoneArt{height:150px!important}
+ .nav button{min-height:70px!important}
+ .card{padding:13px!important}
+}
+</style>
 </head>
 <body>
-<!-- V121 Premium Evolution -->
+<!-- V123 Premium Evolution -->
 <div class="wrap">
 <div class="header">
 <div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V108 • PREMIUM POLISH</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
@@ -7265,10 +7286,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V121';
+ document.title='Habit Monster World V123';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V121';
+ if(title) title.textContent='Habit Monster World V123';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7407,7 +7428,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V121</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V123</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7435,7 +7456,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V121";
+ document.title="Habit Monster World V123";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7461,7 +7482,7 @@ else hmwV118();
 </script>
 
 <style id="v120-big-polish">
-/* V121 Big Polish Round */
+/* V123 Big Polish Round */
 .buildBadge::after{content:" • PREMIUM POLISH";font-size:11px;margin-left:4px}
 .zone .growthBadge{filter:drop-shadow(0 4px 6px rgba(0,0,0,.12))}
 .rewardGlow,.trophy.done,.closetItem.on{
@@ -7472,17 +7493,17 @@ else hmwV118();
 </style>
 <script>
 (()=>{
-// V121 polish hooks
-window.HMW_VERSION="V121";
-document.title="Habit Monster World V121";
-function hmwV121(){
+// V123 polish hooks
+window.HMW_VERSION="V123";
+document.title="Habit Monster World V123";
+function hmwV123(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
-   if(!e.textContent.includes("V121")) e.textContent="V121";
+   if(!e.textContent.includes("V123")) e.textContent="V123";
  });
- document.querySelectorAll("[data-version]").forEach(e=>e.dataset.version="V121");
+ document.querySelectorAll("[data-version]").forEach(e=>e.dataset.version="V123");
 }
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV121,{once:true});
-else hmwV121();
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV123,{once:true});
+else hmwV123();
 })();
 </script>
 
