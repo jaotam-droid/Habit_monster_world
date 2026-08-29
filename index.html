@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=114"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=115"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V114</title>
+<title>Habit Monster World V115</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1419,7 +1419,7 @@ body{overflow-x:hidden!important}
 </style>
 
 <style id="v112-premium-polish">
-/* V114: premium game feel */
+/* V115: premium game feel */
 .buildBadge{animation:hmwBadgePulse 2.8s ease-in-out infinite}
 @keyframes hmwBadgePulse{50%{transform:translateY(-2px);box-shadow:0 12px 24px rgba(85,100,230,.28)}}
 .zone.active:after{
@@ -1445,7 +1445,7 @@ body{overflow-x:hidden!important}
 </style>
 
 <style id="v113-premium-adventure-polish">
-/* V114: premium adventure feel */
+/* V115: premium adventure feel */
 .buildBadge{
  background:linear-gradient(135deg,#ffca5a,#ff8e6b,#7c7cff)!important;
 }
@@ -1467,6 +1467,17 @@ body{overflow-x:hidden!important}
 .gearChip.on{
  background:linear-gradient(180deg,#fff6bf,#ffe38a)!important;
 }
+</style>
+
+<style id="v115-final-polish">
+/* V115 final polish */
+.buildBadge{background:linear-gradient(135deg,#6b5de8,#3f86ef)!important}
+.zone.active{position:relative!important;border-color:#ffd25e!important}
+.zone.active:before{display:none!important}
+.zone.active:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 3px rgba(255,210,94,.35);pointer-events:none}
+.avatarStage img{object-fit:contain!important;object-position:center bottom!important;transform:scale(.96)!important}
+.avatarChoice img{object-fit:contain!important;object-position:center bottom!important}
+.battle .avatarArt img,.battle .bossArt img{object-fit:contain!important;object-position:center bottom!important}
 </style>
 </head>
 <body>
@@ -7125,7 +7136,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 
 <style id="v110-monster-life-update">
-/* V114 Monster Life Update */
+/* V115 Monster Life Update */
 .monsterMood,.levelUpFlash,.rewardSpark{
   animation:hmwPop .55s ease;
 }
@@ -7153,54 +7164,54 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </style>
 <script>
 (function(){
-function hmwV114(){
- document.title='Habit Monster World V114';
+function hmwV115(){
+ document.title='Habit Monster World V115';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V114';
+ if(title) title.textContent='Habit Monster World V115';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
- if(badge && !/V114/.test(badge.textContent)) badge.textContent='V114';
+ if(badge && !/V115/.test(badge.textContent)) badge.textContent='V115';
 
  // Small life messages for existing toast systems
- window.hmwV114Messages=[
+ window.hmwV115Messages=[
   '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
   '🌱 Monster โตขึ้นทุกวันจากนิสัยที่ดี',
   '🎁 รางวัลใหม่รอการปลดล็อก'
  ];
 }
 if(document.readyState==='loading'){
- document.addEventListener('DOMContentLoaded',hmwV114,{once:true});
-}else hmwV114();
+ document.addEventListener('DOMContentLoaded',hmwV115,{once:true});
+}else hmwV115();
 })();
 </script>
 
 
 <style id="hmw-v110-monster-life">
-/* V114 Monster Life Premium polish */
+/* V115 Monster Life Premium polish */
 .monsterMood{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:#f5fbff;border:1px solid #dbeaf5;font-weight:900}
 .levelPop{animation:hmwPop .45s ease}
 @keyframes hmwPop{0%{transform:scale(.8);opacity:.2}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 </style>
 <script>
 (function(){
-function hmwV114(){
- window.hmwV114Messages=[
+function hmwV115(){
+ window.hmwV115Messages=[
  '✨ Monster สดใสขึ้นเมื่อทำภารกิจสำเร็จ',
  '🌱 นิสัยดีทุกวัน ทำให้ Monster เติบโต',
  '🎁 กล่องรางวัลใหม่พร้อมปลดล็อก'
  ];
  const b=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
- if(b) b.textContent=b.textContent.replace(/V\d+/,'V114');
+ if(b) b.textContent=b.textContent.replace(/V\d+/,'V115');
  document.body.dataset.hmwVersion='110';
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV114,{once:true}); else hmwV114();
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV115,{once:true}); else hmwV115();
 })();
 </script>
 
 
 <style id="hmw-v112-life-world">
-/* V114 Monster personality + premium reward polish */
+/* V115 Monster personality + premium reward polish */
 .monsterLifeCard{background:linear-gradient(180deg,#fff,#f4fbff);border:1px solid #dceaf4;border-radius:18px;padding:10px;margin-top:8px}
 .monsterMoodBubble{display:inline-flex;align-items:center;gap:6px;background:#fff7d9;border:1px solid #ffd56b;border-radius:999px;padding:6px 12px;font-weight:900}
 .rewardGlow{animation:hmwRewardGlow 1.8s ease-in-out infinite}
@@ -7211,7 +7222,7 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 </style>
 <script>
 (function(){
-function hmwV114(){
+function hmwV115(){
  window.HMWMonsterLife={
   "เจ้าขยันจัง":"☀️ สู้ต่ออีกนิด เราจะโตไปด้วยกัน!",
   "น้องบุ๊กบุ๊ก":"📚 อ่านเพิ่มอีกหน่อย ความรู้กำลังเพิ่ม!",
@@ -7219,32 +7230,32 @@ function hmwV114(){
   "น้องพิกเซล":"📵 เก่งมากที่ควบคุมเวลา!"
  };
  const badge=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
- if(badge) badge.textContent=badge.textContent.replace(/V\d+/,'V114');
+ if(badge) badge.textContent=badge.textContent.replace(/V\d+/,'V115');
  document.body.dataset.hmwVersion='111';
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV114,{once:true});
-else hmwV114();
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmwV115,{once:true});
+else hmwV115();
 })();
 </script>
 
 <script>
 (function(){
- function hmwV114Premium(){
+ function hmwV115Premium(){
    document.body.dataset.hmwVersion="111";
    const badge=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
-   if(badge && !badge.textContent.includes("V114")) badge.textContent=badge.textContent.replace(/V\d+/,"V114");
+   if(badge && !badge.textContent.includes("V115")) badge.textContent=badge.textContent.replace(/V\d+/,"V115");
    // Make completed monsters feel alive without touching save data
    document.querySelectorAll('.zone.done,.zone.active,.monster-card').forEach(el=>{
       el.classList.add('monsterLevelUp');
    });
  }
- if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV114Premium,{once:true});
- else hmwV114Premium();
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV115Premium,{once:true});
+ else hmwV115Premium();
 })();
 </script>
 
 <style id="v112-premium-game-polish">
-/* V114 Hero Room + Monster Emotion + Reward polish */
+/* V115 Hero Room + Monster Emotion + Reward polish */
 .heroRoomBadge,.rewardChest,.monsterMood{
  display:inline-flex;align-items:center;gap:6px;padding:8px 12px;
  border-radius:999px;font-weight:950;background:#fff7d8;
@@ -7277,26 +7288,26 @@ else hmwV114();
 </style>
 <script>
 (function(){
-function hmwV114(){
+function hmwV115(){
  document.body.dataset.hmwVersion="112";
  const badge=document.querySelector('.buildBadge,.versionBadge,#versionBadge');
- if(badge) badge.textContent=badge.textContent.replace(/V\d+/,'V114');
+ if(badge) badge.textContent=badge.textContent.replace(/V\d+/,'V115');
  // Add small game-feel hooks without changing saved data
  document.querySelectorAll('.zone.active,.zone.done').forEach(e=>e.classList.add('monsterLevelUp'));
 }
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV114,{once:true});
-else hmwV114();
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",hmwV115,{once:true});
+else hmwV115();
 })();
 </script>
 
 <script id="v114-safe-boot">
-/* V114 safe boot: prevent blank screen and show diagnostic instead */
+/* V115 safe boot: prevent blank screen and show diagnostic instead */
 window.addEventListener("error",function(e){
   if(!window.__hmwErrorShown){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V114</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V115</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
