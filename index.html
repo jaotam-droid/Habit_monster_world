@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=104"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=107"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V106</title>
+<title>Habit Monster World V107</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1312,7 +1312,7 @@ input,select,button,textarea{min-height:44px;}
 
 
 <style id="v106-final-release">
-/* V106 Final Release Polish */
+/* V107 Final Release Polish */
 .buildBadge:after{content:" • FINAL"!important;font-size:10px;opacity:.9;margin-left:5px}
 .gearChip{min-width:120px!important;text-align:center!important}
 .gearChip small{font-size:11px!important;opacity:.82}
@@ -1321,11 +1321,51 @@ input,select,button,textarea{min-height:44px;}
 .summaryBox:hover{transform:translateY(-2px)}
 .finalLegend{font-weight:900;background:#f7fbff;border-radius:14px;padding:9px;text-align:center;margin-top:8px}
 </style>
+
+<style id="v107-final-polish">
+/* V107 Premium Game Feel Pass */
+.buildBadge{
+  letter-spacing:.6px!important;
+}
+.zone,.monster-card,.world-card{
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+.zone:active,.monster-card:active{
+  transform:scale(.98)!important;
+}
+.zone.active{
+  box-shadow:0 0 0 4px rgba(255,211,84,.32),0 18px 35px rgba(45,80,110,.16)!important;
+}
+.gearChip{
+  position:relative;
+  overflow:hidden;
+}
+.gearChip.on:before{
+  content:"✓";
+  margin-right:4px;
+  font-weight:1000;
+}
+.locked{
+  filter:saturate(.65);
+}
+.summaryBox{
+  background:linear-gradient(180deg,#fff,#f8fcff)!important;
+}
+.toast.show{
+  animation:hmwPop .28s ease;
+}
+@keyframes hmwPop{
+  0%{transform:translateX(-50%) translateY(20px) scale(.9)}
+  100%{transform:translateX(-50%) translateY(0) scale(1)}
+}
+/* reduce accidental horizontal scroll */
+body{overflow-x:hidden!important}
+</style>
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V106 • FINAL RELEASE</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V107 • FINAL RELEASE</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -3218,7 +3258,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V106 • FINAL RELEASE';
+  const BUILD='V107 • FINAL RELEASE';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
@@ -3527,7 +3567,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 <script id="v62-unified-input-engine">
 (()=>{
   'use strict';
-  const BUILD='V106 • FINAL RELEASE';
+  const BUILD='V107 • FINAL RELEASE';
   const q=s=>document.querySelector(s);
   let lastTouchAt=0,lastTouchAction='';
 
@@ -3670,7 +3710,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V106 • FINAL RELEASE';
+  const BUILD='V107 • FINAL RELEASE';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
@@ -3819,7 +3859,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V106 • FINAL RELEASE';
+  const BUILD='V107 • FINAL RELEASE';
 
   function buildMark(){
     document.title='Habit Monster World V103';
@@ -3944,7 +3984,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V106 • FINAL RELEASE';
+  const BUILD='V107 • FINAL RELEASE';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
@@ -4027,7 +4067,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
@@ -4082,7 +4122,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v71-version-lock-script">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
@@ -4136,7 +4176,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
@@ -4204,7 +4244,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  function lock(){
    document.title='Habit Monster World V103';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
@@ -4239,7 +4279,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v72-authoritative-runtime">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const BACKUP_KEY='hmw26_model_backup';
  const PREIMPORT_KEY='hmw_v72_pre_import';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -4412,7 +4452,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v73-authoritative-ux">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const safe=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function todayKey(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
@@ -4493,7 +4533,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v74-authoritative-consistency">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function mark(){
@@ -4598,7 +4638,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v75-authoritative-live-sync">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let syncing=false, timers=[];
@@ -4791,7 +4831,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v77-authoritative-gameplay-clarity">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const PENDING='hmw_v77_pending_claim';
  const CLAIMED='hmw_v77_claimed_';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -4910,7 +4950,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v78-authoritative-runtime">
 (()=>{
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -5459,7 +5499,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
 <script id="v88-clean-core-authority">
 (()=>{
  'use strict';
- const BUILD='V106 • FINAL RELEASE';
+ const BUILD='V107 • FINAL RELEASE';
  const BUILD_ID='97-final-spacing-pass';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -5875,7 +5915,7 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='97-final-spacing-pass';
+const BUILD='V107 • FINAL RELEASE', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V103';
@@ -6061,7 +6101,7 @@ html,body{max-width:100%;overflow-x:hidden}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='97-final-spacing-pass';
+const BUILD='V107 • FINAL RELEASE', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V103';
@@ -6281,7 +6321,7 @@ html,body{
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='97-final-spacing-pass';
+const BUILD='V107 • FINAL RELEASE', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V103';
@@ -6516,7 +6556,7 @@ html,body{
 <script id="v97-final-spacing-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='97-final-spacing-pass';
+const BUILD='V107 • FINAL RELEASE', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V103';
@@ -6573,7 +6613,7 @@ addEventListener('hmw3d-render',()=>setTimeout(boot,20),{passive:true});
 <script id="v98-final-layout-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='98-final-layout-fix';
+const BUILD='V107 • FINAL RELEASE', ID='98-final-layout-fix';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V103';
@@ -6613,7 +6653,7 @@ addEventListener('pageshow',mark,{passive:true});
 <script id="v99-final-mobile-authority">
 (()=>{
 'use strict';
-const BUILD='V106 • FINAL RELEASE', ID='100-final-ux-polish';
+const BUILD='V107 • FINAL RELEASE', ID='100-final-ux-polish';
 function mark(){
  document.title='Habit Monster World V103';
  document.documentElement.dataset.hmwBuild=ID;
@@ -6631,7 +6671,7 @@ addEventListener('hmw3d-render',()=>setTimeout(mark,20),{passive:true});
 <script id="v99-display-lock">
 (()=>{
 'use strict';
-const LABEL='V106 • FINAL RELEASE';
+const LABEL='V107 • FINAL RELEASE';
 function apply(){
   document.title='Habit Monster World V103';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
@@ -6750,7 +6790,7 @@ document.addEventListener('click',()=>setTimeout(apply,0),true);
 <script id="v100-final-ux-authority">
 (()=>{
 'use strict';
-const LABEL='V106 • FINAL RELEASE';
+const LABEL='V107 • FINAL RELEASE';
 function apply(){
   document.title='Habit Monster World V103';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
@@ -6815,7 +6855,7 @@ document.addEventListener('click',()=>setTimeout(apply,0),true);
 <script id="v103-final-authority">
 (()=>{
 'use strict';
-const LABEL='V106 • FINAL RELEASE';
+const LABEL='V107 • FINAL RELEASE';
 const NAMES={
  diligent:'เจ้าขยันจัง',
  reading:'น้องบุ๊กบุ๊ก',
