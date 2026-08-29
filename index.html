@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V129</title>
+<title>Habit Monster World V130</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1705,6 +1705,18 @@ body{overflow-x:hidden!important}
 .evolutionGlow{
  box-shadow:0 0 0 4px rgba(255,211,82,.22),0 15px 30px rgba(255,190,60,.18)!important;
 }
+</style>
+
+<style id="v130-evolution-polish">
+/* V130: Evolution + reward polish */
+.evoBadge{display:inline-block;margin-top:5px;padding:4px 9px;border-radius:999px;background:#fff3bf;color:#7a5a00;font-weight:900;font-size:12px}
+.monster-card,.zone,.box{transition:.18s ease}
+.monster-card:hover,.zone:hover{transform:translateY(-3px)}
+.evoGlow{box-shadow:0 0 0 4px rgba(255,215,90,.22),0 14px 30px rgba(60,90,120,.15)!important}
+.chestPop{animation:chestPop .55s ease}
+@keyframes chestPop{50%{transform:scale(1.08)}}
+.heroShadow{filter:drop-shadow(0 12px 12px rgba(40,60,80,.18))}
+.safe-mobile-fix{padding-bottom:120px!important}
 </style>
 </head>
 <body>
@@ -7393,10 +7405,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V129';
+ document.title='Habit Monster World V130';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V129';
+ if(title) title.textContent='Habit Monster World V130';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7535,7 +7547,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V129</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V130</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7563,7 +7575,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V129";
+ document.title="Habit Monster World V130";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7602,7 +7614,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V129";
+document.title="Habit Monster World V130";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
@@ -7654,7 +7666,7 @@ else hmwV124();
 <script>
 (()=>{
 window.HMW_VERSION="V129";
-document.title="Habit Monster World V129";
+document.title="Habit Monster World V130";
 
 function hmwV129(){
   document.querySelectorAll(".buildBadge").forEach(e=>{
@@ -7706,7 +7718,7 @@ else hmwV129();
 function v128Init(){
  document.querySelectorAll(".buildBadge").forEach(e=>e.textContent="V129");
  window.HMW_VERSION="V129";
- document.title="Habit Monster World V129";
+ document.title="Habit Monster World V130";
 
  // reward visual helper
  window.HMWReward=function(text="เก่งมาก!"){
@@ -7742,6 +7754,45 @@ function v128Init(){
 if(document.readyState==="loading")
  document.addEventListener("DOMContentLoaded",v128Init,{once:true});
 else v128Init();
+})();
+</script>
+
+<script id="v130-evolution-system">
+(()=>{
+function v130(){
+ document.title="Habit Monster World V130";
+ // version label
+ document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V130");
+ document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V130 • EVOLUTION POLISH");
+
+ // add evolution hints to monster cards without touching save data
+ const cards=[...document.querySelectorAll(".monster-card,.pet-card,.zone")];
+ cards.forEach((c,i)=>{
+   if(!c.querySelector(".evoBadge")){
+    const b=document.createElement("div");
+    b.className="evoBadge";
+    const forms=["🌱 Baby Form → 🐣 Kid Form","📚 Learner → ⭐ Master","💚 Friend → 🌈 Hero Form"];
+    b.textContent=forms[i%forms.length];
+    c.appendChild(b);
+   }
+ });
+ // daily reward visual feedback
+ document.querySelectorAll("button").forEach(btn=>{
+   if(!btn.dataset.v130){
+    btn.dataset.v130="1";
+    btn.addEventListener("click",()=>{
+      if(/reward|รับ|gift|รางวัล/i.test(btn.textContent)){
+        btn.classList.add("chestPop");
+        setTimeout(()=>btn.classList.remove("chestPop"),600);
+      }
+    });
+   }
+ });
+ // fix mobile bottom overlap
+ document.querySelector(".wrap")?.classList.add("safe-mobile-fix");
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",v130,{once:true});
+else v130();
 })();
 </script>
 </body>
