@@ -4,11 +4,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=101"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=102"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V101</title>
+<title>Habit Monster World V102</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1302,11 +1302,19 @@ body{
 input,select,button,textarea{min-height:44px;}
 </style>
 
+<style id="v102-aura-final-cleanup">
+@media(max-width:600px){
+ .avatarStage{height:300px!important;min-height:300px!important}
+ .avatarStudio{gap:10px!important}
+ .avatarChoice{min-height:100px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V101 • AVATAR GEAR FIX</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V102 • AURA GEAR + FINAL CLEANUP</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
 <div class="status"><span class="pill" id="threeStatus">🚀 ARENA & MAP POLISH • V44</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
@@ -1644,18 +1652,18 @@ function monsterArtURI(kind,level=1){
 function avatarArtURI(p){
  const id=(p&&p.preset)||"girlA";
  const gear=(p&&p.gear)||{};
- const bagBack=gear.bag?`<g class="avatar-bag-back">
-   <rect x="132" y="246" width="156" height="116" rx="38" fill="#d94d45"/>
-   <rect x="141" y="254" width="138" height="98" rx="32" fill="#ef6258"/>
-   <path d="M160 259Q210 225 260 259" fill="none" stroke="#8f352f" stroke-width="12" stroke-linecap="round"/>
-   <ellipse cx="166" cy="270" rx="28" ry="11" fill="#ff9a78" opacity=".55"/>
+ const auraBack=gear.bag?`<g class="avatar-aura-back" opacity=".95">
+   <ellipse cx="210" cy="220" rx="145" ry="178" fill="none" stroke="#91eaff" stroke-width="13" opacity=".34"/>
+   <ellipse cx="210" cy="220" rx="126" ry="158" fill="none" stroke="#ffe36f" stroke-width="7" opacity=".48"/>
+   <circle cx="90" cy="146" r="9" fill="#fff0a0"/><circle cx="326" cy="165" r="8" fill="#a9efff"/>
+   <circle cx="104" cy="300" r="7" fill="#a9efff"/><circle cx="318" cy="300" r="9" fill="#fff0a0"/>
+   <path d="M83 205l7 14 14 7-14 7-7 14-7-14-14-7 14-7z" fill="#fff"/>
+   <path d="M337 236l6 12 12 6-12 6-6 12-6-12-12-6 12-6z" fill="#fff7a8"/>
  </g>`:"";
- const bagFront=gear.bag?`<g class="avatar-bag-front">
-   <path d="M159 271Q147 302 151 340" fill="none" stroke="#9f3d38" stroke-width="12" stroke-linecap="round"/>
-   <path d="M261 271Q273 302 269 340" fill="none" stroke="#9f3d38" stroke-width="12" stroke-linecap="round"/>
-   <rect x="274" y="292" width="49" height="63" rx="16" fill="#e75249" stroke="#a93b35" stroke-width="4"/>
-   <rect x="281" y="302" width="35" height="19" rx="9" fill="#ffb06e"/>
-   <path d="M287 337h23" stroke="#fff2d8" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+ const auraFront=gear.bag?`<g class="avatar-aura-front">
+   <path d="M116 82l5 10 10 5-10 5-5 10-5-10-10-5 10-5z" fill="#fff5a0"/>
+   <path d="M304 94l5 10 10 5-10 5-5 10-5-10-10-5 10-5z" fill="#b9f2ff"/>
+   <circle cx="79" cy="268" r="5" fill="#fff"/><circle cx="341" cy="278" r="5" fill="#fff"/>
  </g>`:"";
  const C={
   boyA:{shirt:"#39b8ef",dark:"#197db8",hair:"#68402f",style:"swoop",sex:"b",accent:"#7fdcff"},
@@ -1705,7 +1713,7 @@ function avatarArtURI(p){
  }
 
  return v37Svg(`
-  ${bagBack}
+  ${auraBack}
   ${hairBack}
   <!-- neck / ears -->
   <ellipse cx="122" cy="190" rx="25" ry="31" fill="url(#skin3)"/><ellipse cx="298" cy="190" rx="25" ry="31" fill="url(#skin3)"/>
@@ -1727,7 +1735,7 @@ function avatarArtURI(p){
   <ellipse cx="210" cy="310" rx="70" ry="60" fill="url(#cloth3)"/>
   <ellipse cx="180" cy="276" rx="34" ry="12" fill="#fff" opacity=".24" transform="rotate(-18 180 276)"/>
   <path d="M164 279Q210 308 256 279" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".92"/>
-  ${bagFront}
+  ${auraFront}
   <!-- shoulders / arms -->
   <ellipse cx="145" cy="295" rx="25" ry="27" fill="url(#cloth3)"/><ellipse cx="275" cy="295" rx="25" ry="27" fill="url(#cloth3)"/>
   <rect x="132" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/><rect x="263" y="297" width="25" height="58" rx="13" fill="url(#skin3)"/>
@@ -1824,7 +1832,7 @@ function submitMorning(){let a=$("qMorning").value;if(!a)return toast("ใส่
 function submitDawdle(){let over=Math.max(0,+$("qToilet").value||0),bm=+$("qBathM").value||0,be=+$("qBathE").value||0,pass=0,notes=[];if(over===0){pass++;notes.push(`ห้องน้ำไม่เกิน ${S.settings.toilet} นาที ✓`)}else notes.push(`ห้องน้ำเกิน ${S.settings.toilet} นาที ${over} ครั้ง`);if(bm){if(bm<=S.settings.bathMorning){pass++;notes.push(`อาบน้ำเช้า ${bm} นาที ✓`)}else notes.push(`อาบน้ำเช้า ${bm} นาที`)}if(be){if(be<=S.settings.bathEvening){pass++;notes.push(`อาบน้ำเย็น ${be} นาที ✓`)}else notes.push(`อาบน้ำเย็น ${be} นาที`)}if(!pass)return toast("ยังไม่มีหัวข้อที่ผ่านเป้า");queue("noDawdle",{amount:pass,power:pass*8,stars:pass*5,label:`⏱️ ${notes.join(" • ")}`})}
 function submitScreen(){let n=+$("qScreen").value;if(!Number.isFinite(n)||n<0)return toast("ใส่เวลาจอ");let lunch=$("qLunch").checked,dinner=$("qDinner").checked,pass=0,notes=[];if(n<=S.settings.screenBudget){pass++;notes.push(`จอ ${n} ชม. ✓`)}else notes.push(`จอ ${n} ชม. เกินเป้า`);if(lunch){pass++;notes.push("กลางวันไม่ดูจอ ✓")}if(dinner){pass++;notes.push("เย็นไม่ดูจอ ✓")}if(!pass)return toast("วันนี้ยังไม่ผ่านเป้า");queue("screen",{amount:pass,power:pass*8,stars:pass*5,label:`📵 ${notes.join(" • ")}`})}
 function summaryRange(days,offset=0){let end=new Date();end.setHours(23,59,59,999);end.setDate(end.getDate()-offset);let start=new Date(end);start.setDate(start.getDate()-days+1);start.setHours(0,0,0,0);let logs=S.logs.filter(x=>{let d=new Date(x.date+"T12:00:00");return d>=start&&d<=end}),sum=k=>logs.filter(x=>x.k===k).reduce((a,x)=>a+x.amount,0);return {diligent:sum("diligent"),reading:sum("reading"),homework:sum("homework"),messy:sum("messy"),morning:sum("morning"),screen:sum("screen"),days:new Set(logs.map(x=>x.date)).size,count:logs.length}}
-function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$("avatarName").value=p.name;$("skinSel").value=p.skin;$("hairSel").value=p.hair;$("hairColorSel").value=p.hairColor;$("avatarChoices").innerHTML=Object.keys(presets).map(id=>{let temp=clone(p);temp.preset=id;temp.hair=presets[id][1];temp.gear={hat:false,cape:false,bag:false,star:false};return `<button class="avatarChoice ${p.preset===id?"on":""}" onclick="pickAvatar('${id}')">${avatarSVG(temp)}<small>${id.toUpperCase()}</small></button>`}).join("");let unlock={hat:true,cape:S.streak>=7,bag:Math.max(...order.map(k=>S.monsters[k].level))>=3,star:order.some(k=>S.monsters[k].level>=5)};$("gearRow").innerHTML=[["hat","🧢 หมวก","เริ่มต้น"],["cape","🦸 เสื้อคลุม","Streak 7 วัน"],["bag","🎒 กระเป๋า","Monster Lv.3"],["star","⭐ Habit Star","HERO FORM"]].map(([k,n,h])=>`<button class="gearChip ${p.gear[k]?"on":""} ${unlock[k]?"":"locked"}" onclick="toggleGear('${k}',${unlock[k]})">${unlock[k]?(n+(p.gear[k]?" ✓":"")):"🔒 "+n}<small style="display:block">${h}</small></button>`).join("")}
+function renderAvatar(){let p=S.profile;$("avatarStage").innerHTML=avatarSVG();$("avatarName").value=p.name;$("skinSel").value=p.skin;$("hairSel").value=p.hair;$("hairColorSel").value=p.hairColor;$("avatarChoices").innerHTML=Object.keys(presets).map(id=>{let temp=clone(p);temp.preset=id;temp.hair=presets[id][1];temp.gear={hat:false,cape:false,bag:false,star:false};return `<button class="avatarChoice ${p.preset===id?"on":""}" onclick="pickAvatar('${id}')">${avatarSVG(temp)}<small>${id.toUpperCase()}</small></button>`}).join("");let unlock={hat:true,cape:S.streak>=7,bag:Math.max(...order.map(k=>S.monsters[k].level))>=3,star:order.some(k=>S.monsters[k].level>=5)};$("gearRow").innerHTML=[["hat","🧢 หมวก","เริ่มต้น"],["cape","🦸 เสื้อคลุม","Streak 7 วัน"],["bag","✨ Aura","Monster Lv.3"],["star","⭐ Habit Star","HERO FORM"]].map(([k,n,h])=>`<button class="gearChip ${p.gear[k]?"on":""} ${unlock[k]?"":"locked"}" onclick="toggleGear('${k}',${unlock[k]})">${unlock[k]?(n+(p.gear[k]?" ✓":"")):"🔒 "+n}<small style="display:block">${h}</small></button>`).join("")}
 function pickAvatar(id){S.profile.preset=id;S.profile.hair=presets[id][1];save();renderAvatar();renderWorld()}
 function toggleGear(k,ok){if(!ok)return toast("ยังไม่ปลดล็อก");S.profile.gear[k]=!S.profile.gear[k];save();renderAvatar();renderWorld()}
 function saveAvatar(){S.profile.name=$("avatarName").value.trim()||"นักผจญภัย";S.profile.skin=$("skinSel").value;S.profile.hair=$("hairSel").value;S.profile.hairColor=$("hairColorSel").value;save();renderAvatar();renderWorld();toast("บันทึก Avatar แล้ว")}
@@ -1841,7 +1849,7 @@ function renderRewards(){let icon={activity:"🎡",treat:"🍦",privilege:"🎮"
 function redeem(i){let r=S.rewards[i];if(r.limit&&r.redeemed>=r.limit)return;if(S.stars<r.cost)return toast("ดาวไม่พอ");if(!confirm(`แลก ${r.name} ใช้ ${r.cost} ดาว?`))return;S.stars-=r.cost;r.redeemed++;S.rewardHistory.unshift({date:dayKey(),name:r.name,cost:r.cost});save();celebrate(`🎁 แลก ${r.name} สำเร็จ`);render()}
 function trophies(){return [["✏️","100 ข้อ",S.totals.diligent>=100],["🧠","500 ข้อ",S.totals.diligent>=500],["📖","อ่าน 100 นาที",S.totals.reading>=100],["🦉","อ่าน 500 นาที",S.totals.reading>=500],["🔥","Streak 7 วัน",S.streak>=7],["🌟","Streak 30 วัน",S.streak>=30],["📚","การบ้าน 50 งาน",S.totals.homework>=50],["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]]}
 function renderTrophies(){$("trophyGrid").innerHTML=trophies().map(([i,n,o])=>`<div class="trophy ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
-function renderCloset(){let maxLv=Math.max(...order.map(k=>S.monsters[k].level)),hero=order.some(k=>S.monsters[k].level>=5),items=[["hat","🧢","หมวกดาว",true,"เริ่มต้น"],["cape","🦸","เสื้อคลุม",S.streak>=7,"Streak 7 วัน"],["bag","🎒","กระเป๋า",maxLv>=3,"Monster Lv.3"],["star","⭐","Habit Star",hero,"HERO FORM"],["reader","🎓","หมวกนักอ่าน",S.totals.reading>=300,"อ่าน 300 นาที"],["pet","🐾","Pet Charm",S.pet.friendship>=50,"Friendship 50"]];$("closetGrid").innerHTML=items.map(([k,i,n,o,h])=>`<button class="closetItem ${o?"":"locked"} ${S.profile.gear[k]?"on":""}" onclick="${["hat","cape","bag","star"].includes(k)?`toggleGear('${k}',${o})`:""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b><br><small>${o?"ปลดล็อกแล้ว":h}</small></button>`).join("")}
+function renderCloset(){let maxLv=Math.max(...order.map(k=>S.monsters[k].level)),hero=order.some(k=>S.monsters[k].level>=5),items=[["hat","🧢","หมวกดาว",true,"เริ่มต้น"],["cape","🦸","เสื้อคลุม",S.streak>=7,"Streak 7 วัน"],["bag","✨","Aura พลัง",maxLv>=3,"Monster Lv.3"],["star","⭐","Habit Star",hero,"HERO FORM"],["reader","🎓","หมวกนักอ่าน",S.totals.reading>=300,"อ่าน 300 นาที"],["pet","🐾","Pet Charm",S.pet.friendship>=50,"Friendship 50"]];$("closetGrid").innerHTML=items.map(([k,i,n,o,h])=>`<button class="closetItem ${o?"":"locked"} ${S.profile.gear[k]?"on":""}" onclick="${["hat","cape","bag","star"].includes(k)?`toggleGear('${k}',${o})`:""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b><br><small>${o?"ปลดล็อกแล้ว":h}</small></button>`).join("")}
 function renderDashboard(){let w=summaryRange(7),prev=summaryRange(7,7),delta=(a,b)=>a-b>0?`▲ ${a-b}`:a-b<0?`▼ ${Math.abs(a-b)}`:"—";$("dashboardGrid").innerHTML=`<div class="summaryBox">✏️ 7 วัน<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖 7 วัน<b>${w.reading} นาที</b></div><div class="summaryBox">📚 7 วัน<b>${w.homework} งาน</b></div><div class="summaryBox">📵 สำเร็จ<b>${w.screen} หัวข้อ</b></div><div class="summaryBox">🧹 จัดของ<b>${w.messy} งาน</b></div><div class="summaryBox">🌅 เช้าทัน<b>${w.morning} วัน</b></div>`;$("weekCompare").innerHTML=`<b>เทียบสัปดาห์ก่อน</b><br>✏️ ${delta(w.diligent,prev.diligent)} • 📖 ${delta(w.reading,prev.reading)} • 📚 ${delta(w.homework,prev.homework)}`}
 function renderEndDay(){let d=summaryRange(1);$("endDaySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✅ รายการ<b>${d.count}</b></div><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">🔥<b>${S.streak} วัน</b></div><div class="summaryBox">❤️ Pet<b>${S.pet.friendship}</b></div></div>`}
 function closeDay(){let d=dayKey();if(S.closedDays.includes(d))return toast("วันนี้ปิดวันแล้ว");S.closedDays.push(d);save();celebrate("🌙 ปิดวันเรียบร้อย");render()}
@@ -3189,14 +3197,14 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V101 • AVATAR GEAR FIX';
+  const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
 
   function mark(){
     const b=q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V101';
+    document.title='Habit Monster World V102';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3498,13 +3506,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 <script id="v62-unified-input-engine">
 (()=>{
   'use strict';
-  const BUILD='V101 • AVATAR GEAR FIX';
+  const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
   const q=s=>document.querySelector(s);
   let lastTouchAt=0,lastTouchAction='';
 
   function mark62(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V101';
+    document.title='Habit Monster World V102';
     document.documentElement.dataset.hmwBuild='97-final-spacing-pass';
     if(S && S.settings){
       S.settings.dailyCap=0;
@@ -3641,13 +3649,13 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V101 • AVATAR GEAR FIX';
+  const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
   function mark64(){
     const b=$q('.buildBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V101';
+    document.title='Habit Monster World V102';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     if(window.S?.settings){ S.settings.approval='trust'; S.settings.cooldown=0; S.settings.dailyCap=0; }
   }
@@ -3790,10 +3798,10 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V101 • AVATAR GEAR FIX';
+  const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
 
   function buildMark(){
-    document.title='Habit Monster World V101';
+    document.title='Habit Monster World V102';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
     const badge=document.querySelector('.versionBadge,.version-badge,#versionBadge');
     if(badge) badge.textContent=BUILD;
@@ -3915,13 +3923,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V101 • AVATAR GEAR FIX';
+  const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
   function mark(){
     const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
-    document.title='Habit Monster World V101';
+    document.title='Habit Monster World V102';
     document.documentElement.dataset.hmwBuild='67-progression-clarity-ux-hardening';
   }
 
@@ -3998,13 +4006,13 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function run(){
   const S0=st(),k=S0&&S0.active,m=S0&&S0.monsters&&S0.monsters[k];
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   document.querySelectorAll('h1,h2,h3').forEach(h=>{if(/World Map/.test(h.textContent||''))h.innerHTML='🗺️ World Map <small style="display:block;font-size:.42em;color:#71849a;margin-top:3px">7 ด่านฝึกนิสัย</small>'});
   document.querySelectorAll('#worldMap .zone *').forEach(el=>{if(el.children.length===0&&/ร่าง\s*\d+\s*\/\s*5/.test(el.textContent||''))el.textContent=(el.textContent||'').replace('ร่าง','วิวัฒนาการ')});
@@ -4053,11 +4061,11 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v71-version-lock-script">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
- function mark(){document.title='Habit Monster World V101';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
+ function mark(){document.title='Habit Monster World V102';const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;document.documentElement.dataset.hmwBuild='71-version-lock'}
  function goal(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
  function toast(t){let n=q('#v69Toast');if(!n){n=document.createElement('div');n.id='v69Toast';n.className='v69-toast';document.body.appendChild(n)}n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),1100)}
  function status(){try{const map=q('#worldMap'),k=S.active,m=S.monsters[k];if(!map||!k||!m)return;let n=q('#v69QuickStatus');if(!n){n=document.createElement('div');n.id='v69QuickStatus';map.insertAdjacentElement('afterend',n)}const g=goal(k),p=Number(m.progress)||0,left=Math.max(0,g-p),u=UNITS[k]||'แต้ม';n.innerHTML=`👾 ${defs[k].title} · Lv.${m.level} · ⚡ ${p}/${g}<span class="sub">${left?`อีก ${left} ${u} → Lv.${m.level+1}`:'พร้อมไป Level ถัดไป ✨'}</span>`;n.onclick=()=>q('.arena')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}}
@@ -4107,11 +4115,11 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='71-version-lock';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4175,9 +4183,9 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  function lock(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
    if(b && b.textContent!==BUILD) b.textContent=BUILD;
    document.documentElement.dataset.hmwBuild='77-version-lock';
@@ -4210,7 +4218,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v72-authoritative-runtime">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const BACKUP_KEY='hmw26_model_backup';
  const PREIMPORT_KEY='hmw_v72_pre_import';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -4220,7 +4228,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  let commitBusy=false,lastCommitSig='',lastCommitAt=0;
 
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='72-reliability-progression';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
  }
@@ -4383,13 +4391,13 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v73-authoritative-ux">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const safe=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function todayKey(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
  function todayLogs(){try{return (S.logs||[]).filter(x=>x&&x.date===todayKey())}catch(_){return []}}
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='73-stability-mobile-ux';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🛡️ STABLE SAVE + MOBILE UX • V73';
@@ -4464,11 +4472,11 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v74-authoritative-consistency">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='74-consistency-final-polish';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✨ LIVE SYNC + COMPACT UI • V75';
@@ -4569,7 +4577,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v75-authoritative-live-sync">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let syncing=false, timers=[];
@@ -4577,7 +4585,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    try{const k=order.includes(S.active)?S.active:order[0],m=S.monsters[k];return {k,m,goal:maxGoal(k),hpGoal:maxHp(k),unit:defs[k].unit||'แต้ม'}}catch(_){return null}
  }
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='75-live-sync-compact-ui';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🔄 LIVE SYNC + COMPACT UI • V75';
@@ -4762,14 +4770,14 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v77-authoritative-gameplay-clarity">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const PENDING='hmw_v77_pending_claim';
  const CLAIMED='hmw_v77_claimed_';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let claiming=false, busy=false, timers=[];
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='77-gameplay-reward-claim';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🎮 STABILITY + CLEAN SAVE • V78';
@@ -4881,7 +4889,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v78-authoritative-runtime">
 (()=>{
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -4889,7 +4897,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  let saving=false,lastSig='',lastAt=0,uiTimer=0;
 
  function mark(){
-   document.title='Habit Monster World V101';
+   document.title='Habit Monster World V102';
    document.documentElement.dataset.hmwBuild='78-stability-clean-save';
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='🛡️ STABILITY + SAVE HARDENING • V80';
@@ -5430,7 +5438,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
 <script id="v88-clean-core-authority">
 (()=>{
  'use strict';
- const BUILD='V101 • AVATAR GEAR FIX';
+ const BUILD='V102 • AURA GEAR + FINAL CLEANUP';
  const BUILD_ID='97-final-spacing-pass';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -5487,7 +5495,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
  function stageName(k){try{return defs?.[k]?.title||k}catch(_){return k}}
 
  function mark(){
-   document.title='Habit Monster World V101';document.documentElement.dataset.hmwBuild=BUILD_ID;
+   document.title='Habit Monster World V102';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
    const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V101</b>');
@@ -5780,7 +5788,7 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
    }catch(e){console.warn('V90 summary sync skipped',e)}
  }
  function mark(){
-   document.title='Habit Monster World V101';document.documentElement.dataset.hmwBuild=BUILD_ID;
+   document.title='Habit Monster World V102';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
    const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V101</b>');
@@ -5846,10 +5854,10 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='97-final-spacing-pass';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6032,10 +6040,10 @@ html,body{max-width:100%;overflow-x:hidden}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='97-final-spacing-pass';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6252,10 +6260,10 @@ html,body{
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='97-final-spacing-pass';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6487,10 +6495,10 @@ html,body{
 <script id="v97-final-spacing-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='97-final-spacing-pass';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6544,10 +6552,10 @@ addEventListener('hmw3d-render',()=>setTimeout(boot,20),{passive:true});
 <script id="v98-final-layout-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='98-final-layout-fix';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='98-final-layout-fix';
 const q=s=>document.querySelector(s);
 function mark(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6584,9 +6592,9 @@ addEventListener('pageshow',mark,{passive:true});
 <script id="v99-final-mobile-authority">
 (()=>{
 'use strict';
-const BUILD='V101 • AVATAR GEAR FIX', ID='100-final-ux-polish';
+const BUILD='V102 • AURA GEAR + FINAL CLEANUP', ID='100-final-ux-polish';
 function mark(){
- document.title='Habit Monster World V101';
+ document.title='Habit Monster World V102';
  document.documentElement.dataset.hmwBuild=ID;
  const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
  const st=document.querySelector('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
@@ -6602,9 +6610,9 @@ addEventListener('hmw3d-render',()=>setTimeout(mark,20),{passive:true});
 <script id="v99-display-lock">
 (()=>{
 'use strict';
-const LABEL='V101 • AVATAR GEAR FIX';
+const LABEL='V102 • AURA GEAR + FINAL CLEANUP';
 function apply(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
   if(b && b.textContent!==LABEL)b.textContent=LABEL;
@@ -6721,9 +6729,9 @@ document.addEventListener('click',()=>setTimeout(apply,0),true);
 <script id="v100-final-ux-authority">
 (()=>{
 'use strict';
-const LABEL='V101 • AVATAR GEAR FIX';
+const LABEL='V102 • AURA GEAR + FINAL CLEANUP';
 function apply(){
-  document.title='Habit Monster World V101';
+  document.title='Habit Monster World V102';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
   if(b && b.textContent!==LABEL)b.textContent=LABEL;
