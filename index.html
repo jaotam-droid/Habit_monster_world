@@ -8981,5 +8981,85 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 })();
 </script>
 
+
+<style id="hmw-v153-final-sync">
+/* V153 Final Polish: unified Monster Life data */
+.hm153-card{
+ margin-top:14px;padding:16px;border-radius:26px;
+ background:linear-gradient(135deg,#fffdf0,#eef8ff);
+ border:2px solid #ffd76f;box-shadow:0 14px 32px rgba(50,80,120,.12)
+}
+.hm153-title{font-size:24px;font-weight:950;color:#765500}
+.hm153-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px}
+.hm153-box{background:#fff;border-radius:16px;padding:12px;text-align:center;border:1px solid #dce7ef;font-weight:900}
+.hm153-box b{display:block;font-size:24px}
+.hm153-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.hm153-actions button{border:0;border-radius:14px;padding:11px;font-weight:950;background:#ffd76f;color:#5b4800}
+@media(max-width:600px){.hm153-grid,.hm153-actions{grid-template-columns:repeat(2,1fr)}}
+</style>
+<script>
+(function hmwV153(){
+function init(){
+ document.title="Habit Monster World V153";
+ const key="hmwMonsterCore";
+ let s=JSON.parse(localStorage.getItem(key)||'{"bond":7,"energy":35,"chest":7,"mood":"😊 Happy","evo":"🌱 Baby","care":0,"growth":1}');
+ const save=()=>localStorage.setItem(key,JSON.stringify(s));
+ const evo=()=>s.bond>=100?"✨ Master":s.bond>=50?"👑 Legend":s.bond>=20?"🌈 Hero":"🌱 Baby";
+
+ // Update all visible duplicate monster numbers to the same state where possible
+ document.querySelectorAll("body *").forEach(el=>{
+   if(el.children.length===0){
+     let t=el.textContent;
+     if(/Evolution Energy0|Evolution Energy\s*0/.test(t)) el.textContent=t.replace(/Evolution Energy\s*0/,"Evolution Energy "+s.energy);
+     if(/Bond Level0/.test(t)) el.textContent=t.replace("Bond Level0","Bond Level "+s.bond);
+     if(/Reward Chest0/.test(t)) el.textContent=t.replace("Reward Chest0","Reward Chest "+s.chest);
+   }
+ });
+
+ const old=document.querySelector(".hm153-card");
+ if(old)return;
+ const host=[...document.querySelectorAll("h2,h3")].find(x=>x.textContent.includes("Monster Soul"))||document.querySelector(".hm146-panel");
+ if(!host)return;
+ const card=document.createElement("div");
+ card.className="hm153-card";
+ card.innerHTML=`
+ <div class="hm153-title">🌟 Monster Life Center V153</div>
+ <div class="hm153-grid">
+ <div class="hm153-box">❤️ Bond Level<b id="v153b">${s.bond}</b></div>
+ <div class="hm153-box">⚡ Evolution Energy<b id="v153e">${s.energy}</b></div>
+ <div class="hm153-box">🎁 Reward Chest<b id="v153c">${s.chest}</b></div>
+ <div class="hm153-box">😊 Mood<b id="v153m">${s.mood}</b></div>
+ </div>
+ <div class="hm153-grid">
+ <div class="hm153-box">🌱 Evolution<b id="v153ev">${evo()}</b></div>
+ <div class="hm153-box">🏠 Care / Growth<b id="v153cg">${s.care}/${s.growth}</b></div>
+ </div>
+ <div class="hm153-actions">
+ <button>🍎 Feed</button><button>🧸 Play</button><button>📚 Train</button><button>🎁 Chest</button>
+ </div>`;
+ host.parentElement.insertAdjacentElement("afterend",card);
+ function render(){
+  card.querySelector("#v153b").textContent=s.bond;
+  card.querySelector("#v153e").textContent=s.energy;
+  card.querySelector("#v153c").textContent=s.chest;
+  card.querySelector("#v153m").textContent=s.mood;
+  card.querySelector("#v153ev").textContent=evo();
+  card.querySelector("#v153cg").textContent=s.care+"/"+s.growth;
+  save();
+ }
+ card.querySelectorAll("button").forEach((b,i)=>b.onclick=()=>{
+  if(i===0){s.bond+=2;s.care++;s.mood="😋 Happy";}
+  if(i===1){s.bond+=3;s.care++;s.mood="🥰 Happy";}
+  if(i===2){s.energy+=5;s.growth++;s.mood="💪 Proud";}
+  if(i===3){s.chest++;s.mood="🎁 Reward Ready";}
+  render();
+ });
+ render();
+ window.HMW_V153={version:"V153",features:["Monster State Sync","Monster Life Center","Final Polish"]};
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
+})();
+</script>
+
 </body>
 </html>
