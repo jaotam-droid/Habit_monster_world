@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V149</title>
+<title>Habit Monster World V150</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1804,6 +1804,26 @@ body{overflow-x:hidden!important}
 }
 </style>
 
+
+<style id="v150-final-polish">
+/* V150 Final Polish */
+:root{--hm150-gold:#ffd45c}
+.card{transition:transform .18s ease,box-shadow .18s ease}
+.card:active{transform:scale(.997)}
+.bigBtn,.nav button,.zone,.avatarChoice,.petChoice{transition:transform .16s ease,box-shadow .16s ease}
+.bigBtn:active,.nav button:active,.zone:active,.avatarChoice:active,.petChoice:active{transform:scale(.97)}
+.zone.active{animation:hm150Glow 2.4s ease-in-out infinite}
+@keyframes hm150Glow{
+ 0%,100%{filter:none}
+ 50%{filter:drop-shadow(0 0 8px rgba(255,212,92,.35))}
+}
+.hm150-pop{animation:hm150Pop .35s ease}
+@keyframes hm150Pop{
+ 0%{transform:scale(.98)}
+ 55%{transform:scale(1.02)}
+ 100%{transform:scale(1)}
+}
+</style>
 </head>
 <body>
 <!-- V124 Premium Evolution -->
@@ -8867,7 +8887,7 @@ function hm149(){
  const save=()=>localStorage.setItem("hm149Soul",JSON.stringify(data));
  const el=document.createElement("div"); el.className="hm149-panel";
  el.innerHTML=`
- <div class="hm149-title">🌟 Monster Soul V149</div>
+ <div class="hm149-title">🌟 Monster Soul V150</div>
  <div class="hm149-grid">
   <div class="hm149-box">❤️ Bond Level<b>${data.bond}</b></div>
   <div class="hm149-box">⚡ Evolution Energy<b>${data.energy}</b></div>
