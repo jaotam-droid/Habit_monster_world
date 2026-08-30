@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="th">
 <head>
-<!-- HMW V152 Final Cleanup -->
+<!-- HMW V154 Monster UX Cleanup -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V152</title>
+<title>Habit Monster World V154</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -9061,5 +9061,67 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 })();
 </script>
 
+
+<style id="v154-monster-ux-cleanup">
+/* V154 Monster System Merge - simplify presentation */
+.hm154-card{
+ background:linear-gradient(135deg,#fff,#fff8df);
+ border:2px solid #ffd76f;
+ border-radius:24px;
+ padding:14px;
+ margin-top:12px;
+ box-shadow:0 12px 28px rgba(43,73,105,.10);
+}
+.hm154-title{font-size:22px;font-weight:950;color:#765500;margin-bottom:10px}
+.hm154-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.hm154-box{background:#fff;border:1px solid #dce7ef;border-radius:16px;padding:12px;text-align:center;font-weight:900}
+.hm154-box b{display:block;font-size:25px;margin-top:4px}
+.hm154-btn{width:100%;margin-top:10px;padding:13px;border:0;border-radius:16px;background:#ffd76f;color:#624800;font-weight:950}
+@media(max-width:600px){.hm154-grid{grid-template-columns:1fr 1fr}.hm154-title{font-size:20px}}
+</style>
+<script>
+(function v154MonsterCleanup(){
+ function run(){
+  window.HMW_V154={
+    version:"V154",
+    features:["Monster System Merge","Profile/Care/Evolution UX"]
+  };
+
+  // Hide duplicate information panels while keeping old game logic intact
+  const hideTitles=[
+   "🌟 Monster Soul Gameplay",
+   "🌟 Monster Soul System",
+   "🌟 Monster Life Center V153",
+   "🌟 Monster Awakening Journey"
+  ];
+  document.querySelectorAll("div").forEach(el=>{
+    const t=(el.innerText||"").trim();
+    if(hideTitles.some(x=>t.startsWith(x)) && el.children.length<20){
+      el.style.display="none";
+    }
+  });
+
+  // Add one clear monster control card after avatar area
+  const stage=document.querySelector(".avatarStage");
+  if(stage && !document.querySelector(".hm154-card")){
+   const data=window.HMW_DATA||{};
+   const card=document.createElement("div");
+   card.className="hm154-card";
+   card.innerHTML=`
+    <div class="hm154-title">🌟 Monster Center</div>
+    <div class="hm154-grid">
+      <div class="hm154-box">😊 Mood<b>Happy</b></div>
+      <div class="hm154-box">❤️ Bond<b>${data.bond||7}</b></div>
+      <div class="hm154-box">⚡ Evolution<b>${data.energy||35}</b></div>
+      <div class="hm154-box">🌱 Stage<b>Baby</b></div>
+    </div>
+    <button class="hm154-btn" onclick="document.querySelector('[class*=Care],button')?.scrollIntoView({behavior:'smooth'})">❤️ ดูแล Monster</button>`;
+   stage.insertAdjacentElement("afterend",card);
+  }
+ }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run,{once:true});
+ else run();
+})();
+</script>
 </body>
 </html>
