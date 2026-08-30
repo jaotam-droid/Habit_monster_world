@@ -9323,5 +9323,45 @@ else run();
 })();
 </script>
 
+
+<style id="hmw-v159-care-action-fix">
+.hm159-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.hm159-actions button{border:0;border-radius:14px;padding:12px 6px;font-weight:950;background:#fff;border:1px solid #dce7ef;box-shadow:0 8px 18px rgba(43,73,105,.08)}
+.hm159-actions button:active{transform:scale(.97)}
+.hm159-msg{text-align:center;margin-top:10px;padding:8px;border-radius:14px;background:#eefaf2;font-weight:900}
+@media(max-width:600px){.hm159-actions{grid-template-columns:repeat(2,1fr)}}
+</style>
+<script id="hmw-v159-care-action-fix">
+(()=>{
+function run(){
+ document.querySelectorAll('.hm155-care').forEach(box=>{
+   if(box.dataset.v159)return;
+   box.dataset.v159="1";
+   box.innerHTML=`
+    <h3>💖 ดูแล Monster วันนี้</h3>
+    <div class="hm159-actions">
+      <button onclick="hmwCareAction('🍎 ให้อาหาร')">🍎<br>ให้อาหาร</button>
+      <button onclick="hmwCareAction('🧸 เล่นด้วย')">🧸<br>เล่นด้วย</button>
+      <button onclick="hmwCareAction('📚 ฝึกนิสัย')">📚<br>ฝึกนิสัย</button>
+      <button onclick="hmwCareAction('😴 พักผ่อน')">😴<br>พักผ่อน</button>
+    </div>
+    <div class="hm159-msg">Monster รอการดูแลจาก Hero ✨</div>`;
+ });
+ // remove any remaining duplicate care button near room
+ document.querySelectorAll('button').forEach(b=>{
+   if((b.textContent||'').trim()==='💖 ดูแล Monster วันนี้' || (b.textContent||'').includes('❤️ ดูแล Monster')){
+      if(!b.closest('.hm155-care')) b.style.display='none';
+   }
+ });
+}
+window.hmwCareAction=function(msg){
+ localStorage.setItem('hmwLastCare',msg+' '+Date.now());
+ const t=document.querySelector('.toast');
+ if(t){t.textContent=msg+' • Monster มีความสุขขึ้น ✨';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run,{once:true});
+else run();
+})();
+</script>
 </body>
 </html>
