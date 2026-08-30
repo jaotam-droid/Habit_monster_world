@@ -5,11 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=166"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=167"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V166</title>
+<title>Habit Monster World V167</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -7672,10 +7672,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <script>
 (function(){
 function hmwV118(){
- document.title='Habit Monster World V166';
+ document.title='Habit Monster World V167';
  document.documentElement.dataset.hmwBuild='109-monster-life-update';
  const title=document.querySelector('title');
- if(title) title.textContent='Habit Monster World V166';
+ if(title) title.textContent='Habit Monster World V167';
 
  const badge=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
  if(badge && !/V118/.test(badge.textContent)) badge.textContent='V118';
@@ -7814,7 +7814,7 @@ window.addEventListener("error",function(e){
     window.__hmwErrorShown=true;
     var box=document.createElement("div");
     box.style.cssText="position:fixed;inset:20px;z-index:99999;background:white;border-radius:20px;padding:20px;font-family:sans-serif;color:#24364a;box-shadow:0 10px 30px #999";
-    box.innerHTML="<b>Habit Monster World V166</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
+    box.innerHTML="<b>Habit Monster World V167</b><br>กำลังซ่อมการโหลดเกม...<br><small>"+(e.message||"unknown error")+"</small>";
     document.body.appendChild(box);
   }
 });
@@ -7842,7 +7842,7 @@ window.addEventListener("error",function(e){
 <script id="v118-evolution-reward-system">
 (function(){
 function hmwV118(){
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
  document.querySelectorAll("title,.buildBadge,.cinematicTag").forEach(function(e){
    if(e.textContent) e.textContent=e.textContent.replace(/V\d+/,"V118");
  });
@@ -7881,7 +7881,7 @@ else hmwV118();
 (()=>{
 // V124 polish hooks
 window.HMW_VERSION="V124";
-document.title="Habit Monster World V166";
+document.title="Habit Monster World V167";
 function hmwV124(){
  document.querySelectorAll(".buildBadge").forEach(e=>{
    if(!e.textContent.includes("V124")) e.textContent="V124";
@@ -7933,7 +7933,7 @@ else hmwV124();
 <script>
 (()=>{
 window.HMW_VERSION="V129";
-document.title="Habit Monster World V166";
+document.title="Habit Monster World V167";
 
 function hmwV129(){
   document.querySelectorAll(".buildBadge").forEach(e=>{
@@ -7985,7 +7985,7 @@ else hmwV129();
 function v128Init(){
  document.querySelectorAll(".buildBadge").forEach(e=>e.textContent="V129");
  window.HMW_VERSION="V129";
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
 
  // reward visual helper
  window.HMWReward=function(text="เก่งมาก!"){
@@ -8027,9 +8027,9 @@ else v128Init();
 <script id="v130-evolution-system">
 (()=>{
 function v130(){
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
  // version label
- document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V166");
+ document.querySelectorAll("title").forEach(x=>x.textContent="Habit Monster World V167");
  document.querySelectorAll(".buildBadge").forEach(x=>x.textContent="V131 • EVOLUTION POLISH");
 
  // add evolution hints to monster cards without touching save data
@@ -8689,7 +8689,7 @@ function run(){
  };
 
  // update visible build/version labels safely
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
  document.querySelectorAll("body *").forEach(function(el){
    if(el.children.length===0 && /V141/.test(el.textContent)){
       el.textContent=el.textContent.replace(/V141/g,"V148");
@@ -8747,7 +8747,7 @@ if(document.readyState==="loading"){
 <script>
 (function hmwV148(){
 function init(){
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
 
  if(!document.querySelector(".hm144-panel")){
    const target=document.querySelector(".hm142-evolution") || document.querySelector(".hm142-bonus") || document.querySelector(".avatarStage");
@@ -8811,7 +8811,7 @@ else init();
 <script>
 (function hmwV148(){
 function init(){
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
 
  if(!document.querySelector(".hm145-panel")){
    const target=document.querySelector(".hm144-panel") || document.querySelector(".hm144-toast") || document.querySelector(".avatarStage");
@@ -9405,7 +9405,7 @@ function run(){
    const note=old.closest('div');
    if(note && /Monster Room/.test(note.innerText)) note.style.display='none';
  }
- document.title="Habit Monster World V166";
+ document.title="Habit Monster World V167";
  const meta=document.querySelector('link[rel="manifest"]');
  if(meta) meta.href="manifest.webmanifest?v=158";
 }
@@ -9530,5 +9530,63 @@ window.addEventListener("error",function(e){
   }
 });
 </script>
+
+<style id="v167-room-interaction">
+.hm167-modal{
+ position:fixed;inset:0;background:rgba(20,40,60,.35);
+ display:none;place-items:center;z-index:999;padding:20px;
+}
+.hm167-modal.show{display:grid}
+.hm167-card{
+ background:#fff;border-radius:24px;padding:22px;max-width:380px;
+ width:100%;box-shadow:0 20px 50px rgba(0,0,0,.18);text-align:center
+}
+.hm167-card h3{margin:0 0 12px;color:#24364a}
+.hm167-card button{margin-top:12px}
+.hm158-chip,.hm158-box{cursor:pointer}
+.hm158-chip:active,.bigBtn:active{transform:scale(.97)}
+</style>
+<script id="v167-room-interaction">
+(function(){
+function openRoom(title,text){
+ let m=document.querySelector('.hm167-modal');
+ if(!m){
+  m=document.createElement('div');
+  m.className='hm167-modal';
+  m.innerHTML='<div class="hm167-card"><h3></h3><p></p><button class="bigBtn blue">ปิด</button></div>';
+  document.body.appendChild(m);
+  m.querySelector('button').onclick=()=>m.classList.remove('show');
+ }
+ m.querySelector('h3').textContent=title;
+ m.querySelector('p').textContent=text;
+ m.classList.add('show');
+}
+function bind(){
+ document.querySelectorAll('.hm158-chip').forEach(x=>{
+  if(x.dataset.bind)return;
+  x.dataset.bind='1';
+  x.onclick=()=>{
+   let t=x.innerText;
+   let msg={
+    '🛏 ห้องนอน':'จัดห้องนอนของ Monster และเพิ่มไอเท็มตกแต่งได้ในอนาคต',
+    '📚 มุมเรียนรู้':'พื้นที่ฝึกนิสัยและสะสมความรู้ของ Monster',
+    '🧸 ของเล่น':'ของเล่นช่วยเพิ่ม Bond และความสนิท',
+    '✨ แต่งห้อง':'ปลดล็อกเฟอร์นิเจอร์และของสะสม'
+   }[t]||'กำลังพัฒนา';
+   openRoom(t,msg);
+  };
+ });
+ document.querySelectorAll('.hm158-box').forEach(x=>{
+  if(x.dataset.bind)return;
+  x.dataset.bind='1';
+  x.onclick=()=>openRoom(x.innerText,'ระบบ Evolution & Collection กำลังพัฒนา');
+ });
+ document.querySelectorAll('.hm158-box').forEach(x=>x.style.cursor='pointer');
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+else setTimeout(bind,300);
+})();
+</script>
+
 </body>
 </html>
