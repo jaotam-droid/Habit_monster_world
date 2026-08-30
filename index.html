@@ -9364,75 +9364,69 @@ else run();
 })();
 </script>
 
-<style id="hmw-v160-monster-room-life">
-.hm160-room{
- margin-top:14px;padding:16px;border-radius:28px;
- background:linear-gradient(135deg,#fffdf0,#eef8ff);
- border:2px solid #ffd76f;
- box-shadow:0 14px 30px rgba(50,80,120,.12);
-}
-.hm160-title{font-size:25px;font-weight:950;color:#8a6418}
+
+
+
+<style id="hmw-v160-clean">
+.hm160-room{margin-top:14px;padding:16px;border-radius:28px;background:linear-gradient(135deg,#fffdf0,#eef8ff);border:2px solid #ffd76f}
+.hm160-title{font-size:25px;font-weight:900;color:#8a6418}
 .hm160-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.hm160-box{background:white;border:1px solid #dce7ef;border-radius:18px;padding:12px;text-align:center;font-weight:900}
+.hm160-box{background:white;border-radius:18px;padding:12px;text-align:center;font-weight:900}
 .hm160-box b{display:block;font-size:25px}
-.hm160-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-.hm160-actions button{border:0;border-radius:14px;padding:10px;font-weight:950;background:#fff1b8}
-.hm160-msg{text-align:center;margin-top:10px;background:#f7fbff;border-radius:14px;padding:10px;font-weight:900}
-@media(max-width:600px){.hm160-actions{grid-template-columns:repeat(2,1fr)}}
+.hm160-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.hm160-actions button{border:0;border-radius:16px;padding:12px;font-weight:900;background:#fff1b8}
 </style>
 <script>
-(function hmwV160(){
-function init(){
- if(window.__hmwV160)return;
- window.__hmwV160=true;
+(function(){
+window.HMW160 = window.HMW160 || {};
+let s = JSON.parse(localStorage.getItem("hmw160Life") || '{"care":0,"mood":50,"growth":1,"bond":0}');
 
- let state=JSON.parse(localStorage.getItem("hmw160Life")||'{"care":0,"mood":50,"growth":1,"bond":0}');
- function save(){localStorage.setItem("hmw160Life",JSON.stringify(state));}
- function act(type){
-   if(type==="food"){state.care++;state.mood=Math.min(100,state.mood+5);}
-   if(type==="play"){state.bond++;state.mood=Math.min(100,state.mood+8);}
-   if(type==="habit"){state.growth++;state.bond++;}
-   if(type==="rest"){state.mood=Math.min(100,state.mood+10);}
-   save(); render();
- }
- function render(){
-  const el=document.querySelector(".hm160-room");
-  if(!el)return;
-  el.querySelector(".hm160-care").textContent=state.care;
-  el.querySelector(".hm160-mood").textContent=state.mood;
-  el.querySelector(".hm160-growth").textContent=state.growth;
-  el.querySelector(".hm160-bond").textContent=state.bond;
- }
- if(!document.querySelector(".hm160-room")){
-  const target=document.querySelector("#world")||document.querySelector(".world")||document.querySelector(".avatarStage");
-  if(target){
-   const box=document.createElement("div");
-   box.className="hm160-room";
-   box.innerHTML=
-   '<div class="hm160-title">🏠 Monster Room • ดูแลเพื่อนของเรา</div>'+
-   '<div class="hm160-grid">'+
-   '<div class="hm160-box">❤️ Care<b class="hm160-care"></b></div>'+
-   '<div class="hm160-box">😊 Mood<b class="hm160-mood"></b></div>'+
-   '<div class="hm160-box">🌱 Growth<b class="hm160-growth"></b></div>'+
-   '<div class="hm160-box">💖 Bond<b class="hm160-bond"></b></div>'+
-   '</div>'+
-   '<div class="hm160-actions">'+
-   '<button onclick="HMW160.act(\\'food\\')">🍎 ให้อาหาร</button>'+
-   '<button onclick="HMW160.act(\\'play\\')">🧸 เล่นด้วย</button>'+
-   '<button onclick="HMW160.act(\\'habit\\')">📚 ฝึกนิสัย</button>'+
-   '<button onclick="HMW160.act(\\'rest\\')">😴 พักผ่อน</button>'+
-   '</div>'+
-   '<div class="hm160-msg">Monster จะโตขึ้นจากความสม่ำเสมอ ✨</div>';
-   target.insertAdjacentElement("afterend",box);
-  }
- }
- window.HMW160={act:act,version:"V160"};
+function save(){localStorage.setItem("hmw160Life",JSON.stringify(s));}
+
+HMW160.act = function(x){
+ if(x==="food"){s.care++;s.mood+=5;}
+ if(x==="play"){s.bond++;s.mood+=8;}
+ if(x==="habit"){s.growth++;s.bond++;}
+ if(x==="rest"){s.mood+=10;}
+ if(s.mood>100)s.mood=100;
+ save();
+ render();
+};
+
+function render(){
+ let e=document.querySelector(".hm160-room");
+ if(!e)return;
+ e.querySelector(".care").textContent=s.care;
+ e.querySelector(".mood").textContent=s.mood;
+ e.querySelector(".growth").textContent=s.growth;
+ e.querySelector(".bond").textContent=s.bond;
+}
+
+function init(){
+ if(document.querySelector(".hm160-room"))return;
+ let target=document.querySelector("#world")||document.body;
+ let box=document.createElement("div");
+ box.className="hm160-room";
+ box.innerHTML=
+ '<div class="hm160-title">🏠 Monster Room</div>'+
+ '<div class="hm160-grid">'+
+ '<div class="hm160-box">❤️ Care<b class="care"></b></div>'+
+ '<div class="hm160-box">😊 Mood<b class="mood"></b></div>'+
+ '<div class="hm160-box">🌱 Growth<b class="growth"></b></div>'+
+ '<div class="hm160-box">💖 Bond<b class="bond"></b></div>'+
+ '</div>'+
+ '<div class="hm160-actions">'+
+ '<button onclick="HMW160.act(\'food\')">🍎 ให้อาหาร</button>'+
+ '<button onclick="HMW160.act(\'play\')">🧸 เล่นด้วย</button>'+
+ '<button onclick="HMW160.act(\'habit\')">📚 ฝึกนิสัย</button>'+
+ '<button onclick="HMW160.act(\'rest\')">😴 พักผ่อน</button>'+
+ '</div>';
+ target.appendChild(box);
  render();
 }
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
 else init();
 })();
 </script>
-
 </body>
 </html>
