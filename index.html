@@ -8902,5 +8902,63 @@ else hm149();
 })();
 </script>
 
+
+<style id="hm150-mega-polish">
+.hm150-card{background:linear-gradient(135deg,#fffdf3,#f5fbff);border:2px solid #ffd76f;border-radius:24px;padding:14px;margin-top:12px;box-shadow:0 12px 30px rgba(45,80,110,.12)}
+.hm150-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.hm150-btn{width:100%;border:0;border-radius:15px;padding:12px;font-weight:950;background:#ffe58a;color:#614900}
+.hm150-pop{animation:hm150pop .35s ease}
+@keyframes hm150pop{0%{transform:scale(.95)}100%{transform:scale(1)}}
+</style>
+<script>
+(()=> {
+function hm150(){
+ const key="hm150_state";
+ let s=JSON.parse(localStorage.getItem(key)||'{"bond":0,"energy":0,"chest":0,"mood":"😊 Happy","evo":"🌱 Baby","items":0}');
+ const host=[...document.querySelectorAll("h2,h3")].find(x=>x.textContent.includes("Monster Soul"));
+ if(!host)return;
+ const card=document.createElement("div");
+ card.className="hm150-card";
+ card.innerHTML=`
+ <h2>✨ Monster Soul V150</h2>
+ <p><b>วิวัฒนาการจริง • ดูแล • สุ่มรางวัล</b></p>
+ <div class="hm150-grid">
+ <div class="box">❤️ Bond<br><b id="hmB">${s.bond}</b></div>
+ <div class="box">⚡ Energy<br><b id="hmE">${s.energy}</b></div>
+ <div class="box">🎁 Chest<br><b id="hmC">${s.chest}</b></div>
+ <div class="box">😊 Mood<br><b id="hmM">${s.mood}</b></div>
+ </div>
+ <p id="hmEvo">🌱 Baby</p>
+ <div class="hm150-grid">
+ <button class="hm150-btn">🍎 Feed</button>
+ <button class="hm150-btn">🧸 Play</button>
+ <button class="hm150-btn">📚 Train</button>
+ <button class="hm150-btn">🎁 Open Chest</button>
+ </div>`;
+ host.parentElement.insertAdjacentElement("afterend",card);
+ const save=()=>localStorage.setItem(key,JSON.stringify(s));
+ const render=()=>{
+  card.querySelector("#hmB").textContent=s.bond;
+  card.querySelector("#hmE").textContent=s.energy;
+  card.querySelector("#hmC").textContent=s.chest;
+  card.querySelector("#hmM").textContent=s.mood;
+  let e=s.bond>=100?"✨ Master":s.bond>=50?"👑 Legend":s.bond>=20?"⭐ Child":"🌱 Baby";
+  card.querySelector("#hmEvo").textContent=e+" • Evolution Path";
+  save();
+ };
+ card.querySelectorAll("button").forEach((b,i)=>b.onclick=()=>{
+  if(i===0){s.bond+=2;s.mood="😋 Yummy!";}
+  if(i===1){s.bond+=3;s.mood="🥰 Happy!";}
+  if(i===2){s.energy+=5;s.bond+=1;s.mood="💪 Proud!";}
+  if(i===3){if(s.chest>0){s.chest--;s.items++;s.mood="🎉 Reward!";}else{s.mood="🔒 Need Chest";}}
+  card.classList.remove("hm150-pop");void card.offsetWidth;card.classList.add("hm150-pop");
+  render();
+ });
+ render();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm150,{once:true});else hm150();
+})();
+</script>
+
 </body>
 </html>
