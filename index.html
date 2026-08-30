@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="th">
 <head>
-<!-- HMW V154 Monster UX Cleanup -->
+<!-- HMW V155 Monster UX Final Separation -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V154</title>
+<title>Habit Monster World V155</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -9062,7 +9062,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 
 
-<style id="v154-monster-ux-cleanup">
+<style id="v155-monster-ux-final-separation">
 /* V154 Monster System Merge - simplify presentation */
 .hm154-card{
  background:linear-gradient(135deg,#fff,#fff8df);
@@ -9082,8 +9082,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <script>
 (function v154MonsterCleanup(){
  function run(){
-  window.HMW_V154={
-    version:"V154",
+  window.HMW_V155={
+    version:"V155",
     features:["Monster System Merge","Profile/Care/Evolution UX"]
   };
 
@@ -9121,6 +9121,54 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
  }
  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run,{once:true});
  else run();
+})();
+</script>
+
+<style id="v155-monster-ux-final">
+/* V155: separate Daily Care from Monster Room */
+.hm155-care{
+ background:linear-gradient(135deg,#fff7cc,#fff);
+ border:2px solid #ffd76f;border-radius:24px;padding:14px;
+ margin-top:12px;box-shadow:0 12px 26px rgba(43,73,105,.10)
+}
+.hm155-care h3{margin:0 0 8px;font-size:22px}
+.hm155-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hm155-item{background:#fff;border:1px solid #dce7ef;border-radius:14px;padding:10px;text-align:center;font-weight:900}
+.hm155-note{margin-top:10px;background:#eefaf2;border-radius:14px;padding:10px;text-align:center;font-weight:900}
+.hm155-roomfix .hm148-actions{margin-top:8px}
+@media(max-width:600px){.hm155-list{grid-template-columns:1fr 1fr}}
+</style>
+<script>
+(function v155MonsterUX(){
+function run(){
+ window.HMW_V155={version:"V155",features:["Daily Care vs Monster Room separation","Monster Status polish","Version fix"]};
+
+ // Change old care label only, keep old logic
+ document.querySelectorAll("button").forEach(b=>{
+   if((b.textContent||"").includes("❤️ ดูแล Monster")){
+      b.textContent="💖 ดูแล Monster วันนี้";
+   }
+ });
+
+ // Add explanation card once
+ const stage=document.querySelector(".avatarStage");
+ if(stage && !document.querySelector(".hm155-care")){
+   const box=document.createElement("div");
+   box.className="hm155-care";
+   box.innerHTML=`
+    <h3>💖 ดูแล Monster วันนี้</h3>
+    <div class="hm155-list">
+      <div class="hm155-item">🍎 ให้อาหาร<br>เพิ่ม Bond</div>
+      <div class="hm155-item">🧸 เล่นด้วย<br>เพิ่ม Mood</div>
+      <div class="hm155-item">📚 ฝึกนิสัย<br>เพิ่ม Growth</div>
+      <div class="hm155-item">😴 พักผ่อน<br>ฟื้นพลัง</div>
+    </div>
+    <div class="hm155-note">🏠 Monster Room = บ้านและสถานะระยะยาว</div>`;
+   stage.insertAdjacentElement("afterend",box);
+ }
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run,{once:true});
+else run();
 })();
 </script>
 </body>
