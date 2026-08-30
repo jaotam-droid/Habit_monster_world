@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="th">
 <head>
-<!-- HMW V155 Monster UX Final Separation -->
+<!-- HMW V156 Monster UX Final Polish -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=145"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=156"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V155</title>
+<title>Habit Monster World V156</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1825,6 +1825,34 @@ body{overflow-x:hidden!important}
  100%{transform:scale(1)}
 }
 </style>
+
+<style id="hmw-v156-evolution-polish">
+/* V156 Evolution + mobile polish */
+.evolution-path{
+ display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+ margin-top:10px;font-weight:900;
+}
+.evolution-path span{
+ padding:6px 10px;border-radius:999px;
+ background:#f4f8ff;border:1px solid #dbe8f3;
+}
+.evolution-path .active{
+ background:#fff1b8;border-color:#ffd45a;
+}
+.monster-care-fx{
+ animation:hmwCarePop .45s ease;
+}
+@keyframes hmwCarePop{
+ 0%{transform:scale(.96)}
+ 60%{transform:scale(1.05)}
+ 100%{transform:scale(1)}
+}
+@media(max-width:600px){
+ .nav button{min-height:68px!important}
+ .zone small{line-height:1.2}
+}
+</style>
+
 </head>
 <body>
 <!-- V124 Premium Evolution -->
