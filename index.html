@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V150</title>
+<title>Habit Monster World V151</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1805,20 +1805,20 @@ body{overflow-x:hidden!important}
 </style>
 
 
-<style id="v150-final-polish">
-/* V150 Final Polish */
-:root{--hm150-gold:#ffd45c}
+<style id="v151-final-polish">
+/* V151 Final Polish */
+:root{--hm151-gold:#ffd45c}
 .card{transition:transform .18s ease,box-shadow .18s ease}
 .card:active{transform:scale(.997)}
 .bigBtn,.nav button,.zone,.avatarChoice,.petChoice{transition:transform .16s ease,box-shadow .16s ease}
 .bigBtn:active,.nav button:active,.zone:active,.avatarChoice:active,.petChoice:active{transform:scale(.97)}
-.zone.active{animation:hm150Glow 2.4s ease-in-out infinite}
-@keyframes hm150Glow{
+.zone.active{animation:hm151Glow 2.4s ease-in-out infinite}
+@keyframes hm151Glow{
  0%,100%{filter:none}
  50%{filter:drop-shadow(0 0 8px rgba(255,212,92,.35))}
 }
-.hm150-pop{animation:hm150Pop .35s ease}
-@keyframes hm150Pop{
+.hm151-pop{animation:hm151Pop .35s ease}
+@keyframes hm151Pop{
  0%{transform:scale(.98)}
  55%{transform:scale(1.02)}
  100%{transform:scale(1)}
@@ -8887,7 +8887,7 @@ function hm149(){
  const save=()=>localStorage.setItem("hm149Soul",JSON.stringify(data));
  const el=document.createElement("div"); el.className="hm149-panel";
  el.innerHTML=`
- <div class="hm149-title">🌟 Monster Soul V150</div>
+ <div class="hm149-title">🌟 Monster Soul V151</div>
  <div class="hm149-grid">
   <div class="hm149-box">❤️ Bond Level<b>${data.bond}</b></div>
   <div class="hm149-box">⚡ Evolution Energy<b>${data.energy}</b></div>
@@ -8923,37 +8923,37 @@ else hm149();
 </script>
 
 
-<style id="hm150-mega-polish">
-.hm150-card{background:linear-gradient(135deg,#fffdf3,#f5fbff);border:2px solid #ffd76f;border-radius:24px;padding:14px;margin-top:12px;box-shadow:0 12px 30px rgba(45,80,110,.12)}
-.hm150-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.hm150-btn{width:100%;border:0;border-radius:15px;padding:12px;font-weight:950;background:#ffe58a;color:#614900}
-.hm150-pop{animation:hm150pop .35s ease}
-@keyframes hm150pop{0%{transform:scale(.95)}100%{transform:scale(1)}}
+<style id="hm151-mega-polish">
+.hm151-card{background:linear-gradient(135deg,#fffdf3,#f5fbff);border:2px solid #ffd76f;border-radius:24px;padding:14px;margin-top:12px;box-shadow:0 12px 30px rgba(45,80,110,.12)}
+.hm151-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.hm151-btn{width:100%;border:0;border-radius:15px;padding:12px;font-weight:950;background:#ffe58a;color:#614900}
+.hm151-pop{animation:hm151pop .35s ease}
+@keyframes hm151pop{0%{transform:scale(.95)}100%{transform:scale(1)}}
 </style>
 <script>
 (()=> {
-function hm150(){
- const key="hm150_state";
+function hm151(){
+ const key="hm151_state";
  let s=JSON.parse(localStorage.getItem(key)||'{"bond":0,"energy":0,"chest":0,"mood":"😊 Happy","evo":"🌱 Baby","items":0}');
  const host=[...document.querySelectorAll("h2,h3")].find(x=>x.textContent.includes("Monster Soul"));
  if(!host)return;
  const card=document.createElement("div");
- card.className="hm150-card";
+ card.className="hm151-card";
  card.innerHTML=`
- <h2>✨ Monster Soul V150</h2>
+ <h2>✨ Monster Soul V151</h2>
  <p><b>วิวัฒนาการจริง • ดูแล • สุ่มรางวัล</b></p>
- <div class="hm150-grid">
+ <div class="hm151-grid">
  <div class="box">❤️ Bond<br><b id="hmB">${s.bond}</b></div>
  <div class="box">⚡ Energy<br><b id="hmE">${s.energy}</b></div>
  <div class="box">🎁 Chest<br><b id="hmC">${s.chest}</b></div>
  <div class="box">😊 Mood<br><b id="hmM">${s.mood}</b></div>
  </div>
  <p id="hmEvo">🌱 Baby</p>
- <div class="hm150-grid">
- <button class="hm150-btn">🍎 Feed</button>
- <button class="hm150-btn">🧸 Play</button>
- <button class="hm150-btn">📚 Train</button>
- <button class="hm150-btn">🎁 Open Chest</button>
+ <div class="hm151-grid">
+ <button class="hm151-btn">🍎 Feed</button>
+ <button class="hm151-btn">🧸 Play</button>
+ <button class="hm151-btn">📚 Train</button>
+ <button class="hm151-btn">🎁 Open Chest</button>
  </div>`;
  host.parentElement.insertAdjacentElement("afterend",card);
  const save=()=>localStorage.setItem(key,JSON.stringify(s));
@@ -8971,12 +8971,12 @@ function hm150(){
   if(i===1){s.bond+=3;s.mood="🥰 Happy!";}
   if(i===2){s.energy+=5;s.bond+=1;s.mood="💪 Proud!";}
   if(i===3){if(s.chest>0){s.chest--;s.items++;s.mood="🎉 Reward!";}else{s.mood="🔒 Need Chest";}}
-  card.classList.remove("hm150-pop");void card.offsetWidth;card.classList.add("hm150-pop");
+  card.classList.remove("hm151-pop");void card.offsetWidth;card.classList.add("hm151-pop");
   render();
  });
  render();
 }
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm150,{once:true});else hm150();
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",hm151,{once:true});else hm151();
 })();
 </script>
 
