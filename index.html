@@ -9240,5 +9240,88 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 else run();
 })();
 </script>
+
+<style id="hmw-v158-monster-room-separation">
+/* V158: separate Care Today from Monster Room */
+.hm158-room{
+ margin-top:12px;
+ padding:14px;
+ border-radius:22px;
+ background:linear-gradient(180deg,#fff,#fff8df);
+ border:1px solid #f2d36c;
+ box-shadow:0 10px 24px rgba(80,70,30,.08);
+}
+.hm158-room h3{margin:0 0 10px}
+.hm158-home{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+ margin-top:10px;
+}
+.hm158-box{
+ background:#fff;
+ border-radius:14px;
+ padding:10px;
+ text-align:center;
+ border:1px solid #e4edf3;
+ font-weight:900;
+}
+.hm158-deco{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+ margin-top:10px;
+}
+.hm158-chip{
+ background:#eef8ff;
+ border-radius:14px;
+ padding:10px;
+ text-align:center;
+ font-weight:900;
+}
+@media(max-width:600px){
+ .hm158-home,.hm158-deco{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<script id="hmw-v158-room-rework">
+(()=>{
+function run(){
+ // Convert the existing Monster Room area into a home/profile concept
+ const cards=[...document.querySelectorAll('.card')];
+ const room=cards.find(c=>/Monster Room/.test(c.innerText));
+ if(room && !room.dataset.v158){
+   room.dataset.v158="1";
+   room.innerHTML=`
+   <h2>🏠 Monster Room</h2>
+   <div class="sub">บ้านของ Monster • ดูพัฒนาการและของสะสม</div>
+   <div class="hm158-home">
+    <div class="hm158-box">😊 Mood<br><b>Happy</b></div>
+    <div class="hm158-box">❤️ Bond<br><b>Lv.10</b></div>
+    <div class="hm158-box">🌱 Growth<br><b>Evolution</b></div>
+    <div class="hm158-box">🎁 Item<br><b>Collection</b></div>
+   </div>
+   <div class="hm158-deco">
+    <div class="hm158-chip">🛏 ห้องนอน</div>
+    <div class="hm158-chip">📚 มุมเรียนรู้</div>
+    <div class="hm158-chip">🧸 ของเล่น</div>
+    <div class="hm158-chip">✨ แต่งห้อง</div>
+   </div>
+   <button class="bigBtn yellow">✨ ดู Evolution & Collection</button>`;
+ }
+ // remove duplicate care block buttons if old helper exists
+ const old=document.querySelector('.hm155-box');
+ if(old){
+   const note=old.closest('div');
+   if(note && /Monster Room/.test(note.innerText)) note.style.display='none';
+ }
+ document.title="Habit Monster World V158";
+ const meta=document.querySelector('link[rel="manifest"]');
+ if(meta) meta.href="manifest.webmanifest?v=158";
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run,{once:true});
+else run();
+})();
+</script>
+
 </body>
 </html>
