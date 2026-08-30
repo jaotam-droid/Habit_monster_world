@@ -9723,5 +9723,85 @@ else setTimeout(bind,300);
  setTimeout(activate,3000);
 })();
 </script>
+
+<style id="hmw-v172-fix">
+.hm172-disabled{opacity:.55!important;pointer-events:none!important}
+.hm172-badge{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:999px;background:#eaf7ff;font-weight:900;font-size:12px}
+.hm172-inv{background:#fff8d8!important;border-color:#ffd45b!important}
+</style>
+<script id="hmw-v172-fix">
+(()=>{
+function v172(){
+ if(window.__hmw172)return; window.__hmw172=true;
+ document.title="Habit Monster World V172";
+ const key="hmw172_actions_"+new Date().toISOString().slice(0,10);
+ let used=JSON.parse(localStorage.getItem(key)||"{}");
+ function save(){localStorage.setItem(key,JSON.stringify(used));}
+ function toast(msg){
+  let t=document.querySelector(".toast");
+  if(!t){t=document.createElement("div");t.className="toast";document.body.appendChild(t)}
+  t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400);
+ }
+ // Fix top Monster Room actions
+ const cards=[...document.querySelectorAll(".card")];
+ const top=cards.find(c=>c.querySelector(".hm158-deco"));
+ if(top && !top.dataset.hm172){
+  top.dataset.hm172="1";
+  const chips=top.querySelectorAll(".hm158-chip");
+  const actions=[
+   ["bed","😴 Monster พักผ่อน Mood +5"],
+   ["study","📚 มุมเรียนรู้ Growth +1"],
+   ["play","🧸 เล่นด้วยกัน Bond +1"],
+   ["room","✨ ได้แต่งห้องจาก Item Collection"]
+  ];
+  chips.forEach((c,i)=>{
+   c.style.cursor="pointer";
+   c.onclick=()=>{
+    const id=actions[i][0];
+    if(used[id]) return toast("✓ ทำกิจกรรมนี้แล้ววันนี้");
+    used[id]=1;save();
+    c.innerHTML+=" <span class='hm172-badge'>✓ วันนี้</span>";
+    toast(actions[i][1]);
+   };
+  });
+ }
+ // Fix lower care actions: daily limit
+ window.hmwCareActionV172=function(name){
+  const id="care_"+name;
+  if(used[id]) return toast("✓ ดูแล Monster แล้ววันนี้");
+  used[id]=1;save();
+  toast(name+" สำเร็จ ❤️");
+ };
+ document.querySelectorAll(".hm159-actions button").forEach((b)=>{
+  if(b.dataset.hm172)return;
+  b.dataset.hm172="1";
+  const txt=b.textContent;
+  b.onclick=()=>window.hmwCareActionV172(txt);
+ });
+ // Daily reward inventory
+ let inv=JSON.parse(localStorage.getItem("hmw172_inventory")||"{}");
+ window.hmw172Reward=function(){
+   inv.box=(inv.box||0)+1;
+   inv.star=(inv.star||0)+10;
+   localStorage.setItem("hmw172_inventory",JSON.stringify(inv));
+   toast("🎁 เก็บรางวัลแล้ว → Inventory +10 ⭐");
+ };
+ document.querySelectorAll("button").forEach(b=>{
+   if(b.dataset.hm172Reward)return;
+   if(/รับ|claim|reward|รางวัล|กล่อง/i.test(b.textContent)){
+    b.dataset.hm172Reward="1";
+    b.addEventListener("click",window.hmw172Reward);
+   }
+ });
+ // show inventory hint
+ const nav=[...document.querySelectorAll("button")].find(b=>/Rewards/i.test(b.textContent));
+ if(nav && !document.querySelector(".hm172-inv")) nav.insertAdjacentHTML("afterend","<span class='hm172-inv hm172-badge'>🎁 Inventory เก็บรางวัล</span>");
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",v172,{once:true});
+else v172();
+setTimeout(v172,1500);
+})();
+</script>
+
 </body>
 </html>
