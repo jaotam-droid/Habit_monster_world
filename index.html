@@ -5,11 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=173"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=174"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V173</title>
+<title>Habit Monster World V174</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -8940,6 +8940,201 @@ setTimeout(v172,1500);
    cleanLegacy();
    if(++ticks>12)clearInterval(keepBuild);
  },400);
+})();
+</script>
+
+
+
+<!-- =========================================================
+     HMW V174 — Compact Progression + Pet Polish + Journey Mastery
+     Continues V173 save/state model. No save migration required.
+     ========================================================= -->
+<style id="hmw-v174-compact-mastery">
+/* ---- Avatar progression: compact status, not oversized dashboard ---- */
+.hm142-evolution{
+  margin-top:10px!important;padding:10px 11px!important;border-radius:18px!important;
+  box-shadow:0 7px 18px rgba(80,100,140,.08)!important
+}
+.hm142-title{font-size:16px!important;line-height:1.2!important;margin-bottom:7px!important}
+.hm142-path{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important;margin-top:0!important}
+.hm142-node{padding:6px 3px!important;border-radius:12px!important;font-size:11px!important;line-height:1.08!important;min-width:0!important}
+.hm142-node span{font-size:20px!important;margin-bottom:2px!important}
+.hm142-bonus{display:none!important}
+.hm144-panel{margin-top:9px!important;padding:9px 10px!important;border-radius:18px!important;box-shadow:0 7px 18px rgba(70,90,110,.08)!important}
+.hm144-title{font-size:16px!important;line-height:1.2!important}
+.hm144-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin-top:7px!important}
+.hm144-box{padding:7px 4px!important;border-radius:12px!important;font-size:11px!important;line-height:1.18!important}
+.hm144-box span{display:inline!important;font-size:18px!important;margin-right:2px!important}
+.hm144-panel>div:last-child:not(.hm144-grid):not(.hm144-title){display:none!important}
+
+/* ---- Pet Companions: character first, clearer visual hierarchy ---- */
+#pets>.card:first-child{overflow:hidden!important}
+#pets>.card:first-child>h2{margin-bottom:10px!important}
+#pets>.card:first-child>.story{font-size:13px!important;line-height:1.45!important;margin-bottom:10px!important}
+.hm173-petIntro{padding:10px 11px!important;margin-bottom:10px!important;border-radius:18px!important}
+.hm173-petIntro>div:first-child{display:none!important}
+.hm173-petMission{margin-top:0!important;padding:10px!important;border-radius:14px!important}
+.hm173-petRole{gap:6px!important;margin-top:7px!important}
+.hm173-petRole .box{font-size:12px!important;padding:8px 4px!important;border-radius:12px!important}
+.petStudio{grid-template-columns:minmax(210px,.78fr) minmax(0,1.22fr)!important;gap:14px!important;align-items:start!important}
+.petStudio>div:first-child{padding:12px!important;border:1px solid #dce9f3!important;border-radius:22px!important;background:linear-gradient(180deg,#f4fbff,#fff9e9)!important;box-shadow:0 8px 20px rgba(48,78,105,.08)!important}
+.petStudio>div:nth-child(2){padding:12px!important;border:1px solid #e4ebf0!important;border-radius:22px!important;background:#fbfdff!important}
+.petStage{width:min(220px,100%)!important;height:220px!important;border-radius:28px!important;margin:0 auto 7px!important;box-shadow:inset 0 0 0 1px rgba(120,180,220,.16),0 10px 20px rgba(45,76,102,.09)!important}
+#petName{font-size:20px!important;margin:5px 0 10px!important}
+#petAbility{margin-top:10px!important;padding:9px 10px!important;font-size:13px!important}
+.petStudio .row{font-size:13px!important;margin-top:5px!important}
+.petChoices{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+.petChoice{padding:7px 4px!important;border-radius:16px!important;min-width:0!important;overflow:hidden!important}
+.petChoice svg{width:72px!important;height:72px!important;max-width:100%!important}
+.petChoice>div{font-size:13px!important;line-height:1.1!important}
+.petChoice small{display:block!important;font-size:10px!important;line-height:1.1!important;margin-top:3px!important;color:#718096!important}
+.petMood{display:none!important}
+#petHome{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+#petHome .box{font-size:12px!important;padding:9px 4px!important;border-radius:12px!important}
+#pets>section.card:nth-of-type(2){margin-top:10px!important}
+#petAlbum{gap:7px!important}
+#petAlbum .box{padding:10px 5px!important;border-radius:14px!important;font-size:12px!important}
+#petAlbum .ico{font-size:28px!important}
+
+/* ---- Journey: after Star Castle, locations become reusable Mastery zones ---- */
+#journey .card{overflow:hidden!important}
+.hm174-mastery-note{margin:10px 0 12px;padding:10px 12px;border-radius:15px;background:linear-gradient(135deg,#fff7d8,#eef8ff);border:1px solid #f0d77d;font-size:13px;font-weight:800;color:#53687d}
+.hm174-mastery-tag{margin-top:8px;font-size:12px;font-weight:950;color:#6e58c8}
+.hm174-mastery-bar{height:8px;background:#edf1f5;border-radius:999px;overflow:hidden;margin-top:5px;border:1px solid #e0e8ee}
+.hm174-mastery-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7b69e8,#67c6a4)}
+.hm174-stars{font-size:14px;letter-spacing:1px;margin-top:5px;white-space:nowrap}
+.journeyNode.mastered{background:linear-gradient(180deg,#fffdf1,#effbff)!important}
+.journeyNode.mastered .big{filter:drop-shadow(0 5px 8px rgba(65,90,110,.12))}
+
+/* ---- Remove the legacy giant text burst; keep star-particle reward effect ---- */
+.rewardBurst:not(:has(.rewardStar)){display:none!important}
+
+@media(max-width:600px){
+ .hm142-evolution,.hm144-panel{margin-left:0!important;margin-right:0!important}
+ .hm142-node{font-size:10px!important;padding:5px 1px!important}
+ .hm142-node span{font-size:18px!important}
+ .hm144-box{font-size:10.5px!important;padding:7px 2px!important}
+ .hm144-box span{font-size:16px!important}
+ .petStudio{grid-template-columns:1fr!important;gap:10px!important}
+ .petStudio>div:first-child,.petStudio>div:nth-child(2){padding:10px!important;border-radius:18px!important}
+ .petStage{width:min(240px,72vw)!important;height:min(240px,72vw)!important}
+ .petChoices{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+ .petChoice svg{width:64px!important;height:64px!important}
+ #petHome{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #petAlbum{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .hm173-petRole{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .journey{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ .journeyNode{min-height:164px!important;padding:10px 6px!important}
+}
+</style>
+<script id="hmw-v174-compact-mastery-script">
+(()=>{
+ const BUILD='V174 • COMPACT MASTERY';
+ const num=v=>Number.isFinite(Number(v))?Number(v):0;
+ const day=()=>typeof dayKey==='function'?dayKey():new Date().toISOString().slice(0,10);
+
+ function removeLegacyMonsterUp(){
+   document.querySelectorAll('.rewardBurst').forEach(el=>{
+     if(!el.querySelector('.rewardStar') && /Monster\s*UP/i.test(el.textContent||'')) el.remove();
+   });
+ }
+
+ function compactProgression(){
+   const awakening=document.querySelector('.hm142-evolution');
+   if(awakening){
+     awakening.querySelectorAll('.hm142-node').forEach((n,i)=>{
+       // Keep the existing journey meaning but make completed/current state clearer.
+       if(i<2) n.classList.add('open');
+     });
+   }
+   const life=document.querySelector('.hm144-panel');
+   if(life){
+     const boxes=life.querySelectorAll('.hm144-box');
+     if(boxes[0]) boxes[0].innerHTML='<span>❤️</span> Friend XP <b>+20</b>';
+     if(boxes[1]) boxes[1].innerHTML='<span>✨</span> Energy <b>+5</b>';
+     if(boxes[2]) boxes[2].innerHTML='<span>🎁</span> Chest <b>Ready</b>';
+   }
+ }
+
+ function petPolish(){
+   const screen=document.getElementById('pets'); if(!screen) return;
+   const card=screen.querySelector('.card'); if(!card) return;
+   const h=card.querySelector('h2'); if(h) h.textContent='🐾 Pet Companions';
+   const story=card.querySelector(':scope > .story');
+   if(story) story.innerHTML='คู่หูโตจาก <b>XP + Friendship</b> ที่ได้จากการทำภารกิจ และไม่เสียพลังเมื่อไม่ได้เล่น';
+   const studio=card.querySelector('.petStudio');
+   if(studio && studio.children[0] && !studio.children[0].querySelector('.hm174-pet-current')){
+     const label=document.createElement('div');
+     label.className='hm174-pet-current';
+     label.style.cssText='font-weight:950;font-size:13px;color:#65788d;margin-bottom:7px;text-align:center';
+     label.textContent='💗 คู่หูปัจจุบัน';
+     studio.children[0].insertBefore(label,studio.children[0].firstChild);
+   }
+   if(studio && studio.children[1]){
+     const sh=studio.children[1].querySelector('h3'); if(sh) sh.textContent='🐾 เลือกคู่หู';
+   }
+ }
+
+ function masteryValue(idx){
+   const t=(window.S&&S.totals)||{};
+   if(idx===0) return num(S?.streak)*20 + num(t.morning)*5;
+   if(idx===1) return num(t.reading);
+   if(idx===2) return num(t.messy)*8;
+   if(idx===3) return num(t.homework)*20;
+   return num(t.diligent)+num(t.reading)+num(t.homework)*10+num(S?.streak)*5;
+ }
+ function masteryThreshold(idx){ return [140,300,160,300,500][idx]||300; }
+
+ function journeyMastery(){
+   const g=document.getElementById('journeyGrid'); if(!g || !window.S) return;
+   const pts=num(S?.totals?.diligent)+num(S?.totals?.reading)+num(S?.totals?.homework)*10+num(S?.streak)*5;
+   if(pts<650) return;
+   const card=g.closest('.card');
+   if(card){
+     const h=card.querySelector('h2'); if(h)h.textContent='🏰 World Journey • Mastery';
+     let note=card.querySelector('.hm174-mastery-note');
+     if(!note){note=document.createElement('div');note.className='hm174-mastery-note';g.parentNode.insertBefore(note,g)}
+     note.innerHTML='✨ เปิดโลกครบแล้ว — จากนี้ทุกพื้นที่สะสม <b>Mastery</b> ต่อได้จาก Habit ที่เกี่ยวข้อง เพื่อเก็บดาวความชำนาญและ Trophy';
+   }
+   [...g.querySelectorAll('.journeyNode')].forEach((node,idx)=>{
+     const val=masteryValue(idx), step=masteryThreshold(idx);
+     const lv=Math.min(5,Math.floor(val/step));
+     const into=lv>=5?step:(val%step);
+     const pct=lv>=5?100:Math.min(100,into/step*100);
+     node.classList.add('mastered');
+     let box=node.querySelector('.hm174-mastery-tag');
+     if(!box){box=document.createElement('div');box.className='hm174-mastery-tag';node.appendChild(box)}
+     box.innerHTML=`🏅 Mastery ${lv}/5<div class="hm174-stars">${'⭐'.repeat(lv)}${'☆'.repeat(5-lv)}</div><div class="hm174-mastery-bar"><i style="width:${pct}%"></i></div>`;
+     const jc=node.querySelector('.jcheck');
+     if(jc && /ผ่านแล้ว|อยู่ที่นี่/.test(jc.textContent||'')) jc.textContent=lv>=5?'👑 Mastered':'✨ สะสม Mastery ต่อได้';
+   });
+   const hero=card?.querySelector('.hm173-journeyHero');
+   if(hero){
+     const hint=hero.querySelector('.hm173-journeyHint');
+     if(hint) hint.innerHTML='🏆 <b>Mastery Journey</b> เริ่มแล้ว — ทำ Habit ต่อเพื่อเติมดาวความชำนาญของแต่ละพื้นที่';
+     const title=hero.querySelector('.jtitle'); if(title) title.textContent='🏰 Star Castle • Mastery Journey';
+   }
+ }
+
+ function apply(){
+   document.title='Habit Monster World V174';
+   document.documentElement.dataset.hmwBuild='174-compact-mastery';
+   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge'); if(b)b.textContent=BUILD;
+   removeLegacyMonsterUp(); compactProgression(); petPolish(); journeyMastery();
+ }
+
+ // Preserve all V173 data/logic and re-apply presentation after every render.
+ if(typeof window.render==='function' && !window.__hmw174Wrapped){
+   const base=window.render;
+   window.render=function(){const r=base.apply(this,arguments);setTimeout(apply,0);return r};
+   window.__hmw174Wrapped=true;
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(apply,70),{once:true});
+ else setTimeout(apply,70);
+ [450,1000,1800,2800].forEach(ms=>setTimeout(apply,ms));
+ let n=0;const lock=setInterval(()=>{apply();if(++n>14)clearInterval(lock)},500);
+ window.HMW_VERSION='V174';
+ window.HMW_V174={version:'V174',features:['Compact Awakening','Compact Monster Life','Pet Companion Polish','Journey Mastery','Legacy Monster UP Fix']};
 })();
 </script>
 
