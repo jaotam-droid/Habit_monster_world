@@ -2588,7 +2588,16 @@ function redeem(i){let r=S.rewards[i];if(r.limit&&r.redeemed>=r.limit)return;if(
 function trophies(){return [["✏️","100 ข้อ",S.totals.diligent>=100],["🧠","500 ข้อ",S.totals.diligent>=500],["📖","อ่าน 100 นาที",S.totals.reading>=100],["🦉","อ่าน 500 นาที",S.totals.reading>=500],["🔥","Streak 7 วัน",S.streak>=7],["🌟","Streak 30 วัน",S.streak>=30],["📚","การบ้าน 50 งาน",S.totals.homework>=50],["👑","HERO FORM",order.some(k=>S.monsters[k].level>=5)]]}
 function renderTrophies(){$("trophyGrid").innerHTML=trophies().map(([i,n,o])=>`<div class="trophy ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
 function renderCloset(){let maxLv=Math.max(...order.map(k=>S.monsters[k].level)),hero=order.some(k=>S.monsters[k].level>=5),items=[["hat","🧢","หมวกดาว",true,"เริ่มต้น"],["cape","🪽","ปีกจิ๋ว",S.streak>=7,"Streak 7 วัน"],["bag","✨","Aura พลัง",maxLv>=3,"Monster Lv.3"],["star","⭐","Habit Star",hero,"HERO FORM"],["reader","🎓","หมวกนักอ่าน",S.totals.reading>=300,"อ่าน 300 นาที"],["pet","🐾","Pet Charm",S.pet.friendship>=50,"Friendship 50"]];$("closetGrid").innerHTML=items.map(([k,i,n,o,h])=>`<button class="closetItem ${o?"":"locked"} ${S.profile.gear[k]?"on":""}" onclick="${["hat","cape","bag","star"].includes(k)?`toggleGear('${k}',${o})`:""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b><br><small>${o?"ปลดล็อกแล้ว":h}</small></button>`).join("")}
-function renderDashboard(){let w=summaryRange(7),prev=summaryRange(7,7),delta=(a,b)=>a-b>0?`▲ ${a-b}`:a-b<0?`▼ ${Math.abs(a-b)}`:"—";$("dashboardGrid").innerHTML=`<div class="summaryBox">✏️ 7 วัน<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖 7 วัน<b>${w.reading} นาที</b></div><div class="summaryBox">📚 7 วัน<b>${w.homework} งาน</b></div><div class="summaryBox">📵 สำเร็จ<b>${w.screen} หัวข้อ</b></div><div class="summaryBox">🧹 จัดของ<b>${w.messy} งาน</b></div><div class="summaryBox">🌅 เช้าทัน<b>${w.morning} วัน</b></div>`;$("weekCompare").innerHTML=`<b>เทียบสัปดาห์ก่อน</b><br>✏️ ${delta(w.diligent,prev.diligent)} • 📖 ${delta(w.reading,prev.reading)} • 📚 ${delta(w.homework,prev.homework)}`}
+function renderDashboard(){
+ let w=summaryRange(7),prev=summaryRange(7,7),delta=(a,b)=>a-b>0?`▲ ${a-b}`:a-b<0?`▼ ${Math.abs(a-b)}`:"—";
+ const days=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);let key=dayKey(d);let logs=S.logs.filter(x=>x.date===key),sum=k=>logs.filter(x=>x.k===k).reduce((a,x)=>a+Number(x.amount||0),0);days.push({key,label:["อา","จ","อ","พ","พฤ","ศ","ส"][d.getDay()],diligent:sum("diligent"),reading:sum("reading"),homework:sum("homework"),count:logs.length})}
+ const max=Math.max(1,...days.map(x=>x.count));
+ const pts=days.map((x,i)=>`${14+i*(272/6)},${96-(x.count/max)*68}`).join(" ");
+ const dots=days.map((x,i)=>`<circle cx="${14+i*(272/6)}" cy="${96-(x.count/max)*68}" r="4"></circle>`).join("");
+ const labels=days.map((x,i)=>`<text x="${14+i*(272/6)}" y="118" text-anchor="middle">${x.label}</text>`).join("");
+ $("dashboardGrid").innerHTML=`<div class="hm180-kpi">✏️<b>${w.diligent}</b><small>ข้อ / 7 วัน</small></div><div class="hm180-kpi">📖<b>${w.reading}</b><small>นาที / 7 วัน</small></div><div class="hm180-kpi">📚<b>${w.homework}</b><small>งาน / 7 วัน</small></div><div class="hm180-kpi">🔥<b>${w.days}</b><small>วันที่มีกิจกรรม</small></div>`;
+ $("weekCompare").innerHTML=`<div class="hm180-chartHead"><div><b>แนวโน้มกิจกรรม 7 วัน</b><small>จำนวนครั้งที่บันทึกในแต่ละวัน</small></div><span>เทียบสัปดาห์ก่อน ✏️ ${delta(w.diligent,prev.diligent)} • 📖 ${delta(w.reading,prev.reading)} • 📚 ${delta(w.homework,prev.homework)}</span></div><div class="hm180-line"><svg viewBox="0 0 300 126" role="img" aria-label="กราฟกิจกรรม 7 วัน"><line x1="14" y1="96" x2="286" y2="96"></line><polyline points="${pts}"></polyline>${dots}${labels}</svg></div><div class="hm180-habitBars"><div><span>📵 ไม่ติดจอ</span><i><b style="width:${Math.min(100,w.screen/7*100)}%"></b></i><em>${w.screen}/7</em></div><div><span>🧹 จัดของ</span><i><b style="width:${Math.min(100,w.messy/7*100)}%"></b></i><em>${w.messy}/7</em></div><div><span>🌅 เช้าทัน</span><i><b style="width:${Math.min(100,w.morning/7*100)}%"></b></i><em>${w.morning}/7</em></div></div>`
+}
 function renderEndDay(){let d=summaryRange(1);$("endDaySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✅ รายการ<b>${d.count}</b></div><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">🔥<b>${S.streak} วัน</b></div><div class="summaryBox">❤️ Pet<b>${S.pet.friendship}</b></div></div>`}
 function closeDay(){let d=dayKey();if(S.closedDays.includes(d))return toast("วันนี้ปิดวันแล้ว");S.closedDays.push(d);save();celebrate("🌙 ปิดวันเรียบร้อย");render()}
 function parentGuard(){if(!S.parentUnlocked){toast("🔒 ปลดล็อก Parent Mode ก่อน");return false}return true}
@@ -8851,52 +8860,7 @@ window.addEventListener("error",function(e){
 });
 </script>
 
-<style id="hmw-v172-fix">
-.hm172-disabled{opacity:.55!important;pointer-events:none!important}
-.hm172-badge{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:999px;background:#eaf7ff;font-weight:900;font-size:12px}
-.hm172-inv{background:#fff8d8!important;border-color:#ffd45b!important}
-</style>
-<script id="hmw-v172-fix">
-(()=>{
-function v172(){
- if(window.__hmw172)return; window.__hmw172=true;
- document.title="Habit Monster World V173";
- const key="hmw172_actions_"+new Date().toISOString().slice(0,10);
- let used=JSON.parse(localStorage.getItem(key)||"{}");
- function save(){localStorage.setItem(key,JSON.stringify(used));}
- function toast(msg){
-  let t=document.querySelector(".toast");
-  if(!t){t=document.createElement("div");t.className="toast";document.body.appendChild(t)}
-  t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400);
- }
- // Daily reward inventory
- let inv=JSON.parse(localStorage.getItem("hmw172_inventory")||"{}");
- window.hmw172Reward=function(){
-   inv.box=(inv.box||0)+1;
-   inv.star=(inv.star||0)+10;
-   localStorage.setItem("hmw172_inventory",JSON.stringify(inv));
-   toast("🎁 เก็บรางวัลแล้ว → Inventory +10 ⭐");
- };
- document.querySelectorAll("button").forEach(b=>{
-   if(b.dataset.hm172Reward)return;
-   if(/รับ|claim|reward|รางวัล|กล่อง/i.test(b.textContent)){
-    b.dataset.hm172Reward="1";
-    b.addEventListener("click",window.hmw172Reward);
-   }
- });
- // show inventory hint
- const nav=[...document.querySelectorAll("button")].find(b=>/Rewards/i.test(b.textContent));
- if(nav && !document.querySelector(".hm172-inv")) nav.insertAdjacentHTML("afterend","<span class='hm172-inv hm172-badge'>🎁 Inventory เก็บรางวัล</span>");
-}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",v172,{once:true});
-else v172();
-setTimeout(v172,1500);
-})();
-</script>
-
-
-
-
+<!-- V180: legacy Inventory helper removed -->
 <!-- V179: legacy V173-V177 runtime patches removed; core render is authoritative -->
 <style id="hmw-v178-final">
 /* V178: single-source Journey + Pet UI; no legacy overlay renderers */
@@ -8910,8 +8874,34 @@ setTimeout(v172,1500);
 .hm178-pets{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.hm178-pet{position:relative;width:100%;min-height:205px;border:2px solid #d9e5ed;border-radius:20px;background:linear-gradient(180deg,#fff,#f7fbff);padding:8px;color:#24364a;text-align:center;overflow:hidden}.hm178-pet.active{border:3px solid #ffc849;background:linear-gradient(180deg,#fff8d8,#f5fbff);box-shadow:0 0 0 4px rgba(255,200,73,.18)}.hm178-pet.locked{opacity:.5}.hm178-active{position:absolute;right:6px;top:6px;z-index:3;padding:3px 7px;border-radius:99px;background:#ffd45b;color:#745600;font-size:9px;font-weight:1000}.hm178-petart{height:96px}.hm178-petart .cinematic-slot{height:96px!important;min-height:96px!important}.hm178-pet>b{display:block;font-size:15px}.hm178-skillname{margin-top:5px;font-size:11px;font-weight:1000;color:#6a5bda}.hm178-skillshort{font-size:10px;color:#5f7488;min-height:26px}.hm178-petmeta{display:flex;justify-content:space-between;gap:4px;margin-top:4px;font-size:9px;font-weight:900;color:#677b8f}.hm178-lock{display:block;margin-top:4px;font-size:9px;color:#8a6c37}
 @media(max-width:600px){.hm178-journey{gap:8px!important}.hm178-zone{padding:0 8px 8px;border-radius:19px}.hm178-scene{height:82px;margin:0 -8px 8px;font-size:36px}.hm178-title b{font-size:13px}.hm178-mission{font-size:9.5px}.hm178-castle{padding:9px;font-size:11px}.hm178-pets{gap:7px!important}.hm178-pet{min-height:188px;padding:7px}.hm178-petart{height:85px}.hm178-petart .cinematic-slot{height:85px!important;min-height:85px!important}.hm178-pet>b{font-size:13px}}
 </style>
-<script id="hmw-v179-build">
-(()=>{const BUILD='V179 • MASTER JOURNEY';function stamp(){document.title='Habit Monster World V179';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',stamp,{once:true});else stamp();setTimeout(stamp,500);window.HMW_VERSION='V179';})();
+
+<style id="hmw-v180-compact-dashboard">
+/* V180 — lock status panels compact on mobile */
+.hm142-evolution{margin-top:12px!important;padding:10px 12px!important;border-radius:20px!important}
+.hm142-title{font-size:18px!important;margin-bottom:7px!important}
+.hm142-path{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important}
+.hm142-node{min-height:64px!important;padding:7px 3px!important;border-radius:14px!important;font-size:12px!important;line-height:1.05!important}
+.hm142-node span{font-size:24px!important;margin-bottom:2px!important}
+.hm142-bonus{display:none!important}
+.hm144-panel{margin-top:10px!important;padding:9px 11px!important;border-radius:19px!important}
+.hm144-title{font-size:18px!important;margin-bottom:6px!important}
+.hm144-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin-top:0!important}
+.hm144-box{padding:8px 4px!important;border-radius:12px!important;font-size:12px!important;line-height:1.15!important}
+.hm144-box span{display:inline!important;font-size:20px!important;margin-right:3px!important}
+.hm144-panel>div:last-child{display:none!important}
+/* Dashboard */
+#dashboardGrid.summaryGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+.hm180-kpi{border:1px solid #dce8f2;border-radius:16px;background:linear-gradient(180deg,#fff,#f6fbff);padding:10px;text-align:center;font-weight:900}.hm180-kpi b{display:block;font-size:25px;line-height:1.1;margin:3px 0}.hm180-kpi small{color:#718296;font-size:11px}
+#weekCompare.story{background:linear-gradient(180deg,#fbfdff,#fffaf0)!important;border:1px solid #dce8f2!important;border-radius:18px!important;padding:12px!important}
+.hm180-chartHead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap}.hm180-chartHead b{font-size:17px}.hm180-chartHead small{display:block;color:#718296;margin-top:2px}.hm180-chartHead>span{font-size:10px;color:#6c7f91;font-weight:850;background:#fff;padding:5px 8px;border-radius:999px}
+.hm180-line{margin-top:8px;background:#fff;border:1px solid #e2ebf2;border-radius:15px;padding:4px 8px}.hm180-line svg{width:100%;height:auto;display:block}.hm180-line line{stroke:#dfe7ee;stroke-width:1.5}.hm180-line polyline{fill:none;stroke:#6b8df0;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.hm180-line circle{fill:#69c99a;stroke:#fff;stroke-width:2}.hm180-line text{fill:#78899a;font-size:10px;font-weight:800}
+.hm180-habitBars{display:grid;gap:7px;margin-top:10px}.hm180-habitBars>div{display:grid;grid-template-columns:100px 1fr 36px;gap:7px;align-items:center;font-size:11px;font-weight:850}.hm180-habitBars i{height:10px;background:#edf2f5;border-radius:99px;overflow:hidden}.hm180-habitBars i b{display:block;height:100%;background:linear-gradient(90deg,#69c99a,#6b8df0);border-radius:inherit}.hm180-habitBars em{font-style:normal;text-align:right;color:#65788a}
+/* Remove old inventory badge and keep Rewards as the single reward hub */
+.hm172-inv{display:none!important}
+@media(max-width:600px){.hm142-evolution{padding:9px!important}.hm142-title,.hm144-title{font-size:16px!important}.hm142-node{min-height:58px!important;font-size:10px!important}.hm142-node span{font-size:21px!important}.hm144-box{font-size:10.5px!important;padding:7px 2px!important}.hm144-box span{font-size:18px!important}#dashboardGrid.summaryGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.hm180-habitBars>div{grid-template-columns:86px 1fr 32px}}
+</style>
+<script id="hmw-v180-build">
+(()=>{const BUILD='V180 • COMPACT & INSIGHTS';function stamp(){document.title='Habit Monster World V180';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD);document.querySelectorAll('.hm172-inv').forEach(x=>x.remove());const r=[...document.querySelectorAll('.nav button')].find(b=>b.dataset.screen==='rewards');if(r)r.innerHTML='🎁 Rewards';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',stamp,{once:true});else stamp();setTimeout(stamp,400);window.HMW_VERSION='V180';window.HMW_V180={version:'V180',features:['Compact Awakening','Compact Monster Life','7-day Dashboard Charts','Single Rewards Hub']};})();
 </script>
 
 </body>
