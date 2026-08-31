@@ -2526,10 +2526,62 @@ function renderWorld(){let k=S.active,m=S.monsters[k],st=stage(k);$("worldMap").
 function renderSummaries(){let d=summaryRange(1),w=summaryRange(7);$("dailySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${d.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${d.reading} นาที</b></div><div class="summaryBox">📚<b>${d.homework} งาน</b></div><div class="summaryBox">✅<b>${d.count} รายการ</b></div></div>`;$("weeklySummary").innerHTML=`<div class="summaryGrid"><div class="summaryBox">✏️<b>${w.diligent} ข้อ</b></div><div class="summaryBox">📖<b>${w.reading} นาที</b></div><div class="summaryBox">📚<b>${w.homework} งาน</b></div><div class="summaryBox">🔥<b>${w.days} active days</b></div></div>`}
 function renderDaily(){ensureDaily();let q=[["diligent","✏️","แบบฝึกหัด"],["reading","📖","อ่าน"],["homework","📚","การบ้าน"]];$("dailyQuestGrid").innerHTML=q.map(([k,i,n])=>`<div class="box ${S.daily.done[k]?"done":""}"><div class="ico">${i}</div><b>${n}</b><br>${S.daily.done[k]?"✅ สำเร็จ":"ยังไม่สำเร็จ"}</div>`).join("");let all=q.every(([k])=>S.daily.done[k]);$("dailyChestBtn").disabled=!all||S.daily.chest;$("dailyChestIcon").textContent=S.daily.chest?"✅":"🎁";$("perfectDay").innerHTML=all?"🌈 PERFECT DAY!":"ทำครบ 3 อย่างเพื่อเปิดกล่อง"}
 function claimChest(){ensureDaily();if(S.daily.chest)return;let all=["diligent","reading","homework"].every(k=>S.daily.done[k]);if(!all)return toast("ทำ Daily Quest ให้ครบ");S.daily.chest=true;let rewards=[["stars","⭐ +10 ดาว"],["pet","🐾 Pet Toy Token"],["collection","🎀 Collection Token"],["badge","🏅 Mystery Badge"]],idx=[...dayKey()].reduce((a,c)=>a+c.charCodeAt(0),0)%rewards.length,r=rewards[idx];if(r[0]==="stars")S.stars+=10;S.chestHistory.unshift({date:dayKey(),reward:r[1]});save();celebrate(`🎁 ${r[1]}`);render()}
-function renderJourney(){let pts=S.totals.diligent+S.totals.reading+S.totals.homework*10+S.streak*5,nodes=[["🏡","Sunny Village",0],["🌲","Reading Forest",100],["🧹","Tidy Town",220],["⛰️","Homework Mountain",400],["🏰","Star Castle",650]];$("journeyGrid").innerHTML=nodes.map(([i,n,v])=>`<div class="journeyNode ${pts>=v?"open":""}"><div class="big">${pts>=v?i:"🔒"}</div><b>${n}</b><br><small>${pts>=v?"เปิดแล้ว":`ต้องการ ${v} pts`}</small></div>`).join("")}
-function updatePetUnlocks(){Object.keys(pets).forEach(k=>{if(pets[k].unlock()&&!S.pet.owned.includes(k))S.pet.owned.push(k)});if(S.pet.friendship>=25)S.pet.decor.ball=true;if(S.pet.friendship>=50)S.pet.decor.bowl=true;if(S.pet.friendship>=80)S.pet.decor.plant=true}
-function renderPets(){updatePetUnlocks();let id=S.pet.selected,p=pets[id],st=petStage();$("petStage").innerHTML=petSVG(id,st);$("petName").textContent=`${p.name} • ${["Baby","Junior","Buddy","Super Buddy"][st]}`;$("friendText").textContent=`${S.pet.friendship}/100`;$("friendFill").style.width=S.pet.friendship+"%";$("petXpText").textContent=`${S.pet.xp}/${st===0?50:st===1?120:240}`;$("petXpBar").style.width=st===3?"100%":Math.min(100,S.pet.xp/(st===0?50:st===1?120:240)*100)+"%";$("petAbility").innerHTML=`<b>✨ Ability</b><br>${p.ability}`;$("petChoices").innerHTML=Object.keys(pets).map(k=>{let own=S.pet.owned.includes(k);return `<button class="petChoice ${k===id?"on":""} ${own?"":"locked"}" onclick="selectPet('${k}')">${petSVG(k,own?Math.min(st,1):0)}<div>${own?pets[k].name:"🔒 "+pets[k].name}</div><small>${own?pets[k].ability:"ยังไม่ปลดล็อก"}</small></button>`}).join("");$("petHome").innerHTML=[["bed","🛏️ เบาะ"],["ball","🎾 ของเล่น"],["bowl","🥣 ชาม"],["plant","🪴 ต้นไม้"]].map(([k,n])=>`<div class="box ${S.pet.decor[k]?"done":""}">${S.pet.decor[k]?n:"🔒 "+n}</div>`).join("");$("petAlbum").innerHTML=[["📖","อ่าน 300 นาที",S.totals.reading>=300],["✏️","โจทย์ 500 ข้อ",S.totals.diligent>=500],["🔥","Streak 7 วัน",S.streak>=7],["❤️","Friendship 50",S.pet.friendship>=50],["🌟","Super Buddy",st>=3],["🐾","Pet 3 ตัว",S.pet.owned.length>=3]].map(([i,n,o])=>`<div class="box ${o?"done":""}"><div class="ico">${o?i:"🔒"}</div><b>${n}</b></div>`).join("")}
-function selectPet(k){if(!S.pet.owned.includes(k))return toast("ยังไม่ปลดล็อก");S.pet.selected=k;save();render()}
+function hmwPetSkill(k){
+ const map={
+  puppy:{name:"Habit Buddy",short:"ทำ Habit ครบ 3 รายการ",desc:"ทำกิจกรรมครบ 3 รายการในวันเดียว รับดาวโบนัส +1 (วันละครั้ง)",unlock:"เริ่มต้น"},
+  kitty:{name:"Perfect Day",short:"ทำ Daily Quest ครบ 3 ด้าน",desc:"ทำ Daily Quest หลักครบ 3 ด้านในวันเดียว รับดาวโบนัส +1 (วันละครั้ง)",unlock:"บันทึกกิจกรรมครบ 10 ครั้ง"},
+  bunny:{name:"Morning Friend",short:"ช่วยภารกิจตอนเช้า",desc:"ผ่านด่านเตรียมพร้อมตอนเช้า รับดาวโบนัส +1 (วันละครั้ง)",unlock:"ผ่านด่านเช้า 5 ครั้ง"},
+  fox:{name:"Streak Keeper",short:"ช่วยรักษา Streak",desc:"เมื่อ Streak อย่างน้อย 2 วันและทำกิจกรรมวันนี้ รับดาวโบนัส +1 (วันละครั้ง)",unlock:"Streak 7 วัน"},
+  owl:{name:"Reading Buddy",short:"ช่วยภารกิจอ่าน",desc:"บันทึกการอ่านหรือทบทวน รับดาวโบนัส +1 (วันละครั้ง)",unlock:"อ่านสะสม 300 นาที"},
+  dragon:{name:"Challenge Buddy",short:"ช่วยโจทย์และการบ้าน",desc:"ทำแบบฝึกหัดหรือเคลียร์การบ้าน รับดาวโบนัส +1 (วันละครั้ง)",unlock:"ทำโจทย์สะสม 500 ข้อ"}
+ }; return map[k]||{name:"Buddy Skill",short:"ช่วยทำภารกิจ",desc:"ช่วยเพิ่มแรงจูงใจในการทำ Habit",unlock:"ปลดล็อกตามเงื่อนไข"};
+}
+function hmwEnsurePetStats(){
+ if(!S.pet.stats||typeof S.pet.stats!=="object")S.pet.stats={};
+ Object.keys(pets).forEach(k=>{if(!S.pet.stats[k])S.pet.stats[k]={xp:0,friendship:0}});
+ let a=S.pet.selected||"puppy";
+ if(!S.pet.stats[a])S.pet.stats[a]={xp:Number(S.pet.xp||0),friendship:Number(S.pet.friendship||0)};
+ // migrate the legacy active totals once, preserving the user's progress
+ if(!S.pet._perPetMigrated){S.pet.stats[a]={xp:Number(S.pet.xp||0),friendship:Number(S.pet.friendship||0)};S.pet._perPetMigrated=true}
+ S.pet.xp=Number(S.pet.stats[a].xp||0);S.pet.friendship=Math.min(100,Number(S.pet.stats[a].friendship||0));
+}
+function hmwPetLevel(friend){return friend>=100?4:friend>=50?3:friend>=25?2:1}
+function hmwPetStageFor(xp){return xp>=700?3:xp>=300?2:xp>=100?1:0}
+function hmwPetTarget(xp){return xp>=700?1000:xp>=300?700:xp>=100?300:100}
+function renderJourney(){
+ const grid=$("journeyGrid");if(!grid)return;
+ let totalPts=Number(S.totals.diligent||0)+Number(S.totals.reading||0)+Number(S.totals.homework||0)*10+Number(S.streak||0)*5;
+ const zones=[
+  {name:"Sunny Village",scene:"☀️🏡🌻",v:Math.max(Number(S.activeDays?.length||0),Number(S.totals.morning||0)),goal:30,unit:"วัน",mission:"สร้างกิจวัตรเช้าและความสม่ำเสมอ",bg:"linear-gradient(135deg,#fff1a8,#dff6ce)"},
+  {name:"Reading Forest",scene:"🌲📖🦉",v:Number(S.totals.reading||0),goal:600,unit:"นาที",mission:"อ่านและทบทวนสะสมให้ป่าเติบโต",bg:"linear-gradient(135deg,#d9f5d5,#ddecff)"},
+  {name:"Tidy Town",scene:"🧹🏘️✨",v:Number(S.totals.messy||0),goal:50,unit:"งาน",mission:"จัดของและเก็บพื้นที่ให้เมืองสะอาด",bg:"linear-gradient(135deg,#ffe6b3,#e8f7ff)"},
+  {name:"Homework Mountain",scene:"⛰️📚🚩",v:Number(S.totals.homework||0),goal:50,unit:"งาน",mission:"เคลียร์การบ้านเพื่อไต่ขึ้นสู่ยอดเขา",bg:"linear-gradient(135deg,#e8e1ff,#dff4ff)"},
+  {name:"Star Castle",scene:"🌟🏰👑",v:totalPts,goal:2000,unit:"pts",mission:"รวมพลังจากทุก Habit เพื่อพิชิต Castle Mastery",bg:"linear-gradient(135deg,#fff0a4,#eee4ff)"}
+ ].map(z=>({...z,p:Math.min(100,Math.floor(z.v/z.goal*100))}));
+ const stars=zones.filter(z=>z.p>=100).length,avg=Math.floor(zones.reduce((a,z)=>a+z.p,0)/zones.length);
+ const card=grid.closest('.card'), h=card&&card.querySelector('h2');if(h)h.textContent='🗺️ Mastery Adventure';
+ let sub=card&&card.querySelector('.hm178-journey-sub');if(card&&!sub){sub=document.createElement('div');sub.className='hm178-journey-sub';h?.insertAdjacentElement('afterend',sub)}
+ if(sub)sub.innerHTML=`เปิดโลกครบแล้ว • สะสม Mastery ต่อเพื่อรับรางวัล <span class="hm178-stars">🌟 World Stars ${stars}/5</span>`;
+ grid.className='hm178-journey';
+ grid.innerHTML=zones.map(z=>`<article class="hm178-zone ${z.p>=100?'mastered':''}"><div class="hm178-scene" style="--scene:${z.bg}">${z.scene}</div><div class="hm178-title"><b>${z.name}</b><span>${z.p}%</span></div><div class="hm178-mission">${z.mission}</div><div class="hm178-bar"><i style="width:${z.p}%"></i></div><div class="hm178-meta"><span>${z.v}/${z.goal} ${z.unit}</span><span>${z.p>=100?'✨ Mastered':'Mastery Quest'}</span></div><div class="hm178-miles">${[25,50,75,100].map(x=>`<span class="${z.p>=x?'on':''}">${z.p>=x?'✓ ':''}${x}</span>`).join('')}</div><div class="hm178-reward">${z.p>=100?'🌟 World Star ได้แล้ว':'🎁 25% ⭐ • 50% 🪙 • 75% 🎁 • 100% 🌟'}</div></article>`).join('')+`<div class="hm178-castle"><div><b>🏰 Star Castle Hub</b><small>Mastery เฉลี่ย ${avg}% • สะสม World Star ให้ครบ 5 ดวง</small></div><strong>🌟 ${stars}/5</strong></div>`;
+}
+function updatePetUnlocks(){Object.keys(pets).forEach(k=>{if(pets[k].unlock()&&!S.pet.owned.includes(k))S.pet.owned.push(k)})}
+function renderPets(){
+ updatePetUnlocks();hmwEnsurePetStats();
+ const id=S.pet.selected||Object.keys(pets)[0], stat=S.pet.stats[id]||{xp:0,friendship:0}, p=pets[id], skill=hmwPetSkill(id), st=hmwPetStageFor(stat.xp), target=hmwPetTarget(stat.xp);
+ $("petStage").innerHTML=petSVG(id,Math.min(st,3));$("petName").textContent=`${p.name} • ${["Baby","Junior","Buddy","Super Buddy"][st]}`;
+ $("friendText").textContent=`${stat.friendship}/100`;$("friendFill").style.width=Math.min(100,stat.friendship)+"%";
+ $("petXpText").textContent=`${stat.xp}/${target}`;$("petXpBar").style.width=Math.min(100,stat.xp/target*100)+"%";
+ $("petAbility").className='hm178-current-skill';$("petAbility").innerHTML=`<div class="hm178-skillhead"><b>✨ ${skill.name}</b><span>Skill Lv.${hmwPetLevel(stat.friendship)}</span></div><div>${skill.desc}</div><small>ใช้ Active Pet ได้ครั้งละ 1 ตัว • XP/Friendship แยกแต่ละตัว</small>`;
+ const ids=Object.keys(pets);$("petChoices").className='hm178-pets';$("petChoices").innerHTML=ids.map(k=>{let own=S.pet.owned.includes(k),s=S.pet.stats[k]||{xp:0,friendship:0},sk=hmwPetSkill(k);return `<button type="button" class="hm178-pet ${k===id?'active':''} ${own?'':'locked'}" data-pet="${k}" onclick="selectPet('${k}')">${k===id?'<span class="hm178-active">✓ ACTIVE</span>':''}<div class="hm178-petart">${petSVG(k,own?Math.min(hmwPetStageFor(s.xp),1):0)}</div><b>${own?'':'🔒 '}${pets[k].name}</b><div class="hm178-skillname">✨ ${sk.name}</div><div class="hm178-skillshort">${sk.short}</div><div class="hm178-petmeta"><span>❤️ ${s.friendship}/100</span><span>Lv.${hmwPetLevel(s.friendship)}</span></div>${own?'':`<small class="hm178-lock">ปลดล็อก: ${sk.unlock}</small>`}</button>`}).join('');
+ const home=$("petHome");if(home){const title=home.previousElementSibling;if(title&&/Pet Home/.test(title.textContent||''))title.remove();home.remove()}
+ $("petAlbum").innerHTML=[["📖","อ่าน 300 นาที",S.totals.reading>=300],["✏️","โจทย์ 500 ข้อ",S.totals.diligent>=500],["🔥","Streak 7 วัน",S.streak>=7],["❤️","Friendship 50",stat.friendship>=50],["🌟","Super Buddy",st>=3],["🐾","Pet 3 ตัว",S.pet.owned.length>=3]].map(([i,n,o])=>`<div class="box ${o?'done':''}"><div class="ico">${o?i:'🔒'}</div><b>${n}</b></div>`).join("");
+}
+function selectPet(k){
+ if(!S.pet.owned.includes(k)){let sk=hmwPetSkill(k);return toast(`🔒 ${pets[k].name} — ${sk.unlock}`)}
+ hmwEnsurePetStats();let old=S.pet.selected;if(old&&S.pet.stats[old]){S.pet.stats[old].xp=Number(S.pet.xp||S.pet.stats[old].xp||0);S.pet.stats[old].friendship=Number(S.pet.friendship||S.pet.stats[old].friendship||0)}
+ S.pet.selected=k;S.pet.xp=Number(S.pet.stats[k]?.xp||0);S.pet.friendship=Math.min(100,Number(S.pet.stats[k]?.friendship||0));save();render();toast(`🐾 ${pets[k].name} เป็น Active Pet แล้ว`)
+}
 function renderPetFollower(){let k=S.pet.selected;$("petFollower").innerHTML=petSVG(k);$("petSpeech").textContent=`${pets[k].name} เชียร์อยู่นะ! ✨`}
 function renderRewards(){let icon={activity:"🎡",treat:"🍦",privilege:"🎮",item:"🎁"};$("rewardGrid").innerHTML=S.rewards.map((r,i)=>{let sold=r.limit>0&&r.redeemed>=r.limit;return `<div class="box"><div class="ico">${icon[r.type]||"🎁"}</div><b>${r.name}</b><br>⭐ ${r.cost}<br><small>${r.limit?`${r.redeemed}/${r.limit} ครั้ง`:"ไม่จำกัด"}</small><button class="bigBtn green" ${sold?"disabled":""} onclick="redeem(${i})">แลก</button></div>`}).join("")}
 function redeem(i){let r=S.rewards[i];if(r.limit&&r.redeemed>=r.limit)return;if(S.stars<r.cost)return toast("ดาวไม่พอ");if(!confirm(`แลก ${r.name} ใช้ ${r.cost} ดาว?`))return;S.stars-=r.cost;r.redeemed++;S.rewardHistory.unshift({date:dayKey(),name:r.name,cost:r.cost});save();celebrate(`🎁 แลก ${r.name} สำเร็จ`);render()}
@@ -9027,7 +9079,7 @@ setTimeout(v172,1500);
  .journeyNode{min-height:164px!important;padding:10px 6px!important}
 }
 </style>
-<script id="hmw-v174-compact-mastery-script">
+<script id="hmw-v174-compact-mastery-script" type="text/plain" data-disabled-by="v178">
 (()=>{
  const BUILD='V174 • COMPACT MASTERY';
  const num=v=>Number.isFinite(Number(v))?Number(v):0;
@@ -9183,7 +9235,7 @@ setTimeout(v172,1500);
  .hm175-zone-mastery .mission{min-height:0}.hm175-milestones span{font-size:8px;padding:2px 3px}
 }
 </style>
-<script id="hmw-v175-living-systems-script">
+<script id="hmw-v175-living-systems-script" type="text/plain" data-disabled-by="v178">
 (()=>{
  const BUILD='V175 • LIVING JOURNEY';
  const PET_IDS=['puppy','kitty','bunny','fox','owl','dragon'];
@@ -9315,14 +9367,14 @@ setTimeout(v172,1500);
   ensurePetState();
   document.title='Habit Monster World V175';document.documentElement.dataset.hmwBuild='175-living-journey';
   const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
-  collection175();journey175();pet175();
+  collection175();
  }
 
  // Re-wrap current render (which already includes V174) so V175 stays synced after every action.
  if(typeof window.render==='function'&&!window.__hmw175Wrapped){const base=window.render;window.render=function(){const r=base.apply(this,arguments);setTimeout(apply175,0);return r};window.__hmw175Wrapped=true}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(apply175,90),{once:true});else setTimeout(apply175,90);
  [500,1200,2400,4200,7200,10000].forEach(ms=>setTimeout(apply175,ms));
- let ticks=0;const keep=setInterval(()=>{apply175();if(++ticks>24)clearInterval(keep)},500);
+ 
  window.HMW_VERSION='V175';window.HMW_V175={version:'V175',features:['Mastery Adventure','Collection Hub','One Active Pet','Per-Pet XP & Friendship','Six Unique Pet Skills','Skill Tiers']};
 })();
 </script>
@@ -9348,7 +9400,7 @@ setTimeout(v172,1500);
 .zone{padding-bottom:48px!important}.zone .hm163-stageBadge,.zone [class*="stageBadge"],.zone [class*="rankBadge"]{bottom:8px!important;top:auto!important;right:8px!important}
 @media(max-width:600px){#journeyGrid.hm176-journey{gap:8px!important}.hm176-zone{min-height:190px;padding:9px;border-radius:20px}.hm176-zone .scene{height:68px;font-size:40px}.hm176-zone .ztitle{font-size:15px}.hm176-zone .zmission{font-size:10px}.hm176-zone .medals span{font-size:9px;padding:3px}.petChoice{min-height:145px!important}.zone{padding-bottom:52px!important}}
 </style>
-<script id="hmw-v176-final-script">
+<script id="hmw-v176-final-script" type="text/plain" data-disabled-by="v178">
 (()=>{
  const BUILD='V176 • JOURNEY & PET FIX';
  const Z=[
@@ -9399,7 +9451,7 @@ setTimeout(v172,1500);
 #petHome{display:none!important}
 @media(max-width:600px){#journeyGrid.hm177-journey{gap:8px!important}.hm177-place{min-height:226px;padding:0 9px 9px;border-radius:20px}.hm177-scene{height:76px;margin:0 -9px 8px;font-size:34px}.hm177-place-title b{font-size:14px}.hm177-pct{font-size:12px}.hm177-mission{font-size:9.5px;min-height:28px}.hm177-castlebar{padding:9px;font-size:11px}.hm177-castlebar .big{font-size:20px}#pets #petChoices.hm177-pets{gap:7px!important}.hm177-pet-card{min-height:178px!important;padding:7px!important}.hm177-pet-art{height:84px}.hm177-pet-art .cinematic-slot{height:84px!important;min-height:84px!important}.hm177-pet-name{font-size:13px}.hm177-skill{font-size:9px}.hm177-skill b{font-size:10px}}
 </style>
-<script id="hmw-v177-mastery-pets-script">
+<script id="hmw-v177-mastery-pets-script" type="text/plain" data-disabled-by="v178">
 (()=>{
  const BUILD='V177 • MASTERY & PET SKILLS';
  const CFG={
@@ -9447,6 +9499,23 @@ setTimeout(v172,1500);
  if(typeof window.render==='function'&&!window.__hmw177Wrapped){const base=window.render;window.render=function(){const r=base.apply(this,arguments);setTimeout(apply,0);return r};window.__hmw177Wrapped=true}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(apply,120),{once:true});else setTimeout(apply,120);[400,900,1800,3500].forEach(t=>setTimeout(apply,t));window.HMW_VERSION='V177';window.HMW_V177={version:'V177',features:['Mastery Adventure Redesign','Reliable Active Pet Selector','Visible Pet Skills','Pet Home Removed']};
 })();
+</script>
+
+
+<style id="hmw-v178-final">
+/* V178: single-source Journey + Pet UI; no legacy overlay renderers */
+#journey>.card{background:linear-gradient(180deg,#f7fcff,#fffaf0)!important;padding:14px!important}
+.hm178-journey-sub{margin:-2px 0 12px;color:#62778d;font-weight:800;line-height:1.35}.hm178-stars{display:inline-block;margin-left:5px;padding:4px 8px;border-radius:999px;background:#fff5be;color:#7d6100}
+.hm178-journey{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+.hm178-zone{overflow:hidden;border:2px solid #d9e8f2;border-radius:22px;background:#fff;padding:0 10px 10px;box-shadow:0 9px 20px rgba(45,75,105,.08)}.hm178-zone.mastered{border-color:#76c995;background:linear-gradient(180deg,#f2fff4,#fffdf2)}
+.hm178-scene{height:96px;margin:0 -10px 9px;display:grid;place-items:center;font-size:42px;background:var(--scene)}.hm178-title{display:flex;justify-content:space-between;gap:6px;align-items:center}.hm178-title b{font-size:15px}.hm178-title span{font-weight:1000;color:#6658dd}.hm178-mission{font-size:11px;color:#677b8e;min-height:32px;margin:5px 0}.hm178-bar{height:10px;border-radius:99px;background:#edf2f5;overflow:hidden}.hm178-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#6acda0,#668cf5)}.hm178-meta{display:flex;justify-content:space-between;gap:4px;font-size:9.5px;font-weight:850;color:#60758b;margin-top:5px}.hm178-miles{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:7px}.hm178-miles span{padding:4px 1px;border-radius:8px;text-align:center;background:#f0f4f7;color:#93a0ad;font-size:9px;font-weight:950}.hm178-miles span.on{background:#e7f9eb;color:#29905a}.hm178-reward{margin-top:7px;padding:5px 6px;border-radius:9px;background:#f6f9fc;color:#5c7187;font-size:9px;font-weight:850}.hm178-zone.mastered .hm178-reward{background:#fff1af;color:#755800}.hm178-castle{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px;border-radius:18px;border:2px solid #e5d8ff;background:linear-gradient(135deg,#fff3bc,#edf3ff)}.hm178-castle small{display:block;color:#687c90;margin-top:2px}.hm178-castle strong{font-size:23px;white-space:nowrap}
+#pets .petStudio{grid-template-columns:1fr!important;gap:13px!important}#pets .petStudio>div:first-child{max-width:560px;margin:auto;width:100%}#pets .petStudio>div:nth-child(2){width:100%}
+.hm178-current-skill{margin-top:10px!important;padding:11px!important;border:2px solid #dbe8f2!important;border-radius:16px!important;background:linear-gradient(135deg,#f7fbff,#fff7dd)!important}.hm178-skillhead{display:flex;justify-content:space-between;gap:8px;font-weight:1000;margin-bottom:4px}.hm178-current-skill small{display:block;color:#718296;margin-top:6px}
+.hm178-pets{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.hm178-pet{position:relative;width:100%;min-height:205px;border:2px solid #d9e5ed;border-radius:20px;background:linear-gradient(180deg,#fff,#f7fbff);padding:8px;color:#24364a;text-align:center;overflow:hidden}.hm178-pet.active{border:3px solid #ffc849;background:linear-gradient(180deg,#fff8d8,#f5fbff);box-shadow:0 0 0 4px rgba(255,200,73,.18)}.hm178-pet.locked{opacity:.5}.hm178-active{position:absolute;right:6px;top:6px;z-index:3;padding:3px 7px;border-radius:99px;background:#ffd45b;color:#745600;font-size:9px;font-weight:1000}.hm178-petart{height:96px}.hm178-petart .cinematic-slot{height:96px!important;min-height:96px!important}.hm178-pet>b{display:block;font-size:15px}.hm178-skillname{margin-top:5px;font-size:11px;font-weight:1000;color:#6a5bda}.hm178-skillshort{font-size:10px;color:#5f7488;min-height:26px}.hm178-petmeta{display:flex;justify-content:space-between;gap:4px;margin-top:4px;font-size:9px;font-weight:900;color:#677b8f}.hm178-lock{display:block;margin-top:4px;font-size:9px;color:#8a6c37}
+@media(max-width:600px){.hm178-journey{gap:8px!important}.hm178-zone{padding:0 8px 8px;border-radius:19px}.hm178-scene{height:82px;margin:0 -8px 8px;font-size:36px}.hm178-title b{font-size:13px}.hm178-mission{font-size:9.5px}.hm178-castle{padding:9px;font-size:11px}.hm178-pets{gap:7px!important}.hm178-pet{min-height:188px;padding:7px}.hm178-petart{height:85px}.hm178-petart .cinematic-slot{height:85px!important;min-height:85px!important}.hm178-pet>b{font-size:13px}}
+</style>
+<script id="hmw-v178-build">
+(()=>{const BUILD='V178 • JOURNEY + PET CLEANUP';function stamp(){document.title='Habit Monster World V178';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',stamp,{once:true});else stamp();setTimeout(stamp,500);window.HMW_VERSION='V178';})();
 </script>
 
 </body>
