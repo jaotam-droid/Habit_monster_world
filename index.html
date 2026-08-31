@@ -8943,5 +8943,49 @@ window.addEventListener("error",function(e){
 (()=>{const BUILD='V182 • MONTHLY INSIGHTS';function stamp(){document.title='Habit Monster World V182';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD);document.querySelectorAll('.hm172-inv').forEach(x=>x.remove());}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',stamp,{once:true});else stamp();setTimeout(stamp,350);setTimeout(stamp,1200);window.HMW_VERSION='V182';window.HMW_V182={version:'V182',features:['7/30 Day Dashboard','4-Week Monthly Bars','Monthly Insight','World Badge Strip','Final Spacing Polish']};})();
 </script>
 
+<style id="hmw-v183-trophy-final">
+/* V183 — Trophy Showcase + final clarity polish */
+#trophies>.card{background:linear-gradient(180deg,#fffdf7,#f7fbff)!important}
+#trophyGrid.trophyGrid{display:block!important}
+.hm183-trophy-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:2px 0 12px;padding:11px 13px;border:1px solid #eadfae;border-radius:17px;background:linear-gradient(135deg,#fff7ca,#f4fbff)}
+.hm183-trophy-head b{display:block;font-size:16px;color:#735900}.hm183-trophy-head small{display:block;color:#728294;margin-top:2px}.hm183-count{font-size:22px;font-weight:1000;color:#735900;white-space:nowrap}.hm183-totalbar{height:9px;border-radius:99px;background:#edf1f3;overflow:hidden;margin-top:7px}.hm183-totalbar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#f5c84b,#69c99a)}
+.hm183-section{margin-top:12px}.hm183-section-title{display:flex;justify-content:space-between;align-items:center;margin:0 3px 7px;color:#536a80;font-size:11px;font-weight:950}.hm183-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.hm183-ach{position:relative;min-height:128px;padding:11px 9px 9px;border:1px solid #dce7ef;border-radius:18px;background:linear-gradient(180deg,#fff,#f7fbff);text-align:center;overflow:hidden}.hm183-ach.done{border:2px solid #edc84d;background:linear-gradient(160deg,#fff8cf,#fff,#f2fff7);box-shadow:0 5px 14px rgba(177,138,27,.10)}.hm183-ach.locked{background:linear-gradient(180deg,#f9fbfc,#f2f5f7);color:#8795a2}.hm183-medal{width:52px;height:52px;margin:0 auto 5px;border-radius:50%;display:grid;place-items:center;font-size:29px;background:#eef3f6;filter:grayscale(.65);opacity:.72}.hm183-ach.done .hm183-medal{background:radial-gradient(circle,#fff 20%,#fff0a8 72%);filter:none;opacity:1;box-shadow:0 0 0 5px rgba(250,210,75,.12)}.hm183-ach b{display:block;font-size:13px;line-height:1.15;color:#2e4359}.hm183-ach.locked b{color:#6f8090}.hm183-state{font-size:9px;font-weight:950;margin-top:4px;color:#29905a}.hm183-ach.locked .hm183-state{color:#82909c}.hm183-prog{height:7px;border-radius:99px;background:#e9eef2;overflow:hidden;margin-top:7px}.hm183-prog i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#69c99a,#6b8df0)}.hm183-ach.done .hm183-prog i{background:linear-gradient(90deg,#f2c542,#69c99a)}.hm183-meta{font-size:9px;color:#718296;font-weight:850;margin-top:4px}
+.hm183-hero{grid-column:1/-1;min-height:116px;display:grid;grid-template-columns:72px 1fr;align-items:center;text-align:left;padding:12px 14px;border:2px solid #e5ca62!important;background:linear-gradient(135deg,#fff1a8,#fff,#edf4ff)!important}.hm183-hero .hm183-medal{width:62px;height:62px;font-size:36px;margin:0}.hm183-hero b{font-size:17px}.hm183-hero .hm183-state{font-size:10px}.hm183-hero .hm183-prog{margin-top:7px}.hm183-hero.locked{filter:none;opacity:.82}
+/* Journey: keep informational cards visually subordinate on phones. */
+#world .hm142-evolution,#world .hm144-panel{box-shadow:none!important}.hm142-node,.hm144-box{border-width:1px!important}
+/* Dashboard: unavailable history is different from a true zero. */
+.hm183-nodata{display:block;margin:8px 0 2px;padding:8px 10px;border-radius:12px;background:#f4f7f9;color:#7a8997;font-size:10px;font-weight:850;text-align:center}
+@media(max-width:600px){.hm183-trophy-head{padding:9px 10px}.hm183-trophy-head b{font-size:14px}.hm183-count{font-size:19px}.hm183-ach{min-height:116px;padding:9px 7px 8px}.hm183-medal{width:46px;height:46px;font-size:25px}.hm183-ach b{font-size:12px}.hm183-hero{min-height:104px;grid-template-columns:62px 1fr;padding:10px}.hm183-hero .hm183-medal{width:54px;height:54px;font-size:31px}.hm183-hero b{font-size:15px}}
+</style>
+<script id="hmw-v183-trophy-final">
+(()=>{
+ const oldTrophies=window.trophies;
+ function trophyData(){
+  const maxLv=Math.max(...order.map(k=>Number(S.monsters[k].level||0)));
+  return [
+   {cat:'Learning',icon:'✏️',name:'100 ข้อ',now:Number(S.totals.diligent||0),goal:100},
+   {cat:'Learning',icon:'🧠',name:'500 ข้อ',now:Number(S.totals.diligent||0),goal:500},
+   {cat:'Learning',icon:'📖',name:'อ่าน 100 นาที',now:Number(S.totals.reading||0),goal:100},
+   {cat:'Learning',icon:'🦉',name:'อ่าน 500 นาที',now:Number(S.totals.reading||0),goal:500},
+   {cat:'Consistency',icon:'🔥',name:'Streak 7 วัน',now:Number(S.streak||0),goal:7},
+   {cat:'Consistency',icon:'🌟',name:'Streak 30 วัน',now:Number(S.streak||0),goal:30},
+   {cat:'Adventure',icon:'📚',name:'การบ้าน 50 งาน',now:Number(S.totals.homework||0),goal:50},
+   {cat:'Adventure',icon:'👑',name:'HERO FORM',now:maxLv,goal:5,hero:true}
+  ].map(x=>({...x,done:x.now>=x.goal}));
+ }
+ window.renderTrophies=function(){
+  const el=$('trophyGrid'); if(!el)return;
+  const all=trophyData(),done=all.filter(x=>x.done).length,pct=Math.round(done/all.length*100);
+  const groups=[['Learning','📚 Learning'],['Consistency','🔥 Consistency'],['Adventure','🗺️ Adventure']];
+  const card=x=>{let pc=Math.min(100,Math.round(x.now/Math.max(1,x.goal)*100));return `<div class="hm183-ach ${x.done?'done':'locked'} ${x.hero?'hm183-hero':''}"><div class="hm183-medal">${x.done?x.icon:'🏅'}</div><div><b>${x.name}</b><div class="hm183-state">${x.done?'✓ Unlocked!':'🔒 '+Math.min(x.now,x.goal)+' / '+x.goal}</div><div class="hm183-prog"><i style="width:${pc}%"></i></div><div class="hm183-meta">${x.done?'เก็บเข้าห้องรางวัลแล้ว':'อีก '+Math.max(0,x.goal-x.now)+' เพื่อปลดล็อก'}</div></div></div>`};
+  el.innerHTML=`<div class="hm183-trophy-head"><div><b>🏆 Achievement Collection</b><small>สะสมรางวัลจากการฝึกนิสัยและการผจญภัย</small><div class="hm183-totalbar"><i style="width:${pct}%"></i></div></div><div class="hm183-count">${done}/${all.length}</div></div>`+groups.map(([k,title])=>{let a=all.filter(x=>x.cat===k);return `<div class="hm183-section"><div class="hm183-section-title"><span>${title}</span><span>${a.filter(x=>x.done).length}/${a.length}</span></div><div class="hm183-grid">${a.map(card).join('')}</div></div>`}).join('');
+ };
+ function stamp(){document.title='Habit Monster World V183';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent='V183 • TROPHY SHOWCASE');}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{stamp();setTimeout(()=>{try{renderTrophies()}catch(e){}},250)},{once:true});else{stamp();setTimeout(()=>{try{renderTrophies()}catch(e){}},250)}
+ setTimeout(stamp,1000);window.HMW_VERSION='V183';window.HMW_V183={version:'V183',features:['Achievement Collection','Trophy Progress','Hero Trophy','Final UI Consistency']};
+})();
+</script>
+
 </body>
 </html>
