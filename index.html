@@ -8987,5 +8987,84 @@ window.addEventListener("error",function(e){
 })();
 </script>
 
+
+
+<style id="hmw-v184-daily-reward">
+/* V184 — Daily Quest reward clarity */
+#daily .hm184-reward-preview{margin:10px 0 0;padding:10px 12px;border-radius:15px;background:linear-gradient(135deg,#fff8d8,#effff7);border:1px solid #eadf9e;text-align:center;font-weight:900;color:#5f562d;line-height:1.45}
+#daily .hm184-reward-preview b{color:#7b5b12}
+#daily .hm184-reward-preview small{display:block;margin-top:3px;color:#718092;font-size:10px;font-weight:800}
+#dailyChestBtn.hm184-claimed{background:#edf6ef!important;color:#36815b!important;border:1px solid #bde1c8!important;box-shadow:none!important}
+#daily .hm184-bonus-note{margin-top:7px;text-align:center;color:#7b6d91;font-size:10px;font-weight:850}
+@media(max-width:600px){#daily .hm184-reward-preview{padding:9px 10px;font-size:11px}.hm184-bonus-note{font-size:9.5px!important}}
+</style>
+<script id="hmw-v184-daily-reward">
+(()=>{
+ const BUILD='V184 • DAILY REWARDS';
+ function num(v){v=Number(v);return Number.isFinite(v)?v:0}
+ function ensurePet(){
+  try{if(typeof hmwEnsurePetStats==='function')hmwEnsurePetStats()}catch(_){ }
+  if(!S.pet)S.pet={selected:'puppy',xp:0,friendship:0,owned:['puppy']};
+  if(!S.pet.stats||typeof S.pet.stats!=='object')S.pet.stats={};
+  const id=S.pet.selected||'puppy';
+  if(!S.pet.stats[id])S.pet.stats[id]={xp:num(S.pet.xp),friendship:num(S.pet.friendship)};
+  return {id,stat:S.pet.stats[id]};
+ }
+ function allDone(){ensureDaily();return ['diligent','reading','homework'].every(k=>S.daily.done[k])}
+ function preview(){
+  const card=document.querySelector('#daily .card'); if(!card)return;
+  const btn=document.getElementById('dailyChestBtn'); if(!btn)return;
+  let box=document.getElementById('hm184RewardPreview');
+  if(!box){box=document.createElement('div');box.id='hm184RewardPreview';box.className='hm184-reward-preview';btn.insertAdjacentElement('afterend',box)}
+  box.innerHTML='<b>🎁 รางวัล Daily Chest</b><br>⭐ +5 ดาว · ❤️ Friendship +3 · ✨ Pet XP +5<small>ให้ Active Pet ปัจจุบัน · รับได้วันละครั้ง</small>';
+  let bonus=document.getElementById('hm184BonusNote');
+  if(!bonus){bonus=document.createElement('div');bonus.id='hm184BonusNote';bonus.className='hm184-bonus-note';box.insertAdjacentElement('afterend',bonus)}
+  bonus.textContent='🎀 มีโอกาสได้ Collection Token โบนัส';
+  const done=allDone();
+  if(S.daily.chest){btn.disabled=true;btn.textContent='✅ รับรางวัลแล้ววันนี้';btn.classList.add('hm184-claimed');}
+  else{btn.disabled=!done;btn.textContent=done?'เปิด Daily Treasure Chest':'ทำให้ครบ 3 ภารกิจก่อน';btn.classList.remove('hm184-claimed');}
+ }
+ window.claimChest=function(){
+  ensureDaily();
+  if(S.daily.chest){preview();return typeof toast==='function'?toast('✅ วันนี้รับ Daily Chest แล้ว'):undefined}
+  if(!allDone())return typeof toast==='function'?toast('ทำ Daily Quest ให้ครบ 3 ภารกิจ'):undefined;
+  const p=ensurePet();
+  S.daily.chest=true;
+  S.stars=num(S.stars)+5;
+  p.stat.friendship=Math.min(100,num(p.stat.friendship)+3);
+  p.stat.xp=num(p.stat.xp)+5;
+  S.pet.friendship=p.stat.friendship;S.pet.xp=p.stat.xp;
+  const seed=[...dayKey()].reduce((a,c)=>a+c.charCodeAt(0),0);
+  const bonus=(seed%4===0);
+  if(bonus)S.collectionTokens=num(S.collectionTokens)+1;
+  const label='⭐ +5 · ❤️ +3 · Pet XP +5'+(bonus?' · 🎀 Collection Token +1':'');
+  if(!Array.isArray(S.chestHistory))S.chestHistory=[];
+  S.chestHistory.unshift({date:dayKey(),reward:label});
+  try{save()}catch(_){ }
+  try{if(typeof celebrate==='function')celebrate('🎁 Daily Chest! '+label)}catch(_){ }
+  try{if(typeof toast==='function')setTimeout(()=>toast(bonus?'🌈 PERFECT DAY! ได้โบนัส Collection Token ด้วย':'🌈 PERFECT DAY! รับรางวัลครบแล้ว'),180)}catch(_){ }
+  try{render()}catch(_){ }
+  setTimeout(preview,50);
+ };
+ function bind(){
+  const btn=document.getElementById('dailyChestBtn');if(btn)btn.onclick=window.claimChest;
+  preview();
+ }
+ const oldRenderDaily=window.renderDaily;
+ if(typeof oldRenderDaily==='function'&&!oldRenderDaily.__v184){
+  const wrapped=function(){const r=oldRenderDaily.apply(this,arguments);setTimeout(bind,0);return r};wrapped.__v184=true;window.renderDaily=wrapped;
+ }
+ function stamp(){
+  document.title='Habit Monster World V184';
+  document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD);
+  bind();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(stamp,100),{once:true});else setTimeout(stamp,100);
+ [400,1200,2500].forEach(t=>setTimeout(stamp,t));
+ window.HMW_VERSION='V184';
+ window.HMW_V184={version:'V184',features:['Daily Chest Fixed Rewards','Active Pet Reward','Perfect Day Feedback','Once Per Day Claim','Collection Token Bonus']};
+})();
+</script>
+
 </body>
 </html>
