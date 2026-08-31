@@ -2041,7 +2041,7 @@ button{
 <div id="daily" class="screen"><section class="card"><h2>📅 Daily Quest</h2><div class="story">ทำ 3 ภารกิจหลักให้ครบเพื่อเปิด Treasure Chest</div><div id="dailyQuestGrid" class="grid3"></div><div class="ico" style="text-align:center;font-size:58px" id="dailyChestIcon">🎁</div><button id="dailyChestBtn" class="bigBtn yellow">เปิด Daily Treasure Chest</button><div id="perfectDay" class="story"></div></section></div>
 <div id="journey" class="screen"><section class="card"><h2>🏰 World Journey</h2><div id="journeyGrid" class="journey"></div></section></div>
 
-<div id="pets" class="screen"><section class="card"><h2>🐾 Pet Companions</h2><div class="story">Pet ได้ XP/Friendship จากการทำภารกิจ แต่จะไม่ป่วยหรือเสีย Friendship เมื่อไม่ได้เล่น</div><div class="petStudio"><div><div id="petStage" class="petStage"></div><h3 id="petName" style="text-align:center"></h3><div class="row"><span>❤️ Friendship</span><span id="friendText"></span></div><div class="friendBar"><div id="friendFill" class="friendFill"></div></div><div class="row"><span>⭐ Pet XP</span><span id="petXpText"></span></div><div class="bar"><div id="petXpBar" class="xp"></div></div><div id="petAbility" class="story"></div></div><div><h3>เลือกคู่หู</h3><div id="petChoices" class="petChoices"></div><h3 style="margin-top:12px">🏠 Pet Home</h3><div id="petHome" class="grid4"></div></div></div></section><section class="card"><h3>📸 Adventure Album</h3><div id="petAlbum" class="grid3"></div></section></div>
+<div id="pets" class="screen"><section class="card"><h2>🐾 Pet Companions</h2><div class="story">Pet ได้ XP/Friendship จากการทำภารกิจ แต่จะไม่ป่วยหรือเสีย Friendship เมื่อไม่ได้เล่น</div><div class="petStudio"><div><div id="petStage" class="petStage"></div><h3 id="petName" style="text-align:center"></h3><div class="row"><span>❤️ Friendship</span><span id="friendText"></span></div><div class="friendBar"><div id="friendFill" class="friendFill"></div></div><div class="row"><span>⭐ Pet XP</span><span id="petXpText"></span></div><div class="bar"><div id="petXpBar" class="xp"></div></div><div id="petAbility" class="story"></div></div><div><h3>เลือกคู่หู</h3><div id="petChoices" class="petChoices"></div><h3 style="margin-top:12px">🏠 Pet Home</h3><div id="petHome" class="grid4"></div></div></div></section><div id="petAlbum" aria-hidden="true" style="display:none!important"></div></div>
 
 <div id="rewards" class="screen"><section class="card"><h2>🎁 Rewards</h2><div id="rewardGrid" class="grid3"></div></section></div>
 <div id="trophies" class="screen"><section class="card"><h2>🏅 Trophy Room</h2><div id="trophyGrid" class="trophyGrid"></div></section></div>
@@ -9063,6 +9063,96 @@ window.addEventListener("error",function(e){
  [400,1200,2500].forEach(t=>setTimeout(stamp,t));
  window.HMW_VERSION='V184';
  window.HMW_V184={version:'V184',features:['Daily Chest Fixed Rewards','Active Pet Reward','Perfect Day Feedback','Once Per Day Claim','Collection Token Bonus']};
+})();
+</script>
+
+
+
+<style id="hmw-v185-clean-pet-endday">
+/* V185 — remove duplicated Pet achievements + prevent legacy Monster UP overlay */
+#pets #petAlbum{display:none!important}
+/* Legacy V133 text burst conflicted with the older rewardBurst container. Hide only text-only legacy burst. */
+.rewardBurst.hmw185-legacy-monsterup{display:none!important;opacity:0!important;visibility:hidden!important;animation:none!important}
+</style>
+<script id="hmw-v185-clean-pet-endday">
+(()=>{
+ const BUILD='V185 • CLEAN PET & END DAY';
+ function isLegacyMonsterUp(el){
+   try{return !!(el && el.classList && el.classList.contains('rewardBurst') && /Monster\s*UP!/i.test(el.textContent||'') && !el.querySelector('.rewardStar'))}catch(_){return false}
+ }
+ function cleanupMonsterUp(){
+   document.querySelectorAll('.rewardBurst').forEach(el=>{
+     if(isLegacyMonsterUp(el)){
+       el.classList.add('hmw185-legacy-monsterup');
+       try{el.remove()}catch(_){el.style.display='none'}
+     }
+   });
+ }
+ function removeAlbum(){
+   const album=document.getElementById('petAlbum');
+   if(album){album.innerHTML='';album.style.setProperty('display','none','important');album.setAttribute('aria-hidden','true')}
+   // Defensive: remove a legacy card if a previous renderer recreates it around petAlbum.
+   document.querySelectorAll('#pets section.card').forEach(sec=>{
+     const h=sec.querySelector('h3');
+     if(h && /Adventure Album/i.test(h.textContent||'')){
+       if(album && sec.contains(album)){document.getElementById('pets')?.appendChild(album)}
+       sec.remove();
+     }
+   });
+ }
+ function clean(){cleanupMonsterUp();removeAlbum()}
+
+ // Existing V133 attached a click listener to a detached overlay reference. Removing that node once
+ // makes all subsequent legacy "Monster UP!" triggers harmless while preserving real confetti/toasts.
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(clean,0),{once:true});
+ else setTimeout(clean,0);
+ [80,300,900,1800].forEach(t=>setTimeout(clean,t));
+
+ // Clean transient legacy overlays whenever UI changes or navigation occurs.
+ document.addEventListener('click',e=>{
+   if(e.target.closest('[data-screen],#closeDayBtn,.bigBtn,.green,.yellow')){
+     cleanupMonsterUp();
+     setTimeout(cleanupMonsterUp,0);
+     setTimeout(cleanupMonsterUp,250);
+     setTimeout(cleanupMonsterUp,1100);
+   }
+ },true);
+
+ // If an old script inserts the legacy text overlay later, remove it immediately.
+ try{
+   const mo=new MutationObserver(list=>{
+     for(const m of list)for(const n of m.addedNodes){
+       if(n.nodeType!==1)continue;
+       if(isLegacyMonsterUp(n)){n.remove();continue}
+       n.querySelectorAll?.('.rewardBurst').forEach(x=>{if(isLegacyMonsterUp(x))x.remove()});
+     }
+   });
+   mo.observe(document.documentElement,{childList:true,subtree:true});
+ }catch(_){ }
+
+ // Keep legacy renderPets safe while making Album intentionally absent from the UI.
+ const oldPets=window.renderPets;
+ if(typeof oldPets==='function'&&!oldPets.__v185){
+   const wrapped=function(){const r=oldPets.apply(this,arguments);setTimeout(removeAlbum,0);return r};
+   wrapped.__v185=true;window.renderPets=wrapped;
+ }
+
+ // End Day: retain the normal celebration, but guarantee no legacy Monster UP layer survives it.
+ const oldClose=window.closeDay;
+ if(typeof oldClose==='function'&&!oldClose.__v185){
+   const wrapped=function(){cleanupMonsterUp();const r=oldClose.apply(this,arguments);setTimeout(cleanupMonsterUp,0);setTimeout(cleanupMonsterUp,950);return r};
+   wrapped.__v185=true;window.closeDay=wrapped;
+   const b=document.getElementById('closeDayBtn');if(b)b.onclick=wrapped;
+ }
+
+ function stamp(){
+   document.title='Habit Monster World V185';
+   document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(b=>b.textContent=BUILD);
+   clean();
+ }
+ [120,500,1400].forEach(t=>setTimeout(stamp,t));
+ window.HMW_VERSION='V185';
+ window.HMW_V185={version:'V185',features:['Adventure Album Removed','Legacy Monster UP Cleanup','End Day Overlay Safety','Pet UI Simplified']};
 })();
 </script>
 
