@@ -5,11 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=191"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=192"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V191</title>
+<title>Habit Monster World V192</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1986,8 +1986,8 @@ button{
 <!-- V124 Premium Evolution -->
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V188 • FINAL CLEANUP</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">🚀 WORLD • JOURNEY • PET • V188</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V192 • FINAL</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 WORLD • JOURNEY • PET • V192</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -2556,14 +2556,15 @@ function renderJourney(){
   {name:"Reading Forest",scene:"🌲📖🦉",v:Number(S.totals.reading||0),goal:600,unit:"นาที",mission:"อ่านและทบทวนสะสมให้ป่าเติบโต",bg:"linear-gradient(135deg,#d9f5d5,#ddecff)"},
   {name:"Tidy Town",scene:"🧹🏘️✨",v:Number(S.totals.messy||0),goal:50,unit:"งาน",mission:"จัดของและเก็บพื้นที่ให้เมืองสะอาด",bg:"linear-gradient(135deg,#ffe6b3,#e8f7ff)"},
   {name:"Homework Mountain",scene:"⛰️📚🚩",v:Number(S.totals.homework||0),goal:50,unit:"งาน",mission:"เคลียร์การบ้านเพื่อไต่ขึ้นสู่ยอดเขา",bg:"linear-gradient(135deg,#e8e1ff,#dff4ff)"},
+  {name:"Practice Kingdom",scene:"✏️🧩🏰",v:Number(S.totals.diligent||0),goal:1000,unit:"ข้อ",mission:"ทำแบบฝึกหัดสะสมเพื่อสร้างอาณาจักรนักคิด",bg:"linear-gradient(135deg,#dff4ff,#fff1b8)"},
   {name:"Star Castle",scene:"🌟🏰👑",v:totalPts,goal:2000,unit:"pts",mission:"รวมพลังจากทุก Habit เพื่อพิชิต Castle Mastery",bg:"linear-gradient(135deg,#fff0a4,#eee4ff)"}
  ].map(z=>({...z,p:Math.min(100,Math.floor(z.v/z.goal*100))}));
  const stars=zones.filter(z=>z.p>=100).length,avg=Math.floor(zones.reduce((a,z)=>a+z.p,0)/zones.length);
  const card=grid.closest('.card'), h=card&&card.querySelector('h2');if(h)h.textContent='🗺️ Mastery Adventure';
  let sub=card&&card.querySelector('.hm178-journey-sub');if(card&&!sub){sub=document.createElement('div');sub.className='hm178-journey-sub';h?.insertAdjacentElement('afterend',sub)}
- if(sub)sub.innerHTML=`เปิดโลกครบแล้ว • สะสม Mastery ต่อเพื่อรับรางวัล <span class="hm178-stars">🌟 World Stars ${stars}/5</span>`;
+ if(sub)sub.innerHTML=`เปิดโลกครบแล้ว • สะสม Mastery ต่อเพื่อรับรางวัล <span class="hm178-stars">🌟 World Stars ${stars}/${zones.length}</span>`;
  grid.className='hm178-journey';
- grid.innerHTML=zones.map(z=>`<article class="hm178-zone ${z.p>=100?'mastered':''}"><div class="hm178-scene" style="--scene:${z.bg}">${z.scene}</div><div class="hm178-title"><b>${z.name}</b><span>${z.p}%</span></div><div class="hm178-mission">${z.mission}</div><div class="hm178-bar"><i style="width:${z.p}%"></i></div><div class="hm178-meta"><span>${z.v}/${z.goal} ${z.unit}</span><span>${z.p>=100?'✨ Mastered':'Mastery Quest'}</span></div><div class="hm178-miles">${[25,50,75,100].map(x=>`<span class="${z.p>=x?'on':''}">${z.p>=x?'✓ ':''}${x}</span>`).join('')}</div><div class="hm178-reward">${z.p>=100?'🌟 World Star ได้แล้ว':'🎁 25% ⭐ • 50% 🪙 • 75% 🎁 • 100% 🌟'}</div></article>`).join('')+`<div class="hm178-castle"><div><b>🏰 Star Castle Hub</b><small>Mastery เฉลี่ย ${avg}% • สะสม World Star ให้ครบ 5 ดวง</small></div><strong>🌟 ${stars}/5</strong></div>`;
+ grid.innerHTML=zones.map(z=>`<article class="hm178-zone ${z.p>=100?'mastered':''}"><div class="hm178-scene" style="--scene:${z.bg}">${z.scene}</div><div class="hm178-title"><b>${z.name}</b><span>${z.p}%</span></div><div class="hm178-mission">${z.mission}</div><div class="hm178-bar"><i style="width:${z.p}%"></i></div><div class="hm178-meta"><span>${z.v}/${z.goal} ${z.unit}</span><span>${z.p>=100?'✨ Mastered':'Mastery Quest'}</span></div><div class="hm178-miles">${[25,50,75,100].map(x=>`<span class="${z.p>=x?'on':''}">${z.p>=x?'✓ ':''}${x}</span>`).join('')}</div><div class="hm178-reward">${z.p>=100?'🌟 World Star ได้แล้ว':'🎁 25% ⭐ • 50% 🪙 • 75% 🎁 • 100% 🌟'}</div></article>`).join('')+`<div class="hm178-castle"><div><b>🏰 Star Castle Hub</b><small>Mastery เฉลี่ย ${avg}% • สะสม World Star ให้ครบ ${zones.length} ดวง</small></div><strong>🌟 ${stars}/${zones.length}</strong></div>`;
 }
 function updatePetUnlocks(){Object.keys(pets).forEach(k=>{if(pets[k].unlock()&&!S.pet.owned.includes(k))S.pet.owned.push(k)})}
 function renderPets(){
@@ -2623,7 +2624,7 @@ function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.star
 document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
 $("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();renderAvatar();renderWorld()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();renderAvatar();renderWorld()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();renderAvatar();renderWorld()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
 $("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
-$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v191-save.json";a.click();URL.revokeObjectURL(a.href)};
+$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v192-save.json";a.click();URL.revokeObjectURL(a.href)};
 $("importBtn").onclick=()=>{let f=$("importFile").files[0];if(!f)return toast("เลือกไฟล์ก่อน");let r=new FileReader();r.onload=()=>{try{S=migrate(JSON.parse(r.result));save();render();toast("Import สำเร็จ")}catch(e){toast("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)};
 $("restoreAutoBtn").onclick=()=>{try{let x=JSON.parse(localStorage.getItem(BACKUP)||"null");if(!x)return toast("ยังไม่มี Auto Backup");S=migrate(x);save();render();toast("กู้คืนแล้ว")}catch(e){toast("กู้ไม่ได้")}};
 setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);render();
@@ -3951,7 +3952,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v60-authoritative-runtime">
 (()=>{
-  const BUILD='V188 • FINAL CLEANUP';
+  const BUILD='V192 • FINAL';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
   const BONUS_KEY='hmw_v60_daily_bonus';
@@ -4260,7 +4261,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 <script id="v62-unified-input-engine">
 (()=>{
   'use strict';
-  const BUILD='V188 • FINAL CLEANUP';
+  const BUILD='V192 • FINAL';
   const q=s=>document.querySelector(s);
   let lastTouchAt=0,lastTouchAction='';
 
@@ -4403,7 +4404,7 @@ body:has(input:focus) #petFollower,body:has(select:focus) #petFollower,body:has(
 
 <script id="v67-progression-clarity-ux-hardening">
 (()=>{
-  const BUILD='V188 • FINAL CLEANUP';
+  const BUILD='V192 • FINAL';
   const $q=s=>document.querySelector(s);
   let busy=false,lastSig='',lastAt=0;
 
@@ -4552,7 +4553,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v66-mobile-polish">
 (()=>{
-  const BUILD='V188 • FINAL CLEANUP';
+  const BUILD='V192 • FINAL';
 
   function buildMark(){
     document.title='Habit Monster World V173';
@@ -4677,7 +4678,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v67-progression-ux">
 (()=>{
-  const BUILD='V188 • FINAL CLEANUP';
+  const BUILD='V192 • FINAL';
   const q=s=>document.querySelector(s);
   const qa=s=>[...document.querySelectorAll(s)];
 
@@ -4760,7 +4761,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v68-game-polish-script">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  function st(){try{return window.S||S}catch(_){return null}}
  function g(k){try{return typeof maxGoal==='function'?Number(maxGoal(k))||0:0}catch(_){return 0}}
@@ -4815,7 +4816,7 @@ input[type="number"]{font-size:18px}
 </style>
 <script id="v71-version-lock-script">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const UNITS={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'ครั้ง',noDawdle:'ครั้ง',screen:'หัวข้อ'};
  let busy=false;
  function q(s){return document.querySelector(s)}
@@ -4869,7 +4870,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v70-authoritative-release">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
  const unit={diligent:'ข้อ',reading:'นาที',homework:'งาน',messy:'งาน',morning:'วัน',noDawdle:'หัวข้อ',screen:'หัวข้อ'};
  function mark(){
@@ -4910,7 +4911,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    try{
     const n=q('#backupInfo'); if(!n)return;
     const has=!!localStorage.getItem('hmw26_model_backup');
-    n.innerHTML=`Game Build <b>V188</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>`;
+    n.innerHTML=`Game Build <b>V192</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>`;
    }catch(_){}
  }
  function worldText(){
@@ -4937,7 +4938,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 
 <script id="v71-version-lock">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  function lock(){
    document.title='Habit Monster World V173';
    const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');
@@ -4972,7 +4973,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v72-authoritative-runtime">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const BACKUP_KEY='hmw26_model_backup';
  const PREIMPORT_KEY='hmw_v72_pre_import';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -5091,7 +5092,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function backupInfo(){
    const n=q('#backupInfo');if(!n)return;
    let has=false,stamp='—';try{has=!!localStorage.getItem(BACKUP_KEY);const t=localStorage.getItem(BACKUP_TIME);if(t)stamp=new Date(t).toLocaleString('th-TH')}catch(_){}
-   n.innerHTML=`Game Build <b>V188</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br><small>ไม่จำกัดดาวต่อวัน • มี Recovery checkpoint ก่อนบันทึกสำคัญ • ข้อมูลเดิม ดาว/Level/Streak/Hero/Pet ใช้ต่อได้</small>`;
+   n.innerHTML=`Game Build <b>V192</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br><small>ไม่จำกัดดาวต่อวัน • มี Recovery checkpoint ก่อนบันทึกสำคัญ • ข้อมูลเดิม ดาว/Level/Streak/Hero/Pet ใช้ต่อได้</small>`;
  }
  function todayStages(){
    const host=q('#dailySummary');if(!host)return;let n=q('#v72TodayStages');if(!n){n=document.createElement('div');n.id='v72TodayStages';host.appendChild(n)}
@@ -5145,7 +5146,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v73-authoritative-ux">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const safe=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function todayKey(){try{return dayKey()}catch(_){return new Date().toISOString().slice(0,10)}}
@@ -5185,7 +5186,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
  function backup(){
    const n=q('#backupInfo');if(!n)return;
    let has=false,stamp='—',checkpoint=false;try{has=!!localStorage.getItem('hmw26_model_backup');checkpoint=!!localStorage.getItem('hmw_v73_pre_commit');const t=localStorage.getItem('hmw_v72_backup_time');if(t)stamp=new Date(t).toLocaleString('th-TH')}catch(_){}
-   n.innerHTML=`Game Build <b>V188</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br>Recovery checkpoint: <b>${checkpoint?'พร้อม':'จะสร้างเมื่อบันทึกครั้งถัดไป'}</b><br><small>ไม่จำกัดดาวต่อวัน • ดาว/Level/Streak/Hero/Pet เดิมใช้ต่อได้</small>`;
+   n.innerHTML=`Game Build <b>V192</b> • Data schema ${typeof VERSION!=='undefined'?VERSION:'เดิม'}<br>Auto Backup: <b>${has?'มี':'ยังไม่มี'}</b> • ล่าสุด <b>${stamp}</b><br>Recovery checkpoint: <b>${checkpoint?'พร้อม':'จะสร้างเมื่อบันทึกครั้งถัดไป'}</b><br><small>ไม่จำกัดดาวต่อวัน • ดาว/Level/Streak/Hero/Pet เดิมใช้ต่อได้</small>`;
  }
  function run(){try{mark();world();pet();endCard();backup()}catch(e){console.warn('V73 UX refresh skipped',e)}}
  let scheduled=false;function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;run()})}
@@ -5226,7 +5227,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v74-authoritative-consistency">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  function mark(){
@@ -5331,7 +5332,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v75-authoritative-live-sync">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
  let syncing=false, timers=[];
@@ -5524,7 +5525,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v77-authoritative-gameplay-clarity">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const PENDING='hmw_v77_pending_claim';
  const CLAIMED='hmw_v77_claimed_';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -5643,7 +5644,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
 </style>
 <script id="v78-authoritative-runtime">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
  const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
@@ -5715,7 +5716,7 @@ body{padding-bottom:max(28px,env(safe-area-inset-bottom))!important}
    }catch(_){}
  }
  function worldUI(){try{qa('#worldMap .zone[data-stage]').forEach(z=>{const k=z.dataset.stage,m=S.monsters?.[k];if(!m)return;z.classList.toggle('active',k===S.active);z.setAttribute('aria-label',`${defs[k].title} Level ${m.level}${k===S.active?' กำลังเล่น':''}`)})}catch(_){} }
- function backupUI(){try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>')}catch(_){} }
+ function backupUI(){try{const n=q('#backupInfo');if(n)n.innerHTML=n.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>')}catch(_){} }
  function runtimeNote(){let n=q('#v78RuntimeNote');if(n)return;const h=q('#backupInfo')?.parentElement;if(!h)return;n=document.createElement('div');n.id='v78RuntimeNote';n.innerHTML='<b>V80:</b> Stability + Save hardening • Save เดียว 7 ด่าน • ไม่จำกัดดาว • ไม่มี cooldown • rollback ก่อนบันทึก';h.appendChild(n)}
  function refreshUI(){mark();repair();worldUI();dailyUI();backupUI();runtimeNote()}
  function scheduleUI(){clearTimeout(uiTimer);uiTimer=setTimeout(()=>{refreshUI();requestAnimationFrame(refreshUI)},40)}
@@ -6192,7 +6193,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
 <script id="v88-clean-core-authority">
 (()=>{
  'use strict';
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
  const BUILD_ID='97-final-spacing-pass';
  const PRECOMMIT_KEY='hmw_v73_pre_commit';
  const BACKUP_TIME='hmw_v72_backup_time';
@@ -6252,7 +6253,7 @@ body{padding-bottom:var(--v88-safe-bottom)!important}
    document.title='Habit Monster World V173';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
    qa('#v66RuntimeNote,#v72RuntimeNote,#v73RuntimeNote,#v74RuntimeNote,#v75RuntimeNote,#v76RuntimeNote,#v77RuntimeNote,#v78RuntimeNote,#v80RuntimeNote,#v83RuntimeNote,#v85RuntimeNote,#v86RuntimeNote,#v87RuntimeNote').forEach(n=>n.remove());
    if(!q('#v88RuntimeNote')){const host=bi?.parentElement;if(host){const n=document.createElement('div');n.id='v88RuntimeNote';n.innerHTML='<b>V88:</b> save authority เดียว • ตรวจ state แบบไม่ลบข้อมูล • Summary/Progress ใช้ log/state ชุดเดียว • รองรับข้อมูล V87 เดิม <span id="v88DataHealth">✓ Data OK</span>';host.appendChild(n)}}
  }
@@ -6545,7 +6546,7 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
    document.title='Habit Monster World V173';document.documentElement.dataset.hmwBuild=BUILD_ID;
    const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b&&b.textContent!==BUILD)b.textContent=BUILD;
    const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+   const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
  }
  let t=0;function sync(){clearTimeout(t);t=setTimeout(()=>{mark();fixSummary()},45)}
  function boot(){mark();fixSummary();setTimeout(fixSummary,150);setTimeout(fixSummary,600)}
@@ -6608,14 +6609,14 @@ body{padding-bottom:var(--v90-safe-bottom)!important}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='97-final-spacing-pass';
+const BUILD='V192 • FINAL', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 /* Display consistency only: derive today's completed-stage count from the same
    logs used by the existing summary. No state mutation. */
@@ -6794,14 +6795,14 @@ html,body{max-width:100%;overflow-x:hidden}
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='97-final-spacing-pass';
+const BUILD='V192 • FINAL', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 function boot(){mark()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
@@ -7014,14 +7015,14 @@ html,body{
 <script id="v97-final-spacing-pass-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='97-final-spacing-pass';
+const BUILD='V192 • FINAL', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 function boot(){mark()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
@@ -7249,14 +7250,14 @@ html,body{
 <script id="v97-final-spacing-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='97-final-spacing-pass';
+const BUILD='V192 • FINAL', ID='97-final-spacing-pass';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 function boot(){mark()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
@@ -7306,14 +7307,14 @@ addEventListener('hmw3d-render',()=>setTimeout(boot,20),{passive:true});
 <script id="v98-final-layout-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='98-final-layout-fix';
+const BUILD='V192 • FINAL', ID='98-final-layout-fix';
 const q=s=>document.querySelector(s);
 function mark(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild=ID;
   const b=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
   const st=q('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
-  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  const bi=q('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 addEventListener('pageshow',mark,{passive:true});
@@ -7346,13 +7347,13 @@ addEventListener('pageshow',mark,{passive:true});
 <script id="v99-final-mobile-authority">
 (()=>{
 'use strict';
-const BUILD='V188 • FINAL CLEANUP', ID='100-final-ux-polish';
+const BUILD='V192 • FINAL', ID='100-final-ux-polish';
 function mark(){
  document.title='Habit Monster World V173';
  document.documentElement.dataset.hmwBuild=ID;
  const b=document.querySelector('.buildBadge,.versionBadge,.version-badge,#versionBadge');if(b)b.textContent=BUILD;
  const st=document.querySelector('#threeStatus');if(st)st.textContent='✅ FINAL UX • V100';
- const bi=document.querySelector('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+ const bi=document.querySelector('#backupInfo');if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();
 addEventListener('pageshow',mark,{passive:true});
@@ -7364,7 +7365,7 @@ addEventListener('hmw3d-render',()=>setTimeout(mark,20),{passive:true});
 <script id="v99-display-lock">
 (()=>{
 'use strict';
-const LABEL='V188 • FINAL CLEANUP';
+const LABEL='V192 • FINAL';
 function apply(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
@@ -7483,7 +7484,7 @@ document.addEventListener('click',()=>setTimeout(apply,0),true);
 <script id="v100-final-ux-authority">
 (()=>{
 'use strict';
-const LABEL='V188 • FINAL CLEANUP';
+const LABEL='V192 • FINAL';
 function apply(){
   document.title='Habit Monster World V173';
   document.documentElement.dataset.hmwBuild='100-final-ux-polish';
@@ -7492,7 +7493,7 @@ function apply(){
   const st=document.querySelector('#threeStatus');
   if(st && st.textContent!=='✅ FINAL UX • V100')st.textContent='✅ FINAL UX • V100';
   const bi=document.querySelector('#backupInfo');
-  if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V188</b>');
+  if(bi)bi.innerHTML=bi.innerHTML.replace(/Game Build <b>V\d+(?:\.\d+)?<\/b>/,'Game Build <b>V192</b>');
 }
 function boot(){
   apply();
@@ -7548,7 +7549,7 @@ document.addEventListener('click',()=>setTimeout(apply,0),true);
 <script id="v103-final-authority">
 (()=>{
 'use strict';
-const LABEL='V188 • FINAL CLEANUP';
+const LABEL='V192 • FINAL';
 const NAMES={
  diligent:'เจ้าขยันจัง',
  reading:'น้องบุ๊กบุ๊ก',
@@ -9186,7 +9187,7 @@ window.addEventListener("error",function(e){
 </style>
 <script id="hmw-v186-final-script">
 (()=>{
- const B='V188 • FINAL CLEANUP';
+ const B='V192 • FINAL';
  function activePet(){try{const id=S&&S.pet&&(S.pet.selected||S.pet.active);const p=id&&S.pet.stats&&S.pet.stats[id];return {id:id,stat:p}}catch(_){return {}}}
  function fixEndDay(){
    const h=document.getElementById('endDaySummary');if(!h)return;
@@ -9195,9 +9196,9 @@ window.addEventListener("error",function(e){
    const p=activePet();n.textContent=p.stat?'🐾 Active Pet ตอนนี้: XP '+(Number(p.stat.xp)||0)+' • Friendship '+(Number(p.stat.friendship)||0)+'/100':'🐾 เลือก Active Pet ที่หน้า Pets';
  }
  function f(){
-   document.title='Habit Monster World V188';
+   document.title='Habit Monster World V192';
    document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=B);
-   const s=document.getElementById('threeStatus');if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V188';
+   const s=document.getElementById('threeStatus');if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V192';
    document.querySelectorAll('.hm172-inv').forEach(x=>x.remove());
    const a=document.getElementById('petAlbum');if(a){a.innerHTML='';a.style.setProperty('display','none','important');a.setAttribute('aria-hidden','true')}
    fixEndDay();
@@ -9224,10 +9225,10 @@ window.addEventListener("error",function(e){
 @media(max-width:600px){#pets .hm178-pet{min-height:188px!important}#pets .hm178-petart,#pets .hm178-petart .cinematic-slot{height:96px!important;min-height:96px!important}#pets .hm178-petart svg{max-height:92px!important}}
 </style>
 <script id="hmw-v187-final-qa">
-(()=>{const B='V188 • FINAL CLEANUP';
+(()=>{const B='V192 • FINAL';
 function pn(){try{const id=S&&S.pet&&S.pet.selected;return(id&&pets&&pets[id]&&pets[id].name)||'Active Pet'}catch(_){return'Active Pet'}}
 function fe(){const h=document.getElementById('endDaySummary');if(!h)return;h.querySelectorAll('.summaryBox,.stat,.box').forEach(e=>{const x=(e.textContent||'').replace(/\s+/g,' ').trim();if(/Pet\s*0\b/i.test(x)||(/^❤️\s*Pet\b/i.test(x)&&/\b0\b/.test(x)))e.innerHTML='<span>🐾 Active Pet</span><b>'+pn()+'</b>'})}
-function f(){document.title='Habit Monster World V188';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=B);const s=document.getElementById('threeStatus');if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V188';fe()}
+function f(){document.title='Habit Monster World V192';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=B);const s=document.getElementById('threeStatus');if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V192';fe()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',f,{once:true});else f();[80,300,900,1800,3500].forEach(n=>setTimeout(f,n));window.HMW_VERSION='V187'})();
 </script>
 
@@ -9287,7 +9288,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 <script id="hmw-v188-final-cleanup">
 (()=>{
- const BUILD='V188 • FINAL CLEANUP';
+ const BUILD='V192 • FINAL';
 
  function activeStage(){
    try{
@@ -9323,18 +9324,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    let schema='เดิม';
    try{ if(typeof VERSION!=='undefined') schema=VERSION; }catch(_){}
    n.innerHTML=
-    'Game Build <b>V188</b> • Data schema '+schema+
+    'Game Build <b>V192</b> • Data schema '+schema+
     '<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b>'+
     '<br>Recovery checkpoint: <b>พร้อม</b>'+
     '<br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>';
  }
 
  function stamp(){
-   document.title='Habit Monster World V188';
+   document.title='Habit Monster World V192';
    document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge')
      .forEach(x=>x.textContent=BUILD);
    const s=document.getElementById('threeStatus');
-   if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V188';
+   if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V192';
    const old=document.getElementById('v70ReleaseNote');if(old)old.remove();
    cleanWorld(); cleanAvatar(); cleanBackup();
  }
@@ -9475,7 +9476,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </style>
 <script id="hmw-v190-final-release">
 (()=>{
- const BUILD='V190 • FINAL RELEASE';
+ const BUILD='V192 • FINAL';
  const stageFor=lv=>lv>=5?'HERO FORM':lv>=4?'LEGEND':lv>=3?'HERO':lv>=2?'FRIEND':'BABY';
  function activePet(){try{const id=S&&S.pet&&(S.pet.selected||S.pet.active);return {id,stat:id&&S.pet.stats&&S.pet.stats[id],def:id&&typeof pets!=='undefined'&&pets[id]}}catch(_){return {}}}
  function cleanAvatar(){
@@ -9494,8 +9495,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const h=document.getElementById('endDaySummary');if(!h)return;const p=activePet();
   h.querySelectorAll('.summaryBox,.stat,.box').forEach(e=>{const x=(e.textContent||'').replace(/\s+/g,' ').trim();if(/Pet\s*0\b/i.test(x)&&p.stat)e.innerHTML='<span>🐾 Active Pet</span><b>'+((p.def&&p.def.name)||'Pet')+' • XP '+(Number(p.stat.xp)||0)+' • ❤️ '+(Number(p.stat.friendship)||0)+'</b>'});
  }
- function cleanBackup(){const n=document.getElementById('backupInfo');if(!n)return;const has=!!localStorage.getItem('hmw26_model_backup');let schema='เดิม';try{if(typeof VERSION!=='undefined')schema=VERSION}catch(_){}n.innerHTML='Game Build <b>V190</b> • Data schema '+schema+'<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b><br>Recovery checkpoint: <b>พร้อม</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>'}
- function stamp(){document.title='Habit Monster World V190';document.documentElement.dataset.hmwBuild='190-final-release';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=BUILD);const q=document.getElementById('threeStatus');if(q)q.textContent='🚀 WORLD • JOURNEY • PET • V190';const old=document.getElementById('v70ReleaseNote');if(old)old.remove();cleanAvatar();cleanWorld();cleanPets();cleanEndDay();cleanBackup()}
+ function cleanBackup(){const n=document.getElementById('backupInfo');if(!n)return;const has=!!localStorage.getItem('hmw26_model_backup');let schema='เดิม';try{if(typeof VERSION!=='undefined')schema=VERSION}catch(_){}n.innerHTML='Game Build <b>V192</b> • Data schema '+schema+'<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b><br>Recovery checkpoint: <b>พร้อม</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>'}
+ function stamp(){document.title='Habit Monster World V192';document.documentElement.dataset.hmwBuild='190-final-release';document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=BUILD);const q=document.getElementById('threeStatus');if(q)q.textContent='🚀 WORLD • JOURNEY • PET • V192';const old=document.getElementById('v70ReleaseNote');if(old)old.remove();cleanAvatar();cleanWorld();cleanPets();cleanEndDay();cleanBackup()}
  function wrap(name){const old=window[name];if(typeof old!=='function'||old.__v190)return;const fn=function(){const r=old.apply(this,arguments);setTimeout(stamp,0);return r};fn.__v190=true;window[name]=fn}
  ['render','renderWorld','renderPets','renderBackup','closeDay'].forEach(wrap);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',stamp,{once:true});else stamp();
@@ -9505,24 +9506,24 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 
 
-<!-- HMW V191 FINAL CONSOLIDATION — release authority layer; legacy patches retained for save/UI compatibility -->
-<style id="hmw-v191-final-consolidation">
-html[data-hmw-build="191-final"] .buildBadge{white-space:nowrap}
+<!-- HMW V192 FINAL — release authority layer; legacy patches retained for save/UI compatibility -->
+<style id="hmw-v192-final">
+html[data-hmw-build="192-final"] .buildBadge{white-space:nowrap}
 @media(max-width:600px){
- html[data-hmw-build="191-final"] .buildBadge{font-size:13px!important;padding-inline:9px!important}
+ html[data-hmw-build="192-final"] .buildBadge{font-size:13px!important;padding-inline:9px!important}
 }
 </style>
-<script id="hmw-v191-final-consolidation">
+<script id="hmw-v192-final">
 (()=>{
- const BUILD='V191 • FINAL';
- const RELEASE='191-final';
+ const BUILD='V192 • FINAL';
+ const RELEASE='192-final';
  function activePet(){try{const id=S&&S.pet&&(S.pet.selected||S.pet.active);return {id,stat:id&&S.pet.stats&&S.pet.stats[id],def:id&&typeof pets!=='undefined'&&pets[id]}}catch(_){return {}}}
  const stageFor=lv=>lv>=5?'HERO FORM':lv>=4?'LEGEND':lv>=3?'HERO':lv>=2?'FRIEND':'BABY';
  function normalize(){
-  document.title='Habit Monster World V191';
+  document.title='Habit Monster World V192';
   document.documentElement.dataset.hmwBuild=RELEASE;
   document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=BUILD);
-  const q=document.getElementById('threeStatus');if(q)q.textContent='🚀 WORLD • JOURNEY • PET • V191';
+  const q=document.getElementById('threeStatus');if(q)q.textContent='🚀 WORLD • JOURNEY • PET • V192';
   document.querySelectorAll('#world .heroBadge,#world .hm142-evolution,#world .hm144-panel,#worldMap .evoBadge').forEach(x=>x.remove());
   try{
    document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{const k=(typeof order!=='undefined'&&order[i])?order[i]:null;if(!k||!S?.monsters?.[k])return;const lv=Math.max(1,Number(S.monsters[k].level)||1);const sm=z.querySelector('small');if(sm)sm.textContent='Lv.'+lv+' • '+stageFor(lv)});
@@ -9531,17 +9532,35 @@ html[data-hmw-build="191-final"] .buildBadge{white-space:nowrap}
   const a=document.getElementById('petAlbum');if(a){a.innerHTML='';a.style.setProperty('display','none','important');a.setAttribute('aria-hidden','true')}
   document.querySelectorAll('#pets .hm178-petmeta').forEach(meta=>{const sp=[...meta.querySelectorAll('span')];if(sp[0])sp[0].textContent=sp[0].textContent.replace(/^❤️\s*/,'Friendship ')});
   const h=document.getElementById('endDaySummary'),p=activePet();if(h&&p.stat)h.querySelectorAll('.summaryBox,.stat,.box').forEach(e=>{const x=(e.textContent||'').replace(/\s+/g,' ').trim();if(/Pet\s*0\b/i.test(x))e.innerHTML='<span>🐾 Active Pet</span><b>'+((p.def&&p.def.name)||'Pet')+' • XP '+(Number(p.stat.xp)||0)+' • ❤️ '+(Number(p.stat.friendship)||0)+'</b>'});
-  const n=document.getElementById('backupInfo');if(n){const has=!!localStorage.getItem('hmw26_model_backup');let schema='เดิม';try{if(typeof VERSION!=='undefined')schema=VERSION}catch(_){}n.innerHTML='Game Build <b>V191</b> • Data schema '+schema+'<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b><br>Recovery checkpoint: <b>พร้อม</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>'}
+  const n=document.getElementById('backupInfo');if(n){const has=!!localStorage.getItem('hmw26_model_backup');let schema='เดิม';try{if(typeof VERSION!=='undefined')schema=VERSION}catch(_){}n.innerHTML='Game Build <b>V192</b> • Data schema '+schema+'<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b><br>Recovery checkpoint: <b>พร้อม</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>'}
  }
- function wrap(name){const old=window[name];if(typeof old!=='function'||old.__v191)return;const fn=function(){const r=old.apply(this,arguments);queueMicrotask(normalize);return r};fn.__v191=true;window[name]=fn}
+ function wrap(name){const old=window[name];if(typeof old!=='function'||old.__v192)return;const fn=function(){const r=old.apply(this,arguments);queueMicrotask(normalize);return r};fn.__v192=true;window[name]=fn}
  ['render','renderWorld','renderPets','renderBackup','renderEndDay','closeDay'].forEach(wrap);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',normalize,{once:true});else normalize();
  window.addEventListener('pageshow',normalize);
  [80,300,900,1800].forEach(ms=>setTimeout(normalize,ms));
- window.HMW_VERSION='V191';
- window.HMW_RELEASE={version:'V191',build:RELEASE,saveCompatible:true,features:['Final Release Authority','Manifest Version 191','Title and Badge Consistency','Save Export Naming','World/Pet/End Day Consistency','Mobile Final Lock']};
+ window.HMW_VERSION='V192';
+ window.HMW_RELEASE={version:'V192',build:RELEASE,saveCompatible:true,features:['Final Release Authority','Manifest Version 192','Title and Badge Consistency','Save Export Naming','World/Pet/End Day Consistency','Mobile Final Lock']};
 })();
 </script>
+
+<style id="hmw-v192-mobile-final-lock">
+/* V192 FINAL: compact mobile safety only; no new interaction or save schema. */
+#worldMap .zone{overflow:hidden!important}
+#worldMap .zone .growthBadge{max-width:42%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pets .hm178-pet{overflow:hidden!important}
+#pets .hm178-petmeta{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important}
+#pets .hm178-petmeta span{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+@media(max-width:600px){
+ #worldMap .zone{padding-left:7px!important;padding-right:7px!important;padding-bottom:10px!important}
+ #worldMap .zone .growthBadge{font-size:8px!important;padding:3px 6px!important;max-width:40%!important}
+ #pets .hm178-pet{min-height:194px!important;padding:6px!important}
+ #pets .hm178-pet>b{font-size:13px!important;line-height:1.1!important}
+ #pets .hm178-skillname{font-size:10.5px!important;line-height:1.15!important}
+ #pets .hm178-skillshort{font-size:9.5px!important;line-height:1.15!important;min-height:24px!important}
+ #pets .hm178-petmeta{font-size:9px!important}
+}
+</style>
 
 </body>
 </html>
