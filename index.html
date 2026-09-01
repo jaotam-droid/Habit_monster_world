@@ -10092,5 +10092,60 @@ html[data-hmw-build="192-final"] .buildBadge{white-space:nowrap}
   window.HMW_V197={version:'V197',final:true,scope:'Final Release',features:['Version Lock','Save Compatibility','Pet Chooser Layout Lock','Mobile Safari Polish']};
 })();
 </script>
+
+<!-- Habit Monster World V198 — FINAL FINAL POLISH (visual-only, save-safe) -->
+<style id="hmw-v198-final-final-polish">
+/* World: equalize cards/badges without touching progression logic */
+#worldMap .zone{box-sizing:border-box!important}
+#worldMap .zone .v58-mini{margin-left:auto!important;margin-right:auto!important}
+#worldMap .zone .growthBadge{max-width:42%!important}
+/* Avatar: cleaner compact controls on phones */
+#avatarCard .gearRow,.avatarStudio .gearRow{align-items:center!important;flex-wrap:wrap!important}
+#avatarCard .gearChip,.avatarStudio .gearChip{white-space:nowrap!important}
+/* Trophy / dashboard: prevent narrow-screen overflow */
+#trophy .card,#trophy .achievementCard,#dashboard .card,#parent .card{box-sizing:border-box!important;min-width:0!important}
+#dashboard canvas,#parent canvas{max-width:100%!important}
+/* Pet chooser: stable equal cards and readable states */
+#pets .hm178-pets{align-items:stretch!important}
+#pets .hm178-pet{height:auto!important;min-width:0!important}
+#pets .hm178-active{z-index:8!important}
+@media(max-width:600px){
+ #worldMap .zone{min-width:0!important}
+ #worldMap .zone .growthBadge{max-width:40%!important}
+ #avatarCard .gearRow,.avatarStudio .gearRow{gap:5px!important}
+ #avatarCard .gearChip,.avatarStudio .gearChip{font-size:11px!important;padding:5px 7px!important}
+}
+</style>
+<script id="hmw-v198-final-final-lock">
+(function(){
+ 'use strict';
+ const BUILD='V198 • FINAL';
+ function polish(){
+   document.title='Habit Monster World V198';
+   document.documentElement.dataset.hmwBuild='198-final';
+   window.HMW_VERSION='V198';
+   document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge,[data-version-badge]').forEach(function(el){el.textContent=BUILD});
+   const status=document.getElementById('threeStatus');
+   if(status && /V\d+/i.test(status.textContent||'')) status.textContent=(status.textContent||'').replace(/V\d+/i,'V198');
+   const info=document.getElementById('backupInfo');
+   if(info){
+     info.innerHTML=info.innerHTML.replace(/Game Build\s*<b>V\d+<\/b>/gi,'Game Build <b>V198</b>').replace(/Game Build\s+V\d+/gi,'Game Build V198');
+   }
+   /* Hide developer/legacy diagnostics from the player UI only. Data/save code is untouched. */
+   const backup=document.getElementById('backup') || document.querySelector('[data-page="backup"]');
+   if(backup){
+     Array.from(backup.querySelectorAll('*')).forEach(function(el){
+       const t=(el.textContent||'').trim();
+       if(!t) return;
+       if(/^V88:\s*save authority/i.test(t) || /^Save System:\s*save authority/i.test(t) || /^Legacy compatibility:/i.test(t)) el.style.display='none';
+     });
+   }
+ }
+ function run(){requestAnimationFrame(function(){requestAnimationFrame(polish)});}
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true}); else run();
+ addEventListener('pageshow',run); setTimeout(polish,400); setTimeout(polish,1800);
+ window.HMW_V198={version:'V198',final:true,scope:'Final visual polish only',saveSafe:true};
+})();
+</script>
 </body>
 </html>
