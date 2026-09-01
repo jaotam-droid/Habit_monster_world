@@ -10265,5 +10265,50 @@ html[data-hmw-build="192-final"] .buildBadge{white-space:nowrap}
 })();
 </script>
 
+<!-- Habit Monster World V201 — SAFE NEW GAME RESET -->
+<style id="hmw-v201-reset-style">
+#resetGameBtn{margin-top:14px;background:linear-gradient(135deg,#ff7676,#ef5350)!important;color:#fff!important}
+#resetGameNote{margin-top:7px;text-align:center;color:#718096;font-size:12px;line-height:1.35}
+</style>
+<script id="hmw-v201-safe-reset">
+(function(){
+  'use strict';
+  const BUILD='V201 • FINAL';
+  function installReset(){
+    const backup=document.querySelector('#backup .card');
+    if(backup && !document.getElementById('resetGameBtn')){
+      const info=document.getElementById('backupInfo');
+      const btn=document.createElement('button');
+      btn.id='resetGameBtn'; btn.className='bigBtn'; btn.textContent='เริ่มเกมใหม่ / Reset Game';
+      const note=document.createElement('div');
+      note.id='resetGameNote'; note.textContent='แนะนำ Export Save ก่อน • การ Reset จะลบข้อมูลการเล่นของเกมนี้จาก browser เครื่องนี้';
+      if(info){ info.insertAdjacentElement('afterend',btn); btn.insertAdjacentElement('afterend',note); }
+      else { backup.append(btn,note); }
+      btn.onclick=function(){
+        if(!confirm('เริ่มเกมใหม่ตั้งแต่ต้น?\n\nแนะนำให้ Export Save ก่อน ข้อมูลการเล่นปัจจุบันจะถูกลบจาก browser เครื่องนี้')) return;
+        if(!confirm('ยืนยันอีกครั้ง: ลบ Save ปัจจุบันและเริ่มเกมใหม่จริงหรือไม่?')) return;
+        try{
+          const prefixes=['hmw_','hmw26_'];
+          const exact=['hmw26_model','hmw26_model_backup'];
+          const keys=[];
+          for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k) keys.push(k); }
+          keys.forEach(function(k){ if(exact.includes(k)||prefixes.some(function(p){return k.indexOf(p)===0;})) localStorage.removeItem(k); });
+          location.reload();
+        }catch(e){ alert('Reset ไม่สำเร็จ กรุณาลองใหม่'); }
+      };
+    }
+    document.title='Habit Monster World V201';
+    document.documentElement.dataset.hmwBuild='201-final-reset';
+    window.HMW_VERSION='V201';
+    document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge,[data-version-badge]').forEach(function(el){el.textContent=BUILD});
+    const status=document.getElementById('threeStatus'); if(status) status.textContent='🚀 WORLD • JOURNEY • PET • V201';
+    const info=document.getElementById('backupInfo'); if(info) info.innerHTML=info.innerHTML.replace(/Game Build\s*<b>V\d+<\/b>/gi,'Game Build <b>V201</b>').replace(/Game Build\s+V\d+/gi,'Game Build V201');
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',installReset,{once:true}); else installReset();
+  addEventListener('pageshow',installReset); setTimeout(installReset,350); setTimeout(installReset,1700);
+  window.HMW_V201={version:'V201',final:true,scope:'Safe New Game Reset',saveSchema:'27.4'};
+})();
+</script>
+
 </body>
 </html>
