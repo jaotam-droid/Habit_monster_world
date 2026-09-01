@@ -9370,5 +9370,83 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
+
+
+<!-- V189 — Progression Unity + Pet/Card Polish -->
+<style id="hmw-v189-progression-unity">
+/* Make progression easier to read: one primary status, less duplicated chrome. */
+#world .evolution-card{padding:6px 10px!important;margin:7px 0!important;min-height:0!important}
+#world .evolution-card .evolution-title{font-size:13px!important;line-height:1.2!important}
+#worldMap .zone{min-height:0!important}
+#worldMap .zone .growthBadge{max-width:48%!important;font-size:9px!important;padding:4px 7px!important}
+#pets .hm178-pet{min-height:200px!important}
+#pets .hm178-petart,#pets .hm178-petart .cinematic-slot{height:108px!important;min-height:108px!important}
+#pets .hm178-petart .cinematic-slot img{object-fit:contain!important;object-position:center!important;transform:scale(.80)!important}
+#pets .hm178-petmeta{margin-top:5px!important}
+@media(max-width:600px){
+ #world .evolution-card{padding:6px 9px!important}
+ #world .evolution-card .evolution-title{font-size:12.5px!important}
+ #worldMap .zone{padding-bottom:8px!important}
+ #pets .hm178-pet{min-height:194px!important}
+ #pets .hm178-petart,#pets .hm178-petart .cinematic-slot{height:104px!important;min-height:104px!important}
+ #pets .hm178-petart .cinematic-slot img{transform:scale(.78)!important}
+}
+</style>
+<script id="hmw-v189-progression-unity">
+(()=>{
+ const BUILD='V189 • PROGRESSION UNITY';
+ const stageFor=lv=>lv>=5?'HERO FORM':lv>=4?'LEGEND':lv>=3?'HERO':lv>=2?'FRIEND':'BABY';
+ function stamp(){
+   document.title='Habit Monster World V189';
+   document.documentElement.dataset.hmwBuild='189-progression-unity';
+   document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge').forEach(x=>x.textContent=BUILD);
+   const s=document.getElementById('threeStatus');if(s)s.textContent='🚀 WORLD • JOURNEY • PET • V189';
+ }
+ function cleanWorld(){
+   try{
+    document.querySelectorAll('#worldMap .zone').forEach((z,i)=>{
+      const k=(typeof order!=='undefined'&&order[i])?order[i]:null;
+      if(!k||!S?.monsters?.[k])return;
+      const m=S.monsters[k],lv=Math.max(1,Number(m.level)||1),stage=stageFor(lv);
+      const sm=z.querySelector('small'); if(sm)sm.textContent=`Lv.${lv} • ${stage}`;
+      z.dataset.stageName=stage;
+    });
+    const k=S?.active,m=k&&S.monsters?.[k];
+    if(m){
+      const lv=Math.max(1,Number(m.level)||1),stage=stageFor(lv);
+      const ml=document.getElementById('monsterLevel');if(ml)ml.textContent=`Lv.${lv} • ${stage}`;
+      const nh=document.getElementById('nextLevelHint');
+      if(nh&&lv>=5)nh.textContent='👑 HERO FORM — สะสม Mastery ต่อได้';
+      const card=document.querySelector('#world .evolution-card .evolution-title');
+      if(card)card.textContent=`⭐ Hero Evolution • ${stage}`;
+    }
+   }catch(_){ }
+ }
+ function cleanPets(){
+   try{
+    document.querySelectorAll('#pets .hm178-pet').forEach(card=>{
+      const meta=card.querySelector('.hm178-petmeta');
+      if(!meta)return;
+      const spans=[...meta.querySelectorAll('span')];
+      if(spans[0])spans[0].textContent=spans[0].textContent.replace(/^❤️\s*/,'Friendship ');
+    });
+   }catch(_){ }
+ }
+ function cleanBackup(){
+   const n=document.getElementById('backupInfo');if(!n)return;
+   const has=!!localStorage.getItem('hmw26_model_backup');
+   let schema='เดิม';try{if(typeof VERSION!=='undefined')schema=VERSION}catch(_){ }
+   n.innerHTML='Game Build <b>V189</b> • Data schema '+schema+'<br>Auto Backup: <b>'+(has?'มี':'ยังไม่มี')+'</b><br>Recovery checkpoint: <b>พร้อม</b><br><small>Save เดิมใช้ต่อได้ • ดาว / Level / Streak / Hero / Pet ไม่ถูกรีเซ็ต</small>';
+ }
+ function run(){stamp();cleanWorld();cleanPets();cleanBackup()}
+ function wrap(name){const old=window[name];if(typeof old!=='function'||old.__v189)return;const fn=function(){const r=old.apply(this,arguments);setTimeout(run,0);return r};fn.__v189=true;window[name]=fn}
+ ['render','renderWorld','renderPets','renderBackup'].forEach(wrap);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+ [80,300,900,1800,3500].forEach(ms=>setTimeout(run,ms));
+ window.HMW_VERSION='V189';
+ window.HMW_V189={version:'V189',features:['Unified Monster Stage Labels','Compact Hero Evolution','World Card Consistency','Pet Card Portrait Polish','Version and Backup Consistency']};
+})();
+</script>
+
 </body>
 </html>
