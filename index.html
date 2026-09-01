@@ -5,11 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=192"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=193"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V192</title>
+<title>Habit Monster World V193</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -2624,7 +2624,7 @@ function render(){ensureDaily();updatePetUnlocks();$("stars").textContent=S.star
 document.querySelectorAll("[data-screen]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(b.dataset.screen).classList.add("active")});
 $("saveAvatarBtn").onclick=saveAvatar;$("skinSel").onchange=()=>{S.profile.skin=$("skinSel").value;save();renderAvatar();renderWorld()};$("hairSel").onchange=()=>{S.profile.hair=$("hairSel").value;save();renderAvatar();renderWorld()};$("hairColorSel").onchange=()=>{S.profile.hairColor=$("hairColorSel").value;save();renderAvatar();renderWorld()};$("avatarName").oninput=()=>{$("heroName").textContent=$("avatarName").value.trim()||"นักผจญภัย"};
 $("dailyChestBtn").onclick=claimChest;$("closeDayBtn").onclick=closeDay;$("unlockPinBtn").onclick=unlockPin;$("setPinBtn").onclick=setPin;$("undoBtn").onclick=undoLatest;$("saveSettingsBtn").onclick=saveSettings;$("addRewardBtn").onclick=addReward;
-$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v192-save.json";a.click();URL.revokeObjectURL(a.href)};
+$("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(envelope(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="habit-monster-v193-save.json";a.click();URL.revokeObjectURL(a.href)};
 $("importBtn").onclick=()=>{let f=$("importFile").files[0];if(!f)return toast("เลือกไฟล์ก่อน");let r=new FileReader();r.onload=()=>{try{S=migrate(JSON.parse(r.result));save();render();toast("Import สำเร็จ")}catch(e){toast("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)};
 $("restoreAutoBtn").onclick=()=>{try{let x=JSON.parse(localStorage.getItem(BACKUP)||"null");if(!x)return toast("ยังไม่มี Auto Backup");S=migrate(x);save();render();toast("กู้คืนแล้ว")}catch(e){toast("กู้ไม่ได้")}};
 setInterval(()=>save(),60000);window.addEventListener("beforeunload",save);render();
@@ -9561,6 +9561,140 @@ html[data-hmw-build="192-final"] .buildBadge{white-space:nowrap}
  #pets .hm178-petmeta{font-size:9px!important}
 }
 </style>
+
+
+<!-- Habit Monster World V193 FINAL VISUAL -->
+<style id="hmw-v193-final-visual">
+  /* Final Journey mobile typography: percentages must never split. */
+  #journey .journey-world-card .journey-percent,
+  #journey .journey-card .journey-percent,
+  #journey [class*="journey"] [class*="percent"],
+  #journey .world-percent,
+  #journey .percent{
+    white-space:nowrap !important;
+    word-break:keep-all !important;
+    overflow-wrap:normal !important;
+    flex:0 0 auto !important;
+  }
+
+  /* Keep long Journey names and their % balanced in the same heading row. */
+  #journey .journey-world-card h3,
+  #journey .journey-card h3{
+    min-width:0 !important;
+    line-height:1.16 !important;
+  }
+
+  /* World: active card uses a clean outline instead of a heavy overlay. */
+  #world .zone-card.active::before,
+  #world .world-zone.active::before,
+  #world .monster-card.active::before{
+    opacity:.16 !important;
+    width:34% !important;
+    max-width:120px !important;
+    pointer-events:none !important;
+  }
+  #world .zone-card.active,
+  #world .world-zone.active,
+  #world .monster-card.active{
+    box-shadow:inset 0 0 0 3px rgba(255,197,55,.88),0 7px 18px rgba(35,72,105,.08) !important;
+  }
+
+  /* Pet grid: preserve readable separation between portrait, name and skill. */
+  #pets .pet-card{
+    overflow:hidden !important;
+  }
+  #pets .pet-card .pet-name,
+  #pets .pet-card [class*="name"]{
+    line-height:1.12 !important;
+    margin-top:4px !important;
+  }
+  #pets .pet-card .pet-skill,
+  #pets .pet-card [class*="skill"]{
+    line-height:1.16 !important;
+  }
+
+  @media (max-width:560px){
+    #journey .journey-world-card,
+    #journey .journey-card{
+      min-width:0 !important;
+    }
+    #journey .journey-world-card h3,
+    #journey .journey-card h3{
+      font-size:clamp(15px,4vw,19px) !important;
+    }
+    #journey .journey-percent,
+    #journey .world-percent{
+      font-size:clamp(18px,5vw,24px) !important;
+    }
+  }
+</style>
+<script id="hmw-v193-final-visual">
+(function(){
+  'use strict';
+  const BUILD='V193 • FINAL';
+  function setText(el, text){ if(el) el.textContent=text; }
+
+  function stamp(){
+    document.title='Habit Monster World V193';
+    document.documentElement.dataset.hmwBuild='193-final';
+    window.HMW_VERSION='V193';
+
+    document.querySelectorAll('[data-version-badge], .version-badge, #versionBadge').forEach(function(el){
+      if(/V\d+/i.test(el.textContent||'')) setText(el, BUILD);
+    });
+    const three=document.getElementById('threeStatus');
+    if(three && /V\d+/i.test(three.textContent||'')) three.textContent=(three.textContent||'').replace(/V\d+(?:\s*[•·-]\s*[^|]*)?/i,'V193');
+
+    // Fix visible Journey percent wrapping without changing Journey logic.
+    document.querySelectorAll('#journey *').forEach(function(el){
+      const t=(el.textContent||'').trim();
+      if(/^\d{1,3}\s*%$/.test(t) && el.children.length===0){
+        el.style.whiteSpace='nowrap';
+        el.style.wordBreak='keep-all';
+        el.style.overflowWrap='normal';
+      }
+    });
+
+    // Backup wording: remove old release labels while preserving schema/storage compatibility.
+    const backup=document.getElementById('backup') || document.querySelector('[data-page="backup"]');
+    if(backup){
+      const walker=document.createTreeWalker(backup, NodeFilter.SHOW_TEXT);
+      const nodes=[];
+      while(walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function(n){
+        let t=n.nodeValue;
+        if(!t) return;
+        t=t.replace(/Game Build\s+V\d+/gi,'Game Build V193');
+        t=t.replace(/V88:\s*save authority/gi,'Save System: save authority');
+        t=t.replace(/V73\s*สำรองข้อมูลก่อน Import\/Save สำคัญ และตรวจไฟล์ก่อนเขียนทับ/gi,
+          'Legacy compatibility: สำรองข้อมูลก่อน Import/Save สำคัญ และตรวจไฟล์ก่อนเขียนทับ');
+        n.nodeValue=t;
+      });
+    }
+  }
+
+  function afterRender(){
+    requestAnimationFrame(function(){ requestAnimationFrame(stamp); });
+  }
+  ['render','renderJourney','renderWorld','renderPets','renderBackup'].forEach(function(name){
+    const fn=window[name];
+    if(typeof fn==='function' && !fn.__hmw193){
+      const wrapped=function(){ const r=fn.apply(this,arguments); afterRender(); return r; };
+      wrapped.__hmw193=true;
+      window[name]=wrapped;
+    }
+  });
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',afterRender,{once:true});
+  else afterRender();
+
+  window.HMW_V193={
+    version:'V193',
+    final:true,
+    features:['Journey Percent Lock','World Active Highlight Polish','Pet Card Spacing','Backup Legacy Label Cleanup']
+  };
+})();
+</script>
 
 </body>
 </html>
