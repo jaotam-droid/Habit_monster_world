@@ -5,11 +5,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<link rel="manifest" href="manifest.webmanifest?v=194"><meta name="theme-color" content="#76b9ef">
+<link rel="manifest" href="manifest.webmanifest?v=195"><meta name="theme-color" content="#76b9ef">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#76b9ef">
-<title>Habit Monster World V194</title>
+<title>Habit Monster World V195</title>
 <style>
 :root{--ink:#24364a;--muted:#718096;--line:#dce7ef;--blue:#6cb7ef;--green:#69c98f;--yellow:#ffd76f;--pink:#ef92bc;--purple:#9b87e5;--orange:#ffad64;--shadow:0 10px 28px rgba(43,73,105,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(#edf8ff,#fff8e8);color:var(--ink)}button,input,select{font:inherit}
@@ -1986,8 +1986,8 @@ button{
 <!-- V124 Premium Evolution -->
 <div class="wrap">
 <div class="header">
-<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V194 • FINAL</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
-<div class="status"><span class="pill" id="threeStatus">🚀 WORLD • JOURNEY • PET • V192</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
+<div class="brandBlock"><div class="brandLine"><h1>🌍 Habit Monster World</h1><span class="buildBadge">V195 • FINAL LOCK</span></div><div class="sub">Adventure World • เกมสร้างนิสัยแบบไม่รุนแรง</div></div>
+<div class="status"><span class="pill" id="threeStatus">🚀 WORLD • JOURNEY • PET • V195</span><span class="pill">⭐ ดาวสะสม <span id="stars">0</span></span><span class="pill">🔥 Streak <span id="streakTop">0</span> วัน</span><span class="pill">🍃 ใบพัก <span id="shieldsTop">0</span></span></div>
 </div>
 <section class="card"><div class="note"><b>⭐ ดาว</b> ใช้แลกรางวัล • <b>🔥 Streak</b> นับเป็นวัน วันเดียวทำกี่ครั้งก็นับ 1 • <b>🍃 ใบพัก</b> ใช้อัตโนมัติเมื่อเว้น 1 วัน</div></section>
 <section class="card"><div class="nav">
@@ -9901,6 +9901,122 @@ html[data-hmw-build="192-final"] .buildBadge{white-space:nowrap}
     scope:'Mobile Visual Lock',
     features:['Version Lock','World Active Outline','World Mobile Readability','Pet Chooser Compact','Avatar Gear Compact']
   };
+})();
+</script>
+
+
+<!-- Habit Monster World V195 FINAL LOCK — consistency, pet sync, daily semantics, mobile safety -->
+<style id="hmw-v195-final-lock">
+  /* Daily: 3/3 must mean completed quests, never total quest count. */
+  #dailyQuestGrid:before{content:none!important;display:none!important}
+  #hmwV195DailyProgress{grid-column:1/-1;font-size:12px;font-weight:950;color:#607890;margin:0 0 4px}
+
+  /* World Map: give progress/footer text enough room on phones without enlarging the cards. */
+  #worldMap .zone{box-sizing:border-box!important}
+  #worldMap .v58-next{max-width:100%!important;overflow-wrap:anywhere!important}
+  #worldMap .growthBadge{z-index:7!important}
+  @media(max-width:600px){
+    #worldMap .zone{padding-left:7px!important;padding-right:7px!important;padding-bottom:12px!important}
+    #worldMap .v58-mini{width:92%!important;margin-left:auto!important;margin-right:auto!important}
+    #worldMap .v58-next{font-size:8.8px!important;line-height:1.12!important;min-height:20px!important;margin-top:3px!important}
+    #worldMap .growthBadge{max-width:38%!important;font-size:7.8px!important;padding:3px 5px!important}
+  }
+</style>
+<script id="hmw-v195-final-lock">
+(function(){
+  'use strict';
+  const BUILD='V195 • FINAL LOCK';
+  const RELEASE='195-final-lock';
+  const q=s=>document.querySelector(s);
+  const num=v=>{v=Number(v);return Number.isFinite(v)?v:0};
+  let running=false;
+
+  function activePetSync(){
+    try{
+      if(!window.S||!S.pet)return null;
+      if(typeof hmwEnsurePetStats==='function')hmwEnsurePetStats();
+      if(!S.pet.stats||typeof S.pet.stats!=='object')S.pet.stats={};
+      const id=S.pet.selected||S.pet.active||'puppy';
+      if(!S.pet.stats[id])S.pet.stats[id]={xp:num(S.pet.xp),friendship:num(S.pet.friendship)};
+      /* S.pet.xp/friendship are the live aliases used by the activity commit engine. */
+      S.pet.stats[id].xp=num(S.pet.xp);
+      S.pet.stats[id].friendship=Math.min(100,num(S.pet.friendship));
+      return {id,stat:S.pet.stats[id],def:(typeof pets!=='undefined'&&pets[id])||null};
+    }catch(_){return null}
+  }
+
+  function lockVersion(){
+    document.title='Habit Monster World V195';
+    document.documentElement.dataset.hmwBuild=RELEASE;
+    window.HMW_VERSION='V195';
+    document.querySelectorAll('.buildBadge,.versionBadge,.version-badge,#versionBadge,[data-version-badge]').forEach(b=>{if(b.textContent!==BUILD)b.textContent=BUILD});
+    const three=q('#threeStatus');
+    if(three&&three.textContent!=='🚀 WORLD • JOURNEY • PET • V195')three.textContent='🚀 WORLD • JOURNEY • PET • V195';
+  }
+
+  function fixDaily(){
+    try{
+      if(typeof ensureDaily==='function')ensureDaily();
+      const grid=q('#dailyQuestGrid');if(!grid||!window.S||!S.daily||!S.daily.done)return;
+      const keys=['diligent','reading','homework'];
+      const done=keys.filter(k=>!!S.daily.done[k]).length;
+      let h=q('#hmwV195DailyProgress');
+      if(!h){h=document.createElement('div');h.id='hmwV195DailyProgress';grid.insertAdjacentElement('beforebegin',h)}
+      h.textContent=`Daily Quest ${done}/3 สำเร็จ`;
+    }catch(_){ }
+  }
+
+  function fixBackup(){
+    const n=q('#backupInfo');if(!n)return;
+    let html=n.innerHTML||'';
+    html=html.replace(/Game Build\s*(?:<b>)?V\d+(?:\.\d+)?(?:<\/b>)?/i,'Game Build <b>V195</b>');
+    html=html.replace(/V88:\s*save authority/gi,'Save System: save authority');
+    html=html.replace(/V73\s*สำรองข้อมูลก่อน Import\/Save สำคัญ และตรวจไฟล์ก่อนเขียนทับ/gi,'Legacy compatibility: สำรองข้อมูลก่อน Import/Save สำคัญ และตรวจไฟล์ก่อนเขียนทับ');
+    if(html!==n.innerHTML)n.innerHTML=html;
+  }
+
+  function fixEndDay(){
+    const h=q('#endDaySummary'),p=activePetSync();if(!h||!p||!p.stat)return;
+    const label=(p.def&&p.def.name)||p.id||'Pet';
+    const boxes=[...h.querySelectorAll('.summaryBox,.stat,.box')];
+    const petBox=boxes.find(el=>/Pet/i.test((el.textContent||'').replace(/\s+/g,' ')));
+    if(petBox)petBox.innerHTML='<span>🐾 Active Pet</span><b>'+label+' • XP '+num(p.stat.xp)+' • ❤️ '+num(p.stat.friendship)+'</b>';
+    let note=q('#hmw186PetNote');
+    if(note)note.textContent='🐾 Active Pet ตอนนี้: XP '+num(p.stat.xp)+' • Friendship '+num(p.stat.friendship)+'/100';
+  }
+
+  function fixWorld(){
+    document.querySelectorAll('#worldMap .zone').forEach(z=>z.style.minWidth='0');
+  }
+
+  function run(){
+    if(running)return;running=true;
+    try{lockVersion();activePetSync();fixDaily();fixBackup();fixEndDay();fixWorld()}finally{running=false}
+  }
+  function after(){queueMicrotask(()=>requestAnimationFrame(run))}
+
+  /* Keep per-pet stats synchronized after the authoritative activity commit, without adding XP twice. */
+  if(typeof window.commitActivityV60==='function'&&!window.commitActivityV60.__v195){
+    const base=window.commitActivityV60;
+    const wrapped=function(){const r=base.apply(this,arguments);if(r!==false){activePetSync();try{save()}catch(_){ }after()}return r};
+    wrapped.__v195=true;window.commitActivityV60=wrapped;
+  }
+
+  ['render','renderWorld','renderDaily','renderPets','renderEndDay','renderBackup','closeDay'].forEach(name=>{
+    const old=window[name];if(typeof old!=='function'||old.__v195)return;
+    const wrapped=function(){const r=old.apply(this,arguments);after();return r};wrapped.__v195=true;window[name]=wrapped;
+  });
+
+  const boot=()=>{
+    run();
+    const badge=q('.buildBadge,.versionBadge,.version-badge,#versionBadge');
+    if(badge&&!badge.__v195Lock){const mo=new MutationObserver(()=>{if(badge.textContent!==BUILD)badge.textContent=BUILD});mo.observe(badge,{childList:true,characterData:true,subtree:true});badge.__v195Lock=mo}
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  addEventListener('pageshow',boot);
+  [80,300,900,2000,5200].forEach(ms=>setTimeout(run,ms));
+
+  window.HMW_V195={version:'V195',final:true,saveCompatible:true,scope:'Final Lock',features:['Version Consistency','Daily Quest Semantics','Active Pet Stat Sync','World Mobile Footer Safety','Backup/End Day Consistency']};
 })();
 </script>
 
